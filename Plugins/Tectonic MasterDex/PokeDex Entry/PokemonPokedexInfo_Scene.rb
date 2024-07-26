@@ -6,7 +6,7 @@ class PokemonPokedexInfo_Scene
 
     def pageTitles
         return [_INTL("INFO"), _INTL("ABILITIES"), _INTL("STATS"), _INTL("DEF. MATCHUPS"),
-                _INTL("ATK. MATCHUPS"), _INTL("LEVEL UP MOVES"), _INTL("TUTOR MOVES"),
+                _INTL("ATK. MATCHUPS"), _INTL("LEVEL UP MOVES"), _INTL("OTHER MOVES"),
                 _INTL("EVOLUTIONS"), _INTL("AREA"), _INTL("FORMS"), _INTL("ANALYSIS")]
     end
 
@@ -78,7 +78,7 @@ class PokemonPokedexInfo_Scene
         @sprites["leftarrow"].play
         @sprites["leftarrow"].visible = false
         @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow", 8, 40, 28, 2, @viewport)
-        @sprites["rightarrow"].x = 172
+        @sprites["rightarrow"].x = 184
         @sprites["rightarrow"].y = 52
         @sprites["rightarrow"].play
         @sprites["rightarrow"].visible = false
@@ -86,7 +86,7 @@ class PokemonPokedexInfo_Scene
         @sprites["selectionarrow"] = IconSprite.new(0, 0, @viewport)
         @sprites["selectionarrow"].setBitmap("Graphics/Pictures/selarrow")
         @sprites["selectionarrow"].visible = false
-        @sprites["selectionarrow"].x = 20
+        @sprites["selectionarrow"].x = 6
         # Create the move extra info display
         @moveInfoDisplay = SpriteWrapper.new(@viewport)
         @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
@@ -690,21 +690,18 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         return ret
     end
 
-    MAX_LENGTH_MOVE_LIST = 7
-    MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT = 54
-
+    MAX_LENGTH_MOVE_LIST = 6
+    MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT = 56
+    MOVE_LIST_X_LEFT = 32
 
     def drawPageLevelUpMoves
-        bg_path = "Graphics/Pictures/Pokedex/bg_moves"
+        bg_path = "Graphics/Pictures/Pokedex/bg_moves_level"
         bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        formname = ""
         selected_move = nil
-        xLeft = 24
         for i in @available
             next unless i[2] == @form
-            formname = i[0]
             fSpecies = GameData::Species.get_species_form(@species, i[2])
             learnset = fSpecies.moves
             displayIndex = 0
@@ -718,15 +715,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 levelLabel = _INTL("E") if level == 0
                 # Draw stat line
                 offsetX = 0
-                maxWidth = displayIndex == 0 ? 170 : 182
+                maxWidth = 160
                 moveName, moveColor, moveShadow = getFormattedMoveName(move, maxWidth)
-                if listIndex == @scroll
-                    offsetX = 12
-                    selected_move = move
-                end
-                moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 30 * displayIndex
-                drawTextEx(overlay, xLeft + offsetX, moveDrawY, 450, 1, levelLabel, moveColor, moveShadow)
-                drawFormattedTextEx(overlay, xLeft + 30 + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
+                selected_move = move if listIndex == @scroll
+                moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 32 * displayIndex
+                drawTextEx(overlay, MOVE_LIST_X_LEFT + offsetX, moveDrawY, 450, 1, levelLabel, moveColor, moveShadow)
+                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + 40 + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                 if listIndex == @scroll
                     @sprites["selectionarrow"].y = moveDrawY - 4
                     @sprites["selectionarrow"].visible = true
@@ -740,7 +734,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageTutorMoves
-        bg_path = "Graphics/Pictures/Pokedex/bg_moves"
+        bg_path = "Graphics/Pictures/Pokedex/bg_moves_tutor"
         bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
@@ -748,7 +742,6 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         shadow = MessageConfig.pbDefaultTextShadowColor
 
         selected_move = nil
-        xLeft = 24
         for i in @available
             next unless i[2] == @form
             species_data = GameData::Species.get_species_form(@species, i[2])
@@ -806,8 +799,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             # render the moves lists
             @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
             categoryName = [_INTL("Physical"),_INTL("Special"),_INTL("Status")][@horizontalScroll]
-            drawFormattedTextEx(overlay, xLeft, 54, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
-            displayIndex = 1
+            drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, 54, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
+            displayIndex = 0
             listIndex = -1
             if @scrollableLists[@horizontalScroll].length > 0
                 @scrollableLists[@horizontalScroll].each_with_index do |move, _index|
@@ -816,12 +809,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     maxWidth = displayIndex == 0 ? 200 : 212
                     moveName, moveColor, moveShadow = getFormattedMoveName(move, 200)
                     offsetX = 0
-                    if listIndex == @scroll
-                        selected_move = move
-                        offsetX = 12
-                    end
-                    moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 30 * displayIndex
-                    drawFormattedTextEx(overlay, xLeft + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
+                    selected_move = move if listIndex == @scroll
+                    moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 34 + 32 * displayIndex
+                    drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                     if listIndex == @scroll
                         @sprites["selectionarrow"].y = moveDrawY - 4
                         @sprites["selectionarrow"].visible = true
@@ -830,7 +820,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     break if displayIndex > MAX_LENGTH_MOVE_LIST
                 end
             else
-                drawFormattedTextEx(overlay, xLeft + 60, 90, 450, _INTL("None"), base, shadow)
+                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + 60, 90, 450, _INTL("None"), base, shadow)
             end
         end
 
@@ -1162,6 +1152,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["leftarrow"].visible = @page == 7
         @sprites["rightarrow"].visible = @page == 7
         drawPage(@page)
+
+        linesShown = @page == 6 ? 7 : 6
+
         loop do
             Graphics.update
             Input.update
@@ -1188,28 +1181,51 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     doRefresh = true
                 end
             elsif Input.repeat?(Input::LEFT)
-                if @horizontalScroll > 0
-                    pbPlayCursorSE
-                    @horizontalScroll -= 1
-                    @scroll = 0
-                    doRefresh = true
-                elsif Input.trigger?(Input::LEFT)
-                    pbPlayCursorSE
-                    @horizontalScroll = @scrollableLists.length - 1
-                    @scroll = 0
-                    doRefresh = true
+                if @page == 7
+                    if @horizontalScroll > 0
+                        pbPlayCursorSE
+                        @horizontalScroll -= 1
+                        @scroll = 0
+                        doRefresh = true
+                    elsif Input.trigger?(Input::LEFT)
+                        pbPlayCursorSE
+                        @horizontalScroll = @scrollableLists.length - 1
+                        @scroll = 0
+                        doRefresh = true
+                    end
                 end
             elsif Input.repeat?(Input::RIGHT)
-                if @horizontalScroll < @scrollableLists.length - 1
+                if @page == 7
+                    if @horizontalScroll < @scrollableLists.length - 1
+                        pbPlayCursorSE
+                        @horizontalScroll += 1
+                        @scroll = 0
+                        doRefresh = true
+                    elsif Input.trigger?(Input::RIGHT)
+                        pbPlayCursorSE
+                        @horizontalScroll = 0
+                        @scroll = 0
+                        doRefresh = true
+                    end
+                end
+            elsif Input.repeat?(Input::JUMPUP) # Jump multiple lines
+                if @scroll > 0
                     pbPlayCursorSE
-                    @horizontalScroll += 1
-                    @scroll = 0
+                    @scroll -= linesShown
+                    @scroll = 0 if @scroll < 0
                     doRefresh = true
-                elsif Input.trigger?(Input::RIGHT)
+                else
+                    pbPlayBuzzerSE
+                end
+            elsif Input.repeat?(Input::JUMPDOWN)
+                offsetMax = @scrollableLists[@horizontalScroll].length - 1
+                if @scroll < offsetMax
                     pbPlayCursorSE
-                    @horizontalScroll = 0
-                    @scroll = 0
+                    @scroll += linesShown
+                    @scroll = offsetMax if @scroll > offsetMax
                     doRefresh = true
+                else
+                    pbPlayBuzzerSE
                 end
             elsif Input.trigger?(Input::BACK)
                 pbPlayCancelSE
@@ -1238,11 +1254,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     def alertToDexTutorListSortMode
         case $PokemonGlobal.dex_tutor_list_sort_mode
         when 0
-            pbMessage(_INTL("Tutor moves now sorted by name."))
+            pbMessage(_INTL("Moves now sorted by name."))
         when 1
-            pbMessage(_INTL("Tutor moves now sorted by base power."))
+            pbMessage(_INTL("Moves now sorted by base power."))
         when 2
-            pbMessage(_INTL("Tutor moves now sorted by type."))
+            pbMessage(_INTL("Moves now sorted by type."))
         end
     end
 

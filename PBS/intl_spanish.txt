@@ -47553,6 +47553,12 @@ Catch Difficulty
 Dificultad de Captura
 Experience Grant
 Experiencia Dada
+Moves now sorted by name.
+Los movimientos ahora están ordenados por nombre.
+Moves now sorted by base power.
+Los movimientos ahora están ordenados por poder base.
+Moves now sorted by type.
+Los movimientos ahora están ordenados por tipo.
 Struggle
 Forcejeo
 {1} was damaged by recoil!
