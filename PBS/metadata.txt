@@ -1163,7 +1163,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 155,32,28
+HealingSpot = 155,34,18
 #-------------------------------
 [159]
 # Travel Agency
