@@ -164,7 +164,7 @@ module MoveInfoDisplay
       row2ValueY = row2LabelY + 32
       row3ValueY = row3LabelY + 32
 
-      nameX = 374
+      nameX = 382
       nameY = 46
       descriptionX = 8
       descriptionY = 286

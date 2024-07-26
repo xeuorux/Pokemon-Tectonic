@@ -19,6 +19,9 @@ class PokemonGlobalMetadata
     attr_accessor :pokedexDex      # Dex currently looking at (-1 is National Dex)
     attr_accessor :pokedexIndex    # Last species viewed per Dex
     attr_accessor :pokedexMode     # Search mode
+    attr_accessor :stored_search
+    attr_accessor :dex_forms_shows_shinies
+    attr_accessor :dex_tutor_list_sort_mode
     # Day Care
     attr_accessor :daycare
     attr_accessor :daycareEgg
@@ -51,7 +54,7 @@ class PokemonGlobalMetadata
     attr_accessor :safesave
     # Dexnav
     attr_accessor :dexNavEggMovesUnlocked
-	  attr_accessor :caughtCountsPerMap
+    attr_accessor :caughtCountsPerMap
     # Exp-EZ Dispenser
     attr_accessor :expJAR
     # Aid kit
@@ -60,9 +63,6 @@ class PokemonGlobalMetadata
     attr_accessor :teamHealerUpgrades
     # Tarot amulet
     attr_accessor :tarot_amulet_active
-    # MasterDex
-    attr_accessor :stored_search
-    attr_accessor :dex_forms_shows_shinies
     # Randomizer
     attr_accessor :randomizedData
     attr_accessor :isRandomizer
@@ -138,6 +138,8 @@ class PokemonGlobalMetadata
         # Masterdex
         @stored_search		  = nil
         @dex_forms_shows_shinies = false
+        @dex_tutor_list_sort_mode = 0
+
         @omnitutor_active     = false
         @noise_machine_state  = 0
         @exp_multiplier       = 1.0
