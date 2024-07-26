@@ -125,14 +125,6 @@ module GameData
           end
         end
       end
-
-      def name_with_article(lowerCase = true)
-        if name.starts_with_vowel?
-          return lowerCase ? _INTL("an {1}",name) : _INTL("An {1}",name)
-        else
-          return lowerCase ? _INTL("a {1}",name) : _INTL("A {1}",name)
-        end
-      end
   
       # @return [String] the translated name of this item
       def name

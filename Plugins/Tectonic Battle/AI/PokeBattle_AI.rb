@@ -1,20 +1,3 @@
-# AI skill levels:
-#     0:     Wild Pokémon
-#     1-31:  Basic trainer (young/inexperienced)
-#     32-47: Some skill
-#     48-99: High skill
-#     100+:  Best trainers (Gym Leaders, Elite Four, Champion)
-# NOTE: A trainer's skill value can range from 0-255, but by default only four
-#       distinct skill levels exist. The skill value is typically the same as
-#       the trainer's base money value.
-module PBTrainerAI
-    # Minimum skill level to be in each AI category.
-    def self.minimumSkill; return 1;   end
-    def self.mediumSkill;  return 32;  end
-    def self.highSkill;    return 48;  end
-    def self.bestSkill;    return 100; end
-end
-
 KillInfo = Struct.new(:user, :move, :speed, :priority, :score)
 
 class PokeBattle_AI

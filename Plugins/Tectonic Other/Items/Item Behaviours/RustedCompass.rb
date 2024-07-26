@@ -79,23 +79,23 @@ ItemHandlers::UseInField.add(:RUSTEDCOMPASS,proc { |item|
 
     lootDescriptor = ""
     if hidden
-        lootDescriptor =  _INTL("The hidden loot")
+        lootDescriptor =  _INTL("hidden loot")
     else
-        lootDescriptor = itemData.name_with_article(false)
+        lootDescriptor =  itemData.name
     end
 
     if squareDistance > 2048
-        lootMessage = _INTL("{1} is very far away!",lootDescriptor)
+        lootMessage = _INTL("The {1} is very far away!",lootDescriptor)
     elsif squareDistance > 512
-        lootMessage = _INTL("{1} is far away!",lootDescriptor)
+        lootMessage = _INTL("The {1} is far away!",lootDescriptor)
     elsif squareDistance > 128
-        lootMessage = _INTL("{1} is at a medium distance!",lootDescriptor)
+        lootMessage = _INTL("The {1} is at a medium distance!",lootDescriptor)
     elsif squareDistance > 32
-        lootMessage = _INTL("{1} is close by!",lootDescriptor)
+        lootMessage = _INTL("The {1} is close by!",lootDescriptor)
     elsif squareDistance > 8
-        lootMessage = _INTL("{1} is very close by!",lootDescriptor)
+        lootMessage = _INTL("The {1} is very close by!",lootDescriptor)
     else
-        lootMessage = _INTL("{1} is EXTREMELY close! You're nearly on top of it!",lootDescriptor)
+        lootMessage = _INTL("The {1} is EXTREMELY close! You're nearly on top of it!",lootDescriptor)
     end
     lootMessage = _INTL("\\i[{1}]{2}",itemID,lootMessage) unless hidden
     pbMessage(lootMessage)
