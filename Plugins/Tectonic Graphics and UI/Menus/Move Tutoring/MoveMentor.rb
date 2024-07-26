@@ -78,7 +78,7 @@ class Pokemon
             end
             if CAN_MENTOR_PREVIOUS_MOVES
                 getRelearnableMoves(otherPkmn).each do |m|
-                    next if hasMove?(m.id)
+                    next if hasMove?(m)
                     next unless ourLearnableMoves.include?(m)
                     return true
                 end
