@@ -762,7 +762,7 @@ class Game_Map
         end
         blackFadeOutIn do
             pbDisposeSpriteHash(@sprites)
-            @viewport1.dispose
+            controlArrowsViewport.dispose
 
             self.display_x = prevCameraX
             self.display_y = prevCameraY
