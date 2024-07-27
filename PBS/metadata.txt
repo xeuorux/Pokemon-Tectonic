@@ -3072,25 +3072,25 @@ MapPosition = 0,10,17
 Environment = Puddle
 #-------------------------------
 [433]
-# Icy Ship Steerage
+# SS Circhester Steerage
 Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [434]
-# Icy Ship Middle Deck
+# SS Circhester Middle Deck
 Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [435]
-# Haunted Ship Steerage
+# SS Glimwood Steerage
 Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [436]
-# Haunted Ship Middle Deck
+# SS Glimwood Middle Deck
 Outdoor = false
 ShowArea = false
 Bicycle = true
