@@ -11,6 +11,8 @@ def unlockTools
         BALLLAUNCHER
         SURFBOARD
         CLIMBINGGEAR
+        FLORASCEPTRE
+        POKEXRAY
     ]
     
     itemList.each do |itemID|
@@ -21,6 +23,7 @@ def unlockTools
     pbRegisterItem(:AIDKIT)
     pbRegisterItem(:ABRAPORTER)
     pbRegisterItem(:EXPEZDISPENSER)
+    pbRegisterItem(:POKEXRAY)
     initializeAidKit
     $PokemonGlobal.omnitutor_active = true
     pbMessage("Receiving every major tool item.")

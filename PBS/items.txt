@@ -2573,6 +2573,15 @@ FieldUse = Direct
 Flags = KeyItem
 Description = A small, versatile machine that can be used to repel wild Pokémon, or draw them near.
 #-------------------------------
+[POKEXRAY]
+Name = Poké X-Ray
+NamePlural = Poké X-Rays
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A high tech surveillance device. Use it to scout out the teams of nearby trainers.
+#-------------------------------
 [CELLBOOSTER]
 Name = Cell Booster
 NamePlural = Cell Boosters

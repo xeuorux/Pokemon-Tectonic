@@ -251,27 +251,42 @@ Events.onMapChange += proc { |_sender,*args|
 	followerEventGraphicSwap
 }
 
-def followerEventGraphicSwap(reset = false)
-	# Followers where the trainer info is in the name
-	for event in $game_map.events.values
-		match = event.name.match(/follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/)
-		next unless match
+AUTO_FOLLOWER_NAME_FLAG_REGEX = /follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/
 
+# Followers where the trainer info is in the name
+def eachAutoFollowerInMap
+    for event in $game_map.events.values
+		match = event.name.match(AUTO_FOLLOWER_NAME_FLAG_REGEX)
+		next unless match
+        yield event, match
+    end
+end
+
+def eachTrainerWithAutoFollowerInMap
+    eachAutoFollowerInMap do |event, match|
 		cursed = event.name.match(/cursedfollower/)
 
 		# Parse the event name
 		trainerClass = match[1].to_sym
 		trainerName = match[2]
 		trainerVersion = match[3].to_i || 0
-		partyIndex = match[4].to_i || 0
 
 		# Don't use the cursed version if it doesnt actually exist
 		if cursed && tarotAmuletActive? && GameData::Trainer.try_get(trainerClass, trainerName, trainerVersion + 1)
 			trainerVersion += 1
 		end
 
+        trainer = pbLoadTrainer(trainerClass, trainerName, trainerVersion)
+
+        yield event, match, trainer
+    end
+end
+
+def followerEventGraphicSwap(reset = false)
+    eachTrainerWithAutoFollowerInMap do |event, match, trainer|
 		# Find the pokemon that the event represents
-		pokemon = pbLoadTrainer(trainerClass, trainerName, trainerVersion).displayPokemonAtIndex(partyIndex)
+        partyIndex = match[4].to_i || 0
+		pokemon = trainer.displayPokemonAtIndex(partyIndex)
 
 		newPages = {}
 
