@@ -1367,41 +1367,22 @@ De locos.
 
 [Map17]
 
-I've always dreamed of being a Pokemon Trainer! Yesterday I went out and caught some. Now my mom HAS to let me be a trainer!
-¡Siempre he soñado con ser un Entrenador Pokémon! Ayer fui y capturé algunos. ¡Ahora mi mamá TIENE que dejarme ser una entrenadora!
-You understand right? If I do well in my first battle, my mom will see what I'm capable of!
-¿Lo entiendes verdad? Si lo hago bien en mi primer combate, ¡Mi mamá verá de lo que soy capaz!
-Battle?
-¿Luchamos?
-You just don't get it.
-Es que no lo entiendes.
-LET'S GOOOOOOOOOOOOO!!!!
-¡¡¡¡VAMOOOOOOOOOOOOOOO!!!!
-I'm down but not out. You can't ever put me down.
-Perdí pero no me rindo. Nunca me rendiré.
-...
-...
-Get lost kid.
-Pierdete niño.
-Sure.
-Seguro.
-
-[Map18]
-
 Oh, hello there.
 Oh, buenas.
-No doubt you spotted my child downstairs, dressed up in that stupid Pikachu costume.
-No hay dudas que viste a mi hija en el piso de abajo, vestida en ese estúpido disfraz de Pikachu.
+No doubt you can hear my child upstairs, shouting and running around dressed up in that stupid Pikachu costume.
+Sin duda puedes escuchar a mi hijo arriba, gritando y corriendo vestido con ese estúpido disfraz de Pikachu.
 He never shuts up about becoming a Pokemon master. Those cartoons must have rotted his brain.
 Nunca se calla sobre convertirse en una maestra Pokémon. Esos dibujitos deben haberle podrido el cerebro.
 He needs a reality check. He should find better career paths, like a doctor or lawyer.
 Necesita un golpe de realidad. Tiene que buscarse una carrera de verdad, como ser doctora o abogada.
-Tell you what. You look like a competent trainer. If you utterly destroy whatever stupid 'team' he assembles, I'll give you a reward.
-Sabes qué. Te ves como un entrenador competente. Si masacras cualquier “equipo” estúpido que haya formado, te daré una recompensa.
+You look like a competent trainer.
+Sabes qué. Te ves como un entrenador competente.
+If you utterly destroy whatever stupid 'team' he's assembled, I'll give you a reward.
+Si masacras cualquier “equipo” estúpido que haya formado, te daré una recompensa.
 Have him make a fool of himself, that might set him straight.
 Haz que quede en ridículo, eso la pondrá en su lugar.
-I can still hear his incessant screaming downstairs. Please, just stop the kid already.
-Todavía puedo escuchar sus gritos incesantes viniendo del piso de abajo. Por favor, para a esa niña de una vez.
+I can still hear his incessant screaming. Please, just stop the kid already.
+Todavía puedo escuchar sus gritos incesantes viniendo. Por favor, para a esa niña de una vez.
 I'm sure crushing him in a battle will be enough to make him stop.
 Estoy segura que aplastarla en un combate será suficiente para hacerlo parar.
 Thank you. Now that his childish dream is done, we can finally get him to sit down and learn something useful.
@@ -1456,6 +1437,31 @@ Latest Log Entry
 Última Entrada del Registro
 Log Off
 Apagar
+A home review show is playing on the television.
+En la televisión se está transmitiendo un programa de revisión del hogar.
+The host is obviously enthused, but the sound is muted, so it's hard to tell what specifically she's excited about.
+Es evidente que la presentadora está entusiasmada, pero el sonido está silenciado, por lo que es difícil saber qué es lo que específicamente la entusiasma.
+
+[Map18]
+
+I've always dreamed of being a Pokemon Trainer! Yesterday I went out and caught some. Now my mom HAS to let me be a trainer!
+¡Siempre he soñado con ser un Entrenador Pokémon! Ayer fui y capturé algunos. ¡Ahora mi mamá TIENE que dejarme ser una entrenadora!
+You understand right? If I do well in my first battle, my mom will see what I'm capable of!
+¿Lo entiendes verdad? Si lo hago bien en mi primer combate, ¡Mi mamá verá de lo que soy capaz!
+Battle?
+¿Luchamos?
+You just don't get it.
+Es que no lo entiendes.
+LET'S GOOOOOOOOOOOOO!!!!
+¡¡¡¡VAMOOOOOOOOOOOOOOO!!!!
+I'm down but not out. You can't ever put me down.
+Perdí pero no me rindo. Nunca me rendiré.
+...
+...
+Get lost kid.
+Pierdete niño.
+Sure.
+Seguro.
 
 [Map19]
 
