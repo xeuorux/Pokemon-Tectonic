@@ -102,7 +102,7 @@ Pokemon = AZURILL,14
 Pokemon = WINGULL,14
     AbilityIndex = 0 # Cheek Pouch
 Pokemon = TEPIG,14
-    Moves = KINDLE,LEER,SCUFFLE,NERVEBLOCK
+    Moves = KINDLE,LEER,SCUFFLE
     AbilityIndex = 0 # Roast
 #-------------------------------
 [LADY2,Rebecca]
@@ -1903,7 +1903,7 @@ Pokemon = PORYGONZ,38
 #-------------------------------
 [NURSERYAIDE,Francesca]
 Pokemon = CINCCINO,38
-    Moves = BALEFULBOP,WINDTUNNEL,VICIOUSCLEANING,RAPIDHERTZ
+    Moves = DRAININGKISS,WINDTUNNEL,VICIOUSCLEANING,RAPIDHERTZ
     AbilityIndex = 0 # Skill Link
     Item = SITRUSBERRY
 Pokemon = BRONZONG,37

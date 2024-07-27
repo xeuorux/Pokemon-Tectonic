@@ -675,7 +675,7 @@ Description = Ignores defensive stat changes in opponents it's hitting, and offe
 #-------------------------------
 [UNBURDEN]
 Name = Unburden
-Description = Raises Speed if a held item is consumed in battle.
+Description = Doubles the Pokémon's Speed if its held item is consumed or lost.
 #-------------------------------
 [UNSEENFIST]
 Name = Unseen Fist
