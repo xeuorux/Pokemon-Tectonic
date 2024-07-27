@@ -3756,6 +3756,10 @@ It worked to perfection!
 ¡Funcionó a la perfección!
 \v[3] has forgotten \v[4] completely.
 \v[3] olvidó \v[4] completamente.
+A news program is airing which claims to prove that the Avatar crisis was only possible because of slipping education standards.
+Se está transmitiendo un programa de noticias que pretende demostrar que la Crisis Avatar solo fue posible debido a la caída de los estándares educativos.
+You don't really understand the connection.
+No entiendes realmente la conexión.
 
 [Map48]
 
