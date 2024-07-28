@@ -53,7 +53,7 @@ module PBMoveRoute
   
   
   
-  def pbMoveRoute(event,commands)
+  def pbMoveRoute(event, commands, waitComplete = true)
     route = RPG::MoveRoute.new
     route.repeat    = false
     route.skippable = true
@@ -88,5 +88,6 @@ module PBMoveRoute
     if event
       event.force_move_route(route)
     end
+    command_210 if waitComplete
     return route
   end
