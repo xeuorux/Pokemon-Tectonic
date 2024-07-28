@@ -814,7 +814,7 @@ class PokeBattle_Battler
             # Deal X damage achievements
             maxDamageOnTargets = 0
             targets.each do |b|
-                damageDisplayed = b.damageState.displayedDamage.rounds
+                damageDisplayed = b.damageState.displayedDamage.round
                 maxDamageOnTargets = damageDisplayed if damageDisplayed > maxDamageOnTargets
             end
 

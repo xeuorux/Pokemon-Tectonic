@@ -16,6 +16,10 @@ def checkWeatherRoomScreenAchievement(battle)
     unlockAchievement(:BATTLE_ACTIVE_WEATHER_ROOM_SCREEN)
 end
 
+def checkManyHazardsAchievement(battle)
+    # TO DO
+end
+
 Events.onStartBattle += proc {
     unlockAchievement(:ACHIEVE_TRIBAL_BONUS) if playerTribalBonus.hasAnyTribalBonus?
 }
