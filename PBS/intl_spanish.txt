@@ -2835,8 +2835,8 @@ I'm trying to set up my stall, but this crowd won't leave!
 Estoy intentando instalar mi puesto, ¡Pero esta multitud no se va!
 Hopefully it'll all disperse eventually.
 Espero que se dispersen eventualmente.
-Now that I'm done handing out those inventions, I can just relax here at the Battle Fair.
-Ahora que terminé de repartir estos inventos, puedo simplemente relajarme aquí en la Feria de Combate
+Now that I'm done handing out those inventions, I can just relax here at the Battle Festival.
+Ahora que terminé de repartir estos inventos, puedo simplemente relajarme aquí en la Festival Bastalla.
 I hope they have those new 3D Printers I saw advertised!
 ¡Espero que tengan esas nuevas Impresoras 3D que vi publicitadas!
 I've got a whole fireworks thing planned for the Tournament.
@@ -10349,8 +10349,8 @@ Makya's first five-star hotel!
 ¡El primer hotel de cinco estrellas de Makya!
 It's weird seeing the streets here so empty.
 Es raro ver las calles aquí tan vacías.
-It's a combination of the road closure, and the Battle Fair happening right nearby.
-Es una combinación de la clausura del camino, y la Feria Batalla ocurriendo aquí cerca.
+It's a combination of the road closure, and the Battle Festival happening right nearby.
+Es una combinación de la clausura del camino, y la Festival Bastalla ocurriendo aquí cerca.
 What are you doing here?
 ¿Qué estás haciendo aquí?
 Which one are you?
@@ -11128,8 +11128,8 @@ Evolution Stones
 Piedras Evolutivas
 Due to demand, Shiny Stones only available to trainers with Six or more badges.
 Debido a la demanda, las Piedras Día sólo están disponibles para entrenadores con Seis o más medallas.
-Don't tell my teacher, but I'm totally skipping on school to attend the Battle Fair.
-No le digas a mi profesor, pero sí o sí voy a faltar a classes para ir a la Feria Batalla.
+Don't tell my teacher, but I'm totally skipping on school to attend the Battle Festival.
+No le digas a mi profesor, pero sí o sí voy a faltar a classes para ir a la Festival Bastalla.
 
 [Map178]
 
@@ -20722,7 +20722,7 @@ How could I have lost?
 ¿Cómo pude haber perdido?
 A brochure rack, advertising a variety of tourist spots across Makya.
 Es un estante lleno de panfletos, promocionando una variedad de centros turísticos por todo Makya.
-A training regimen at the Iron Dojo in Prizca East is prominently displayed.
+A training regimen at the Ironclad Dojo in Prizca East is prominently displayed.
 Un régime de entrenamiento en el Dojo Férreo en Prizca Oriental se destaca entre ellos.
 Welcome, \PN!
 ¡Bienvenido, \PN!
@@ -20780,7 +20780,7 @@ The tournament hasn't started yet, so I can't let you through even if you have a
 El torneo aún no empieza, así que no te puedo dejar pasar incluso si tienes un ticket. Lo siento.
 I'm busy here with this line of entrants.
 Ando ocupado/a aquí con esta fila de participantes.
-A brochure rack, advertising a variety of touriest spots across Makya.
+A brochure rack, advertising a variety of tourest spots across Makya.
 Es un estante lleno de panfletos, promocionando una variedad de centros turísticos por todo Makya.
 A spelunking tour and ski lodge experience at Svait is prominently displayed.
 Un tour de espeología y la experiencia del albergue de ski en Svait se destacan entre ellos. 
