@@ -28,6 +28,7 @@ class Game_Character
     attr_writer   :bob_height
     attr_accessor :floats
     attr_accessor :always_on_top
+    attr_accessor :dependent_event
 
     def initialize(map = nil)
         @map                       = map
@@ -78,6 +79,7 @@ class Game_Character
         @moved_this_frame          = false
         @locked                    = false
         @prelock_direction         = 0
+        @dependent_event           = false
     end
 
     def at_coordinate?(check_x, check_y)
@@ -98,12 +100,20 @@ class Game_Character
         end
     end
 
+    # From 1 to 5
+    def get_speed_from_speed_index(index)
+        realSpeed = [3.2, 6.4, 12.8, 25.6, 44, 64][index - 1]
+        return realSpeed
+    end
+
     def move_speed=(val)
         return if val == @move_speed
         @move_speed = val
         # @move_speed_real is the number of quarter-pixels to move each frame. There
         # are 128 quarter-pixels per tile.
-        self.move_speed_real = [3.2, 6.4, 12.8, 25.6, 44, 64][val - 1]
+        realMoveSpeed = get_speed_from_speed_index(val)
+        realMoveSpeed *= 1.5 if cellBoosterActive? && @dependent_event
+        self.move_speed_real = realMoveSpeed
     end
 
     def move_speed_real

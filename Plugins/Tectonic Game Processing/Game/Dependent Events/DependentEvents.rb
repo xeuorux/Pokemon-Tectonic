@@ -169,6 +169,7 @@ class DependentEvents
         when 6 then newEvent.turn_right
         when 8 then newEvent.turn_up
         end
+        newEvent.dependent_event = true
         return newEvent
     end
 

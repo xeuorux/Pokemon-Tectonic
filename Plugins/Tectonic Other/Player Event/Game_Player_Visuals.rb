@@ -87,14 +87,14 @@ class Game_Player < Game_Character
     end
 
     def move_speed=(val)
-      return if val == @move_speed
-      @move_speed = val
-      # @move_speed_real is the number of quarter-pixels to move each frame. There
-      # are 128 quarter-pixels per tile.
-      realSpeed = [3.2, 6.4, 12.8, 25.6, 44, 64][val - 1]
-      realSpeed *= 1.5 if $PokemonBag && pbHasItem?(:CELLBOOSTER)
-      self.move_speed_real = realSpeed
-  end
+        return if val == @move_speed
+        @move_speed = val
+        # @move_speed_real is the number of quarter-pixels to move each frame. There
+        # are 128 quarter-pixels per tile.
+        realMoveSpeed = get_speed_from_speed_index(val)
+        realMoveSpeed *= 1.5 if cellBoosterActive?
+        self.move_speed_real = realMoveSpeed
+    end
   
     def update_pattern
       if $PokemonGlobal.surfing || $PokemonGlobal.diving
@@ -107,4 +107,8 @@ class Game_Player < Game_Character
         super
       end
     end
+end
+
+def cellBoosterActive?
+    return $PokemonBag && pbHasItem?(:CELLBOOSTER)
 end
