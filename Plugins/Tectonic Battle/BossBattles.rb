@@ -4,13 +4,16 @@ BOSS_HP_BASED_EFFECT_RESISTANCE = 6
 def pbBigAvatarBattle(*args)
     rule = "3v#{args.length}"
     setBattleRule(rule)
-    pbAvatarBattleCore(*args)
+    victorious = pbAvatarBattleCore(*args)
+    unlockAchievement(:DEFEAT_ANY_LEGENDARY_AVATAR)
+    return victorious
 end
 
 def pbSmallAvatarBattle(*args)
     rule = "2v#{args.length}"
     setBattleRule(rule)
-    pbAvatarBattleCore(*args)
+    victorious = pbAvatarBattleCore(*args)
+    return victorious
 end
 
 def avatarBattleAutoTest(*args)

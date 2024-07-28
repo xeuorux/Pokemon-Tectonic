@@ -390,13 +390,13 @@ module Settings
      def self.achievement_page_names
         return ["",
             _INTL("Main Story"),
-            _INTL("Gym Leaders"),
+            _INTL("Gyms"),
             _INTL("Avatars"),
             _INTL("Collection"),
             _INTL("Exploration"),
             _INTL("Sidequests"),
-            _INTL("Former Champs"),
             _INTL("Battle Monument"),
+            _INTL("Battle"),
             _INTL("Other"),
         ]
       end

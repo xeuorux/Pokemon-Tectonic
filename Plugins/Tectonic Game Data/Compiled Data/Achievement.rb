@@ -132,7 +132,13 @@ module GameData
                 dataA = self::DATA[a]
                 dataB = self::DATA[b]
                 if dataA.page == dataB.page
-                    next dataA.id <=> dataB.id
+                    if dataA.hidden == dataB.hidden
+                        next dataA.id <=> dataB.id
+                    elsif dataA.hidden
+                        next 1
+                    elsif dataB.hidden
+                        next -1
+                    end
                 else
                     next dataA.page <=> dataB.page
                 end

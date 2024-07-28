@@ -811,20 +811,20 @@ class PokeBattle_Battler
                 move.pbInflictHPDamage(b)
             end
 
-            # Deal above 1k damage achievement
-            if ownedByPlayer?
-                unlock1kDamageAchievement = false
-                targets.each do |b|
-                    next unless b.damageState.displayedDamage.round >= 1000
-                    unlock1kDamageAchievement = true
-                    break
-                end
+            # Deal X damage achievements
+            maxDamageOnTargets = 0
+            targets.each do |b|
+                damageDisplayed = b.damageState.displayedDamage.rounds
+                maxDamageOnTargets = damageDisplayed if damageDisplayed > maxDamageOnTargets
             end
 
             # Animate the hit flashing and HP bar changes
             move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
 
-            unlockAchievement(:DEAL_1000_DAMAGE) if unlock1kDamageAchievement
+            if ownedByPlayer?
+                unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000
+                unlockAchievement(:DEAL_LARGE_DAMAGE_2) if maxDamageOnTargets >= 10_000
+            end
         end
         # Self-Destruct/Explosion's damaging and fainting of user
         move.pbSelfKO(user) if hitNum == 0 && !@battle.autoTesting

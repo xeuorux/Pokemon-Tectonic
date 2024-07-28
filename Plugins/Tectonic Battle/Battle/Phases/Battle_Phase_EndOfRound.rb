@@ -13,6 +13,8 @@ class PokeBattle_Battle
         pbCalculatePriority           # recalculate speeds
         priority = pbPriority(true)   # in order of fastest -> slowest speeds only
 
+        checkBattleStateAchievements(self)
+
         pbEORHealing(priority)
 
         pbEORWeather(priority)

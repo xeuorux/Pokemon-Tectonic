@@ -164,42 +164,34 @@ class AchievementsListScene
         
         if Input.repeat?(Input::UP)
             # Scroll up on the page if not already at the top
-            if offsetMax == 0
-                pbPlayBuzzerSE
-            elsif @offset > 0
+            if @offset > 0
                 @offset -= 1
                 dorefresh = true
-            else
+            elsif Input.trigger?(Input::UP)
                 pbPlayBuzzerSE
             end
         elsif Input.repeat?(Input::DOWN)
             # Scroll down on the page if not already at the bottom
-            if offsetMax == 0
-                pbPlayBuzzerSE
-            elsif @offset < offsetMax
+            if @offset < offsetMax
                 @offset += 1
                 dorefresh = true
-            else
+            elsif Input.trigger?(Input::DOWN)
                 pbPlayBuzzerSE
             end
         elsif Input.repeat?(Input::JUMPUP) # Jump multiple lines
-            if offsetMax == 0
-                pbPlayBuzzerSE
-            elsif @offset > 0
+            if @offset > 0
                 @offset = @offset - @linesToShow
                 @offset = 0 if @offset < 0
                 dorefresh = true
-            else
+            elsif Input.trigger?(Input::JUMPUP)
                 pbPlayBuzzerSE
             end
         elsif Input.repeat?(Input::JUMPDOWN)
-            if offsetMax == 0
-                pbPlayBuzzerSE
-            elsif @offset < offsetMax
+            if @offset < offsetMax
                 @offset = @offset + @linesToShow
                 @offset = offsetMax if @offset > offsetMax
                 dorefresh = true
-            else
+            elsif Input.trigger?(Input::JUMPDOWN)
                 pbPlayBuzzerSE
             end
         elsif Input.trigger?(Input::BACK)

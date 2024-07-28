@@ -139,7 +139,7 @@ def doubleBattleBenceZoe()
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
-    checkCursedGymPerfectAchievement(badgeNum)
+    checkGymAchievements(badgeNum)
 	index = badgeNum-1
 	leaderDialogue =
 		[_INTL("I'll heal up your Pokémon and get out of your way."),

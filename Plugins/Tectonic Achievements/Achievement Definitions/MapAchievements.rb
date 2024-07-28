@@ -4,7 +4,7 @@ Events.onMapLoadIn += proc { |_sender,_e|
     next unless mapID == 155 # Prizca West
     next if pbGetSelfSwitch(28,'A',11) # Avatar of Terrakion defeated
 
-    unlockAchievement(:PRIZCA_WEST_BEFORE_TERRAKION)
+    unlockAchievement(:REACH_PRIZCA_WEST_BEFORE_TERRAKION)
 }
 
 Events.onMapLoadIn += proc { |_sender,_e|
@@ -13,5 +13,5 @@ Events.onMapLoadIn += proc { |_sender,_e|
     next unless mapID == 331 # Frostflow Farms Center
     next if pbHasItem?(:SURFBOARD)
 
-    unlockAchievement(:FROSTFLOW_CENTER_BEFORE_SURF)
+    unlockAchievement(:REACH_FROSTFLOW_CENTER_BEFORE_SURF)
 }
