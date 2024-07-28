@@ -17,6 +17,7 @@ def getViewableTeams
 		yDif = (event.y - $game_player.y).abs
 		next unless xDif <= POKE_XRAY_RANGE && yDif <= POKE_XRAY_RANGE # Must be nearby
         next if pbGetSelfSwitch(event.id,'D') # Must not already be fled
+        next if event.character_name == ""
 		viewableTeams.push(trainer)
     end
     viewableTeams.uniq!
