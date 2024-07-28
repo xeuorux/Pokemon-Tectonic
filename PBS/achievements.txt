@@ -94,6 +94,21 @@ Description = Destroy the avatar of Rayquaza in the Tempest Realm.
 Page = 3
 Hidden = true
 #-------------------------------
+[CAPTURE_LEGENDARY_BASIC_BALL]
+Name = Back to Basics
+Description = Capture a legendary Pokemon in a regular PokeBall (thrown normally or created by the Ball Launcher.)
+Page = 4
+#-------------------------------
+[CAPTURE_WITH_ALL_AESTHETIC_BALLS]
+Name = Having a Ball
+Description = Capture at least one Pokémon in a Premier Ball, a Cherish Ball, and a Royal Ball.
+Page = 4
+#-------------------------------
+[CAPTURE_WITH_ALL_FAILURE_EFFECT_BALLS]
+Name = Failed to Fail
+Description = Capture at least one Pokémon in a Potion Ball, a Slice Ball, a Leech Ball, and a Disable Ball.
+Page = 4
+#-------------------------------
 [FILL_ENTIRE_POKESTATE_PLOT]
 Name = Full House
 Description = Visit a PokEstate plot that has 30 Pokémon in it.

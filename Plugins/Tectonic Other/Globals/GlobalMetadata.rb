@@ -75,6 +75,8 @@ class PokemonGlobalMetadata
     attr_accessor :exp_multiplier
     # Town map
     attr_accessor :town_map_waypoints_showing
+    # Achievements
+    attr_accessor :capture_counts_per_ball
 	
 	def initialize
         # Movement
@@ -144,6 +146,9 @@ class PokemonGlobalMetadata
         @noise_machine_state  = 0
         @exp_multiplier       = 1.0
         @town_map_waypoints_showing = false
+
+        # Achievements
+        @capture_counts_per_ball = {}
     end
 
     ####################################################

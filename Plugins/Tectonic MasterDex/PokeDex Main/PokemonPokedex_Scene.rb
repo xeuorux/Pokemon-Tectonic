@@ -192,7 +192,7 @@ class PokemonPokedex_Scene
     end
 
     def autoDisqualifyFromSearch(species_sym)
-        return isLegendary(species_sym) && !$Trainer.seen?(species_sym) && !$DEBUG
+        return isLegendary?(species_sym) && !$Trainer.seen?(species_sym) && !$DEBUG
     end
 
     def pbRefreshDexList(index = 0)
@@ -227,7 +227,7 @@ class PokemonPokedex_Scene
         zBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
         zShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         iconspecies = @sprites["pokedex"].species
-        iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
+        iconspecies = nil if isLegendary?(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
         dexname = _INTL("MasterDex")
         textpos = [
             [dexname, Graphics.width / 8, -2, 2, zBase, zShadow],
@@ -1112,7 +1112,7 @@ class PokemonPokedex_Scene
                         break
                     end
                 elsif Input.trigger?(Input::USE)
-                    if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species) || $DEBUG
+                    if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary?(@sprites["pokedex"].species) || $DEBUG
                         pbPlayDecisionSE
                         pbDexEntry(@sprites["pokedex"].index)
                     end
@@ -1324,7 +1324,6 @@ class PokemonPokedex_Scene
         end
         total = 0
         @dexlist.each do |dexEntry|
-            # next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
             speciesData = GameData::Species.get(dexEntry[0])
             disqualify = false
             speciesData.get_evolutions.each do |evolutionEntry|
@@ -1351,7 +1350,7 @@ class PokemonPokedex_Scene
             wholeGameTypesCount[typesData.id] = 0
         end
         pbGetDexList.each do |dexEntry|
-            next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+            next if isLegendary?(dexEntry[0])
             speciesData = GameData::Species.get(dexEntry[0])
             next if speciesData.get_evolutions.length > 0
             wholeGameTypesCount[speciesData.type1] += 1

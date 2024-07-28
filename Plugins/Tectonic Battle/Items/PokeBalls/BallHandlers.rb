@@ -18,6 +18,8 @@ module BallHandlers
     def self.onCatch(ball, battle, pkmn)
         battle.ballsUsed = 0
         OnCatch.trigger(ball, battle, pkmn)
+        incrementSuccessfulCaptureCount(ball)
+        checkForCaptureAchievements(ball, battle, pkmn)
     end
 
     def self.onFailCatch(ball, battle, battler)

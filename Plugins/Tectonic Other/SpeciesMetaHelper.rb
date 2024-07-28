@@ -1,6 +1,6 @@
 GENERATION_END_IDS = [0,151,251,386,493,649,721,809,898]
 
-def isLegendary(idNumber)
+def isLegendary?(idNumber)
 	idNumber = GameData::Species.get(idNumber).id_number if idNumber.is_a?(Symbol)
 	legendaries1 = [144,145,146,150,151]
 	legendaries2 = [243,244,245,249,250,251]
@@ -16,20 +16,6 @@ def isLegendary(idNumber)
 		legendaries6,legendaries7,legendaries8,legendaries9,legendaries10,[2060]].flatten
 	return legendaries.include?(idNumber)
 end
-
-alias isLegendary? isLegendary
-
-def isQuarantined(species_symbol)
-	quarantined = [:YUNGOOS,:GUMSHOOS,:FARFETCHD,:PANSEAR,:SIMISEAR,:QWILFISH,
-		:FINNEON,:LUMINEON,:ARROKUDA,:BARRASKEWDA,:GOLDEEN,:SEAKING,:WISHIWASHI,:CRAMORANT,:BRUXISH,
-		:CORSOLA,:CORPHISH,:CRAWDAUNT,:THROH,:SAWK,:WURMPLE,:CASCOON,:SILCOON,
-		:DUSTOX,:BEAUTIFLY,:UNOWN,:BURMY,:WORMADAM,:SHELMET,:TANGELA,:TANGROWTH,
-		:ACCELGOR,:KARRABLAST,:ESCAVALIER,:BELLSPROUT,:WEEPINBEL,:VICTREEBEL,:PETILIL,:LILLIGANT
-	]
-	return quarantined.include?(species_symbol)
-end
-
-alias isQuarantined? isQuarantined
 
 def pbFindEncounter(enc_types, species)
     return false if !enc_types

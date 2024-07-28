@@ -15,7 +15,7 @@ def pbReceiveRandomPokemon(level)
 	possibleSpecies = []
 	GameData::Species.each do |species_data|
 		next if species_data.get_evolutions.length > 0
-		next if isLegendary(species_data.id)
+		next if isLegendary?(species_data.id)
 		possibleSpecies.push(species_data)
 	end
 	speciesDat = possibleSpecies.sample

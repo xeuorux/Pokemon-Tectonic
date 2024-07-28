@@ -425,7 +425,6 @@ class PokemonPokedex_Scene
         cmdMapFound = -1
         cmdZooSection	= -1
         cmdWildItem 			    = -1
-        cmdIsQuarantined = -1
         cmdIsLegendary	= -1
         cmdMovesetConformance	= -1
         cmdNoMonumentUses = -1
@@ -441,7 +440,6 @@ class PokemonPokedex_Scene
         miscSearches[cmdCollecting = miscSearches.length] = _INTL("Collecting")
         miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
         miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
-        miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined (D)") if $DEBUG
         miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
         miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority (D)") if $DEBUG
         miscSearches[cmdNoMonumentUses = miscSearches.length] = _INTL("No Monument Uses (D)") if $DEBUG
@@ -461,8 +459,6 @@ class PokemonPokedex_Scene
             return searchByMapFound
         elsif cmdZooSection > -1 && searchSelection == cmdZooSection
             return searchByZooSection
-        elsif cmdIsQuarantined > -1 && searchSelection == cmdIsQuarantined
-            return searchByQuarantined
         elsif cmdIsLegendary > -1 && searchSelection == cmdIsLegendary
             return searchByLegendary
         elsif cmdWildItem > -1 && searchSelection == cmdWildItem
@@ -719,23 +715,6 @@ class PokemonPokedex_Scene
             next speciesPresent.include?(dex_item[:species]) ^ reversed # Boolean XOR
         end
         return dexlist
-    end
-
-    def searchByQuarantined
-        selection = pbMessage(_INTL("Which search?"), [_INTL("Quarantined"), _INTL("Not Quarantined"), _INTL("Cancel")], 3)
-        if selection != 2
-            dexlist = searchStartingList
-
-            dexlist = dexlist.find_all do |dex_item|
-                if selection == 1
-                    next !isQuarantined?(dex_item[:species])
-                else
-                    next isQuarantined?(dex_item[:species])
-                end
-            end
-            return dexlist
-        end
-        return nil
     end
 
     def searchByMovesetConformance
