@@ -9,7 +9,7 @@ Events.onMapLoadIn += proc { |_sender,_e|
 }
 
 def incrementSuccessfulCaptureCount(ball)
-    $PokemonGlobal.capture_counts_per_ball = {} if $PokemonGlobal.capture_counts_per_ball
+    $PokemonGlobal.capture_counts_per_ball = {} if $PokemonGlobal.capture_counts_per_ball.nil?
     if $PokemonGlobal.capture_counts_per_ball.key?(ball)
         $PokemonGlobal.capture_counts_per_ball[ball] += 1
     else
