@@ -53,7 +53,7 @@ module PBMoveRoute
   
   
   
-  def pbMoveRoute(event,commands,waitComplete=false)
+  def pbMoveRoute(event,commands)
     route = RPG::MoveRoute.new
     route.repeat    = false
     route.skippable = true
