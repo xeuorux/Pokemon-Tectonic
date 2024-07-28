@@ -12,6 +12,8 @@ Events.onWildPokemonCreate += proc {|sender,e|
 
     pokemon = e[0]
     overwriteWildPokemonSpecies(pokemon,:LUGIA)
+    pokemon.level = [getLevelCap,45].min
+    pokemon.reset_moves
 }
 
 Events.onWildPokemonCreate += proc {|sender,e|
