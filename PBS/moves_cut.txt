@@ -2421,3 +2421,13 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove,Biting
 EffectChance = 100
 Description = The user bites with added telekinetic force. During eclipse, the target also becomes numbed.
+#-------------------------------
+[RAIN]
+Name = rain
+Type = WATER
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = BothSides
+FunctionCode = Invalid
+Description = Summons rainstorm for eight turns, boosting Water-type attacks and hindering most others.
