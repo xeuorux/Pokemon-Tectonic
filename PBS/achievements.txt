@@ -32,42 +32,42 @@ Name = Handicap
 Description = Defeat a gym leader while at a level cap below that of the leader's team.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_1]
+[PERFECT_CURSED_GYM_1]
 Name = Last Call
 Description = Perfect Lambert, the first gym leader, at level cap 15 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_2]
+[PERFECT_CURSED_GYM_2]
 Name = No Pain No Gain
 Description = Perfect Eko, the second gym leader, at level cap 20 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_3]
+[PERFECT_CURSED_GYM_3]
 Name = Demoted
 Description = Perfect Helena, the third gym leader, at level cap 25 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_4]
+[PERFECT_CURSED_GYM_4]
 Name = Make Like a Tree
 Description = Perfect Rafael, the fourth gym leader, at level cap 30 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_5]
+[PERFECT_CURSED_GYM_5]
 Name = Enemy of my Enemies
 Description = Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_6]
+[PERFECT_CURSED_GYM_6]
 Name = Artist's Block
 Description = Perfect Noel, the sixth gym leader, at level cap 45 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_7]
+[PERFECT_CURSED_GYM_7]
 Name = You Get Nothing!
 Description = Perfect Victoire, the seventh gym leader, at level cap 55 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
-[PERFECT_GYM_8]
+[PERFECT_CURSED_GYM_8]
 Name = Dread Not
 Description = Perfect Samorn, the eighth gym leader, at level cap 55 or below with the Tarot Amulet activated.
 Page = 2
