@@ -36,6 +36,7 @@ class Player < Trainer
     def money=(value)
       validate value => Integer
       @money = value.clamp(0, Settings::MAX_MONEY)
+      unlockAchievement(:HOLD_LOTS_OF_MONEY) if @money >= 500_000
     end
   
     # Sets the player's coins amount. It can not exceed {Settings::MAX_COINS}.

@@ -179,6 +179,16 @@ Name = Overkill
 Description = Deal 10,000 or more damage in one hit.
 Page = 8
 #-------------------------------
+[HOLD_LOTS_OF_MONEY]
+Name = No Inheritance Needed
+Description = Hold 500,000 or more money at once.
+Page = 9
+#-------------------------------
+[STORE_LOTS_OF_EXP]
+Name = Banking on It
+Description = Have more than 300,000 experience stored in the EXP-EZ Dispenser at once.
+Page = 9
+#-------------------------------
 [WIN_FISHING_CONTEST]
 Name = Hook Line and Sinker
 Description = Achieve the top prize at Aquatopia Menagerie's Ocean Fishing Contest.

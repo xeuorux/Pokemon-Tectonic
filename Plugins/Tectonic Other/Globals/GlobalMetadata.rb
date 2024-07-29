@@ -56,7 +56,7 @@ class PokemonGlobalMetadata
     attr_accessor :dexNavEggMovesUnlocked
     attr_accessor :caughtCountsPerMap
     # Exp-EZ Dispenser
-    attr_accessor :expJAR
+    attr_reader :expJAR
     # Aid kit
     attr_accessor :teamHealerCurrentUses
     attr_accessor :teamHealerMaxUses
@@ -239,6 +239,11 @@ class PokemonGlobalMetadata
     end
 
     ####################################################
-    # Who knows?
+    # Misc.
     ####################################################
+    
+    def expJAR=(value)
+        @expJAR = value
+        unlockAchievement(:STORE_LOTS_OF_EXP) if @expJAR >= 300_000
+    end
 end
