@@ -317,7 +317,7 @@ def followerEventGraphicSwap(reset = false)
 		# Find all the pages that need to be replaced
 		event.event.pages.each_with_index do |page,pageIndex|
 			if reset
-				next if page.graphic.character_name.empty?
+				next unless page.graphic.character_name.include?("Followers")
 			else
 				next unless page.graphic.character_name == "00Overworld Placeholder"
 			end
