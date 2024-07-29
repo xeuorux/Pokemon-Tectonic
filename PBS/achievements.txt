@@ -161,7 +161,12 @@ Page = 8
 #-------------------------------
 [BATTLE_ACTIVE_WEATHER_ROOM_SCREEN]
 Name = Worldbuilder
-Description = At the end of a turn, have a Weather, a Room, and a Screen (on your side) active all at once.
+Description = At the end of a turn, have a Weather, a Room, and a Screen (on your side) active at the same time.
+Page = 8
+#-------------------------------
+[BATTLE_ACTIVE_MANY_HAZARDS]
+Name = Hazardous
+Description = At the end of a turn, have four or more hazards active on the opponent's side.
 Page = 8
 #-------------------------------
 [DEAL_LARGE_DAMAGE_1]

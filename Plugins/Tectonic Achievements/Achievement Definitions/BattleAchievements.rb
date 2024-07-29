@@ -17,7 +17,13 @@ def checkWeatherRoomScreenAchievement(battle)
 end
 
 def checkManyHazardsAchievement(battle)
-    # TO DO
+    opponentHazardCount = 0
+    battle.sides[1].eachEffect(true) do |effect, value, effectData|
+        next unless effectData.is_hazard?
+        opponentHazardCount += 1
+    end
+    return unless opponentHazardCount >= 4
+    unlockAchievement(:BATTLE_ACTIVE_MANY_HAZARDS)
 end
 
 Events.onStartBattle += proc {
