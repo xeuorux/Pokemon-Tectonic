@@ -154,6 +154,11 @@ Name = Motley Crew
 Description = Complete a full attempt of the Battle Monument (5 battles won) with a Team whose members share no tribes in common.
 Page = 7
 #-------------------------------
+[WIN_BATTLE_MONUMENT_ALL_SAME_GENERATION]
+Name = Limited Time
+Description = Complete a full attempt of the Battle Monument (5 battles won) with a Team whose members were all introduced in the same generation (Pokémon introduced in Tectonic count as a generation.)
+Page = 7
+#-------------------------------
 [ACHIEVE_TRIBAL_BONUS]
 Name = Clannish
 Description = Start a battle while having an active Tribal bonus.
