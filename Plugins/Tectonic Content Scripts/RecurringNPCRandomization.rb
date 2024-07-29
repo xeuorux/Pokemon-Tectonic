@@ -42,6 +42,10 @@ class NPCRandomization
         $game_switches[NPC2_TRAITOR_SWITCH] = false
     end
 
+    def chosenNPCs
+        return [@chosenNPC1,@chosenNPC2]
+    end
+
     def chosenNPC1=(value)
         if !$DEBUG
             debugErrorMessage()
@@ -119,8 +123,8 @@ end
 # NPC team 0, NPC team 0 cursed, NPC team 1, NPC team 1 cursed, etc.
 # [MASKEDVILLAIN,Crimson]
 # [MASKEDVILLAIN2,Teal]
-def randomNPCTrainerBattle(isRandom1,fightSection=0)
-    trainerVersion = isRandom1 ? $npc_randomization.chosenNPC1 : $npc_randomization.chosenNPC2
+def getRandomNPCTrainerDetails(villainNumber,fightSection=0)
+    trainerVersion = $npc_randomization.chosenNPCs[villainNumber]
     doubleBattle = trainerVersion == 0
     trainerVersion *= 2
     if $PokemonGlobal.tarot_amulet_active
@@ -128,23 +132,27 @@ def randomNPCTrainerBattle(isRandom1,fightSection=0)
     end
     trainerVersion += fightSection * RECURRING_NPC_COUNT * 2
 
-    trainerType = isRandom1 ? "MASKEDVILLAIN" : "MASKEDVILLAIN2"
-    trainerName = isRandom1 ? "Crimson" : "Teal"
+    trainerType = ["MASKEDVILLAIN","MASKEDVILLAIN2"][villainNumber]
+    trainerType += "_DOUBLE" if doubleBattle
+    trainerName = ["Crimson", "Teal"][villainNumber]
 
-    if doubleBattle
-        setBattleRule("double")
-        trainerType += "_DOUBLE"
-    end
+    return trainerType, trainerName, trainerVersion
+end
+
+def randomNPCTrainerBattle(villainNumber,fightSection=0)
+    trainerType, trainerName, trainerVersion = getRandomNPCTrainerDetails(villainNumber,fightSection)
+
+    setBattleRule("double") if trainerVersion == 0
 
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
 
 def fightVillainCrimson(fightSection=0)
-    randomNPCTrainerBattle(true,fightSection)
+    randomNPCTrainerBattle(0,fightSection)
 end
 
 def fightVillainTeal(fightSection=0)
-    randomNPCTrainerBattle(false,fightSection)
+    randomNPCTrainerBattle(1,fightSection)
 end
 
 DebugMenuCommands.register("setnpcchosen1", {

@@ -10,9 +10,9 @@ POKE_XRAY_RANGE = 6
 
 def getViewableTeams
     viewableTeams = []
-    eachTrainerWithAutoFollowerInMap do |event, match, trainer|
+    eachTrainerWithAutoFollowerInMap do |event, trainer, partyIndex|
 		next if event.name.downcase.include?("noxray")
-        next unless match[4].nil? || match[4] == "0"
+        next unless partyIndex == 0
 		xDif = (event.x - $game_player.x).abs
 		yDif = (event.y - $game_player.y).abs
 		next unless xDif <= POKE_XRAY_RANGE && yDif <= POKE_XRAY_RANGE # Must be nearby
