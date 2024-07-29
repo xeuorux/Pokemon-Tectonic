@@ -43,6 +43,6 @@ ItemHandlers::UseInField.add(:POKEXRAY,proc { |item|
         chosenTrainer = viewableTeams[choice]
     end
     pbMessage(_INTL("You point the Poké X-Ray at {1}...",chosenTrainer.full_name))
-    trainerShowcase(chosenTrainer)
+    trainerShowcase(chosenTrainer, npcTrainer: true)
     next 1
 })

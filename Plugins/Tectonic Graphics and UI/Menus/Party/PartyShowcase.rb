@@ -59,7 +59,7 @@ class PokemonPartyShowcase_Scene
         if @npcTrainer
             playerName = "<ar>#{trainer.full_name}</ar>"
             drawFormattedTextEx(@overlay, Graphics.width - 304, bottomBarY, 300, playerName, base, shadow)
-        elsif $PokemonSystem.name_on_showcases == 1
+        elsif $PokemonSystem.name_on_showcases != 1
             playerName = "<ar>#{trainer.name}</ar>"
             drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
         end
@@ -129,7 +129,7 @@ class PokemonPartyShowcase_Scene
 
         # Display pokemon name
         nameAndLevel = _INTL("#{pokemon.name} Lv. #{pokemon.level.to_s}")
-        drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, base, shadow)
+        drawTextEx(@overlay, displayX + 4, displayY, 200, 1, nameAndLevel, base, shadow)
 
         # Display item icon
         if pokemon.hasItem?
@@ -224,12 +224,12 @@ end
 
 def enemyTrainerShowcase(trainerClass,trainerName,version=0)
     trainer = pbLoadTrainer(trainerClass,trainerName,version)
-    trainerShowcase(trainer)
+    trainerShowcase(trainer, npcTrainer: true)
 end
 
-def trainerShowcase(trainer)
+def trainerShowcase(trainer, npcTrainer: false)
     pbFadeOutIn {
-        PokemonPartyShowcase_Scene.new(trainer, npcTrainer: true)
+        PokemonPartyShowcase_Scene.new(trainer, npcTrainer: npcTrainer)
     }
 end
 
@@ -239,6 +239,6 @@ def createVisualTrainerDocumentation
         screenshotName = "#{trainerData.trainer_type} #{trainerData.name}"
         screenshotName += " (#{trainerData.version})" if trainerData.version > 0
         screenshotName += " "
-        PokemonPartyShowcase_Scene.new(trainer,snapshot: true,snapShotName: screenshotName,fastSnapshot: true)
+        PokemonPartyShowcase_Scene.new(trainer,snapshot: true,snapShotName: screenshotName,fastSnapshot: true, npcTrainer: true)
     end
 end
