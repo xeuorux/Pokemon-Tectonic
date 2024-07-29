@@ -46,7 +46,7 @@ def showAnimation(animationID, eventId = 0)
 		event = self
 	end
 	if event.nil?
-		pbMessage("Could not find event to show emote for.") if $DEBUG
+		pbMessage(_INTL("Could not find event to show emote for.")) if $DEBUG
 		return
 	end
 	$scene.spriteset.addUserAnimation(animationID,event.x,event.y)

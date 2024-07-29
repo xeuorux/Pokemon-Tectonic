@@ -173,7 +173,7 @@ class CatchingMinigameBattle < PokeBattle_Battle
       pbMessage(_INTL("You've ran out of turns!"))
       @decision = 3
     else
-      #pbMessage("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
+      #pbMessage(_INTL("You have #{$catching_minigame.turnsLeft} turns left in the contest."))
     end
   end
 end

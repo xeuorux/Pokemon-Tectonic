@@ -136,7 +136,7 @@ def playTutorial(tutorialMessages = [])
     currentBGM = $game_system.playing_bgm
     tutorialIntro
     tutorialMessages.each do |tutorialMessage|
-        pbMessage("\\wm#{tutorialMessage}\\wtnp[#{tutorialMessageDuration}]\1")
+        pbMessage(_INTL("\\wm#{tutorialMessage}\\wtnp[#{tutorialMessageDuration}]\1"))
     end
     pbBGMPlay(currentBGM)
 end

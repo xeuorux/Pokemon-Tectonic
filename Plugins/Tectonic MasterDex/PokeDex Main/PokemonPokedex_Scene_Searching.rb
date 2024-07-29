@@ -863,24 +863,16 @@ class PokemonPokedex_Scene
             generationNumberTextInput = generationNumberTextInput[1..-1] if reversed
 
             generationNumber = generationNumberTextInput.to_i
-            if generationNumber <= 0 || generationNumber >= 9
-                pbMessage("Please choose a generation number between 1 and 8.")
+            if generationNumber < 0
+                pbMessage(_INTL("Negative generation numbers are invalid."))
             else
                 break
             end
         end
 
-        generationFirstNumber = GENERATION_END_IDS[generationNumber - 1]
-        generationLastNumber = GENERATION_END_IDS[generationNumber]
-
         dexlist = dexlist.find_all do |dex_item|
             next false if autoDisqualifyFromSearch(dex_item[:species])
-            id = dex_item[:data].id_number
-
-            isInChosenGeneration = id > generationFirstNumber &&
-                                   id <= generationLastNumber
-
-            next isInChosenGeneration ^ reversed # Boolean XOR
+            next (dex_item[:data].generation == generationNumber) ^ reversed # Boolean XOR
         end
         return dexlist
     end

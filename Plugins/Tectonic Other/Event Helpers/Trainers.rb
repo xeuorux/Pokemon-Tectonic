@@ -53,7 +53,7 @@ def perfectDoubleAncientTrainer(event1,event2)
 		setFollowerGone(event2)
 	}
 
-	pbMessage("The fleeing trainers dropped some food!")
+	pbMessage(_INTL("The fleeing trainers dropped some food!"))
 	pbReceiveItem(:VANILLATULUMBA,2)
 end
 
@@ -121,7 +121,7 @@ def candiesForLevel(level)
   when 71..100
 	itemsGiven = [:EXPCANDYXL,1] # 64_000
   else
-	pbMessage("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}") if $DEBUG
+	pbMessage(_INTL("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}")) if $DEBUG
 	itemsGiven = [:EXPCANDYXS,2] # 500
   end
   return itemsGiven
@@ -168,7 +168,7 @@ end
 def setFollowerInactive(eventId=0,switch='A')
 	followers = getFollowerPokemon(eventId)
 	if followers.nil? || followers.length == 0
-		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
+		pbMessage(_INTL("ERROR: Could not find follower Pokemon!")) if $DEBUG
 		return
 	end
 	followers.each do |follower|
@@ -181,7 +181,7 @@ end
 def setFollowerGone(eventId=0)
 	followers = getFollowerPokemon(eventId)
 	if followers.nil? || followers.length == 0
-		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
+		pbMessage(_INTL("ERROR: Could not find follower Pokemon!")) if $DEBUG
 		return
 	end
 	followers.each do |follower|

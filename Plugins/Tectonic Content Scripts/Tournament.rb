@@ -131,7 +131,7 @@ end
 
 def winTournamentMatch()
     $PokemonGlobal.tournament.winMatch()
-    pbMessage("\\wmThe victor is \\PN!\\me[Bug catching 1st]")
+    pbMessage(_INTL("\\wmThe victor is \\PN!\\me[Bug catching 1st]"))
 end
 
 def enterTournament()

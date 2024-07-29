@@ -286,9 +286,9 @@ DebugMenuCommands.register("setmetadata", {
     "name"        => _INTL("Create bossified graphics for all"),
     "description" => _INTL("Create bossified graphics for every avatar in avatars.txt at 1.5 size"),
     "effect"      => proc { |sprites, viewport|
-    pbMessage("Generating bossified graphics for all forms of all species listed in avatars.txt")
+    pbMessage(_INTL("Generating bossified graphics for all forms of all species listed in avatars.txt"))
     createBossSpritesAllSpeciesForms
-    pbMessage("Finished")
+    pbMessage(_INTL("Finished"))
     }
   })
   

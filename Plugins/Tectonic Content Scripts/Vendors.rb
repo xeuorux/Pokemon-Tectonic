@@ -290,7 +290,7 @@ def shinifyPokemonVendor
 	gleamPowderRealName = GameData::Item.get(:GLEAMPOWDER).name
 	pbMessage(_INTL("\\PN hands over the #{gleamPowderRealName}, $30,000, and #{pkmn.name}."))
 
-	pbMessage("And so my work begins!")
+	pbMessage(_INTL("And so my work begins!"))
 	blackFadeOutIn(30) {
 		$PokemonBag.pbDeleteItem(:GLEAMPOWDER)
 		pkmn.shiny = true

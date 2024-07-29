@@ -754,7 +754,7 @@ end
           end
       end
   
-      pbMessage("Any legality errors written into the console.")
+      pbMessage(_INTL("Any legality errors written into the console."))
     }}
   )
   

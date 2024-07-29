@@ -133,7 +133,7 @@ DebugMenuCommands.register("mysterygift", {
     params.setRange(1, 24)
     chosenHour = pbChooseNumber(nil, params) 
     UnrealTime.advance_to(chosenHour - 1, 0, 0)
-    pbMessage("Advancing the unreal time system to hour #{chosenHour}")
+    pbMessage(_INTL("Advancing the unreal time system to hour #{chosenHour}"))
     }}
   )
   
@@ -143,7 +143,7 @@ DebugMenuCommands.register("mysterygift", {
     "description" => _INTL("Get rid of any partner trainer joining your battles."),
     "effect"      => proc {
       pbDeregisterPartner
-      pbMessage("De-Registered partner.")
+      pbMessage(_INTL("De-Registered partner."))
     }
   })
 
@@ -175,7 +175,7 @@ DebugMenuCommands.register("mysterygift", {
       echoln("Compiling avatar data")
       Compiler.write_avatars
 
-      pbMessage("Rename completed.")
+      pbMessage(_INTL("Rename completed."))
       break
     end
   }
@@ -202,12 +202,12 @@ DebugMenuCommands.register("renamemovefromfile", {
 
       echoln("Writing avatar data")
       Compiler.write_avatars
-      pbMessage("Mass rename completed.")
+      pbMessage(_INTL("Mass rename completed."))
 
       pbMessage("Create a new move rename save conversion, and rename \"move_renames.txt\" to \"move_renames_{X}.txt\"" +
         " where {X} is the next highest number of all files you see (e.g." +
         " If you see a \"move_renames_2.txt\", rename yours to \"move_renames_3\".txt)")
-      pbMessage("Or tell a programmer to do it for you :)")
+      pbMessage(_INTL("Or tell a programmer to do it for you :)"))
     rescue
       pbPrintException($!)
     end

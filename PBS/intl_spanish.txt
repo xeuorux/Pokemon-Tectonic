@@ -53119,6 +53119,8 @@ Logro Desbloqueado:\r\n\\c[2]{1}
 \ss\wm"Esperanza floreciente, con triple poder."
 \ss\wm"We await you, o slayer..."
 \ss\wm"Te esperamos, cazador..."
+Negative generation numbers are invalid.
+Los números de generación negativos no son válidos.
 [26]
 [27]
 [27]

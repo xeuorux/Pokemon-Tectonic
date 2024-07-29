@@ -179,7 +179,7 @@ def debugIncrementWeather(weatherSym)
     end
     newPower = [newPower,10].min
     $game_screen.weather(weatherSym, newPower, WEATHER_TRANSITION_DELAY, false)
-    pbMessage("Setting weather to #{weatherSym} at power #{newPower}")
+    pbMessage(_INTL("Setting weather to #{weatherSym} at power #{newPower}"))
 end
 
 def secondsInAMinute

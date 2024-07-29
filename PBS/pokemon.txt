@@ -27620,7 +27620,6 @@ Color = Yellow
 Shape = Head
 Kind = Land Snake
 Pokedex = The gentle Dududunsparce will put Pokémon that wander into its nest onto its back and carry them to the entrance.
-Generation = 9
 #-------------------------------
 [2065]
 Name = Kingambit

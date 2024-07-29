@@ -98,8 +98,8 @@ class PokEstate
 	
 	def teleportPlayerBack()
 		if @estate_teleport.nil?
-			pbMessage("ERROR: Cannot find location to teleport you back to.")
-			pbMessage("Bringing you to the fallback return position.")
+			pbMessage(_INTL("ERROR: Cannot find location to teleport you back to."))
+			pbMessage(_INTL("Bringing you to the fallback return position."))
 			$game_temp.player_transferring = true
 			$game_temp.player_new_map_id    =  FALLBACK_RETURN_POSITION[0]
 			$game_temp.player_new_x         =	FALLBACK_RETURN_POSITION[1]

@@ -172,7 +172,7 @@ def findBottom(bitmap)
       species_data = GameData::Species.get(@species)
       if pbResolveBitmap(sprintf("Graphics/Pokemon/Shadow/%s_%d", species_data.species, species_data.form)) ||
          pbResolveBitmap(sprintf("Graphics/Pokemon/Shadow/%s", species_data.species))
-        pbMessage("This species has its own shadow sprite in Graphics/Pokemon/Shadow/. The shadow size metric cannot be edited.")
+        pbMessage(_INTL("This species has its own shadow sprite in Graphics/Pokemon/Shadow/. The shadow size metric cannot be edited."))
         return false
       end
       oldval = species_data.shadow_size

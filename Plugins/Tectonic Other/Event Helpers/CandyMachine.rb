@@ -67,7 +67,7 @@ def candyBatchCost(level)
     when 71..100
         return 10_000
     else
-        pbMessage("Unassigned level passed to candyBatchCost: #{level}") if $DEBUG
+        pbMessage(_INTL("Unassigned level passed to candyBatchCost: #{level}")) if $DEBUG
 	    return 250
     end
 end

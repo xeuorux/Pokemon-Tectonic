@@ -43,7 +43,7 @@ def unlockBirdSpot(birdID,ignoreAlreadyActive=false)
     return if getGlobalSwitch(birdInfo[:unlock_switch]) && !ignoreAlreadyActive
     mapName = _INTL(birdInfo[:map_name])
     text = _INTL("You can now travel to <imp>{1}</imp> on the Corviknight Network!",mapName)
-    pbMessage("\\wm#{text}\\me[Slots win]\\wtnp[80]\1")
+    pbMessage(_INTL("\\wm#{text}\\me[Slots win]\\wtnp[80]\1"))
     pbSetGlobalSwitch(birdInfo[:unlock_switch])
 end
 
@@ -52,7 +52,7 @@ def unlockAllBirdSpots
         next unless birdInfo[:unlock_switch]
         pbSetGlobalSwitch(birdInfo[:unlock_switch])
     end
-    pbMessage("All bird travel spots were unlocked.")
+    pbMessage(_INTL("All bird travel spots were unlocked."))
 end
 
 def birdTravel(currentBird = nil)
@@ -67,7 +67,7 @@ def birdTravel(currentBird = nil)
     end
 
     if commands.empty?
-        pbMessage("There are no other places you can travel to.")
+        pbMessage(_INTL("There are no other places you can travel to."))
         return
     end
 

@@ -1133,10 +1133,10 @@ class PokemonPokedex_Scene
                             entrySpecies = dexlist_entry[:species]
                             pbAddPokemonSilent(entrySpecies, getLevelCap)
                         end
-                        pbMessage("Added every species on the current list!")
+                        pbMessage(_INTL("Added every species on the current list!"))
                     else
                         pbAddPokemonSilent(@sprites["pokedex"].species, getLevelCap)
-                        pbMessage("Added #{@sprites['pokedex'].species}")
+                        pbMessage(_INTL("Added #{@sprites['pokedex'].species}"))
                     end
                 elsif Input.pressex?(0x57) && $DEBUG # W, for Wild Pokemon
                     pbWildBattle(@sprites["pokedex"].species, getLevelCap)
@@ -1156,7 +1156,7 @@ class PokemonPokedex_Scene
                         entrySpecies = dexlist_entry[:species]
                         $Trainer.pokedex.set_owned(entrySpecies, false)
                     end
-                    pbMessage("Marked as owned every species on current list.")
+                    pbMessage(_INTL("Marked as owned every species on current list."))
                 elsif Input.pressex?(0x50) && $DEBUG # P, for Print
                     echoln("Printing the entirety of the current dex list.")
                     if Input.press?(Input::CTRL)
@@ -1168,7 +1168,7 @@ class PokemonPokedex_Scene
                             echoln(GameData::Species.get(dexEntry[:species]).real_name)
                         end
                     end
-                    pbMessage("Printed the current list to the console.")
+                    pbMessage(_INTL("Printed the current list to the console."))
                 elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
                     printDexListInvestigation
                 elsif Input.pressex?(0x54) && $DEBUG # T, for Tutor
@@ -1306,7 +1306,7 @@ class PokemonPokedex_Scene
                         speciesEdited += 1
                     end
                 end
-                pbMessage("#{speciesEdited} species tutorable movesets edited!")
+                pbMessage(_INTL("#{speciesEdited} species tutorable movesets edited!"))
 
                 GameData::Species.save
                 Compiler.write_pokemon

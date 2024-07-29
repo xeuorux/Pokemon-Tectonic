@@ -215,7 +215,7 @@ class NewDexNav
 				end
 				if debugControl
 					pbAddPokemonSilent(highlightedSpeciesData.species,getLevelCap)
-					pbMessage("Added #{highlightedSpeciesData.species}")
+					pbMessage(_INTL("Added #{highlightedSpeciesData.species}"))
 					next
 				end
 				searchTime = 20 + rand(60)

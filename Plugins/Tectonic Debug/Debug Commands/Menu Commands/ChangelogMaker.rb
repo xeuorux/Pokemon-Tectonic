@@ -70,9 +70,7 @@ DebugMenuCommands.register("generatechangelogpergen", {
   "name"        => _INTL("Generate changelog per generation"),
   "description" => _INTL("Generate a species changelog per generation of Pokemon"),
   "effect"      => proc { |sprites, viewport|
-	for index in 1...GENERATION_END_IDS.length
-		startID = GENERATION_END_IDS[index-1] + 1
-		endID = GENERATION_END_IDS[index]
+	for index in 1...9
 		echoln("Creating the changelog between the IDs of #{startID} and #{endID}")
 		createChangeLog(startID,endID,"Changelogs/changelog_gen#{index.to_s}.txt")
 	end
@@ -96,23 +94,19 @@ DebugMenuCommands.register("generatedexdocpergen", {
 "name"        => _INTL("Generate dex doc by generation"),
 "description" => _INTL("Generate a series document that describes all current species details like a dex, split by generation"),
 "effect"      => proc { |sprites, viewport|
-		for index in 1...GENERATION_END_IDS.length
-			startID = GENERATION_END_IDS[index-1] + 1
-			endID = GENERATION_END_IDS[index]
-			echoln("Creating the full dex doc between the IDs of #{startID} and #{endID}")
-			generateFullDexDoc(startID,endID,"Changelogs/fulldexdoc_#{index.to_s}.txt")
+		for index in 0...9
+			generateFullDexDoc(generationNumber,"Changelogs/fulldexdoc_#{index.to_s}.txt")
 		end
 	}
 })
 
-def createChangeLog(firstID = 0,lastID = 999_999,fileName = "Changelogs/changelog.txt")
+def createChangeLog(generationNumber = nil,fileName = "Changelogs/changelog.txt")
 	unchanged = []
 		
 	File.open(fileName,"wb") { |f|
 		GameData::SpeciesOld.each do |species_data|
 			next if species_data.form != 0
-			next if species_data.id_number < firstID
-			break if species_data.id_number > lastID
+			next if generationNumber && species_data.generation != generationNumber
 			
 			newSpeciesData = GameData::Species.get(species_data.id) || nil
 			next if newSpeciesData.nil?
@@ -339,13 +333,12 @@ def createChangeLog(firstID = 0,lastID = 999_999,fileName = "Changelogs/changelo
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end
 
-def generateFullDexDoc(firstID = 0,lastID = 999_999,fileName = "fulldexdoc.txt")
+def generateFullDexDoc(generationNumber = nil,fileName = "fulldexdoc.txt")
 	File.open(fileName,"wb") { |f|
 		GameData::Species.each do |species_data|
 			next if species_data.isLegendary?
 			next if species_data.form != 0
-			next if species_data.id_number < firstID
-			break if species_data.id_number > lastID
+            next if generationNumber && species_data.generation != generationNumber
 			dexListing = []
 
 			# Types

@@ -16,7 +16,7 @@ class ScreenChooseFileSave
         # Check quantity
         @count = count
         if @count <= 0
-            pbMessage("No save file was found.")
+            pbMessage(_INTL("No save file was found."))
             return
         end
         # Check still menu

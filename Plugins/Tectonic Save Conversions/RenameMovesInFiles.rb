@@ -60,5 +60,5 @@ def downgradeSave(saveVersion)
   save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
   save_data[:game_version] = saveVersion
   File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
-  pbMessage("Save downgraded to version #{saveVersion}")
+  pbMessage(_INTL("Save downgraded to version #{saveVersion}"))
 end

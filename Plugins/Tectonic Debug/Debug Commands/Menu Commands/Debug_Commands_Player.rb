@@ -263,7 +263,7 @@ DebugMenuCommands.register("setbadges", {
       stageCmd = pbShowCommands(nil, commands, -1)
       if stageCmd >= 0
         $main_quest_tracker.setMainQuestStage(stageCmd)
-        pbMessage("Changed the player's main quest stage to #{MainQuestTracker.getNiceNameForStageSymbol(MAIN_QUEST_STAGES.keys[stageCmd])}.")
+        pbMessage(_INTL("Changed the player's main quest stage to #{MainQuestTracker.getNiceNameForStageSymbol(MAIN_QUEST_STAGES.keys[stageCmd])}."))
       end
     }
   })

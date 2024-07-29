@@ -26,5 +26,5 @@ def unlockTools
     pbRegisterItem(:POKEXRAY)
     initializeAidKit
     $PokemonGlobal.omnitutor_active = true
-    pbMessage("Receiving every major tool item.")
+    pbMessage(_INTL("Receiving every major tool item."))
 end

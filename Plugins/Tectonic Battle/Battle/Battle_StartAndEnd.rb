@@ -333,10 +333,10 @@ class PokeBattle_Battle
                     wasOnStreak = pkmn.onHotStreak?
                     if pkmn.fainted? || [2, 3].include?(@decision)
                         pkmn.battlingStreak = 0
-                        pbMessage("#{pkmn.name}'s Hot Streak is now over.") if wasOnStreak
+                        pbMessage(_INTL("#{pkmn.name}'s Hot Streak is now over.")) if wasOnStreak
                     elsif @usedInBattle[0][i]
                         pkmn.battlingStreak += 1
-                        pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
+                        pbMessage(_INTL("#{pkmn.name} is on a Hot Streak!")) if pkmn.onHotStreak? && !wasOnStreak
                     end
                 end
             end
