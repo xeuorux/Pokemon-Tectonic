@@ -342,7 +342,7 @@ end
 def generateFullDexDoc(firstID = 0,lastID = 999_999,fileName = "fulldexdoc.txt")
 	File.open(fileName,"wb") { |f|
 		GameData::Species.each do |species_data|
-			next if isLegendary?(species_data.id_number)
+			next if species_data.isLegendary?
 			next if species_data.form != 0
 			next if species_data.id_number < firstID
 			break if species_data.id_number > lastID

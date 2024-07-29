@@ -42,6 +42,6 @@ end
 
 def checkForCaptureAchievements(ball, battle, pkmn)
     return unless %i[POKEBALL BALLLAUNCHER].include?(ball)
-    return unless isLegendary?(pkmn.species)
+    return unless pkmn.species_data.isLegendary?
     unlockAchievement(:CAPTURE_LEGENDARY_BASIC_BALL)
 end

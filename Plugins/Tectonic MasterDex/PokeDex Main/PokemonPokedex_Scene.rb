@@ -192,7 +192,7 @@ class PokemonPokedex_Scene
     end
 
     def autoDisqualifyFromSearch(species_sym)
-        return isLegendary?(species_sym) && !$Trainer.seen?(species_sym) && !$DEBUG
+        return GameData::Species.get(species_sym).isLegendary? && !$Trainer.seen?(species_sym) && !$DEBUG
     end
 
     def pbRefreshDexList(index = 0)
@@ -227,7 +227,7 @@ class PokemonPokedex_Scene
         zBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
         zShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         iconspecies = @sprites["pokedex"].species
-        iconspecies = nil if isLegendary?(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
+        iconspecies = nil if GameData::Species.get(iconspecies).isLegendary? && !$Trainer.seen?(iconspecies) && !$DEBUG
         dexname = _INTL("MasterDex")
         textpos = [
             [dexname, Graphics.width / 8, -2, 2, zBase, zShadow],
@@ -1112,7 +1112,7 @@ class PokemonPokedex_Scene
                         break
                     end
                 elsif Input.trigger?(Input::USE)
-                    if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary?(@sprites["pokedex"].species) || $DEBUG
+                    if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !GameData::Species.get(@sprites["pokedex"].species).isLegendary? || $DEBUG
                         pbPlayDecisionSE
                         pbDexEntry(@sprites["pokedex"].index)
                     end
@@ -1143,7 +1143,7 @@ class PokemonPokedex_Scene
                 elsif Input.pressex?(0x42) && $DEBUG # B, for Boss
                     begin
                         species = @sprites["pokedex"].species
-                        if isLegendary?(species)
+                        if GameData::Species.get(species).isLegendary?
                             pbBigAvatarBattle([species.to_sym, getLevelCap])
                         else
                             pbSmallAvatarBattle([species.to_sym, getLevelCap])
@@ -1197,7 +1197,7 @@ class PokemonPokedex_Scene
     def debugFilterToRegularLine
         dexlist = searchStartingList
         dexlist = dexlist.find_all do |dex_item|
-            next !isLegendary?(dex_item[:species]) && dex_item[:data].get_evolutions.length == 0
+            next !dex_item[:data].isLegendary? && dex_item[:data].get_evolutions.length == 0
         end
         return dexlist
     end
@@ -1350,8 +1350,8 @@ class PokemonPokedex_Scene
             wholeGameTypesCount[typesData.id] = 0
         end
         pbGetDexList.each do |dexEntry|
-            next if isLegendary?(dexEntry[0])
             speciesData = GameData::Species.get(dexEntry[0])
+            next if speciesData.isLegendary?
             next if speciesData.get_evolutions.length > 0
             wholeGameTypesCount[speciesData.type1] += 1
             wholeGameTypesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1

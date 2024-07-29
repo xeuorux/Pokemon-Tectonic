@@ -178,7 +178,7 @@ def pbGetAvatarBattleBGM(_wildParty) # wildParty is an array of Pokémon objects
 
     legend = false
     _wildParty.each do |p|
-        legend = true if isLegendary?(p.species)
+        legend = true if p.species_data.isLegendary?
     end
 
     # Check global metadata

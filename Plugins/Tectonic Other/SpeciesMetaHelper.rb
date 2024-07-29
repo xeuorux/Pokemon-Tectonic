@@ -1,22 +1,3 @@
-GENERATION_END_IDS = [0,151,251,386,493,649,721,809,898]
-
-def isLegendary?(idNumber)
-	idNumber = GameData::Species.get(idNumber).id_number if idNumber.is_a?(Symbol)
-	legendaries1 = [144,145,146,150,151]
-	legendaries2 = [243,244,245,249,250,251]
-	legendaries3 = (377..386).to_a
-	legendaries4 = (480..494).to_a
-	legendaries5 = (638..649).to_a
-	legendaries6 = (716..721).to_a
-	legendaries7 = (772..773).to_a
-	legendaries8 = (785..809).to_a
-	legendaries9 = (888..898).to_a
-	legendaries10 = (2026..2028).to_a
-	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,
-		legendaries6,legendaries7,legendaries8,legendaries9,legendaries10,[2060]].flatten
-	return legendaries.include?(idNumber)
-end
-
 def pbFindEncounter(enc_types, species)
     return false if !enc_types
     enc_types.each_value do |slots|

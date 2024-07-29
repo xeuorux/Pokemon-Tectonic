@@ -842,9 +842,9 @@ class PokemonPokedex_Scene
 
             dexlist = dexlist.find_all do |dex_item|
                 if selection == 1
-                    next !isLegendary?(dex_item[:species])
+                    next !dex_item[:data].isLegendary?
                 else
-                    next isLegendary?(dex_item[:species])
+                    next dex_item[:data].isLegendary?
                 end
             end
             return dexlist

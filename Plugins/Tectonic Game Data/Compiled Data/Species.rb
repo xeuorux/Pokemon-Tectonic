@@ -42,7 +42,7 @@ module GameData
         attr_reader :mega_message
         attr_reader :notes
         attr_accessor :earliest_available
-        attr_writer :tribes
+        attr_reader :flags
 
         DATA = {}
         DATA_FILENAME = "species.dat"
@@ -96,6 +96,7 @@ module GameData
               "Shape"             => [0, "y", :BodyShape],
               "Habitat"           => [0, "e", :Habitat],
               "Generation"        => [0, "i"],
+              "Flags"             => [0, "*s"],
               "BattlerPlayerX"    => [0, "i"],
               "BattlerPlayerY"    => [0, "i"],
               "BattlerEnemyX"     => [0, "i"],
@@ -177,6 +178,7 @@ module GameData
             @earliest_available    = nil
             @tribes                = hash[:tribes]                || []
             @defined_in_extension  = hash[:defined_in_extension]  || false
+            @flags                 = hash[:flags]                 || []
 
             legalityChecks
         end
@@ -499,6 +501,10 @@ module GameData
             end
             return itemsAndRarities
         end
+
+        def isLegendary?
+            return @flags.include?("Legendary")
+        end
     end
 end
 
@@ -630,6 +636,7 @@ module Compiler
                       :shape                 => GameData::BodyShape.get(contents["Shape"]).id,
                       :habitat               => contents["Habitat"],
                       :generation            => contents["Generation"],
+                      :flags                 => contents["Flags"],
                       :notes                 => contents["Notes"],
                       :tribes                => contents["Tribes"],
                       :defined_in_extension  => !baseFile,
@@ -836,6 +843,7 @@ module Compiler
                   :shape                 => (contents["Shape"]) ? GameData::BodyShape.get(contents["Shape"]).id : base_data.shape,
                   :habitat               => contents["Habitat"] || base_data.habitat,
                   :generation            => contents["Generation"] || base_data.generation,
+                  :flags                 => contents["Flags"] || base_data.flags,
                   :mega_stone            => contents["MegaStone"],
                   :mega_move             => contents["MegaMove"],
                   :unmega_form           => contents["UnmegaForm"],
@@ -1202,10 +1210,10 @@ FileLineData.linereport)
         f.write(format("Kind = %s\r\n", species.real_category))
         f.write(format("Pokedex = %s\r\n", species.real_pokedex_entry))
         if species.real_form_name && !species.real_form_name.empty?
-            f.write(format("FormName = %s\r\n",
-  species.real_form_name))
+            f.write(format("FormName = %s\r\n",species.real_form_name))
         end
         f.write(format("Generation = %d\r\n", species.generation)) if species.generation != 0
+        f.write(format("Flags = %s\r\n", species.flags.join(","))) if !species.flags.empty?
         f.write(format("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
         f.write(format("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
         f.write(format("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
@@ -1311,6 +1319,7 @@ FileLineData.linereport)
   species.real_pokedex_entry))
         end
         f.write(format("Generation = %d\r\n", species.generation)) if species.generation != base_species.generation
+        f.write(format("Flags = %s\r\n", species.flags.join(","))) if species.flags != base_species.flags
         if species.wild_item_common != base_species.wild_item_common ||
            species.wild_item_uncommon != base_species.wild_item_uncommon ||
            species.wild_item_rare != base_species.wild_item_rare

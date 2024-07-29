@@ -45,7 +45,7 @@ end
 class NoLegendaryRestriction
   def isValid?(pkmn)
     return false if !pkmn || pkmn.egg?
-    return !isLegendary?(pkmn.species)
+    return !pkmn.species_data.isLegendary?
   end
 end
   

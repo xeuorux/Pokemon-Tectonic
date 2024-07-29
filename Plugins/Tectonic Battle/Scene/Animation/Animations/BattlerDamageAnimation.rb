@@ -35,7 +35,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			framesForOpacity = 15
 			
 			hpPercentDamaged = @damageDealt / @battler.totalhp.to_f
-			numHPBars = @battler.boss? ? (isLegendary?(@battler.species) ? 3 : 2) : 1
+			numHPBars = @battler.boss? ? (@battler.species_data.isLegendary? ? 3 : 2) : 1
 			hpBarPercentage = (hpPercentDamaged * numHPBars).floor(1)
 			
 			if hpBarPercentage >= 1.0

@@ -242,7 +242,7 @@ module Compiler
     ret.pages = []
     avatarSpecies = match[1]
     ret.name = "size(2,2)trainer(4) - " + avatarSpecies
-    legendary = isLegendary?(avatarSpecies)
+    legendary = GameData::Species.get(avatarSpecies).isLegendary?
     return nil if !avatarSpecies || avatarSpecies == ""
     level = match[2]
     version = match[3] || 0

@@ -1090,7 +1090,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex > 0
             newindex -= 1
-            if !isLegendary?(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
+            newSpecies = @dexlist[newindex][:species]
+            if !GameData::Species.get(newSpecies).isLegendary? || $Trainer.seen?(newSpecies)
                 @index = newindex
                 break
             end
@@ -1101,7 +1102,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex < @dexlist.length - 1
             newindex += 1
-            if !isLegendary?(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
+            newSpecies = @dexlist[newindex][:species]
+            if !GameData::Species.get(newSpecies).isLegendary? || $Trainer.seen?(newSpecies)
                 @index = newindex
                 break
             end
@@ -1325,7 +1327,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             GameData::Species.each do |otherSpeciesData|
                 next if otherSpeciesData.form != 0
                 next if otherSpeciesData.get_evolutions.length > 0
-                next if isLegendary?(otherSpeciesData.id)
+                next if otherSpeciesData.isLegendary?
                 numberFaster += 1 if mySpeed > otherSpeciesData.base_stats[:SPEED]
                 total += 1
             end
@@ -1368,7 +1370,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             GameData::Species.each do |otherSpeciesData|
                 next if otherSpeciesData.form != 0
                 next if otherSpeciesData.get_evolutions.length > 0
-                next if isLegendary?(otherSpeciesData.id)
+                next if otherSpeciesData.isLegendary?
 
                 typesOfCoverage.each do |coverageType|
                     effect = Effectiveness.calculate(coverageType, otherSpeciesData.type1,

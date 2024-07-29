@@ -103,7 +103,7 @@ def nonLegendarySpeciesCount(owned = false)
     count = 0
     GameData::Species.each do |speciesData|
         next unless speciesData.form == 0
-        next if isLegendary?(speciesData.id)
+        next if speciesData.isLegendary?
         next if owned && !$Trainer.pokedex.owned?(speciesData.species)
         count += 1
     end

@@ -430,7 +430,7 @@ def getDexNavEncounterDataForMap(mapid = -1)
 			encounterList.each do |encounter|
 				speciesSym = encounter[1]
 				species_data = GameData::Species.get(speciesSym)
-				next if isLegendary?(speciesSym)
+				next if species_data.isLegendary?
 				allEncounters.push([encounter_type,species_data])
 			end
 		end

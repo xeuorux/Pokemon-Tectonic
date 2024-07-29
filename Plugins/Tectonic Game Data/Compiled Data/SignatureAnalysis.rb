@@ -17,7 +17,7 @@ def getAbilityCounts()
 		next if species_data.form != 0
 		# ... or if its not fully evolved
 		next if species_data.get_evolutions().length > 0
-		arrayID = isLegendary?(species_data.id) ? 1 : 0
+		arrayID = species_data.isLegendary? ? 1 : 0
 		species_data.abilities.each do |ability_id|
 			ability_counts[ability_id][arrayID].push(species_data.id)
 		end
@@ -52,7 +52,7 @@ def getMoveLearnableGroups()
 		next if species_data.form != 0
 		# ... or if its not fully evolved
 		next if species_data.get_evolutions().length > 0
-		groupIndex = isLegendary?(species_data.id) ? 1 : 0
+		groupIndex = species_data.isLegendary? ? 1 : 0
 		species_data.moves.each do |learnset_entry|
 			move = learnset_entry[1]
 			move_counts[move][groupIndex].push(species_data.id)

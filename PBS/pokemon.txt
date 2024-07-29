@@ -3985,6 +3985,7 @@ Shape = Head
 Kind = Freeze
 Pokedex = A legendary bird Pokémon that is said to appear to doomed people who are lost in icy mountains.
 Generation = 1
+Flags = Legendary
 #-------------------------------
 [145]
 Name = Zapdos
@@ -4012,6 +4013,7 @@ Shape = Head
 Kind = Electric
 Pokedex = This legendary bird Pokémon is said to appear only when a thundercloud parts into two halves.
 Generation = 1
+Flags = Legendary
 #-------------------------------
 [146]
 Name = Moltres
@@ -4039,6 +4041,7 @@ Shape = Head
 Kind = Flame
 Pokedex = One of the legendary bird Pokémon. It is said that its appearance indicates the coming of spring.
 Generation = 1
+Flags = Legendary
 #-------------------------------
 [147]
 Name = Dratini
@@ -4149,6 +4152,7 @@ Shape = Head
 Kind = Genetic
 Pokedex = Created from the DNA of Mew, this Pokémon is a dangerous combination of overwhelming power and a savage heart.
 Generation = 1
+Flags = Legendary
 #-------------------------------
 [151]
 Name = Mew
@@ -4175,6 +4179,7 @@ Shape = Head
 Kind = New Species
 Pokedex = It's very intelligent and can use an incredible variety of moves. Many believe that all other Pokémon are descendants of this one.
 Generation = 1
+Flags = Legendary
 WildItemCommon = LUMBERRY
 WildItemUncommon = LUMBERRY
 WildItemRare = LUMBERRY
@@ -6717,6 +6722,7 @@ Shape = Head
 Kind = Thunder
 Pokedex = Raikou embodies the speed of lightning. The roars of this Pokémon send shock waves shuddering through the air and shake the ground as if lightning bolts had come crashing down.
 Generation = 2
+Flags = Legendary
 #-------------------------------
 [244]
 Name = Entei
@@ -6743,6 +6749,7 @@ Shape = Head
 Kind = Volcano
 Pokedex = Entei embodies the passion of magma. This Pokémon is thought to have been born in the eruption of a volcano. It sends up massive bursts of fire that utterly consume all that they touch.
 Generation = 2
+Flags = Legendary
 #-------------------------------
 [245]
 Name = Suicune
@@ -6769,6 +6776,7 @@ Shape = Head
 Kind = Aurora
 Pokedex = Suicune embodies the compassion of a pure spring of water. It runs across the land with gracefulness. This Pokémon has the power to purify dirty water.
 Generation = 2
+Flags = Legendary
 #-------------------------------
 [246]
 Name = Larvitar
@@ -6880,6 +6888,7 @@ Shape = Head
 Kind = Diving
 Pokedex = It is said to be the guardian of the seas. It is rumored to have been seen on the night of a storm.
 Generation = 2
+Flags = Legendary
 #-------------------------------
 [250]
 Name = Ho-Oh
@@ -6907,6 +6916,7 @@ Shape = Head
 Kind = Rainbow
 Pokedex = A legend says that its body glows in seven colors. A rainbow is said to form behind it when it flies.
 Generation = 2
+Flags = Legendary
 #-------------------------------
 [251]
 Name = Celebi
@@ -6934,6 +6944,7 @@ Shape = Head
 Kind = Time Travel
 Pokedex = This Pokémon traveled through time to come from the future. It bolsters grass and trees with its own strength, and it can heal wounds, too.
 Generation = 2
+Flags = Legendary
 WildItemCommon = LUMBERRY
 WildItemUncommon = LUMBERRY
 WildItemRare = LUMBERRY
@@ -10456,6 +10467,7 @@ Shape = Head
 Kind = Stone Age
 Pokedex = The third of the titans, built to commemorate an era of stonecraft. It is as resilient as an ancient monolith.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [378]
 Name = Regice
@@ -10482,6 +10494,7 @@ Shape = Head
 Kind = Ice Age
 Pokedex = The second of the titans, built to commemorate an era of ice. It is as implacable as an encroaching glacier.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [379]
 Name = Registeel
@@ -10508,6 +10521,7 @@ Shape = Head
 Kind = Iron Age
 Pokedex = The fourth of the titans, built to commemorate an era of metalworking. It is as unfailing as a master swordsmith's blade.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [380]
 Name = Latias
@@ -10535,6 +10549,7 @@ Shape = Head
 Kind = Eon
 Pokedex = Latias is highly sensitive to the emotions of people. If it senses any hostility, this Pokémon ruffles the feathers all over its body and cries shrilly to intimidate the foe.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [381]
 Name = Latios
@@ -10562,6 +10577,7 @@ Shape = Head
 Kind = Eon
 Pokedex = Latios has the ability to make others see an image of what it has seen or imagines in its head. This Pokémon is intelligent and understands human speech.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [382]
 Name = Kyogre
@@ -10588,6 +10604,7 @@ Shape = Head
 Kind = Sea Basin
 Pokedex = Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [383]
 Name = Groudon
@@ -10614,6 +10631,7 @@ Shape = Head
 Kind = Continent
 Pokedex = Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [384]
 Name = Rayquaza
@@ -10641,6 +10659,7 @@ Shape = Head
 Kind = Sky High
 Pokedex = Rayquaza is said to have lived for hundreds of millions of years. Legends remain of how it put to rest the clash between Kyogre and Groudon.
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [385]
 Name = Jirachi
@@ -10668,6 +10687,7 @@ Shape = Head
 Kind = Wish
 Pokedex = It is said to have the ability to grant any wish for just one week every thousand years.
 Generation = 3
+Flags = Legendary
 WildItemCommon = STARPIECE
 WildItemUncommon = STARPIECE
 WildItemRare = STARPIECE
@@ -10698,6 +10718,7 @@ Kind = DNA
 Pokedex = DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
 FormName = Normal
 Generation = 3
+Flags = Legendary
 #-------------------------------
 [387]
 Name = Turtwig
@@ -13283,6 +13304,7 @@ Shape = Head
 Kind = Knowledge
 Pokedex = Known as "The Being of Knowledge." It is said that it can wipe out the memory of those who see its eyes.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [481]
 Name = Mesprit
@@ -13309,6 +13331,7 @@ Shape = Head
 Kind = Emotion
 Pokedex = Known as "The Being of Emotion." It taught humans the nobility of sorrow, pain, and joy.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [482]
 Name = Azelf
@@ -13335,6 +13358,7 @@ Shape = Head
 Kind = Willpower
 Pokedex = Known as "The Being of Willpower." It sleeps at the bottom of a lake to keep the world in balance.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [483]
 Name = Dialga
@@ -13362,6 +13386,7 @@ Shape = Head
 Kind = Temporal
 Pokedex = A Pokémon spoken of in legend. It is said that time began moving when Dialga was born.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [484]
 Name = Palkia
@@ -13389,6 +13414,7 @@ Shape = Head
 Kind = Spatial
 Pokedex = It is said to live in a gap in the spatial dimension parallel to ours. It appears in mythology.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [485]
 Name = Heatran
@@ -13416,6 +13442,7 @@ Shape = Head
 Kind = Lava Dome
 Pokedex = It dwells in volcanic caves. It digs in with its cross-shaped feet to crawl on ceilings and walls.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [486]
 Name = Regigigas
@@ -13443,6 +13470,7 @@ Shape = Head
 Kind = Colossal
 Pokedex = The creator of the titans, who shaped the primal clay in the golden age. Its creative powers are boundless.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [487]
 Name = Giratina
@@ -13471,6 +13499,7 @@ Kind = Renegade
 Pokedex = This Pokémon is said to live in a world on the reverse side of ours, where common knowledge is distorted and strange.
 FormName = Altered
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [488]
 Name = Cresselia
@@ -13497,6 +13526,7 @@ Shape = Head
 Kind = Lunar
 Pokedex = Those who sleep holding Cresselia's feather are assured of joyful dreams. It is said to represent the crescent moon.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [489]
 Name = Phione
@@ -13523,6 +13553,7 @@ Shape = Head
 Kind = Sea Drifter
 Pokedex = It drifts in warm seas. It always returns to where it was born, no matter how far it may have drifted.
 Generation = 4
+Flags = Legendary
 Evolutions = MANAPHY,Item,ANCIENTSEAWATER
 #-------------------------------
 [490]
@@ -13549,6 +13580,7 @@ Shape = Head
 Kind = Seafaring
 Pokedex = It starts its life with a wondrous power that permits it to bond with any kind of Pokémon.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [491]
 Name = Darkrai
@@ -13575,6 +13607,7 @@ Shape = Head
 Kind = Pitch-Black
 Pokedex = It can lull people to sleep and make them dream. It is active during nights of the new moon.
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [492]
 Name = Shaymin
@@ -13602,6 +13635,7 @@ Kind = Gratitude
 Pokedex = The blooming of Gracidea flowers confers the power of flight upon it. Feelings of gratitude are the message it delivers.
 FormName = Land
 Generation = 4
+Flags = Legendary
 WildItemCommon = LUMBERRY
 WildItemUncommon = LUMBERRY
 WildItemRare = LUMBERRY
@@ -13632,6 +13666,7 @@ Kind = Alpha
 Pokedex = It is told in mythology that this Pokémon was born before the universe even existed.
 FormName = Arceus
 Generation = 4
+Flags = Legendary
 #-------------------------------
 [494]
 Name = Victini
@@ -13659,6 +13694,7 @@ Shape = Head
 Kind = Victory
 Pokedex = This Pokémon brings victory. It is said that Trainers with Victini always win, regardless of the type of encounter.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [495]
 Name = Snivy
@@ -17653,6 +17689,7 @@ Shape = Head
 Kind = Iron Will
 Pokedex = It has a body and heart of steel. It worked with its allies to punish people when they hurt Pokémon.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [639]
 Name = Terrakion
@@ -17680,6 +17717,7 @@ Shape = Head
 Kind = Cavern
 Pokedex = Spoken of in legend, this Pokémon used its phenomenal power to destroy a castle in its effort to protect Pokémon.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [640]
 Name = Virizion
@@ -17707,6 +17745,7 @@ Shape = Head
 Kind = Grassland
 Pokedex = Legends say this Pokémon confounded opponents with its swift movements.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [641]
 Name = Tornadus
@@ -17734,6 +17773,7 @@ Kind = Cyclone
 Pokedex = Tornadus expels massive energy from its tail, causing severe storms. Its power is great enough to blow houses away.
 FormName = Incarnate
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [642]
 Name = Thundurus
@@ -17762,6 +17802,7 @@ Kind = Bolt Strike
 Pokedex = The spikes on its tail discharge immense bolts of lightning. It flies around the Unova region firing off lightning bolts.
 FormName = Incarnate
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [643]
 Name = Reshiram
@@ -17789,6 +17830,7 @@ Shape = Head
 Kind = Vast White
 Pokedex = When Reshiram's tail flares, the heat energy moves the atmosphere and changes the world's weather.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [644]
 Name = Zekrom
@@ -17816,6 +17858,7 @@ Shape = Head
 Kind = Deep Black
 Pokedex = Concealing itself in lightning clouds, it flies throughout the Unova region. It creates electricity in its tail.
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [645]
 Name = Landorus
@@ -17844,6 +17887,7 @@ Kind = Abundance
 Pokedex = Lands visited by Landorus grant such bountiful crops that it has been hailed as "The Guardian of the Fields."
 FormName = Incarnate
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [646]
 Name = Kyurem
@@ -17872,6 +17916,7 @@ Kind = Boundary
 Pokedex = It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
 FormName = Kyurem
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [647]
 Name = Keldeo
@@ -17900,6 +17945,7 @@ Kind = Colt
 Pokedex = When it is resolute, its body fills with power and it becomes swifter. Its jumps are then too fast to follow.
 FormName = Ordinary
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [648]
 Name = Meloetta
@@ -17928,6 +17974,7 @@ Kind = Melody
 Pokedex = Its melodies are sung with a special vocalization method that can control the feelings of those who hear it.
 FormName = Aria
 Generation = 5
+Flags = Legendary
 WildItemCommon = STARPIECE
 WildItemUncommon = STARPIECE
 WildItemRare = STARPIECE
@@ -17959,6 +18006,7 @@ Kind = Paleozoic
 Pokedex = This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
 FormName = Genesect
 Generation = 5
+Flags = Legendary
 #-------------------------------
 [650]
 Name = Chespin
@@ -19823,6 +19871,7 @@ Kind = Life
 Pokedex = When the horns on its head shine in seven colors, it is said to be sharing everlasting life.
 FormName = Neutral Mode
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [717]
 Name = Yveltal
@@ -19850,6 +19899,7 @@ Shape = Head
 Kind = Destruction
 Pokedex = When its life comes to an end, it absorbs the life energy of every living thing and turns into a cocoon once more.
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [718]
 Name = Zygarde
@@ -19878,6 +19928,7 @@ Kind = Order
 Pokedex = Some say it can change to an even more powerful form when battling those who threaten the ecosystem.
 FormName = 50%
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [719]
 Name = Diancie
@@ -19905,6 +19956,7 @@ Shape = Head
 Kind = Jewel
 Pokedex = It can instantly create many diamonds by compressing the carbon in the air between its hands.
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [720]
 Name = Hoopa
@@ -19933,6 +19985,7 @@ Kind = Mischief
 Pokedex = It gathers things it likes and passes them through its loop to teleport them to a secret place.
 FormName = Hoopa Confined
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [721]
 Name = Volcanion
@@ -19960,6 +20013,7 @@ Shape = Head
 Kind = Steam
 Pokedex = It expels its internal steam from the arms on its back. It has enough power to blow away a mountain.
 Generation = 6
+Flags = Legendary
 #-------------------------------
 [722]
 Name = Rowlet
@@ -21377,6 +21431,7 @@ Shape = Head
 Kind = Synthetic
 Pokedex = A Pokémon weapon developed for a specific mission, it went berserk during an experiment, so it was cryogenically frozen.
 Generation = 7
+Flags = Legendary
 Evolutions = SILVALLY,Level,52
 #-------------------------------
 [773]
@@ -21404,6 +21459,7 @@ Kind = Synthetic
 Pokedex = This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 FormName = Type: Normal
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [774]
 Name = Minior
@@ -21745,6 +21801,7 @@ Shape = Head
 Kind = Land Spirit
 Pokedex = Although it's called a guardian deity, if a person or Pokémon puts it in a bad mood, it will become a malevolent deity and attack.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [786]
 Name = Tapu Lele
@@ -21772,6 +21829,7 @@ Shape = Head
 Kind = Land Spirit
 Pokedex = It heals the wounds of people and Pokémon by sprinkling them with its sparkling scales. This guardian deity is worshiped on Akala.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [787]
 Name = Tapu Bulu
@@ -21799,6 +21857,7 @@ Shape = Head
 Kind = Land Spirit
 Pokedex = Although it's called a guardian deity, it's violent enough to crush anyone it sees as an enemy.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [788]
 Name = Tapu Fini
@@ -21826,6 +21885,7 @@ Shape = Head
 Kind = Land Spirit
 Pokedex = This guardian deity of Poni Island manipulates water. Because it lives deep within a thick fog, it came to be both feared and revered.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [789]
 Name = Cosmog
@@ -21853,6 +21913,7 @@ Shape = Head
 Kind = Nebula
 Pokedex = Even though its helpless, gaseous body can be blown away by the slightest breeze, it doesn't seem to care.
 Generation = 7
+Flags = Legendary
 Evolutions = COSMOEM,Level,25
 #-------------------------------
 [790]
@@ -21880,6 +21941,7 @@ Shape = Head
 Kind = Protostar
 Pokedex = The king who ruled Alola in times of antiquity called it the "cocoon of the stars" and built an altar to worship it.
 Generation = 7
+Flags = Legendary
 Evolutions = SOLGALEO,Item,DAWNSTONE,LUNALA,Item,DUSKSTONE
 #-------------------------------
 [791]
@@ -21908,6 +21970,7 @@ Shape = Head
 Kind = Sunne
 Pokedex = Sometimes the result of its opening an Ultra Wormhole is that energy and life-forms from other worlds are called here to this world.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [792]
 Name = Lunala
@@ -21935,6 +21998,7 @@ Shape = Head
 Kind = Moone
 Pokedex = Records of it exist in writings from long, long ago, where it was known by the name "the beast that calls the moon."
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [793]
 Name = Nihilego
@@ -21962,6 +22026,7 @@ Shape = Head
 Kind = Parasite
 Pokedex = A life-form from another world, it was dubbed a UB and is thought to produce a strong neurotoxin.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [794]
 Name = Buzzwole
@@ -21989,6 +22054,7 @@ Shape = Head
 Kind = Swollen
 Pokedex = Although it's alien to this world and a danger here, it's apparently a common organism in the world where it normally lives.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [795]
 Name = Pheromosa
@@ -22016,6 +22082,7 @@ Shape = Head
 Kind = Lissome
 Pokedex = A life-form that lives in another world, its body is thin and supple, but it also possesses great power.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [796]
 Name = Xurkitree
@@ -22042,6 +22109,7 @@ Shape = Head
 Kind = Glowing
 Pokedex = Although it's alien to this world and a danger here, it's apparently a common organism in the world where it normally lives.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [797]
 Name = Celesteela
@@ -22069,6 +22137,7 @@ Shape = Head
 Kind = Launch
 Pokedex = One of the dangerous UBs, high energy readings can be detected coming from both of its huge arms.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [798]
 Name = Kartana
@@ -22096,6 +22165,7 @@ Shape = Head
 Kind = Drawn Sword
 Pokedex = This Ultra Beast's body, which is as thin as paper, is like a sharpened sword.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [799]
 Name = Guzzlord
@@ -22123,6 +22193,7 @@ Shape = Head
 Kind = Junkivore
 Pokedex = Although it's alien to this world and a danger here, it's apparently a common organism in the world where it normally lives.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [800]
 Name = Necrozma
@@ -22149,6 +22220,7 @@ Shape = Head
 Kind = Prism
 Pokedex = It looks somehow pained as it rages around in search of light, which serves as its energy. It's apparently from another world.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [801]
 Name = Magearna
@@ -22176,6 +22248,7 @@ Shape = Head
 Kind = Artificial
 Pokedex = It synchronizes its consciousness with others to understand their feelings. This faculty makes it useful for taking care of people.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [802]
 Name = Marshadow
@@ -22203,6 +22276,7 @@ Shape = Head
 Kind = Gloomdweller
 Pokedex = It slips into the shadows of others and mimics their powers and movements. As it improves, it becomes stronger than those it's imitating.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [803]
 Name = Poipole
@@ -22229,6 +22303,7 @@ Shape = Head
 Kind = Poison Pin
 Pokedex = This Ultra Beast is well enough liked to be chosen as a first partner in its own world.
 Generation = 7
+Flags = Legendary
 Evolutions = NAGANADEL,Level,40
 #-------------------------------
 [804]
@@ -22257,6 +22332,7 @@ Shape = Head
 Kind = Poison Pin
 Pokedex = It stores hundreds of liters of poisonous liquid inside its body. It is one of the organisms known as UBs.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [805]
 Name = Stakataka
@@ -22284,6 +22360,7 @@ Shape = Head
 Kind = Rampart
 Pokedex = It appeared from an Ultra Wormhole. Each one appears to be made up of many life-forms stacked one on top of each other.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [806]
 Name = Blacephalon
@@ -22311,6 +22388,7 @@ Shape = Head
 Kind = Fireworks
 Pokedex = It slithers toward people. Then, without warning, it triggers the explosion of its own head. It's apparently one kind of Ultra Beast.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [807]
 Name = Zeraora
@@ -22337,6 +22415,7 @@ Shape = Head
 Kind = Thunderclap
 Pokedex = It electrifies its claws and tears its opponents apart with them. Even if they dodge its attack, they'll be electrocuted by the flying sparks.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [808]
 Name = Meltan
@@ -22363,6 +22442,7 @@ Shape = Head
 Kind = Hex Nut
 Pokedex = It melts particles of iron and other metals found in the subsoil, so it can absorb them into its body of molten steel.
 Generation = 7
+Flags = Legendary
 Evolutions = MELMETAL,Level,44
 #-------------------------------
 [809]
@@ -22389,6 +22469,7 @@ Shape = Head
 Kind = Hex Nut
 Pokedex = Revered long ago for its capacity to create iron from nothing, for some reason it has come back to life after 3,000 years.
 Generation = 7
+Flags = Legendary
 #-------------------------------
 [810]
 Name = Grookey
@@ -24567,6 +24648,7 @@ Kind = Warrior
 Pokedex = This Pokémon has slumbered for many years. Some say it's Zamazenta's elder sister, others say the two Pokémon are rivals.
 FormName = Hero of Many Battles
 Generation = 8
+Flags = Legendary
 WildItemCommon = RUSTEDSWORD
 WildItemUncommon = RUSTEDSWORD
 WildItemRare = RUSTEDSWORD
@@ -24597,6 +24679,7 @@ Kind = Warrior
 Pokedex = This Pokémon slept for aeons while in the form of a statue. It was asleep for so long, people forgot that it ever existed.
 FormName = Hero of Many Battles
 Generation = 8
+Flags = Legendary
 WildItemCommon = RUSTEDSHIELD
 WildItemUncommon = RUSTEDSHIELD
 WildItemRare = RUSTEDSHIELD
@@ -24627,6 +24710,7 @@ Shape = Head
 Kind = Gigantic
 Pokedex = It was inside a meteorite that fell 20,000 years ago. There seems to be a connection between this Pokémon and the Dynamax phenomenon.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [891]
 Name = Kubfu
@@ -24653,6 +24737,7 @@ Shape = Head
 Kind = Wushu
 Pokedex = If Kubfu pulls the long white hair on its head, its fighting spirit heightens and power wells up from the depths of its belly.
 Generation = 8
+Flags = Legendary
 Evolutions = URSHIFU,Level,52
 #-------------------------------
 [892]
@@ -24682,6 +24767,7 @@ Kind = Wushu
 Pokedex = Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.
 FormName = Single Strike
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [893]
 Name = Zarude
@@ -24709,6 +24795,7 @@ Shape = Head
 Kind = Rogue Monkey
 Pokedex = Once the vines on Zarude's body tear off, they become nutrients in the soil. This helps the plants of the forest grow.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [894]
 Name = Regieleki
@@ -24735,6 +24822,7 @@ Shape = Head
 Kind = Electric Age
 Pokedex = The fifth of the titans, built to commemorate an era of electricity. It is as inscrutable as a cutting-edge supercomputer.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [895]
 Name = Regidrago
@@ -24761,6 +24849,7 @@ Shape = Head
 Kind = Prehistoric Age
 Pokedex = The first of the titans, built to commemorate an era when dragons ruled. It is as terrifying as an apex predator.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [896]
 Name = Glastrier
@@ -24787,6 +24876,7 @@ Shape = Head
 Kind = Wild Horse
 Pokedex = Glastrier has tremendous physical strength, and the mask of ice covering its face is 100 times harder than diamond.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [897]
 Name = Spectrier
@@ -24813,6 +24903,7 @@ Shape = Head
 Kind = Swift Horse
 Pokedex = As it dashes through the night, Spectrier absorbs the life-force of sleeping creatures. It craves silence and solitude.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [898]
 Name = Calyrex
@@ -24840,6 +24931,7 @@ Shape = Head
 Kind = King Pokémon
 Pokedex = Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [899]
 Name = Wornet
@@ -26496,6 +26588,7 @@ Shape = Head
 Kind = Freeze
 Pokedex = Its feather-like blades are composed of psychic energy and can shear through thick iron sheets as if they were paper.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [2027]
 Name = G. Zapdos
@@ -26523,6 +26616,7 @@ Shape = Head
 Kind = Electric
 Pokedex = One kick from its powerful legs will pulverize a dump truck. Supposedly, this Pokémon runs through the mountains at over 180 mph.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [2028]
 Name = G. Moltres
@@ -26550,6 +26644,7 @@ Shape = Head
 Kind = Flame
 Pokedex = This Pokémon's sinister, flame-like aura will consume the spirit of any creature it hits. Victims become burned-out shadows of themselves.
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [2029]
 Name = G. Slowking
@@ -27417,6 +27512,7 @@ Kind = Love-Hate
 Pokedex = According to legend, this Pokémon's love gave rise to the budding of fresh life across Hisui.
 FormName = Incarnate
 Generation = 8
+Flags = Legendary
 #-------------------------------
 [2061]
 Name = Annihilape
