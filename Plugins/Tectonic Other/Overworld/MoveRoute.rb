@@ -88,6 +88,6 @@ module PBMoveRoute
     if event
       event.force_move_route(route)
     end
-    command_210 if waitComplete
+    pbMapInterpreter.command_210 if waitComplete
     return route
   end
