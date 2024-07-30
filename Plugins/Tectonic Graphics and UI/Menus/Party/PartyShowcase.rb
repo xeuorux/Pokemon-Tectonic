@@ -3,12 +3,12 @@ class PokemonPartyShowcase_Scene
     base   = Color.new(80, 80, 88)
     shadow = Color.new(160, 160, 168)
 
-    def initialize(trainer,snapshot: false,snapShotName: nil,fastSnapshot: false, npcTrainer: false, flags: [])
+    def initialize(trainer,snapshot: false,snapShotName: nil,fastSnapshot: false, npcTrainer: false, illusionsFool: true, flags: [])
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
 
         @sprites = {}
-        @party = trainer.party
+        @party = trainer.party.clone
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
         @npcTrainer = npcTrainer
@@ -24,6 +24,13 @@ class PokemonPartyShowcase_Scene
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         @overlay = @sprites["overlay"].bitmap
         pbSetSmallFont(@overlay)
+
+        # Illusion
+        if illusionsFool && @party[0].hasAbility?(:ILLUSION)
+            storage = @party[0]
+            @party[0] = @party[@party.length - 1]
+            @party[@party.length - 1] = storage
+        end
 
         # Add party Pokémon sprites
         for i in 0...Settings::MAX_PARTY_SIZE
@@ -222,14 +229,14 @@ class PokemonPartyShowcase_Scene
     end
 end
 
-def enemyTrainerShowcase(trainerClass,trainerName,version=0)
+def enemyTrainerShowcase(trainerClass,trainerName,version=0, illusionsFool: false)
     trainer = pbLoadTrainer(trainerClass,trainerName,version)
-    trainerShowcase(trainer, npcTrainer: true)
+    trainerShowcase(trainer, npcTrainer: true, illusionsFool: illusionsFool)
 end
 
-def trainerShowcase(trainer, npcTrainer: false)
+def trainerShowcase(trainer, npcTrainer: false, illusionsFool: false)
     pbFadeOutIn {
-        PokemonPartyShowcase_Scene.new(trainer, npcTrainer: npcTrainer)
+        PokemonPartyShowcase_Scene.new(trainer, npcTrainer: npcTrainer, illusionsFool: illusionsFool)
     }
 end
 
