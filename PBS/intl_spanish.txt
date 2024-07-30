@@ -7584,10 +7584,14 @@ Leaving through -- oh. You -- you’re looking for something down here.
 Te estás yendo – oh. Tú – estás buscando algo ahí abajo.
 Come back and, uh, I’ll still be... around.
 Vuelve y, eh, estaré… por aquí.
-That package is what you’re looking for?
-¿Ese paquete es lo que estás buscando?
+Were you down here for this – whatever all this is?
+¿Estuviste aquí abajo para esto, sea lo que sea que sea todo esto?
 That Linoone dragged it down here.
 Ese Linoone lo trajo hasta aquí abajo.
+Even if you weren’t… it’s valuable. Trust me.
+Incluso si no lo fueras… es valioso. Créeme.
+Barter and blackmail are Makya’s currencies.
+El trueque y el chantaje son las monedas de Makya.
 And this <imp>Chasm keycard</imp> – I haven’t – it’s been a long time.
 Y esta <imp>llave magnética Chasm</imp> – yo no – ha sido un largo tiempo.
 Take it. I don’t need it, and Helena won’t miss it.
@@ -7598,8 +7602,8 @@ I used to – oh.
 Yo solía – oh.
 Oh. Oh, I just – I – I’m sorry. I shouldn’t be imposing upon you like this.
 Oh. Oh, yo sólo – yo – lo siento. No debería imponerme ante ti de esta forma.
-You must think I’ve been stalking you – I just – my name’s <imp>Yezera</imp>.
-Debes estar pensando que te he estado acosando – yo sólo – mi nombre es <imp>Yezera</imp>.
+I’ve been stalking you – I just – my name’s <imp>Yezera</imp>.
+Te he estado acosando – yo sólo – mi nombre es <imp>Yezera</imp>.
 Yours?
 ¿Y el tuyo?
 Well, \PN, you... you’re easy to talk to.

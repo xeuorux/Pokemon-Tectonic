@@ -206,3 +206,11 @@ end
 def playerTurnsTowards
 	turnEventTowardsThis(-1)
 end
+
+def turnPlayerTowardsEvent(eventID)
+    pbTurnTowardEvent($game_player,get_event(eventID))
+end
+
+def playerOnTopOfEvent?(eventID)
+    return get_character(eventID).at_coordinate?($game_player.x,$game_player.y)
+end
