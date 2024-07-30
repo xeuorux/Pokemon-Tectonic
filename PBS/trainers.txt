@@ -3651,8 +3651,20 @@ Pokemon = DECIDUEYE,43
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
 [SUPERNERD,John]
-Pokemon = BULBASAUR,42
-    AbilityIndex = 1 # Aromatic
+Pokemon = GALVANTULA,41
+    Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
+    AbilityIndex = 0 # Ocular
+	Item = FOCUSSASH
+Pokemon = HUNTAIL,42
+    Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
+    AbilityIndex = 0 # Intimidate
+Pokemon = DIGGERSBY,42
+    Moves = DRILLRUN,CLOUDBREAK,SWORDSDANCE,ADAMANTINEPRESS
+    AbilityIndex = 1 # Paranoid
+Pokemon = HITMONLEE,42
+    Moves = DOUBLEKICK,WHIPKICK,BLAZEKICK,TRAMPLE
+    AbilityIndex = 0 # Iron Heel
+	Item = LIFEORB
 #-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
