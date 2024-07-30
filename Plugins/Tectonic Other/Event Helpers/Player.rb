@@ -82,11 +82,11 @@ def teleportPlayer(map_id,x,y,instant=false,dir = nil)
 	$scene.transfer_player if instant
 end
 
-def healPartyWithDelay()
+def healPartyWithDelay(skipAidKit = false)
 	$Trainer.heal_party
 	pbMEPlay('Pkmn healing')
 	pbWait(68)
-	refillAidKit()
+	refillAidKit unless skipAidKit
 end
 
 def pumpedUp?

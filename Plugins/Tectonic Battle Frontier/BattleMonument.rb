@@ -30,21 +30,26 @@ def battleMonumentSinglesRegister
     return false
 end
 
-def battleMonumentSinglesBattle(opponentEventID,followerEventID)
-    blackFadeOutIn {
-        nextTrainer = pbBattleChallenge.nextTrainer
+def battleMonumentSinglesBattle(opponentEventID,followerEventID,nurseEventID)
+    opponentEvent = get_character(opponentEventID)
+    followerEvent = get_character(followerEventID)
+    nurseEvent = get_character(nurseEventID)
 
-        # Set the sprite for the opponent
-        opponentCharacterName = nextTrainer.trainer_type.to_s
-        # bitmap = AnimatedBitmap.new("Graphics/Characters/" + overworldFileName)
-        # bitmap.dispose
-        get_character(opponentEventID).character_name = opponentCharacterName
+    nextTrainer = pbBattleChallenge.nextTrainer
+    
+    # Set the sprite for the opponent
+    opponentCharacterName = nextTrainer.trainer_type.to_s
+    opponentEvent.character_name = opponentCharacterName
+    #opponentEvent.opacity = 200
 
-        # Set the sprite for the follower pokemon
-        pokemon = nextTrainer.to_trainer.displayPokemonAtIndex(0)
-        followerCharacterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
-	    get_character(followerEventID).character_name = followerCharacterName
-    }
+    # Set the sprite for the follower pokemon
+    pokemon = nextTrainer.to_trainer.displayPokemonAtIndex(0)
+    followerCharacterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
+    followerEvent.character_name = followerCharacterName
+    #followerEvent.opacity = 200
+
+    fadeIn
+
     pbMessage(_INTL("The match will now begin!"))
     if pbBattleChallengeBattle
         pbBattleChallenge.pbAddWin
@@ -53,8 +58,18 @@ def battleMonumentSinglesBattle(opponentEventID,followerEventID)
             pbBattleChallenge.setDecision(1)
             battleMonumentTransferToStart
         else
+            pbWait(10)
+            pbMoveRoute(nurseEvent, [
+                PBMoveRoute::Right,
+                PBMoveRoute::Right,
+                ]
+            )
+            pbWait(30)
             pbMessage(_INTL("Let me heal your party."))
-            healPartyWithDelay
+            healPartyWithDelay(true)
+            nurseEvent.move_to_original
+            pbWait(30)
+            fadeToBlack
             pbBattleChallenge.pbGoOn
         end
     else
@@ -71,6 +86,7 @@ def battleMonumentTransferToStart
 end
 
 def battleMonumentRecievePlayerInLobby
+    fadeIn
     battleChallenge = pbBattleChallenge
     wins = battleChallenge.battleNumber - 1
     if pbBattleChallenge.decision == 1

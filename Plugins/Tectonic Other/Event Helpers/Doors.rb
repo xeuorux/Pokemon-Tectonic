@@ -63,25 +63,27 @@ def stoneDoorTransfer(map_id, x, y, dir = nil, &block)
     }
 end
 
-def slidingDoor
-    doorMoveRoute('Door enter sliding')
+def slidingDoor(doorEvent: nil)
+    doorMoveRoute('Door enter sliding',doorEvent: doorEvent)
 end
 
-def swingingDoor
-    doorMoveRoute('Door enter')
+def swingingDoor(doorEvent: nil)
+    doorMoveRoute('Door enter',doorEvent: doorEvent)
 end
 
-def ajarDoor
-    ajarDoorMoveRoute('Door enter')
+def ajarDoor(doorEvent: nil)
+    ajarDoorMoveRoute('Door enter',doorEvent: doorEvent)
 end
 
-def stoneDoor
-    doorMoveRoute('Anim/PRSFX- Splintered Stormshards1',100,70)
+def stoneDoor(doorEvent: nil)
+    doorMoveRoute('Anim/PRSFX- Splintered Stormshards1',100,70,doorEvent: doorEvent)
 end
 
-def doorMoveRoute(soundEffectName, volume = nil, pitch = nil)
+def doorMoveRoute(soundEffectName, volume = nil, pitch = nil, doorEvent: nil)
     pbSEPlay(soundEffectName, volume, pitch) if soundEffectName
-    pbMoveRoute(get_self,  [
+    doorEvent = get_self if doorEvent.nil?
+    doorEvent = get_character(doorEvent) if doorEvent.is_a?(Integer)
+    pbMoveRoute(doorEvent,  [
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnLeft,
         PBMoveRoute::Wait,2,
@@ -92,7 +94,7 @@ def doorMoveRoute(soundEffectName, volume = nil, pitch = nil)
     ])
     pbWait(16)
     playerEntersDoorMoveRoute
-    pbMoveRoute(get_self,  [
+    pbMoveRoute(doorEvent,  [
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnRight,
         PBMoveRoute::Wait,2,
@@ -104,15 +106,17 @@ def doorMoveRoute(soundEffectName, volume = nil, pitch = nil)
     pbWait(16)
 end
 
-def ajarDoorMoveRoute(soundEffectName)
+def ajarDoorMoveRoute(soundEffectName, doorEvent: nil)
     pbSEPlay(soundEffectName) if soundEffectName
-    pbMoveRoute(get_self,  [
+    doorEvent = get_self if doorEvent.nil?
+    doorEvent = get_character(doorEvent) if doorEvent.is_a?(Integer)
+    pbMoveRoute(doorEvent,  [
         PBMoveRoute::TurnUp,
         PBMoveRoute::Wait,2,
     ])
     pbWait(6)
     playerEntersDoorMoveRoute
-    pbMoveRoute(get_self,  [
+    pbMoveRoute(doorEvent,  [
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnRight,
     ])
