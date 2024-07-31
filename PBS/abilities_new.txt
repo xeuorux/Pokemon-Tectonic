@@ -1946,6 +1946,10 @@ Description = If an attacker would activate a random added effect on the Pokémo
 Name = Unconquerable
 Description = Blocks random added effects of attacks taken, and prevents critical hits.
 #-------------------------------
+[UNCONVENTIONAL]
+Name = Unconventional
+Description = Moves that use stats other than the default deal 50% more damage.
+#-------------------------------
 [UNFAZED]
 Name = Unfazed
 Description = Takes 20% less damage from neutrally effective attacks.

@@ -624,6 +624,25 @@ BattleHandlers::DamageCalcUserAbility.add(:GRIPSTRENGTH,
   }
 )
 
+UNCONVENTIONAL_MOVE_CODES = %w[
+    AttacksWithTargetsStats
+    AttacksWithDefense
+    AttacksWithSpDef
+    DoesPhysicalDamage
+    DoesSpecialDamage
+    TargetsAttackDefends
+    TargetsSpAtkDefends
+].freeze
+
+BattleHandlers::DamageCalcUserAbility.add(:UNCONVENTIONAL,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if UNCONVENTIONAL_MOVE_CODES.include?(move.function)
+      mults[:base_damage_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if target.effectActive?(:FlinchImmunity)
