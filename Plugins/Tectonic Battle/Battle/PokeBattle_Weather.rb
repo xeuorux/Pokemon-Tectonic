@@ -103,7 +103,7 @@ class PokeBattle_Battle
     def endWeather
         return if @field.weather == :None
         case @field.weather
-        when :Sunshine           then pbDisplay(_INTL("The sunshine faded."))
+        when :Sunshine      then pbDisplay(_INTL("The sunshine faded."))
         when :Rainstorm     then pbDisplay(_INTL("The rainstorm stopped."))
         when :Sandstorm     then pbDisplay(_INTL("The sandstorm subsided."))
         when :Hail          then pbDisplay(_INTL("The hail stopped."))
@@ -403,7 +403,7 @@ class PokeBattle_Battle
     # Weather helper methods
     #=============================================================================
     def sunny?
-        return %i[Sun HarshSun].include?(pbWeather)
+        return %i[Sunshine HarshSun].include?(pbWeather)
     end
 
     def rainy?

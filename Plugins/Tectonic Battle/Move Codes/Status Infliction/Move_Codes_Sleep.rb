@@ -173,32 +173,3 @@ end
 class PokeBattle_Move_EmpoweredYawn < PokeBattle_Move_SleepTargetNextTurn
     include EmpoweredMove
 end
-
-#===============================================================================
-# Target becomes drowsy. Both of its Attacking stats are  (Summer Daze)
-# lowered by 2 steps if in sunshine.
-#===============================================================================
-class PokeBattle_Move_SleepTargetNextTurnLowerTargetAtkSpAtk2IfInSun < PokeBattle_Move_SleepTargetNextTurn
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if @battle.sunny? && (target.pbCanLowerStatStep?(:ATTACK, user, self) ||
-                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self))
-            return false
-        end
-        super
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:Yawn, 2)
-        target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.sunny?
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = super
-        score += getMultiStatDownEffectScore(ATTACKING_STATS_2, user, target) if @battle.sunny?
-        return score
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.sunny?
-    end
-end
