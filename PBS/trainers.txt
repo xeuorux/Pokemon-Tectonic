@@ -1918,8 +1918,20 @@ Pokemon = CRUSTLE,37
     AbilityIndex = 0 # Stratagem
 #-------------------------------
 [TOURISTM,Calvin]
-Pokemon = BULBASAUR,38
-    AbilityIndex = 1 # Aromatic
+Pokemon = SANDSLASH,38
+    Moves = RAPIDSPIN,ROCKSLIDE,EARTHQUAKE,UTURN
+    AbilityIndex = 1 # Tough Claws
+Pokemon = KRICKETUNE,38
+    Moves = BUGBUZZ,EERIESPELL,TUNEUP,UTURN
+    AbilityIndex = 1 # Maestro
+    Item = CHOICESPECS
+Pokemon = TSAREENA,37
+    Moves = TROPKICK,SCYTHEKICK,KNOCKOFF,UTURN
+    AbilityIndex = 1 # Swift Stomps
+Pokemon = TALONFLAME,37
+    Moves = INFERNOIMPACT,BRAVEBIRD,BULLETTRAIN,UTURN
+    AbilityIndex = 1 # Gale Wings
+    Item = CHOICEBAND
 #-------------------------------
 [GENTLEMAN3,Oliver]
 Flags = NoPerfect
@@ -3654,7 +3666,7 @@ Pokemon = DECIDUEYE,43
 Pokemon = GALVANTULA,41
     Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
     AbilityIndex = 0 # Ocular
-	Item = FOCUSSASH
+    Item = FOCUSSASH
 Pokemon = HUNTAIL,42
     Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
     AbilityIndex = 0 # Intimidate
@@ -3664,7 +3676,7 @@ Pokemon = DIGGERSBY,42
 Pokemon = HITMONLEE,42
     Moves = DOUBLEKICK,WHIPKICK,BLAZEKICK,TRAMPLE
     AbilityIndex = 0 # Iron Heel
-	Item = LIFEORB
+    Item = LIFEORB
 #-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
