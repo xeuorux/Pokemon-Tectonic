@@ -14748,6 +14748,48 @@ She's the strongest gym leader in the whole region!
 ¡Ella es la líder de gimnasio más fuerte de toda la región!
 But she's really nice. I had a great time.
 Pero ella es muy simpática. Me lo he pasado genial.
+Hello. My Druddigon and I handle trips down to Samorn's gym.
+Hola. Mi Druddigon y yo nos encargamos de los viajes hasta el gimnasio de Samorn.
+Stay away from the ledge and we won't have any problems.
+Aléjate de la saliente y no tendremos ningún problema.
+Careful!
+¡Cuidado!
+If you've got a scheduled visit, I'm authorized to help you get down the ledge.
+Si tienes una visita programada, estoy autorizado a ayudarte a llegar al gimnasio.
+...
+...
+You look like a Trainer.
+Pareces un Entrenador.
+*sigh*
+*sigh*
+You're here too early.
+Estás aquí muy temprano.
+Samorn only takes the strongest of challengers, and you aren't strong enough yet.
+Samorn sólo desafía a los aspirantes más fuertes, y tu aún no eres lo suficientemente fuerte.
+Go get all of the other badges first. Then you might be strong enough.
+Primero ve y consigue todas las otras medallas. Entonces puede que sea suficiente.
+My Druddigon and I handle trips down to Samorn's gym.
+Mi Druddigon y yo nos encargamos de viajes hasta el gimnasio de Samorn.
+That service is for civilians, however.
+Sin embargo, ese servicio es para civiles.
+Trainers like you should know their place.
+Entrenadores como tú deberían conocer su lugar.
+Don't even think about challenging the Dreadnaught until you've aquired every other Makyan badge.
+Ni siquiera pienses en enfrentar a la Acorazada hasta que hayas obtenido todas las otras medallas de Makya.
+Oh, hello. I see you have some climbing gear.
+Oh, hola. Veo que tienes un equipo de escalada.
+I suppose that means you could go down to the gym on your own power.
+Supongo que eso significa que puedes ir hasta el gimnasio por tu propia cuenta.
+I wouldn't recommend it. You still have a lot of growth to do.
+No lo recomendaría. Todavía te falta mucho crecimiento.
+Yes! You are the proper level of strength to challenge the Dreadnaught.
+¡Sí! Eres lo suficientemente fuerte para desafiar a la Acorazada.
+I'm sure she will be pleased to battle you.
+Estoy seguro que ella se alegrará de poder combatir contigo.
+You've bested the Dreadnaught! Well fought.
+¡Has vencido a la Acorazada! Bien combatido.
+My congratulations to you and your Pokemon.
+Te felicito a ti y a tus Pokémon.
 [Map216]
 Phione! \PN! What just happened here?
 ¡Phione! ¡\PN! ¿Qué acaba de pasar?
@@ -35325,7 +35367,7 @@ Escudo Reflejante
 Rough & Tumble
 Desenrollar
 Built Different
-La Cosa está Fuerte
+La Cosa Está Fuerte
 Death Mark
 Marca Mortal
 Bulwark
@@ -35992,6 +36034,14 @@ Invite Sand
 Invitar a la Arena
 Twin Beam
 Láser Doble
+Fragmentation
+Fragmentación
+Cavalry Charge
+Carga de Caballería
+Selective Memory
+Memoria Selectiva
+Elemental Fang
+Colmillo Elemental
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -37733,16 +37783,16 @@ The user finishes off its prey. Power is tripled against poisoned targets.
 El usuario remata su presa. Triplica su poder contra objetivos envenenados.
 The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.
 El usuario ataca mientras gira. Esto cuenta como un uso de Corte Furia, Rocamiento o Bola de Nieve.
-The user takes off at sonic speeds, raising its Speed by two steps and gaining the Flying type.
-El usuario despega a velocidades sónicas, aumentando su Velocidad dos grados y ganando el tipo Volador.
+The user takes off at sonic speeds, raising its Speed by four steps and gaining the Flying type.
+El usuario despega a velocidades sónicas, aumentando su Velocidad cuatro grados y ganando el tipo Volador.
 Attacks and sets a layer of spikes. After attacking, the user switches out.
 Ataca y coloca una capa de púas. Luego de atacar, el usuario regresa a su Poké Ball.
 The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.
 El usuario intenta derribar al objetivo. Luego de atacar, si el objetivo tiene 1/4 de sus PS o menos, es instantáneamente debilitado.
 The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.
 El usuario ataca simultáneamente con tres rayos. Tiene un 20% de probabilidad de aturdir, quemar o helar al objetivo.
-The user spews alkaline bubbles that melt the target, drastically lowering their Defense.
-El usuario dispara burbujas alcalinas que derriten al objetivo, disminuyendo drásticamente su Defensa.
+The user spews alkaline bubbles that melt the target, lowering their Defense by three steps.
+El usuario dispara burbujas alcalinas que derriten al objetivo, disminuyendo su Defensa tres grados.
 The user drops some heads from high up. The taller the user compared to the target, the greater the damage.
 El usuario lanza una de sus cabezas desde lo alto. Cuanto más alto sea el usuario en comparación al objetivo, más fuerte es.
 Shoots a damaging spear at enemies, or a 4-step Speed-increasing electric charge at allies.
@@ -37757,8 +37807,8 @@ Protects the user from attacks. Special attackers take 1/8th HP damage.
 Protege al usuario de ataques. Si es alcanzado por un ataque especial, daña al atacante por 1/8 de sus PS totales.
 The user attacks by spreading its body wide. Its power doubles if Defense Curl was used previously.
 El usuario ataca usando todo su cuerpo. Duplica su poder si Rizo Defensa fue usado anteriormente.
-The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.
-El usuario concentra su piel rocoa, aumentando su Ataque y Defensa y ganando el tipo Roca.
+The user flexes its rocky skin, raising its Attack and Defense by two steps each and gaining the Rock type.
+El usuario concentra su piel rocosa, aumentando su Ataque y Defensa dos grados y ganando el tipo Roca.
 The target becomes unable to flee, and takes 50% more damage from all attacks.
 El objetivo no deja escapar al objetivo, además le hace un 50% más vulnerable a todo ataque.
 The user and its allies take 50% less attack damage this turn. Always fails if used in succession.
@@ -38425,6 +38475,12 @@ The foe is attacked with an intense blast of all-consuming fire.
 El usuario ataca con una enorme ráfaga de fuego.  
 The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.
 El usuario dispara rayos místicos desde sus ojos, golpeando dos veces seguidas.
+A reckless charge that forces the user to switch out if its misses. Always goes first.
+Una carga sin cuidado que fuerza al usuario a volver a su Poké Ball si falla. Siempre va primero.
+The user peruses it's kingly stores of knowledge, selecting three random non-Psychic attacks. You choose which one it uses.
+El usuario analiza su conocimiento real, eligiendo tres movimientos no-psíquicos aleatoriamente. Tú eliges cuál usar.
+The user chooses between Fire Fang, Thunder Fang, or Ice Fang to use this turn.
+El usuario elige entre usar Colmillo Ígneo, Colmillo Rayo, o Colmillo Hielo este turno.
 [7]
 Repel
 Repelente
@@ -38459,7 +38515,7 @@ Bufanda Ninja
 Alolan Wreath
 Corona de Alola
 Galarica Wreath
-Corona de Galar
+Corona Galanuez
 Helix Fossil
 Fósil Hélix
 Dome Fossil
@@ -38511,15 +38567,15 @@ Cola Slowpoke
 Rare Bone
 Hueso Raro
 Relic Copper
-Real Cobre
+Real de Cobre
 Relic Silver
-Real Plata
+Real de Plata
 Relic Gold
-Real Oro
+Real de Oro
 Relic Vase
-Ánfora
+Ánfora Antigua 
 Relic Band
-Brazal
+Brazal Antiguo
 Relic Statue
 Efigie Antigua
 Relic Crown
@@ -38691,7 +38747,7 @@ Gema Fuego
 Water Gem
 Gema Agua
 Electric Gem
-Gema Eléctrica
+Gema Eléctrico
 Grass Gem
 Gema Planta
 Ice Gem
@@ -38703,7 +38759,7 @@ Gema Veneno
 Ground Gem
 Gema Tierra
 Flying Gem
-Gema Voladora
+Gema Volador
 Psychic Gem
 Gema Psíquico
 Bug Gem
@@ -38805,7 +38861,7 @@ Caramelo Raro
 Vanilla Tulumba
 Tulumba de Vainilla
 Great Ball
-Súper Ball
+Super Ball
 Sport Ball
 Competi Ball
 Nest Ball
@@ -39702,7 +39758,7 @@ Bufandas Ninja
 Alolan Wreaths
 Coronas de Alola
 Galarica Wreaths
-Coronas de Galar
+Coronas Galanuez
 Helix Fossils
 Fósiles Hélix
 Dome Fossils
@@ -39754,15 +39810,15 @@ Colas Slowpoke
 Rare Bones
 Huesos Raro
 Relic Coppers
-Reales Cobre
+Reales de Cobre
 Relic Silvers
-Reales Plata
+Reales de Plata
 Relic Golds
-Reales Oro
+Reales de Oro
 Relic Vases
-Ánforas
+Ánforas Antiguas
 Relic Bands
-Brazales
+Brazales Antiguas
 Relic Statued
 Efigies Antiguas
 Relic Crowns
@@ -40046,7 +40102,7 @@ Caramelos
 Vanilla Tulumbas
 Tulumbas de Vainilla
 Great Balls
-Súper Balls
+Super Balls
 Sport Balls
 Competi Balls
 Nest Balls
@@ -41210,7 +41266,7 @@ Sebo
 Flame Body
 Cuerpo Llama
 Truant
-Ausente
+Pereza
 Hustle
 Entusiasmo
 Forecast
@@ -42495,6 +42551,12 @@ Brute Force
 Fuerza Bruta
 Optimized Alloy
 Aleación Óptima
+Aromatic
+Aromático
+Heavy Duty Hooves
+Cascos Gruesos
+Last Gasp
+Aliento Final
 [11]
 When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
@@ -42586,8 +42648,8 @@ Grants immunity to Electric-type moves and boosts Speed when hit by one.
 El Pokémon es inmune a movimientos tipo Eléctrico y su Velocidad es aumentada al ser alcanzado por uno.
 Eats pinch berries earlier than normal.
 Consume bayas antes de lo normal.
-Raises Speed if a held item is consumed in battle.
-Aumenta la Velocidad si un objeto equipable es consumido en batalla.
+Doubles the Pokémon's Speed if its held item is consumed or lost.
+Duplica la Velocidad del Pokémon si su objeto equipable es consumido o perdido.
 Stat changes in the Pokemon are doubled.
 Si un cambio de estadísticas afecta al Pokémon, este es duplicado.
 Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
@@ -43816,6 +43878,12 @@ Prevents other Pokémon from lowering its stat steps, and its weight is doubled.
 No permite que otros Pokémon disminuyan sus stats, y su peso es duplicado.
 It can avoid being knocked out by using its face. The face then melts.
 Puede evitar ser debilitado usando su cara. La cara luego se derrite.
+Uses Aromatherapy if an attack lowers its HP to half or below.
+Usa Aromaterapia si un ataque disminuyo sus PS a la mitad o menos.
+Boosts the power of kicking moves by 30%. Immune to hazards.
+Potencia movimientos de patada un 30%. Inmune a trampas en el campo.
+Cannot take damage or be switched out. Hears Perish Song upon entering, ensuring its demise.
+No puede recibir daño o ser cambiado. Escucha el Canto Mortal al entrar al campo, asegurando su fin.
 [12]
 0
 Normal
@@ -53125,6 +53193,34 @@ Logro Desbloqueado:\r\n\\c[2]{1}
 \ss\wm"Te esperamos, cazador..."
 Negative generation numbers are invalid.
 Los números de generación negativos no son válidos.
+You shake the Rusted Compass, but it remains stagnant.
+Agitas la Brújula Oxidada, pero se mantiene estática.
+You get a sense of a piece of loot hidden nearby...
+Sientes que hay un objeto oculto alrededor...
+You receive a vision of a piece of nearby loot...
+Recibes una visión de un objeto cercano....
+The hidden loot
+El objeto oculto
+{1} is very far away!
+¡{1} está muy lejos!
+{1} is far away!
+¡{1} está lejos!
+{1} is at a medium distance!
+¡{1} está a distancia media!
+{1} is close by!
+¡{1} está cerca!
+{1} is very close by!
+¡{1} está muy cerca!
+{1} is EXTREMELY close! You're nearly on top of it!
+¡{1} está EXTREMADAMENTE CERCA! ¡Estás casi encima suyo!
+SPECIAL/D to
+ESPECIAL/D a
+hide shinies
+ocultar variocolor
+show shinies
+ver variocolor
+OTHER MOVES
+OTROS MOV.
 [26]
 [27]
 [27]
