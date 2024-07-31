@@ -8279,3 +8279,38 @@ Pokemon = VOLCANION,70
     AbilityIndex = 0 # Water Absorb
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
+#-------------------------------
+[DANDY,Vasily]
+Pokemon = PERSIAN,70
+    Moves = CHACHING,EARTHSPLITTER,XSCISSOR,INFERNOIMPACT
+    AbilityIndex = 1 # All That Glitters
+    Item = BUGGEM,FIREGEM
+Pokemon = LILLIGANT,70
+    Moves = MOONBLAST,SOLARBEAM,AROMATHERAPY,PUFFBALL
+    AbilityIndex = 1 # Herbalist
+    Item = MIRRORHERB,POWERHERB
+Pokemon = SIGILYPH,70
+    Moves = DEFOG,PULSAR,WINDTUNNEL,TAILWIND
+    AbilityIndex = 1 # Bizarre
+    Item = LOADEDDICE
+Pokemon = NINJASK,70
+    Moves = DUALWINGBEAT,SEVER,LEECHLIFE,PROTECT
+    AbilityIndex = 0 # Speed Boost
+    Item = LIFEORB
+#-------------------------------
+[PARASOLLADY2,Antoinette]
+Policies = RAIN_TEAM
+Pokemon = STUNFISK,70
+    Moves = THUNDER,STEALTHROCK,EARTHPOWER
+    AbilityIndex = 1 # Drizzle
+    Item = DAMPROCK
+Pokemon = OMASTAR,70
+    Moves = SURF,SHELLSMASH,POWERGEM,ICEBEAM
+    AbilityIndex = 0 # Swift Swim
+Pokemon = BOLTUND,70
+    Moves = STORMDRIVE,CRUNCH,PLAYROUGH,RAINSTORM
+    AbilityIndex = 1 # Strikes Twice
+Pokemon = CRYOGONAL,70
+    Moves = ICENINEWALL,PHANTOMGATE,FRIGIDFLURRY,FLASHCANNON
+    AbilityIndex = 0 # Levitate
+    Item = UTILITYUMBRELLA
