@@ -8314,3 +8314,131 @@ Pokemon = CRYOGONAL,70
     Moves = ICENINEWALL,PHANTOMGATE,FRIGIDFLURRY,FLASHCANNON
     AbilityIndex = 0 # Levitate
     Item = UTILITYUMBRELLA
+#-------------------------------
+[IDEALTRAINER,of Origins]
+Pokemon = GIGACHU,70
+    AbilityIndex = 0 # Arc Conductor
+Pokemon = PIDGEOT,70
+    AbilityIndex = 0 # No Guard
+Pokemon = GENGAR,70
+    AbilityIndex = 0 # Levitate
+Pokemon = SAURENAID,70
+    AbilityIndex = 0 # Arctic Ariette
+Pokemon = SNORLAX,70
+    AbilityIndex = 0 # Loud Sleeper
+Pokemon = MACHAMP,70
+    AbilityIndex = 1 # No Guard
+#-------------------------------
+[IDEALTRAINER,of Tradition]
+Pokemon = SCIZOR,70
+    AbilityIndex = 1 # Inner Focus
+Pokemon = AMPHAROS,70
+    AbilityIndex = 0 # Static
+Pokemon = BLISSEY,70
+    AbilityIndex = 1 # Bliss
+Pokemon = ESPEON,70
+    AbilityIndex = 1 # Plot Armor
+Pokemon = UMBREON,70
+    AbilityIndex = 0 # Malicious Glow
+Pokemon = GYARADOS,70
+    Shiny = yes
+    AbilityIndex = 0 # Intimidate
+#-------------------------------
+[IDEALTRAINER,of Brilliance]
+Pokemon = MILOTIC,70
+    AbilityIndex = 0 # Dramatic Lighting
+Pokemon = AGGRON,70
+    AbilityIndex = 0 # Rock Head
+Pokemon = METAGROSS,70
+    AbilityIndex = 1 # Optimized Alloy
+Pokemon = HYMNUS,70
+    AbilityIndex = 1 # Rain Prism
+Pokemon = FLYGON,70
+    AbilityIndex = 1 # Siren Song
+Pokemon = MANERGETIC,70
+    AbilityIndex = 0 # Inner Focus
+#-------------------------------
+[IDEALTRAINER,of Riches]
+Pokemon = ROTOM,70
+    AbilityIndex = 1 # Signal Jam
+Pokemon = ROSERADE,70
+    AbilityIndex = 0 # Swordplay
+Pokemon = LUXRAY,70
+    AbilityIndex = 0 # Night Vision
+Pokemon = RIOJIN,70
+    AbilityIndex = 0 # Honorable
+Pokemon = STARAPTOR,70
+    AbilityIndex = 1 # Reckless
+Pokemon = MAGMORTAR,70
+    AbilityIndex = 1 # Scalding Smoke
+#-------------------------------
+[IDEALTRAINER,of Colors]
+Pokemon = VOLCARONA,70
+    AbilityIndex = 1 # Dawnfall
+Pokemon = JELLICENT,70
+    AbilityIndex = 0 # Stability
+Pokemon = STOUTLAND,70
+    AbilityIndex = 0 # Break Through
+Pokemon = SAWSBUCK,70
+    Form = 1 # Summer Form
+    AbilityIndex = 0 # Serene Grace
+Pokemon = HAXORUS,70
+    AbilityIndex = 1 # Stressful
+Pokemon = VANILLUXE,70
+    AbilityIndex = 1 # Brisk
+#-------------------------------
+[IDEALTRAINER,of Beauty]
+Pokemon = SYLVEON,70
+    AbilityIndex = 1 # Dragon Slayer
+Pokemon = TALONFLAME,70
+    AbilityIndex = 0 # Harsh
+Pokemon = NOIVERN,70
+    AbilityIndex = 1 # Fell Omen
+Pokemon = HAWLUCHA,70
+    AbilityIndex = 0 # Team Player
+Pokemon = FLORGES,70
+    AbilityIndex = 0 # Clover Song
+Pokemon = AEGISLASH,70
+    AbilityIndex = 1 # Stance Change
+#-------------------------------
+[IDEALTRAINER,of Days]
+Pokemon = LYCANROC,70
+    AbilityIndex = 0 # Lycanthrope
+Pokemon = TOXAPEX,70
+    AbilityIndex = 0 # Noxious
+Pokemon = VIKAVOLT,70
+    AbilityIndex = 0 # Emergency Power
+Pokemon = ANINETALES,70
+    AbilityIndex = 0 # Summit Spirit
+Pokemon = GOLISOPOD,70
+    AbilityIndex = 0 # Emergency Exit
+Pokemon = TOUCANNON,70
+    AbilityIndex = 0 # Nesting
+#-------------------------------
+[IDEALTRAINER,of Conquest]
+Pokemon = CORVIKNIGHT,70
+    AbilityIndex = 0 # Mirror Armor
+Pokemon = DUBWOOL,70
+    AbilityIndex = 1 # Cold Reception
+Pokemon = TOXTRICITY,70
+    AbilityIndex = 1 # Thunderstruck
+Pokemon = DRAGAPULT,70
+    AbilityIndex = 1 # Infiltrator
+Pokemon = HATTERENE,70
+    AbilityIndex = 0 # Killjoy
+Pokemon = GDARMANITAN,70
+    AbilityIndex = 1 # Gorilla Tactics
+#-------------------------------
+[IDEALTRAINER,of Freedom]
+Pokemon = GIGANTEON,70
+    AbilityIndex = 0 # Ultra Adapted
+Pokemon = MNINETALES,70
+    AbilityIndex = 1 # Luxury Taste
+Pokemon = ABSOLUS,70
+    AbilityIndex = 1 # Vengeance
+Pokemon = EMOLGA,70
+    AbilityIndex = 0 # Overwhelm
+Pokemon = LEDIAN,70
+    AbilityIndex = 1 # Star Guardian
+Pokemon = HZOROARK,70
+    AbilityIndex = 0 # Illusion

@@ -722,6 +722,11 @@ Gender = Male
 BaseMoney = 32
 IntroBGM = CYCLING2
 #-------------------------------
+[IDEALTRAINER]
+Name = Ideal Trainer
+Gender = Unknown
+BaseMoney = 200
+#-------------------------------
 [IDOL]
 Name = Idol
 Gender = Female
