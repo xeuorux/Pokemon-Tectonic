@@ -54,8 +54,7 @@ class PokeBattle_Battler
         aggravate = @battle.pbCheckOpposingAbility(:AGGRAVATE, @index) && !struggle
         damageAmount = getFractionalDamageAmount(fraction,basedOnCurrentHP,aggravate: aggravate,struggle: struggle)
         
-        showDamageAnimation = false if aiCheck
-        if showDamageAnimation
+        if showDamageAnimation && !aiCheck && !@dummy
             @damageState.displayedDamage = damageAmount
             @battle.scene.pbDamageAnimation(self,0,true)
         end
@@ -65,12 +64,16 @@ class PokeBattle_Battler
         else
             oldHP = @hp
             pbReduceHP(damageAmount, false)
-            if entryCheck
-                swapped = pbEntryHealthLossChecks(oldHP)
-                return swapped
-            else
-                pbHealthLossChecks(oldHP)
+            if @dummy
                 return damageAmount
+            else
+                if entryCheck
+                    swapped = pbEntryHealthLossChecks(oldHP)
+                    return swapped
+                else
+                    pbHealthLossChecks(oldHP)
+                    return damageAmount
+                end
             end
         end
     end
