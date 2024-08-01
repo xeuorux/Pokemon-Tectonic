@@ -690,7 +690,7 @@ Pokemon = WHIRLIPEDE,25
     AbilityIndex = 0 # Speed Boost
 Pokemon = SNORUNT,25
     Moves = ICICLESPEAR,SHIVER,AURORABEAM,BITE
-    AbilityIndex = 0 # Inner Focus
+    AbilityIndex = 0 # Sealing Body
     Item = LOADEDDICE
 #-------------------------------
 [COOLTRAINER_M7,Xander]
@@ -2989,9 +2989,9 @@ Pokemon = FROSLASS,45
     Item = GHOSTGEM
 #-------------------------------
 [SKIER_F,Natalia]
-Pokemon = GLALIE,45
-    Moves = GLACIALRAM,CRUNCH,ICESHARD,SHIVER
-    AbilityIndex = 0 # Flash Freeze
+Pokemon = MNOCTOWL,45
+    Moves = SILVERSTORM,ROOST,COLDFRONT,HONESIGHT
+    AbilityIndex = 0 # Sentry
 Pokemon = MBEAUTIFLY,45
     Moves = UTURN,ICECALIBUR,PLAYROUGH,LEECHLIFE
     AbilityIndex = 0 # Bitter
@@ -3005,17 +3005,17 @@ Pokemon = BRONZONG,45
     AbilityIndex = 0 # Levitate
 #-------------------------------
 [ARTIST3,Frida]
-Pokemon = MPOLTEAGEIST,45
-    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALTEMPEST,HEX
-    AbilityIndex = 1 # Chill Out
-    Item = FOCUSSASH
-Pokemon = DEWGONG,45
-    Moves = RISINGTIDE,FRIGIDFLURRY,SURF,CHILL
-    AbilityIndex = 0 # Bitter
 Pokemon = FARIGIRAF,45
     Moves = TWINBEAM,CRUNCH,SCAM,ZENHEADBUTT
     AbilityIndex = 0 # Cud Chew
     Item = SITRUSBERRY
+Pokemon = BEARTIC,45
+    Moves = ICEHAMMER,DRAINPUNCH,POISONJAB
+    AbilityIndex = 1 # Chronic Cold
+    Item = WHITEHERB
+Pokemon = DEWGONG,45
+    Moves = FRIGIDFLURRY,SURF,CHILL
+    AbilityIndex = 0 # Bitter
 Pokemon = DELPHOX,45
     Moves = MYSTICALFIRE,MINDWARP
     AbilityIndex = 1 # Fascinate
@@ -3750,7 +3750,7 @@ Pokemon = VENUSAUR,51
     Moves = SAPPINGSEED,SLUDGEWAVE,SYNTHESIS,POWERWHIP
     AbilityIndex = 0 # Poison Absorb
     Item = LUMBERAXE
-Pokemon = GLALIE,53
+Pokemon = GRIMICE,53
     Moves = GLACIALRAM,SUCKERPUNCH,SHIVER,CRUNCH
     AbilityIndex = 0 # Flash Freeze
 #-------------------------------

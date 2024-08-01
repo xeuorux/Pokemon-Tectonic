@@ -909,7 +909,7 @@ Pokemon = HAEROBIC,70
     Item = LUMBERAXE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
-Pokemon = GLALIE,70
+Pokemon = GRIMICE,70
     Moves = RAPIDSPIN,ICEPICK,CRUNCH,SUPERFANG
     AbilityIndex = 0 # Flash Freeze
     Item = HEAVYDUTYBOOTS
