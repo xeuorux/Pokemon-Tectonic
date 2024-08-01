@@ -40,31 +40,31 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOONGAZE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRIMORDIALSEA,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :HeavyRain, battler, battle, true, true, aiCheck)
+      pbBattleWeatherAbility(ability, :HeavyRain, battler, battle, true, true, aiCheck, baseDuration: -1)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :HarshSun, battler, battle, true, true, aiCheck)
+      pbBattleWeatherAbility(ability, :HarshSun, battler, battle, true, true, aiCheck, baseDuration: -1)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :StrongWinds, battler, battle, true, true, aiCheck)
+      pbBattleWeatherAbility(ability, :StrongWinds, battler, battle, true, true, aiCheck, baseDuration: -1)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:SATURNALSKY,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :RingEclipse, battler, battle, true, true, aiCheck)
+      pbBattleWeatherAbility(ability, :RingEclipse, battler, battle, true, true, aiCheck, baseDuration: -1)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:STYGIANNIGHT,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :BloodMoon, battler, battle, true, true, aiCheck)
+      pbBattleWeatherAbility(ability, :BloodMoon, battler, battle, true, true, aiCheck, baseDuration: -1)
   }
 )
 

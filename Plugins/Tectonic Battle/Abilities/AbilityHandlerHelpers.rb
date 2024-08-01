@@ -36,7 +36,7 @@ def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = fal
     return 0 if !ignorePrimal && battle.primevalWeatherPresent?(!aiCheck)
     if aiCheck
         if baseDuration < 0 # infinite
-            duration = 20 - battle.turnCount
+            duration = 20
         else
             duration = battler.getWeatherSettingDuration(weather, baseDuration, ignoreFainted)
             duration -= battle.field.weatherDuration if battle.field.weather == weather
