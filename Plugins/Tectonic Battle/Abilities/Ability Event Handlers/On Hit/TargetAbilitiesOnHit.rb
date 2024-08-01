@@ -344,14 +344,14 @@ BattleHandlers::TargetAbilityOnHit.add(:FRIGIDREFLECTION,
 
 BattleHandlers::TargetAbilityOnHit.add(:HUGGABLE,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-          next if target.fainted?
-          next unless move.baseDamage >= 95
-          if aiCheck
+        next if target.fainted?
+        next unless move.baseDamage >= 95
+        if aiCheck
             score = -5
             score -= getNumbEffectScore(target, user)
             next score
-          end
-          battle.forceUseMove(target, :NUZZLE, target.index, ability: ability)
+        end
+        battle.forceUseMove(target, :NUZZLE, user.index, ability: ability)
     }
 )
 
