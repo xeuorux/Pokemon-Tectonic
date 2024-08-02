@@ -10079,7 +10079,7 @@ Shape = Head
 Kind = Clap
 Pokedex = It's more efficient for Spheal to roll than to walk. When this Pokémon is happy, it claps its fins.
 Generation = 3
-Evolutions = SEALEO,Level,22
+Evolutions = SEALEO,Level,18
 #-------------------------------
 [364]
 Name = Sealeo
