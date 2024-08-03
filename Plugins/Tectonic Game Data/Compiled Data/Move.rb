@@ -178,6 +178,20 @@ module GameData
         return false if @tectonic_new
         return true
       end
+
+      # Yields all data in order of their id_number.
+      def self.each
+        keys = self::DATA.keys.sort { |a, b|
+            moveDataA = self::DATA[a]
+            moveDataB = self::DATA[b]
+            if moveDataA.type == moveDataB.type
+                moveDataA.id <=> self::DATA[b].id
+            else
+                GameData::Type.get(moveDataA.type).id_number <=> GameData::Type.get(moveDataB.type).id_number
+            end
+        }
+        keys.each { |key| yield self::DATA[key] if !key.is_a?(Integer) }
+      end
     end
 end
   
@@ -310,36 +324,66 @@ module Compiler
   def write_moves
     File.open("PBS/moves_new.txt", "wb") { |f|
       add_PBS_header_to_file(f)
+      currentType = nil
       GameData::Move.each_base do |m|
         next unless m.tectonic_new
+        if currentType != m.type
+            currentType = m.type
+            f.write("\#-------------------------------\r\n")
+            f.write("\#\t\t#{currentType} MOVES\r\n")
+        end
         write_move(f,m)
       end
     }
     File.open("PBS/moves_cut.txt", "wb") { |f|
       add_PBS_header_to_file(f)
+      currentType = nil
       GameData::Move.each_base do |m|
         next unless m.cut
+        if currentType != m.type
+            currentType = m.type
+            f.write("\#-------------------------------\r\n")
+            f.write("\#\t\t#{currentType} MOVES\r\n")
+        end
         write_move(f,m)
       end
     }
     File.open("PBS/moves_z.txt", "wb") { |f|
       add_PBS_header_to_file(f)
+      currentType = nil
       GameData::Move.each_base do |m|
         next unless m.zmove
+        if currentType != m.type
+            currentType = m.type
+            f.write("\#-------------------------------\r\n")
+            f.write("\#\t\t#{currentType} MOVES\r\n")
+        end
         write_move(f,m)
       end
     }
     File.open("PBS/moves_primeval.txt", "wb") { |f|
       add_PBS_header_to_file(f)
+      currentType = nil
       GameData::Move.each_base do |m|
         next unless m.primeval
+        if currentType != m.type
+            currentType = m.type
+            f.write("\#-------------------------------\r\n")
+            f.write("\#\t\t#{currentType} MOVES\r\n")
+        end
         write_move(f,m)
       end
     }
     File.open("PBS/moves.txt", "wb") { |f|
       add_PBS_header_to_file(f)
+      currentType = nil
       GameData::Move.each_base do |m|
         next unless m.canon_move?
+        if currentType != m.type
+            currentType = m.type
+            f.write("\#-------------------------------\r\n")
+            f.write("\#\t\t#{currentType} MOVES\r\n")
+        end
         write_move(f,m)
       end
     }

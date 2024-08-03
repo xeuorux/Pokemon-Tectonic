@@ -1,5 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+#		NORMAL MOVES
+#-------------------------------
 [BREAKNECKBLITZ]
 Name = Breakneck Blitz
 Type = NORMAL
@@ -10,6 +12,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user builds up its momentum using its Z-Power and crashes into the target at full speed.
+#-------------------------------
+#		FIGHTING MOVES
 #-------------------------------
 [ALLOUTPUMMELING]
 Name = All-Out Pummeling
@@ -22,6 +26,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user rams an energy orb created by its Z-Power into the target with full force.
 #-------------------------------
+#		FLYING MOVES
+#-------------------------------
 [SUPERSONICSKYSTRIKE]
 Name = Supersonic Skystrike
 Type = FLYING
@@ -32,6 +38,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user soars up with its Z-Power and plummets toward the target at full speed.
+#-------------------------------
+#		POISON MOVES
 #-------------------------------
 [ACIDDOWNPOUR]
 Name = Acid Downpour
@@ -44,6 +52,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user creates a poisonous swamp using its Z-Power and sinks the target into it at full force.
 #-------------------------------
+#		GROUND MOVES
+#-------------------------------
 [TECTONICRAGE]
 Name = Tectonic Rage
 Type = GROUND
@@ -54,6 +64,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user burrows deep into the ground and slams into the target with the full force of its Z-Power.
+#-------------------------------
+#		ROCK MOVES
 #-------------------------------
 [CONTINENTALCRUSH]
 Name = Continental Crush
@@ -66,6 +78,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user summons a huge rock mountain using its Z-Power and drops it onto the target with full force.
 #-------------------------------
+#		BUG MOVES
+#-------------------------------
 [SAVAGESPINOUT]
 Name = Savage Spin-Out
 Type = BUG
@@ -76,6 +90,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user binds the target with full force with threads of silk that the user spits using its Z-Power.
+#-------------------------------
+#		GHOST MOVES
 #-------------------------------
 [NEVERENDINGNIGHTMARE]
 Name = Never-Ending Nightmare
@@ -88,6 +104,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = Deep-seated grudges summoned by the user's Z-Power trap the target.
 #-------------------------------
+#		STEEL MOVES
+#-------------------------------
 [CORKSCREWCRASH]
 Name = Corkscrew Crash
 Type = STEEL
@@ -98,6 +116,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user spins very fast and rams into the target with the full force of its Z-Power.
+#-------------------------------
+#		FIRE MOVES
 #-------------------------------
 [INFERNOOVERDRIVE]
 Name = Inferno Overdrive
@@ -110,6 +130,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user breathes a stream of intense fire toward the target with the full force of its Z-Power.
 #-------------------------------
+#		WATER MOVES
+#-------------------------------
 [HYDROVORTEX]
 Name = Hydro Vortex
 Type = WATER
@@ -120,6 +142,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user creates a huge whirling current using its Z-Power to swallow the target with full force.
+#-------------------------------
+#		GRASS MOVES
 #-------------------------------
 [BLOOMDOOM]
 Name = Bloom Doom
@@ -132,6 +156,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user collects energy from plants using its Z-Power and attacks the target with full force.
 #-------------------------------
+#		ELECTRIC MOVES
+#-------------------------------
 [GIGAVOLTHAVOC]
 Name = Gigavolt Havoc
 Type = ELECTRIC
@@ -142,6 +168,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user hits the target with a powerful electric current collected by its Z-Power.
+#-------------------------------
+#		PSYCHIC MOVES
 #-------------------------------
 [SHATTEREDPSYCHE]
 Name = Shattered Psyche
@@ -154,6 +182,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user controls the target with its Z-Power and hurts the target with full force.
 #-------------------------------
+#		ICE MOVES
+#-------------------------------
 [SUBZEROSLAMMER]
 Name = Subzero Slammer
 Type = ICE
@@ -164,6 +194,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user dramatically drops the temperature using its Z-Power and freezes the target with full force.
+#-------------------------------
+#		DRAGON MOVES
 #-------------------------------
 [DEVASTATINGDRAKE]
 Name = Devastating Drake
@@ -176,6 +208,8 @@ Target = NearOther
 FunctionCode = Invalid
 Description = The user materializes its aura using its Z-Power and attacks the target with full force.
 #-------------------------------
+#		DARK MOVES
+#-------------------------------
 [BLACKHOLEECLIPSE]
 Name = Black Hole Eclipse
 Type = DARK
@@ -186,6 +220,8 @@ TotalPP = 1
 Target = NearOther
 FunctionCode = Invalid
 Description = The user gathers dark energy using its Z-Power and sucks the target into it.
+#-------------------------------
+#		FAIRY MOVES
 #-------------------------------
 [TWINKLETACKLE]
 Name = Twinkle Tackle
