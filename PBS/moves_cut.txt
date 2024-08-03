@@ -2431,3 +2431,14 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = Invalid
 Description = Summons rainstorm for eight turns, boosting Water-type attacks and hindering most others.
+#-------------------------------
+[SAFEGUARD]
+Name = Safeguard
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 20
+Target = UserSide
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user creates a protective field that prevents status problems for ten turns.

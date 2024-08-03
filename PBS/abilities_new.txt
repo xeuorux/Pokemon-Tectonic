@@ -726,10 +726,6 @@ Description = Boosts the power of wind-based moves by 50%.
 Name = Gargantuan
 Description = Completely protects allies from foes' multi-target moves.
 #-------------------------------
-[GARLANDGUARDIAN]
-Name = Garland Guardian
-Description = Creates a Safeguard upon entry, protecting from status conditions for 10 turns.
-#-------------------------------
 [GAUSSAFTERSHOCK]
 Name = Gauss Aftershock
 Description = Pokémon that swap in for this have their Speed raised and their PP fully restored.

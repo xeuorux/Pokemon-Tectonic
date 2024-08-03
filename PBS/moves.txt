@@ -5051,17 +5051,6 @@ FunctionCode = SwitchOutTargetStatusMove
 Flags = CanMagicCoat,CanMirrorMove,Sound
 Description = The foe is forced to switch out to a random ally. Always goes last. Ends wild battles.
 #-------------------------------
-[SAFEGUARD]
-Name = Safeguard
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 20
-Target = UserSide
-FunctionCode = StartUserSideImmunityToInflictedStatus
-Flags = CanSnatch
-Description = The user creates a protective field that prevents status problems for ten turns.
-#-------------------------------
 [SCARYFACE]
 Name = Scary Face
 Type = GHOST

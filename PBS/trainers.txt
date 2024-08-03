@@ -1216,14 +1216,14 @@ Pokemon = MIMIKYU,36
     AbilityIndex = 0 # Disguise
 #-------------------------------
 [SCIENTIST_F3,Viola]
-Pokemon = FARIGIRAF,35
-    AbilityIndex = 0 # Cud Chew
-Pokemon = COMFEY,35
-    AbilityIndex = 0 # Garland Guardian
 Pokemon = BEHEEYEM,35
     AbilityIndex = 1 # Puzzling
-Pokemon = UNFEZANT,35
-    AbilityIndex = 1 # Super Luck
+Pokemon = ELDEGOSS,35
+    AbilityIndex = 1 # On the Wind
+Pokemon = DRIFBLIM,35
+    AbilityIndex = 1 # Drifting Mist
+Pokemon = WEEZING,35
+    AbilityIndex = 0 # Neutralizing Gas
 #-------------------------------
 [TOURISTF,Mariana]
 Pokemon = PILOSWINE,26
@@ -7477,7 +7477,7 @@ Pokemon = ARAICHU,70
 [WILDPARTY_LELE,of Life]
 Flags = NoPerfect
 Pokemon = COMFEY,70
-    AbilityIndex = 0 # Garland Guardian
+    AbilityIndex = 0 # Natural Cure
     Item = LUCKHERB
 Pokemon = BEWEAR,70
     AbilityIndex = 0 # Intimidate

@@ -166,6 +166,24 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
 })
 
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :NaturalProtection,
+    :real_name => "Natural Protection",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} became determined to survive!", teamName))
+        battle.pbDisplay(_INTL("They'll take half damage from sources that aren't attacks for #{value - 1} more turns!", value))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Natural Protection was removed!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} is no longer inspired by Natural Protection.", teamName))
+    end,
+})
+
 ##########################################
 # Temporary full side protecion effects
 ##########################################

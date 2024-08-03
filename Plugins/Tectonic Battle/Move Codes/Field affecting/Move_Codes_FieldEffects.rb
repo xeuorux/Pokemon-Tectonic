@@ -122,3 +122,23 @@ class PokeBattle_Move_EmpoweredGreyMist < PokeBattle_Move_StartResetAllBattlersS
         transformType(user, :POISON)
     end
 end
+
+#===============================================================================
+# Reduces the damage the user's side takes from non-attack sources of damage
+# for 4 turns.
+# (Enchantment)
+#===============================================================================
+class PokeBattle_Move_StartUserSideLessDamageFromNonAttackDamage < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @enchantmentDuration = 4
+    end
+
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:NaturalProtection, @enchantmentDuration)
+    end
+
+    def getEffectScore(user, _target)
+        return getEnchantmentEffectScore(user, @enchantmentDuration)
+    end
+end

@@ -277,6 +277,10 @@ Description = Sound-based attacks turn Ice-type and are boosted by 30%.
 Name = Fungal Flurry
 Description = On the first turn, its attacks leech the target.
 #-------------------------------
+[GARLANDGUARDIAN]
+Name = Garland Guardian
+Description = Creates a Safeguard upon entry, protecting from status conditions for 10 turns.
+#-------------------------------
 [GENERATOR]
 Name = Dynamo
 Description = Whenever it uses a status move, becomes charged, doubling the power of its next Electric-type attack.

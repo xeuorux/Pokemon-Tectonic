@@ -87,7 +87,10 @@ class PokeBattle_Battler
         else
             damageAmount = @totalhp * fraction
         end
-        damageAmount *= 0.66 if hasTribeBonus?(:ANIMATED) && !struggle
+        unless struggle
+            damageAmount *= 0.66 if hasTribeBonus?(:ANIMATED)
+            damageAmount *= 0.66 if pbOwnSide.effectActive?(:NaturalProtection)
+        end
         damageAmount = damageAmount.ceil
         return damageAmount
     end
@@ -97,6 +100,7 @@ class PokeBattle_Battler
         return if hasActiveAbility?(:ROCKHEAD)
         # return if @battle.pbAllFainted?(@idxOpposingSide)
         damage *= 0.66 if hasTribeBonus?(:ANIMATED)
+        damage *= 0.66 if pbOwnSide.effectActive?(:NaturalProtection)
         damage = damage.round
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:KICKBACK)

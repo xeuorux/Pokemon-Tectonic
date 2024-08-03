@@ -6636,3 +6636,15 @@ Target = NearOther
 FunctionCode = UseChoiceOf3ElementalFangs
 Flags = CanSnatch
 Description = The user chooses between Fire Fang, Thunder Fang, or Ice Fang to use this turn.
+#-------------------------------
+[NATURALPROTECTION]
+Name = Natural Protection
+Type = BUG
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = UserSide
+FunctionCode = StartUserSideLessDamageFromNonAttackDamage
+Flags = CanSnatch
+Description = The user makes a plea for survival, halving the damage their side takes from non-attack sources for 4 turns.
+Animation = SAFEGUARD
