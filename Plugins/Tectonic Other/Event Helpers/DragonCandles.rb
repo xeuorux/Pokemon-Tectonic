@@ -82,6 +82,8 @@ def candlePuzzlesCompleted?(mapID = -1)
     return false
 end
 
+CATACOMBS_MAPS_IDS = [282,361,362]
+
 # Remove all dragon flames from player on map exit
 Events.onMapChanging += proc { |_sender,e|
     newmapID = e[0]
@@ -99,7 +101,7 @@ Events.onMapChanging += proc { |_sender,e|
     $PokemonGlobal.dragonFlamesCount = 0
 
     # If one of the catacombs maps
-    if [282,361,362].include?(newmapID)
+    if CATACOMBS_MAPS_IDS.include?(newmapID)
         unless candlePuzzlesCompleted?(newmapID)
             resetCatacombs(newmapID)
         else

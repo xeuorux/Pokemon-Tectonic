@@ -214,11 +214,6 @@ def displayRoundOdds(round)
     end
 end
 
-def tournamentTrainerEnd(event,map_id)
-    pbTrainerEnd
-    pbSetSelfSwitch(event.id,'A',false,map_id)
-end
-
 def setCenterToBackupNurse
     $PokemonGlobal.pokecenterMapId     = BLACKOUT_NURSE_MAP_ID
     mapData = Compiler::MapData.new
