@@ -1034,7 +1034,7 @@ Pokemon = BRIONNE,25
     Item = THROATSPRAY
 Pokemon = BUTTERFREE,25
     AbilityIndex = 1 # Erudite
-Pokemon = ROGGENROLA,25
+Pokemon = BOLDORE,25
     AbilityIndex = 1 # Unburden
     Item = SITRUSBERRY
 Pokemon = POOCHYENA,25
@@ -3061,9 +3061,9 @@ Pokemon = CRABOMINABLE,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,0,20,20
 Pokemon = BRUXISH,45
-    Moves = CRUNCH,PSYCHICFANGS,THUNDERFANG,FIREFANG
+    Moves = CRUNCH,PSYCHICFANGS,FIREFANG,SNAP
     AbilityIndex = 1 # Strong Jaw
-    Item = FIREGEM
+    Item = EXPERTBELT
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,5,20,20,5
 Pokemon = GDARMANITAN,45
@@ -3088,6 +3088,7 @@ Pokemon = CRABOMINABLE,45
     Item = CUSTAPBERRY
 Pokemon = BRUXISH,45
     ExtraTypes = POISON
+    Moves = CRUNCH,PSYCHICFANGS,FIREFANG,POISONFANG
 Pokemon = GDARMANITAN,45
     ExtraTypes = FIGHTING
     Moves = BURNUP,SUBLIMATE,SOLARBEAM,BODYPRESS
@@ -7214,11 +7215,14 @@ Pokemon = CINCCINO,60
 [CHALLENGER_Vanya,Vanya]
 Flags = NoPerfect
 Pokemon = BUTTERFREE,15
+    Moves = GUST,CLACKACLACK,MINDWAVES,STRINGSHOT
     AbilityIndex = 1 # Erudite
-Pokemon = MSINISTEA,15
-    AbilityIndex = 1 # Chill Out
-Pokemon = RALTS,15
-    AbilityIndex = 1 # Feedback
+Pokemon = LITWICK,15
+    Moves = DIRGE,EMBER,AGILITY
+    AbilityIndex = 1 # Royal Majesty
+Pokemon = MGOLDEEN,15
+    Moves = CLASH,LEER,EAGERTICKLING,NOBLEROAR
+    AbilityIndex = 1 # Unafraid
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,1]
 Flags = NoPerfect
@@ -7242,11 +7246,12 @@ Pokemon = HVOLTORB,25
 [CHALLENGER_Vanya,Vanya,3]
 Flags = NoPerfect
 Pokemon = PYROAR,30
-    AbilityIndex = 1 # Hubris
+    AbilityIndex = 0 # Stubborn
 Pokemon = SNEASEL,30
     AbilityIndex = 0 # Inner Focus
-Pokemon = HZOROARK,30
-    AbilityIndex = 1 # Mental Block
+Pokemon = BEAUTIFLY,30
+    Moves = SUCKBLOOD,DRAININGKISS,SQUALLDART,AERIALACE
+    AbilityIndex = 0 # Gorging
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,4]
 Flags = NoPerfect
