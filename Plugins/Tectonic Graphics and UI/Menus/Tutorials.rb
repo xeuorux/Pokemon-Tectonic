@@ -122,23 +122,36 @@ def playAdaptiveMovesTutorial
     playTutorial(tutorialMessages)
 end
 
+def playPokecenterNPCsTutorial
+    playTutorialMessage(_INTL("Every PokéCenter and every Ranger Station will contain the 3 Team Customization NPCs."))
+    playTutorialMessage(_INTL("Speak to them to learn how they can upgrade your team!"))
+end
+
 def tutorialIntro
     pbBGMFade(1.0)
     pbWait(Graphics.frame_rate)
     pbSEPlay("Voltorb Flip tile",150,100)
 end
 
+def tutorialsEnabled?
+    return $PokemonSystem.tutorial_popups != 1
+end
+
 def playTutorial(tutorialMessages = [])
-    if $PokemonSystem.tutorial_popups == 1
+    unless tutorialsEnabled?
         echoln("Skipping tutorial popup due to toggled setting.")
         return
     end
     currentBGM = $game_system.playing_bgm
     tutorialIntro
     tutorialMessages.each do |tutorialMessage|
-        pbMessage(_INTL("\\wm#{tutorialMessage}\\wtnp[#{tutorialMessageDuration}]\1"))
+        playTutorialMessage(tutorialMessage)
     end
     pbBGMPlay(currentBGM)
+end
+
+def playTutorialMessage(tutorialMessage)
+    pbMessage(_INTL("\\wm#{tutorialMessage}\\wtnp[#{tutorialMessageDuration}]\1"))
 end
 
 def tutorialMessageDuration

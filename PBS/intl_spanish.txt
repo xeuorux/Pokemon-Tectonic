@@ -53245,6 +53245,10 @@ show shinies
 ver variocolor
 OTHER MOVES
 OTROS MOV.
+Every PokéCenter and every Ranger Station will contain the 3 Team Customization NPCs.
+Cada PokéCenter y cada Estaciones de Ranger contendrá los 3 PNJ del personalización de equipo.
+Speak to them to learn how they can upgrade your team!
+¡Habla con ellos para saber cómo pueden mejorar tu equipo!
 [26]
 [27]
 [27]
