@@ -1917,22 +1917,6 @@ Pokemon = CRUSTLE,37
     Moves = XSCISSOR,TREMOR,STEALTHROCK,ROCKSLIDE
     AbilityIndex = 0 # Stratagem
 #-------------------------------
-[TOURISTM,Calvin]
-Pokemon = SANDSLASH,38
-    Moves = RAPIDSPIN,ROCKSLIDE,EARTHQUAKE,UTURN
-    AbilityIndex = 1 # Tough Claws
-Pokemon = KRICKETUNE,38
-    Moves = BUGBUZZ,EERIESPELL,TUNEUP,UTURN
-    AbilityIndex = 1 # Maestro
-    Item = CHOICESPECS
-Pokemon = TSAREENA,37
-    Moves = TROPKICK,SCYTHEKICK,KNOCKOFF,UTURN
-    AbilityIndex = 1 # Swift Stomps
-Pokemon = TALONFLAME,37
-    Moves = INFERNOIMPACT,BRAVEBIRD,BULLETTRAIN,UTURN
-    AbilityIndex = 1 # Gale Wings
-    Item = CHOICEBAND
-#-------------------------------
 [GENTLEMAN3,Oliver]
 Flags = NoPerfect
 Pokemon = GRAPIDASH,40
@@ -3664,20 +3648,20 @@ Pokemon = DECIDUEYE,43
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
 [SUPERNERD,John]
-Pokemon = GALVANTULA,41
-    Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
-    AbilityIndex = 0 # Ocular
-    Item = FOCUSSASH
-Pokemon = HUNTAIL,42
-    Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
-    AbilityIndex = 0 # Intimidate
-Pokemon = DIGGERSBY,42
-    Moves = DRILLRUN,CLOUDBREAK,SWORDSDANCE,ADAMANTINEPRESS
-    AbilityIndex = 1 # Paranoid
-Pokemon = HITMONLEE,42
-    Moves = DOUBLEKICK,WHIPKICK,BLAZEKICK,TRAMPLE
-    AbilityIndex = 0 # Iron Heel
-    Item = LIFEORB
+Pokemon = KECLEON,41
+    Moves = PALEBLADE,MINDWARP,DISTURB,BODYPRESS
+    AbilityIndex = 1 # Protean
+    Item = AGILITYHERB
+Pokemon = GRENINJA,42
+    Moves = WATERSHURIKEN,POWERGEM,DARKPULSE,SLUDGEWAVE
+    AbilityIndex = 0 # Mutable
+Pokemon = CINDERACE,42
+    Moves = IRONHEAD,BLAZEKICK,SCYTHEKICK,PYROBALL
+    AbilityIndex = 0 # Freestyle
+    Item = WIDELENS
+Pokemon = WORMADAM,42
+    Moves = SCORCHINGSANDS,GIGADRAIN,BUGBUZZ,IRONHEAD
+    AbilityIndex = 1 # Cloaking
 #-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
@@ -8447,3 +8431,35 @@ Pokemon = LEDIAN,70
     AbilityIndex = 1 # Star Guardian
 Pokemon = HZOROARK,70
     AbilityIndex = 0 # Illusion
+#-------------------------------
+[TOURISTM,Calvin]
+Pokemon = SANDSLASH,70
+    Moves = RAPIDSPIN,ROCKSLIDE,EARTHQUAKE,UTURN
+    AbilityIndex = 1 # Tough Claws
+Pokemon = KRICKETUNE,70
+    Moves = BUGBUZZ,EERIESPELL,MASSDESTRUCTION,UTURN
+    AbilityIndex = 1 # Maestro
+    Item = CHOICESPECS
+Pokemon = TSAREENA,70
+    Moves = TROPKICK,SCYTHEKICK,KNOCKOFF,UTURN
+    AbilityIndex = 1 # Swift Stomps
+Pokemon = TALONFLAME,70
+    Moves = FLAREBLITZ,BRAVEBIRD,BULLETTRAIN,UTURN
+    AbilityIndex = 1 # Gale Wings
+    Item = CHOICEBAND
+#-------------------------------
+[BUGCATCHER_F,April]
+Pokemon = GALVANTULA,70
+    Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
+    AbilityIndex = 0 # Ocular
+    Item = FOCUSSASH
+Pokemon = HUNTAIL,70
+    Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
+    AbilityIndex = 0 # Intimidate
+Pokemon = DIGGERSBY,70
+    Moves = DRILLRUN,CLOUDBREAK,SWORDSDANCE,ADAMANTINEPRESS
+    AbilityIndex = 1 # Paranoid
+Pokemon = SIRFETCHD,70
+    Moves = DRILLPECK,LEAFBLADE,PSYCHOSCISSION,ARTOFWAR
+    AbilityIndex = 1 # Super Luck
+    Item = SCOPELENS
