@@ -131,6 +131,14 @@ module UnrealTime
         PBDayNight.sheduleToneRefresh
     end
 
+    def self.add_minutes(minutes)
+        add_seconds(60 * minutes)
+    end
+
+    def self.add_hours(hours)
+        add_seconds(60 * 60 * hours)
+    end
+
     def self.add_days(days)
         add_seconds(60 * 60 * 24 * days)
     end

@@ -47,7 +47,7 @@ def teleportToRandomSpaceTimeShard
     blackFadeOutIn(5) {
         transferPlayerToEvent(warpEventID,$game_player.direction,mapID)
         hours = rand(10,14)
-        UnrealTime.add_seconds(hours * 60 * 60)
+        UnrealTime.add_hours(hours)
     }
     pbWait(10)
     pbSEPlay("Anim/PRSFX- Roar of Time3")
