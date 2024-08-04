@@ -83,7 +83,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByMoveLearned
-        learningMethodSelection = pbMessage(_INTL("Which method?"),[_INTL("Any"), _INTL("Level Up"), _INTL("By Specific Level"), _INTL("Tutor"), _INTL("Coverage Type"), _INTL("Cancel")], 6)
+        learningMethodSelection = pbMessage(_INTL("Which method?"),[_INTL("Any"), _INTL("Level Up"), _INTL("By Specific Level"), _INTL("Other"), _INTL("Coverage Type"), _INTL("Cancel")], 6)
         return if learningMethodSelection == 5
 
         if learningMethodSelection == 2
