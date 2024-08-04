@@ -17,6 +17,16 @@ DebugMenuCommands.register("mysterygift", {
       pbExtractText
     }
   })
+
+  DebugMenuCommands.register("extractuntranslatedtext", {
+    "parent"      => "othermenu",
+    "name"        => _INTL("Extract Untranslated Text"),
+    "description" => _INTL("Extract all text in the game that isn't translated for the current language."),
+    "always_show" => true,
+    "effect"      => proc {
+      pbExtractText(true)
+    }
+  })
   
   DebugMenuCommands.register("compiletext", {
     "parent"      => "othermenu",
