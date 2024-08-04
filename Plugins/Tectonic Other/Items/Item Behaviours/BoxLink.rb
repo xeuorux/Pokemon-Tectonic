@@ -3,8 +3,9 @@ ItemHandlers::ConfirmUseInField.add(:BOXLINK,proc { |item|
   })
 
 ItemHandlers::UseInField.add(:BOXLINK,proc { |item|
-    $game_switches[ESTATE_DISABLED_SWITCH] = true
+    estateDisablementBefore = getGlobalSwitch(ESTATE_DISABLED_SWITCH)
+    setGlobalSwitch(ESTATE_DISABLED_SWITCH,true)
     pbPokeCenterPC
-    $game_switches[ESTATE_DISABLED_SWITCH] = false
+    setGlobalSwitch(ESTATE_DISABLED_SWITCH,estateDisablementBefore)
     next 1
 })

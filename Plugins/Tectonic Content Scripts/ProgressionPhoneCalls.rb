@@ -5,6 +5,7 @@ CATACOMBS_PHONECALL_GLOBAL = 227
 WHITEBLOOM_PHONECALL_GLOBAL = 228
 BATTLE_MONUMENT_PHONECALL_GLOBAL = 229
 DR_HEKATA_PHONECALL_GLOBAL = 232
+ESTATE_PHONECALL_GLOBAL = 233
 
 Events.onBadgeEarned += proc { |_sender,_e|
     totalBadges = _e[1]
@@ -26,7 +27,7 @@ def gameWon?
 end
 
 Events.onMapChange += proc { |_sender, _e|
-	if playerIsOutdoors?()
+	if playerIsOutdoors?
 		if $PokemonGlobal.shouldProcGrouzAvatarCall
 			$game_switches[GROUZ_AVATAR_PHONECALL_GLOBAL] = true
 			$PokemonGlobal.shouldProcGrouzAvatarCall = false
@@ -42,7 +43,7 @@ Events.onMapChange += proc { |_sender, _e|
 		elsif $PokemonGlobal.shouldProc3BadgesZainCall
 			$game_switches[ZAIN_3_BADGES_PHONECALL_GLOBAL] = true
 			$PokemonGlobal.shouldProc3BadgesZainCall = false
-		end
+        end
 	end
 
 	if 		gameWon? &&
@@ -58,4 +59,12 @@ class PokemonGlobalMetadata
 	attr_accessor :shouldProcGrouzAvatarCall
 	attr_accessor :shouldProcCatacombsCall
 	attr_accessor :shouldProcWhitebloomCall
+    attr_accessor :shouldProcEstateCall
 end
+
+Events.onStepTaken += proc { |_sender,_e|
+    if playerIsOutdoors? && $PokemonGlobal.shouldProcEstateCall
+        $game_switches[ESTATE_PHONECALL_GLOBAL] = true
+        $PokemonGlobal.shouldProcEstateCall = false
+    end
+}
