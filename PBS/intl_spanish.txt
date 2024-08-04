@@ -10509,6 +10509,28 @@ But without us, the city's logistics would be in utter chaos.
 Pero sin nosotros, las logisticas de la ciudad estarían en completo caos.
 Not that it already isn't, with the bridge collapse and the service tunnel to Sweetrock destroyed by plant growth.
 Tampoco es como si no lo fuera, con el puente colapsado y el túnel hacia Sweetrock destruído por el crecimiento de plantas.
+Calendars for July, August, and September are pinned to the wall.
+Project deadlines, public notice timings, and dates for important government meetings are all noted.
+The TV displays a live feed of the area over the Eleig River Bridge.
+What a mess!
+The TV displays a live feed of the pedestrian crossings in Prizca West.
+The TV displays a live feed of the pedestrian crossings in Prizca West.
+People aren't paying them much attention, and are crossing wherever they wish.
+People aren't paying them much attention, and are crossing wherever they wish.
+A browser-based email client is open.
+A browser-based email client is open.
+There's over 8000 unread emails!
+There's over 8000 unread emails!
+A large bar-chart labeled "Yearly Traffic Flow" is in the process of being rendered.
+A large bar-chart labeled "Yearly Traffic Flow" is in the process of being rendered.
+The graph starts 50 years ago, but the bars don't get significant until about 20 years ago.
+The graph starts 50 years ago, but the bars don't get significant until about 20 years ago.
+The TV displays a live feed of the road which enters the Battle Plaza from the south.
+The TV displays a live feed of the road which enters the Battle Plaza from the south.
+The TV displays a live feed of the parking lot that serves the Tournament Grounds.
+The TV displays a live feed of the parking lot that serves the Tournament Grounds.
+Cars from dozens of different regions can be seen.
+Cars from dozens of different regions can be seen.
 
 [Map158]
 Thanks to my Swoobat's ability, it's completely code compliant for construction!
@@ -10746,6 +10768,8 @@ We hope you enjoy your trip to The Aquatopia Menagerie.
 Esperamos que disfrutes de tu estadía en Aquatopia.
 While it is encouraged to interact with the Pokemon, bringing them outside of their designated pool is strictly prohibited.
 Aunque se aconseja interactuar con los Pokémon, llevarlos fuera de su piscina designada está estrictamente prohibido.
+if you're interested in taking part in the Ocean Fishing Contest, speak to The Captain in the western room.
+Si estás interesado en participar en el Concurso de Pesca Océanica, habla con El Capitán en la sala oeste.
 Heh.
 Heh. 
 I could sense your darkness the minute you entered this place.
