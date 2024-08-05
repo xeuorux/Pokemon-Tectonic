@@ -776,8 +776,7 @@ class Game_Character
     end
 
     def move_to_original
-        @x = @original_x
-        @y = @original_y
+        moveto(@original_x, @original_y)
         @direction = @original_direction
     end
 
