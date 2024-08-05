@@ -1,22 +1,22 @@
-def generationReward(generation,threshold,reward)
-    if $Trainer.pokedex.getOwnedFromGeneration(generation) >= threshold
-        return [reward,_INTL("{1} species from Generation {2}",threshold,generation)]
+def generationReward(generation,threshold,reward,assumeGranted = false)
+    if assumeGranted || $Trainer.pokedex.getOwnedFromGeneration(generation) >= threshold
+        return [reward,_INTL("{1} species from Generation {2}",threshold,generation),4]
     end
     return nil
 end
 
-def typeReward(type,threshold,reward)
-    if $Trainer.pokedex.getOwnedOfType(type) >= threshold
+def typeReward(type,threshold,reward,assumeGranted = false)
+    if assumeGranted || $Trainer.pokedex.getOwnedOfType(type) >= threshold
         typeName = GameData::Type.get(type).name
-        return [reward,_INTL("{1} {2}-type species",threshold,typeName)]
+        return [reward,_INTL("{1} {2}-type species",threshold,typeName),2]
     end
     return nil
 end
 
-def tribeReward(tribe,threshold,reward)
-    if $Trainer.pokedex.getOwnedOfTribe(tribe) >= threshold
+def tribeReward(tribe,threshold,reward,assumeGranted = false)
+    if assumeGranted || $Trainer.pokedex.getOwnedOfTribe(tribe) >= threshold
         tribeName = GameData::Tribe.get(tribe).name
-        return [reward,_INTL("{1} species in the {2} tribe",threshold,tribeName)]
+        return [reward,_INTL("{1} species in the {2} tribe",threshold,tribeName),3]
     end
     return nil
 end

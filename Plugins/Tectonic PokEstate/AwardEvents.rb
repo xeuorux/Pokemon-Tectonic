@@ -1,3 +1,7 @@
+COLLECTION_REWARD_PAGE_NAMES = [
+    _INTL()
+]
+
 ##############################################
 # TYPE REWARDS (54 of them)
 ##############################################
@@ -12,8 +16,8 @@ PokEstate::LoadDataDependentAwards += proc {
         typeThreshold.each_with_index do |threshold,thresholdIndex|
             id = ("TYPE" + type.id.to_s + "AWARD" + thresholdIndex.to_s).to_sym
             PokEstate::GrantAwards.add(id,
-                proc { |pokedex|
-                    next typeReward(type.id,threshold,typeRewards[thresholdIndex])
+                proc { |pokedex, assumeGranted|
+                    next typeReward(type.id,threshold,typeRewards[thresholdIndex],assumeGranted)
                 }
             )
         end
@@ -32,8 +36,8 @@ PokEstate::LoadDataDependentAwards += proc {
         tribeThreshold.each_with_index do |threshold,thresholdIndex|
             id = ("TRIBE" + tribe.id.to_s + "AWARD" + thresholdIndex.to_s).to_sym
             PokEstate::GrantAwards.add(id,
-                proc { |pokedex|
-                    next tribeReward(tribe.id,threshold,tribeRewards[thresholdIndex])
+                proc { |pokedex, assumeGranted|
+                    next tribeReward(tribe.id,threshold,tribeRewards[thresholdIndex],assumeGranted)
                 }
             )
         end
@@ -130,9 +134,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYS,5],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYS,5],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -143,9 +147,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYM,3],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYM,3],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -156,9 +160,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYL,2],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYL,2],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -171,9 +175,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYS,10],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYS,10],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -184,9 +188,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYM,6],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYM,6],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -197,9 +201,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYL,4],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYL,4],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -212,9 +216,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYS,15],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYS,15],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -225,9 +229,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYM,9],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYM,9],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -238,9 +242,9 @@ PokEstate::LoadDataDependentAwards += proc {
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
-            proc { |pokedex|
-                if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYL,6],_INTL("all species on {1}",routeName)]
+            proc { |pokedex, assumeGranted|
+                if assumeGranted || pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYL,6],_INTL("all species on {1}",routeName),1]
                 end
                 next
             }
@@ -250,18 +254,18 @@ PokEstate::LoadDataDependentAwards += proc {
     # HUGE ROUTES #
 
     PokEstate::GrantAwards.add("MENAGERIEREWARD",
-        proc { |pokedex|
-            if pokedex.allOwnedFromRoute?(213)
-                next [[:EXPCANDYXL,10],_INTL("all species in the Velenz Menagerie")]
+        proc { |pokedex, assumeGranted|
+            if assumeGranted || pokedex.allOwnedFromRoute?(213)
+                next [[:EXPCANDYXL,10],_INTL("all species in the Velenz Menagerie"),1]
             end
             next
         }
     )
 
     PokEstate::GrantAwards.add("OCEANFISHINGREWARD",
-        proc { |pokedex|
-            if pokedex.allOwnedFromRoute?(213)
-                next [[:EXPCANDYXL,10],_INTL("all species in the Ocean Fishing Contest")]
+        proc { |pokedex, assumeGranted|
+            if assumeGranted || pokedex.allOwnedFromRoute?(213)
+                next [[:EXPCANDYXL,10],_INTL("all species in the Ocean Fishing Contest"),1]
             end
             next
         }

@@ -386,8 +386,7 @@ module Settings
 
     #=============================================================================
 
-     # The names of each pocket of the Bag. Ignore the first entry ("").
-     def self.achievement_page_names
+    def self.achievement_page_names
         return ["",
             _INTL("Main Story"),
             _INTL("Gyms"),
@@ -399,5 +398,14 @@ module Settings
             _INTL("Battle"),
             _INTL("Other"),
         ]
-      end
+    end
+
+    def self.collection_reward_page_names
+        return ["",
+            _INTL("Area"),
+            _INTL("Type"),
+            _INTL("Tribe"),
+            _INTL("Generation"),
+        ]
+    end
 end
