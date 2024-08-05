@@ -114,6 +114,7 @@ Target = NearOther
 FunctionCode = RemoveWeatherIncidental
 Flags = CanProtect,CanMirrorMove
 Description = A tremendous strike that clears any active weather.
+Animation = STRENGTH
 #-------------------------------
 [CONCENTRATE]
 Name = Concentrate
@@ -186,6 +187,7 @@ Target = NearOther
 FunctionCode = RemoveRoomsIncidental
 Flags = CanProtect,CanMirrorMove
 Description = An unusual shockwave that breaks down all active Rooms.
+Animation = SUPERSONIC
 #-------------------------------
 [DOUBLEDOWN]
 Name = Double Down
