@@ -831,6 +831,8 @@ FishingContest,10
     1,TENTACRUEL,30,40
     1,WAILORD,36,46
     1,WHISCASH,35,45
+Special
+	1,WINGULL,10
 #-------------------------------
 [243] # Chasm Base Mess Hall
 Special
