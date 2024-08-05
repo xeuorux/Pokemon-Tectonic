@@ -2912,3 +2912,13 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A thin, nearly invisible strand of unusual metal.
+#-------------------------------
+[SPACETIMESHARD]
+Name = Space-time Shard
+NamePlural = Space-time Shards
+Pocket = 7
+Price = 0
+FieldUse = Direct
+Consumable = true
+Flags = KeyItem
+Description = A sliver of the fragment of the universe. Highly unstable.
