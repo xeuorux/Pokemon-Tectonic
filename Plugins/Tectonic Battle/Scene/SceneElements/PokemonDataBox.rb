@@ -196,7 +196,7 @@ class PokemonDataBox < SpriteWrapper
 			icon.x = value + @spriteBaseX
 			if @thinBox
 				icon.x += @databoxBitmap.width - 22
-				icon.x += @databoxBitmap.width * (index/2)
+				icon.x += @typeBitmap.width * (index/2)
 			else
 				icon.x += 4
 				icon.x += 48 * index
