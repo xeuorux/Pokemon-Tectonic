@@ -174,6 +174,12 @@ class PokeBattle_Battler
                     @battle.pbDisplay(_INTL("{1}'s lost HP.", pbThis))
                 end
             end
+
+            if amt.negative?
+                pbItemHPHealCheck
+                pbAbilitiesOnDamageTaken(oldHP)
+                pbFaint if fainted?
+            end
         end
         return amt
     end
