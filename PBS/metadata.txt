@@ -1067,9 +1067,9 @@ ShowArea = true
 Bicycle = false
 #-------------------------------
 [143]
-# River Crossing Buildings
+# Pillar of Creation
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = false
 #-------------------------------
 [144]
