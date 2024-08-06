@@ -9,6 +9,17 @@ class PokeBattle_Move_StartPolarizeTypeMatchups5 < PokeBattle_RoomMove
     end
 end
 
+# Empowered Polarized Room
+class PokeBattle_Move_EmpoweredPolarizedRoom < PokeBattle_Move_StartPolarizeTypeMatchups5
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
+        transformType(user, :STEEL)
+    end
+end
+
 #===============================================================================
 # For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
 #===============================================================================
@@ -38,5 +49,16 @@ class PokeBattle_Move_StartSwapOffensiveAndDefensiveStats5 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :OddRoom
+    end
+end
+
+# Empowered Odd Room
+class PokeBattle_Move_EmpoweredOddRoom < PokeBattle_Move_StartSwapOffensiveAndDefensiveStats5
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:SPEED, user, move: self)
+        transformType(user, :PSYCHIC)
     end
 end

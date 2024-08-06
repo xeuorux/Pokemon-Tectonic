@@ -250,6 +250,16 @@ Flags = CanProtect,CanMirrorMove,Empowered
 Description = The user sets off an earthquake that strikes every Pokémon around it and underground.
 Animation = EARTHQUAKE
 #-------------------------------
+[PRIMEVALGRAVITY]
+Name = Primeval Gravity
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = BothSides
+FunctionCode = EmpoweredGravity
+Description = The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
+#-------------------------------
 [PRIMEVALSHOREUP]
 Name = Primeval Shore Up
 Type = GROUND
@@ -482,6 +492,18 @@ FunctionCode = EmpoweredLaserFocus
 Flags = Empowered
 Description = The user focuses intently, making every future attack critical. The user becomes a Steel-type.
 Animation = LASERFOCUS
+#-------------------------------
+[PRIMEVALPOLARIZEDROOM]
+Name = Primeval Polarized Room
+Type = STEEL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredPolarizedRoom
+Flags = Empowered
+Description = The user creates a Polarized Room for 5 turns, raises both of its Defensive stats, and becomes Steel-type.
+Animation = POLARIZEDROOM
 #-------------------------------
 [PRIMEVALSWORDSDANCE]
 Name = Primeval Swords Dance
@@ -774,6 +796,18 @@ Target = User
 FunctionCode = EmpoweredMindLink
 Flags = Empowered
 Description = The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.
+#-------------------------------
+[PRIMEVALODDROOM]
+Name = Primeval Odd Room
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredOddRoom
+Flags = Empowered
+Description = The user creates an Odd Room for 5 turns, raises its Speed, and becomes Psychic-type.
+Animation = ODDROOM
 #-------------------------------
 #		ICE MOVES
 #-------------------------------

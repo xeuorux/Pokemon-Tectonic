@@ -58,6 +58,17 @@ class PokeBattle_Move_StartGravity5 < PokeBattle_Move
     end
 end
 
+# Empowered Gravity
+class PokeBattle_Move_EmpoweredGravity < PokeBattle_Move_StartGravity5
+    def pbEffectGeneral(user)
+        super
+        user.eachOpposing do |b|
+            battle.pbDisplay(_INTL("{1} was slammed into the ground!", user.pbThis))
+            b.applyFractionalDamage(1.0/4.0)
+        end
+    end
+end
+
 #===============================================================================
 # Heals every active battler by 1/8th of their HP for the next 5 turns. (Floral Gramarye)
 #===============================================================================
