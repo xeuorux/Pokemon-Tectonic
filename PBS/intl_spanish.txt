@@ -3,7 +3,7 @@
 [Map0]
 Breaking News!
 ¡Último Momento!
-I'm live here at<imp>Tri Island</imp>, a mysterious island discovered recently off the coast of Makya.
+I'm live here at <imp>Tri Island</imp>, a mysterious island discovered recently off the coast of Makya.
 Estoy en vivo aquí en la <imp>Isla Elemental</imp>, una misteriosa isla descubierta recientemente en la costa de Makya. 
 Trainers from all over the world are making their way over as there have been sightings of extremely rare Pokemon and resources.
 Entrenadores de todo el mundo están llegando aquí ya que han habido avistamientos de Pokémon y recursos extremadamente raros. 

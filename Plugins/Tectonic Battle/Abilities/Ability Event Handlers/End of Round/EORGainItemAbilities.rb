@@ -23,7 +23,7 @@ BattleHandlers::EORGainItemAbility.add(:GOURMAND,
     proc { |ability, battler, battle|
         itemsCanAdd = []
         GameData::Item.getByFlag("Pinch").each do |pinch|
-            next if GameData::Item.get(pinch).super
+            next unless GameData::Item.get(pinch).legal?
             next unless battler.canAddItem?(pinch)
             itemsCanAdd.push(pinch) 
         end
