@@ -396,9 +396,8 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
-        hpGain = (target.totalhp / 4.0).round
-        target.pbRecoverHP(hpGain)
+    def pbEffectAgainstTarget(user, target)
+        target.applyFractionalHealing(healRatio(user))
     end
 
     def getEffectScore(_user, target)
