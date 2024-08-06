@@ -114,6 +114,12 @@ BattleHandlers::StatusImmunityAbility.add(:RUNNINGFREE,
   }
 )
 
+BattleHandlers::StatusImmunityAbility.add(:MENTALBLOCK,
+  proc { |ability, _battler, status|
+      next true if status == :DIZZY
+  }
+)
+
 BattleHandlers::StatusImmunityAbility.add(:PLOTARMOR,
   proc { |ability, battler, status|
       next true if battler.battle.eclipsed?
