@@ -704,7 +704,8 @@ end
 #===============================================================================
 class PokeBattle_Move_HealUserBasedOnWeightHalvesWeight < PokeBattle_HealingMove
     def healRatio(user)
-        case user.pbWeight
+        weight = user.pbWeight / 10
+        case weight
         when 1024..999_999
             return 1.0
         when 512..1023
