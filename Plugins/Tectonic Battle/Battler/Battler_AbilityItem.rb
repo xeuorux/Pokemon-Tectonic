@@ -263,7 +263,7 @@ class PokeBattle_Battler
     def canConsumePinchBerry?(check_gluttony = true)
         return false unless canConsumeBerry?
         return true if @hp <= @totalhp / 4
-        return true if @hp <= @totalhp / 2 && (!check_gluttony || hasActiveAbility?(:GLUTTONY))
+        return true if @hp <= @totalhp / 2 && (!check_gluttony || hasActiveAbility?(%i[GLUTTONY GOURMAND]))
         return false
     end
 

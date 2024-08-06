@@ -3299,14 +3299,14 @@ Flags = NoPerfect
 Pokemon = MSEVIPER,38
     AbilityIndex = 1 # Envy
 Pokemon = MZANGOOSE,38
-    AbilityIndex = 0 # Served Cold
+    AbilityIndex = 1 # Mental Damage
     Item = GHOSTGEM
 Pokemon = GDARMANITAN,39
     AbilityIndex = 1 # Gorilla Tactics
     Item = ICEGEM
 Pokemon = ARATICATE,40
-    AbilityIndex = 0 # Night Life
-    Item = LEFTOVERS
+    AbilityIndex = 1 # Gourmand
+    Item = STRENGTHHERB
 #-------------------------------
 [TRAINER_Keoni,Keoni,2]
 Policies = HAIL_TEAM

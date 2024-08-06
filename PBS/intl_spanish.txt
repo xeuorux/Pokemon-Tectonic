@@ -43877,8 +43877,8 @@ Powers up recoil and sound moves by 30%.
 Potencia movimientos de sonido y que inflijan retroceso un 30%.
 At low health, eats other battlers' low-health triggered berries.
 Al tener baja vida, consume las bayas curativas de sus rivales.
-Gets a random pinch berry at the end of each turn if it has no item.
-Obtiene una baya de apuro aleatoria al final de cada turno si no tiene ningún objeto. 
+Eats pinch berries earlier than normal. Gets a random pinch berry at the end of each turn if it has no item.
+Consume bayas antes de lo normal. Obtiene una baya de apuro aleatoria al final de cada turno si no tiene ningún objeto. 
 Immune to Poison-type moves, and boosts both defensive stats when hit by one.
 Inmune a movimientos tipo Veneno y aumenta ambas stats defensivas cuando es alcanzado por uno. 
 The Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate.

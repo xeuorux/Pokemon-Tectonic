@@ -748,7 +748,7 @@ Description = Draining moves deal 30% more damage. Can overheal when draining.
 #-------------------------------
 [GOURMAND]
 Name = Gourmand
-Description = Gets a random pinch berry at the end of each turn if it has no item.
+Description = Eats pinch berries earlier than normal. Gets a random pinch berry at the end of each turn if it has no item.
 #-------------------------------
 [GRAVITAS]
 Name = Gravitas
