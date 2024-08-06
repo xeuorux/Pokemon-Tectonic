@@ -888,3 +888,10 @@ class PokeBattle_AI_MAROMATISSE < PokeBattle_AI_Boss
         })
     end
 end
+
+class PokeBattle_AI_GARDEVOIR < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        secondMoveEveryTurn(:LIFEDEW)
+    end
+end
