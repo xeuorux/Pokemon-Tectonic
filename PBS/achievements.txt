@@ -191,7 +191,7 @@ Page = 9
 #-------------------------------
 [STORE_LOTS_OF_EXP]
 Name = Banking on It
-Description = Have more than 300,000 experience stored in the EXP-EZ Dispenser at once.
+Description = Have more than 1,000,000 experience stored in the EXP-EZ Dispenser at once.
 Page = 9
 #-------------------------------
 [WIN_FISHING_CONTEST]

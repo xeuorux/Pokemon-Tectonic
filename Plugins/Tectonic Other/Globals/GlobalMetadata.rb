@@ -244,6 +244,6 @@ class PokemonGlobalMetadata
     
     def expJAR=(value)
         @expJAR = value
-        unlockAchievement(:STORE_LOTS_OF_EXP) if @expJAR >= 300_000
+        unlockAchievement(:STORE_LOTS_OF_EXP) if @expJAR >= 1_00_000
     end
 end
