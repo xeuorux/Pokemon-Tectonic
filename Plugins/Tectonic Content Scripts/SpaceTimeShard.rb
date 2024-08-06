@@ -59,6 +59,7 @@ end
 
 def receiveSpaceTimeShard
     pbReceiveItem(:SPACETIMESHARD)
+    setMySwitch("A")
     if collectedAllShards?
         # TODO Teleport to Dialga/Palkia dimmension
     else
