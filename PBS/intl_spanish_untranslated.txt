@@ -177,66 +177,12 @@ No
 Ugh.
 Ugh.
 [Map78]
-West: Programming
-West: Programming
-North: Inventory
-North: Inventory
-East: Management
-East: Management
-2nd Floor: Research and Testing
-2nd Floor: Research and Testing
-The Kadabra is focusing very hard.
-The Kadabra is focusing very hard.
-Could you maybe pitch in?
-Could you maybe pitch in?
-Understandable. It's weird to ask a stranger for money.
-Understandable. It's weird to ask a stranger for money.
-You don't have $1000?
-You don't have $1000?
-I guess you have your own problems.
-I guess you have your own problems.
-I've been talking with some of my co-workers about how to handle the gift.
-I've been talking with some of my co-workers about how to handle the gift.
-We decided to surprise her with some high quality Pokemon handling gloves.
-We decided to surprise her with some high quality Pokemon handling gloves.
-That way she can pet her Ampharos without having to worry of getting shocked!
-That way she can pet her Ampharos without having to worry of getting shocked!
-A slide is being shown with a graph projecting profits for the next year.
-A slide is being shown with a graph projecting profits for the next year.
-The aesthetic of the slide is somehow bright and boring at the same time.
-The aesthetic of the slide is somehow bright and boring at the same time.
-I keep falling asleep during board meetings.
-I keep falling asleep during board meetings.
-I tried to learn this one move...it lets Pokemon act even while sleeping.
-I tried to learn this one move...it lets Pokemon act even while sleeping.
-I forgot that, as a human... I wouldn't be able to learn it.
-I forgot that, as a human... I wouldn't be able to learn it.
-So, take this. It's not of any use to me anymore.
-So, take this. It's not of any use to me anymore.
-Huh? Whuh? Uh?
-Huh? Whuh? Uh?
-Oh, hey. Uh. Yeah. Secure the funding.... zzz...
-Oh, hey. Uh. Yeah. Secure the funding.... zzz...
-I'm sure they're bothering you, too.
-I'm sure they're bothering you, too.
-I hope that one day the whole world will understand the blessing that is the indoor umbrella.
-I hope that one day the whole world will understand the blessing that is the indoor umbrella.
-A LuxTech promotional video is playing on loop and muted.
-A LuxTech promotional video is playing on loop and muted.
-I often wonder how people did anything before computers.
-I often wonder how people did anything before computers.
-I mean, just look at this.
-I mean, just look at this.
 *dink*
 *dink*
 Ugh.
 Ugh.
-A screensaver is displayed of a Togedemaru lazily rolling around and occasionally bouncing off the boundaries of the screen.
-A screensaver is displayed of a Togedemaru lazily rolling around and occasionally bouncing off the boundaries of the screen.
 ...
 ...
-The employees here must have all gotten some basic media training. Lots of them were comfortable in front of the camera.
-The employees here must have all gotten some basic media training. Lots of them were comfortable in front of the camera.
 No
 No
 [Map79]
@@ -287,17 +233,9 @@ No
 [Map104]
 Dialogue here.
 Dialogue here.
-The door resists your attempts to open it with a mystic force.
-The door resists your attempts to open it with a mystic force.
 [Map105]
 [Map106]
 [Map107]
-There’s a newly-painted sign here.
-There’s a newly-painted sign here.
-It reads “Rafael gone. Connor is gym leader now?”
-It reads “Rafael gone. Connor is gym leader now?”
-There are many, many question marks.
-There are many, many question marks.
 [Map108]
 [Map109]
 [Map110]
@@ -310,123 +248,43 @@ There are many, many question marks.
 [Map117]
 *sigh*
 *sigh*
-If you ever find yourself in the urban expanse with naught to do, find me.
-If you ever find yourself in the urban expanse with naught to do, find me.
 [Map118]
 [Map119]
 [Map120]
-Thanks for completing Pokemon Tectonic!
-Thanks for completing Pokemon Tectonic!
-Please consider filling out the Playtest Survey that is linked on the main menu.
-Please consider filling out the Playtest Survey that is linked on the main menu.
-Your feedback helps a lot to continue to improve the game.
-Your feedback helps a lot to continue to improve the game.
 Nope.
 Nope.
 [Map121]
-Dragon-type Pokemon often roost on the peak of this mountain.
-Dragon-type Pokemon often roost on the peak of this mountain.
 No
 No
 [Map122]
-Train people’s Pokémon for money. We had a scuffle back in Németh… which ya won.
-Train people’s Pokémon for money. We had a scuffle back in Németh… which ya won.
 Nah.
 Nah.
 [Map123]
-The Fossil Research Lab has so many fossils that we're just giving them away!
-The Fossil Research Lab has so many fossils that we're just giving them away!
-The door reads "Authorized personnel only!"
-The door reads "Authorized personnel only!"
-To help combat this, Novo College has been offering free courses to Trainers and Rangers who wish to keep Makyan routes safe.
-To help combat this, Novo College has been offering free courses to Trainers and Rangers who wish to keep Makyan routes safe.
 No
 No
-Man-made Pokémon
-Man-made Pokémon
 [Map124]
 [Map125]
 [Map126]
 No
 No
 [Map127]
-Among the garbage, you see what remains of a MasterBall, crushed completely flat.
-Among the garbage, you see what remains of a MasterBall, crushed completely flat.
-During my field studies, I noticed that the avatars rarely attacked the same Pokemon over and over.
-During my field studies, I noticed that the avatars rarely attacked the same Pokemon over and over.
-They seemed to have a regular rhythm of switching who they were being aggressive against.
-They seemed to have a regular rhythm of switching who they were being aggressive against.
-The board is scribbled with field research notes about an Avatar of Vileplume.
-The board is scribbled with field research notes about an Avatar of Vileplume.
-Apparently a lot of stinky flowers bloomed nearby after it appeared. Gross!
-Apparently a lot of stinky flowers bloomed nearby after it appeared. Gross!
 [Map128]
 [Map129]
-The door is thoroughly locked.
-The door is thoroughly locked.
-Man, these lifelike Pokemon statues are crazy realistic.
-Man, these lifelike Pokemon statues are crazy realistic.
-I just had a pretty morbid revelation. I think I'm gonna go get some ice cream and cry.
-I just had a pretty morbid revelation. I think I'm gonna go get some ice cream and cry.
-I wonder what the artist did to make these statues so... lifelike.
-I wonder what the artist did to make these statues so... lifelike.
-Do you think those statues were... uhhh... you know... like, alive at one point?
-Do you think those statues were... uhhh... you know... like, alive at one point?
-Use a Full Restore
-Use a Full Restore
 [Map130]
-Just a hop and a skip to the north, a legendar Avatar has been causing a commotion.
-Just a hop and a skip to the north, a legendar Avatar has been causing a commotion.
-How exciting!
-How exciting!
-Onwards, to ever greater victories!
-Onwards, to ever greater victories!
-Whoever takes out that Virizion will be a legend in their own right!
-Whoever takes out that Virizion will be a legend in their own right!
 No
 No
 [Map131]
 [Map132]
 [Map133]
-"Aerodactyl, Terror of the Skies"
-"Aerodactyl, Terror of the Skies"
 No
 No
 [Map134]
 Dialogue here.
 Dialogue here.
-I wish I still worked for Helena.
-I wish I still worked for Helena.
-Zoé’s left several emails open at once.
-Zoé’s left several emails open at once. 
-One’s from Bence, saying that he’s going to go on a journey of self-discovery better than hers.
-One’s from Bence, saying that he’s going to go on a journey of self-discovery better than hers.
-Another is from a perfume company inquiring about hiring her for Ceruledge-themed advertisements.
-Another is from a perfume company inquiring about hiring her for Ceruledge-themed advertisements.
-The third is her sending pictures of Ceruledge to several people, asking if they knew about the Pokémon. She seems extremely impressed by it.
-The third is her sending pictures of Ceruledge to several people, asking if they knew about the Pokémon. She seems extremely impressed by it.
-There isn't a magic typing here that I could recommend you. These types are a pretty good combo.
-There isn't a magic typing here that I could recommend you. These types are a pretty good combo.
 [Map135]
-They say each drop of light carries a memory of triumph.
-They say each drop of light carries a memory of triumph.
 [Map136]
 Skipping Tamarind cutscene.
 Skipping Tamarind cutscene.
-Speaking of which, despite my spiel about being even with mommy dearest, here.
-Speaking of which, despite my spiel about being even with mommy dearest, here.
-Mavis had LuxTech’s R&D assist with making these things back when… well, let’s not get into that.
-Mavis had LuxTech’s R&D assist with making these things back when… well, let’s not get into that.
-I have extras around now that the original users are... otherwise employed... and so I figure you might as well get one.
-I have extras around now that the original users are... otherwise employed... and so I figure you might as well get one.
-It’s a way to <imp>read up on an opponent’s team</imp> before trying to take them on.
-It’s a way to <imp>read up on an opponent’s team</imp> before trying to take them on.
-Please do not ask me why it’s called the Poké X-Ray. It doesn’t even use x-rays.
-Please do not ask me why it’s called the Poké X-Ray.  It doesn’t even use x-rays.
-I – you know what, just don’t ask questions and appreciate the damn thing.
-I – you know what, just don’t ask questions and appreciate the damn thing.
-The point is, in the future, maybe you help me out and I keep giving you free stuff, OK?
-The point is, in the future, maybe you help me out and I keep giving you free stuff, OK?
 ...
 ...
 No
@@ -434,15 +292,9 @@ No
 [Map137]
 [Map138]
 [Map139]
-For example, you could exchange a Grass Token for a Bulbasaur, a Snivy or a Grookey.
-For example, you could exchange a Grass Token for a Bulbasaur, a Snivy or a Grookey.
 [Map140]
 [Map141]
 [Map142]
-A plushie of Poliwag.
-A plushie of Poliwag.
-A tag informs you that its official name is "Waggles"!
-A tag informs you that its official name is "Waggles"!
 [Map143]
 [Map144]
 No
@@ -466,48 +318,14 @@ Hmph.
 Hmph.
 …Ah.
 …Ah.
-I will head south, to home. You’re a welcome guest if ever you should arrive. So long, traveler.
-I will head south, to home. You’re a welcome guest if ever you should arrive. So long, traveler.
-Mayan Air Travel Agency
-Mayan Air Travel Agency
-You draw Candy in for a kiss.
-You draw Candy in for a kiss.
-The people chasing her pass by you, paying no mind.
-The people chasing her pass by you, paying no mind.
 Pssst....
 Pssst....
-Any luck? Did you get the ID card under the tree? It's near the Mart.
-Any luck? Did you get the ID card under the tree? It's near the Mart.
 ...
 ...
-So you've got the Solidarity Badge. Well done!
-So you've got the Solidarity Badge. Well done!
-...I can’t believe it.
-...I can’t believe it.
 No.
 No.
 [Map156]
 [Map157]
-Project deadlines, public notice timings, and dates for important government meetings are all noted.
-Project deadlines, public notice timings, and dates for important government meetings are all noted.
-A browser-based email client is open.
-A browser-based email client is open.
-There's over 8000 unread emails!
-There's over 8000 unread emails!
-What a mess!
-What a mess!
-A large graph labeled "Yearly Traffic Flow" is in the process of being rendered.
-A large graph labeled "Yearly Traffic Flow" is in the process of being rendered.
-The graph starts 50 years ago, but the bars don't get significant until about 20 years ago.
-The graph starts 50 years ago, but the bars don't get significant until about 20 years ago.
-The TV displays a live feed of the road which enters the Battle Plaza from the south.
-The TV displays a live feed of the road which enters the Battle Plaza from the south.
-A large van is blocking the entire road. How rude!
-A large van is blocking the entire road. How rude!
-The TV displays a live feed of the pedestrian crossings in Prizca West.
-The TV displays a live feed of the pedestrian crossings in Prizca West.
-People aren't paying them much attention, and are crossing wherever they wish.
-People aren't paying them much attention, and are crossing wherever they wish.
 [Map158]
 [Map159]
 ...
@@ -520,8 +338,6 @@ Nah.
 [Map163]
 [Map164]
 [Map165]
-You're just the type of Trainer that I'm looking for! One that can withstand dark, crushing depths.
-You're just the type of Trainer that I'm looking for! One that can withstand dark, crushing depths.
 Awwww...
 Awwww...
 No.
@@ -529,36 +345,14 @@ No.
 Nah.
 Nah.
 [Map166]
-Hey. Wanna play some Voltorb Flip?
-Hey. Wanna play some Voltorb Flip?
-I got nothin' to give you for winnin', so it'd be just for the joy of it.
-I got nothin' to give you for winnin', so it'd be just for the joy of it.
-Alright, let's get started!
-Alright, let's get started!
-Oh yeah, a good bit of fun that was.
-Oh yeah, a good bit of fun that was.
-Well, see ya.
-Well, see ya.
-Can't fault ya. Game's addictin'.
-Can't fault ya. Game's addictin'.
 [Map167]
 ...
 ...
 [Map168]
-Though, they can't possibly be a threat. They don't have enough Pokemon!
-Though, they can't possibly be a threat. They don't have enough Pokemon!
-Now get out, and stay out!
-Now get out, and stay out!
 [Map169]
-A small feeding bowl, refilled as needed by the Estate Caretaker.
-A small feeding bowl, refilled as needed by the Estate Caretaker.
 [Map170]
-A small feeding bowl, refilled as needed by the Estate Caretaker.
-A small feeding bowl, refilled as needed by the Estate Caretaker.
 [Map171]
 [Map172]
-A small feeding bowl, refilled as needed by the Estate Caretaker.
-A small feeding bowl, refilled as needed by the Estate Caretaker.
 [Map173]
 No
 No
@@ -567,108 +361,26 @@ No
 Huh.
 Huh.
 [Map176]
-...actually, a strange frequency appears again!
-...actually, a strange frequency appears again!
 [Map177]
 [Map178]
 [Map179]
-You're about to battle Valrex, Spanish translator.
-You're about to battle Valrex, Spanish translator.
 [Map180]
 No
 No
 [Map181]
 [Map182]
-I am simply enjoying the last of my home. This soothing breeze will the be the last.
-I am simply enjoying the last of my home. This soothing breeze will the be the last.
-Please, you have lived with us for generations!
-Please, you have lived with us for generations!
-You had to meddle. We have lost our traditions because of you!
-You had to meddle. We have lost our traditions because of you!
-I cannot let this happen!
-I cannot let this happen!
-You must have a plan!
-You must have a plan!
 [Map183]
 [Map184]
-You also spot a can of lemonade.
-You also spot a can of lemonade.
 Oh.
 Oh.
 [Map185]
-West: Eleig River Crossing
-West: Eleig River Crossing
-East: Canal Desert
-East: Canal Desert
-Eleig Valet, at your service.
-Eleig Valet, at your service.
 Hey.
 Hey.
-YEEHAW, ALL ABOARD THE LOG EXPRESS!
-YEEHAW, ALL ABOARD THE LOG EXPRESS!
-RECKON TO FACE US ON MORTAL, HEARTPOUNDING, LOG COMBAT?!
-RECKON TO FACE US ON MORTAL, HEARTPOUNDING, LOG COMBAT?!
-WOWIE! That was some fine log battling!
-WOWIE! That was some fine log battling!
-Any log rider is a friend o' mine, don'chu forget it!
-Any log rider is a friend o' mine, don'chu forget it!
-Kid, I, uh, heard the screaming.
-Kid, I, uh, heard the screaming.
-Figured I ought to stay in case there was an attempted homicide.
-Figured I ought to stay in case there was an attempted homicide.
-So I heard.
-So I heard.
-No problem. It’s my job... I think.
-No problem. It’s my job... I think.
-...Fair. Not yet, though.
-...Fair. Not yet, though.
-Sounds like it. Condolences.
-Sounds like it. Condolences.
-Um, in case what she said is getting to you, I’m sorry. You made the right choice. She... she’s got some issues.
-Um, in case what she said is getting to you, I’m sorry.  You made the right choice. She... she’s got some issues.
-If you want some proof that I really am trying my damnedest to make this place better, take this.
-If you want some proof that I really am trying my damnedest to make this place better, take this.
-It’s a lab where some stuff went down. None of it my fault.
-It’s a lab where some stuff went down. None of it my fault.
-On top of everything else, I’ve been keeping extradimensional monsters at bay out of the kindness of my heart.
-On top of everything else, I’ve been keeping extradimensional monsters at bay out of the kindness of my heart.
-Really.
-Really.
-I do want the best for this place. Hopefully once you see all the work I’ve done that’ll be obvious.
-I do want the best for this place. Hopefully once you see all the work I’ve done that’ll be obvious.
-But, um, I know I’m not really wanted right now, so I’ll be going.
-But, um, I know I’m not really wanted right now, so I’ll be going. 
-You... you did the right thing, kid.
-You... you did the right thing, kid.
-We're just making sure that the logs sent downstream by the local Biberal don't clog up the waterway.
-We're just making sure that the logs sent downstream by the local Biberal don't clog up the waterway.
-It's honest work, and we get to have a little fun with it.
-It's honest work, and we get to have a little fun with it.
-Good battle, Trainer. I'm sure everyone on the Stretch enjoyed watching that.
-Good battle, Trainer. I'm sure everyone on the Stretch enjoyed watching that.
 Capisce.
 Capisce.
 Candy...
 Candy...
 [Map186]
-The berry plant is growing.
-The berry plant is growing.
-I went and caught this Castform to help me with the weather.
-I went and caught this Castform to help me with the weather.
-But that's not needed when you can simply use any 'mon with water moves.
-But that's not needed when you can simply use any 'mon with water moves.
-I've already got that, so I'm looking to give this little guy a new home. I'll give it to anyone who can reimburse my costs of $3000.
-I've already got that, so I'm looking to give this little guy a new home. I'll give it to anyone who can reimburse my costs of $3000.
-Oh I know this little one ain't for everyone. If you change your mind, the offer is still open.
-Oh I know this little one ain't for everyone. If you change your mind, the offer is still open.
-\PN hands over $3000 in exchange.
-\PN hands over $3000 in exchange.
-Take care of them for me!
-Take care of them for me!
-Oh, it looks like you're a little short. The offer's still here, just come back when ya got some more cash.
-Oh, it looks like you're a little short. The offer's still here, just come back when ya got some more cash.
-The 'mons here are such hard workers.
-The 'mons here are such hard workers.
 <i> Click <i>
 <i> Click <i>
 No
@@ -676,14 +388,6 @@ No
 [Map187]
 ...
 ...
-His Pokemon may look a bit goofy, but they're all the real deal.
-His Pokemon may look a bit goofy, but they're all the real deal.
-His Metagross and regional Polteageist are plenty strong, but he also has this weird-looking snowman Pokemon that I've seen drop opponents in a single hit!
-His Metagross and regional Polteageist are plenty strong, but he also has this weird-looking snowman Pokemon that I've seen drop opponents in a single hit!
-Nevermind, it looks like he's just like this...
-Nevermind, it looks like he's just like this...
-If you happen to have one, I'll trade you a Relicanth for it.
-If you happen to have one, I'll trade you a Relicanth for it. 
 No
 No
 [Map188]
@@ -691,8 +395,6 @@ EX
 EX
 PLO
 PLO
-To be honest, I was nervous -- being the returning champion and all. I suppose that will be you soon enough.
-To be honest, I was nervous -- being the returning champion and all. I suppose that will be you soon enough.
 Nah.
 Nah.
 [Map189]
@@ -702,10 +404,6 @@ Nah.
 …
 No.
 No.
-I can't - you make Alessa look like a rank-and-file grunt.
-I can't - you make Alessa look like a rank-and-file grunt.
-I'm… glad to be your rival. Thanks.
-I'm… glad to be your rival. Thanks.
 ...
 ...
 [Map190]
@@ -717,36 +415,14 @@ No
 Eh.
 Eh.
 [Map194]
-The door is securely locked.
-The door is securely locked.
-The sign lists off rules you have to follow to schedule meetings with Members of Parliament.
-The sign lists off rules you have to follow to schedule meetings with Members of Parliament.
 Lainie.
 Lainie.
 ...
 ...
 [Map195]
-He'll come if you can make it all the way through the gym.
-He'll come if you can make it all the way through the gym.
 Dialogue here.
 Dialogue here.
-I sparkled and shown... but you much moreso.
-I sparkled and shown... but you much moreso.
-A rare defeat.
-A rare defeat.
 [Map196]
-Casaba Island is home to wonderful waterfront properties, but people are scared of the next wave -- lavafront!
-Casaba Island is home to wonderful waterfront properties, but people are scared of the next wave -- lavafront!
-You'd think that lavafront properties would be all the rage, but you'd be surprised.
-You'd think that lavafront properties would be all the rage, but you'd be surprised.
-Lava is just so iconic! Talk about a killer backyard grilling session.
-Lava is just so iconic! Talk about a killer backyard grilling session.
-Lavafront properties are cheaper than their waterfront counterparts!
-Lavafront properties are cheaper than their waterfront counterparts!
-Don't know why, but the winters are warm and the views are great!
-Don't know why, but the winters are warm and the views are great!
-Just need to get a construction company willing to come out here...
-Just need to get a construction company willing to come out here...
 [Map197]
 No
 No
@@ -1611,8 +1287,6 @@ Cabin Room 4
 Cabin Room 1
 Cabin Room 1
 [Map434]
-legendaryFight(:GLASTRIER,65)
-legendaryFight(:GLASTRIER,65)
 [Map435]
 Cabin Room 2
 Cabin Room 2
@@ -1623,8 +1297,6 @@ Cabin Room 4
 Cabin Room 1
 Cabin Room 1
 [Map436]
-legendaryFight(:SPECTRIER,65)
-legendaryFight(:SPECTRIER,65)
 [Map437]
 Dialogue here.
 Dialogue here.
@@ -5483,6 +5155,12 @@ Abyssal Mist
 Abyssal Mist
 Primeval Deep Breathing
 Primeval Deep Breathing
+Primeval Gravity
+Primeval Gravity
+Primeval Polarized Room
+Primeval Polarized Room
+Primeval Odd Room
+Primeval Odd Room
 Breakneck Blitz
 Breakneck Blitz
 All-Out Pummeling
@@ -5980,8 +5658,14 @@ The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def b
 The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.
 The user raises their Speed by 4 steps, quadruples their critical hit chance, and becomes Fighting-type.
 The user raises their Speed by 4 steps, quadruples their critical hit chance, and becomes Fighting-type.
+The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
+The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
 The user attacks with a prehistoric power which raises all its stats.
 The user attacks with a prehistoric power which raises all its stats.
+The user creates a Polarized Room for 5 turns, raises both of its Defensive stats, and becomes Steel-type.
+The user creates a Polarized Room for 5 turns, raises both of its Defensive stats, and becomes Steel-type.
+The user creates an Odd Room for 5 turns, raises its Speed, and becomes Psychic-type.
+The user creates an Odd Room for 5 turns, raises its Speed, and becomes Psychic-type.
 The user torments all near foes, preventing them from repeating moves. The user becomes Dark-type.
 The user torments all near foes, preventing them from repeating moves. The user becomes Dark-type.
 The user builds up its momentum using its Z-Power and crashes into the target at full speed.
@@ -20472,6 +20156,10 @@ Extract Untranslated Text
 Extract Untranslated Text
 Extract all text in the game that isn't translated for the current language.
 Extract all text in the game that isn't translated for the current language.
+MoveDex
+MoveDex
+{1} was slammed into the ground!
+{1} was slammed into the ground!
 [25]
 1
 Cool Ribbon
@@ -21354,7 +21042,7 @@ Deal 10,000 or more damage in one hit.
 Deal 10,000 or more damage in one hit.
 Hold 500,000 or more money at once.
 Hold 500,000 or more money at once.
-Have more than 300,000 experience stored in the EXP-EZ Dispenser at once.
-Have more than 300,000 experience stored in the EXP-EZ Dispenser at once.
+Have more than 1,000,000 experience stored in the EXP-EZ Dispenser at once.
+Have more than 1,000,000 experience stored in the EXP-EZ Dispenser at once.
 Achieve the top prize at Aquatopia Menagerie's Ocean Fishing Contest.
 Achieve the top prize at Aquatopia Menagerie's Ocean Fishing Contest.
