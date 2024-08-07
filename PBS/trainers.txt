@@ -2512,8 +2512,8 @@ Pokemon = FARFETCHD,70
     AbilityIndex = 1 # Fat Chance
 Pokemon = MMUSHARNA,70
     AbilityIndex = 0 # Slumbering Drake
-Pokemon = HLILLIGANT,70
-    AbilityIndex = 0 # Fascinate
+Pokemon = FALINKS,70
+    AbilityIndex = 0 # Imperious
 #-------------------------------
 [WORKER5,Jbsundown]
 TrainerTypeLabel = DEVELOPER
