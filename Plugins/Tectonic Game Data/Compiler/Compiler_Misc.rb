@@ -1,17 +1,48 @@
 module Compiler
 	module_function
 
-    def compile_signature_metadata
+    def compile_battle_metadata
+        # Signature moves
         signatureMoveInfo = getSignatureMoves()
 
         signatureMoveInfo.each do |moveID,signatureHolder|
-        GameData::Move.get(moveID).signature_of = signatureHolder
+            GameData::Move.get(moveID).signature_of = signatureHolder
         end
 
+        # Signature abilities
         signatureAbilityInfo = getSignatureAbilities()
 
         signatureAbilityInfo.each do |abilityID,signatureHolder|
-        GameData::Ability.get(abilityID).signature_of = signatureHolder
+            GameData::Ability.get(abilityID).signature_of = signatureHolder
+        end
+
+        # Move learning metadata
+        levelUpLearnersPerMove = {}
+        otherLearnersPerMove = {}
+        GameData::Move.each do |moveData|
+            next unless moveData.learnable?
+            levelUpLearnersPerMove[moveData.id] = []
+            otherLearnersPerMove[moveData.id] = []
+        end
+        GameData::Species.each do |speciesData|
+            next unless speciesData.form == 0
+            speciesData.moves.each do |learnset_entry|
+                move_id = learnset_entry[1]
+                level_learned = learnset_entry[0]
+                levelUpLearnersPerMove[move_id].push([speciesData.id,level_learned])
+            end
+
+            speciesData.learnable_moves.each do |moveID|
+                otherLearnersPerMove[moveID].push(speciesData.id)
+            end
+        end
+
+        levelUpLearnersPerMove.each do |moveID, levelUpLearnersForMove|
+            GameData::Move.get(moveID).level_up_learners = levelUpLearnersForMove
+        end
+
+        otherLearnersPerMove.each do |moveID, otherLearnersPerMove|
+            GameData::Move.get(moveID).other_learners = otherLearnersPerMove
         end
 
         # Save all data

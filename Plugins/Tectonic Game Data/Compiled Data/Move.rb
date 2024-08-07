@@ -15,11 +15,16 @@ module GameData
       attr_reader :flags
       attr_reader :real_description
       attr_reader :animation_move
-      attr_reader :signature_of
+      
       attr_reader :primeval
       attr_reader :zmove
       attr_reader :cut
       attr_reader :tectonic_new
+
+      # Metadata
+      attr_accessor :signature_of
+      attr_accessor :level_up_learners
+      attr_accessor :other_learners
   
       DATA = {}
       DATA_FILENAME = "moves.dat"
@@ -109,13 +114,8 @@ module GameData
         return !damaging?
       end
 
-      # The highest evolution of a line
-      def signature_of=(val)
-        @signature_of = val
-      end
-
-      def is_signature?()
-        return !@signature_of.nil?
+      def is_signature?
+        return !@signature_of.nil? || avatarSignature?
       end
 
       def empoweredMove?
@@ -164,10 +164,15 @@ module GameData
         return !@flags.include?("CantForce")
       end
 
+      def avatarSignature?
+        return @flags.include?("AvatarSignature")
+      end
+
       def learnable?
         return false if @cut
         return false if @primeval
         return false if @zmove
+        return false if avatarSignature?
         return true
       end
 

@@ -192,7 +192,7 @@ class PokemonPokedex_Scene
     end
 
     def autoDisqualifyFromSearch(species_sym)
-        return GameData::Species.get(species_sym).isLegendary? && !$Trainer.seen?(species_sym) && !$DEBUG
+        return !speciesInfoViewable?(species_sym)
     end
 
     def pbRefreshDexList(index = 0)
@@ -227,7 +227,7 @@ class PokemonPokedex_Scene
         zBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
         zShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         iconspecies = @sprites["pokedex"].species
-        iconspecies = nil if GameData::Species.get(iconspecies).isLegendary? && !$Trainer.seen?(iconspecies) && !$DEBUG
+        iconspecies = nil if !speciesInfoViewable?(iconspecies)
         dexname = _INTL("MasterDex")
         textpos = [
             [dexname, Graphics.width / 8, -2, 2, zBase, zShadow],
@@ -1112,7 +1112,7 @@ class PokemonPokedex_Scene
                         break
                     end
                 elsif Input.trigger?(Input::USE)
-                    if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !GameData::Species.get(@sprites["pokedex"].species).isLegendary? || $DEBUG
+                    if speciesInfoViewable?(@sprites["pokedex"].species)
                         pbPlayDecisionSE
                         pbDexEntry(@sprites["pokedex"].index)
                     end

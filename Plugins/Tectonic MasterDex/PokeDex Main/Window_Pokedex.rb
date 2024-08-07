@@ -41,7 +41,7 @@ class Window_Pokedex < Window_DrawableCommand
         species     = @commands[index][:species]
         indexNumber = @commands[index][:index]
         indexNumber -= 1 if @commands[index][:shift]
-        showSpecies = !GameData::Species.get(species).isLegendary? || $Trainer.seen?(species) || $DEBUG
+        showSpecies = speciesInfoViewable?(species)
         if showSpecies
             if $Trainer.owned?(species)
                 pbCopyBitmap(contents, @pokeballOwn.bitmap, rect.x - 6, rect.y + 8)

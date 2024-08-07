@@ -1091,7 +1091,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         while newindex > 0
             newindex -= 1
             newSpecies = @dexlist[newindex][:species]
-            if !GameData::Species.get(newSpecies).isLegendary? || $Trainer.seen?(newSpecies)
+            if speciesInfoViewable?(newSpecies)
                 @index = newindex
                 break
             end
@@ -1103,7 +1103,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         while newindex < @dexlist.length - 1
             newindex += 1
             newSpecies = @dexlist[newindex][:species]
-            if !GameData::Species.get(newSpecies).isLegendary? || $Trainer.seen?(newSpecies)
+            if speciesInfoViewable?(newSpecies)
                 @index = newindex
                 break
             end

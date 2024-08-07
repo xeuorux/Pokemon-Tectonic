@@ -9,6 +9,7 @@ class MoveDex_Scene
         @currentMoveList = []
         GameData::Move.each do |moveData|
             next unless moveData.learnable?
+            next unless moveInfoViewable?(moveData.id)
             @currentMoveList.push(moveData.id)
         end
 
@@ -60,12 +61,10 @@ class MoveDex_Scene
 
         overlay.clear
 
-        drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>Moves Dex</outln2>", base, shadow, 18)
-
 		# render the moves lists
 		displayIndex = 0
 		listIndex = -1
-        selected_move = nil
+        @selected_move = nil
         if @currentMoveList.empty?
             drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + 60, 90, 450, _INTL("None"), base, shadow)
 		else
@@ -75,7 +74,7 @@ class MoveDex_Scene
                 maxWidth = displayIndex == 0 ? 200 : 212
                 moveName, moveColor, moveShadow = getFormattedMoveName(move, 200)
                 offsetX = 0
-                selected_move = move if listIndex == @scroll
+                @selected_move = move if listIndex == @scroll
                 moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 32 * displayIndex
                 drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                 if listIndex == @scroll
@@ -87,7 +86,7 @@ class MoveDex_Scene
             end
 		end
 
-        drawMoveInfo(selected_move) if selected_move
+        drawMoveInfo(@selected_move) if @selected_move
     end
 
     def pbEndScene
@@ -133,7 +132,6 @@ class MoveDex_Scene
 
     def pbScroll
         @scroll = 0
-        drawPage
 
         linesShown = 7
 
@@ -142,7 +140,23 @@ class MoveDex_Scene
             Input.update
             pbUpdate
             doRefresh = false
-            if Input.repeat?(Input::UP)
+            if Input.trigger?(Input::UP) && Input.press?(Input::CTRL)
+                if @scroll > 0
+                    pbPlayCursorSE
+                    @scroll = 0
+                    doRefresh = true
+                else
+                    pbPlayCursorSE
+                end
+            elsif Input.trigger?(Input::DOWN) && Input.press?(Input::CTRL)
+                if @scroll < @currentMoveList.length - 1
+                    pbPlayCursorSE
+                    @scroll = @currentMoveList.length - 1
+                    doRefresh = true
+                else
+                    pbPlayCursorSE
+                end
+            elsif Input.repeat?(Input::UP)
                 if @scroll > 0
                     pbPlayCursorSE
                     @scroll -= 1
@@ -178,6 +192,17 @@ class MoveDex_Scene
                     @scroll += MAX_LENGTH_MOVE_LIST
                     @scroll = offsetMax if @scroll > offsetMax
                     doRefresh = true
+                else
+                    pbPlayBuzzerSE
+                end
+            elsif Input.trigger?(Input::USE)
+                if @selected_move
+                    pbFadeOutIn do
+                        moveDexEntryScene = MoveDex_Entry_Scene.new
+                        screen = MoveDex_Entry_Screen.new(moveDexEntryScene)
+                        @scroll = screen.pbStartScreen(@currentMoveList,@scroll)
+                        drawPage
+                    end
                 else
                     pbPlayBuzzerSE
                 end

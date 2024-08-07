@@ -162,8 +162,7 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
         @metronomeMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
-            next if move_data.is_signature?
-            next if move_data.cut
+            next if move_data.learnable?
             next unless move_data.can_be_forced?
             next if @moveBlacklist.include?(move_data.function_code)
             next if move_data.empoweredMove?
@@ -205,12 +204,11 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         @discoverableMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
+            next unless move_data.category == 2 # Status moves only
             next if move_data.function_code == "Invalid"
-            next unless move_data.category == 2
             next if move_data.is_signature?
-            next if move_data.cut
+            next unless move_data.learnable?
             next unless move_data.can_be_forced?
-            next if move_data.empoweredMove?
             moveObject = @battle.getBattleMoveInstanceFromID(move_id)
             next if moveObject.is_a?(PokeBattle_ProtectMove)
             next if moveObject.is_a?(PokeBattle_HelpingMove)

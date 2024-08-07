@@ -178,7 +178,7 @@ Accuracy = 0
 TotalPP = 1
 Target = AllNearFoes
 FunctionCode = RayquazaTargetLosesFlinchImmunity
-Flags = CanProtect,CanMirrorMove,Sound
+Flags = CanProtect,CanMirrorMove,Sound,AvatarSignature
 Description = A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.
 Animation = SCREECH
 #-------------------------------
@@ -292,6 +292,7 @@ Accuracy = 0
 TotalPP = 1
 Target = BothSides
 FunctionCode = GroudonStartGravity10DoubleFoeWeight
+Flags = AvatarSignature
 Description = A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.
 #-------------------------------
 #		ROCK MOVES
@@ -617,6 +618,7 @@ Accuracy = 0
 TotalPP = 1
 Target = None
 FunctionCode = KyogreSummonAvatarLuvdiscRemoraid
+Flags = AvatarSignature
 Description = A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.
 #-------------------------------
 #		GRASS MOVES
