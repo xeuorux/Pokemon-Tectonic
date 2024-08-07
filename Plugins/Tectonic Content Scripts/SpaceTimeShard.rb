@@ -1,38 +1,40 @@
 # Map ID, TP Location Event ID, Shard Event ID
 SPACE_TIME_SHARD_LOCATIONS = [
-    [38,0,31], # Bluepoint Beach
-    [56,0,76], # Novo Town
-    [6,0,46], # LuxTech
-    [430,0,47], # Amber Hills
-    [55,0,39], # Lingering Delta
-    [78,0,7], # LuxTech Main
-    [301,0,44], # County Park
-    [7,0,45], # Repora Forest
-    [114,0,9], # Velenz Underground East
-    [396,0,9], # Crater-Shelf Gatehouse
-    [299,0,13], # Fin Center
-    [124,0,10], # Clearwater Cave
-    [37,0,30], # Svait
-    [185,0,64], # Eleig Stretch
-    [426,0,75], # Prizca Black Market
-    [212,0,59], # Ruins Digsite
-    [144,0,5], # Artist's House
-    [155,0,42], # Prizca West
-    [173,0,10], # Full Blast Records
-    [422,0,3], # Leo's Elite Items
-    [367,0,24], # Prizca Great Hall
-    [186,0,68], # Frostflow Farms
-    [187,0,110], # Prizca East
-    [288,0,9], # Underground River
-    [193,0,26], # Volcanic Shore
-    [183,0,4], # Circuit Cave
-    [313,0,4], # Wren's House
-    [333,0,22], # Floral Maze
-    [216,0,31], # Highland Lake
-    [211,0,49], # Split Peaks
-    [418,0,3], # M. Munna Den 3
-    [264,0,6], # Sweetrock Harbor Mart
+    [38,35,31], # Bluepoint Beach
+    [56,90,76], # Novo Town
+    [6,47,46], # LuxTech
+    [430,48,47], # Amber Hills
+    [55,40,39], # Lingering Delta
+    [78,41,7], # LuxTech Main
+    [301,56,44], # County Park
+    [7,47,45], # Repora Forest
+    [114,11,9], # Velenz Underground East
+    [396,10,9], # Crater-Shelf Gatehouse
+    [299,14,13], # Fin Center
+    [124,11,10], # Clearwater Cave
+    [37,31,30], # Svait
+    [185,65,64], # Eleig Stretch
+    [426,76,75], # Prizca Black Market
+    [212,60,59], # Ruins Digsite
+    [144,6,5], # Artist's House
+    [155,50,42], # Prizca West
+    [173,11,10], # Full Blast Records
+    [422,5,3], # Leo's Elite Items
+    [367,25,24], # Prizca Great Hall
+    [186,69,68], # Frostflow Farms
+    [187,111,110], # Prizca East
+    [288,15,9], # Underground River
+    [193,27,26], # Volcanic Shore
+    [183,8,4], # Circuit Cave
+    [313,5,4], # Wren's House
+    [333,23,22], # Floral Maze
+    [216,52,31], # Highland Lake
+    [211,51,49], # Split Peaks
+    [418,5,3], # M. Munna Den 3
+    [264,7,6], # Sweetrock Harbor Mart
 ]
+
+DIALGA_PALKIA_MAP_ID = 143
 
 def collectedShard?(locationDetails)
     return pbGetSelfSwitch(locationDetails[2],'A',locationDetails[0])
@@ -61,7 +63,8 @@ def receiveSpaceTimeShard
     pbReceiveItem(:SPACETIMESHARD)
     setMySwitch("A")
     if collectedAllShards?
-        # TODO Teleport to Dialga/Palkia dimmension
+        # Teleport to Dialga/Palkia dimmension
+        spaceTimeWarpToEvent(28,Left,143)
     else
         teleportToRandomSpaceTimeShard
     end
@@ -70,7 +73,11 @@ end
 def teleportToRandomSpaceTimeShard
     raise _INTL("Can't warp to any shards because they're all collected already!") if collectedAllShards?
     mapID, warpEventID, shardEventID = getRandomSpaceTimeShardLocation
-    warpEventID = 1 # Until these events are actually created
+    dir = [2,4,6,8].sample
+    spaceTimeWarpToEvent(warpEventID,dir,mapID)
+end
+
+def spaceTimeWarpToEvent(warpEventID,dir,mapID)
     pbSEPlay("Anim/PRSFX- Roar of Time2")
     pbWait(30)
     teleportLeaveAnimation(false)
@@ -78,7 +85,7 @@ def teleportToRandomSpaceTimeShard
     pbSEPlay("Anim/PRSFX- Spacial Rend")
     pbWait(10)
     blackFadeOutIn(5) {
-        transferPlayerToEvent(warpEventID,$game_player.direction,mapID)
+        transferPlayerToEvent(warpEventID,dir,mapID)
         hours = rand(10,14)
         UnrealTime.add_hours(hours)
     }
