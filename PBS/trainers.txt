@@ -8306,9 +8306,9 @@ Pokemon = CRYOGONAL,70
 #-------------------------------
 [IDEALTRAINER,of Origins]
 Pokemon = GIGACHU,70
-    AbilityIndex = 0 # Arc Conductor
+    AbilityIndex = 1 # Gargantuan
 Pokemon = PIDGEOT,70
-    AbilityIndex = 0 # No Guard
+    AbilityIndex = 1 # Aeroshell
 Pokemon = GENGAR,70
     AbilityIndex = 0 # Levitate
 Pokemon = SAURENAID,70
@@ -8324,24 +8324,24 @@ Pokemon = SCIZOR,70
 Pokemon = AMPHAROS,70
     AbilityIndex = 0 # Static
 Pokemon = BLISSEY,70
-    AbilityIndex = 1 # Bliss
+    AbilityIndex = 0 # Serene Grace
 Pokemon = ESPEON,70
-    AbilityIndex = 1 # Plot Armor
+    AbilityIndex = 0 # Overthinking
 Pokemon = UMBREON,70
-    AbilityIndex = 0 # Malicious Glow
+    AbilityIndex = 1 # Secretion Secret
 Pokemon = GYARADOS,70
     Shiny = yes
     AbilityIndex = 0 # Intimidate
 #-------------------------------
 [IDEALTRAINER,of Brilliance]
 Pokemon = MILOTIC,70
-    AbilityIndex = 0 # Dramatic Lighting
+    AbilityIndex = 1 # Competitive
 Pokemon = AGGRON,70
     AbilityIndex = 0 # Rock Head
 Pokemon = METAGROSS,70
     AbilityIndex = 1 # Optimized Alloy
 Pokemon = HYMNUS,70
-    AbilityIndex = 1 # Rain Prism
+    AbilityIndex = 0 # Levitate
 Pokemon = FLYGON,70
     AbilityIndex = 1 # Siren Song
 Pokemon = MANERGETIC,70
@@ -8382,9 +8382,9 @@ Pokemon = SYLVEON,70
 Pokemon = TALONFLAME,70
     AbilityIndex = 0 # Harsh
 Pokemon = NOIVERN,70
-    AbilityIndex = 1 # Fell Omen
+    AbilityIndex = 0 # Terrorize
 Pokemon = HAWLUCHA,70
-    AbilityIndex = 0 # Team Player
+    AbilityIndex = 1 # Unburden
 Pokemon = FLORGES,70
     AbilityIndex = 0 # Clover Song
 Pokemon = AEGISLASH,70
@@ -8392,23 +8392,23 @@ Pokemon = AEGISLASH,70
 #-------------------------------
 [IDEALTRAINER,of Days]
 Pokemon = LYCANROC,70
-    AbilityIndex = 0 # Lycanthrope
+    AbilityIndex = 1 # Lycanthrope
 Pokemon = TOXAPEX,70
-    AbilityIndex = 0 # Noxious
+    AbilityIndex = 1 # Regenerator
 Pokemon = VIKAVOLT,70
     AbilityIndex = 0 # Emergency Power
 Pokemon = ANINETALES,70
-    AbilityIndex = 0 # Summit Spirit
+    AbilityIndex = 1 # Sudden Chill
 Pokemon = GOLISOPOD,70
     AbilityIndex = 0 # Emergency Exit
 Pokemon = TOUCANNON,70
-    AbilityIndex = 0 # Nesting
+    AbilityIndex = 1 # Skill Link
 #-------------------------------
 [IDEALTRAINER,of Conquest]
 Pokemon = CORVIKNIGHT,70
     AbilityIndex = 0 # Mirror Armor
 Pokemon = DUBWOOL,70
-    AbilityIndex = 1 # Cold Reception
+    AbilityIndex = 0 # Fluffy
 Pokemon = TOXTRICITY,70
     AbilityIndex = 1 # Thunderstruck
 Pokemon = DRAGAPULT,70
@@ -8430,7 +8430,7 @@ Pokemon = EMOLGA,70
 Pokemon = LEDIAN,70
     AbilityIndex = 1 # Star Guardian
 Pokemon = HZOROARK,70
-    AbilityIndex = 0 # Illusion
+    AbilityIndex = 1 # Mental Block
 #-------------------------------
 [TOURISTM,Calvin]
 Pokemon = SANDSLASH,70
