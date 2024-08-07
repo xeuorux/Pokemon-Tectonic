@@ -91,10 +91,12 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		cmdLevelCap = -1
 		cmdMainQuestHelp = -1
 		cmdBattleGuide = -1
+        cmdMoveDex = -1
         cmdAchievements = -1
 		infoCommands = []
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What Next?") if defined?($main_quest_tracker)
 		infoCommands[cmdBattleGuide = infoCommands.length] = _INTL("Battle Guide")
+        infoCommands[cmdMoveDex = infoCommands.length] = _INTL("MoveDex")
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("{1}'s Card",$Trainer.name)
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && getLevelCap > 0 && $Trainer.party_count > 0
 		infoCommands[cmdAchievements = infoCommands.length] = _INTL("Achievements")
@@ -127,6 +129,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
                     screen = AchievementsListScreen.new(achievementsListScene)
                     screen.pbStartScreen
                 end
+            elsif cmdMoveDex > -1 && infoCommand == cmdMoveDex
+                openMoveDex
 			else
 				pbPlayCloseMenuSE
 				break

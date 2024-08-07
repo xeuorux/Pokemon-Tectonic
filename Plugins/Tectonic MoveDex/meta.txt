@@ -1,0 +1,3 @@
+Name         = Tectonic MoveDex
+Credits      = Essentials v19 Team,Zeu
+Requires	 = Tectonic Graphics

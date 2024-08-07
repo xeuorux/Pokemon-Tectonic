@@ -2,7 +2,7 @@
 # Fight menu (choose a move)
 #===============================================================================
 class FightMenuDisplay < BattleMenuBase
-  include MoveInfoDisplay
+    include MoveInfoDisplay
 
     attr_reader :battler
     attr_reader :shiftMode
