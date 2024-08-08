@@ -135,29 +135,25 @@ module GameData
         return priorityLabel
       end
 
+      def self.moveTags
+        return {
+            "Biting"    => _INTL("Bite"),
+            "Punch"     => _INTL("Punch"),
+            "Sound"     => _INTL("Sound"),
+            "Pulse"     => _INTL("Pulse"),
+            "Dance"     => _INTL("Dance"),
+            "Blade"     => _INTL("Blade"),
+            "Wind"      => _INTL("Wind"),
+            "Kicking"   => _INTL("Kick"),
+        }
+      end
+
       def tagLabel
-        category = nil
         @flags.each do |flag|
-          case flag
-          when "Biting"
-              category = _INTL("Bite")
-          when "Punch"
-              category = _INTL("Punch")
-          when "Sound"
-              category = _INTL("Sound")
-          when "Pulse"
-              category = _INTL("Pulse")
-          when "Dance"
-              category = _INTL("Dance")
-          when "Blade"
-              category = _INTL("Blade")
-          when "Wind"
-              category = _INTL("Wind")
-          when "Kicking"
-              category = _INTL("Kick")
-          end
+          next unless GameData::Move.moveTags.key?(flag)
+          return GameData::Move.moveTags[flag]
         end
-        return category
+        return nil
       end
 
       def can_be_forced?

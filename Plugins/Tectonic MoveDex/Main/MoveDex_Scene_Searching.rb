@@ -91,6 +91,69 @@ class MoveDex_Scene
     end
 
     def searchByMoveMisc
+        miscSearches = []
+        cmdTag          = -1
+        cmdBasePower	= -1
+        cmdAccuracy     = -1
+        cmdPriority     = -1
+        cmdPP           = -1
+        cmdTargeting    = -1
+        cmdSignature    = -1
+        cmdInvertList   = -1
+        miscSearches[cmdTag = miscSearches.length]          = _INTL("Tag")
+        # miscSearches[cmdBasePower = miscSearches.length]    = _INTL("Base Power")
+        # miscSearches[cmdAccuracy = miscSearches.length]     = _INTL("Accuracy")
+        # miscSearches[cmdPriority = miscSearches.length]     = _INTL("Base Power")
+        # miscSearches[cmdPP = miscSearches.length]           = _INTL("Power Points")
+        # miscSearches[cmdTargeting = miscSearches.length]    = _INTL("Targeting")
+        miscSearches[cmdSignature = miscSearches.length]    = _INTL("Signature")
+        miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
+        miscSearches.push(_INTL("Cancel"))
+        searchSelection = pbMessage(_INTL("Which search?"), miscSearches, miscSearches.length + 1)
+        if cmdTag > -1 && searchSelection == cmdTag
+            return searchByMoveTag
+        elsif cmdBasePower > -1 && searchSelection == cmdBasePower
+            return searchByMoveBasePower
+        elsif cmdAccuracy > -1 && searchSelection == cmdAccuracy
+            return searchByMoveAccuracy
+        elsif cmdPriority > -1 && searchSelection == cmdPriority
+            return searchByMovePriority
+        elsif cmdPP > -1 && searchSelection == cmdPP
+            return searchByMovePP
+        elsif cmdTargeting > -1 && searchSelection == cmdTargeting
+            return searchByMoveTargeting
+        elsif cmdSignature > -1 && searchSelection == cmdSignature
+            return searchByMoveSignature
+        elsif cmdInvertList > -1 && searchSelection == cmdInvertList
+            return invertSearchList
+        end
+    end
+
+    def searchByMoveTag
+        selections = GameData::Move.moveTags.values
+        selections.push(_INTL("None"))
+        selections.push(_INTL("Cancel"))
+        moveTagIndex = pbMessage(_INTL("Which tag?"), selections, selections.length)
+        return if moveTagIndex == selections.length - 1
+
+        if moveTagIndex == selections.length - 2
+            moveTag = GameData::Move.moveTags.keys[moveTagIndex]
+
+            dexlist = searchStartingList
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:move])
+                next dex_item[:data].tagLabel.nil?
+            end
+        else
+            moveTag = GameData::Move.moveTags.keys[moveTagIndex]
+
+            dexlist = searchStartingList
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:move])
+                next dex_item[:data].flags.include?(moveTag)
+            end
+        end
+        return dexlist
     end
 
     def searchByMoveBasePower
@@ -100,9 +163,6 @@ class MoveDex_Scene
     end
 
     def searchByMovePriority
-    end
-
-    def searchByMoveTag
     end
 
     def searchByMoveTargeting
@@ -118,9 +178,32 @@ class MoveDex_Scene
     end
 
     def searchByMoveSignature
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Signature"), _INTL("Not Signature"), _INTL("Cancel")], 3)
+        if selection != 2
+            dexlist = searchStartingList
+
+            dexlist = dexlist.find_all do |dex_item|
+                if selection == 1
+                    next !dex_item[:data].is_signature?
+                else
+                    next dex_item[:data].is_signature?
+                end
+            end
+            return dexlist
+        end
+        return nil
     end
 
     def searchByMoveTypeMatchups
+    end
+
+    def invertSearchList
+        dexlist = generateMoveList
+        dexlist = dexlist.find_all do |dex_item|
+            next false if autoDisqualifyFromSearch(dex_item[:move])
+            next !@dexlist.any? { |current_item| current_item[:move] == dex_item[:move] }
+        end
+        return dexlist
     end
 
     ##################################################
