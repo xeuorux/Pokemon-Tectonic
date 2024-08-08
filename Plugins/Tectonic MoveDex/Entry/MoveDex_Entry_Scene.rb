@@ -1,6 +1,6 @@
 class MoveDex_Entry_Scene
     MAX_LENGTH_SPECIES_LIST = 10
-	SPECIES_LIST_Y_INIT = 56
+	SPECIES_LIST_Y_INIT = 52
     SPECIES_LIST_COLUMN_1_X_LEFT = 24
     SPECIES_LIST_COLUMN_X_OFFSET = 260
 
@@ -36,8 +36,8 @@ class MoveDex_Entry_Scene
     end
 
     def updateMove
-        @move = @movedexlist[@index]
-        @moveData = GameData::Move.get(@move)
+        @move = @movedexlist[@index][:id]
+        @moveData = @movedexlist[@index][:data]
         generateCurrentPageSpeciesList
     end
 
@@ -99,10 +99,10 @@ class MoveDex_Entry_Scene
 
         # Draw page title
         pageTitle = pageTitles[@page]
-        drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
+        drawFormattedTextEx(overlay, 50, 4, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 
         # Draw species name on top right	
-        drawFormattedTextEx(overlay, 300, 2, Graphics.width, "<outln2>#{@moveData.name}</outln2>", base, shadow, 18)
+        drawFormattedTextEx(overlay, 300, 4, Graphics.width, "<outln2>#{@moveData.name}</outln2>", base, shadow, 18)
 
         case @page
         when 0
@@ -424,7 +424,7 @@ class MoveDex_Entry_Scene
         newindex = @index
         while newindex > 0
             newindex -= 1
-            newMove = @movedexlist[newindex]
+            newMove = @movedexlist[newindex][:id]
             if moveInfoViewable?(newMove)
                 @index = newindex
                 break
@@ -436,7 +436,7 @@ class MoveDex_Entry_Scene
         newindex = @index
         while newindex < @movedexlist.length - 1
             newindex += 1
-            newMove = @movedexlist[newindex]
+            newMove = @movedexlist[newindex][:id]
             if moveInfoViewable?(newMove)
                 @index = newindex
                 break
