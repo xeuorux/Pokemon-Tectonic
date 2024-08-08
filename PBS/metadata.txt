@@ -1071,6 +1071,8 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+BattleBack = wcave
+WildBattleBGM = BATTLEDIALGAPALKIA.ogg
 #-------------------------------
 [144]
 # Artist's House

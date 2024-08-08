@@ -67,9 +67,9 @@ class PokeBattle_Move_StartUserHitsTwiceWithSpecial < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises the user's Sp. Atk by 2 steps, and the user's attacks become spread. (Flare Witch)
+# Raises the user's Sp. Atk by 3 steps, and the user's attacks become spread. (Flare Witch)
 #===============================================================================
-class PokeBattle_Move_RaiseUserSpAtk2StartUserAttacksSpread < PokeBattle_Move
+class PokeBattle_Move_RaiseUserSpAtk3StartUserAttacksSpread < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self, true)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise its Sp. Atk and already activated its witch powers!")) if show_message
@@ -84,7 +84,7 @@ class PokeBattle_Move_RaiseUserSpAtk2StartUserAttacksSpread < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getMultiStatUpEffectScore([:SPECIAL_ATTACK,2], user, target)
+        score = getMultiStatUpEffectScore([:SPECIAL_ATTACK,3], user, target)
         score += 30 unless user.effectActive?(:FlareWitch)
         return score
     end

@@ -38429,8 +38429,8 @@ The user eats decaying leaves, restoring its HP by 50% and raising its Speed.
 El usuario come sus hojas decadentes, recuperando un 50% de sus PS totales y aumentando su Velocidad.
 The user raises all of the target's attacking and defensive stats.
 El usuario aumenta todas las stats ofensivas y defensivas del objetivo.
-Raises Sp. Atk by two steps. Until switch out, the user's attacks spread to hit all nearby foes.
-El usuario aumenta su Ataque Especial dos grados. Hasta ser cambiado, sus ataques atacan a todo el lado contrario.
+Raises Sp. Atk by three steps. Until switch out, the user's attacks spread to hit all nearby foes.
+El usuario aumenta su Ataque Especial tres grados. Hasta ser cambiado, sus ataques atacan a todo el lado contrario.
 The user relentlessly attacks with its whip-like hands for three turns. Critical hits twice as often.
 El usuario ataca inexorablemente con sus látigos durante tres turnos. Tiene el doble de índice de golpe crítico.
 The user flicks its thorns, dealing damage and setting a layer of poison spikes around the target.

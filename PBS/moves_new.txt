@@ -3355,9 +3355,9 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = RaiseUserSpAtk2StartUserAttacksSpread
+FunctionCode = RaiseUserSpAtk3StartUserAttacksSpread
 Flags = CanSnatch
-Description = Raises Sp. Atk by two steps. Until switch out, the user's attacks spread to hit all nearby foes.
+Description = Raises Sp. Atk by three steps. Until switch out, the user's attacks spread to hit all nearby foes.
 #-------------------------------
 [HEARTHFIREHULA]
 Name = Hearthfire Hula
