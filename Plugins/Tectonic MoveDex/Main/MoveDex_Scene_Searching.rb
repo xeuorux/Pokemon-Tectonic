@@ -101,13 +101,13 @@ class MoveDex_Scene
         cmdSignature    = -1
         cmdInvertList   = -1
         miscSearches[cmdTag = miscSearches.length]          = _INTL("Tag")
-        # miscSearches[cmdBasePower = miscSearches.length]    = _INTL("Base Power")
-        # miscSearches[cmdAccuracy = miscSearches.length]     = _INTL("Accuracy")
-        # miscSearches[cmdPriority = miscSearches.length]     = _INTL("Base Power")
-        # miscSearches[cmdPP = miscSearches.length]           = _INTL("Power Points")
-        # miscSearches[cmdTargeting = miscSearches.length]    = _INTL("Targeting")
+        miscSearches[cmdBasePower = miscSearches.length]    = _INTL("Base Power")
+        miscSearches[cmdAccuracy = miscSearches.length]     = _INTL("Accuracy")
+        miscSearches[cmdPriority = miscSearches.length]     = _INTL("Priority")
+        miscSearches[cmdPP = miscSearches.length]           = _INTL("Power Points")
+        #miscSearches[cmdTargeting = miscSearches.length]    = _INTL("Targeting")
         miscSearches[cmdSignature = miscSearches.length]    = _INTL("Signature")
-        miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
+        miscSearches[cmdInvertList = miscSearches.length]   = _INTL("Invert Current")
         miscSearches.push(_INTL("Cancel"))
         searchSelection = pbMessage(_INTL("Which search?"), miscSearches, miscSearches.length + 1)
         if cmdTag > -1 && searchSelection == cmdTag
@@ -155,20 +155,67 @@ class MoveDex_Scene
         end
         return dexlist
     end
+    
+    def searchByStatComparison(&block)
+        comparisonSelection = pbMessage(_INTL("Which comparison?"), [_INTL("Equal to"),_INTL("Greater than"), _INTL("Less than"),_INTL("Cancel"),], 4)
+        return if comparisonSelection == 3
+
+        valueInput = pbEnterText(_INTL("Enter value."), 0, 3)
+        if valueInput && valueInput != ""
+            reversed = valueInput[0] == "-"
+            valueInput = valueInput[1..-1] if reversed
+            valueIntAttempt = nil
+            begin
+                valueIntAttempt = Integer(valueInput)
+            rescue
+                return nil
+            end
+            
+            dexlist = searchStartingList
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:move])
+                value = block.call(dex_item[:data])
+                case comparisonSelection
+                when 0
+                    next (value == valueIntAttempt) ^ reversed
+                when 1
+                    next (value > valueIntAttempt) ^ reversed
+                when 2
+                    next (value < valueIntAttempt) ^ reversed
+                end
+
+                next false
+            end
+        end
+    end
 
     def searchByMoveBasePower
+        searchByStatComparison { |moveData|
+            moveData.base_damage
+        }
     end
 
     def searchByMoveAccuracy
+        searchByStatComparison { |moveData|
+            accuracy = moveData.accuracy
+            accuracy = 100 if accuracy <= 0
+            next accuracy
+        }
     end
 
     def searchByMovePriority
-    end
-
-    def searchByMoveTargeting
+        searchByStatComparison { |moveData|
+            moveData.priority
+        }
     end
 
     def searchByMovePP
+        searchByStatComparison { |moveData|
+            moveData.total_pp
+        }
+    end
+
+    def searchByMoveTargeting
     end
 
     def searchByMoveAvailabilityByLevel
@@ -243,7 +290,7 @@ class MoveDex_Scene
             elsif cmdPriority > -1 && searchSelection == cmdPriority
                 next -dex_item[:data].priority
             elsif cmdPP > -1 && searchSelection == cmdPP
-                next -dex_item[:data].pp
+                next -dex_item[:data].total_pp
             end
         end
     end
