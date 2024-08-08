@@ -11,7 +11,7 @@ class MoveDex_Scene
             next unless moveData.learnable?
             next unless moveInfoViewable?(moveData.id)
             dex_item = {
-                :id => moveData.id,
+                :move => moveData.id,
                 :data => moveData
             }
             moveList.push(dex_item)
@@ -25,7 +25,7 @@ class MoveDex_Scene
     end
 
     def searchStartingList
-        return SEARCHES_STACK ? @currentMoveList : generateMoveList
+        return SEARCHES_STACK ? @moveList : generateMoveList
     end
 
     def autoDisqualifyFromSearch(moveID)
@@ -40,11 +40,12 @@ class MoveDex_Scene
         move_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(move_path))
         @sprites = {}
-        @sprites["background"] = IconSprite.new(0, 0, @viewport)
 
+        @sprites["background"] = IconSprite.new(0, 0, @viewport)
         bg_path = "Graphics/Pictures/Movedex/bg_moves_main"
         bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
+
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
         @sprites["selectionarrow"] = IconSprite.new(0, 0, @viewport)
@@ -61,36 +62,62 @@ class MoveDex_Scene
         pbSetNarrowFont(@extraInfoOverlay.bitmap)
         @sprites["extraInfoOverlay"] = @extraInfoOverlay
 
-        @currentMoveList = generateMoveList
+        # Create the search screen sprites
+        search_path = "Movedex/bg_search"
+        search_path += "_dark" if darkMode?
+        addBackgroundPlane(@sprites, "searchbg", search_path, @viewport)
+        @sprites["searchoverlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
+        pbSetSystemFont(@sprites["searchoverlay"].bitmap)
+        @sprites["searchbg"].visible = false
+        @searchCursorbitmap	= AnimatedBitmap.new(addLanguageSuffix("Graphics/Pictures/Pokedex/cursor_search"))
+        @sprites["searchCursor"] = SpriteWrapper.new(@viewport)
+        @sprites["searchCursor"].bitmap = @searchCursorbitmap.bitmap
+        @sprites["searchCursor"].visible = false
+
+        @moveList = generateMoveList
 
         @searchResults = false
 
         pbRefresh
 
-        pbScroll
+        navigateMoveDex
     end
 
     def pbRefresh
         overlay = @sprites["overlay"].bitmap
         base   = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
+        zBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        zShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
 
         overlay.clear
+
+        textpos = [
+            [_INTL("MoveDex"), Graphics.width / 8, -2, 2, zBase, zShadow],
+        ]
+        if @searchResults
+            textpos.push([_INTL("Search results"), 112, 302, 2, base, shadow])
+            textpos.push([@moveList.length.to_s, 112, 334, 2, base, shadow])
+            textpos.push([_INTL("ACTION/Z to search further."), Graphics.width - 5, -2, 1, zBase, zShadow])
+        else
+            textpos.push([_INTL("ACTION/Z to search."), Graphics.width - 5, -2, 1, zBase, zShadow])
+        end
+        pbDrawTextPositions(overlay, textpos)
 
 		# render the moves lists
 		displayIndex = 0
 		listIndex = -1
         @selected_move = nil
-        if @currentMoveList.empty?
+        if @moveList.empty?
             drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + 60, 90, 450, _INTL("None"), base, shadow)
 		else
-            @currentMoveList.each_with_index do |dex_item, _index|
+            @moveList.each_with_index do |dex_item, _index|
                 listIndex += 1
                 next if listIndex < @scroll
                 maxWidth = displayIndex == 0 ? 200 : 212
                 moveName = getFormattedMoveName(dex_item[:data], 200)
                 offsetX = 0
-                @selected_move = dex_item[:id] if listIndex == @scroll
+                @selected_move = dex_item[:move] if listIndex == @scroll
                 moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 32 * displayIndex
                 drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + offsetX, moveDrawY, 450, moveName, base, shadow)
                 if listIndex == @scroll
@@ -110,6 +137,7 @@ class MoveDex_Scene
         pbDisposeSpriteHash(@sprites)
         @viewport.dispose
         @moveInfoDisplayBitmap.dispose
+        @searchCursorbitmap.dispose
     end
 
     def pbUpdate
@@ -144,7 +172,7 @@ class MoveDex_Scene
         return moveName
     end
 
-    def pbScroll
+    def navigateMoveDex
         @scroll = 0
 
         linesShown = 7
@@ -163,9 +191,9 @@ class MoveDex_Scene
                     pbPlayCursorSE
                 end
             elsif Input.trigger?(Input::DOWN) && Input.press?(Input::CTRL)
-                if @scroll < @currentMoveList.length - 1
+                if @scroll < @moveList.length - 1
                     pbPlayCursorSE
-                    @scroll = @currentMoveList.length - 1
+                    @scroll = @moveList.length - 1
                     doRefresh = true
                 else
                     pbPlayCursorSE
@@ -177,11 +205,11 @@ class MoveDex_Scene
                     doRefresh = true
                 elsif Input.trigger?(Input::UP)
                     pbPlayCursorSE
-                    @scroll = @currentMoveList.length - 1
+                    @scroll = @moveList.length - 1
                     doRefresh = true
                 end
             elsif Input.repeat?(Input::DOWN)
-                if @scroll < @currentMoveList.length - 1
+                if @scroll < @moveList.length - 1
                     pbPlayCursorSE
                     @scroll += 1
                     doRefresh = true
@@ -200,7 +228,7 @@ class MoveDex_Scene
                     pbPlayBuzzerSE
                 end
             elsif Input.repeat?(Input::JUMPDOWN)
-                offsetMax = @currentMoveList.length - 1
+                offsetMax = @moveList.length - 1
                 if @scroll < offsetMax
                     pbPlayCursorSE
                     @scroll += MAX_LENGTH_MOVE_LIST
@@ -214,7 +242,7 @@ class MoveDex_Scene
                     pbFadeOutIn do
                         moveDexEntryScene = MoveDex_Entry_Scene.new
                         screen = MoveDex_Entry_Screen.new(moveDexEntryScene)
-                        @scroll = screen.pbStartScreen(@currentMoveList,@scroll)
+                        @scroll = screen.pbStartScreen(@moveList,@scroll)
                         pbRefresh
                     end
                 else
@@ -230,6 +258,9 @@ class MoveDex_Scene
                     pbRefresh
                     break
                 end
+            elsif Input.trigger?(Input::ACTION)
+                pbPlayDecisionSE
+                pbDexSearch
             else
                 for key_index in 1..6 do
                     if Input.pressex?("NUMBER_#{key_index}".to_sym)
@@ -258,12 +289,12 @@ class MoveDex_Scene
         # Prepare to start the search screen
         oldsprites = pbFadeOutAndHide(@sprites)
         @sprites["searchbg"].visible = true
-        @sprites["overlay"].visible = true
-        @sprites["search2cursor"].visible = true
-        overlay = @sprites["overlay"].bitmap
+        @sprites["searchoverlay"].visible = true
+        @sprites["searchCursor"].visible = true
+        overlay = @sprites["searchoverlay"].bitmap
         overlay.clear
         index = 0
-        updateSearch2Cursor(index)
+        updateSearchCursor(index)
         oldindex = index
 
         # Write the button names onto the overlay
@@ -273,27 +304,16 @@ class MoveDex_Scene
         title_shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         xLeft = 92
         xLeft2 = 316
-        page1textpos = [
+        text_pos = [
             [_INTL("Choose a Search"), Graphics.width / 2, -2, 2, title_base, title_shadow],
             [_INTL("Name"), xLeft, 68, 0, base, shadow],
-            [_INTL("Types"), xLeft2, 68, 0, base, shadow],
-            [_INTL("Abilities"), xLeft, 164, 0, base, shadow],
-            [_INTL("Moves"), xLeft2, 164, 0, base, shadow],
-            [_INTL("Evolution"), xLeft, 260, 0, base, shadow],
-            [_INTL("Available"), xLeft2, 260, 0, base, shadow],
-        ]
-        xLeft += 4
-        xLeft2 += 4
-        page2textpos = [
-            [_INTL("Choose a Search"), Graphics.width / 2, -2, 2, title_base, title_shadow],
-            [_INTL("Tribe"), xLeft, 68, 0, base, shadow],
-            [_INTL("Matchups"), xLeft2, 68, 0, base, shadow],
-            [_INTL("Stats"), xLeft, 164, 0, base, shadow],
-            [_INTL("Stat Sort"), xLeft2, 164, 0, base, shadow],
+            [_INTL("Type"), xLeft2, 68, 0, base, shadow],
+            [_INTL("Category"), xLeft, 164, 0, base, shadow],
+            [_INTL("Text"), xLeft2, 164, 0, base, shadow],
             [_INTL("Filters"), xLeft, 260, 0, base, shadow],
             [_INTL("Sorts"), xLeft2, 260, 0, base, shadow],
         ]
-        pbDrawTextPositions(overlay, page1textpos)
+        pbDrawTextPositions(overlay, text_pos)
 
         # Begin the search screen
         pbFadeInAndShow(@sprites)
@@ -301,24 +321,7 @@ class MoveDex_Scene
         loop do
             if index != oldIndex
                 pbPlayCursorSE
-
-                if oldIndex < 6 && index >= 6
-                    pbFadeOutAndHide(@sprites)
-                    overlay.clear
-                    pbDrawTextPositions(overlay, page2textpos)
-                    @sprites["searchbg2"].visible = true
-                    @sprites["overlay"].visible = true
-                    @sprites["search2cursor"].visible = true
-                elsif oldIndex >= 6 && index < 6
-                    pbFadeOutAndHide(@sprites)
-                    overlay.clear
-                    pbDrawTextPositions(overlay, page1textpos)
-                    @sprites["searchbg"].visible     = true
-                    @sprites["overlay"].visible      = true
-                    @sprites["search2cursor"].visible = true
-                end
-
-                updateSearch2Cursor(index)
+                updateSearchCursor(index)
                 oldIndex = index
             end
 
@@ -327,21 +330,13 @@ class MoveDex_Scene
             pbUpdate
 
             if Input.trigger?(Input::UP)
-                index -= 2 unless [0, 1, 6, 7].include?(index)
+                index -= 2 unless [0, 1].include?(index)
             elsif Input.trigger?(Input::DOWN)
-                index += 2 unless [4, 5, 10, 11].include?(index)
+                index += 2 unless [4, 5].include?(index)
             elsif Input.trigger?(Input::LEFT)
-                if index.odd?
-                    index -= 1
-                elsif [6, 8, 10].include?(index)
-                    index -= 5
-                end
+                index -= 1 if index.odd?
             elsif Input.trigger?(Input::RIGHT)
-                if index.even?
-                    index += 1
-                elsif [1, 3, 5].include?(index)
-                    index += 5
-                end
+                index += 1 if index.even?
             elsif Input.trigger?(Input::BACK)
                 pbPlayCloseMenuSE
                 break
@@ -356,10 +351,8 @@ class MoveDex_Scene
                 end
             end
         end
+        overlay.clear
         pbFadeOutAndHide(@sprites)
-        path = @searchResults ? "Graphics/Pictures/Pokedex/bg_listsearch" : "Graphics/Pictures/Pokedex/bg_list"
-        path += "_dark" if darkMode?
-        @sprites["background"].setBitmap(path)
         pbRefresh
         pbFadeInAndShow(@sprites, oldsprites)
         Input.update
@@ -378,7 +371,7 @@ class MoveDex_Scene
                     pbMessage(_INTL("No matching moves were found."))
                 end
             else
-                @currentMoveList = dexlist
+                @moveList = dexlist
                 @searchResults = true
                 @scroll = 0
                 # path = "Graphics/Pictures/Pokedex/bg_listsearch"
@@ -404,7 +397,7 @@ class MoveDex_Scene
                     pbMessage(_INTL("No matching moves were found."))
                 end
             else
-                @currentMoveList = dexlist
+                @moveList = dexlist
                 @scroll = 0
                 @searchResults = true
                 return true
@@ -418,9 +411,9 @@ class MoveDex_Scene
     def pbCloseSearch
         oldsprites = pbFadeOutAndHide(@sprites)
         @searchResults = false
-        @currentMoveList = generateMoveList
-        for i in 0...@currentMoveList.length
-            next if @currentMoveList[i][:id] != @selected_move
+        @moveList = generateMoveList
+        for i in 0...@moveList.length
+            next if @moveList[i][:move] != @selected_move
             @scroll = i
             pbRefresh
             break
@@ -428,4 +421,8 @@ class MoveDex_Scene
         pbFadeInAndShow(@sprites, oldsprites)
     end
 
+    def updateSearchCursor(index)
+        @sprites["searchCursor"].x = index.even? ? 72 : 296
+        @sprites["searchCursor"].y = 62 + index / 2 * 96
+    end
 end
