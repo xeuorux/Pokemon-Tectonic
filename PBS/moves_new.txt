@@ -3683,7 +3683,7 @@ TotalPP = 15
 Target = NearAlly
 FunctionCode = TargetTakesHalfDamageNextAttackAttackerTakesRecoil
 Flags = CanMirrorMove
-Description = The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.
+Description = The user creates a bubble to shield their ally. The next time they're hit, 50% of the move damage is instead dealt back as recoil.
 Animation = AQUARING
 #-------------------------------
 [BUBBLEBLASTER]

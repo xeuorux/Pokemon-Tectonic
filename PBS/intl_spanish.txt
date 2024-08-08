@@ -39025,7 +39025,7 @@ The target is subjected to a violent and frightening prank. It has a 10% chance 
 El objetivo es sucjeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
 The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.
 El usuario canta con abandono temerario, molestando al objetivo. Tiene un 30% de probabilidad de aturdir al objetivo.
-The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.
+The user creates a bubble to shield their ally. The next time they're hit, 50% of the move damage is instead dealt back as recoil.
 El usuario crea una burbuja para proteger a su aliado. La próxima vez que sean golpeados, 50% del daño es devuelto como daño de retroceso.
 The user launches a fist with extreme force. This attack is popular with children.
 El usuario dispara un puño con fuerza extrema. Este ataque es popular con niños.
