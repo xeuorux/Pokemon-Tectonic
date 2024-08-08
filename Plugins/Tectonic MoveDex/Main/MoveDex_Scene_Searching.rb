@@ -210,32 +210,41 @@ class MoveDex_Scene
     # SORTS
     ##################################################
     def sortByMoveMisc
-    end
-
-    def sortByMoveName
-    end
-
-    def sortByMoveType
-    end
-
-    def sortByMoveCategory
-    end
-
-    def sortByMoveBasePower
-    end
-
-    def sortByMoveAccuracy
-    end
-
-    def sortByMovePriority
-    end
-
-    def sortByMovePP
-    end
-
-    def sortByMoveEarliestAvailability
-    end
-
-    def sortByMoveTotalAvailability
+        miscSorts = []
+        cmdName                     = -1
+        cmdType                     = -1
+        cmdCategory                 = -1
+        cmdBasePower                = -1
+        cmdAccuracy                 = -1
+        cmdPriority                 = -1
+        cmdPP                       = -1
+        miscSorts[cmdName = miscSorts.length]                     = _INTL("Name")
+        miscSorts[cmdType = miscSorts.length]                     = _INTL("Type")
+        miscSorts[cmdCategory = miscSorts.length]                 = _INTL("Category")
+        miscSorts[cmdBasePower = miscSorts.length]                = _INTL("Base Power")
+        miscSorts[cmdAccuracy = miscSorts.length]                 = _INTL("Accuracy")
+        miscSorts[cmdPriority = miscSorts.length]                 = _INTL("Priority")
+        miscSorts[cmdPP = miscSorts.length]                       = _INTL("Power Points")
+        miscSorts.push(_INTL("Cancel"))
+        searchSelection = pbMessage(_INTL("Which sort"), miscSorts, miscSorts.length + 1)
+        @moveList.sort_by! do |dex_item|
+            if cmdName > -1 && searchSelection == cmdName
+                next dex_item[:data].name
+            elsif cmdType > -1 && searchSelection == cmdType
+                next GameData::Type.get(dex_item[:data].type).id_number
+            elsif cmdCategory > -1 && searchSelection == cmdCategory
+                next dex_item[:data].category
+            elsif cmdBasePower > -1 && searchSelection == cmdBasePower
+                next -dex_item[:data].base_damage
+            elsif cmdAccuracy > -1 && searchSelection == cmdAccuracy
+                accuracy = dex_item[:data].accuracy
+                accuracy = 101 if accuracy <= 0
+                next -accuracy
+            elsif cmdPriority > -1 && searchSelection == cmdPriority
+                next -dex_item[:data].priority
+            elsif cmdPP > -1 && searchSelection == cmdPP
+                next -dex_item[:data].pp
+            end
+        end
     end
 end
