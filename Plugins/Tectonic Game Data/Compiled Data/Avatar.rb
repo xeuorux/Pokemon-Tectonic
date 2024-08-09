@@ -259,7 +259,7 @@ module Compiler
 					  :pit_avatar		=> isPit,
 					}
 					avatar_number += 1
-					# Add trainer avatar's data to records
+					# Add avatar's data to records
 					avatar_hash[:id] = [avatar_hash[:species], avatar_hash[:version]]
 					GameData::Avatar.register(avatar_hash)
 				end

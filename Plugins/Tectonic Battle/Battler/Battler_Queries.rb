@@ -558,6 +558,11 @@ class PokeBattle_Battler
         @pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
     end
 
+    def hpBasedEffectResistance
+        return 1.0 unless boss?
+        return 1.0 / (@pokemon.hpMult.to_f || DEFAULT_BOSS_HP_MULT.to_f)
+    end
+
     def evenTurn?
         return @battle.turnCount.even?
     end

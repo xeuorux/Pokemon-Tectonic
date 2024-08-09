@@ -393,7 +393,7 @@ class PokeBattle_Battle
             eachBattler do |b|
                 next unless b.boss?
                 loop do
-                    b.pokemon.species = GameData::Avatar::DATA.keys.sample
+                    b.pokemon.species = GameData::Avatar::DATA.values.sample.id[0]
                     break if GameData::Avatar::DATA.has_key?(b.pokemon.species)
                 end
                 setAvatarProperties(b.pokemon)

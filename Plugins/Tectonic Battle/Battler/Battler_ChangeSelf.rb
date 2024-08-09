@@ -80,7 +80,7 @@ class PokeBattle_Battler
 
     def getFractionalDamageAmount(fraction,basedOnCurrentHP=false,aggravate: false,struggle: false)
         return 0 unless takesIndirectDamage?
-        fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
+        fraction *= hpBasedEffectResistance if boss?
         fraction *= 1.5 if aggravate
         if basedOnCurrentHP
             damageAmount = @hp * fraction
@@ -262,7 +262,7 @@ class PokeBattle_Battler
     def getFractionalHealingAmount(fraction, canOverheal = false)
         return 0 unless canHeal?(canOverheal)
         healAmount = @totalhp * fraction
-        healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
+        healAmount *= hpBasedEffectResistance if boss?
         return healAmount
     end
 
@@ -634,7 +634,7 @@ class PokeBattle_Battler
 
     def getSubLife
         subLife = @totalhp / 4.0
-        subLife /= BOSS_HP_BASED_EFFECT_RESISTANCE
+        subLife *= hpBasedEffectResistance
         subLife = 1 if subLife < 1
         return subLife.floor
     end

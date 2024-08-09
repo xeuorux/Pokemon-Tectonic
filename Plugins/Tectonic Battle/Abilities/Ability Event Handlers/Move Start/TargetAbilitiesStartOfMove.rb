@@ -6,7 +6,7 @@ BattleHandlers::TargetAbilityStartOfMove.add(:NEEDLEFUR,
         battle.scene.pbDamageAnimation(user)
         upgradedNeedleFur = target.hp < target.totalhp / 2
         reduction = user.totalhp / 10
-        reduction /= BOSS_HP_BASED_EFFECT_RESISTANCE if user.boss?
+        reduction *= user.hpBasedEffectResistance if user.boss?
         reduction *= 2 if upgradedNeedleFur
         oldHP = user.hp
         user.pbReduceHP(reduction, false)
