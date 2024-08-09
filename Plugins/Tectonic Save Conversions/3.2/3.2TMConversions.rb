@@ -56,7 +56,6 @@ TM_CONVERSION_HASH = {
     :TM85 => :TMFINALGAMBIT,
     :TM46 => :TMWEATHERBURST,
     :TM01 => :TMCOVET,
-    :TM00 => :TMRANSACK,
     :TM119 => :TMTRIATTACK,
     :TM03 => :TMCHAOSWHEEL,
     :TM24 => :TMSNORE,
@@ -128,6 +127,7 @@ TM_CUT_LIST = [
     :TM40,
     :TM135,
     :TM84,
+    :TM00,
 ]
 
 SaveData.register_conversion(:misc_fixes_v2) do
