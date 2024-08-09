@@ -3617,7 +3617,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AlliesActNext
 Flags = CanProtect,CanMirrorMove
-Description = A distinguished attack that motivates nearby allies to follow, letting them act immediately after
+Description = A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
 #-------------------------------
 #		WATER MOVES
 #-------------------------------
