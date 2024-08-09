@@ -15,7 +15,7 @@ end
     name = pokemon.name
     name = "#{name} (#{pokemon.species_data.name})" if pokemon.nicknamed?
     if pokemon.species == :SMEARGLE
-        if moveData.cut?
+        if moveData.cut
             pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has move #{moveData.name} in its move list. That move has been cut from the game or is not legal to learn. Removing now.")) if location && !skipLegalityMessages?
             return false
         end
