@@ -25855,7 +25855,7 @@ Weight = 350.2
 Color = Gray
 Shape = Head
 Kind = Frozen Face
-Pokedex = Its grisly appearance freezes others in their place almost as effectively as the blizzards it breathes.
+Pokedex = It only closes its mouth to bite its foes, forcing its trainers to learn to interpret its emotions via its changes in eye shape, ear direction, and body temperature.
 #-------------------------------
 [2000]
 Name = A. Rattata
