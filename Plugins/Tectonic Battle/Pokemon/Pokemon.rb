@@ -1074,7 +1074,11 @@ class Pokemon
 
     # @param value [String] the nickname of this Pokémon
     def name=(value)
-        value = nil if !value || value.empty? || value == speciesName
+        if !value || value.empty? || value == speciesName
+            value = nil
+        else
+            value.gsub!("\%","")
+        end
         @name = value
     end
 
