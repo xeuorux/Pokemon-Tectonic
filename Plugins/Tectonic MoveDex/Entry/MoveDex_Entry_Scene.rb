@@ -1,7 +1,7 @@
 class MoveDex_Entry_Scene
     MAX_LENGTH_SPECIES_LIST = 10
 	SPECIES_LIST_Y_INIT = 52
-    SPECIES_LIST_COLUMN_1_X_LEFT = 24
+    SPECIES_LIST_COLUMN_1_X_LEFT = 20
     SPECIES_LIST_COLUMN_X_OFFSET = 260
 
     def pageTitles
@@ -92,8 +92,8 @@ class MoveDex_Entry_Scene
 
     def drawPage
         overlay = @sprites["overlay"].bitmap
-        base   = MessageConfig.pbDefaultTextMainColor
-        shadow = MessageConfig.pbDefaultTextShadowColor
+        base = Color.new(219, 240, 240)
+        shadow = Color.new(88, 88, 80)
 
         overlay.clear
 
@@ -124,32 +124,35 @@ class MoveDex_Entry_Scene
 		# render the moves lists
         @selected_species = nil
         if @currentSpeciesList[0].empty?
-            drawSpeciesColumn(overlay,[_INTL("None")], 0)
+            drawSpeciesColumn(overlay,[_INTL("None")], [], 0)
 		else
             [0,1].each do |columnIndex|
                 speciesColumn = @currentSpeciesList[columnIndex]
                 next if speciesColumn.empty?
                 speciesLabelList = []
+                levelLabelList = []
                 listIndex = -1
                 speciesColumn.each do |learnableEntry|
+
                     speciesID = learnableEntry[0]
+                    speciesLabelList.push(GameData::Species.get(speciesID).name)
+
                     level = learnableEntry[1]
-                    level = _INTL("E") if level == 0
-                    speciesLabel = _INTL("{1} ({2})",GameData::Species.get(speciesID).name,level)
-                    speciesLabelList.push(speciesLabel)
+                    level = level == 0 ? _INTL("E") : level.to_s
+                    levelLabelList.push(level)
 
                     listIndex += 1
                     if listIndex == @scroll && columnIndex == @columnSelected
                         @selected_species = speciesID
                     end
                 end
-                drawSpeciesColumn(overlay,speciesLabelList, columnIndex)
+                drawSpeciesColumn(overlay,speciesLabelList,levelLabelList,columnIndex)
             end
 		end
     end
 
     def drawOtherLearnablesPage
-        bg_path = "Graphics/Pictures/Movedex/bg_move_level_learners"
+        bg_path = "Graphics/Pictures/Movedex/bg_move_all_learners"
         bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
 
@@ -160,7 +163,7 @@ class MoveDex_Entry_Scene
 		# render the moves lists
         @selected_species = nil
         if @currentSpeciesList[0].empty?
-            drawSpeciesColumn(overlay,[_INTL("None")], 0)
+            drawSpeciesColumn(overlay,[_INTL("None")], [], 0)
 		else
             [0,1].each do |columnIndex|
                 speciesColumn = @currentSpeciesList[columnIndex]
@@ -175,22 +178,27 @@ class MoveDex_Entry_Scene
                         @selected_species = speciesID
                     end
                 end
-                drawSpeciesColumn(overlay,speciesLabelList, columnIndex)
+                drawSpeciesColumn(overlay,speciesLabelList, [], columnIndex)
             end
 		end
     end
 
-    def drawSpeciesColumn(overlay,speciesLabelList, columnIndex)
+    def drawSpeciesColumn(overlay,speciesLabelList,levelLabelsList,columnIndex)
         base   = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
 
         displayIndex = 0
 		listIndex = -1
-        speciesLabelList.each do |speciesLabel|
+        speciesLabelList.each_with_index do |speciesLabel, index|
             listIndex += 1
             next if listIndex < @scroll
             speciesDrawX, speciesDrawY = getSpeciesDisplayCoordinates(displayIndex,columnIndex)
             drawFormattedTextEx(overlay, speciesDrawX , speciesDrawY, 450, speciesLabel, base, shadow)
+            if levelLabelsList[index]
+                levelDrawX = 212 + (columnIndex * 260)
+                levelLabel = levelLabelsList[index]
+                drawFormattedTextEx(overlay, levelDrawX, speciesDrawY, 42, levelLabel, base, shadow)
+            end
             displayIndex += 1
             break if displayIndex > MAX_LENGTH_SPECIES_LIST
         end

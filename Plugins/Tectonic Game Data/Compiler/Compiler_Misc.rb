@@ -29,7 +29,11 @@ module Compiler
             speciesData.moves.each do |learnset_entry|
                 move_id = learnset_entry[1]
                 level_learned = learnset_entry[0]
-                levelUpLearnersPerMove[move_id].push([speciesData.id,level_learned])
+                levelUpLearnerEntry = [speciesData.id,level_learned]
+                levelUpLearnersPerMove[move_id].push(levelUpLearnerEntry) unless levelUpLearnersPerMove[move_id].any? { |existingLearnerEntry|
+                    existingLearnerEntry[0] == speciesData.id
+                }
+                
             end
 
             speciesData.learnable_moves.each do |moveID|

@@ -41,10 +41,9 @@ class MoveDex_Scene
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(move_path))
         @sprites = {}
 
+        @searchResults = false
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
-        bg_path = "Graphics/Pictures/Movedex/bg_moves_main"
-        bg_path += "_dark" if darkMode?
-        @sprites["background"].setBitmap(_INTL(bg_path))
+        setBackground
 
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -76,11 +75,22 @@ class MoveDex_Scene
 
         @moveList = generateMoveList
 
-        @searchResults = false
-
         pbRefresh
 
         navigateMoveDex
+    end
+    
+    def searchResults=(value)
+        @searchResults = value
+        setBackground
+    end
+
+    def setBackground
+        bg_path = "Graphics/Pictures/Movedex/bg_moves_main"
+        bg_path += "_search" if @searchResults
+        bg_path += "_dark" if darkMode?
+        @sprites["background"].setBitmap(_INTL(bg_path))
+        echoln("Background")
     end
 
     def pbRefresh
@@ -372,7 +382,7 @@ class MoveDex_Scene
                 end
             else
                 @moveList = dexlist
-                @searchResults = true
+                self.searchResults = true
                 @scroll = 0
                 # path = "Graphics/Pictures/Pokedex/bg_listsearch"
                 # path += "_dark" if darkMode?
@@ -399,7 +409,7 @@ class MoveDex_Scene
             else
                 @moveList = dexlist
                 @scroll = 0
-                @searchResults = true
+                self.searchResults = true
                 return true
             end
         rescue StandardError
@@ -410,7 +420,7 @@ class MoveDex_Scene
 
     def pbCloseSearch
         oldsprites = pbFadeOutAndHide(@sprites)
-        @searchResults = false
+        self.searchResults = false
         @moveList = generateMoveList
         for i in 0...@moveList.length
             next if @moveList[i][:move] != @selected_move
