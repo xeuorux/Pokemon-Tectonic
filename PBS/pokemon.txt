@@ -680,6 +680,7 @@ Shape = Head
 Kind = Mouse
 Pokedex = This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.
 Generation = 1
+WildItemUncommon = AGILITYHERB
 Evolutions = RAICHU,Item,THUNDERSTONE,ARAICHU,Item,ALOLANWREATH,GIGACHU,Item,DAWNSTONE
 #-------------------------------
 [26]
@@ -706,6 +707,7 @@ Shape = Head
 Kind = Mouse
 Pokedex = If it stores too much electricity, its behavior turns aggressive. To avoid this, it occasionally discharges excess energy and calms itself down.
 Generation = 1
+WildItemUncommon = AGILITYHERB
 #-------------------------------
 [27]
 Name = Sandshrew
@@ -2285,6 +2287,7 @@ Shape = Head
 Kind = Wild Duck
 Pokedex = The stalk this Pokémon carries in its wings serves as a sword to cut down opponents. In a dire situation, the stalk can also serve as food.
 Generation = 1
+WildItemUncommon = LUCKHERB
 #-------------------------------
 [84]
 Name = Doduo
@@ -3542,6 +3545,7 @@ Shape = Head
 Kind = Wild Bull
 Pokedex = When Tauros begins whipping itself with its tails, it's a warning that the Pokémon is about to charge with astounding speed.
 Generation = 1
+WildItemUncommon = STRENGTHHERB
 #-------------------------------
 [129]
 Name = Magikarp
@@ -4751,6 +4755,7 @@ Shape = Head
 Kind = Tiny Mouse
 Pokedex = It is not yet skilled at storing electricity. It may send out a jolt if amused or startled.
 Generation = 2
+WildItemUncommon = AGILITYHERB
 Evolutions = PIKACHU,Level,16
 #-------------------------------
 [173]
@@ -4895,6 +4900,7 @@ Shape = Head
 Kind = Tiny Bird
 Pokedex = It usually forages for food on the ground but may, on rare occasions, hop onto branches to peck at shoots.
 Generation = 2
+WildItemUncommon = INTELLECTHERB
 Evolutions = XATU,Level,27
 #-------------------------------
 [178]
@@ -4922,6 +4928,7 @@ Shape = Head
 Kind = Mystic
 Pokedex = They say that it stays still and quiet because it is seeing both the past and future at the same time.
 Generation = 2
+WildItemUncommon = INTELLECTHERB
 #-------------------------------
 [179]
 Name = Mareep
@@ -5605,6 +5612,7 @@ Shape = Head
 Kind = Long Neck
 Pokedex = Its tail has a small brain of its own. Beware! If you get close, it may react to your scent by biting.
 Generation = 2
+WildItemUncommon = SITRUSBERRY
 Evolutions = FARIGIRAF,Level,34
 #-------------------------------
 [204]
@@ -6693,9 +6701,6 @@ Shape = Head
 Kind = Happiness
 Pokedex = This kindhearted Pokémon nurses sick Pokémon to health. It senses feelings of sadness.
 Generation = 2
-WildItemCommon = LUCKYEGG
-WildItemUncommon = LUCKYEGG
-WildItemRare = LUCKYEGG
 #-------------------------------
 [243]
 Name = Raikou
@@ -7643,6 +7648,7 @@ Shape = Head
 Kind = TinySwallow
 Pokedex = This Pokémon is very gutsy and will fight powerful opponents without backing down. On the other hand, when it is hungry it will weaken and cry loudly.
 Generation = 3
+WildItemUncommon = AGILITYHERB
 Evolutions = SWELLOW,Level,32
 #-------------------------------
 [277]
@@ -7669,6 +7675,7 @@ Shape = Head
 Kind = Swallow
 Pokedex = It dives at a steep angle as soon as it spots its prey. It catches its prey with sharp claws.
 Generation = 3
+WildItemUncommon = AGILITYHERB
 #-------------------------------
 [278]
 Name = Wingull
@@ -15126,6 +15133,7 @@ Shape = Head
 Kind = Cotton Puff
 Pokedex = Perhaps because they feel more at ease in a group, they stick to others they find. They end up looking like a cloud.
 Generation = 5
+WildItemUncommon = WHITEHERB
 Evolutions = WHIMSICOTT,Item,SUNSTONE
 #-------------------------------
 [547]
@@ -15153,6 +15161,7 @@ Shape = Head
 Kind = Windveiled
 Pokedex = Like the wind, it can slip through any gap, no matter how small. It leaves balls of white fluff behind.
 Generation = 5
+WildItemUncommon = WHITEHERB
 #-------------------------------
 [548]
 Name = Petilil
@@ -17297,6 +17306,7 @@ Shape = Head
 Kind = Sharp Blade
 Pokedex = Ignoring their injuries, groups attack by sinking the blades that cover their bodies into their prey.
 Generation = 5
+WildItemUncommon = SKILLHERB
 Evolutions = BISHARP,Level,32
 #-------------------------------
 [625]
@@ -17324,6 +17334,7 @@ Shape = Head
 Kind = Sword Blade
 Pokedex = Bisharp pursues prey in the company of a large group of Pawniard. Then Bisharp finishes off the prey.
 Generation = 5
+WildItemUncommon = SKILLHERB
 Evolutions = KINGAMBIT,Level,47
 #-------------------------------
 [626]
@@ -17438,6 +17449,7 @@ Shape = Head
 Kind = Diapered
 Pokedex = Their wings are too tiny to allow them to fly. They guard their posteriors with bones that were gathered by Mandibuzz.
 Generation = 5
+WildItemUncommon = BLACKHERB
 Evolutions = MANDIBUZZ,Level,31
 #-------------------------------
 [630]
@@ -17465,6 +17477,7 @@ Shape = Head
 Kind = Bone Vulture
 Pokedex = Watching from the sky, they swoop to strike weakened Pokémon on the ground. They decorate themselves with bones.
 Generation = 5
+WildItemUncommon = BLACKHERB
 #-------------------------------
 [631]
 Name = Heatmor
@@ -18283,6 +18296,7 @@ Shape = Head
 Kind = Digging
 Pokedex = It has ears like shovels. Digging holes strengthens its ears so much that they can sever thick roots effortlessly.
 Generation = 6
+WildItemUncommon = STRENGTHHERB
 Evolutions = DIGGERSBY,Level,32
 #-------------------------------
 [660]
@@ -18310,6 +18324,7 @@ Shape = Head
 Kind = Digging
 Pokedex = As powerful as an excavator, its ears can reduce dense bedrock to rubble. When it's finished digging, it lounges lazily.
 Generation = 6
+WildItemUncommon = STRENGTHHERB
 #-------------------------------
 [661]
 Name = Fletchling
@@ -18787,6 +18802,7 @@ Shape = Head
 Kind = Restraint
 Pokedex = It has enough psychic energy to blast everything within 300 feet of itself, but it has no control over its power.
 Generation = 6
+WildItemUncommon = INTELLECTHERB
 Evolutions = MEOWSTIC,Level,31
 #-------------------------------
 [678]
@@ -18814,6 +18830,7 @@ Kind = Constraint
 Pokedex = The eyeball patterns on the interior of its ears emit psychic energy. It keeps the patterns tightly covered because that power is too immense.
 FormName = Male
 Generation = 6
+WildItemUncommon = INTELLECTHERB
 #-------------------------------
 [679]
 Name = Honedge
@@ -19253,6 +19270,7 @@ Shape = Head
 Kind = Generator
 Pokedex = The frills on either side of its head have cells that generate electricity when exposed to sunlight.
 Generation = 6
+WildItemUncommon = ENERGYHERB
 Evolutions = HELIOLISK,Item,SUNSTONE
 #-------------------------------
 [695]
@@ -19280,6 +19298,7 @@ Shape = Head
 Kind = Generator
 Pokedex = It stimulates its muscles with electricity, boosting the strength in its legs and enabling it to run 100 yards in five seconds.
 Generation = 6
+WildItemUncommon = AGILITYHERB
 #-------------------------------
 [696]
 Name = Tyrunt
@@ -24003,6 +24022,7 @@ Shape = Head
 Kind = Wild Duck
 Pokedex = After deflecting attacks with its hard leaf shield, it strikes back with its sharp leek stalk. The leek stalk is both weapon and food.
 Generation = 8
+WildItemUncommon = STRENGTHHERB
 #-------------------------------
 [866]
 Name = Mr. Rime
@@ -26420,6 +26440,7 @@ Shape = Head
 Kind = Wild Duck
 Pokedex = The stalks of leeks are thicker and longer in the Galar region. Farfetch'd that adapted to these stalks took on a unique form.
 Generation = 8
+WildItemUncommon = STRENGTHHERB
 Evolutions = SIRFETCHD,Level,35
 #-------------------------------
 [2020]
@@ -27594,6 +27615,7 @@ Shape = Head
 Kind = Long Neck
 Pokedex = Now that the brain waves from the head and tail are synced up, the psychic power of this Pokémon is 10 times stronger than Girafarig’s.
 Generation = 9
+WildItemUncommon = SITRUSBERRY
 #-------------------------------
 [2063]
 Name = Dudunsparce
@@ -27674,6 +27696,7 @@ Shape = Head
 Kind = Big Blade
 Pokedex = Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 Generation = 9
+WildItemUncommon = SKILLHERB
 #-------------------------------
 [2500]
 Name = M. Zangoose
