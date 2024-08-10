@@ -7,7 +7,7 @@ def stateCurrentTime
     hour   = (realMinutes / 60).to_s
     minute = realMinutes % 60
     if minute < 10
-        minute = "0" + minute
+        minute = "0" + minute.to_s
     else
         minute = minute.to_s
     end

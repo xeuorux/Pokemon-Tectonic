@@ -105,7 +105,7 @@ def playMentorshipTutorial
     tutorialMessages = 
     [
         _INTL("Catching and raising lots of Pokémon is useful for Mentoring."),
-        _INTL("Mentoring let's you copy moves between your Pokémon!"),
+        _INTL("Mentoring lets you copy moves between your Pokémon!"),
         _INTL("Just talk to the Mentor Coordinator in any PokéCenter."),
     ]
     playTutorial(tutorialMessages)

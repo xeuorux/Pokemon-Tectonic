@@ -27995,7 +27995,6 @@ Shape = Insectoid
 Habitat = Forest
 Kind = Hot Cold Worm
 Pokedex = Its horns efficiently regulate its body temperature. It seeks out Fire- and Ice-type predators to charge itself with energy for evolution.
-Generation = 3
 WildItemCommon = LUMBERRY
 Evolutions = MSILCOON,Ability0,18,MCASCOON,Ability1,18
 #-------------------------------
@@ -28024,7 +28023,6 @@ Shape = Head
 Habitat = Forest
 Kind = Cold Cocoon
 Pokedex = Its silk makes it blend in with snowy rocks. If attacked, its only recourse is to make itself unappetizing by chilling its own body.
-Generation = 3
 Evolutions = MBEAUTIFLY,Level,26
 #-------------------------------
 [2512]
@@ -28054,7 +28052,6 @@ Shape = MultiWinged
 Habitat = Forest
 Kind = Frost Gossamer
 Pokedex = It is less hostile than the Hoennian form, but vicious towards former predators. Its mouthparts inject a fluid similar to liquid nitrogen.
-Generation = 3
 WildItemUncommon = ASPEARBERRY
 #-------------------------------
 [2513]
@@ -28082,7 +28079,6 @@ Shape = Head
 Habitat = Forest
 Kind = Candle Cocoon
 Pokedex = Its flame is kept burning by an organ similar to a Bunsen burner. Curious Pokémon often try to put it out, to no avail.
-Generation = 3
 Evolutions = MDUSTOX,Level,26
 #-------------------------------
 [2514]
@@ -28112,7 +28108,6 @@ Shape = MultiWinged
 Habitat = Forest
 Kind = Rocket Moth
 Pokedex = Its abdomen is actually a sophisticated torch drive. Their migrations can be tracked by following broken trees left by supersonic flybys.
-Generation = 3
 WildItemUncommon = RAWSTBERRY
 #-------------------------------
 [2515]

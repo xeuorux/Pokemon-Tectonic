@@ -194,10 +194,10 @@ class PokemonPokedex_Scene
         dexlist = pbGetDexList
         # Sort species in ascending order by Regional Dex number
         dexlist.sort! do |a, b|
-            valA = a[4]
-            valB = b[4]
-            valA -= 5000 if $PokemonGlobal.speciesStarred?(a[0])
-            valB -= 5000 if $PokemonGlobal.speciesStarred?(b[0])
+            valA = a[:data].id_number
+            valB = b[:data].id_number
+            valA -= 999_999 if $PokemonGlobal.speciesStarred?(a[:species])
+            valB -= 999_999 if $PokemonGlobal.speciesStarred?(b[:species])
             next valA <=> valB
         end
         @dexlist = dexlist

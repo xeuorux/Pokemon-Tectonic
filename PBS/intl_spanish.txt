@@ -51505,7 +51505,7 @@ Just press the Evolve button in your party screen.
 Sólo presiona el botón de Evolucionar en tu equipo.
 Catching and raising lots of Pokémon is useful for Mentoring.
 Atrapar y criar muchos Pokémon es útil por la mentoría.
-Mentoring let's you copy moves between your Pokémon!
+Mentoring lets you copy moves between your Pokémon!
 La mentoría te permite copiar movimientos entre tus Pokémon!
 Just talk to the Mentor Coordinator in any PokéCenter.
 Simplemente habla con la Coordinadora Mentora en cualquier PokéCenter.
