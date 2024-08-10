@@ -438,14 +438,6 @@ Yes
 No
 No
 [Map203]
-Hey hey, you here to adopt some Eevees?
-Hey hey, you here to adopt some Eevees?
-You already saw: They're good battlers!
-You already saw: They're good battlers!
-I'm glad you came!
-I'm glad you came!
-Aren't Eevee's just the best?!
-Aren't Eevee's just the best?!
 Nah.
 Nah.
 [Map204]
@@ -460,23 +452,9 @@ No
 [Map209]
 [Map210]
 [Map211]
-I tried to escape through the tunnel here, but I forgot that it's blocked up by that stupid Virizion.
-I tried to escape through the tunnel here, but I forgot that it's blocked up by that stupid Virizion.
-Yo, homeboss, you're pretty good at battling.
-Yo, homeboss, you're pretty good at battling.
-Not as good as Scilla, but she's the best.
-Not as good as Scilla, but she's the best.
-That sounds like an exciting experience.
-That sounds like an exciting experience.
-Not as good as Chara, but she's the best.
-Not as good as Chara, but she's the best.
 [Map212]
-An item was left on the ground!
-An item was left on the ground!
 Hey.
 Hey.
-Regi this, Regi that. How about some of these folk Regidrago touch some grass?
-Regi this, Regi that. How about some of these folk Regidrago touch some grass?
 No.
 No.
 ...
@@ -489,88 +467,28 @@ No.
 ...
 *sigh*
 *sigh*
-At first I thought she'd use her dragons to help her down, but apparently that's too awkward.
-At first I thought she'd use her dragons to help her down, but apparently that's too awkward.
-"Until further notice, this base is now part owned by the scholars of Novo College."
-"Until further notice, this base is now part owned by the scholars of Novo College."
-They're good, but be warned - her Volcarona and Flygon can both use Fire-type moves to hurt 'em.
-They're good, but be warned - her Volcarona and Flygon can both use Fire-type moves to hurt 'em.
 Nah.
 Nah.
 [Map215]
 [Map216]
-Hey! It's uh... the guy you saw near the Regice Chamber.
-Hey! It's uh... the guy you saw near the Regice Chamber.
-I think I got a decent understanding of what's happened to me.
-I think I got a decent understanding of what's happened to me.
-Whatever I was, it kept me separated from the world for a while. A lot has changed.
-Whatever I was, it kept me separated from the world for a while. A lot has changed.
-Team Chasm is done. People have moved on, though not totally.
-Team Chasm is done. People have moved on, though not totally. 
-Rangers got me set up good. I have a lot of old friends that thought I was dead. They were more than happy to help me when I showed up.
-Rangers got me set up good. I have a lot of old friends that thought I was dead. They were more than happy to help me when I showed up.
-In a way, Hoopa really did help me. Got to skip out on some of the rough parts of Team Chasm breaking up, and I'm taken care of.
-In a way, Hoopa really did help me. Got to skip out on some of the rough parts of Team Chasm breaking up, and I'm taken care of.
-I'm... ok. In a weird way. But that's life for ya, huh? It's all weird, and then it isn't. And you're ok.
-I'm... ok. In a weird way. But that's life for ya, huh?  It's all weird, and then it isn't. And you're ok.
-That's life. Weird, but you're ok.
-That's life. Weird, but you're ok.
-That's a nice feeling, you know?
-That's a nice feeling, you know?
 Well golly me we got a cheater! Looks like they did a little bit of hackerooni.
 Well golly me we got a cheater! Looks like they did a little bit of hackerooni.
 ...
 ...
 [Map217]
-G’afternoon. Took your sweet time showing your face ‘round these parts, didn’t ya?
-G’afternoon. Took your sweet time showing your face ‘round these parts, didn’t ya?
-Listen, I ain’t ‘bout to preach to ya. Just want to make some things clear ‘fore we fight.
-Listen, I ain’t ‘bout to preach to ya. Just want to make some things clear ‘fore we fight.
-‘Cause we’re gonna fight. Ain’t no other way to it.
-‘Cause we’re gonna fight. Ain’t no other way to it.
-What’s so damn infuriating ‘bout you is I ain’t just able to whip your sorry hide into submission. Too good.
-What’s so damn infuriating ‘bout you is I ain’t just able to whip your sorry hide into submission. Too good. 
-How ‘bout I try anyhow? Titan’s gotta be good for somethin’, right?
-How ‘bout I try anyhow? Titan’s gotta be good for somethin’, right?
-Good. I ain’t ‘bout ta repeat myself.
-Good. I ain’t ‘bout ta repeat myself.
-Sorry, kid. You’re a mite too fast. Gotta slow you down. Regirock, lead us off, will ya darlin’?
-Sorry, kid. You’re a mite too fast. Gotta slow you down. Regirock, lead us off, will ya darlin’?
-But, cheer up, kid. I’m ‘bout to give ya what you always want: a good fight. Facing a Regi oughta cheer ya up. Heh.
-But, cheer up, kid. I’m ‘bout to give ya what you always want: a good fight. Facing a Regi oughta cheer ya up. Heh.
-Too rough ‘nd tumble. I ain’t built for cloak-and-dagger.
-Too rough ‘nd tumble. I ain’t built for cloak-and-dagger.
 Oh. Hey.
 Oh. Hey.
 No.
 No.
 [Map218]
-I was once considered a beauty, but the way of the water needed a disciple.
-I was once considered a beauty, but the way of the water needed a disciple. 
-I should dry off.
-I should dry off.
-Legends say if I stay here for fourty day and nights, my inner qi will strengthen tenfold.
-Legends say if I stay here for fourty day and nights, my inner qi will strengthen tenfold.
-The way of the water is full of solice. Splash.
-The way of the water is full of solice. Splash.
 [Map219]
 [Map220]
-That would be perfect for my next project, so I'm gonna keep searching for it.
-That would be perfect for my next project, so I'm gonna keep searching for it.
 [Map221]
 [Map222]
 [Map223]
-You a troublemaker, huh? Like me?
-You a troublemaker, huh? Like me?
 ...
 ...
 [Map224]
-Well hey! I saw you on the Volcanic Shore!
-Well hey! I saw you on the Volcanic Shore!
-Got that recipe from one o' the Trainers that come 'round here to train.
-Got that recipe from one o' the Trainers that come 'round here to train.
-'Bout as many of them around as Makyan natives nowadays. Not like it's a bad thing though.
-'Bout as many of them around as Makyan natives nowadays. Not like it's a bad thing though.
 [Map225]
 [Map226]
 No.
@@ -589,18 +507,10 @@ No
 No.
 No.
 [Map232]
-My last project dealt with Pokemon that live in the ocean, so I can offer you this Goldeen in return.
-My last project dealt with Pokemon that live in the ocean, so I can offer you this Goldeen in return.
 No
 No
 [Map233]
 [Map234]
-I could trade you a Kecleon for it.
-I could trade you a Kecleon for it. 
-Check out my new uniform! I think I fit it pretty well.
-Check out my new uniform! I think I fit it pretty well.
-I should take a photo! My folks back home woud love to see this.
-I should take a photo! My folks back home woud love to see this.
 No
 No
 [Map235]
@@ -612,14 +522,6 @@ No
 [Map241]
 [Map242]
 [Map243]
-An expensive kitchen set.
-An expensive kitchen set.
-The dishes and silverware are all coordinated to the Team Chasm color scheme.
-The dishes and silverware are all coordinated to the Team Chasm color scheme.
-A chalkboard lists a short menu of food items.
-A chalkboard lists a short menu of food items.
-Kantoan, Unovan, and Galarian culture are all represented, among others.
-Kantoan, Unovan, and Galarian culture are all represented, among others.
 No
 No
 No.
@@ -631,37 +533,9 @@ No.
 [Map248]
 [Map249]
 [Map250]
-I wouldn't touch that, if I were you.
-I wouldn't touch that, if I were you.
-Budgetary plans are sketched out in chalk.
-Budgetary plans are sketched out in chalk.
-$7,000 has been assigned for "Zubat Maintenance."
-$7,000 has been assigned for "Zubat Maintenance."
-Archeology books are strewn over the table.
-Archeology books are strewn over the table.
-The largest is from 10 years ago, a detailed report on the ruins in Three-Point Pass in Galar.
-The largest is from 10 years ago, a detailed report on the ruins in Three-Point Pass in Galar.
-Maybe I'll go digging through the ruins for the third time today...
-Maybe I'll go digging through the ruins for the third time today...
-The microscope is prepared with a slide containing some sort of rocky material.
-The microscope is prepared with a slide containing some sort of rocky material.
-It's labeled "SP-883."
-It's labeled "SP-883."
-The microscope is prepared with a slide with a blindingly bright white powder.
-The microscope is prepared with a slide with a blindingly bright white powder.
 No
 No
 [Map251]
-A huge variety of books line the shelves.
-A huge variety of books line the shelves.
-A colorful tome stands out: "Fairy Tales of the East." It looks heavily worn.
-A colorful tome stands out: "Fairy Tales of the East." It looks heavily worn.
-Samorne is in the other room, if you'd like to discuss matters with her.
-Samorne is in the other room, if you'd like to discuss matters with her.
-...hm? Who am I?
-...hm? Who am I?
-Simply call me the Dragon Hatcher.
-Simply call me the Dragon Hatcher.
 No
 No
 [Map252]
@@ -675,8 +549,6 @@ Candy...
 [Map258]
 Oh.
 Oh.
-Herbert's Herbs
-Herbert's Herbs
 No.
 No.
 [Map259]
@@ -688,45 +560,15 @@ No.
 No
 No
 [Map265]
-If you're interested, meet me at the Lighthouse. I've got something to show you.
-If you're interested, meet me at the Lighthouse. I've got something to show you.
-Photos of a young Chara and Scilla sit atop the dresser.
-Photos of a young Chara and Scilla sit atop the dresser.
 [Map266]
 [Map267]
-An ancient grandfather clock.
-An ancient grandfather clock.
-It's in pristine condition, probably due to careful maintenance.
-It's in pristine condition, probably due to careful maintenance.
 [Map268]
-A TV program about organizing your home is playing.
-A TV program about organizing your home is playing.
-The presenter is giving a demonstration about deciding which knick-knacks to keep, and which to discard.
-The presenter is giving a demonstration about deciding which knick-knacks to keep, and which to discard.
-A page is open on a medical wiki.
-A page is open on a medical wiki.
-"3 Ways to Mitigate Teleportation Sickness."
-"3 Ways to Mitigate Teleportation Sickness."
-A dirty, disorganized fridge.
-A dirty, disorganized fridge.
-The produce storage bins at the bottom are filled mostly with alchohol.
-The produce storage bins at the bottom are filled mostly with alchohol.
 [Map269]
 [Map270]
 [Map271]
-Aged black and white photos of a large family line the top of the dresser.
-Aged black and white photos of a large family line the top of the dresser.
-"The Diakos Family" is written in black pen on the back of one.
-"The Diakos Family" is written in black pen on the back of one.
 [Map272]
 [Map273]
 [Map274]
-A Trash Can. It's filled halfway with burnt paper.
-A Trash Can. It's filled halfway with burnt paper.
-A crime investigation show is playing.
-A crime investigation show is playing.
-A grizzled Unovan policeman is grilling a member of Team Plasma.
-A grizzled Unovan policeman is grilling a member of Team Plasma.
 Ahem.
 Ahem.
 [Map275]
@@ -741,63 +583,19 @@ Dialogue here.
 [Map280]
 [Map281]
 [Map282]
-They got away. They won. A few that were masked, and whoever the hell THAT was. And Yezera…
-They got away. They won. A few that were masked, and whoever the hell THAT was. And Yezera…
-Remember what I said about the big open secret?
-Remember what I said about the big open secret?
 [Map283]
 [Map284]
-The stove is covered with a light dusting of the powdered flavoring that comes with instant ramen.
-The stove is covered with a light dusting of the powdered flavoring that comes with instant ramen.
-A game console. It appears to have been quite a while since it was last used.
-A game console. It appears to have been quite a while since it was last used.
-A cheap LCD TV. The logo of a local news broadcaster has been burned into the top left corner.
-A cheap LCD TV. The logo of a local news broadcaster has been burned into the top left corner.
-An internet browser is open to a website called "Team Fighters."
-An internet browser is open to a website called "Team Fighters."
-The screen is looking at posts on a thread titled "Leaked Team Chasm warehouse photos."
-The screen is looking at posts on a thread titled "Leaked Team Chasm warehouse photos."
-Articles and reports about Velenz cover the walls.
-Articles and reports about Velenz cover the walls.
-Some sections are highlighted in yellow, and black marker has been used to draw lines between them.
-Some sections are highlighted in yellow, and black marker has been used to draw lines between them.
-A heavily worn book lies open on the floor.
-A heavily worn book lies open on the floor.
-"X-Ray Vision: A Look into the Origins of LuxTech"
-"X-Ray Vision: A Look into the Origins of LuxTech"
 [Map285]
-A blackboard covered in examples of simple arithmetic.
-A blackboard covered in examples of simple arithmetic.
-You see a drawing of a Clefable in the bottom right corner, seperated from the rest of the board by a protective quarter circle of chalk.
-You see a drawing of a Clefable in the bottom right corner, seperated from the rest of the board by a protective quarter circle of chalk.
-Childrens finger paintings.
-Childrens finger paintings.
-You notice a drawing of a container ship surrounded by rocks.
-You notice a drawing of a container ship surrounded by rocks.
 [Map286]
 [Map287]
 [Map288]
 [Map289]
-A variety of pre-packaged candy products line the shelf.
-A variety of pre-packaged candy products line the shelf.
-A box of "Super Bounsweets" catches your eye with its bright red and green coloring.
-A box of "Super Bounsweets" catches your eye with its bright red and green coloring.
 No
 No
 [Map290]
-A bookshelf full of history and science books.
-A bookshelf full of history and science books.
-You notice a large tome named "Techniques for Mining Rock Candy" dated 60 years ago.
-You notice a large tome named "Techniques for Mining Rock Candy" dated 60 years ago.
-Don't give coffee.
-Don't give coffee.
-Give coffee.
-Give coffee.
 [Map291]
 [Map292]
 [Map293]
-Our Pokemon couldn't win?!
-Our Pokemon couldn't win?!
 [Map294]
 ...Oh.
 ...Oh.
@@ -810,8 +608,6 @@ No.
 Mavis.
 Mavis.
 [Map295]
-I was lookin' forward to hittin' some slopes. I'm gonna do that now.
-I was lookin' forward to hittin' some slopes. I'm gonna do that now.
 [Map296]
 [Map297]
 [Map298]
@@ -821,29 +617,9 @@ Dialogue here.
 Dialogue here.
 …Hmph.
 …Hmph.
-You'll have to get through me to fight grandma!
-You'll have to get through me to fight grandma!
-You might have beaten me, but grandma's a lot stronger than me.
-You might have beaten me, but grandma's a lot stronger than me.
-You must be pretty strong if you're challenging grandma.
-You must be pretty strong if you're challenging grandma.
 [Map301]
-I heard the Cave of Hatching has a lot of strong trainers.
-I heard the Cave of Hatching has a lot of strong trainers.
-I wonder how you stack up?
-I wonder how you stack up?
-They say recently Wild Pokemon in the Cave of Hatching have been carving the stones into these beautiful egg shapes!
-They say recently Wild Pokemon in the Cave of Hatching have been carving the stones into these beautiful egg shapes!
-I have to see it for myself!
-I have to see it for myself!
-Look at this pretty egg-shaped stone!
-Look at this pretty egg-shaped stone!
-My friend got it from the Cave of Hatching and gave it to me!
-My friend got it from the Cave of Hatching and gave it to me!
 No
 No
-Yes
-Yes
 [Map302]
 Candy...
 Candy...
@@ -853,64 +629,20 @@ Candy...
 No
 No
 [Map306]
-The fridge contains dozens of tupper-ware containers, all marked with dates as well as specific Pokemon species names.
-The fridge contains dozens of tupper-ware containers, all marked with dates as well as specific Pokemon species names.
 [Map307]
 [Map308]
 [Map309]
-For now, I’ve been ordered to remove you. Shall we dance?
-For now, I’ve been ordered to remove you. Shall we dance?
-Fortunately, I’ve been sent to ensure you make it no farther, so I have a convenient vent for all these feelings of rejection.
-Fortunately, I’ve been sent to ensure you make it no farther, so I have a convenient vent for all these feelings of rejection.
-Regice – your service has ended. If you would go, then go.
-Regice – your service has ended. If you would go, then go.
-When and where, fate shall decide, though I think I know where we shall settle this.
-When and where, fate shall decide, though I think I know where we shall settle this.
-Do not pursue me. Your audience with Yezera awaits.
-Do not pursue me. Your audience with Yezera awaits.
-Seems Regice’s 'bout spent.
-Seems Regice’s 'bout spent.
-Didn’t exactly expect them to be so squirrelly, but them’s the breaks.
-Didn’t exactly expect them to be so squirrelly, but them’s the breaks.
-Figure it’s headin’ back to its home.
-Figure it’s headin’ back to its home.
-One last thing, since you seem ‘bout ready to see Yez again: you hurt her and I’ll find you.
-One last thing, since you seem ‘bout ready to see Yez again: you hurt her and I’ll find you.
 No.
 No.
-No, I don’t.
-No, I don’t.
 [Map310]
 [Map311]
 [Map312]
-You find a PokeBall in the trash can!
-You find a PokeBall in the trash can!
-An empty trash can.
-An empty trash can.
 [Map313]
 [Map314]
 [Map315]
 No.
 No.
 [Map316]
-I'm always ready to go boss, you think you can show up?
-I'm always ready to go boss, you think you can show up?
-Zarude stares at you with its arms crossed. After giving you a quick sniff, it locks eyes.
-Zarude stares at you with its arms crossed. After giving you a quick sniff, it locks eyes.
-A large wooden lock holds the door shut.
-A large wooden lock holds the door shut.
-You insert the Ruined Tower Key.
-You insert the Ruined Tower Key.
-With some effort, you slowly turn the key.
-With some effort, you slowly turn the key.
-The lock falls to the ground with a dull thud.
-The lock falls to the ground with a dull thud.
-To whomever it may concern:
-To whomever it may concern:
-This, is my island. And mine alone. I have stolen every object here fair and square.
-This, is my island. And mine alone. I have stolen every object here fair and square.
-You are free to look, but not to touch. Enjoy your stay.
-You are free to look, but not to touch. Enjoy your stay.
 No.
 No.
 [Map317]
@@ -922,27 +654,13 @@ Mavis...
 [Map319]
 [Map320]
 [Map321]
-Oh, hey, I saw you at The Shelf. Glad to see you again, heh.
-Oh, hey, I saw you at The Shelf. Glad to see you again, heh.
-Once I'm off camera I use my mic to scream my lungs out.
-Once I'm off camera I use my mic to scream my lungs out. 
-Death Metal really soothes the soul...
-Death Metal really soothes the soul...
 No
 No
 [Map322]
 [Map323]
-You can see stacks of clothes and other household neccessities through the glass.
-You can see stacks of clothes and other household neccessities through the glass.
-Best not to peer too closely.
-Best not to peer too closely.
 No
 No
 [Map324]
-Fans are being interviewed about if they are rooting for you or your brother.
-Fans are being interviewed about if they are rooting for you or your brother.
-A training regimen at the Iron Dojo in Prizca East is prominently displayed.
-A training regimen at the Iron Dojo in Prizca East is prominently displayed.
 [Map325]
 Feebas.
 Feebas.
@@ -958,26 +676,6 @@ Magikarp.
 [Map327]
 [Map328]
 [Map329]
-I wonder what drink I should get...
-I wonder what drink I should get...
-A battle is best enjoyed with a can in hand.
-A battle is best enjoyed with a can in hand.
-Oh... the tournament's already over?
-Oh... the tournament's already over?
-I took too long to decide what I wanted to drink...
-I took too long to decide what I wanted to drink...
-I spent all night watching replays of last year's tournament to get pumped for this year.
-I spent all night watching replays of last year's tournament to get pumped for this year.
-I got front row seats this time. A year's worth of allowance well spent.
-I got front row seats this time. A year's worth of allowance well spent.
-Yo! You were so sick out there!
-Yo! You were so sick out there!
-I uploaded a clip from your last battle! It's already got 50,000 views!
-I uploaded a clip from your last battle! It's already got 50,000 views! 
-The whole internet is gonna blow up from this!
-The whole internet is gonna blow up from this!
-Please continue straight and you'll find the player area eventually.
-Please continue straight and you'll find the player area eventually.
 [Map330]
 [Map331]
 [Map332]
@@ -991,8 +689,6 @@ Dialogue here.
 [Map338]
 [Map339]
 [Map340]
-But you’re pickin’ a fight with Yez, so I’m gonna leave you with some bruises. You 'bout ready? Put ‘em up, kid.
-But you’re pickin’ a fight with Yez, so I’m gonna leave you with some bruises. You 'bout ready? Put ‘em up, kid.
 No.
 No.
 [Map341]
@@ -1006,17 +702,9 @@ No.
 No.
 [Map344]
 [Map345]
-Alright, just sign here... and, it's legally yours to use.
-Alright, just sign here... and, it's legally yours to use.
 [Map346]
-Just talking about it has got me in a giving mood. Here, take this.
-Just talking about it has got me in a giving mood. Here, take this.
 [Map347]
 [Map348]
-Months old lecture notes.
-Months old lecture notes.
-They've been half erased, and are too blurry to read.
-They've been half erased, and are too blurry to read.
 [Map349]
 [Map350]
 [Map351]
@@ -1032,24 +720,8 @@ No.
 [Map357]
 Hey...
 Hey...
-Could I interest you in a Shiny Charm?
-Could I interest you in a Shiny Charm?
-Its an item that makes shiny Pokemon more likely to appear to you.
-Its an item that makes shiny Pokemon more likely to appear to you.
-I'll part with it for 200 Battle Points.
-I'll part with it for 200 Battle Points.
-Just don't ask where I got the charm or what I'm gonna do with the Battle Points.
-Just don't ask where I got the charm or what I'm gonna do with the Battle Points.
-I'm glad we could come to an understanding.
-I'm glad we could come to an understanding.
 Adiue, \PN.
 Adiue, \PN.
-Shame. Well, the offer stands.
-Shame. Well, the offer stands.
-Which... it looks like you don't have.
-Which... it looks like you don't have.
-Well, the offer stands.
-Well, the offer stands.
 [Map358]
 No
 No
@@ -1089,12 +761,6 @@ No.
 [Map376]
 [Map377]
 [Map378]
-Sing sing sing with me! I will be found one day, but for now I'll pass the time!
-Sing sing sing with me! I will be found one day, but for now I'll pass the time!
-Ah, I feel myself going somewhere!
-Ah, I feel myself going somewhere!
-I wonder where I'll come together, in this world or the next! Toodles!
-I wonder where I'll come together, in this world or the next! Toodles!
 [Map379]
 [Map380]
 [Map381]
@@ -1111,13 +777,7 @@ No
 [Map388]
 [Map389]
 [Map390]
-Everybody, herself included, calls her a witch.
-Everybody, herself included, calls her a witch.
-Novo College is the centerpiece of the culture of Novo Town.
-Novo College is the centerpiece of the culture of Novo Town.
 [Map391]
-Pansage, Pansear, and Panpour - together they're tearing up the main path.
-Pansage, Pansear, and Panpour - together they're tearing up the main path.
 [Map392]
 Like, how many bibs can a Bibarel bear if a Bibarel could bear bibs?
 Like, how many bibs can a Bibarel bear if a Bibarel could bear bibs?
@@ -1127,26 +787,10 @@ Do you think that a Bibarel could bear a bunch of bibs if Bibarels beared bibs?
 Do you think that a Bibarel could bear a bunch of bibs if Bibarels beared bibs?
 No
 No
-Yes
-Yes
 [Map393]
-I'm out recruiting trainers to participate in LuxTech's battle labs.
-I'm out recruiting trainers to participate in LuxTech's battle labs.
-Here's a sample of LuxTech's products! Hopefully you'll come check out the battle labs.
-Here's a sample of LuxTech's products! Hopefully you'll come check out the battle labs.
-If you want to join a study, visit the 2nd floor of the main building.
-If you want to join a study, visit the 2nd floor of the main building.
 [Map394]
-Orbeetle specializes in dizzying the opponent's Pokemon.
-Orbeetle specializes in dizzying the opponent's Pokemon.
-Turning off your opponent's Abilities can be a very powerful strategy.
-Turning off your opponent's Abilities can be a very powerful strategy.
-LuxTech has been so successful for the region that new housing is being developed.
-LuxTech has been so successful for the region that new housing is being developed.
 [Map395]
 [Map396]
-If you're looking to explore more of southern Makya I recommend you go visit Svait.
-If you're looking to explore more of southern Makya I recommend you go visit Svait.
 [Map397]
 [Map398]
 [Map399]
@@ -1161,22 +805,14 @@ If you're looking to explore more of southern Makya I recommend you go visit Sva
 [Map406]
 [Map407]
 [Map408]
-And that person is behind whatever just caused that tremor.
-And that person is behind whatever just caused that tremor.
 [Map409]
 [Map410]
 [Map411]
 [Map412]
-With a minor effort, you retrieve the Poke Ball from inside of the Meltan.
-With a minor effort, you retrieve the Poke Ball from inside of the Meltan.
-It spins its head in excitement, then enters the Poke Ball.
-It spins its head in excitement, then enters the Poke Ball.
 No.
 No.
 [Map413]
 [Map414]
-Cresselia gives you a curt know before entering its ball.
-Cresselia gives you a curt know before entering its ball.
 ...
 ...
 No.
@@ -1189,8 +825,6 @@ No.
 [Map420]
 [Map421]
 [Map422]
-Rolls with a bunch of Normal and Fairy types. Has a Gardevoir in his back pocket as well for some nasty reverse sweeps.
-Rolls with a bunch of Normal and Fairy types. Has a Gardevoir in his back pocket as well for some nasty reverse sweeps.
 [Map423]
 [Map424]
 [Map425]
@@ -1267,60 +901,25 @@ No
 Dialogue here.
 Dialogue here.
 [Map428]
-Wow! It's a Volcanion, trapped inside a large boulder!
-Wow! It's a Volcanion, trapped inside a large boulder!
 [Map429]
-Multiple copies of the same sign, all advertising an insurance package deal that will be available in the future.
-Multiple copies of the same sign, all advertising an insurance package deal that will be available in the future.
 [Map430]
 Dialogue here.
 Dialogue here.
 [Map431]
 [Map432]
 [Map433]
-Cabin Room 2
-Cabin Room 2
-Cabin Room 3
-Cabin Room 3
-Cabin Room 4
-Cabin Room 4
-Cabin Room 1
-Cabin Room 1
 [Map434]
 [Map435]
-Cabin Room 2
-Cabin Room 2
-Cabin Room 3
-Cabin Room 3
-Cabin Room 4
-Cabin Room 4
-Cabin Room 1
-Cabin Room 1
 [Map436]
 [Map437]
 Dialogue here.
 Dialogue here.
-Up Ahead: Product Showroom
-Up Ahead: Product Showroom
 [Map438]
 [Map439]
 [Map440]
 [Map441]
 [Map442]
-There seems to be rocks in here. Does he feed this to his Pokemon?
-There seems to be rocks in here. Does he feed this to his Pokemon?
-Bence almost has a week of prepared meals in the fridge.
-Bence almost has a week of prepared meals in the fridge.
-One day is missing. An empty wrapper seems to have had a "Z" scribbled onto it.
-One day is missing. An empty wrapper seems to have had a "Z" scribbled onto it.
-Pieces of hair are at the edges of the sink. This must be where Bence trims that beard of his.
-Pieces of hair are at the edges of the sink. This must be where Bence trims that beard of his.
-It's an old picture book.
-It's an old picture book.
-You see a few photos of Bence with a Hoppip and Alolan Geodude.
-You see a few photos of Bence with a Hoppip and Alolan Geodude.
-It seems like they lost a lot of Pokemon battles back then...
-It seems like they lost a lot of Pokemon battles back then...
+[Map443]
 [1]
 1
 Bulbasaur
@@ -4970,8 +4569,8 @@ Mellow
 Mellow
 [3]
 934
-Its grisly appearance freezes others in their place almost as effectively as the blizzards it breathes.
-Its grisly appearance freezes others in their place almost as effectively as the blizzards it breathes.
+It only closes its mouth to bite its foes, forcing its trainers to learn to interpret its emotions via its changes in eye shape, ear direction, and body temperature.
+It only closes its mouth to bite its foes, forcing its trainers to learn to interpret its emotions via its changes in eye shape, ear direction, and body temperature.
 2065
 Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
@@ -5624,6 +5223,8 @@ Protects the user from damage this turn. It also lowers the Sp. Atk of special a
 Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.
 Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
 Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
+A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
+A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
 The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.
 The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.
 The user applies anesthetic substances, numbing the target.
@@ -13911,6 +13512,9 @@ Knowledge Elder's Home
 442
 Bence's House
 Bence's House
+443
+Team Chasm Archive
+Team Chasm Archive
 [22]
 How are your Pokémon doing?\mMy \TP's really energetic. It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
 How are your Pokémon doing?\mMy \TP's really energetic.  It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
@@ -19814,6 +19418,8 @@ Can't set #{pokemon.name} down, the spot in front of you is blocked.
 \wm\ssYou were <imp>ambushed</imp>! The foe gets a free turn!
 Error
 Error
+Mentoring let's you copy moves between your Pokémon!
+Mentoring let's you copy moves between your Pokémon!
 {1}: {2}%
 {1}: {2}%<<n>>
 Your foe was <imp>ambushed</imp>! You get a free turn!
@@ -20160,6 +19766,44 @@ MoveDex
 MoveDex
 {1} was slammed into the ground!
 {1} was slammed into the ground!
+Compiling battle metadata
+Compiling battle metadata
+LEVEL LEARNERS
+LEVEL LEARNERS
+OTHER LEARNERS
+OTHER LEARNERS
+Text
+Text
+Attempted to do a combined search, but no matching moves were found.
+Attempted to do a combined search, but no matching moves were found.
+No matching moves were found.
+No matching moves were found.
+Search name...
+Search name...
+Which category?
+Which category?
+Search move desc...
+Search move desc...
+Tag
+Tag
+Priority
+Priority
+Signature
+Signature
+Which tag?
+Which tag?
+Equal to
+Equal to
+Greater than
+Greater than
+Less than
+Less than
+Enter value.
+Enter value.
+Not Signature
+Not Signature
+Which sort
+Which sort
 [25]
 1
 Cool Ribbon
