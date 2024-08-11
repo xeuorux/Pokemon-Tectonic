@@ -326,13 +326,6 @@ class CircuitPuzzleStateTracker
     end
 end
 
-class PokemonGlobalMetadata
-    def circuitPuzzleStateTracker
-        @circuitPuzzleStateTracker = CircuitPuzzleStateTracker.new if @circuitPuzzleStateTracker.nil?
-        return @circuitPuzzleStateTracker
-    end
-end
-
 def circuitState
     return $PokemonGlobal.circuitPuzzleStateTracker
 end

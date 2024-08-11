@@ -25,10 +25,6 @@ POOL_2 = [
 
 CHAMPION = [:TRAINER_Zain,"Zain",2,3,11]
 
-class PokemonGlobalMetadata
-    attr_accessor :tournament
-end
-
 class RandomTournament
     attr_reader :matches
     attr_reader :matchesWon

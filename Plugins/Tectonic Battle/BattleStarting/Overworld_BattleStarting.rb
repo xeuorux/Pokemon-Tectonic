@@ -1,14 +1,3 @@
-#===============================================================================
-# Battle preparation
-#===============================================================================
-class PokemonGlobalMetadata
-  attr_accessor :nextBattleBGM
-  attr_accessor :nextBattleME
-  attr_accessor :nextBattleCaptureME
-  attr_accessor :nextBattleBack
-end
-
-
 def pbNewBattleScene
   return PokeBattle_Scene.new
 end

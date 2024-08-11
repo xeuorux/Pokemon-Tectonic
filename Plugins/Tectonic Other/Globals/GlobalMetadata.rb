@@ -77,6 +77,25 @@ class PokemonGlobalMetadata
     attr_accessor :town_map_waypoints_showing
     # Achievements
     attr_accessor :capture_counts_per_ball
+    # Blacking out
+    attr_accessor :respawnPoint
+    # Battle starting
+    attr_accessor :nextBattleBGM
+    attr_accessor :nextBattleME
+    attr_accessor :nextBattleCaptureME
+    attr_accessor :nextBattleBack
+    # Progression phone calls
+    attr_accessor :shouldProc2BadgesZainCall
+    attr_accessor :shouldProc3BadgesZainCall
+    attr_accessor :shouldProcGrouzAvatarCall
+    attr_accessor :shouldProcCatacombsCall
+    attr_accessor :shouldProcWhitebloomCall
+    attr_accessor :shouldProcEstateCall
+    # Tournament
+    attr_accessor :tournament
+    # Dragon flames
+    attr_writer :dragonFlamesCount
+    attr_writer :puzzlesCompleted
 	
 	def initialize
         # Movement
@@ -245,5 +264,20 @@ class PokemonGlobalMetadata
     def expJAR=(value)
         @expJAR = value
         unlockAchievement(:STORE_LOTS_OF_EXP) if @expJAR >= 1_000_000
+    end
+
+    def circuitPuzzleStateTracker
+        @circuitPuzzleStateTracker = CircuitPuzzleStateTracker.new if @circuitPuzzleStateTracker.nil?
+        return @circuitPuzzleStateTracker
+    end
+
+    def dragonFlamesCount
+        @dragonFlamesCount = 0 if @dragonFlamesCount.nil?
+        return @dragonFlamesCount
+    end
+
+    def puzzlesCompleted
+        @puzzlesCompleted = [] if @puzzlesCompleted.nil?
+        return @puzzlesCompleted
     end
 end

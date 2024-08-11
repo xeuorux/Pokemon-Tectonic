@@ -80,72 +80,8 @@ def giveBattleReport()
 	pbReceiveItem(:BATTLEREPORT)
 end
 
-def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",fullTeamLabel="FullTeam",amuletMatters = true)
-	cmdNotSure = -1
-	cmdBasicTeam = -1
-	cmdFullTeam = -1
-	commands = []
-	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
-	commands[cmdBasicTeam = commands.length]  = _INTL("Basic Team")
-	commands[cmdFullTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Full Team (Cursed)") : _INTL("Full Team")
-	cmd = pbShowCommands(nil,commands)
-	if cmdNotSure > -1 && cmd == cmdNotSure
-		goToLabel(notSureLabel)
-	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
-		goToLabel(basicTeamLabel)
-	elsif cmdFullTeam > -1 && cmd == cmdFullTeam
-		goToLabel(fullTeamLabel)
-	end
-end
-
-def showGymChoicesDoubles(notSureLabel="NotSure",basicTeamLabel="BasicTeam",fullTeamLabel="FullTeam",amuletMatters = true)
-	cmdNotSure = -1
-	cmdBasicTeam = -1
-	cmdFullTeam = -1
-	commands = []
-	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
-	commands[cmdBasicTeam = commands.length]  = _INTL("Basic Doubles Team")
-	commands[cmdFullTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Full Doubles Team (Cursed)") : _INTL("Full Doubles Team")
-	cmd = pbShowCommands(nil,commands)
-	if cmdNotSure > -1 && cmd == cmdNotSure
-		goToLabel(notSureLabel)
-	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
-		goToLabel(basicTeamLabel)
-	elsif cmdFullTeam > -1 && cmd == cmdFullTeam
-		goToLabel(fullTeamLabel)
-	end
-end
-
-def showGymChoicesBenceZoe(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeamLabel="DoublesTeam",amuletMatters = true)
-	cmdNotSure = -1
-	cmdBasicTeam = -1
-	cmdDoublesTeam = -1
-	commands = []
-	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
-	commands[cmdBasicTeam = commands.length]  =  _INTL("Just You")
-	commands[cmdDoublesTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Both of you (CURSED)") : _INTL("Both of you (Advanced)")
-	cmd = pbShowCommands(nil,commands)
-	if cmdNotSure > -1 && cmd == cmdNotSure
-		goToLabel(notSureLabel)
-	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
-		goToLabel(basicTeamLabel)
-	elsif cmdDoublesTeam > -1 && cmd == cmdDoublesTeam
-		goToLabel(doublesTeamLabel)
-	end
-end
-
 def doubleBattleBenceZoe()
 	return pbDoubleTrainerBattleCursed([[:LEADER_Zoe,"Zoé",0],[:LEADER_Bence,"Bence",0]],[[:LEADER_Zoe,"Zoé",1],[:LEADER_Bence,"Bence",1]])
-end
-
-def healAndGiveRewardIfNotYetGiven(badgeNum)
-    checkGymAchievements(badgeNum)
-	index = badgeNum-1
-	leaderDialogue =
-		[_INTL("I'll heal up your Pokémon and get out of your way."),
-		_INTL("Let me tend to your Pokémon while you bask in your victory.")][index] || ""
-	pbMessage(leaderDialogue) if !leaderDialogue.blank?
-	healPartyWithDelay()
 end
 
 def hasFirstFourBadges?()

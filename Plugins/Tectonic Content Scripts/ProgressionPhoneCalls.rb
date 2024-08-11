@@ -53,15 +53,6 @@ Events.onMapChange += proc { |_sender, _e|
 	end
 }
 
-class PokemonGlobalMetadata
-	attr_accessor :shouldProc2BadgesZainCall
-	attr_accessor :shouldProc3BadgesZainCall
-	attr_accessor :shouldProcGrouzAvatarCall
-	attr_accessor :shouldProcCatacombsCall
-	attr_accessor :shouldProcWhitebloomCall
-    attr_accessor :shouldProcEstateCall
-end
-
 Events.onStepTaken += proc { |_sender,_e|
     if playerIsOutdoors? && $PokemonGlobal.shouldProcEstateCall
         $game_switches[ESTATE_PHONECALL_GLOBAL] = true

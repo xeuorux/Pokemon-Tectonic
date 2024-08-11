@@ -1,18 +1,3 @@
-class PokemonGlobalMetadata
-    attr_writer :dragonFlamesCount
-    attr_writer :puzzlesCompleted
-
-    def dragonFlamesCount
-        @dragonFlamesCount = 0 if @dragonFlamesCount.nil?
-        return @dragonFlamesCount
-    end
-
-    def puzzlesCompleted
-        @puzzlesCompleted = [] if @puzzlesCompleted.nil?
-        return @puzzlesCompleted
-    end
-end
-
 def takeDragonFlame(triggerEventID = -1)
     if candlePuzzlesCompleted?
         pbMessage(_INTL("The flame refuses to budge!"))
