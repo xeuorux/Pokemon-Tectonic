@@ -4,10 +4,15 @@
 class DarknessSprite < SpriteWrapper
     attr_reader :radius
   
-    def initialize(viewport=nil)
+    def initialize(viewport: nil, color: Color.new(0,0,0,255),numFades: 5, radius: radiusMin, innerRadius: 0, diminishmentMult: 0.9, opacityMult: 1.0)
       super(viewport)
       @darkness = BitmapWrapper.new(Graphics.width,Graphics.height)
-      @radius = radiusMin
+      @innerRadius = innerRadius
+      @radius = radius
+      @color = color
+      @opacityMult = opacityMult
+      @numFades = numFades
+      @diminishmentMult = diminishmentMult
       self.bitmap = @darkness
       self.z      = 99998
       refresh
@@ -22,23 +27,38 @@ class DarknessSprite < SpriteWrapper
     def radiusMax; return 176; end   # After using Flash
   
     def radius=(value)
-      @radius = value
-      refresh
+        @radius = value
+        refresh
+    end
+
+    def opacityMult=(value)
+        @opacityMult = value
+        refresh
     end
   
     def refresh
-      @darkness.fill_rect(0,0,Graphics.width,Graphics.height,Color.new(0,0,0,255))
-      cx = Graphics.width/2
-      cy = Graphics.height/2
-      cradius = @radius
-      numfades = 5
-      for i in 1..numfades
-        for j in cx-cradius..cx+cradius
-          diff2 = (cradius * cradius) - ((j - cx) * (j - cx))
-          diff = Math.sqrt(diff2)
-          @darkness.fill_rect(j,cy-diff,1,diff*2,Color.new(0,0,0,255.0*(numfades-i)/numfades))
+        @darkness.fill_rect(0,0,Graphics.width,Graphics.height,@color)
+        centerX = Graphics.width/2
+        centerY = Graphics.height/2
+        cradius = @radius + @innerRadius
+        for layerIndex in 1..@numFades
+            for currentX in centerX-cradius..centerX+cradius
+            diff2 = (cradius ** 2) - ((currentX - centerX) ** 2)
+            diff = Math.sqrt(diff2)
+            newAlpha = @color.alpha*@opacityMult*(@numFades - layerIndex)/@numFades
+            newColor = Color.new(@color.red,@color.green,@color.blue,newAlpha)
+            @darkness.fill_rect(currentX,centerY-diff,1,diff*2,newColor)
+            end
+            cradius = (cradius*@diminishmentMult).floor
         end
-        cradius = (cradius*0.9).floor
-      end
+        if @innerRadius > 0
+            # Erase the center
+            for currentX in centerX-@innerRadius..centerX+@innerRadius
+                diff2 = (@innerRadius ** 2) - ((currentX - centerX) ** 2)
+                diff = Math.sqrt(diff2)
+                newColor = Color.new(0,0,0,0)
+                @darkness.fill_rect(currentX,centerY-diff,1,diff*2,newColor)
+            end
+        end
     end
   end

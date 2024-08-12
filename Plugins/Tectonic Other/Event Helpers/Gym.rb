@@ -53,7 +53,7 @@ end
 def postBattleTeamSnapshot(label=nil,curseMatters=false)
 	snapshotFlags = []
 	snapshotFlags.push("perfect") if battlePerfected?
-	snapshotFlags.push("cursed") if curseMatters && $PokemonGlobal.tarot_amulet_active
+	snapshotFlags.push("cursed") if curseMatters && tarotAmuletActive?
 	teamSnapshot(label,snapshotFlags)
 end
 
