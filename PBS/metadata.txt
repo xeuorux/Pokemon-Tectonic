@@ -2150,7 +2150,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 59,28,19
+HealingSpot = 59,37,19
 BattleBack = field
 Environment = Grass
 #-------------------------------
