@@ -931,7 +931,7 @@ BattleBack = cave1
 Environment = Volcano
 #-------------------------------
 [126]
-# Vibrant Cave
+# Carnation Stockpile
 Outdoor = false
 ShowArea = false
 Bicycle = false

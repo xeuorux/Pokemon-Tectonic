@@ -51660,8 +51660,12 @@ You are too skilled to learn any more from a battle report.
 Eres demasiado habilidoso para seguir aprendiendo de un reporte de combate.
 It won't have any effect due to the level cap at #{getLevelCap}.
 No tendrá efecto ya que el límite de niveles es #{getLevelCap}.
-You feel yourself pulled away. Allow yourself to be transported?
-Te sientes atraído a algo. ¿Permites ser teletransportado? 
+You feel yourself being pulled away.
+Te sientes atraído a algo.
+The Tower
+El Torre
+The Stockpile
+La Reserva
 You have {1} EXP stored in the EXP-EZ Dispenser.
 Tienes {1} EXP guardada en el Dispensador EXP-EZ.
 You can make {1} Medium, {2} Small and {3} Extra-Small candies. Would you like to?

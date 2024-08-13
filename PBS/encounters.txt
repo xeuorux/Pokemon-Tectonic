@@ -22,10 +22,11 @@ Special
 #-------------------------------
 [006] # LuxTech Campus
 FloweryGrass2,20
-    25,MIMEJR,19,21
-    25,PORYGON,19,21
-    25,PURRLOIN,19,21
-    25,SHINX,19,21
+    20,JOLTIK,19,21
+    20,MIMEJR,19,21
+    20,PORYGON,19,21
+    20,PURRLOIN,19,21
+    20,SHINX,19,21
 Special
     1,GSLOWPOKE,15
 #-------------------------------
@@ -36,10 +37,11 @@ Land,20
     25,SHROOMISH,23,25
     25,SIZZLIPEDE,23,25
 LandSparse,20
-    25,GROWLITHE,23,25
-    25,MURKROW,23,25
-    25,PHANTUMP,23,25
-    25,VENONAT,23,25
+    20,GROWLITHE,23,25
+    20,LARVESTA,23,25
+    20,MURKROW,23,25
+    20,PHANTUMP,23,25
+    20,VENONAT,23,25
 #-------------------------------
 [008] # Velenz
 LandTall,20
@@ -334,35 +336,8 @@ DarkCave,20
     20,BALTOY,18,20
     20,BRONZOR,18,20
     20,DUNSPARCE,18,20
+    20,LARVITAR,18,20
     20,TYNAMO,18,20
-    1,UNOWN,18,20
-    1,UNOWN_1,18,20
-    1,UNOWN_10,18,20
-    1,UNOWN_11,18,20
-    1,UNOWN_12,18,20
-    1,UNOWN_13,18,20
-    1,UNOWN_14,18,20
-    1,UNOWN_15,18,20
-    1,UNOWN_16,18,20
-    1,UNOWN_17,18,20
-    1,UNOWN_18,18,20
-    1,UNOWN_19,18,20
-    1,UNOWN_2,18,20
-    1,UNOWN_20,18,20
-    1,UNOWN_21,18,20
-    1,UNOWN_22,18,20
-    1,UNOWN_23,18,20
-    1,UNOWN_24,18,20
-    1,UNOWN_25,18,20
-    1,UNOWN_26,18,20
-    1,UNOWN_27,18,20
-    1,UNOWN_3,18,20
-    1,UNOWN_4,18,20
-    1,UNOWN_5,18,20
-    1,UNOWN_6,18,20
-    1,UNOWN_7,18,20
-    1,UNOWN_8,18,20
-    1,UNOWN_9,18,20
 #-------------------------------
 [121] # Kilna Ascent
 Land,20
@@ -398,12 +373,6 @@ Special
     1,SHIELDON,15
     1,TIRTOUGA,15
     1,TYRUNT,15
-#-------------------------------
-[126] # Vibrant Cave
-LandSparse,20
-    34,JOLTIK,24,26
-    33,LARVESTA,24,26
-    33,LARVITAR,24,26
 #-------------------------------
 [129] # Barren Crater
 Land,20
@@ -618,6 +587,36 @@ LandSparse,20
     25,HAWLUCHA,49,51
     25,SKARMORY,49,51
 #-------------------------------
+[212] # Ruins Digsite
+DarkCave,20
+    6,UNOWN_22,20,22
+    3,UNOWN,20,22
+    3,UNOWN_1,20,22
+    3,UNOWN_10,20,22
+    3,UNOWN_11,20,22
+    3,UNOWN_12,20,22
+    3,UNOWN_13,20,22
+    3,UNOWN_14,20,22
+    3,UNOWN_15,20,22
+    3,UNOWN_16,20,22
+    3,UNOWN_17,20,22
+    3,UNOWN_19,20,22
+    3,UNOWN_2,20,22
+    3,UNOWN_20,20,22
+    3,UNOWN_21,20,22
+    3,UNOWN_23,20,22
+    3,UNOWN_24,20,22
+    3,UNOWN_25,20,22
+    3,UNOWN_26,20,22
+    3,UNOWN_27,20,22
+    3,UNOWN_3,20,22
+    3,UNOWN_4,20,22
+    3,UNOWN_5,20,22
+    3,UNOWN_6,20,22
+    3,UNOWN_7,20,22
+    3,UNOWN_8,20,22
+    3,UNOWN_9,20,22
+#-------------------------------
 [213] # Velenz Menagerie
 Land,20
     20,AMEOWTH,25,27
@@ -706,37 +705,9 @@ ActiveWater,20
     25,RELICANTH,48,50
     25,WIMPOD,48,50
 DarkCave,20
-    25,LUNATONE,48,50
-    25,MAREANIE,48,50
-    25,WYNAUT,48,50
-    1,UNOWN,48,50
-    1,UNOWN_1,48,50
-    1,UNOWN_10,48,50
-    1,UNOWN_11,48,50
-    1,UNOWN_12,48,50
-    1,UNOWN_13,48,50
-    1,UNOWN_14,48,50
-    1,UNOWN_15,48,50
-    1,UNOWN_16,48,50
-    1,UNOWN_17,48,50
-    1,UNOWN_18,48,50
-    1,UNOWN_19,48,50
-    1,UNOWN_2,48,50
-    1,UNOWN_20,48,50
-    1,UNOWN_21,48,50
-    1,UNOWN_22,48,50
-    1,UNOWN_23,48,50
-    1,UNOWN_24,48,50
-    1,UNOWN_25,48,50
-    1,UNOWN_26,48,50
-    1,UNOWN_27,48,50
-    1,UNOWN_3,48,50
-    1,UNOWN_4,48,50
-    1,UNOWN_5,48,50
-    1,UNOWN_6,48,50
-    1,UNOWN_7,48,50
-    1,UNOWN_8,48,50
-    1,UNOWN_9,48,50
+    34,LUNATONE,48,50
+    33,MAREANIE,48,50
+    33,WYNAUT,48,50
 #-------------------------------
 [219] # Stone Nest
 DarkCave,20
