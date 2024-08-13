@@ -43,11 +43,11 @@ class DarknessSprite < SpriteWrapper
         cradius = @radius + @innerRadius
         for layerIndex in 1..@numFades
             for currentX in centerX-cradius..centerX+cradius
-            diff2 = (cradius ** 2) - ((currentX - centerX) ** 2)
-            diff = Math.sqrt(diff2)
-            newAlpha = @color.alpha*@opacityMult*(@numFades - layerIndex)/@numFades
-            newColor = Color.new(@color.red,@color.green,@color.blue,newAlpha)
-            @darkness.fill_rect(currentX,centerY-diff,1,diff*2,newColor)
+                diff2 = (cradius ** 2) - ((currentX - centerX) ** 2)
+                diff = Math.sqrt(diff2)
+                newAlpha = @color.alpha*@opacityMult*(@numFades - layerIndex)/@numFades
+                newColor = Color.new(@color.red,@color.green,@color.blue,newAlpha)
+                @darkness.fill_rect(currentX,centerY-diff,1,diff*2,newColor)
             end
             cradius = (cradius*@diminishmentMult).floor
         end
@@ -61,4 +61,4 @@ class DarknessSprite < SpriteWrapper
             end
         end
     end
-  end
+end

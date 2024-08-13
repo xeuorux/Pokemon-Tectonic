@@ -22,26 +22,24 @@ def checkTarotAmuletCutscene(gymIndex)
 end
 
 def addLightnessOverlay(overFrames = 40)
-    newSprite = DarknessSprite.new(color: Color.new(255,255,255,200),numFades: 20, radius: 360, innerRadius: 64, diminishmentMult: 0.85, opacityMult: 1.0)
+    newSprite = DarknessSprite.new(viewport: Spriteset_Map.viewport, color: Color.new(255,255,255,200),numFades: 20, radius: 360, innerRadius: 64, diminishmentMult: 0.85, opacityMult: 0.0)
     $PokemonTemp.darknessSprite = newSprite
     $scene.spriteset.addUserSprite($PokemonTemp.darknessSprite)
-    # overFrames.times do |i|
-    #     Graphics.update
-    #     Input.update
-    #     $PokemonTemp.darknessSprite.opacityMult = (i / overFrames.to_f)
-    #     $PokemonTemp.darknessSprite.update
-    # end
+    overFrames.times do |i|
+        $PokemonTemp.darknessSprite.opacityMult = (i / overFrames.to_f) if i % 5 == 0
+        pbWait(1)
+    end
+    $PokemonTemp.darknessSprite.opacityMult = 1.0
+    pbWait(1)
 end
 
 def removeLightnessOverlay(overFrames = 40)
     return unless $PokemonTemp.darknessSprite
-    # startingRadius = $PokemonTemp.darknessSprite.radius
-    # overFrames.times do |i|
-    #     Graphics.update
-    #     Input.update
-    #     $PokemonTemp.darknessSprite.opacityMult = 1 - (i / overFrames.to_f)
-    #     $PokemonTemp.darknessSprite.update
-    # end
+    startingRadius = $PokemonTemp.darknessSprite.radius
+    overFrames.times do |i|
+        $PokemonTemp.darknessSprite.opacityMult = 1 - (i / overFrames.to_f) if i % 5 == 0
+        pbWait(1)
+    end
     $PokemonTemp.darknessSprite.dispose
     $PokemonTemp.darknessSprite = nil
 end
