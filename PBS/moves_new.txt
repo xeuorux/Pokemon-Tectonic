@@ -3255,7 +3255,7 @@ Target = NearOther
 FunctionCode = TwoTurnAttackChargeStartSunshine5
 Flags = CanProtect,CanMirrorMove
 Description = Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.
-Animation = SURF
+Animation = FIREBLAST
 #-------------------------------
 [BLAZINGSPEED]
 Name = Blazing Speed
@@ -6624,6 +6624,7 @@ Target = NearOther
 FunctionCode = ScalesSlowerThanTarget
 Flags = CanProtect,CanMirrorMove
 Description = The user spins sugar into a ball launched at the target. The slower the user, the greater the damage.
+Animation = GYROBALL
 #-------------------------------
 [TANTRUM]
 Name = Tantrum

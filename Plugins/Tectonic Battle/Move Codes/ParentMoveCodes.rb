@@ -475,7 +475,7 @@ end
 class PokeBattle_FixedDamageMove < PokeBattle_Move
     def pbFixedDamage(_user, _target); return 1; end
 
-    def pbCalcTypeModSingle(moveType, defType, user, target)
+    def pbCalcTypeModSingle(moveType, defType, user=nil, target=nil)
         ret = super
         ret = Effectiveness::NORMAL_EFFECTIVE_ONE unless Effectiveness.ineffective?(ret)
         return ret
@@ -1453,7 +1453,7 @@ end
 
 # Each subclass must have an initialization method that defines the @typeHated variable
 class PokeBattle_TypeSuperMove < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
+    def pbCalcTypeModSingle(moveType, defType, user=nil, target=nil)
         effectiveness = super
         return effectiveness if Effectiveness.ineffective?(effectiveness)
         return Effectiveness::SUPER_EFFECTIVE_ONE if defType == @typeHated

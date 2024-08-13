@@ -1,17 +1,22 @@
 class MoveDex_Entry_Scene
+    attr_reader :sprites
+    attr_reader :viewport
+
     MAX_LENGTH_SPECIES_LIST = 10
 	SPECIES_LIST_Y_INIT = 52
     SPECIES_LIST_COLUMN_1_X_LEFT = 20
     SPECIES_LIST_COLUMN_X_OFFSET = 260
 
     def pageTitles
-        return [_INTL("LEVEL LEARNERS"), _INTL("OTHER LEARNERS")]
+        return [_INTL("BY LEVEL"), _INTL("BY OTHER"), _INTL("MATCHUPS"), _INTL("DETAILS"), _INTL("ANIMATION")]
     end
 
     def pbStartScene(movedexlist, index)
         @movedexlist = movedexlist
         @index = index
-        @page = 0
+        @page = 1
+
+        updateMove
 
         @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
         @viewport.z = 99_999
@@ -26,7 +31,13 @@ class MoveDex_Entry_Scene
         @sprites["selectionarrow"].visible = false
         @sprites["selectionarrow"].x = SPECIES_LIST_COLUMN_1_X_LEFT - 16
 
-        updateMove
+        @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_types")))
+
+        @animations = pbLoadBattleAnimations
+        @sprites["pokemon_0"] = Sprite.new(@viewport)
+        @sprites["pokemon_0"].z = 21
+        @sprites["pokemon_1"] = Sprite.new(@viewport)
+        @sprites["pokemon_1"].z = 16
 
         drawPage
 
@@ -36,57 +47,57 @@ class MoveDex_Entry_Scene
     end
 
     def updateMove
-        @move = @movedexlist[@index][:id]
+        @move = @movedexlist[@index][:move]
         @moveData = @movedexlist[@index][:data]
-        generateCurrentPageSpeciesList
+        @battleMoveObject = PokeBattle_Move.from_pokemon_move(nil, Pokemon::Move.new(@move))
+        generateLevelUpLearnablesSpeciesList
+        generateOtherLearnablesSpeciesList
+        setCurrentPageSpeciesList
+
+        @defaultMoveUser = @moveData.signature_of || @otherLearnables.sample || :PIKACHU
+        @defaultMoveTarget = :PIKACHU
+        @targetingData = GameData::Target.get(@moveData.target)
     end
 
     def generateLevelUpLearnablesSpeciesList
-        @currentSpeciesList = [[],[]]
-        levelUpLearners = @moveData.level_up_learners.clone
-        levelUpLearners.sort_by! { |learningEntry|
+        @levelUpLearnables = @moveData.level_up_learners.clone
+        @levelUpLearnables.sort_by! { |learningEntry|
             learningEntry[1]
         }
-        levelUpLearners.reject! { |learningEntry|
+        @levelUpLearnables.reject! { |learningEntry|
             !speciesInfoViewable?(learningEntry[1])
         }
-        columnCutoff = (levelUpLearners.length / 2.0).ceil
-        levelUpLearners.each_with_index do |learningEntry, index|
-            if index < columnCutoff
-                columnIndex = 0
-            else
-                columnIndex = 1
-            end
-            @currentSpeciesList[columnIndex].push(learningEntry)
-        end
     end
 
     def generateOtherLearnablesSpeciesList
-        @currentSpeciesList = [[],[]]
-        otherLearners = @moveData.other_learners.clone
-        otherLearners.sort_by! { |speciesID|
+        @otherLearnables = @moveData.other_learners.clone
+        @otherLearnables.sort_by! { |speciesID|
             GameData::Species.get(speciesID).name
         }
-        otherLearners.reject! { |speciesID|
+        @otherLearnables.reject! { |speciesID|
             !speciesInfoViewable?(speciesID)
         }
-        columnCutoff = (otherLearners.length / 2.0).ceil
-        otherLearners.each_with_index do |speciesID,index|
-            if index < columnCutoff
-                columnIndex = 0
-            else
-                columnIndex = 1
-            end
-            @currentSpeciesList[columnIndex].push(speciesID)
-        end
     end
 
-    def generateCurrentPageSpeciesList
+    def setCurrentPageSpeciesList
         case @page
-        when 0
-            generateLevelUpLearnablesSpeciesList
         when 1
-            generateOtherLearnablesSpeciesList
+            newSpeciesList = @levelUpLearnables
+        when 2
+            newSpeciesList = @otherLearnables
+        end
+
+        @currentSpeciesList = [[],[]]
+        if newSpeciesList
+            columnCutoff = (newSpeciesList.length / 2.0).ceil
+            newSpeciesList.each_with_index do |listEntry, index|
+                if index < columnCutoff
+                    columnIndex = 0
+                else
+                    columnIndex = 1
+                end
+                @currentSpeciesList[columnIndex].push(listEntry)
+            end
         end
     end
 
@@ -98,18 +109,50 @@ class MoveDex_Entry_Scene
         overlay.clear
 
         # Draw page title
-        pageTitle = pageTitles[@page]
+        pageTitle = pageTitles[@page-1]
         drawFormattedTextEx(overlay, 50, 4, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 
-        # Draw species name on top right	
-        drawFormattedTextEx(overlay, 300, 4, Graphics.width, "<outln2>#{@moveData.name}</outln2>", base, shadow, 18)
+        drawFormattedTextEx(overlay, 212, 2, Graphics.width, "<outln2>[#{@page}/#{pageTitles.length}]</outln2>", base, shadow, 18)
 
+        # Draw move name on top right	
+        moveName = getFormattedMoveName(@moveData.name,160)
+        drawFormattedTextEx(overlay, 320, 4, Graphics.width, "<outln2>#{moveName}</outln2>", base, shadow, 18)
+
+        @sprites["pokemon_0"].visible = @page == 5
+        @sprites["pokemon_1"].visible = @page == 5
+        
         case @page
-        when 0
-            drawLevelUpLearnablesPage
         when 1
+            drawLevelUpLearnablesPage
+        when 2
             drawOtherLearnablesPage
+        when 3
+            drawTypeMatchupsPage
+        when 4
+            drawOtherDetailsPage
+        when 5
+            drawMoveAnimationPage
         end
+    end
+
+    # Chop letters off of excessively long names to make them fit into the maximum width
+    def getFormattedMoveName(moveName, maxWidth = 99_999)
+        overlay = @sprites["overlay"].bitmap
+        expectedMoveNameWidth = overlay.text_size(moveName).width
+        if expectedMoveNameWidth > maxWidth
+            charactersToShave = 3
+            loop do
+                testString = moveName[0..-charactersToShave] + "..."
+                expectedTestStringWidth = overlay.text_size(testString).width
+                excessWidth = expectedTestStringWidth - maxWidth
+                break if excessWidth <= 0
+                charactersToShave += 1
+            end
+            shavedName = moveName[0..-charactersToShave]
+            shavedName = shavedName[0..-1] if shavedName[shavedName.length-1] == " "
+            moveName = shavedName + "..."
+        end
+        return moveName
     end
 
     def drawLevelUpLearnablesPage
@@ -209,11 +252,182 @@ class MoveDex_Entry_Scene
         speciesDrawY = SPECIES_LIST_Y_INIT + 32 * displayIndex
         return speciesDrawX, speciesDrawY
     end
+    
+    def drawTypeMatchupsPage
+        bg_path = "Graphics/Pictures/Movedex/bg_move_matchups"
+        bg_path += "_dark" if darkMode?
+        @sprites["background"].setBitmap(_INTL(bg_path))
+        overlay = @sprites["overlay"].bitmap
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
+
+        xLeft = 36
+        yBase = 60
+
+        if @moveData.status?
+            statusLabel = _INTL("Status")
+            statusLabelWidth = @sprites["overlay"].bitmap.text_size(statusLabel).width
+            drawTextEx(overlay, Graphics.width / 2 - statusLabelWidth / 2, 80, 450, 1, statusLabel, base, shadow)
+        else
+            immuneTypes = []
+            resistentTypes = []
+            weakTypes = []
+
+            GameData::Type.each do |t|
+                next if t.pseudo_type
+
+                effect = @battleMoveObject.pbCalcTypeModSingle(@moveData.type, t.id) ** 3
+
+                if Effectiveness.ineffective?(effect)
+                    immuneTypes.push(t)
+                elsif Effectiveness.not_very_effective?(effect)
+                    resistentTypes.push(t)
+                elsif Effectiveness.super_effective?(effect)
+                    weakTypes.push(t)
+                end
+            end
+
+            # Draw the types the move is super effective against
+            drawTextEx(overlay, xLeft, yBase, 450, 1, _INTL("Super:"), base, shadow)
+            if weakTypes.length == 0
+                drawTextEx(overlay, xLeft, yBase + 30, 450, 1, _INTL("None"), base, shadow)
+            else
+                weakTypes.each_with_index do |t, index|
+                    type_number = GameData::Type.get(t).id_number
+                    typerect = Rect.new(0, type_number * 32, 96, 32)
+                    overlay.blt(xLeft + (index >= 7 ? 100 : 0), yBase + 30 + 36 * (index % 7), @typebitmap.bitmap,
+                typerect)
+                end
+            end
+
+            # Draw the types the move deals NVE damage to
+            resistOffset = 212
+            drawTextEx(overlay, xLeft + resistOffset, yBase, 450, 1, _INTL("Not Very:"), base, shadow)
+            if resistentTypes.length == 0
+                drawTextEx(overlay, xLeft + resistOffset, yBase + 30, 450, 1, _INTL("None"), base, shadow)
+            else
+                resistentTypes.each_with_index do |t, index|
+                    type_number = GameData::Type.get(t).id_number
+                    typerect = Rect.new(0, type_number * 32, 96, 32)
+                    overlay.blt(xLeft + resistOffset, yBase + 30 + 36 * index, @typebitmap.bitmap, typerect)
+                end
+            end
+
+            # Draw the types the move deals immune damage to
+            immuneOffset = 324
+            drawTextEx(overlay, xLeft + immuneOffset, yBase, 450, 1, _INTL("No Effect:"), base, shadow)
+            if immuneTypes.length == 0
+                drawTextEx(overlay, xLeft + immuneOffset, yBase + 30, 450, 1, _INTL("None"), base, shadow)
+            else
+                immuneTypes.each_with_index do |t, index|
+                    type_number = GameData::Type.get(t).id_number
+                    typerect = Rect.new(0, type_number * 32, 96, 32)
+                    overlay.blt(xLeft + immuneOffset, yBase + 30 + 36 * index, @typebitmap.bitmap, typerect)
+                end
+            end
+        end
+    end
+
+    def drawMoveAnimationPage
+        bg_path = "Graphics/Pictures/Movedex/bg_move_animation"
+        bg_path += "_dark" if darkMode?
+        @sprites["background"].setBitmap(_INTL(bg_path))
+
+        overlay = @sprites["overlay"].bitmap
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
+
+        animID = PokeBattle_Scene.pbFindMoveAnimation(@move,0,0)
+        @animation = @animations[animID[0]]
+
+        @player = nil
+        @battle = MiniBattle.new
+        @user = GameData::Species.back_sprite_bitmap(@defaultMoveUser).deanimate
+        @target = GameData::Species.front_sprite_bitmap(@defaultMoveTarget).deanimate
+
+        @sprites["pokemon_0"].bitmap = @user
+        @sprites["pokemon_1"].bitmap = @target
+        animationOffset = 32
+        pbSpriteSetAnimFrame(@sprites["pokemon_0"],
+            pbCreateCel(PokeBattle_SceneConstants::FOCUSUSER_X,
+                        PokeBattle_SceneConstants::FOCUSUSER_Y + animationOffset,-1,2),
+            @sprites["pokemon_0"],@sprites["pokemon_1"])
+        pbSpriteSetAnimFrame(@sprites["pokemon_1"],
+            pbCreateCel(PokeBattle_SceneConstants::FOCUSTARGET_X,
+                        PokeBattle_SceneConstants::FOCUSTARGET_Y + animationOffset,-2,1),
+            @sprites["pokemon_0"],@sprites["pokemon_1"])
+    end
+
+    def playAnimation(oppmove = false,speedMult = 1.0)
+        userSprite = @sprites["pokemon_#{oppmove ? 1 : 0}"]
+        targetSprite = @sprites["pokemon_#{oppmove ? 0 : 1}"]
+        oldUserX = userSprite ? userSprite.x : 0
+        oldUserY = userSprite ? userSprite.y : 0
+        oldTargetX = targetSprite ? targetSprite.x : 0
+        oldTargetY = targetSprite ? targetSprite.y : 0
+        user = @battle.battlers[oppmove ? 1 : 0]
+        target = @battle.battlers[oppmove ? 0 : 1]
+        target = nil unless @targetingData.targets_foe
+        target = user if @targetingData.targets_user
+        @player = PBAnimationPlayerX.new(@animation,user,target,self,oppmove,false,speedMult)
+        @player.setLineTransform(
+           PokeBattle_SceneConstants::FOCUSUSER_X,PokeBattle_SceneConstants::FOCUSUSER_Y,
+           PokeBattle_SceneConstants::FOCUSTARGET_X,PokeBattle_SceneConstants::FOCUSTARGET_Y,
+           oldUserX,oldUserY,
+           oldTargetX,oldTargetY)
+        @player.start
+        loop do
+            Graphics.update
+            break if @player.animDone?
+            @player.update
+        end
+        @player.dispose
+        # Return Pokémon sprites to their original positions
+        if userSprite
+            userSprite.x = oldUserX
+            userSprite.y = oldUserY
+            userSprite.visible = true
+            userSprite.opacity = 255
+        end
+        if targetSprite
+            targetSprite.x = oldTargetX
+            targetSprite.y = oldTargetY
+            targetSprite.visible = true
+            targetSprite.opacity = 255
+            targetSprite.tone
+        end
+    end
+
+    def drawOtherDetailsPage
+        bg_path = "Graphics/Pictures/Movedex/bg_move_other_details"
+        bg_path += "_dark" if darkMode?
+        @sprites["background"].setBitmap(_INTL(bg_path))
+
+        overlay = @sprites["overlay"].bitmap
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
+
+        moveDetails = []
+        @battleMoveObject.getDetailsForMoveDex(moveDetails)
+
+        if moveDetails.empty?
+            statusLabel = _INTL("None")
+            statusLabelWidth = @sprites["overlay"].bitmap.text_size(statusLabel).width
+            drawTextEx(overlay, Graphics.width / 2 - statusLabelWidth / 2, 80, 450, 1, statusLabel, base, shadow)
+        else
+            xLeft = 36
+            yBase = 60
+            moveDetails.each_with_index do |moveDetailLine, index|
+                drawTextEx(overlay, xLeft, yBase + 32 * index, 800, 1, moveDetailLine, base, shadow)
+            end
+        end
+    end
 
     def pbEndScene
         pbFadeOutAndHide(@sprites) { pbUpdate }
         pbDisposeSpriteHash(@sprites)
         @viewport.dispose
+        @typebitmap.dispose
     end
 
     def pbUpdate
@@ -348,8 +562,14 @@ class MoveDex_Entry_Scene
             dorefresh = false
 
             if Input.trigger?(Input::USE)
-                pbPlayDecisionSE
-                pbScroll
+                if @page == 1 || @page == 2
+                    pbPlayDecisionSE
+                    pbScroll
+                elsif @page == 5
+                    pbPlayDecisionSE
+                    oppMove = Input.press?(Input::CTRL)
+                    playAnimation(oppMove,getBattleAnimationSpeedMult)
+                end
             elsif Input.trigger?(Input::BACK)
                 pbPlayCloseMenuSE
                 break
@@ -360,14 +580,13 @@ class MoveDex_Entry_Scene
                     highestLeftRepeat = repeats
                     oldpage = @page
                     @page -= 1
-                    @page = pageTitles.length - 1 if @page < 0 # Wrap around
-                    if @page != oldpage
-                        generateCurrentPageSpeciesList
-                        @scroll = -1
-                        @columnSelected = 0
-                        pbPlayCursorSE
-                        dorefresh = true
-                    end
+                    @page = pageTitles.length if @page < 1 # Wrap around
+
+                    setCurrentPageSpeciesList
+                    @scroll = -1
+                    @columnSelected = 0
+                    pbPlayCursorSE
+                    dorefresh = true
                 end
             elsif Input.repeat?(Input::RIGHT)
                 highestLeftRepeat = 0
@@ -376,19 +595,24 @@ class MoveDex_Entry_Scene
                     highestRightRepeat = repeats
                     oldpage = @page
                     @page += 1
-                    @page = 0 if @page > pageTitles.length - 1 # Wrap around
-                    if @page != oldpage
-                        generateCurrentPageSpeciesList
-                        @scroll = -1
-                        @columnSelected = 0
-                        pbPlayCursorSE
-                        dorefresh = true
-                    end
+                    @page = 1 if @page > pageTitles.length # Wrap around
+
+                    setCurrentPageSpeciesList
+                    @scroll = -1
+                    @columnSelected = 0
+                    pbPlayCursorSE
+                    dorefresh = true
                 end
             elsif Input.pressex?(:NUMBER_1)
                 dorefresh = true if moveToPage(1)
             elsif Input.pressex?(:NUMBER_2)
                 dorefresh = true if moveToPage(2)
+            elsif Input.pressex?(:NUMBER_3)
+                dorefresh = true if moveToPage(3)
+            elsif Input.pressex?(:NUMBER_4)
+                dorefresh = true if moveToPage(4)
+            elsif Input.pressex?(:NUMBER_5)
+                dorefresh = true if moveToPage(5)
             elsif Input.repeat?(Input::UP)
 				oldindex = @index
                 pbGoToPrevious
@@ -409,6 +633,9 @@ class MoveDex_Entry_Scene
                     updateMove
                     dorefresh = true
                 end
+            else
+                highestLeftRepeat = 0
+                highestRightRepeat = 0
             end
 
             drawPage if dorefresh
@@ -419,10 +646,11 @@ class MoveDex_Entry_Scene
         oldpage = @page
         @page = pageNum
         @page = 1 if @page < 1
-        @page = 10 if @page > 10
+        @page = pageTitles.length if @page > pageTitles.length
         if @page != oldpage
             @scroll = -1
             pbPlayCursorSE
+            setCurrentPageSpeciesList
             return true
         end
         return false
@@ -432,7 +660,7 @@ class MoveDex_Entry_Scene
         newindex = @index
         while newindex > 0
             newindex -= 1
-            newMove = @movedexlist[newindex][:id]
+            newMove = @movedexlist[newindex][:move]
             if moveInfoViewable?(newMove)
                 @index = newindex
                 break
@@ -444,7 +672,7 @@ class MoveDex_Entry_Scene
         newindex = @index
         while newindex < @movedexlist.length - 1
             newindex += 1
-            newMove = @movedexlist[newindex][:id]
+            newMove = @movedexlist[newindex][:move]
             if moveInfoViewable?(newMove)
                 @index = newindex
                 break

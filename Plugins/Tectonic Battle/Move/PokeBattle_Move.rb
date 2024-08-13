@@ -179,5 +179,7 @@ class PokeBattle_Move
       return false if @flags.include?("FakeRandomEffect")
       return @effectChance >= 100
     end
+
+    def getDetailsForMoveDex(detailsList = []); end;
   end
   

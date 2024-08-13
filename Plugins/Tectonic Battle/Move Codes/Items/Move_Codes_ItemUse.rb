@@ -233,6 +233,16 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     def resetMoveUsageState
         @chosenItem = nil
     end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("150 BP: Pearl of Fate, Iron Ball")
+        detailsList << _INTL("100 BP: Choice Items, Weather Rocks, Life Orb")
+        detailsList << _INTL("75 BP: Everything else")
+        detailsList << _INTL("Poison: Poison Orb")
+        detailsList << _INTL("Burn: Burn Orb")
+        detailsList << _INTL("Frostbite: Frost Orb")
+        detailsList << _INTL("Leech: Big Root, Binding Band")
+    end
 end
 
 #===============================================================================

@@ -31,23 +31,22 @@ class PokeBattle_Move
     #=============================================================================
     # Type effectiveness calculation
     #=============================================================================
-    def pbCalcTypeModSingle(moveType, defType, user, target)
+    def pbCalcTypeModSingle(moveType, defType, user = nil, target = nil)
         ret = Effectiveness.calculate_one(moveType, defType)
         # Ring Target
-        if target.hasActiveItem?(:RINGTARGET) && Effectiveness.ineffective_type?(moveType, defType)
+        if target&.hasActiveItem?(:RINGTARGET) && Effectiveness.ineffective_type?(moveType, defType)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE
         end
         # Delta Stream's weather
-        if @battle.pbWeather == :StrongWinds && (defType == :FLYING && Effectiveness.super_effective_type?(
-            moveType, defType))
+        if @battle&.pbWeather == :StrongWinds && (defType == :FLYING && Effectiveness.super_effective_type?(moveType, defType))
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE
         end
         # Grounded Flying-type Pokémon become susceptible to Ground moves
-        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if !target.airborne? && (defType == :FLYING && moveType == :GROUND)
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if !target&.airborne? && (defType == :FLYING && moveType == :GROUND)
         # Inured
-        ret /= 2 if target.effectActive?(:Inured) && Effectiveness.super_effective_type?(moveType, defType)
+        ret /= 2 if target&.effectActive?(:Inured) && Effectiveness.super_effective_type?(moveType, defType)
         # Break Through
-        if user.hasActiveAbility?(:BREAKTHROUGH) && Effectiveness.ineffective_type?(moveType, defType)
+        if user&.hasActiveAbility?(:BREAKTHROUGH) && Effectiveness.ineffective_type?(moveType, defType)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE
         end
         return ret

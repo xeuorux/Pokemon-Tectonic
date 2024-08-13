@@ -43,7 +43,7 @@ end
 # the target. (Flying Press)
 #===============================================================================
 class PokeBattle_Move_EffectivenessIncludesFlyingType < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
+    def pbCalcTypeModSingle(moveType, defType, user=nil, target=nil)
         ret = super
         if GameData::Type.exists?(:FLYING)
             flyingEff = Effectiveness.calculate_one(:FLYING, defType)
@@ -58,7 +58,7 @@ end
 # the target. (Leyline Burst)
 #===============================================================================
 class PokeBattle_Move_EffectivenessIncludesPsychicType < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
+    def pbCalcTypeModSingle(moveType, defType, user=nil, target=nil)
         ret = super
         if GameData::Type.exists?(:PSYCHIC)
             psychicEffectiveness = Effectiveness.calculate_one(:PSYCHIC, defType)
