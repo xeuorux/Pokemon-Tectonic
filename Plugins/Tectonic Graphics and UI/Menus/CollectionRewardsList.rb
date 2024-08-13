@@ -35,8 +35,8 @@ class CollectionRewardsListScene
 
         @page = 1
         @maxPage = 1
-        $PokEstate.getAwardsCompletionState.each do |rewardID, rewardArray, description, page|
-            @maxPage = page if page > @maxPage
+        $PokEstate.getAwardsCompletionState.each do |rewardInfo|
+            @maxPage = rewardInfo[:page] if rewardInfo[:page] > @maxPage
         end
 
         calculateDisplayText
@@ -61,11 +61,11 @@ class CollectionRewardsListScene
         @checkboxesHeights = []
 
         index = 0
-        $PokEstate.getAwardsCompletionState.each do |rewardID, rewardArray, description, page|
-            next unless @page == page
-            awarded = $PokEstate.awardGranted?(rewardID)
+        $PokEstate.getAwardsCompletionState.each do |rewardInfo|
+            next unless @page == rewardInfo[:page]
+            awarded = $PokEstate.awardGranted?(rewardInfo[:id])
 
-            @displayText << "\n" unless index == 0
+            #@displayText << "\n" unless index == 0
 
             # Place the checkbox
             if awarded
@@ -78,13 +78,19 @@ class CollectionRewardsListScene
 		    @checkboxesHeights.push([checkBoxFileName,checkboxY])
 
             # Add the collectionreward text
-            @displayText << description[0].upcase + description[1...]
+            title = rewardInfo[:description][0].upcase + rewardInfo[:description][1...]
+            title = "<b>#{title}</b>"
+            @displayText << title
 
-            itemID = rewardArray[0]
-            itemCount = rewardArray[1]
-            itemDescription = _INTL("(Earn {1} {2})",itemCount,GameData::Item.get(itemID).name_plural)
+            itemID = rewardInfo[:reward][0]
+            itemCount = rewardInfo[:reward][1]
+            itemDescription = _INTL("Earn {1} {2}",itemCount.to_s,GameData::Item.get(itemID).name_plural)
 
             @displayText << itemDescription
+
+            @displayText << "(#{rewardInfo[:amount].to_s}/#{rewardInfo[:threshold].to_s})"
+
+            @displayText << "-----------------------------------"
         
             index += 1
         end

@@ -1,24 +1,44 @@
-def generationReward(generation,threshold,reward,assumeGranted = false)
-    if assumeGranted || $Trainer.pokedex.getOwnedFromGeneration(generation) >= threshold
-        return [reward,_INTL("{1} species from Generation {2}",threshold,generation),4]
-    end
-    return nil
+def areaReward(routeID,reward)
+    routeName = pbGetMapNameFromId(routeID)
+    return {
+        reward: reward,
+        description: _INTL("all species in {1}",routeName),
+        page: 1,
+        threshold: $Trainer.pokedex.routeEncounterCount(routeID),
+        amount: $Trainer.pokedex.getOwnedOnRoute(routeID),
+    }
 end
 
-def typeReward(type,threshold,reward,assumeGranted = false)
-    if assumeGranted || $Trainer.pokedex.getOwnedOfType(type) >= threshold
-        typeName = GameData::Type.get(type).name
-        return [reward,_INTL("{1} {2}-type species",threshold,typeName),2]
-    end
-    return nil
+def typeReward(type,threshold,reward)
+    typeName = GameData::Type.get(type).name
+    return {
+        reward: reward,
+        description: _INTL("{1} {2}-type species",threshold,typeName),
+        page: 2,
+        threshold: threshold,
+        amount: $Trainer.pokedex.getOwnedOfType(type),
+    }
 end
 
-def tribeReward(tribe,threshold,reward,assumeGranted = false)
-    if assumeGranted || $Trainer.pokedex.getOwnedOfTribe(tribe) >= threshold
-        tribeName = GameData::Tribe.get(tribe).name
-        return [reward,_INTL("{1} species in the {2} tribe",threshold,tribeName),3]
-    end
-    return nil
+def tribeReward(tribe,threshold,reward)
+    tribeName = GameData::Tribe.get(tribe).name
+    return {
+        reward: reward,
+        description: _INTL("{1} species in the {2} tribe",threshold,tribeName),
+        page: 3,
+        threshold: threshold,
+        amount: $Trainer.pokedex.getOwnedOfTribe(tribe),
+    }
+end
+
+def generationReward(generation,threshold,reward)
+    return {
+        reward: reward,
+        description: _INTL("{1} species from Generation {2}",threshold,generation),
+        page: 4,
+        threshold: threshold,
+        amount: $Trainer.pokedex.getOwnedFromGeneration(generation),
+    }
 end
 
 class Player < Trainer
@@ -60,7 +80,7 @@ class Player < Trainer
             end
         end
 
-        def allOwnedFromRoute?(routeMapID,ignoreSpecial = true)
+        def eachEncounterOnRoute(routeMapID,ignoreSpecial = true)
             encounterDataOnRoute = GameData::Encounter.get(routeMapID,$PokemonGlobal.encounter_version)
             encounterDataOnRoute.types.each do |key,slots|
                 next if !slots
@@ -68,10 +88,25 @@ class Player < Trainer
                 slots.each { |slot|
                     species_data = GameData::Species.get(slot[1])
                     next if species_data.form != 0
-                    return false if !@owned[species_data.species]
+                    yield species_data.id
                 }
             end
-            return true
+        end
+
+        def routeEncounterCount(routeMapID,ignoreSpecial = true)
+            count = 0
+            eachEncounterOnRoute(routeMapID,ignoreSpecial) do |speciesID|
+                count += 1
+            end
+            return count
+        end
+
+        def getOwnedOnRoute(routeMapID,ignoreSpecial = true)
+            count = 0
+            eachEncounterOnRoute(routeMapID,ignoreSpecial) do |speciesID|
+                count += 1 if @owned[speciesID]
+            end
+            return count
         end
 
         def getOwnedFromGeneration(generationNumber)

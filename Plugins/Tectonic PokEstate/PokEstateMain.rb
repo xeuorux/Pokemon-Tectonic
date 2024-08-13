@@ -11,10 +11,10 @@ class DexCompletionAwardHandlerHash < HandlerHash2
 		handlers.each do |handlerID,handler|
 			next if handler.nil?
 			begin
-				newAward = handler.call($Trainer.pokedex, assumeGranted)
-				if newAward
-					newAward.unshift(handlerID)
-					newAwardsArray.push(newAward)
+				awardInfo = handler.call($Trainer.pokedex)
+				if awardInfo && (assumeGranted || awardInfo[:amount] >= awardInfo[:threshold])
+					awardInfo[:id] = handlerID
+					newAwardsArray.push(awardInfo)
 				end
 			rescue
 				pbMessage(_INTL("A recoverable error has occured. Please report the following to a programmer."))
@@ -186,13 +186,13 @@ class PokEstate
 			end
 			
 			if newAwards.length == 1
-				awardDescription = newAwards[0][2]
+				awardDescription = newAwards[0][:description]
 				pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
 			elsif newAwards.length <= 5
 				pbMessage(_INTL("I'll list the feats you've accomplished:"))
 				newAwards.each_with_index do |newAwardInfo, index|
-					awardReward = newAwardInfo[1]
-					awardDescription = newAwardInfo[2]
+					awardReward = newAwardInfo[:reward]
+					awardDescription = newAwardInfo[:description]
 					
 					if index == 0
 						pbMessage(_INTL("You've collected #{awardDescription}..."))
@@ -214,8 +214,8 @@ class PokEstate
 
 			itemsToGrantHash = {}
 			newAwards.each do |newAwardInfo|
-				awardReward = newAwardInfo[1]
-				awardDescription = newAwardInfo[2]
+				awardReward = newAwardInfo[:reward]
+				awardDescription = newAwardInfo[:description]
 
 				# Tally the items to give out
 				itemCount = 1
@@ -233,7 +233,7 @@ class PokEstate
 				end
 
 				# Mark this reward as having been granted
-				self.awardsGranted.push(newAwardInfo[0])
+				self.awardsGranted.push(newAwardInfo[:id])
 			end
 			itemsToGrantHash.each do |item,count|
 				pbReceiveItem(item,count)
