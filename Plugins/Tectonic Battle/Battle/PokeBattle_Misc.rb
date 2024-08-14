@@ -191,7 +191,7 @@ class PokeBattle_Battle
         if forcedMoveUser.asleep?
             forcedMoveUser.pbContinueStatus(:SLEEP)
             unless fakeMove.usableWhenAsleep? # Snore/Sleep Talk
-                forcedMoveUser.onMoveFailed(move,false)
+                forcedMoveUser.onMoveFailed(fakeMove,false)
                 cantForceMove = true
             end
         end
