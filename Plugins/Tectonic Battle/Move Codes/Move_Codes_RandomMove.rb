@@ -57,6 +57,11 @@ class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
         echoln("The AI will never use Sleep talk.")
         return -1000
     end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Can't call focusing moves, moves that call other moves, " +
+        "Two Turn moves, Mimic, or Sketch.")
+    end
 end
 
 #===============================================================================
@@ -132,6 +137,12 @@ class PokeBattle_Move_UseRandomMoveFromUserParty < PokeBattle_Move
         move = getAssistMoves(user).sample
         user.pbUseMoveSimple(move)
     end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Can't call moves that alter the moveset, moves that counter, moves that " +
+            "redirect or steal moves, moves that steal items, Focusing moves, moves that force switches, " +
+            "two turn moves, Protect moves, Helping Hand moves, moves that call other moves, or Destiny Bond.")
+    end
 end
 
 #===============================================================================
@@ -192,6 +203,12 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
     def getEffectScore(_user, _target)
         echoln("The AI will never use Metronome")
         return -1000
+    end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Can't call moves that affect the moveset, moves that redirect or steal moves, " +
+            "moves that steal items, Recharge moves, moves that counter, Focus moves, " +
+            "Protect moves, Helping Hand moves, Snore, After You, or Quash.")
     end
 end
 
@@ -256,6 +273,12 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         echoln("The AI will never use Discovered Power")
         return -1000
     end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Can't call Signature moves, moves that affect the moveset, " + 
+            "Recharge moves, moves that counter, Focus moves, Protect moves, Helping Hand moves, " +
+            "or moves that call another move.")
+    end
 end
 
 #===============================================================================
@@ -291,6 +314,18 @@ class PokeBattle_Move_UseTwoRandomDragonThemedMoves < PokeBattle_Move
     def getEffectScore(_user, _target)
         echoln("The AI will never use Dragon Invocation")
         return -1000
+    end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Physical moves that can be called:")
+        @invocationMovesPhysical.uniq.each do |moveID|
+            detailsList << GameData::Move.get(moveID).name
+        end
+
+        detailsList << _INTL("Special moves that can be called:")
+        @invocationMovesSpecial.uniq.each do |moveID|
+            detailsList << GameData::Move.get(moveID).name
+        end
     end
 end
 
@@ -363,5 +398,12 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
     def getEffectScore(_user, _target)
         echoln("The AI will never use Selective Memory")
         return -1000
+    end
+    
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Moves that can be rolled:")
+        @selectableMoves.each do |moveID|
+            detailsList << GameData::Move.get(moveID).name
+        end
     end
 end

@@ -235,13 +235,13 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     end
 
     def getDetailsForMoveDex(detailsList = [])
-        detailsList << _INTL("150 BP: Pearl of Fate, Iron Ball")
-        detailsList << _INTL("100 BP: Choice Items, Weather Rocks, Life Orb")
-        detailsList << _INTL("75 BP: Everything else")
-        detailsList << _INTL("Poison: Poison Orb")
-        detailsList << _INTL("Burn: Burn Orb")
-        detailsList << _INTL("Frostbite: Frost Orb")
-        detailsList << _INTL("Leech: Big Root, Binding Band")
+        detailsList << _INTL("<u>150 BP</u>: Pearl of Fate, Iron Ball")
+        detailsList << _INTL("<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb")
+        detailsList << _INTL("<u>75 BP</u>: Everything else")
+        detailsList << _INTL("<u>Poison</u>: Poison Orb")
+        detailsList << _INTL("<u>Burn</u>: Burn Orb")
+        detailsList << _INTL("<u>Frostbite</u>: Frost Orb")
+        detailsList << _INTL("<u>Leech</u>: Big Root, Binding Band")
     end
 end
 
@@ -365,8 +365,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
 
     def getDetailsForMoveDex(detailsList = [])
         @typeArray.each_pair do |typeID, berryList|
-            lineText = GameData::Type.get(typeID).name
-            lineText += ": "
+            lineText = "<u>#{GameData::Type.get(typeID).name}</u>: "
             berryList.each_with_index do |berryID,index|
                 lineText += GameData::Item.get(berryID).name
                 lineText += ", " unless index == berryList.length - 1

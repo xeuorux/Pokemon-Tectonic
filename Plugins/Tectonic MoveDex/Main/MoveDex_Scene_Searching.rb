@@ -99,6 +99,7 @@ class MoveDex_Scene
         cmdPP           = -1
         cmdTargeting    = -1
         cmdSignature    = -1
+        cmdNotes        = -1
         cmdInvertList   = -1
         miscSearches[cmdTag = miscSearches.length]          = _INTL("Tag")
         miscSearches[cmdBasePower = miscSearches.length]    = _INTL("Base Power")
@@ -107,6 +108,7 @@ class MoveDex_Scene
         miscSearches[cmdPP = miscSearches.length]           = _INTL("Power Points")
         #miscSearches[cmdTargeting = miscSearches.length]    = _INTL("Targeting")
         miscSearches[cmdSignature = miscSearches.length]    = _INTL("Signature")
+        miscSearches[cmdNotes = miscSearches.length]        = _INTL("Has Notes")
         miscSearches[cmdInvertList = miscSearches.length]   = _INTL("Invert Current")
         miscSearches.push(_INTL("Cancel"))
         searchSelection = pbMessage(_INTL("Which search?"), miscSearches, miscSearches.length + 1)
@@ -124,6 +126,8 @@ class MoveDex_Scene
             return searchByMoveTargeting
         elsif cmdSignature > -1 && searchSelection == cmdSignature
             return searchByMoveSignature
+        elsif cmdNotes > -1 && searchSelection == cmdNotes
+            return searchByMoveHasNotes
         elsif cmdInvertList > -1 && searchSelection == cmdInvertList
             return invertSearchList
         end
@@ -241,6 +245,17 @@ class MoveDex_Scene
         return nil
     end
 
+    def searchByMoveHasNotes
+        dexlist = searchStartingList
+
+        dexlist = dexlist.find_all do |dex_item|
+            moveDetails = []
+            PokeBattle_Move.from_pokemon_move(nil, Pokemon::Move.new(dex_item[:move])).getDetailsForMoveDex(moveDetails)
+            next !moveDetails.empty?
+        end
+        return dexlist
+    end
+
     def searchByMoveTypeMatchups
     end
 
@@ -273,7 +288,8 @@ class MoveDex_Scene
         miscSorts[cmdPriority = miscSorts.length]                 = _INTL("Priority")
         miscSorts[cmdPP = miscSorts.length]                       = _INTL("Power Points")
         miscSorts.push(_INTL("Cancel"))
-        searchSelection = pbMessage(_INTL("Which sort"), miscSorts, miscSorts.length + 1)
+        searchSelection = pbMessage(_INTL("Which sort"), miscSorts, miscSorts.length)
+        return if searchSelection == miscSorts.length - 1
         @moveList.sort_by! do |dex_item|
             if cmdName > -1 && searchSelection == cmdName
                 next dex_item[:data].name

@@ -375,3 +375,7 @@ def getMoveName(move)
     return "ERROR" if moveData.nil?
     return moveData.name
 end
+
+def getBattleMoveInstanceFromID(move_id)
+    return PokeBattle_Move.from_pokemon_move(nil, Pokemon::Move.new(move_id))
+end

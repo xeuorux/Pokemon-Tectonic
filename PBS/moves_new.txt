@@ -5607,7 +5607,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = UseTwoRandomDragonThemedMoves
-Description = Invokes the aspects of multiple dragons, striking with two fitting moves in a row.
+Description = Invokes the aspects of multiple dragons, striking with a physical move and a special move.
 #-------------------------------
 [AXETOGRIND]
 Name = Axe to Grind

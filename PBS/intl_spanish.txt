@@ -38986,8 +38986,8 @@ Inflicts physical or special damage, whichever deals more. Then, raises the atta
 Es físico o especial dependiendo de la situación. Luego, aumenta la stat ofensiva que no haya sido usada.
 The user finds the highest base power move among your able party members, and uses it.
 El usuario encuentra el movimiento más fuerte entre tu equipo, y luego lo usa.
-Invokes the aspects of multiple dragons, striking with two fitting moves in a row.
-Invoca el aspecto de múltiples dragones, usando dos movimientos apropiados seguidos
+Invokes the aspects of multiple dragons, striking with a physical move and a special move.
+Invoca el aspecto de múltiples dragones, usando un movimiento físico y un movimiento especial.
 Combining dance and martial art, the user strikes the target and raises its Speed by two steps.
 Combinando la danza y artes marciales, el usuario ataca y aumenta su Velocidad dos grados.
 Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.

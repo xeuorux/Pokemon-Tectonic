@@ -26,12 +26,26 @@ class MoveDex_Entry_Scene
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
+
+        @speciesLinesToShow = 9
         @sprites["selectionarrow"] = IconSprite.new(0, 0, @viewport)
         @sprites["selectionarrow"].setBitmap("Graphics/Pictures/selarrow")
         @sprites["selectionarrow"].visible = false
         @sprites["selectionarrow"].x = SPECIES_LIST_COLUMN_1_X_LEFT - 16
 
         @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_types")))
+
+        @detailLinesToShow = 9
+        @sprites["scroll_arrow_up"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport)
+        @sprites["scroll_arrow_up"].x = (Graphics.width - 28) / 2
+        @sprites["scroll_arrow_up"].y = 38
+        @sprites["scroll_arrow_up"].visible = false
+        @sprites["scroll_arrow_up"].play
+        @sprites["scroll_arrow_down"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport)
+        @sprites["scroll_arrow_down"].x = (Graphics.width - 28) / 2
+        @sprites["scroll_arrow_down"].y = (Graphics.height - 44)
+        @sprites["scroll_arrow_down"].visible = false
+        @sprites["scroll_arrow_down"].play
 
         @animations = pbLoadBattleAnimations
         @sprites["pokemon_0"] = Sprite.new(@viewport)
@@ -53,10 +67,23 @@ class MoveDex_Entry_Scene
         @move = @movedexlist[@index][:move]
         @moveData = @movedexlist[@index][:data]
         @battleMoveObject = PokeBattle_Move.from_pokemon_move(nil, Pokemon::Move.new(@move))
+
+        # Generate and set species lists
         generateLevelUpLearnablesSpeciesList
         generateOtherLearnablesSpeciesList
         setCurrentPageSpeciesList
 
+        # Get move details, split into manageable lines
+        baseMoveDetails = []
+        @battleMoveObject.getDetailsForMoveDex(baseMoveDetails)
+        @moveDetailsText = []
+        baseMoveDetails.each do |baseMoveDetailLine|
+            break_string(baseMoveDetailLine, 40).each {|line|
+                @moveDetailsText << line
+            }
+        end
+
+        # Gather data for the animation
         @defaultMoveUser = @moveData.signature_of || getRandomNonLegendaryLearner
         @defaultMoveTarget = getRandomNonLegendaryLearner
         @targetingData = GameData::Target.get(@moveData.target)
@@ -131,6 +158,8 @@ class MoveDex_Entry_Scene
         moveName = getFormattedMoveName(@moveData.name,148)
         drawFormattedTextEx(overlay, 316, 4, Graphics.width, "<outln2>#{moveName}</outln2>", base, shadow, 18)
 
+        @sprites["scroll_arrow_up"].visible = false
+        @sprites["scroll_arrow_down"].visible = false
         @sprites["pokemon_0"].visible = @page == 5
         @sprites["pokemon_1"].visible = @page == 5
         @sprites["animation_black_bars"].visible = @page == 5
@@ -206,6 +235,8 @@ class MoveDex_Entry_Scene
                 drawSpeciesColumn(overlay,speciesLabelList,levelLabelList,columnIndex)
             end
 		end
+
+        updateSpeciesPageScrollArrows
     end
 
     def drawOtherLearnablesPage
@@ -238,6 +269,8 @@ class MoveDex_Entry_Scene
                 drawSpeciesColumn(overlay,speciesLabelList, [], columnIndex)
             end
 		end
+
+        updateSpeciesPageScrollArrows
     end
 
     def drawSpeciesColumn(overlay,speciesLabelList,levelLabelsList,columnIndex)
@@ -265,6 +298,11 @@ class MoveDex_Entry_Scene
         speciesDrawX = SPECIES_LIST_COLUMN_1_X_LEFT + SPECIES_LIST_COLUMN_X_OFFSET * columnIndex
         speciesDrawY = SPECIES_LIST_Y_INIT + 32 * displayIndex
         return speciesDrawX, speciesDrawY
+    end
+
+    def updateSpeciesPageScrollArrows
+        @sprites["scroll_arrow_up"].visible = @scroll > 0
+        @sprites["scroll_arrow_down"].visible = canScrollSpeciesList? && @scroll <= @currentSpeciesList[0].length - @speciesLinesToShow
     end
     
     def drawTypeMatchupsPage
@@ -338,6 +376,33 @@ class MoveDex_Entry_Scene
                     typerect = Rect.new(0, type_number * 32, 96, 32)
                     overlay.blt(xLeft + immuneOffset, yBase + 30 + 36 * index, @typebitmap.bitmap, typerect)
                 end
+            end
+        end
+    end
+
+    def drawOtherDetailsPage
+        bg_path = "Graphics/Pictures/Movedex/bg_move_other_details"
+        bg_path += "_dark" if darkMode?
+        @sprites["background"].setBitmap(_INTL(bg_path))
+
+        overlay = @sprites["overlay"].bitmap
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
+
+        @sprites["scroll_arrow_up"].visible = @scroll > 0
+        @sprites["scroll_arrow_down"].visible = @scroll < @moveDetailsText.length - @detailLinesToShow + 1
+
+        if @moveDetailsText.empty?
+            statusLabel = _INTL("None")
+            statusLabelWidth = @sprites["overlay"].bitmap.text_size(statusLabel).width
+            drawTextEx(overlay, Graphics.width / 2 - statusLabelWidth / 2, 80, 450, 1, statusLabel, base, shadow)
+        else
+            xLeft = 36
+            yBase = 60
+            displayIndex = 0
+            @moveDetailsText[@scroll..@scroll+@detailLinesToShow].each do |moveDetailLine|
+                drawFormattedTextEx(overlay, xLeft, yBase + 30 * displayIndex, 800, moveDetailLine, base, shadow, 30)
+                displayIndex += 1
             end
         end
     end
@@ -419,31 +484,6 @@ class MoveDex_Entry_Scene
         end
     end
 
-    def drawOtherDetailsPage
-        bg_path = "Graphics/Pictures/Movedex/bg_move_other_details"
-        bg_path += "_dark" if darkMode?
-        @sprites["background"].setBitmap(_INTL(bg_path))
-
-        overlay = @sprites["overlay"].bitmap
-        base   = MessageConfig.pbDefaultTextMainColor
-        shadow = MessageConfig.pbDefaultTextShadowColor
-
-        moveDetails = []
-        @battleMoveObject.getDetailsForMoveDex(moveDetails)
-
-        if moveDetails.empty?
-            statusLabel = _INTL("None")
-            statusLabelWidth = @sprites["overlay"].bitmap.text_size(statusLabel).width
-            drawTextEx(overlay, Graphics.width / 2 - statusLabelWidth / 2, 80, 450, 1, statusLabel, base, shadow)
-        else
-            xLeft = 36
-            yBase = 60
-            moveDetails.each_with_index do |moveDetailLine, index|
-                drawTextEx(overlay, xLeft, yBase + 32 * index, 800, 1, moveDetailLine, base, shadow)
-            end
-        end
-    end
-
     def pbEndScene
         pbFadeOutAndHide(@sprites) { pbUpdate }
         pbDisposeSpriteHash(@sprites)
@@ -455,7 +495,7 @@ class MoveDex_Entry_Scene
         pbUpdateSpriteHash(@sprites)
     end
 
-    def pbScroll
+    def pbScrollSpeciesList
         @scroll = 0
         @columnSelected = 0
 
@@ -550,7 +590,7 @@ class MoveDex_Entry_Scene
                 end
             elsif Input.trigger?(Input::BACK)
                 pbPlayCancelSE
-                @scroll = -1
+                @scroll = 0
                 drawPage
                 break
             end
@@ -563,6 +603,75 @@ class MoveDex_Entry_Scene
         @sprites["selectionarrow"].visible = false
     end
 
+    def pbScrollDetailsList
+        @scroll = 0
+
+        length = @moveDetailsText.length
+        offsetMax = length - @detailLinesToShow - 1
+
+        linesShown = 7
+
+        loop do
+            Graphics.update
+            Input.update
+            pbUpdate
+            doRefresh = false
+            if Input.trigger?(Input::UP) && Input.press?(Input::CTRL)
+                if @scroll > 0
+                    pbPlayCursorSE
+                    @scroll = 0
+                    doRefresh = true
+                else
+                    pbPlayCursorSE
+                end
+            elsif Input.trigger?(Input::DOWN) && Input.press?(Input::CTRL)
+                if @scroll < offsetMax
+                    pbPlayCursorSE
+                    @scroll = offsetMax
+                    doRefresh = true
+                else
+                    pbPlayCursorSE
+                end
+            elsif Input.repeat?(Input::UP)
+                if @scroll > 0
+                    pbPlayCursorSE
+                    @scroll -= 1
+                    doRefresh = true
+                end
+            elsif Input.repeat?(Input::DOWN)
+                if @scroll < offsetMax
+                    pbPlayCursorSE
+                    @scroll += 1
+                    doRefresh = true
+                end
+            elsif Input.repeat?(Input::JUMPUP) # Jump multiple lines
+                if @scroll > 0
+                    pbPlayCursorSE
+                    @scroll -= @detailLinesToShow
+                    @scroll = 0 if @scroll < 0
+                    doRefresh = true
+                else
+                    pbPlayBuzzerSE
+                end
+            elsif Input.repeat?(Input::JUMPDOWN)
+                if @scroll < offsetMax
+                    pbPlayCursorSE
+                    @scroll += @detailLinesToShow
+                    @scroll = offsetMax if @scroll > offsetMax
+                    doRefresh = true
+                else
+                    pbPlayBuzzerSE
+                end
+            elsif Input.trigger?(Input::BACK)
+                pbPlayCancelSE
+                @scroll = 0
+                drawPage
+                break
+            end
+            drawPage if doRefresh
+        end
+    end
+
     def updateSelectionArrow
         speciesDrawX, speciesDrawY = getSpeciesDisplayCoordinates(0,@columnSelected)
         @sprites["selectionarrow"].x = speciesDrawX - 16
@@ -571,6 +680,14 @@ class MoveDex_Entry_Scene
 
     def fixScrollOnColumnChance
         @scroll = [@scroll,@currentSpeciesList[@columnSelected].length-1].min
+    end
+
+    def canScrollSpeciesList?
+        @currentSpeciesList[0].length > @speciesLinesToShow + 1
+    end
+
+    def canScrollDetailsList?
+        return @moveDetailsText.length > @detailLinesToShow + 1
     end
 
     def navigateMoveEntry
@@ -583,9 +700,12 @@ class MoveDex_Entry_Scene
             dorefresh = false
 
             if Input.trigger?(Input::USE)
-                if @page == 1 || @page == 2
+                if @page == 1 || @page == 2 && canScrollSpeciesList?
                     pbPlayDecisionSE
-                    pbScroll
+                    pbScrollSpeciesList
+                elsif @page == 4 && canScrollDetailsList?
+                    pbPlayDecisionSE
+                    pbScrollDetailsList
                 elsif @page == 5
                     pbPlayDecisionSE
                     oppMove = Input.press?(Input::CTRL)
@@ -604,7 +724,7 @@ class MoveDex_Entry_Scene
                     @page = pageTitles.length if @page < 1 # Wrap around
 
                     setCurrentPageSpeciesList
-                    @scroll = -1
+                    @scroll = 0
                     @columnSelected = 0
                     pbPlayCursorSE
                     dorefresh = true
@@ -619,7 +739,7 @@ class MoveDex_Entry_Scene
                     @page = 1 if @page > pageTitles.length # Wrap around
 
                     setCurrentPageSpeciesList
-                    @scroll = -1
+                    @scroll = 0
                     @columnSelected = 0
                     pbPlayCursorSE
                     dorefresh = true
@@ -638,7 +758,7 @@ class MoveDex_Entry_Scene
 				oldindex = @index
                 pbGoToPrevious
                 if @index != oldindex
-                    @scroll = -1
+                    @scroll = 0
                     @columnSelected = 0
                     pbSEStop
                     updateMove
@@ -648,7 +768,7 @@ class MoveDex_Entry_Scene
 				oldindex = @index
                 pbGoToNext
                 if @index != oldindex
-                    @scroll = -1
+                    @scroll = 0
                     @columnSelected = 0
                     pbSEStop
                     updateMove
@@ -669,7 +789,7 @@ class MoveDex_Entry_Scene
         @page = 1 if @page < 1
         @page = pageTitles.length if @page > pageTitles.length
         if @page != oldpage
-            @scroll = -1
+            @scroll = 0
             pbPlayCursorSE
             setCurrentPageSpeciesList
             return true

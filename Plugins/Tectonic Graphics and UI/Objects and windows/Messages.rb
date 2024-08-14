@@ -1009,3 +1009,18 @@ def pbMessageFreeText(message, currenttext, passwordbox, maxlength, width = 240,
     pbDisposeMessageWindow(msgwindow)
     return retval
 end
+
+def break_string(str, character_count)
+    arr = []
+    pos = 0     
+    loop do
+        break arr if pos == str.size
+        if str[pos] == ' '
+            pos += 1
+        end
+        m = str.match(/.{1,#{character_count}}(?=[ ]|\z)|.{,#{character_count-1}}[ ]/, pos)
+        return nil if m.nil?
+        arr << m[0]
+        pos += m[0].size
+    end
+end
