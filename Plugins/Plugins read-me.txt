@@ -1,0 +1,12 @@
+Run the game in Debug mode each time you want the game to compile any changes you make to the Plugins here.
+Run the "Debug Game.bat" for basic Debug, or "Debug Game with Compile.bat" if you also want to compile changes to PBS files.
+
+When making a new mod, start from the MOD TEMPLATE folder.
+
+If making PBS changes, consider using the PBS Extensons feature!
+If you place a PBS file (e.g. “pokemon.txt”) inside a plugin, it will be hot loaded at runtime. This only works for defining new content, and will not work for trying to edit existing content.
+This currently supports:
+pokemon.txt
+abilities.txt
+moves.txt
+regionaldexes.txt
