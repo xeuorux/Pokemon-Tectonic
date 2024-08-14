@@ -38,6 +38,9 @@ class MoveDex_Entry_Scene
         @sprites["pokemon_0"].z = 21
         @sprites["pokemon_1"] = Sprite.new(@viewport)
         @sprites["pokemon_1"].z = 16
+        @sprites["animation_black_bars"] = IconSprite.new(0, 32, @viewport)
+        @sprites["animation_black_bars"].setBitmap("Graphics/Pictures/Movedex/bg_move_animation_black_bars")
+        @sprites["animation_black_bars"].z = 999_999
 
         drawPage
 
@@ -54,9 +57,19 @@ class MoveDex_Entry_Scene
         generateOtherLearnablesSpeciesList
         setCurrentPageSpeciesList
 
-        @defaultMoveUser = @moveData.signature_of || @otherLearnables.sample || :PIKACHU
-        @defaultMoveTarget = :PIKACHU
+        @defaultMoveUser = @moveData.signature_of || getRandomNonLegendaryLearner
+        @defaultMoveTarget = getRandomNonLegendaryLearner
         @targetingData = GameData::Target.get(@moveData.target)
+    end
+
+    def getRandomNonLegendaryLearner
+        return :PIKACHU if @otherLearnables.empty?
+        speciesData = nil
+        loop do
+            speciesData = GameData::Species.get(@otherLearnables.sample)
+            break if speciesData.form == 0
+        end
+        return speciesData.id
     end
 
     def generateLevelUpLearnablesSpeciesList
@@ -115,11 +128,12 @@ class MoveDex_Entry_Scene
         drawFormattedTextEx(overlay, 212, 2, Graphics.width, "<outln2>[#{@page}/#{pageTitles.length}]</outln2>", base, shadow, 18)
 
         # Draw move name on top right	
-        moveName = getFormattedMoveName(@moveData.name,160)
-        drawFormattedTextEx(overlay, 320, 4, Graphics.width, "<outln2>#{moveName}</outln2>", base, shadow, 18)
+        moveName = getFormattedMoveName(@moveData.name,148)
+        drawFormattedTextEx(overlay, 316, 4, Graphics.width, "<outln2>#{moveName}</outln2>", base, shadow, 18)
 
         @sprites["pokemon_0"].visible = @page == 5
         @sprites["pokemon_1"].visible = @page == 5
+        @sprites["animation_black_bars"].visible = @page == 5
         
         case @page
         when 1
@@ -330,7 +344,6 @@ class MoveDex_Entry_Scene
 
     def drawMoveAnimationPage
         bg_path = "Graphics/Pictures/Movedex/bg_move_animation"
-        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
 
         overlay = @sprites["overlay"].bitmap
@@ -345,17 +358,25 @@ class MoveDex_Entry_Scene
         @user = GameData::Species.back_sprite_bitmap(@defaultMoveUser).deanimate
         @target = GameData::Species.front_sprite_bitmap(@defaultMoveTarget).deanimate
 
+        battlerSpriteYOffset = 48
+
         @sprites["pokemon_0"].bitmap = @user
         @sprites["pokemon_1"].bitmap = @target
-        animationOffset = 32
+        userSpriteMetrics = GameData::SpeciesMetrics.get_species_form(@defaultMoveUser,0)
+        userSpriteX = PokeBattle_SceneConstants::FOCUSUSER_X
+        userSpriteY = PokeBattle_SceneConstants::FOCUSUSER_Y + battlerSpriteYOffset
         pbSpriteSetAnimFrame(@sprites["pokemon_0"],
-            pbCreateCel(PokeBattle_SceneConstants::FOCUSUSER_X,
-                        PokeBattle_SceneConstants::FOCUSUSER_Y + animationOffset,-1,2),
+            pbCreateCel(userSpriteX,userSpriteY,-1,2),
             @sprites["pokemon_0"],@sprites["pokemon_1"])
+        userSpriteMetrics.apply_metrics_to_sprite(@sprites["pokemon_0"],0)
+
+        targetSpeciesMetrics = GameData::SpeciesMetrics.get_species_form(@defaultMoveTarget,0)
+        targetSpriteX = PokeBattle_SceneConstants::FOCUSTARGET_X
+        targetSpriteY = PokeBattle_SceneConstants::FOCUSTARGET_Y + battlerSpriteYOffset
         pbSpriteSetAnimFrame(@sprites["pokemon_1"],
-            pbCreateCel(PokeBattle_SceneConstants::FOCUSTARGET_X,
-                        PokeBattle_SceneConstants::FOCUSTARGET_Y + animationOffset,-2,1),
+            pbCreateCel(targetSpriteX,targetSpriteY,-2,1),
             @sprites["pokemon_0"],@sprites["pokemon_1"])
+        targetSpeciesMetrics.apply_metrics_to_sprite(@sprites["pokemon_1"],1)
     end
 
     def playAnimation(oppmove = false,speedMult = 1.0)

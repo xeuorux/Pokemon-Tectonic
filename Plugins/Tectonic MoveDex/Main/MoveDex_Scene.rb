@@ -114,22 +114,23 @@ class MoveDex_Scene
         end
         pbDrawTextPositions(overlay, textpos)
 
+        #drawFormattedTextEx(overlay, 164, 2, 450, _INTL("{1} Moves",@moveList.length), base, shadow)
+
 		# render the moves lists
 		displayIndex = 0
 		listIndex = -1
         @selected_move = nil
         if @moveList.empty?
-            drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + 60, 90, 450, _INTL("None"), base, shadow)
+            drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, 90, 450, _INTL("None"), base, shadow)
 		else
             @moveList.each_with_index do |dex_item, _index|
                 listIndex += 1
                 next if listIndex < @scroll
                 maxWidth = displayIndex == 0 ? 200 : 212
                 moveName = getFormattedMoveName(dex_item[:data], 200)
-                offsetX = 0
                 @selected_move = dex_item[:move] if listIndex == @scroll
                 moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 32 * displayIndex
-                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT + offsetX, moveDrawY, 450, moveName, base, shadow)
+                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, moveDrawY, 450, moveName, base, shadow)
                 if listIndex == @scroll
                     @sprites["selectionarrow"].y = moveDrawY - 4
                     @sprites["selectionarrow"].visible = true

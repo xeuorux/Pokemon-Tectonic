@@ -362,6 +362,18 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
     def resetMoveUsageState
         @chosenItem = nil
     end
+
+    def getDetailsForMoveDex(detailsList = [])
+        @typeArray.each_pair do |typeID, berryList|
+            lineText = GameData::Type.get(typeID).name
+            lineText += ": "
+            berryList.each_with_index do |berryID,index|
+                lineText += GameData::Item.get(berryID).name
+                lineText += ", " unless index == berryList.length - 1
+            end
+            detailsList << lineText
+        end
+    end
 end
 
 #===============================================================================

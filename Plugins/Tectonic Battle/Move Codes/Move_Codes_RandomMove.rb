@@ -166,10 +166,12 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
             next unless move_data.can_be_forced?
             next if @moveBlacklist.include?(move_data.function_code)
             next if move_data.empoweredMove?
-            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
-            next if moveObject.is_a?(PokeBattle_ProtectMove)
-            next if moveObject.is_a?(PokeBattle_HelpingMove)
-            next if moveObject.callsAnotherMove?
+            if battle
+                moveObject = battle.getBattleMoveInstanceFromID(move_id)
+                next if moveObject.is_a?(PokeBattle_ProtectMove)
+                next if moveObject.is_a?(PokeBattle_HelpingMove)
+                next if moveObject.callsAnotherMove?
+            end
             @metronomeMoves.push(move_data.id)
         end
     end
@@ -209,10 +211,14 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
             next if move_data.is_signature?
             next unless move_data.learnable?
             next unless move_data.can_be_forced?
-            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
-            next if moveObject.is_a?(PokeBattle_ProtectMove)
-            next if moveObject.is_a?(PokeBattle_HelpingMove)
-            next if moveObject.callsAnotherMove?
+
+            if battle
+                moveObject = battle.getBattleMoveInstanceFromID(move_id)
+                next if moveObject.is_a?(PokeBattle_ProtectMove)
+                next if moveObject.is_a?(PokeBattle_HelpingMove)
+                next if moveObject.callsAnotherMove?
+            end
+
             @discoverableMoves.push(move_data.id)
         end
     end
