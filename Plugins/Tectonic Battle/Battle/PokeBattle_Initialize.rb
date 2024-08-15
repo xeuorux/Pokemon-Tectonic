@@ -164,12 +164,12 @@ class PokeBattle_Battle
         # System for learning the player's abilities
         @knownAbilities = {}
         @party1.each do |pokemon|
-            knownAlready = false
-            knownAlready = true if pokemon.getAbilityList.length == 1
             @knownAbilities[pokemon.personalID] = []
-            abilityToKnow = pokemon.getAbilityList[1]
+
+            next unless pokemon.getAbilityList.length == 1
+            abilityToKnow = pokemon.getAbilityList[0][0]
             @knownAbilities[pokemon.personalID].push(abilityToKnow)
-            echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI") if knownAlready
+            echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI, since species only has one legal ability.")
         end
 
         # System for learning the player's moves
