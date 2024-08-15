@@ -1003,6 +1003,12 @@ Gender = Unknown
 BaseMoney = 0
 BattleBGM = Battle villain
 #-------------------------------
+[MASKEDVILLAIN_Sang]
+Name = Masked Villain
+Gender = Unknown
+BaseMoney = 0
+BattleBGM = Battle villain
+#-------------------------------
 [MEDIUM]
 Name = Medium
 Gender = Female
