@@ -138,17 +138,17 @@ class PokeBattle_Battler
         return increment
     end
 
-    def pbRaiseStatStepByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false)
+    def pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: true, ignoreContrary: false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:CONTRARY)
-            return pbLowerStatStepByCause(stat, increment, user, cause, showAnim, true)
+            return pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
         # Eccentric
         if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:ECCENTRIC)
             increment = (increment / 2.0).ceil
-            return pbLowerStatStepByCause(stat, increment, user, cause, showAnim, true)
+            return pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
         # Perform the stat step change
         increment = pbRaiseStatStepBasic(stat, increment)
@@ -438,13 +438,13 @@ class PokeBattle_Battler
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:CONTRARY)
-            return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
+            return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
         # Eccentric
         if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:ECCENTRIC)
             increment = (increment / 2.0).ceil
-            return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
+            return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
         # Total Focus
         return false if effectActive?(:EmpoweredFlowState)
@@ -583,9 +583,9 @@ class PokeBattle_Battler
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
-                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
+                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: ignoreContrary)
             elsif cause
-                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
+                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: ignoreContrary)
             elsif pbRaiseStatStep(stat, increment, user, showAnim, ignoreContrary)
                 lowered = true
             end
@@ -603,9 +603,9 @@ class PokeBattle_Battler
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary, false, ignoreStubborn)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: ignoreContrary, ignoreStubborn: ignoreStubborn)
             elsif cause
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary, false, ignoreStubborn)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: ignoreContrary, ignoreStubborn: ignoreStubborn)
             elsif pbLowerStatStep(stat, increment, user, showAnim, ignoreContrary, false, ignoreStubborn)
                 lowered = true
             end
@@ -754,7 +754,7 @@ class PokeBattle_Battler
 
             statArray.map! { |statArrayElement|
                 if statArrayElement.is_a?(Integer)
-                    next [statArrayElement,1].min_by
+                    next [statArrayElement,1].min
                 else
                     next statArrayElement
                 end
