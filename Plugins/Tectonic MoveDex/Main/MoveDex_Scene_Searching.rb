@@ -101,9 +101,11 @@ class MoveDex_Scene
         cmdSignature    = -1
         cmdNotes        = -1
         cmdInvertList   = -1
+        cmdEffectChance = -1
         miscSearches[cmdTag = miscSearches.length]          = _INTL("Tag")
         miscSearches[cmdBasePower = miscSearches.length]    = _INTL("Base Power")
         miscSearches[cmdAccuracy = miscSearches.length]     = _INTL("Accuracy")
+        miscSearches[cmdEffectChance = miscSearches.length] = _INTL("Effect Chance")
         miscSearches[cmdPriority = miscSearches.length]     = _INTL("Priority")
         miscSearches[cmdPP = miscSearches.length]           = _INTL("Power Points")
         #miscSearches[cmdTargeting = miscSearches.length]    = _INTL("Targeting")
@@ -118,6 +120,8 @@ class MoveDex_Scene
             return searchByMoveBasePower
         elsif cmdAccuracy > -1 && searchSelection == cmdAccuracy
             return searchByMoveAccuracy
+        elsif cmdEffectChance > -1 && searchSelection == cmdEffectChance
+            return searchByMoveEffectChance
         elsif cmdPriority > -1 && searchSelection == cmdPriority
             return searchByMovePriority
         elsif cmdPP > -1 && searchSelection == cmdPP
@@ -207,6 +211,12 @@ class MoveDex_Scene
         }
     end
 
+    def searchByMoveEffectChance
+        searchByStatComparison { |moveData|
+            moveData.effect_chance
+        }
+    end
+
     def searchByMovePriority
         searchByStatComparison { |moveData|
             moveData.priority
@@ -278,6 +288,7 @@ class MoveDex_Scene
         cmdCategory                 = -1
         cmdBasePower                = -1
         cmdAccuracy                 = -1
+        cmdEffectChance             = -1
         cmdPriority                 = -1
         cmdPP                       = -1
         miscSorts[cmdName = miscSorts.length]                     = _INTL("Name")
@@ -285,6 +296,7 @@ class MoveDex_Scene
         miscSorts[cmdCategory = miscSorts.length]                 = _INTL("Category")
         miscSorts[cmdBasePower = miscSorts.length]                = _INTL("Base Power")
         miscSorts[cmdAccuracy = miscSorts.length]                 = _INTL("Accuracy")
+        miscSorts[cmdEffectChance = miscSorts.length]             = _INTL("Effect Chance")
         miscSorts[cmdPriority = miscSorts.length]                 = _INTL("Priority")
         miscSorts[cmdPP = miscSorts.length]                       = _INTL("Power Points")
         miscSorts.push(_INTL("Cancel"))
@@ -307,6 +319,8 @@ class MoveDex_Scene
                 next -dex_item[:data].priority
             elsif cmdPP > -1 && searchSelection == cmdPP
                 next -dex_item[:data].total_pp
+            elsif cmdEffectChance > -1 && searchSelection && cmdEffectChance
+                next -dex_item[:data].effect_chance
             end
         end
     end
