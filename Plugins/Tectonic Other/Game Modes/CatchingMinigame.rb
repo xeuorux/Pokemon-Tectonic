@@ -31,6 +31,7 @@ class CatchingMinigame
         @cutSceneLocation = cutSceneLocation
         @returnLocation = returnLocation
         @active = true
+        transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
         pbMessage(_INTL("Catch the best Pokemon you can in {1} turns of battle!",turnsGiven))
     end
 
@@ -71,7 +72,7 @@ class CatchingMinigame
     end
 
     def endMinigame()
-        transferPlayer(@cutSceneLocation)
+        transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
         pbWait(20)
         if @currentMaxScorePokemon.nil?
             pbMessage(_INTL("You caught no Pokemon worth any points."))
@@ -83,10 +84,10 @@ class CatchingMinigame
         @currentMaxScore = 0
         @turnsLeft = 0
         pbWait(10)
-        mapName = pbGetMessage(MessageTypes::MapNames,@returnLocation[3])
+        mapName = pbGetMessage(MessageTypes::MapNames,@returnLocation[2])
         pbMessage(_INTL("Returning to {1}.",mapName))
         pbWait(20)
-        transferPlayer(@returnLocation)
+        transferPlayerToEvent(@returnLocation[0],@returnLocation[1],@returnLocation[2])
         @active = false
     end
 
@@ -127,18 +128,6 @@ class CatchingMinigame
         else
             pbMessage(_INTL("Unfortunately, that's not enough to earn a reward."))
         end
-    end
-
-    def transferPlayer(transferLoc)
-        $game_temp.player_transferring = true
-        $game_temp.player_new_x = transferLoc[0]
-        $game_temp.player_new_y = transferLoc[1]
-        $game_temp.player_new_direction = transferLoc[2]
-        $game_temp.player_new_map_id = transferLoc[3] || $game_map.map_id
-        $game_temp.transition_processing = true
-        $scene.transfer_player
-        $game_map.autoplay
-        $game_map.refresh
     end
 end
 
