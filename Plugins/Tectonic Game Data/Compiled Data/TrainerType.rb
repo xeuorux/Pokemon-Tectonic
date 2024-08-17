@@ -127,8 +127,8 @@ module Compiler
         baseFiles = ["PBS/trainertypes.txt"]
         trainerTypeTextFiles = []
         trainerTypeTextFiles.concat(baseFiles)
-        trainerExtensions = Compiler.get_extensions("trainers")
-        trainerTypeTextFiles.concat(abilityExtensions)
+        trainerTypeExtensions = Compiler.get_extensions("trainers")
+        trainerTypeTextFiles.concat(trainerTypeExtensions)
         trainerTypeTextFiles.each do |path|
           baseFile = baseFiles.include?(path)
           # Read each line of trainer_types.txt at a time and compile it into a trainer type
@@ -162,6 +162,7 @@ module Compiler
           }
           # Add last trainer type's data to records
           GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+        end
         # Save all data
         GameData::TrainerType.save
         MessageTypes.setMessages(MessageTypes::TrainerTypes, tr_type_names)

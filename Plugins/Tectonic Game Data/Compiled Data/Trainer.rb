@@ -380,7 +380,7 @@ module Compiler
     trainerTextFiles = []
     trainerTextFiles.concat(baseFiles)
     trainerExtensions = Compiler.get_extensions("trainers")
-    trainerTextFiles.concat(abilityExtensions)
+    trainerTextFiles.concat(trainerExtensions)
     trainerTextFiles.each do |path|
       isMonument = path == "PBS/trainers_monument.txt"
       baseFile = baseFiles.include?(path)
