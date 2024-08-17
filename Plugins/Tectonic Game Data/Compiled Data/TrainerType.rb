@@ -99,6 +99,7 @@ module GameData
         @skill_level = hash[:skill_level] || @base_money
         @skill_code  = hash[:skill_code]
         @policies	   = hash[:policies]	|| []
+        @defined_in_extension   = hash[:defined_in_extension] || false
       end
   
       # @return [String] the translated name of this trainer type

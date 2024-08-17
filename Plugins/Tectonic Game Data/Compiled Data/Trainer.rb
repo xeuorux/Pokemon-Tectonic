@@ -129,6 +129,7 @@ module GameData
         @extendsName	  	    = hash[:extends_name]
         @extendsVersion 	    = hash[:extends_version]    || -1
         @monumentTrainer        = hash[:monument_trainer]   || false
+        @defined_in_extension   = hash[:defined_in_extension] || false
 
         @@monumentTrainers.push(self) if @monumentTrainer
 
