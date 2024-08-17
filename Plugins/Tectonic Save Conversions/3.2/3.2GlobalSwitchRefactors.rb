@@ -14,6 +14,9 @@ SaveData.register_conversion(:global_switch_refactor_3_2_0) do
     globalSwitches[204] = selfSwitches[[165,33,'A']] # Vincent active
     globalSwitches[205] = selfSwitches[[265,3,'A']] # Chara active
 
+    # Fix the novo town battling club stage
+    globalVariables[40] = globalVariables[36]
+
     # Base the ironclad dojo stage on Scilla's switches
     ironDojoStage = 0
     ironDojoStage += 1 if selfSwitches[[206,3,'A']]
