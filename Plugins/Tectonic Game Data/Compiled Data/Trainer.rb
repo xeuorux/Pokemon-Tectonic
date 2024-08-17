@@ -129,6 +129,7 @@ module GameData
         @extendsName	  	    = hash[:extends_name]
         @extendsVersion 	    = hash[:extends_version]    || -1
         @monumentTrainer        = hash[:monument_trainer]   || false
+        @defined_in_extension   = hash[:defined_in_extension] || false
 
         @@monumentTrainers.push(self) if @monumentTrainer
 
@@ -376,8 +377,14 @@ module Compiler
     trainer_id                = -1
     current_pkmn              = nil
     isExtending               = false
-    ["PBS/trainers.txt","PBS/trainers_monument.txt"].each do |path|
+    baseFiles = ["PBS/trainers.txt", "PBS/trainers_monument.txt"]
+    trainerTextFiles = []
+    trainerTextFiles.concat(baseFiles)
+    trainerExtensions = Compiler.get_extensions("trainers")
+    trainerTextFiles.concat(trainerExtensions)
+    trainerTextFiles.each do |path|
       isMonument = path == "PBS/trainers_monument.txt"
+      baseFile = baseFiles.include?(path)
       # Read each line of trainers.txt at a time and compile it as a trainer property
       pbCompilerEachPreppedLine(path) { |line, line_no|
         if line[/^\s*\[\s*(.+)\s*\]\s*$/]
@@ -404,6 +411,7 @@ module Compiler
             :extends            => -1,
             :removed_pokemon    => [],
             :monument_trainer   => isMonument,
+            :defined_in_extension   => !baseFile,
           }
           isExtending = false
           current_pkmn = nil
@@ -567,14 +575,14 @@ module Compiler
   def write_trainers
     File.open("PBS/trainers.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Trainer.each do |trainer|
+      GameData::Trainer.each_base do |trainer|
         next if trainer.monumentTrainer
         write_trainer_to_file(trainer, f)
       end
     }
     File.open("PBS/trainers_monument.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Trainer.each do |trainer|
+      GameData::Trainer.each_base do |trainer|
         next unless trainer.monumentTrainer
         write_trainer_to_file(trainer, f)
       end
