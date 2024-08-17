@@ -156,10 +156,6 @@ end
 class PokeBattle_AI_RAYQUAZA < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @beginBattle.push(proc { |user, _battle|
-            user.battle.pbMegaEvolve(user.index)
-        })
-
         @wholeRound += %i[STRATOSPHERESCREAM]
 
         @warnedIFFMove.add(:DRAGONASCENT, {
@@ -176,7 +172,7 @@ class PokeBattle_AI_RAYQUAZA < PokeBattle_AI_Boss
                 next battle.turnCount > 0 && battle.turnCount % 3 == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("{1}'s rage is at at its peak!",user.pbThis)
+                _INTL("{1}'s rage is at its peak!",user.pbThis)
             },
         })
     end

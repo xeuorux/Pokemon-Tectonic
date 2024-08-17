@@ -172,6 +172,13 @@ MultipleForms.register(:KYOGRE,{
   }
 })
 
+MultipleForms.register(:RAYQUAZA,{
+  "getPrimalForm" => proc { |pkmn|
+    next 1 if pkmn.hasMove?(:DRAGONASCENT)
+    next
+  }
+})
+
 MultipleForms.register(:BURMY,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
     next 0 if pkmn.fainted? || endBattle

@@ -87,8 +87,14 @@ class PokeBattle_Battle
             pbCommonAnimation("PrimalKyogre2", battler)
         elsif battler.isSpecies?(:GROUDON)
             pbCommonAnimation("PrimalGroudon2", battler)
+        elsif battler.isSpecies?(:RAYQUAZA)
+            pbCommonAnimation("MegaEvolution", battler)
         end
-        pbDisplay(_INTL("{1}'s Primal Reversion!\nIt reverted to its primal form!", battler.pbThis))
+        if battler.isSpecies?(:RAYQUAZA)
+            pbDisplay(_INTL("{1} is inspired by the echo of an ancient wish!", battler.pbThis))
+        else 
+            pbDisplay(_INTL("{1}'s Primal Reversion!\nIt reverted to its primal form!", battler.pbThis))
+        end 
         # Trigger ability
         battler.pbEffectsOnSwitchIn
     end

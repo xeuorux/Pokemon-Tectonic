@@ -38829,7 +38829,7 @@ El usuario ataca usando todo su cuerpo. Duplica su poder si Rizo Defensa fue usa
 The user flexes its rocky skin, raising its Attack and Defense by two steps each and gaining the Rock type.
 El usuario concentra su piel rocosa, aumentando su Ataque y Defensa dos grados y ganando el tipo Roca.
 The target becomes unable to flee, and takes 50% more damage from all attacks.
-El objetivo no deja escapar al objetivo, además le hace un 50% más vulnerable a todo ataque.
+El objetivo es atrapado, además es un 50% más vulnerable a todo ataque.
 The user and its allies take 50% less attack damage this turn. Always fails if used in succession.
 El usuario y sus aliados reciben un 50% menos de daño por un turno. Siempre falla si se usa consecutivamente.
 The user incants a snowy curse, dealing damage and setting a layer of frost spikes around the target.
@@ -48722,7 +48722,7 @@ An air of authority surrounds #{user.pbThis(true)}.
 Un aire de superioridad rodea a #{user.pbThis(true)}.
 #{user.pbThis} looks to the Ozone Layer above!
 ¡#{user.pbThis} mira a la Capa de Ozono a lo alto!
-#{user.pbThis}'s rage is at at its peak!
+#{user.pbThis}'s rage is at its peak!
 ¡La furia de #{user.pbThis} está en su punto máximo!
 The avatar of Deoxys turns to Attack Form!
 ¡El avatar de Deoxys se transforma a su Forma Ataque!
