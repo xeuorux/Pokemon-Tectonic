@@ -119,12 +119,12 @@ module Compiler
     #=============================================================================
     # Compile trainer type data
     #=============================================================================
-    def compile_trainer_types()
+    def compile_trainer_types(path="PBS/trainertypes.txt")
         GameData::TrainerType::DATA.clear
         schema = GameData::TrainerType::SCHEMA
         tr_type_names = []
         tr_type_hash  = nil
-        baseFiles = ["PBS/trainertypes.txt"]
+        baseFiles = [path]
         trainerTypeTextFiles = []
         trainerTypeTextFiles.concat(baseFiles)
         trainerTypeExtensions = Compiler.get_extensions("trainertypes")
