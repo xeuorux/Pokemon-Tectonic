@@ -2065,6 +2065,20 @@ Flags = CanProtect,CanMirrorMove
 Description = The user throws a large rock at the target. If it misses, the user's accuracy is raised.
 Animation = ROCKTHROW
 #-------------------------------
+[ROCKOUT]
+Name = Rock Out
+Type = ROCK
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = RaiseUserAttack2
+Flags = CanProtect,CanMirrorMove,Dance
+EffectChance = 100
+Description = The user dances wildly while churning rocks towards the target. This raises the user's Attack by 2 steps.
+Animation = ROCKSLIDE
+#-------------------------------
 [ROLLINGBOULDER]
 Name = Rolling Boulder
 Type = ROCK
@@ -4876,6 +4890,20 @@ Flags = CanMirrorMove
 Description = The user skillfully attacks around the enemy's guard. Can't miss and skips protections.
 Animation = ZENHEADBUTT
 #-------------------------------
+[BRAINFREEZE]
+Name = Brain Freeze
+Type = PSYCHIC
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Frostbite
+Flags = CanProtect,CanMirrorMove
+EffectChance = 30
+Description = The user slows the target's mind with a psychically infused blow. This has a 30% chance to frostbite.
+Animation = ICEPUNCH
+#-------------------------------
 [CORECOLLAPSE]
 Name = Core Collapse
 Type = PSYCHIC
@@ -5359,6 +5387,19 @@ FunctionCode = ReverseTargetHealingThisTurn
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = For the rest of the round, the target's healing is reversed.
+#-------------------------------
+[ICEBERGBASH]
+Name = Iceberg Bash
+Type = ICE
+Category = Physical
+Power = 130
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerUserAtk4
+Flags = CanProtect,CanMirrorMove
+Description = The user picks up an iceberg and slams it into the target. Lowers the user's Attack by four steps.
+Animation = AVALANCHE
 #-------------------------------
 [ICECALIBUR]
 Name = Icecalibur
@@ -5864,6 +5905,20 @@ Target = AllNearFoes
 FunctionCode = LowerTargetAtk2StartEclipse8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The Pokémon blots out the sky, summoning eclipse for eight turns and lowering each opponent's Attack by two steps.
+#-------------------------------
+[WYRMSWOUNDING]
+Name = Wyrm's Wounding
+Type = DRAGON
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Leech
+Flags = CanProtect,CanMirrorMove
+EffectChance = 30
+Description = The user roots itself, then strikes at the target with serpentine strength. This has a 30% chance to leech.
+Animation = DRAGONRUSH
 #-------------------------------
 #		DARK MOVES
 #-------------------------------

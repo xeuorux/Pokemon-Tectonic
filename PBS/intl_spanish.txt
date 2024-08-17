@@ -37674,8 +37674,8 @@ The user regains up to half of its max HP. It restores more HP in a sandstorm.
 El usuario recupera la mitad de sus PS máximos. Recupera 3/4 en tormenta de arena.
 The user lays spikes at the foe's feet. Foes that switch into battle are hurt a bit for each layer.
 El usuario pone una capa de púas a los pies del oponente. Los oponentes que entren al campo son dañados más por cada capa presente.
-Throws scorching sand at the target to attack. It has a 30% chance to burn.
-El usuario le lanza arena ardiente al objetivo. Tiene un 30% de probabilidad de quemar al objetivo.
+Throws scorching sand at the target to attack. It has a 10% chance to burn.
+El usuario le lanza arena ardiente al objetivo. Tiene un 10% de probabilidad de quemar al objetivo.
 On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.
 En el segundo turno, el usuario ataca al oponente con hielo eléctricamente cargado. Tiene un 30% de probabilidad de aturdir al objetivo.
 On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.

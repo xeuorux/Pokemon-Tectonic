@@ -2599,13 +2599,13 @@ Description = The user spins a sandstorm around the target, trapping and damagin
 Name = Scorching Sands
 Type = GROUND
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = Burn
 Flags = CanProtect,CanMirrorMove
-EffectChance = 30
+EffectChance = 10
 Description = Throws scorching sand at the target to attack. It has a 30% chance to burn.
 #-------------------------------
 [SHOREUP]
