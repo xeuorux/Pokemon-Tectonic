@@ -127,7 +127,7 @@ module Compiler
         baseFiles = ["PBS/trainertypes.txt"]
         trainerTypeTextFiles = []
         trainerTypeTextFiles.concat(baseFiles)
-        trainerTypeExtensions = Compiler.get_extensions("trainers")
+        trainerTypeExtensions = Compiler.get_extensions("trainertypes")
         trainerTypeTextFiles.concat(trainerTypeExtensions)
         trainerTypeTextFiles.each do |path|
           baseFile = baseFiles.include?(path)
