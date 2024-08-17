@@ -99,6 +99,7 @@ module GameData
         @skill_level = hash[:skill_level] || @base_money
         @skill_code  = hash[:skill_code]
         @policies	   = hash[:policies]	|| []
+        @defined_in_extension   = hash[:defined_in_extension] || false
       end
   
       # @return [String] the translated name of this trainer type
@@ -119,41 +120,50 @@ module Compiler
     #=============================================================================
     # Compile trainer type data
     #=============================================================================
-    def compile_trainer_types(path = "PBS/trainertypes.txt")
+    def compile_trainer_types(path="PBS/trainertypes.txt")
         GameData::TrainerType::DATA.clear
         schema = GameData::TrainerType::SCHEMA
         tr_type_names = []
         tr_type_hash  = nil
-        # Read each line of trainer_types.txt at a time and compile it into a trainer type
-        pbCompilerEachPreppedLine(path) { |line, line_no|
-          if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [tr_type_id]
-            # Add previous trainer type's data to records
-            GameData::TrainerType.register(tr_type_hash) if tr_type_hash
-            # Parse trainer type ID
-            tr_type_id = $~[1].to_sym
-            if GameData::TrainerType.exists?(tr_type_id)
-              raise _INTL("Trainer Type ID '{1}' is used twice.\r\n{2}", tr_type_id, FileLineData.linereport)
+        baseFiles = [path]
+        trainerTypeTextFiles = []
+        trainerTypeTextFiles.concat(baseFiles)
+        trainerTypeExtensions = Compiler.get_extensions("trainertypes")
+        trainerTypeTextFiles.concat(trainerTypeExtensions)
+        trainerTypeTextFiles.each do |path|
+          baseFile = baseFiles.include?(path)
+          # Read each line of trainer_types.txt at a time and compile it into a trainer type
+          pbCompilerEachPreppedLine(path) { |line, line_no|
+            if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [tr_type_id]
+              # Add previous trainer type's data to records
+              GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+              # Parse trainer type ID
+              tr_type_id = $~[1].to_sym
+              if GameData::TrainerType.exists?(tr_type_id)
+                raise _INTL("Trainer Type ID '{1}' is used twice.\r\n{2}", tr_type_id, FileLineData.linereport)
+              end
+              # Construct trainer type hash
+              tr_type_hash = {
+                :id => tr_type_id,
+                :defined_in_extension => !baseFile,
+              }
+            elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
+              if !tr_type_hash
+                raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport)
+              end
+              # Parse property and value
+              property_name = $~[1]
+              line_schema = schema[property_name]
+              next if !line_schema
+              property_value = pbGetCsvRecord($~[2], line_no, line_schema)
+              # Record XXX=YYY setting
+              tr_type_hash[line_schema[0]] = property_value
+              tr_type_names.push(tr_type_hash[:name]) if property_name == "Name"
             end
-            # Construct trainer type hash
-            tr_type_hash = {
-              :id => tr_type_id
-            }
-          elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
-            if !tr_type_hash
-              raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport)
-            end
-            # Parse property and value
-            property_name = $~[1]
-            line_schema = schema[property_name]
-            next if !line_schema
-            property_value = pbGetCsvRecord($~[2], line_no, line_schema)
-            # Record XXX=YYY setting
-            tr_type_hash[line_schema[0]] = property_value
-            tr_type_names.push(tr_type_hash[:name]) if property_name == "Name"
-          end
-        }
-        # Add last trainer type's data to records
-        GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+          }
+          # Add last trainer type's data to records
+          GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+        end
         # Save all data
         GameData::TrainerType.save
         MessageTypes.setMessages(MessageTypes::TrainerTypes, tr_type_names)
@@ -166,7 +176,7 @@ module Compiler
     def write_trainer_types
         File.open("PBS/trainertypes.txt", "wb") { |f|
           add_PBS_header_to_file(f)
-          GameData::TrainerType.each do |t|
+          GameData::TrainerType.each_base do |t|
             f.write("\#-------------------------------\r\n")
             f.write(sprintf("[%s]\r\n", t.id))
             f.write(sprintf("Name = %s\r\n", t.real_name))
