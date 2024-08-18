@@ -191,7 +191,7 @@ module GameData
         keys.each { |key| yield self::DATA[key] }
       end
 
-      def self.each_base
+      def each_base
         self.each do |data|
           next if data.respond_to?("defined_in_extension") && data.defined_in_extension
           yield data
