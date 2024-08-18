@@ -390,7 +390,7 @@ class MoveDex_Entry_Scene
         shadow = MessageConfig.pbDefaultTextShadowColor
 
         @sprites["scroll_arrow_up"].visible = @scroll > 0
-        @sprites["scroll_arrow_down"].visible = @scroll < @moveDetailsText.length - @detailLinesToShow + 1
+        @sprites["scroll_arrow_down"].visible = @scroll < @moveDetailsText.length - @detailLinesToShow - 1
 
         if @moveDetailsText.empty?
             statusLabel = _INTL("None")
