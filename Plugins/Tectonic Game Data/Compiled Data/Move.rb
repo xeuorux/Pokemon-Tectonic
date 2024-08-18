@@ -122,6 +122,10 @@ module GameData
         return @flags.include?("Empowered")
       end
 
+      def testMove?
+        return @flags.include?("Test")
+      end
+
       def categoryLabel
         return _INTL("Physical") if physical?
         return _INTL("Special") if special?

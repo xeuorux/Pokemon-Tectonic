@@ -168,11 +168,14 @@ class PokemonPokedex_Scene
         ret = []
         regionalSpecies.each_with_index do |species, i|
             next if species.nil?
+            
+            speciesData = GameData::Species.get(species)
+            next if speciesData.isTest? && !$DEBUG
 
             dexListEntry =
 			{
 				:species => species,
-				:data => GameData::Species.get(species),
+				:data => speciesData,
 				:index => i + 1,
 				:shift => shift,
 			}

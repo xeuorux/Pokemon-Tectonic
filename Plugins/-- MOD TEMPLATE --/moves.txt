@@ -1,0 +1,12 @@
+[TESTMOVE]
+Name = Test Move
+Type = NORMAL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Basic
+# Makes it not appear in game except in DEBUG mode
+Flags = Test
+Description = This move exists just to showcase the PBS Extensions system.

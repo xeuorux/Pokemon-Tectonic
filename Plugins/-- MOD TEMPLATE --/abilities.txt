@@ -1,0 +1,6 @@
+#-------------------------------
+[TESTABILITY]
+Name = Test Ability
+Description = This ability exists just to showcase the PBS Extensions system.
+# Makes it not appear in game except in DEBUG mode
+Flags = Test

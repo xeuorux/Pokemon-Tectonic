@@ -826,6 +826,7 @@ end
 def moveInfoViewable?(moveID)
     return true if $DEBUG
     moveData = GameData::Move.get(moveID)
+    return false if moveData.testMove?
     return true unless moveData.is_signature?
     signatureSpecies = moveData.signature_of
     return true unless GameData::Species.get(signatureSpecies).isLegendary?

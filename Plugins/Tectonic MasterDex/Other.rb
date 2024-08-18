@@ -136,5 +136,10 @@ def roundUpToRelevantCap(level)
 end
 
 def speciesInfoViewable?(speciesID)
-    return $DEBUG || $Trainer.seen?(speciesID) || !GameData::Species.get(speciesID).isLegendary?
+    return true if $DEBUG
+    speciesData = GameData::Species.get(speciesID)
+    return false if speciesData.isTest?
+    return true if $Trainer.seen?(speciesID)
+    return false if speciesData.isLegendary?
+    return true
 end

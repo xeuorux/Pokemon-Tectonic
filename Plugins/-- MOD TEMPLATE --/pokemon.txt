@@ -1,0 +1,54 @@
+#-------------------------------
+[5000]
+Name = Test Pokemon
+InternalName = TESTPOKEMON
+Type1 = NORMAL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 60,60,60,60,60,60
+# Total = 360
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 64
+Rareness = 150
+Happiness = 50
+Abilities = TESTABILITY
+Moves = 1,TESTMOVE
+LineMoves = TESTMOVE
+Tribes = DECEIVER
+StepsToHatch = 5355
+Height = 0.7
+Weight = 6.9
+Color = Green
+Shape = Head
+Kind = Test
+Pokedex = This Pokemon exists just to test the PBS Extensions system.
+Generation = 0
+Evolutions = TESTPOKEMON2,Level,30
+# Makes it not appear in game except in DEBUG mode
+Flags = Test
+#-------------------------------
+[5001]
+Name = Test Pokemon 2
+InternalName = TESTPOKEMON2
+Type1 = NORMAL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 80,80,80,80,80,80
+# Total = 480
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 128
+Rareness = 150
+Happiness = 50
+Abilities = TESTABILITY
+Moves = 0,TESTMOVE,1,TESTMOVE
+Tribes = DECEIVER
+StepsToHatch = 5355
+Height = 1.7
+Weight = 9.6
+Color = Green
+Shape = Head
+Kind = Test 2
+Pokedex = This Pokemon exists just to test the PBS Extensions system. Again!
+Generation = 0
+# Makes it not appear in game except in DEBUG mode
+Flags = Test

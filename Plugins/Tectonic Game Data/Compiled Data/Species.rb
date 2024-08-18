@@ -505,6 +505,10 @@ module GameData
         def isLegendary?
             return @flags.include?("Legendary")
         end
+
+        def isTest?
+            return @flags.include?("Test")
+        end
     end
 end
 
