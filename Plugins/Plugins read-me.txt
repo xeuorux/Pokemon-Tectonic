@@ -13,3 +13,4 @@ moves.txt
 regionaldexes.txt
 trainers.txt
 trainertypes.txt
+metadata.txt

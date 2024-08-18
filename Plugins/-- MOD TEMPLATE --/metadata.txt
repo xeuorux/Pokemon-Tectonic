@@ -1,0 +1,7 @@
+#-------------------------------
+[998]
+# Test Map
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
