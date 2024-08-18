@@ -418,9 +418,6 @@ module Compiler
                             :no_team_editing	    => contents["NoTeamEditing"],
                             :defined_in_extension => !baseFile,
                         }
-                        if !baseFile
-                            echoln(metadata_hash)
-                        end
                         # Add metadata's data to records
                         GameData::MapMetadata.register(metadata_hash)
                     end
