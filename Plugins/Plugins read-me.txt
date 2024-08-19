@@ -11,6 +11,7 @@ pokemon.txt
 avatars.txt
 abilities.txt
 moves.txt
+items.txt
 regionaldexes.txt
 trainers.txt
 trainertypes.txt

@@ -116,6 +116,7 @@ module GameData
         @move             = hash[:move]
         @super            = hash[:super]       || false
         @cut              = hash[:cut]       || false
+        @defined_in_extension   = hash[:defined_in_extension] || false
 
         @flags.each do |flag|
           if FLAG_INDEX.key?(flag)
@@ -363,7 +364,13 @@ module Compiler
     item_descriptions = []
     item_hash         = nil
     idx = 0
-    ["PBS/items.txt","PBS/items_super.txt","PBS/items_machine.txt","PBS/items_cut.txt"].each do |path|
+    baseFiles = ["PBS/items.txt","PBS/items_super.txt","PBS/items_machine.txt","PBS/items_cut.txt"]
+    itemTextFiles = []
+    itemTextFiles.concat(baseFiles)
+    itemExtensions = Compiler.get_extensions("items")
+    itemTextFiles.concat(itemExtensions)
+    itemTextFiles.each do |path|
+      baseFile = baseFiles.include?(path)
       # Read each line of items.txt at a time and compile it into an item
       pbCompilerEachPreppedLine(path) { |line, line_no|
         idx += 1
@@ -381,6 +388,7 @@ module Compiler
             :id_number  => idx,
             :cut        => path == "PBS/items_cut.txt",
             :super      => path == "PBS/items_super.txt",
+            :defined_in_extension   => !baseFile,
           }
         elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
           if !item_hash
@@ -432,28 +440,28 @@ module Compiler
   def write_items
     File.open("PBS/items.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Item.each do |i|
+      GameData::Item.each_base do |i|
         next if i.cut || i.super || i.is_machine?
         write_item(f,i)
       end
     }
     File.open("PBS/items_super.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Item.each do |i|
+      GameData::Item.each_base do |i|
         next unless i.super
         write_item(f,i)
       end
     }
     File.open("PBS/items_cut.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Item.each do |i|
+      GameData::Item.each_base do |i|
         next unless i.cut
         write_item(f,i)
       end
     }
     File.open("PBS/items_machine.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Item.each do |i|
+      GameData::Item.each_base do |i|
         next if i.cut || i.super
         next unless i.is_machine?
         write_item(f,i)
