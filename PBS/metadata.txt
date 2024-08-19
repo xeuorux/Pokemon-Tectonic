@@ -3096,3 +3096,9 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[443]
+# Team Chasm Archive
+Outdoor = false
+ShowArea = false
+Bicycle = false

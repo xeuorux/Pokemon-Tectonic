@@ -8176,42 +8176,42 @@ Pokemon = MILTANK,70
     AbilityIndex = 0 # Thick Fat
     Item = LEFTOVERS
 #-------------------------------
-[OFFICEWORKER_M,JOSH]
+[OFFICEWORKER_M,Kurt]
 Pokemon = MEOWSTIC,70
     Moves = REFLECT,HELPINGHAND,HEALBELL,LIGHTSCREEN
-    AbilityIndex = 1 # Liminal
+    AbilityIndex = 0 # Prankster
     Item = LIGHTCLAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,0,20,0,0,20
 Pokemon = LUXRAY,70
     Moves = PHOTONEDGE,REST,FIREFANG,HOWL
-    AbilityIndex = 2 # Night Vision
+    AbilityIndex = 1 # Intimidate
     Item = LUMBERAXE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,5,0,20,15
 Pokemon = TORKOAL,70
     Moves = BURNINGJEALOUSY,IGNITE,EARTHPOWER,CLEARSMOG
-    AbilityIndex = 1 # Drought
+    AbilityIndex = 0 # Pressure Valve
     Item = HIVISJACKET
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,15,0,10,15
 #-------------------------------
-[VETERANM_3,PEARCE]
+[VETERANM_3,Pearce]
 Pokemon = ROSERADE,70
     Moves = SLAY,SYNTHESIS,LEAFBLADE,ENVENOM
-    AbilityIndex = 1 # Merciless
+    AbilityIndex = 0 # Swordplay
     Item = WHETSTONE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,7,6,20,7
 Pokemon = GLISCOR,70
     Moves = LEECHLIFE,ADAMANTINEPRESS,UNDERMINE,INFINITEWING
-    AbilityIndex = 1 # Sand Shroud
+    AbilityIndex = 0 # Grotesque Vitals
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 12,8,15,0,8,15
 Pokemon = EMPOLEON,70
     Moves = RUPTURESPRING,ADRENALASH,FARADAYCAGE,SCALD
-    AbilityIndex = 2 # Imperious
+    AbilityIndex = 1 # Self-Sufficient
     Item = WATERBALLOON
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,11,0,20,9

@@ -2922,3 +2922,13 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A sliver of the fragment of the universe. Highly unstable.
+#-------------------------------
+[OLDUSBDRIVE]
+Name = Old USB Drive
+NamePlural = Old USB Drive
+Pocket = 7
+Price = 0
+FieldUse = Direct
+Consumable = true
+Flags = KeyItem
+Description = A USB containing data from a Team Chasm's early days.
