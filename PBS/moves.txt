@@ -27,10 +27,11 @@ Name = Baton Pass
 Type = NORMAL
 Category = Status
 Accuracy = 0
-TotalPP = 3
+TotalPP = 5
 Target = User
+Priority = -6
 FunctionCode = SwitchOutUserPassOnEffects
-Description = The user switches places with a party Pokémon in waiting, passing along any stat step changes.
+Description = The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
 #-------------------------------
 [BELLYDRUM]
 Name = Belly Drum
