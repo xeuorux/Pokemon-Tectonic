@@ -1,0 +1,6 @@
+#-------------------------------
+[TESTPOKEMON]
+Ability = TESTABILITY
+Moves1 = TESTMOVE
+Moves2 = TESTMOVE
+HPMult = 3.0
