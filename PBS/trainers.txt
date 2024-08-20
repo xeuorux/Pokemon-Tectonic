@@ -8217,7 +8217,7 @@ Pokemon = EMPOLEON,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,11,0,20,9
 #-------------------------------
-[DELINQUENT,Nora]
+[SEEKER_Nora,Nora]
 Pokemon = COALOSSAL,70
     Name = Certainty
     Moves = ROLLINGBOULDER,FLAREUP,RAPIDSPIN,FLAMESPIKES
@@ -8247,7 +8247,7 @@ Pokemon = JUMPLUFF,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 #-------------------------------
-[DELINQUENT,Nora,1]
+[SEEKER_Nora,Nora,1]
 ExtendsVersion = 0
 Pokemon = HARIYAMA,70
     Name = Tenacity

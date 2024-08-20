@@ -130,3 +130,18 @@ def unlockPlayerInput
 	$game_player.unlock
 	$game_system.menu_disabled = false
 end
+
+def playerOffsetX
+    return $game_player.x - get_self.x
+end
+
+def playerOffsetY
+    return $game_player.y - get_self.y
+end
+
+def playerWalksToFront
+    new_move_route = getNewMoveRoute()
+    # TODO
+    new_move_route.list.push(RPG::MoveCommand.new(0)) # End of move route
+    get_player.force_move_route(new_move_route)
+end

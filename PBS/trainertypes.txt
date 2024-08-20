@@ -1543,6 +1543,12 @@ Gender = Male
 BaseMoney = 32
 IntroBGM = SCIENTIST
 #-------------------------------
+[SEEKER_Nora]
+Name = Seeker
+Gender = Female
+BaseMoney = 40
+IntroBGM = PSYCHIC
+#-------------------------------
 [SHADOWMAVIS]
 Name = Shadow
 Gender = Female
