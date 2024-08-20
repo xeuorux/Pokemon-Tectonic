@@ -634,14 +634,20 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil, oneAtATime = false)
     pkmn.exp += expAmount
     pkmn.exp = [pkmn.exp, maxxp].min
     display_exp = pkmn.exp - current_exp
+    stored_exp = expAmount - display_exp
     new_level = pkmn.level
     if new_level == level_cap
-        pbSceneDefaultDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name, level_cap, display_exp),scene)
+        pbSceneDefaultDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name, level_cap, separate_comma(display_exp)),scene)
+        if pbHasItem?(:EXPEZDISPENSER) && stored_exp > 0
+            pbSceneDefaultDisplay(_INTL("{1} Exp. Points were stored in the EXP-EZ Dispenser.", separate_comma(stored_exp)),scene)
+            $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+            $PokemonGlobal.expJAR += stored_exp
+        end
     else
         if pbHasItem?(:SWEETTOOTH)
-          pbSceneDefaultDisplay(_INTL("{1} gained a Sweet-Tooth boosted {2} Exp. Points!", pkmn.name, display_exp),scene)
+          pbSceneDefaultDisplay(_INTL("{1} gained a Sweet-Tooth boosted {2} Exp. Points!", pkmn.name, separate_comma(display_exp)),scene)
         else
-          pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, display_exp),scene)
+          pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, separate_comma(display_exp)),scene)
         end
     end
     scene&.pbRefresh
