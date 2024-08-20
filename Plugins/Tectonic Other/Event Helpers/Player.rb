@@ -139,9 +139,41 @@ def playerOffsetY
     return $game_player.y - get_self.y
 end
 
-def playerWalksToFront
+def playerCirclesThisToFaceNorth
+    return if playerFacingNorth?
+    eventWidth = get_self.width
+    eventHeight = get_self.width
+
     new_move_route = getNewMoveRoute()
-    # TODO
+    
+    xMovement = -playerOffsetX - 1
+    yMovement = playerOffsetY - 1
+
+    echoln("#{playerOffsetX},#{playerOffsetY}")
+
+    if playerOffsetX >= eventWidth
+        yDir = yMovement > 0 ? Up/2 : Down/2
+        (yMovement.abs).times do |i|
+            new_move_route.list.push(RPG::MoveCommand.new(yDir))
+        end
+        xDir = xMovement > 0 ? Right/2 : Left/2
+        (xMovement.abs - 1).times do |i|
+            new_move_route.list.push(RPG::MoveCommand.new(xDir))
+        end
+    else
+        xDir = xMovement > 0 ? Right/2 : Left/2
+        (xMovement.abs).times do |i|
+            new_move_route.list.push(RPG::MoveCommand.new(xDir))
+        end
+        yDir = yMovement > 0 ? Up/2 : Down/2
+        (yMovement.abs).times do |i|
+            new_move_route.list.push(RPG::MoveCommand.new(yDir))
+        end
+        new_move_route.list.push(RPG::MoveCommand.new(Right/2))
+    end
+    
+    new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::TurnUp))
+
     new_move_route.list.push(RPG::MoveCommand.new(0)) # End of move route
     get_player.force_move_route(new_move_route)
 end
