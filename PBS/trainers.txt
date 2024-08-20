@@ -7242,11 +7242,13 @@ Flags = NoPerfect
 Pokemon = KLEFKI,40
     Moves = PLAYROUGH,LIGHTSCREEN,REFLECT,FLASHCANNON
     AbilityIndex = 0 # Prankster
-Pokemon = SAURENAID,40
-    AbilityIndex = 0 # Arctic Ariette
-Pokemon = GOLEM,40
-    AbilityIndex = 0 # Unbreakable
+Pokemon = CARRACOSTA,40
+    AbilityIndex = 1 # Tough
+Pokemon = DUGTRIO,40
+    Moves = DIG,ROCKSLIDE,TAUNT,EARTHQUAKE
+    AbilityIndex = 1 # Sapper
 Pokemon = ARAICHU,40
+    Moves = SURF,SEERSTRIKE,THUNDERBOLT
     AbilityIndex = 1 # Surf's Up
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,5]
@@ -7257,20 +7259,19 @@ Pokemon = SLOWBRO,45
     AbilityIndex = 0 # Delayed Reaction
 Pokemon = KABUTOPS,45
     AbilityIndex = 0 # Super Luck
-Pokemon = INCINEROAR,45
-    AbilityIndex = 0 # Intimidate
+Pokemon = HTYPHLOSION,45
+    AbilityIndex = 1 # Exorcist
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,6]
 Flags = NoPerfect
 Pokemon = TORTERRA,55
-    AbilityIndex = 0 # Refuge
-Pokemon = DONSTER,55
-    Moves = SLAG,MIASMA,PAINSPLIT,AUTOTOMIZE
-    AbilityIndex = 0 # Aggravate
-Pokemon = SCARODON,55
-    AbilityIndex = 0 # Schadenfreude
-Pokemon = MDUSTOX,55
-    AbilityIndex = 1 # Follow Through
+    AbilityIndex = 1 # Living Armor
+Pokemon = TOXICROAK,55
+    AbilityIndex = 1 # Dry Skin
+Pokemon = MASQUERAIN,55
+    AbilityIndex = 0 # Hyper Speed
+Pokemon = METAGROSS,55
+    AbilityIndex = 1 # Optimized Alloy
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,7]
 Flags = NoPerfect
@@ -7280,8 +7281,8 @@ Pokemon = WIGGLYTUFF,60
     AbilityIndex = 1 # Maestro
 Pokemon = DRAGAPULT,60
     AbilityIndex = 0 # Clear Body
-Pokemon = SWANNA,60
-    AbilityIndex = 0 # Intimidate
+Pokemon = CORVIKNIGHT,60
+    AbilityIndex = 1 # Expertise
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,8]
 Flags = NoPerfect
