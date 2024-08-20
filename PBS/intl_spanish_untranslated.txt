@@ -3,6 +3,8 @@
 [Map0]
 ...
 ...
+\i[TAROTAMULET].....
+\i[TAROTAMULET].....
 No.
 No.
 [Map1]
@@ -19,6 +21,28 @@ Skyler.
 [Map4]
 [Map5]
 [Map6]
+I was supposed to have a meeting with Kurt today about gracefully decommissioning some of the cluster, but he never showed up.
+I was supposed to have a meeting with Kurt today about gracefully decommissioning some of the cluster, but he never showed up.
+Doesn’t he know that maintaining legacy systems adds unnecessary fragility?
+Doesn’t he know that maintaining legacy systems adds unnecessary fragility?
+It’s hard to get promoted when the top level talent here are former Team Chasm lieutenants.
+It’s hard to get promoted when the top level talent here are former Team Chasm lieutenants.
+They're such good battlers. It makes one jealous.
+They're such good battlers. It makes one jealous.
+LuxTech Main
+LuxTech Main
+LuxTech Cold Storage
+LuxTech Cold Storage
+Yesterday was terrible.
+Yesterday was terrible.
+I was forced to wind down the cluster I had running on the archive.
+I was forced to wind down the cluster I had running on the archive.
+"Ecology of the Lingering Delta", my pet project.
+"Ecology of the Lingering Delta", my pet project.
+Even worse, I had to go down into the Cold Storage basement level to do the deed.
+Even worse, I had to go down into the Cold Storage basement level to do the deed.
+LuxTech Condos
+LuxTech Condos
 No
 No
 [Map7]
@@ -52,8 +76,6 @@ No.
 Dialogue here.
 Dialogue here.
 [Map21]
-Dialogue here.
-Dialogue here.
 [Map22]
 [Map23]
 [Map24]
@@ -104,8 +126,6 @@ No
 No
 No
 [Map41]
-Dialogue here.
-Dialogue here.
 [Map42]
 [Map43]
 [Map44]
@@ -153,8 +173,6 @@ No.
 No.
 [Map61]
 [Map62]
-Dialogue here.
-Dialogue here.
 [Map63]
 [Map64]
 [Map65]
@@ -221,6 +239,8 @@ No
 No
 [Map97]
 [Map98]
+Server Archive
+Server Archive
 No
 No
 [Map99]
@@ -231,8 +251,6 @@ No
 No
 No
 [Map104]
-Dialogue here.
-Dialogue here.
 [Map105]
 [Map106]
 [Map107]
@@ -279,8 +297,6 @@ No
 No
 No
 [Map134]
-Dialogue here.
-Dialogue here.
 [Map135]
 [Map136]
 Skipping Tamarind cutscene.
@@ -420,8 +436,6 @@ Lainie.
 ...
 ...
 [Map195]
-Dialogue here.
-Dialogue here.
 [Map196]
 [Map197]
 No
@@ -576,8 +590,12 @@ Ahem.
 [Map277]
 [Map278]
 [Map279]
-Dialogue here.
-Dialogue here.
+Voulez-vous m'accorder cette danse?
+Voulez-vous m'accorder cette danse?
+Il n’y a pas de quoi s’inquiéter.
+Il n’y a pas de quoi s’inquiéter.
+En garde!
+En garde!
 “Mecha-Fidough.”
 “Mecha-Fidough.”
 [Map280]
@@ -613,10 +631,6 @@ Mavis.
 [Map298]
 [Map299]
 [Map300]
-Dialogue here.
-Dialogue here.
-…Hmph.
-…Hmph.
 [Map301]
 No
 No
@@ -893,13 +907,109 @@ It was a pretty sick experience, all things considered.
 [Map426]
 Silver Ninjask. Hacker.
 Silver Ninjask. Hacker.
+The insurance business is all about predicting the future.
+The insurance business is all about predicting the future.
+Too bad I'm completely unpredictable!
+Too bad I'm completely unpredictable!
+Well, I definitely didn't predict that.
+Well, I definitely didn't predict that.
+Excuse me, I've got to update my mathematical models...
+Excuse me, I've got to update my mathematical models...
+No matter. Even a loss is just more data to feed to the algorithm.
+No matter. Even a loss is just more data to feed to the algorithm.
 Dialogue here.
 Dialogue here.
 No
 No
 [Map427]
-Dialogue here.
-Dialogue here.
+An old, beaten up laptop. A couple dozen windows are open all at once.
+An old, beaten up laptop. A couple dozen windows are open all at once. 
+Something is being researched, but it's impossible to tell what specifically.
+Something is being researched, but it's impossible to tell what specifically.
+It's Nora's laptop. She must have forgotten it in her hurry to get to Svait.
+It's Nora's laptop. She must have forgotten it in her hurry to get to Svait.
+A map displayed on the screen shows a path to the west of the Ranger Station there.
+A map displayed on the screen shows a path to the west of the Ranger Station there.
+“Over 2500 years ago, there existed a sect of itinerant priests who worshipped a Legendary Carver of Clay.
+“Over 2500 years ago, there existed a sect of itinerant priests who worshipped a Legendary Carver of Clay.
+And by its hand, people were able to claim dominion over inhospitable lands high and low.
+And by its hand, people were able to claim dominion over inhospitable lands high and low.
+Yet, despite their efforts, humanity was cast out from the lands where the primal forces of this world worked.
+Yet, despite their efforts, humanity was cast out from the lands where the primal forces of this world worked.
+Back to the caves; which their species used to call home. Now the caverns would be their tombs…"
+Back to the caves; which their species used to call home. Now the caverns would be their tombs…"
+Guess I forgot to keep the door locked.
+Guess I forgot to keep the door locked.
+You don’t look like staff, so...you’re searching for something, like me.
+You don’t look like staff, so...you’re searching for something, like me.
+Name’s Nora. I like to think of myself as a seeker of knowledge.
+Name’s Nora. I like to think of myself as a seeker of knowledge.
+I took up a job as a janitor here to gain access to this library, since it’s sealed off to the public.
+I took up a job as a janitor here to gain access to this library, since it’s sealed off to the public.
+It’s not trespassing if they’re paying you to be here.
+It’s not trespassing if they’re paying you to be here.
+Team Chasm apparently had roots in anthropology, based on all the records they’ve shoved away here.
+Team Chasm apparently had roots in anthropology, based on all the records they’ve shoved away here.
+Translated passages with way too many sticky notes go over all kinds of myths and legends.
+Translated passages with way too many sticky notes go over all kinds of myths and legends.
+One that caught my eye involves the Seekers, those ancient priests I mentioned earlier.
+One that caught my eye involves the Seekers, those ancient priests I mentioned earlier.
+They were ultimately destroyed by a great darkness that some protector deity was apparently equipped to handle.
+They were ultimately destroyed by a great darkness that some protector deity was apparently equipped to handle.
+But, based on the fact that the Seekers disappeared, the guardian must have failed in its duty.
+But, based on the fact that the Seekers disappeared, the guardian must have failed in its duty.
+Why? I don’t know.
+Why? I don’t know.
+The notes here make reference to materials that I can’t find anywhere in this room.
+The notes here make reference to materials that I can’t find anywhere in this room.
+I’m thinking that these records have to exist elsewhere.
+I’m thinking that these records have to exist elsewhere.
+And I’m going to assume that they must have been saved digitally, as there’s nowhere else in the region with this much literature.
+And I’m going to assume that they must have been saved digitally, as there’s nowhere else in the region with this much literature.
+Do you think you can search LuxTech for any servers hosting data from before Team Chasm was established?
+Do you think you can search LuxTech for any servers hosting data from before Team Chasm was established?
+I’ll keep on searching here in the meantime for something hidden in the stacks.
+I’ll keep on searching here in the meantime for something hidden in the stacks.
+Let me know if you find something over at LuxTech.
+Let me know if you find something over at LuxTech.
+I’ve only been finding fun facts, the kind you’d see on a moving truck.
+I’ve only been finding fun facts, the kind you’d see on a moving truck.
+Did you know that hexagons were an important symbols of the Seekers?
+Did you know that hexagons were an important symbols of the Seekers?
+That’s apparently what inspired Team Chasm’s logo.
+That’s apparently what inspired Team Chasm’s logo. 
+You’re back! Excellent.
+You’re back! Excellent.
+I managed to make a breakthrough while you were away.
+I managed to make a breakthrough while you were away.
+Would you mind showing me what you’ve found first?
+Would you mind showing me what you’ve found first?
+You hand over the Old USB Drive.
+You hand over the Old USB Drive.
+Nora loads the device on her laptop.
+Nora loads the device on her laptop.
+Fascinating.
+Fascinating.
+This one file, Project Chrysopoeia Albedo, goes into great detail of a large volcanic eruption thousands of years ago which heavily impacted the region.
+This one file, Project Chrysopoeia Albedo, goes into great detail of a large volcanic eruption thousands of years ago which heavily impacted the region.
+It makes sense that the large clouds of ash would be devastating to a civilization in its technological infancy.
+It makes sense that the large clouds of ash would be devastating to a civilization in its technological infancy.
+This must be the "great darkness" that the Seekers mentioned.
+This must be the "great darkness" that the Seekers mentioned.
+Perhaps that’s also why they built what would become the underground ruins; like those found in Mt. Kilna?
+Perhaps that’s also why they built what would become the underground ruins; like those found in Mt.  Kilna?
+Maybe those places were meant to be safe spaces from the smog?
+Maybe those places were meant to be safe spaces from the smog?
+Wait, no. Why would they have built shelters if they had the guardian?
+Wait, no. Why would they have built shelters if they had the guardian?
+Hahaha. This is the rush I’ve been seeking.
+Hahaha. This is the rush I’ve been seeking.
+Questions whose answers are more questions.
+Questions whose answers are more questions.
+As for my own findings: I found references to an aboveground ruins site which might lead to what we’re after.
+As for my own findings: I found references to an aboveground ruins site which might lead to what we’re after.
+I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
+I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
 [Map428]
 [Map429]
 [Map430]
@@ -912,14 +1022,180 @@ Dialogue here.
 [Map435]
 [Map436]
 [Map437]
-Dialogue here.
-Dialogue here.
+Bogdan Cement has been used in both construction and furniture!
+Bogdan Cement has been used in both construction and furniture! 
+Our work is present in over 40% of Makyan homes!
+Our work is present in over 40% of Makyan homes!
+I'm looking to secure a deal here, but I've been stonewalled by management.
+I'm looking to secure a deal here, but I've been stonewalled by management. 
+No pun intended.
+No pun intended.
+I feel like I see these furniture pieces in a lot of places.
+I feel like I see these furniture pieces in a lot of places.
+I wonder why.
+I wonder why.
+My job is to keep things clean, but I'm a big sewers enthusiast.
+My job is to keep things clean, but I'm a big sewers enthusiast.
+I've been exploring Makya's for years. My dream is to take a trip to see some of tunnels under Kalos.
+I've been exploring Makya's for years. My dream is to take a trip to see some of tunnels under Kalos.
+For now though, I'll look at the concrete.
+For now though, I'll look at the concrete. 
+Welcome to the Bogdan Cement Plant!
+Welcome to the Bogdan Cement Plant!
+We reserve guided tours for business partners, but you are more than welcome to view our products.
+We reserve guided tours for business partners, but you are more than welcome to view our products.
 [Map438]
+I caught a few extra Pokemon on my last vacation to Hoenn.
+I caught a few extra Pokemon on my last vacation to Hoenn. 
+I don't really need 'em, but I REALLY need coffee right now.
+I don't really need 'em, but I REALLY need coffee right now.
+I'll trade you one for a cup. I got a Corsola and a Shuckle up for grabs.
+I'll trade you one for a cup. I got a Corsola and a Shuckle up for grabs.
+Dang. Really pegged you as the type to carry around arbitrary cups of coffee.
+Dang. Really pegged you as the type to carry around arbitrary cups of coffee.
+Oh yeah. That hits the spot.
+Oh yeah. That hits the spot.
+Aite, a deal is a deal. Which 'mon are you feeling?
+Aite, a deal is a deal. Which 'mon are you feeling?
+Alright. I'll be here.
+Alright. I'll be here.
+All yours.
+All yours.
+Now to get through the rest of my day...
+Now to get through the rest of my day...
+No cups? Hmm.
+No cups? Hmm. 
+These barrels aren't going to inspect themselves...
+These barrels aren't going to inspect themselves... 
+This plant has been running since Prizca was still mostly brick and wood.
+This plant has been running since Prizca was still mostly brick and wood.
+A bit interesting that there was a huge uptick in fires when Team Chasm took it over.
+A bit interesting that there was a huge uptick in fires when Team Chasm took it over.
+Ah well, I'm paid to think it's a coincidence.
+Ah well, I'm paid to think it's a coincidence. 
+I don't even really work. I just watch the Pokemon do it.
+I don't even really work. I just watch the Pokemon do it.
+Sometimes I go out and grab them lunch. It's boring, but the benefits are surprisingly good.
+Sometimes I go out and grab them lunch. It's boring, but the benefits are surprisingly good.
+Geodude is managing the supply chain! Impressive!
+Geodude is managing the supply chain! Impressive!
+Shh, don't report me. This is the most hidden place in the city. No one ever finds me here.
+Shh, don't report me. This is the most hidden place in the city. No one ever finds me here.
+Plus, I can torrent whatever I want on the WiFi here.
+Plus, I can torrent whatever I want on the WiFi here.
+Don't give coffee.
+Don't give coffee.
+Give coffee.
+Give coffee.
+I'll choose later.
+I'll choose later.
+I'll take the Corsola.
+I'll take the Corsola.
+I'll take the Shuckle.
+I'll take the Shuckle.
 [Map439]
 [Map440]
 [Map441]
 [Map442]
 [Map443]
+Man, that battle really tuckered me out.
+Man, that battle really tuckered me out.
+I'm not a stranger to hard work, mind you.
+I'm not a stranger to hard work, mind you.
+I went through so much coffee when I was an architect.
+I went through so much coffee when I was an architect.
+I’m the one who came up with the designs for the Ranger Outposts you see all over.
+I’m the one who came up with the designs for the Ranger Outposts you see all over.
+Bless Bogdan Cement for their cheap prices.
+Bless Bogdan Cement for their cheap prices.
+A dusty, ancient computer terminal.
+A dusty, ancient computer terminal.
+"EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
+"EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
+Below that, it prompts you to enter a password.
+Below that, it prompts you to enter a password.
+A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
+A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
+As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
+As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
+Apparently these are Kurt and Pearce, LuxTech employees.
+Apparently these are Kurt and Pearce, LuxTech employees.
+Jeez, this stuff really is ancient.
+Jeez, this stuff really is ancient.
+Whose idea was it to let Tamarind name the Projects and Operation files for internal use?
+Whose idea was it to let Tamarind name the Projects and Operation files for internal use?
+Her naming conventions require a thesaurus to decipher.
+Her naming conventions require a thesaurus to decipher. 
+She always was kind of a slob. Lambert was always cleaning up her messes.
+She always was kind of a slob. Lambert was always cleaning up her messes.
+Speaking of, I do wonder how the chop off the old block is doing these days.
+Speaking of, I do wonder how the chop off the old block is doing these days.
+Yeah, we should reach out to him sometime. Rafael too.
+Yeah, we should reach out to him sometime. Rafael too.
+We’ve both accrued too much PTO, after all. Haha.
+We’ve both accrued too much PTO, after all. Haha.
+…Don’t you think it’s kinda odd that those two ended up as Gym Leaders?
+…Don’t you think it’s kinda odd that those two ended up as Gym Leaders?
+I mean, Lambert, I kinda understand. But Rafael was primarily a scientist.
+I mean, Lambert, I kinda understand. But Rafael was primarily a scientist.
+And that’s not even mentioning Noel. Who is. Noel.
+And that’s not even mentioning Noel. Who is. Noel.
+And we’re… here.
+And we’re… here.
+And it seems we’re not the only ones here. You got something to say, or…?
+And it seems we’re not the only ones here. You got something to say, or…?
+What? No!
+What? No!
+This is a sensitive piece of machinery!
+This is a sensitive piece of machinery!
+There was a whole scrum ceremony covering this.
+There was a whole scrum ceremony covering this.
+We can’t just give it away!
+We can’t just give it away!
+Forget the ceremony, Josh. It’s Mavis’ kid.
+Forget the ceremony, Josh. It’s Mavis’ kid. 
+So? Helena has been on our behinds for a while and we’ve already pushed this back again and again.
+So? Helena has been on our behinds for a while and we’ve already pushed this back again and again.
+If we don’t do this now, she’ll have someone else do it.
+If we don’t do this now, she’ll have someone else do it.
+And I guess that makes you our "someone else."
+And I guess that makes you our "someone else."
+If there’s something you want in this life, you have to take it.
+If there’s something you want in this life, you have to take it.
+Using your own overwhelming strength.
+Using your own overwhelming strength.
+So, you want us to hand the archive data over to you, huh?
+So, you want us to hand the archive data over to you, huh?
+If there’s something you want in this life, you have to take it. Using your own overwhelming strength.
+If there’s something you want in this life, you have to take it. Using your own overwhelming strength.
+Losing a fight like that reminds you of the good old days, dont’cha think, Kurt?
+Losing a fight like that reminds you of the good old days, dont’cha think, Kurt?
+You mean having to trudge through the lava filled chambers of an active volcano?
+You mean having to trudge through the lava filled chambers of an active volcano?
+Yeah, no. I’ll take my cushy office job with air conditioning any day.
+Yeah, no. I’ll take my cushy office job with air conditioning any day.
+But, a win’s a win, so here ya go…
+But, a win’s a win, so here ya go…
+This thing is filled with early Chasm data.
+This thing is filled with early Chasm data.
+When you get the chance, take a look at "Project Chrysopoeia Albedo".
+When you get the chance, take a look at "Project Chrysopoeia Albedo".
+I remember that one causing the eggheads a lot of pain.
+I remember that one causing the eggheads a lot of pain.
+The ritual to capture the target required a flute that was excavated much later on, in a place no one would ever think to find it.
+The ritual to capture the target required a flute that was excavated much later on, in a place no one would ever think to find it.
+And by that time, there wasn’t really a pressing need for another mythical fire type on our team’s roster, y’know?
+And by that time, there wasn’t really a pressing need for another mythical fire type on our team’s roster, y’know?
+You really gave it your all in that battle.
+You really gave it your all in that battle.
+It made me realize that I haven’t been giving mine here.
+It made me realize that I haven’t been giving mine here.
+Think I’m going to give my two weeks’ notice to Helena. Try my hand at being a Pro Trainer.
+Think I’m going to give my two weeks’ notice to Helena. Try my hand at being a Pro Trainer.
+Can you give me that?
+Can you give me that?
+No.
+No.
 [1]
 1
 Bulbasaur
@@ -3756,649 +4032,661 @@ Kingambit
 2531
 Porygon-MAV
 Porygon-MAV
-2533
+5000
+Test Pokemon
+Test Pokemon
+5001
+Test Pokemon 2
+Test Pokemon 2
+5002
 Pikachu
 Pikachu
-2534
+5003
 Pikachu
 Pikachu
-2535
+5004
 Pikachu
 Pikachu
-2536
+5005
 Pikachu
 Pikachu
-2537
+5006
 Pikachu
 Pikachu
-2538
+5007
 Pikachu
 Pikachu
-2539
+5008
 Pikachu
 Pikachu
-2540
+5009
 Pikachu
 Pikachu
-2541
+5010
 Pikachu
 Pikachu
-2542
+5011
 Pikachu
 Pikachu
-2543
+5012
 Pikachu
 Pikachu
-2544
+5013
 Pikachu
 Pikachu
-2545
+5014
 Pikachu
 Pikachu
-2546
+5015
 Pikachu
 Pikachu
-2547
+5016
 Unown
 Unown
-2548
+5017
 Unown
 Unown
-2549
+5018
 Unown
 Unown
-2550
+5019
 Unown
 Unown
-2551
+5020
 Unown
 Unown
-2552
+5021
 Unown
 Unown
-2553
+5022
 Unown
 Unown
-2554
+5023
 Unown
 Unown
-2555
+5024
 Unown
 Unown
-2556
+5025
 Unown
 Unown
-2557
+5026
 Unown
 Unown
-2558
+5027
 Unown
 Unown
-2559
+5028
 Unown
 Unown
-2560
+5029
 Unown
 Unown
-2561
+5030
 Unown
 Unown
-2562
+5031
 Unown
 Unown
-2563
+5032
 Unown
 Unown
-2564
+5033
 Unown
 Unown
-2565
+5034
 Unown
 Unown
-2566
+5035
 Unown
 Unown
-2567
+5036
 Unown
 Unown
-2568
+5037
 Unown
 Unown
-2569
+5038
 Unown
 Unown
-2570
+5039
 Unown
 Unown
-2571
+5040
 Unown
 Unown
-2572
+5041
 Unown
 Unown
-2573
+5042
 Unown
 Unown
-2574
+5043
 Castform
 Castform
-2575
+5044
 Castform
 Castform
-2576
+5045
 Castform
 Castform
-2577
+5046
 Castform
 Castform
-2578
+5047
 Deoxys
 Deoxys
-2579
+5048
 Deoxys
 Deoxys
-2580
+5049
 Deoxys
 Deoxys
-2581
+5050
 Burmy
 Burmy
-2582
+5051
 Burmy
 Burmy
-2583
+5052
 Wormadam
 Wormadam
-2584
+5053
 Wormadam
 Wormadam
-2585
+5054
 Cherrim
 Cherrim
-2586
+5055
 Shellos
 Shellos
-2587
+5056
 Gastrodon
 Gastrodon
-2588
+5057
 Rotom
 Rotom
-2589
+5058
 Rotom
 Rotom
-2590
+5059
 Rotom
 Rotom
-2591
+5060
 Rotom
 Rotom
-2592
+5061
 Rotom
 Rotom
-2593
+5062
 Giratina
 Giratina
-2594
+5063
 Shaymin
 Shaymin
-2595
+5064
 Arceus
 Arceus
-2596
+5065
 Arceus
 Arceus
-2597
+5066
 Arceus
 Arceus
-2598
+5067
 Arceus
 Arceus
-2599
+5068
 Arceus
 Arceus
-2600
+5069
 Arceus
 Arceus
-2601
+5070
 Arceus
 Arceus
-2602
+5071
 Arceus
 Arceus
-2603
+5072
 Arceus
 Arceus
-2604
+5073
 Arceus
 Arceus
-2605
+5074
 Arceus
 Arceus
-2606
+5075
 Arceus
 Arceus
-2607
+5076
 Arceus
 Arceus
-2608
+5077
 Arceus
 Arceus
-2609
+5078
 Arceus
 Arceus
-2610
+5079
 Arceus
 Arceus
-2611
+5080
 Arceus
 Arceus
-2612
+5081
 Arceus
 Arceus
-2613
+5082
 Basculin
 Basculin
-2614
+5083
 Deerling
 Deerling
-2615
+5084
 Deerling
 Deerling
-2616
+5085
 Deerling
 Deerling
-2617
+5086
 Sawsbuck
 Sawsbuck
-2618
+5087
 Sawsbuck
 Sawsbuck
-2619
+5088
 Sawsbuck
 Sawsbuck
-2620
+5089
 Tornadus
 Tornadus
-2621
+5090
 Thundurus
 Thundurus
-2622
+5091
 Landorus
 Landorus
-2623
+5092
 Kyurem
 Kyurem
-2624
+5093
 Kyurem
 Kyurem
-2625
+5094
 Kyurem
 Kyurem
-2626
+5095
 Kyurem
 Kyurem
-2627
+5096
 Keldeo
 Keldeo
-2628
+5097
 Meloetta
 Meloetta
-2629
+5098
 Genesect
 Genesect
-2630
+5099
 Genesect
 Genesect
-2631
+5100
 Genesect
 Genesect
-2632
+5101
 Genesect
 Genesect
-2633
+5102
 Vivillon
 Vivillon
-2634
+5103
 Vivillon
 Vivillon
-2635
+5104
 Vivillon
 Vivillon
-2636
+5105
 Vivillon
 Vivillon
-2637
+5106
 Vivillon
 Vivillon
-2638
+5107
 Vivillon
 Vivillon
-2639
+5108
 Vivillon
 Vivillon
-2640
+5109
 Vivillon
 Vivillon
-2641
+5110
 Vivillon
 Vivillon
-2642
+5111
 Vivillon
 Vivillon
-2643
+5112
 Vivillon
 Vivillon
-2644
+5113
 Vivillon
 Vivillon
-2645
+5114
 Vivillon
 Vivillon
-2646
+5115
 Vivillon
 Vivillon
-2647
+5116
 Vivillon
 Vivillon
-2648
+5117
 Vivillon
 Vivillon
-2649
+5118
 Vivillon
 Vivillon
-2650
+5119
 Vivillon
 Vivillon
-2651
+5120
 Vivillon
 Vivillon
-2652
+5121
 Flabébé
 Flabébé
-2653
+5122
 Flabébé
 Flabébé
-2654
+5123
 Flabébé
 Flabébé
-2655
+5124
 Flabébé
 Flabébé
-2656
+5125
 Floette
 Floette
-2657
+5126
 Floette
 Floette
-2658
+5127
 Floette
 Floette
-2659
+5128
 Floette
 Floette
-2660
+5129
 Florges
 Florges
-2661
+5130
 Florges
 Florges
-2662
+5131
 Florges
 Florges
-2663
+5132
 Florges
 Florges
-2664
+5133
 Furfrou
 Furfrou
-2665
+5134
 Furfrou
 Furfrou
-2666
+5135
 Furfrou
 Furfrou
-2667
+5136
 Furfrou
 Furfrou
-2668
+5137
 Furfrou
 Furfrou
-2669
+5138
 Furfrou
 Furfrou
-2670
+5139
 Furfrou
 Furfrou
-2671
+5140
 Furfrou
 Furfrou
-2672
+5141
 Furfrou
 Furfrou
-2673
+5142
 Meowstic
 Meowstic
-2674
+5143
 Aegislash
 Aegislash
-2675
+5144
 Pumpkaboo
 Pumpkaboo
-2676
+5145
 Pumpkaboo
 Pumpkaboo
-2677
+5146
 Pumpkaboo
 Pumpkaboo
-2678
+5147
 Gourgeist
 Gourgeist
-2679
+5148
 Gourgeist
 Gourgeist
-2680
+5149
 Gourgeist
 Gourgeist
-2681
+5150
 Xerneas
 Xerneas
-2682
+5151
 Zygarde
 Zygarde
-2683
+5152
 Zygarde
 Zygarde
-2684
+5153
 Zygarde
 Zygarde
-2685
+5154
 Hoopa
 Hoopa
-2686
+5155
 Oricorio
 Oricorio
-2687
+5156
 Oricorio
 Oricorio
-2688
+5157
 Oricorio
 Oricorio
-2689
+5158
 Lycanroc
 Lycanroc
-2690
+5159
 Lycanroc
 Lycanroc
-2691
+5160
 Wishiwashi
 Wishiwashi
-2692
+5161
 Silvally
 Silvally
-2693
+5162
 Silvally
 Silvally
-2694
+5163
 Silvally
 Silvally
-2695
+5164
 Silvally
 Silvally
-2696
+5165
 Silvally
 Silvally
-2697
+5166
 Silvally
 Silvally
-2698
+5167
 Silvally
 Silvally
-2699
+5168
 Silvally
 Silvally
-2700
+5169
 Silvally
 Silvally
-2701
+5170
 Silvally
 Silvally
-2702
+5171
 Silvally
 Silvally
-2703
+5172
 Silvally
 Silvally
-2704
+5173
 Silvally
 Silvally
-2705
+5174
 Silvally
 Silvally
-2706
+5175
 Silvally
 Silvally
-2707
+5176
 Silvally
 Silvally
-2708
+5177
 Silvally
 Silvally
-2709
+5178
 Silvally
 Silvally
-2710
+5179
 Minior
 Minior
-2711
+5180
 Minior
 Minior
-2712
+5181
 Minior
 Minior
-2713
+5182
 Minior
 Minior
-2714
+5183
 Minior
 Minior
-2715
+5184
 Minior
 Minior
-2716
+5185
 Minior
 Minior
-2717
+5186
 Mimikyu
 Mimikyu
-2718
+5187
 Necrozma
 Necrozma
-2719
+5188
 Necrozma
 Necrozma
-2720
+5189
 Necrozma
 Necrozma
-2721
+5190
 Necrozma
 Necrozma
-2722
+5191
 Magearna
 Magearna
-2723
+5192
 Cramorant
 Cramorant
-2724
+5193
 Cramorant
 Cramorant
-2725
+5194
 Eiscue
 Eiscue
-2726
+5195
 Sinistea
 Sinistea
-2727
+5196
 Polteageist
 Polteageist
-2728
+5197
 Indeedee
 Indeedee
-2729
+5198
 Morpeko
 Morpeko
-2730
+5199
 Zacian
 Zacian
-2731
+5200
 Zamazenta
 Zamazenta
-2732
+5201
 Urshifu
 Urshifu
-2733
+5202
 Calyrex
 Calyrex
-2734
+5203
 Calyrex
 Calyrex
-2735
+5204
 Kyogre
 Kyogre
-2736
+5205
 Groudon
 Groudon
-2737
+5206
 Rayquaza
 Rayquaza
-2739
+5207
+Darmanitan
+Darmanitan
+5208
 G. Darmanitan
 G. Darmanitan
-2740
+5209
 Ampharos
 Ampharos
-2741
+5210
 Garchomp
 Garchomp
-2742
+5211
 Gyarados
 Gyarados
-2743
+5212
 Gardevoir
 Gardevoir
-2744
+5213
 Gallade
 Gallade
-2745
+5214
 Mewtwo
 Mewtwo
-2746
+5215
 Mewtwo
 Mewtwo
-2748
+5216
+Enamorus
+Enamorus
+5217
 M. Aromatisse
 M. Aromatisse
-2749
+5218
 Basculin
 Basculin
 [2]
@@ -4537,34 +4825,661 @@ Aberrant
 2531
 Anti-Virus
 Anti-Virus
-2537
+5000
+Test
+Test
+5001
+Test 2
+Test 2
+5002
 Mouse
 Mouse
-2588
+5003
+Mouse
+Mouse
+5004
+Mouse
+Mouse
+5005
+Mouse
+Mouse
+5006
+Mouse
+Mouse
+5007
+Mouse
+Mouse
+5008
+Mouse
+Mouse
+5009
+Mouse
+Mouse
+5010
+Mouse
+Mouse
+5011
+Mouse
+Mouse
+5012
+Mouse
+Mouse
+5013
+Mouse
+Mouse
+5014
+Mouse
+Mouse
+5015
+Mouse
+Mouse
+5016
+Symbol
+Symbol
+5017
+Symbol
+Symbol
+5018
+Symbol
+Symbol
+5019
+Symbol
+Symbol
+5020
+Symbol
+Symbol
+5021
+Symbol
+Symbol
+5022
+Symbol
+Symbol
+5023
+Symbol
+Symbol
+5024
+Symbol
+Symbol
+5025
+Symbol
+Symbol
+5026
+Symbol
+Symbol
+5027
+Symbol
+Symbol
+5028
+Symbol
+Symbol
+5029
+Symbol
+Symbol
+5030
+Symbol
+Symbol
+5031
+Symbol
+Symbol
+5032
+Symbol
+Symbol
+5033
+Symbol
+Symbol
+5034
+Symbol
+Symbol
+5035
+Symbol
+Symbol
+5036
+Symbol
+Symbol
+5037
+Symbol
+Symbol
+5038
+Symbol
+Symbol
+5039
+Symbol
+Symbol
+5040
+Symbol
+Symbol
+5041
+Symbol
+Symbol
+5042
+Symbol
+Symbol
+5043
+Weather
+Weather
+5044
+Weather
+Weather
+5045
+Weather
+Weather
+5046
+Weather
+Weather
+5047
+DNA
+DNA
+5048
+DNA
+DNA
+5049
+DNA
+DNA
+5050
+Bagworm
+Bagworm
+5051
+Bagworm
+Bagworm
+5052
+Bagworm
+Bagworm
+5053
+Bagworm
+Bagworm
+5054
+Blossom
+Blossom
+5055
+Sea Slug
+Sea Slug
+5056
+Sea Slug
+Sea Slug
+5057
 Plasma
 Plasma
-2589
+5058
 Plasma
 Plasma
-2590
+5059
 Plasma
 Plasma
-2591
+5060
 Plasma
 Plasma
-2597
+5061
+Plasma
+Plasma
+5062
+Renegade
+Renegade
+5063
+Gratitude
+Gratitude
+5064
 Alpha
 Alpha
-2631
+5065
+Alpha
+Alpha
+5066
+Alpha
+Alpha
+5067
+Alpha
+Alpha
+5068
+Alpha
+Alpha
+5069
+Alpha
+Alpha
+5070
+Alpha
+Alpha
+5071
+Alpha
+Alpha
+5072
+Alpha
+Alpha
+5073
+Alpha
+Alpha
+5074
+Alpha
+Alpha
+5075
+Alpha
+Alpha
+5076
+Alpha
+Alpha
+5077
+Alpha
+Alpha
+5078
+Alpha
+Alpha
+5079
+Alpha
+Alpha
+5080
+Alpha
+Alpha
+5081
+Alpha
+Alpha
+5082
+Hostile
+Hostile
+5083
+Season
+Season
+5084
+Season
+Season
+5085
+Season
+Season
+5086
+Season
+Season
+5087
+Season
+Season
+5088
+Season
+Season
+5089
+Cyclone
+Cyclone
+5090
+Bolt Strike
+Bolt Strike
+5091
+Abundance
+Abundance
+5092
+Boundary
+Boundary
+5093
+Boundary
+Boundary
+5094
+Boundary
+Boundary
+5095
+Boundary
+Boundary
+5096
+Colt
+Colt
+5097
+Melody
+Melody
+5098
 Paleozoic
 Paleozoic
-2719
+5099
+Paleozoic
+Paleozoic
+5100
+Paleozoic
+Paleozoic
+5101
+Paleozoic
+Paleozoic
+5102
+Scale
+Scale
+5103
+Scale
+Scale
+5104
+Scale
+Scale
+5105
+Scale
+Scale
+5106
+Scale
+Scale
+5107
+Scale
+Scale
+5108
+Scale
+Scale
+5109
+Scale
+Scale
+5110
+Scale
+Scale
+5111
+Scale
+Scale
+5112
+Scale
+Scale
+5113
+Scale
+Scale
+5114
+Scale
+Scale
+5115
+Scale
+Scale
+5116
+Scale
+Scale
+5117
+Scale
+Scale
+5118
+Scale
+Scale
+5119
+Scale
+Scale
+5120
+Scale
+Scale
+5121
+Single Bloom
+Single Bloom
+5122
+Single Bloom
+Single Bloom
+5123
+Single Bloom
+Single Bloom
+5124
+Single Bloom
+Single Bloom
+5125
+Single Bloom
+Single Bloom
+5126
+Single Bloom
+Single Bloom
+5127
+Single Bloom
+Single Bloom
+5128
+Single Bloom
+Single Bloom
+5129
+Garden
+Garden
+5130
+Garden
+Garden
+5131
+Garden
+Garden
+5132
+Garden
+Garden
+5133
+Poodle
+Poodle
+5134
+Poodle
+Poodle
+5135
+Poodle
+Poodle
+5136
+Poodle
+Poodle
+5137
+Poodle
+Poodle
+5138
+Poodle
+Poodle
+5139
+Poodle
+Poodle
+5140
+Poodle
+Poodle
+5141
+Poodle
+Poodle
+5142
+Constraint
+Constraint
+5143
+Royal Sword
+Royal Sword
+5144
+Pumpkin
+Pumpkin
+5145
+Pumpkin
+Pumpkin
+5146
+Pumpkin
+Pumpkin
+5147
+Pumpkin
+Pumpkin
+5148
+Pumpkin
+Pumpkin
+5149
+Pumpkin
+Pumpkin
+5150
+Life
+Life
+5151
+Order
+Order
+5152
+Order
+Order
+5153
+Order
+Order
+5154
+Mischief
+Mischief
+5155
+Dancing
+Dancing
+5156
+Dancing
+Dancing
+5157
+Dancing
+Dancing
+5158
+Wolf
+Wolf
+5159
+Wolf
+Wolf
+5160
+Small Fry
+Small Fry
+5161
+Synthetic
+Synthetic
+5162
+Synthetic
+Synthetic
+5163
+Synthetic
+Synthetic
+5164
+Synthetic
+Synthetic
+5165
+Synthetic
+Synthetic
+5166
+Synthetic
+Synthetic
+5167
+Synthetic
+Synthetic
+5168
+Synthetic
+Synthetic
+5169
+Synthetic
+Synthetic
+5170
+Synthetic
+Synthetic
+5171
+Synthetic
+Synthetic
+5172
+Synthetic
+Synthetic
+5173
+Synthetic
+Synthetic
+5174
+Synthetic
+Synthetic
+5175
+Synthetic
+Synthetic
+5176
+Synthetic
+Synthetic
+5177
+Synthetic
+Synthetic
+5178
+Synthetic
+Synthetic
+5179
+Meteor
+Meteor
+5180
+Meteor
+Meteor
+5181
+Meteor
+Meteor
+5182
+Meteor
+Meteor
+5183
+Meteor
+Meteor
+5184
+Meteor
+Meteor
+5185
+Meteor
+Meteor
+5186
+Disguise
+Disguise
+5187
 Prism
 Prism
-2720
+5188
 Prism
 Prism
-2749
+5189
+Prism
+Prism
+5190
+Prism
+Prism
+5191
+Artificial
+Artificial
+5192
+Gulp
+Gulp
+5193
+Gulp
+Gulp
+5194
+Penguin
+Penguin
+5195
+Black Tea
+Black Tea
+5196
+Black Tea
+Black Tea
+5197
+Emotion
+Emotion
+5198
+Two-Sided
+Two-Sided
+5199
+Warrior
+Warrior
+5200
+Warrior
+Warrior
+5201
+Wushu
+Wushu
+5202
+High King
+High King
+5203
+High King
+High King
+5204
+Sea Basin
+Sea Basin
+5205
+Continent
+Continent
+5206
+Sky High
+Sky High
+5207
+Blazing
+Blazing
+5208
+Blazing
+Blazing
+5209
+Light
+Light
+5210
+Mach
+Mach
+5211
+Atrocious
+Atrocious
+5212
+Embrace
+Embrace
+5213
+Blade
+Blade
+5214
+Genetic
+Genetic
+5215
+Genetic
+Genetic
+5216
+Love-Hate
+Love-Hate
+5217
+Harvest
+Harvest
+5218
 Mellow
 Mellow
 [3]
@@ -4574,7 +5489,661 @@ It only closes its mouth to bite its foes, forcing its trainers to learn to inte
 2065
 Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
-2749
+5000
+This Pokemon exists just to test the PBS Extensions system.
+This Pokemon exists just to test the PBS Extensions system.
+5001
+This Pokemon exists just to test the PBS Extensions system. Again!
+This Pokemon exists just to test the PBS Extensions system. Again!
+5002
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5003
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5004
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5005
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5006
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5007
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
+5008
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through many different regions.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through many different regions.
+5009
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Hoenn region.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Hoenn region.
+5010
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Sinnoh region.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Sinnoh region.
+5011
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Unova region.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Unova region.
+5012
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Kalos region.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Kalos region.
+5013
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Alola region.
+This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Alola region.
+5014
+This Pikachu wears its partner's cap, which is brimming with memories of when they first met.
+This Pikachu wears its partner's cap, which is brimming with memories of when they first met.
+5015
+This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu.
+This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu.
+5016
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5017
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5018
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5019
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5020
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5021
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5022
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5023
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5024
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5025
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5026
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5027
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5028
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5029
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5030
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5031
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5032
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5033
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5034
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5035
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5036
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5037
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5038
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5039
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5040
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5041
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5042
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
+5043
+This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
+This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
+5044
+This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
+This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
+5045
+This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
+This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
+5046
+This is the form Castform takes when sand sweeps up. Its body is made of particles that are constantly spinning.
+This is the form Castform takes when sand sweeps up. Its body is made of particles that are constantly spinning.
+5047
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+5048
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+5049
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
+5050
+If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
+If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
+5051
+If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
+If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
+5052
+When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
+When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
+5053
+When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
+When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
+5054
+If it senses strong sunlight, it opens its folded petals to absorb the sun's rays with its whole body.
+If it senses strong sunlight, it opens its folded petals to absorb the sun's rays with its whole body.
+5055
+The colors of this Pokémon change depending on its environment. When it senses danger, this Pokémon excretes a sticky purple liquid.
+The colors of this Pokémon change depending on its environment. When it senses danger, this Pokémon excretes a sticky purple liquid.
+5056
+It apparently had a huge shell for protection in ancient times. It lives in shallow tidal pools.
+It apparently had a huge shell for protection in ancient times. It lives in shallow tidal pools.
+5057
+This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
+This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
+5058
+This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
+This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
+5059
+Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
+Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
+5060
+In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find.
+In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find.
+5061
+This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
+This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
+5062
+This Pokémon is said to live in a world on the reverse side of ours, where common knowledge is distorted and strange.
+This Pokémon is said to live in a world on the reverse side of ours, where common knowledge is distorted and strange.
+5063
+The blooming of Gracidea flowers confers the power of flight upon it. Feelings of gratitude are the message it delivers.
+The blooming of Gracidea flowers confers the power of flight upon it. Feelings of gratitude are the message it delivers.
+5064
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5065
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5066
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5067
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5068
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5069
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5070
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5071
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5072
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5073
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5074
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5075
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5076
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5077
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5078
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5079
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5080
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5081
+It is told in mythology that this Pokémon was born before the universe even existed.
+It is told in mythology that this Pokémon was born before the universe even existed.
+5082
+Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
+Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
+5083
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+5084
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+5085
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
+5086
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+5087
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+5088
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
+5089
+Tornadus expels massive energy from its tail, causing severe storms. Its power is great enough to blow houses away.
+Tornadus expels massive energy from its tail, causing severe storms. Its power is great enough to blow houses away.
+5090
+The spikes on its tail discharge immense bolts of lightning. It flies around the Unova region firing off lightning bolts.
+The spikes on its tail discharge immense bolts of lightning. It flies around the Unova region firing off lightning bolts.
+5091
+Lands visited by Landorus grant such bountiful crops that it has been hailed as "The Guardian of the Fields."
+Lands visited by Landorus grant such bountiful crops that it has been hailed as "The Guardian of the Fields."
+5092
+It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.
+It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.
+5093
+It's said that this Pokémon battles in order to protect the ideal world that will exist in the future for people and Pokémon.
+It's said that this Pokémon battles in order to protect the ideal world that will exist in the future for people and Pokémon.
+5094
+It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
+It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
+5095
+It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
+It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
+5096
+The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
+The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
+5097
+Its melodies are sung with a special vocalization method that can control the feelings of those who hear it.
+Its melodies are sung with a special vocalization method that can control the feelings of those who hear it.
+5098
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+5099
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+5100
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+5101
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
+5102
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5103
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5104
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5105
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5106
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5107
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5108
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5109
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5110
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5111
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5112
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5113
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5114
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5115
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5116
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5117
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5118
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5119
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5120
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
+5121
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+5122
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+5123
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+5124
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
+5125
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+5126
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+5127
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+5128
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
+5129
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+5130
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+5131
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+5132
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
+5133
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5134
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5135
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5136
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5137
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5138
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5139
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5140
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5141
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
+5142
+The eyeball patterns on the interior of its ears emit psychic energy. It keeps the patterns tightly covered because that power is too immense.
+The eyeball patterns on the interior of its ears emit psychic energy. It keeps the patterns tightly covered because that power is too immense.
+5143
+Apparently, it can detect the innate qualities of leadership. According to legend, whoever it recognizes is destined to become king.
+Apparently, it can detect the innate qualities of leadership. According to legend, whoever it recognizes is destined to become king.
+5144
+Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife.
+Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife.
+5145
+When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children.
+When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children.
+5146
+Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered.
+Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered.
+5147
+Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife.
+Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife.
+5148
+Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
+Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
+5149
+Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife.
+Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife.
+5150
+When the horns on its head shine in seven colors, it is said to be sharing everlasting life.
+When the horns on its head shine in seven colors, it is said to be sharing everlasting life.
+5151
+This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
+This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
+5152
+This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
+This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
+5153
+Some say it can change to an even more powerful form when battling those who threaten the ecosystem.
+Some say it can change to an even more powerful form when battling those who threaten the ecosystem.
+5154
+It gathers things it likes and passes them through its loop to teleport them to a secret place.
+It gathers things it likes and passes them through its loop to teleport them to a secret place.
+5155
+It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches.
+It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches.
+5156
+This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies.
+This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies.
+5157
+It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
+It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
+5158
+It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
+It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
+5159
+Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
+Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
+5160
+Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far.
+Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far.
+5161
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5162
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5163
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5164
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5165
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5166
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5167
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5168
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5169
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5170
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5171
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5172
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5173
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5174
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5175
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5176
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5177
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5178
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
+5179
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5180
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5181
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5182
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5183
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5184
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5185
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+5186
+Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck.
+Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck.
+5187
+This is Necrozma's form while it's absorbing the power of Solgaleo, making it extremely ferocious and impossible to control.
+This is Necrozma's form while it's absorbing the power of Solgaleo, making it extremely ferocious and impossible to control.
+5188
+Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy.
+Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy.
+5189
+The light pouring out from all over its body affects living things and nature, impacting them in various ways.
+The light pouring out from all over its body affects living things and nature, impacting them in various ways.
+5190
+It looks somehow pained as it rages around in search of light, which serves as its energy. It's apparently from another world.
+It looks somehow pained as it rages around in search of light, which serves as its energy. It's apparently from another world.
+5191
+This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter.
+This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter.
+5192
+The slightest shock is sometimes enough to get this Pokémon to spit out the Arrokuda lodged in its throat.
+The slightest shock is sometimes enough to get this Pokémon to spit out the Arrokuda lodged in its throat.
+5193
+The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back.
+The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back.
+5194
+The hair on its head connects to the surface of its brain. When this Pokémon has something on its mind, its hair chills the air around it.
+The hair on its head connects to the surface of its brain. When this Pokémon has something on its mind, its hair chills the air around it.
+5195
+It absorbs the life-force of those who drink it. It waits patiently, but opportunities are fleeting—it tastes so bad that it gets spat out immediately.
+It absorbs the life-force of those who drink it. It waits patiently, but opportunities are fleeting—it tastes so bad that it gets spat out immediately.
+5196
+Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
+Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
+5197
+They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
+They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
+5198
+Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
+Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
+5199
+Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
+Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
+5200
+Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
+Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
+5201
+This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river.
+This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river.
+5202
+It's said that this Pokémon once moved a large forest—and all the Pokémon living there—to a new location overnight.
+It's said that this Pokémon once moved a large forest—and all the Pokémon living there—to a new location overnight.
+5203
+Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.
+Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.
+5204
+Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.
+Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.
+5205
+Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
+Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
+5206
+Rayquaza is said to have lived for hundreds of millions of years. Legends remain of how it put to rest the clash between Kyogre and Groudon.
+Rayquaza is said to have lived for hundreds of millions of years. Legends remain of how it put to rest the clash between Kyogre and Groudon.
+5207
+When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
+When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
+5208
+Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
+Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
+5209
+The tail's tip shines brightly and can be seen from far away. It acts as a beacon for lost people.
+The tail's tip shines brightly and can be seen from far away. It acts as a beacon for lost people.
+5210
+Garchomp makes its home in volcanic mountains. It flies through the sky as fast as a jet airplane, hunting down as much prey as it can.
+Garchomp makes its home in volcanic mountains. It flies through the sky as fast as a jet airplane, hunting down as much prey as it can.
+5211
+Brutally vicious and enormously destructive. Known for totally destroying cities in ancient times.
+Brutally vicious and enormously destructive. Known for totally destroying cities in ancient times.
+5212
+It has the power to predict the future. Its power peaks when it is protecting its Trainer.
+It has the power to predict the future. Its power peaks when it is protecting its Trainer.
+5213
+A master of courtesy and swordsmanship, it fights using extending swords on its elbows.
+A master of courtesy and swordsmanship, it fights using extending swords on its elbows.
+5214
+Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
+Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
+5215
+Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
+Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
+5216
+According to legend, this Pokémon's love gave rise to the budding of fresh life across Hisui.
+According to legend, this Pokémon's love gave rise to the budding of fresh life across Hisui.
+5217
+It uses both white and black magic. It harvests the flowers that grow on witches who regularly walk between life and death.
+It uses both white and black magic. It harvests the flowers that grow on witches who regularly walk between life and death.
+5218
 It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 [4]
@@ -4605,102 +6174,645 @@ Natural
 718
 50%
 50%
-2547
+5002
+Cosplay
+Cosplay
+5003
+Cosplay - Belle
+Cosplay - Belle
+5004
+Cosplay - Libre
+Cosplay - Libre
+5005
+Cosplay - Ph.D.
+Cosplay - Ph.D.
+5006
+Cosplay - Pop Star
+Cosplay - Pop Star
+5007
+Cosplay - Rock Star
+Cosplay - Rock Star
+5008
+Original Cap
+Original Cap
+5009
+Hoenn Cap
+Hoenn Cap
+5010
+Sinnoh Cap
+Sinnoh Cap
+5011
+Unova Cap
+Unova Cap
+5012
+Kalos Cap
+Kalos Cap
+5013
+Alola Cap
+Alola Cap
+5014
+Partner Cap
+Partner Cap
+5015
+World Cap
+World Cap
+5016
 B
 B
-2548
+5017
 C
 C
-2549
+5018
 D
 D
-2550
+5019
 E
 E
-2551
+5020
 F
 F
-2552
+5021
 G
 G
-2553
+5022
 H
 H
-2554
+5023
 I
 I
-2555
+5024
 J
 J
-2556
+5025
 K
 K
-2557
+5026
 L
 L
-2558
+5027
 M
 M
-2559
+5028
 N
 N
-2560
+5029
 O
 O
-2561
+5030
 P
 P
-2562
+5031
 Q
 Q
-2563
+5032
 R
 R
-2564
+5033
 S
 S
-2565
+5034
 T
 T
-2566
+5035
 U
 U
-2567
+5036
 V
 V
-2568
+5037
 W
 W
-2569
+5038
 X
 X
-2570
+5039
 Y
 Y
-2571
+5040
 Z
 Z
-2572
+5041
 ?
 ?
-2573
+5042
 !
 !
-2673
+5043
+Sun
+Sun
+5044
+Rain
+Rain
+5045
+Hail
+Hail
+5046
+Sand
+Sand
+5047
+Attack
+Attack
+5048
+Defense
+Defense
+5049
+Speed
+Speed
+5050
+Sand
+Sand
+5051
+Trash
+Trash
+5052
+Sand
+Sand
+5053
+Trash
+Trash
+5054
+Sun
+Sun
+5055
+East Sea
+East Sea
+5056
+East Sea
+East Sea
+5057
+Heat
+Heat
+5058
+Wash
+Wash
+5059
+Frost
+Frost
+5060
+Fan
+Fan
+5061
+Mow
+Mow
+5062
+Origin
+Origin
+5063
+Sky
+Sky
+5064
+Fighting Type
+Fighting Type
+5065
+Flying Type
+Flying Type
+5066
+Poison Type
+Poison Type
+5067
+Ground Type
+Ground Type
+5068
+Rock Type
+Rock Type
+5069
+Bug Type
+Bug Type
+5070
+Ghost Type
+Ghost Type
+5071
+Steel Type
+Steel Type
+5072
+Unknown Type
+Unknown Type
+5073
+Fire Type
+Fire Type
+5074
+Water Type
+Water Type
+5075
+Grass Type
+Grass Type
+5076
+Electric Type
+Electric Type
+5077
+Psychic Type
+Psychic Type
+5078
+Ice Type
+Ice Type
+5079
+Dragon Type
+Dragon Type
+5080
+Dark Type
+Dark Type
+5081
+Fairy Type
+Fairy Type
+5082
+Blue-Striped
+Blue-Striped
+5083
+Summer
+Summer
+5084
+Autumn
+Autumn
+5085
+Winter
+Winter
+5086
+Summer
+Summer
+5087
+Autumn
+Autumn
+5088
+Winter
+Winter
+5089
+Therian
+Therian
+5090
+Therian
+Therian
+5091
+Therian
+Therian
+5092
+White
+White
+5093
+Black
+Black
+5096
+Resolute
+Resolute
+5097
+Pirouette
+Pirouette
+5098
+Shock Drive
+Shock Drive
+5099
+Burn Drive
+Burn Drive
+5100
+Chill Drive
+Chill Drive
+5101
+Douse Drive
+Douse Drive
+5102
+Continental Pattern
+Continental Pattern
+5103
+Elegant Pattern
+Elegant Pattern
+5104
+Garden Pattern
+Garden Pattern
+5105
+High Plains Pattern
+High Plains Pattern
+5106
+Icy Snow Pattern
+Icy Snow Pattern
+5107
+Jungle Pattern
+Jungle Pattern
+5108
+Marine Pattern
+Marine Pattern
+5109
+Archipelago Pattern
+Archipelago Pattern
+5110
+Modern Pattern
+Modern Pattern
+5111
+Monsoon Pattern
+Monsoon Pattern
+5112
+Ocean Pattern
+Ocean Pattern
+5113
+Polar Pattern
+Polar Pattern
+5114
+River Pattern
+River Pattern
+5115
+Sandstorm Pattern
+Sandstorm Pattern
+5116
+Savanna Pattern
+Savanna Pattern
+5117
+Sun Pattern
+Sun Pattern
+5118
+Tundra Pattern
+Tundra Pattern
+5119
+Fancy Pattern
+Fancy Pattern
+5120
+Poké Ball Pattern
+Poké Ball Pattern
+5121
+Yellow Flower
+Yellow Flower
+5122
+Orange Flower
+Orange Flower
+5123
+Blue Flower
+Blue Flower
+5124
+White Flower
+White Flower
+5125
+Yellow Flower
+Yellow Flower
+5126
+Orange Flower
+Orange Flower
+5127
+Blue Flower
+Blue Flower
+5128
+White Flower
+White Flower
+5129
+Yellow Flower
+Yellow Flower
+5130
+Orange Flower
+Orange Flower
+5131
+Blue Flower
+Blue Flower
+5132
+White Flower
+White Flower
+5133
+Heart Trim
+Heart Trim
+5134
+Star Trim
+Star Trim
+5135
+Diamond Trim
+Diamond Trim
+5136
+Debutante Trim
+Debutante Trim
+5137
+Matron Trim
+Matron Trim
+5138
+Dandy Trim
+Dandy Trim
+5139
+La Reine Trim
+La Reine Trim
+5140
+Kabuki Trim
+Kabuki Trim
+5141
+Pharaoh Trim
+Pharaoh Trim
+5142
 Meowstic♀
 Meowstic♀
-2682
+5143
+Blade
+Blade
+5144
+Average Size
+Average Size
+5145
+Large Size
+Large Size
+5146
+Super Size
+Super Size
+5147
+Average Size
+Average Size
+5148
+Large Size
+Large Size
+5149
+Super Size
+Super Size
+5150
+Active Mode
+Active Mode
+5151
 10%
 10%
-2720
+5152
+Complete
+Complete
+5154
+Unbound
+Unbound
+5155
+Pom-Pom Style
+Pom-Pom Style
+5156
+Pa'u Style
+Pa'u Style
+5157
+Sensu Style
+Sensu Style
+5158
+Midnight
+Midnight
+5159
+Dusk
+Dusk
+5160
+School
+School
+5161
+Type: Fighting
+Type: Fighting
+5162
+Type: Flying
+Type: Flying
+5163
+Type: Poison
+Type: Poison
+5164
+Type: Ground
+Type: Ground
+5165
+Type: Rock
+Type: Rock
+5166
+Type: Bug
+Type: Bug
+5167
+Type: Ghost
+Type: Ghost
+5168
+Type: Steel
+Type: Steel
+5169
+Type: Unknown
+Type: Unknown
+5170
+Type: Fire
+Type: Fire
+5171
+Type: Water
+Type: Water
+5172
+Type: Grass
+Type: Grass
+5173
+Type: Electric
+Type: Electric
+5174
+Type: Psychic
+Type: Psychic
+5175
+Type: Ice
+Type: Ice
+5176
+Type: Dragon
+Type: Dragon
+5177
+Type: Dark
+Type: Dark
+5178
+Type: Fairy
+Type: Fairy
+5179
+Red
+Red
+5180
+Orange
+Orange
+5181
+Yellow
+Yellow
+5182
+Green
+Green
+5183
+Blue
+Blue
+5184
+Indigo
+Indigo
+5185
+Violet
+Violet
+5186
+Busted
+Busted
+5187
+Dusk Mane
+Dusk Mane
+5188
+Dawn Wings
+Dawn Wings
+5189
 Ultra
 Ultra
-2728
+5191
+Original Color
+Original Color
+5192
+Gulping
+Gulping
+5193
+Gorging
+Gorging
+5194
+Melted
+Melted
+5195
+Antique
+Antique
+5196
+Antique
+Antique
+5197
 ♀
 ♀
-2737
+5198
+Hangry
+Hangry
+5199
+Crowned
+Crowned
+5200
+Crowned
+Crowned
+5201
+Rapid Strike
+Rapid Strike
+5202
+Ice
+Ice
+5203
+Shadow
+Shadow
+5204
+Primal
+Primal
+5205
+Primal
+Primal
+5206
 Delta
 Delta
+5207
+Zen
+Zen
+5208
+Zen
+Zen
+5209
+Ascended
+Ascended
+5210
+Reaper
+Reaper
+5211
+Rampage
+Rampage
+5212
+Finale
+Finale
+5213
+Finale
+Finale
+5214
+Overmatter
+Overmatter
+5215
+Overmind
+Overmind
+5216
+Therian
+Therian
+5217
+Harvest
+Harvest
+5218
+White-Striped
+White-Striped
 [5]
 Bleakwind Storm
 Bleakwind Storm
@@ -4738,18 +6850,26 @@ Grunge
 Grunge
 Miasma
 Miasma
+Rock Out
+Rock Out
 Clackaclack
 Clackaclack
 Natural Protection
 Natural Protection
 Invite Rainstorm
 Invite Rainstorm
+Brain Freeze
+Brain Freeze
 Eclipse
 Eclipse
 Penumbra
 Penumbra
 Pulsar
 Pulsar
+Iceberg Bash
+Iceberg Bash
+Wyrm's Wounding
+Wyrm's Wounding
 Abyssal Mist
 Abyssal Mist
 Primeval Deep Breathing
@@ -5100,7 +7220,11 @@ Pout
 Pout
 Sweet Kiss
 Sweet Kiss
+Test Move
+Test Move
 [6]
+The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
+The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
 The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
 The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
 The user's edges become sharper, raising its Attack stat by three steps.
@@ -5205,6 +7329,8 @@ The user scratches the target with rough rocks. If in sandstorm, the target's De
 The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.
 The user sweeps away hazards while charging. User also takes 33% recoil.
 The user sweeps away hazards while charging. User also takes 33% recoil.
+The user dances wildly while churning rocks towards the target. This raises the user's Attack by 2 steps.
+The user dances wildly while churning rocks towards the target. This raises the user's Attack by 2 steps.
 The user makes a plea for survival, halving the damage their side takes from non-attack sources for 4 turns.
 The user makes a plea for survival, halving the damage their side takes from non-attack sources for 4 turns.
 The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.
@@ -5235,12 +7361,18 @@ The user surges with electricity. If it deals less than 50% of the target's max 
 The user surges with electricity. If it deals less than 50% of the target's max health, the user takes the difference as recoil.
 The user charges, then attacks on the second turn. Charges instantly in rainstorm.
 The user charges, then attacks on the second turn. Charges instantly in rainstorm.
+The user slows the target's mind with a psychically infused blow. This has a 30% chance to frostbite.
+The user slows the target's mind with a psychically infused blow. This has a 30% chance to frostbite.
 The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.
 The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.
 Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.
 Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.
+The user picks up an iceberg and slams it into the target. Lowers the user's Attack by four steps.
+The user picks up an iceberg and slams it into the target. Lowers the user's Attack by four steps.
 Attacks all near others with dragon energy. Power increases by 50% in eclipse.
 Attacks all near others with dragon energy. Power increases by 50% in eclipse.
+The user roots itself, then strikes at the target with serpentine strength. This has a 30% chance to leech.
+The user roots itself, then strikes at the target with serpentine strength. This has a 30% chance to leech.
 Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.
 Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.
 Defly sets a layer of damaging Spikes around the foe, then switches out.
@@ -5585,6 +7717,8 @@ The user and target become friends. The target loses its will to fight, lowering
 The user and target become friends. The target loses its will to fight, lowering its Attack stat.
 The user kisses the target with a sweet, angelic cuteness that causes charm.
 The user kisses the target with a sweet, angelic cuteness that causes charm.
+This move exists just to showcase the PBS Extensions system.
+This move exists just to showcase the PBS Extensions system.
 [7]
 Fairy Feather
 Fairy Feather
@@ -5610,6 +7744,8 @@ Poké X-Ray
 Poké X-Ray
 Space-time Shard
 Space-time Shard
+Old USB Drive
+Old USB Drive
 Unnamed
 Unnamed
 Cass Berry
@@ -6491,6 +8627,8 @@ Ruined Tower Keys
 Ruined Tower Keys
 Space-time Shards
 Space-time Shards
+Old USB Drive
+Old USB Drive
 Choice Crowns
 Choice Crowns
 Zenith Bands
@@ -7762,6 +9900,8 @@ An upgraded, hi-tech recording device. It increases experience earned from battl
 An upgraded, hi-tech recording device. It increases experience earned from battles by 10%.
 A sliver of the fragment of the universe. Highly unstable.
 A sliver of the fragment of the universe. Highly unstable.
+A USB containing data from a Team Chasm's early days.
+A USB containing data from a Team Chasm's early days.
 Held item which ups Attacking stats and Speed by 50%, but allows the use of only one move.
 Held item which ups Attacking stats and Speed by 50%, but allows the use of only one move.
 Held item which doubles Attack, but allows the use of only one move.
@@ -8927,6 +11067,8 @@ Wondrous Aura
 Wondrous Aura
 Zen Mode
 Zen Mode
+Test Ability
+Test Ability
 [11]
 Prevents the foe from fleeing unless it is airborne.
 Prevents the foe from fleeing unless it is airborne.
@@ -9196,6 +11338,8 @@ Upon entry, creates a Wonder Room for five turns, swapping base Defense and Sp. 
 Upon entry, creates a Wonder Room for five turns, swapping base Defense and Sp. Def.
 Changes the Pokémon's shape when HP is halved.
 Changes the Pokémon's shape when HP is halved.
+This ability exists just to showcase the PBS Extensions system.
+This ability exists just to showcase the PBS Extensions system.
 [12]
 0
 Normal
@@ -9706,47 +11850,47 @@ Masked Villains
 Masked Villains
 Masked Villains
 167
-Medium
-Medium
+Masked Villain
+Masked Villain
 168
-Neckbeard
-Neckbeard
+Medium
+Medium
 169
-Nightmare Queen
-Nightmare Queen
+Neckbeard
+Neckbeard
 170
-Nightmare of
-Nightmare of
+Nightmare Queen
+Nightmare Queen
 171
-Ninja Boy
-Ninja Boy
+Nightmare of
+Nightmare of
 172
-Nurse
-Nurse
+Ninja Boy
+Ninja Boy
 173
-Nursery Aide
-Nursery Aide
+Nurse
+Nurse
 174
-Office Worker
-Office Worker
+Nursery Aide
+Nursery Aide
 175
 Office Worker
 Office Worker
 176
-Parasol Lady
-Parasol Lady
+Office Worker
+Office Worker
 177
 Parasol Lady
 Parasol Lady
 178
-Picnicker
-Picnicker
+Parasol Lady
+Parasol Lady
 179
-Pilot
-Pilot
+Picnicker
+Picnicker
 180
-Poké Fan
-Poké Fan
+Pilot
+Pilot
 181
 Poké Fan
 Poké Fan
@@ -9760,14 +11904,14 @@ Poké Fan
 Poké Fan
 Poké Fan
 185
-Poké Kid
-Poké Kid
+Poké Fan
+Poké Fan
 186
-Poké Maniac
-Poké Maniac
+Poké Kid
+Poké Kid
 187
-Pokémon Breeder
-Pokémon Breeder
+Poké Maniac
+Poké Maniac
 188
 Pokémon Breeder
 Pokémon Breeder
@@ -9790,11 +11934,11 @@ Pokémon Breeder
 Pokémon Breeder
 Pokémon Breeder
 195
-Pokémon Master
-Pokémon Master
+Pokémon Breeder
+Pokémon Breeder
 196
-Pokémon Ranger
-Pokémon Ranger
+Pokémon Master
+Pokémon Master
 197
 Pokémon Ranger
 Pokémon Ranger
@@ -9817,8 +11961,8 @@ Pokémon Ranger
 Pokémon Ranger
 Pokémon Ranger
 204
-Pokémon Trainer
-Pokémon Trainer
+Pokémon Ranger
+Pokémon Ranger
 205
 Pokémon Trainer
 Pokémon Trainer
@@ -9835,23 +11979,23 @@ Pokémon Trainer
 Pokémon Trainer
 Pokémon Trainer
 210
-Policeman
-Policeman
+Pokémon Trainer
+Pokémon Trainer
 211
 Policeman
 Policeman
 212
-Preschooler
-Preschooler
+Policeman
+Policeman
 213
 Preschooler
 Preschooler
 214
-Professor
-Professor
+Preschooler
+Preschooler
 215
-Psychic
-Psychic
+Professor
+Professor
 216
 Psychic
 Psychic
@@ -9871,23 +12015,23 @@ Psychic
 Psychic
 Psychic
 222
-Punk
-Punk
+Psychic
+Psychic
 223
 Punk
 Punk
 224
-Rancher
-Rancher
+Punk
+Punk
 225
-Reporter
-Reporter
+Rancher
+Rancher
 226
 Reporter
 Reporter
 227
-Rich Boy
-Rich Boy
+Reporter
+Reporter
 228
 Rich Boy
 Rich Boy
@@ -9898,11 +12042,11 @@ Rich Boy
 Rich Boy
 Rich Boy
 231
-Rich Couple
-Rich Couple
+Rich Boy
+Rich Boy
 232
-Rising Star
-Rising Star
+Rich Couple
+Rich Couple
 233
 Rising Star
 Rising Star
@@ -9913,29 +12057,29 @@ Rising Star
 Rising Star
 Rising Star
 236
-Roughneck
-Roughneck
+Rising Star
+Rising Star
 237
 Roughneck
 Roughneck
 238
-Ruin Maniac
-Ruin Maniac
+Roughneck
+Roughneck
 239
 Ruin Maniac
 Ruin Maniac
 240
-Sage
-Sage
+Ruin Maniac
+Ruin Maniac
 241
-Sailor
-Sailor
+Sage
+Sage
 242
 Sailor
 Sailor
 243
-School Kid
-School Kid
+Sailor
+Sailor
 244
 School Kid
 School Kid
@@ -9955,8 +12099,8 @@ School Kid
 School Kid
 School Kid
 250
-Scientist
-Scientist
+School Kid
+School Kid
 251
 Scientist
 Scientist
@@ -9976,14 +12120,14 @@ Scientist
 Scientist
 Scientist
 257
-Shadow
-Shadow
+Scientist
+Scientist
 258
-Sis and Bro
-Sis and Bro
+Shadow
+Shadow
 259
-Skier
-Skier
+Sis and Bro
+Sis and Bro
 260
 Skier
 Skier
@@ -9991,17 +12135,17 @@ Skier
 Skier
 Skier
 262
-Smasher
-Smasher
+Skier
+Skier
 263
-Socialite
-Socialite
+Smasher
+Smasher
 264
 Socialite
 Socialite
 265
-Spirit Guardian
-Spirit Guardian
+Socialite
+Socialite
 266
 Spirit Guardian
 Spirit Guardian
@@ -10012,17 +12156,17 @@ Spirit Guardian
 Spirit Guardian
 Spirit Guardian
 269
-Striker
-Striker
+Spirit Guardian
+Spirit Guardian
 270
-Super Nerd
-Super Nerd
+Striker
+Striker
 271
-Suspicious Man
-Suspicious Man
+Super Nerd
+Super Nerd
 272
-Swimmer
-Swimmer
+Suspicious Man
+Suspicious Man
 273
 Swimmer
 Swimmer
@@ -10057,8 +12201,8 @@ Swimmer
 Swimmer
 Swimmer
 284
-Guardian Deity
-Guardian Deity
+Swimmer
+Swimmer
 285
 Guardian Deity
 Guardian Deity
@@ -10069,23 +12213,23 @@ Guardian Deity
 Guardian Deity
 Guardian Deity
 288
-Teacher
-Teacher
+Guardian Deity
+Guardian Deity
 289
-Teenager
-Teenager
+Teacher
+Teacher
 290
 Teenager
 Teenager
 291
-Tourist
-Tourist
+Teenager
+Teenager
 292
 Tourist
 Tourist
 293
-Pokémon Trainer
-Pokémon Trainer
+Tourist
+Tourist
 294
 Pokémon Trainer
 Pokémon Trainer
@@ -10114,11 +12258,11 @@ Pokémon Trainer
 Pokémon Trainer
 Pokémon Trainer
 303
-Your Brother
-Your Brother
+Pokémon Trainer
+Pokémon Trainer
 304
-Tuber
-Tuber
+Your Brother
+Your Brother
 305
 Tuber
 Tuber
@@ -10129,8 +12273,8 @@ Tuber
 Tuber
 Tuber
 308
-Twins
-Twins
+Tuber
+Tuber
 309
 Twins
 Twins
@@ -10138,11 +12282,11 @@ Twins
 Twins
 Twins
 311
-Ultra
-Ultra
+Twins
+Twins
 312
-Veteran
-Veteran
+Ultra
+Ultra
 313
 Veteran
 Veteran
@@ -10156,11 +12300,11 @@ Veteran
 Veteran
 Veteran
 317
-Wild
-Wild
+Veteran
+Veteran
 318
-Waiter
-Waiter
+Wild
+Wild
 319
 Waiter
 Waiter
@@ -10168,8 +12312,8 @@ Waiter
 Waiter
 Waiter
 321
-Waitress
-Waitress
+Waiter
+Waiter
 322
 Waitress
 Waitress
@@ -10177,11 +12321,11 @@ Waitress
 Waitress
 Waitress
 324
-Wild Pack
-Wild Pack
+Waitress
+Waitress
 325
-Wild Party
-Wild Party
+Wild Pack
+Wild Pack
 326
 Wild Party
 Wild Party
@@ -10192,8 +12336,8 @@ Wild Party
 Wild Party
 Wild Party
 329
-Worker
-Worker
+Wild Party
+Wild Party
 330
 Worker
 Worker
@@ -10210,20 +12354,26 @@ Worker
 Worker
 Worker
 335
-Young Couple
-Young Couple
+Worker
+Worker
 336
 Young Couple
 Young Couple
 337
-Youngster
-Youngster
+Young Couple
+Young Couple
 338
 Youngster
 Youngster
 339
 Youngster
 Youngster
+340
+Youngster
+Youngster
+341
+Test Trainer
+Test Trainer
 [14]
 Tester
 Tester
@@ -10667,8 +12817,8 @@ Reina
 Reina
 Victoire
 Victoire
-Sang
-Sang
+Silver
+Silver
 Chiyo
 Chiyo
 Davor
@@ -10717,6 +12867,8 @@ Nabil
 Nabil
 Kai
 Kai
+Sang
+Sang
 Emily
 Emily
 Maria and Iveta
@@ -10877,10 +13029,10 @@ Hiroshi
 Hiroshi
 Francois
 Francois
-JOSH
-JOSH
-PEARCE
-PEARCE
+Kurt
+Kurt
+Pearce
+Pearce
 NORA
 NORA
 Volcanion
@@ -11041,6 +13193,8 @@ Rikard
 Rikard
 Finnegan
 Finnegan
+Test Trainer
+Test Trainer
 BRADY
 BRADY
 CONNER
@@ -17636,6 +19790,8 @@ But it failed, since the move isn't implemented in the code!
 \ts[]<c3=4C0D0D,FFFFFF22><b><outln2><ac><fs={1}>\w[]\wu\l[12]{2}</fs></ac></outln2></b></c3>\wt[{3}]
 An error has occured. Unable to spawn player at Avatar Totem. Attempting backup spawn at healing spot.
 An error has occured. Unable to spawn player at Avatar Totem. Attempting backup spawn at healing spot.
+#{user.pbThis}'s rage is at at its peak!
+#{user.pbThis}'s rage is at at its peak!
 #{user.pbThis} aims its stinger at #{target.pbThis(true)}!
 #{user.pbThis} aims its stinger at #{target.pbThis(true)}!
 A Shadow creeps into the dream...
@@ -18514,6 +20670,8 @@ This means cloud cover at around 50\%, with a very low chance for precipitation.
 This means cloud cover at around 50\%, with a very low chance for precipitation.
 A money cost can't be negative!
 A money cost can't be negative!
+You feel yourself pulled away. Allow yourself to be transported?
+You feel yourself pulled away. Allow yourself to be transported?
 {1} was unchilled out.
 {1} was unchilled out.
 You turn the Tarot Amulet to its front face. It is now active.
@@ -19804,6 +21962,94 @@ Not Signature
 Not Signature
 Which sort
 Which sort
+Earn {1} {2}
+Earn {1} {2}
+all species in {1}
+all species in {1}
+BY LEVEL
+BY LEVEL
+BY OTHER
+BY OTHER
+MATCHUPS
+MATCHUPS
+DETAILS
+DETAILS
+ANIMATION
+ANIMATION
+{1} Moves
+{1} Moves
+150 BP: Pearl of Fate, Iron Ball
+150 BP: Pearl of Fate, Iron Ball
+100 BP: Choice Items, Weather Rocks, Life Orb
+100 BP: Choice Items, Weather Rocks, Life Orb
+75 BP: Everything else
+75 BP: Everything else
+Poison: Poison Orb
+Poison: Poison Orb
+Burn: Burn Orb
+Burn: Burn Orb
+Frostbite: Frost Orb
+Frostbite: Frost Orb
+Leech: Big Root, Binding Band
+Leech: Big Root, Binding Band
+Victoire notices you glancing at the Poké X-Ray.
+Victoire notices you glancing at the Poké X-Ray.
+She smiles slightly and gives you an inscrutable look.
+She smiles slightly and gives you an inscrutable look.
+Effect Chance
+Effect Chance
+Has Notes
+Has Notes
+Can't call focusing moves, moves that call other moves,
+Can't call focusing moves, moves that call other moves, 
+Can't call moves that alter the moveset, moves that counter, moves that
+Can't call moves that alter the moveset, moves that counter, moves that 
+Can't call moves that affect the moveset, moves that redirect or steal moves,
+Can't call moves that affect the moveset, moves that redirect or steal moves, 
+Can't call Signature moves, moves that affect the moveset,
+Can't call Signature moves, moves that affect the moveset, 
+Physical moves that can be called:
+Physical moves that can be called:
+Special moves that can be called:
+Special moves that can be called:
+Moves that can be rolled:
+Moves that can be rolled:
+Form effects:
+Form effects:
+<u>Heat</u>: Burn
+<u>Heat</u>: Burn
+<u>Wash</u>: Numb
+<u>Wash</u>: Numb
+<u>Frost</u>: Frostbite
+<u>Frost</u>: Frostbite
+<u>Fan</u>: Dizzy
+<u>Fan</u>: Dizzy
+<u>Mow</u>: Leech
+<u>Mow</u>: Leech
+<u>150 BP</u>: Pearl of Fate, Iron Ball
+<u>150 BP</u>: Pearl of Fate, Iron Ball
+<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb
+<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb
+<u>75 BP</u>: Everything else
+<u>75 BP</u>: Everything else
+<u>Poison</u>: Poison Orb
+<u>Poison</u>: Poison Orb
+<u>Burn</u>: Burn Orb
+<u>Burn</u>: Burn Orb
+<u>Frostbite</u>: Frost Orb
+<u>Frostbite</u>: Frost Orb
+<u>Leech</u>: Big Root, Binding Band
+<u>Leech</u>: Big Root, Binding Band
+{1}'s rage is at its peak!
+{1}'s rage is at its peak!
+{1} is inspired by the echo of an ancient wish!
+{1} is inspired by the echo of an ancient wish!
+Kurt
+Kurt
+Pearce
+Pearce
+Status conditions affect your Pokemon twice as much!
+Status conditions affect your Pokemon twice as much!
 [25]
 1
 Cool Ribbon

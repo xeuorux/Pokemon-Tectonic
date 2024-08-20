@@ -2098,6 +2098,36 @@ And I never have to think about any of you ever again.
 Y no tendré que pensar en ninguno de ustedes nunca más.
 Well, maybe I’ll invite Tamarind. Just to rub it in her face, of course. Of course...
 Bueno, quizás invite a Tamarind, sólo para restregárselo en la cara, por supuesto. Por supuesto...
+One moment – there we go. I’m going to take notes this time.
+Un momento – ahí está. Esta vez voy a tomar notas.
+I’ll admit it: I’m curious. What do you bring to the table that no other challenger does?
+Lo admitiré: tengo curiosidad. ¿Qué traes a la mesa que ningún otro aspirante hace?
+Let’s begin.
+Empecemos.
+All of that work to get here and now you test my patience?
+¿Todo ese trabajo para llegar aquí y ahora desafías mi paciencia?
+Ugh. Go. I can work while you’re gone.
+Ugh. Vete. Puedo trabajar mientras estás fuera.
+I reared Team Chasm from its infancy.
+Formé al Team Chasm desde sus inicios.
+Fine! One of us needs to be humbled. Show me which one of us it is.
+¡Bien! Uno de nosotros recibirá una lección de humildad. Muéstrame quién de nosotros lo será.
+Show me what you can do – or are you just what you’ve inherited from Mavis? Show me!
+Muéstrame lo que puedes hacer – ¿o sólo eres lo que heredaste de Mavis? ¡Muéstrmae!
+No! I can’t – how? Eight years and I still can’t beat an arrogant child!
+¡No! No puedo – ¿cómo? ¡Ocho años y todavía no puedo vencer a un niño arrogante!
+Just do me a favor and beat Tamarind just as badly someday. You’re not the only one with a childish rivalry.
+Sólo hazme el favor de vencer a Tamarind del mismo modo algún día. No eres el único con una rivalidad infantil.
+Although – and you may know where I’m going with this – there is one other thing...
+Aunque – y puede que sepas a dónde voy con esto – hay una cosa más...
+Oh, and I would be very interested in another duel – there’s more for me to learn from you.
+Oh, y me interesaría mucho otro duelo – hay más que puedo aprender de tí.
+I’ll make the time, whenever you want to give me yours. Good day, \PN.
+Te daré mi tiempo, siempre y cuando puedas darme el tuyo. Buen día, \PN.
+Not yet.
+Aún no.
+Let's.
+Vamos.
 [Map22]
 
 
@@ -3855,7 +3885,38 @@ A maroon punching bag.
 Un saco de boxeo color granate.
 A large logo of a Pancham is emblazened on the front and back.
 Está adornado con un gran logo de un Pancham tanto por delante como por detrás.
-
+Ah, so you made it to me. Congrats.
+Ah, veo que llegaste. Felicidades.
+Now, uh, things work a little differently ‘round here. Us gym leaders ain’t about to pull any punches.
+Ahora, eh, las cosas funcionan un poco diferente por aquí. Los líderes de gimnasio aquí no nos andamos con chiquitas.
+Our teams have some bite to them, so make sure you’re ready before you try and take me on in a brawl.
+Nuestros equipos tienen algo de espina, así que asegúrate de estar listo antes de desafíarme.
+So, what can I do you for? You ready for a proper fight?
+Entonces, ¿qué puedo hacer por tí? ¿Listo para una pelea de verdad?
+Ah, you’re killing me. Well, c’mon back when you’re ready.
+Ah, no me dejes así. Bueno, regresa cuando estés listo.
+Oh, I’ve got a good feeling about this bout.
+Oh, tengo un buen sentimiento respecto a esta contienda.
+You ain’t facing Gym Leader Lambert today.
+Hoy no te enfrentas al Líder de Gimnasio Lambert.
+I haven’t gone soft just yet.
+Aún no me ablando.
+Ready? Go!
+¿Preparado? ¡Vamos!
+Let me heal your Pokémon, and why don’t you let me brood over how humiliating this is.
+Déjame curar a tus Pokémon, y por qué no me dejas darle vueltas a lo humillante que es esto.
+Impressive. You’re a damn sight better than most of the folks ‘round here.
+Impresionante. Eres alguien mucho mejor que la mayoría de la gente por aquí.
+Might even be Champion material.
+Incluso puede que seas material de Campeón.
+Let me get your Pokémon back into tip-top shape.
+Déjame regresar a tus Pokémon a la mejor forma.
+Come see me again some time. I’m itching for a rematch.
+Ven a verme de nuevo en algún momento. Ansío una revancha.
+Not right now.
+No ahora mismo.
+Let’s go.
+Vamos.
 [Map43]
 
 Room 204\nCurrent Resident: Aditya
@@ -3908,7 +3969,6 @@ Lemonade - $350
 Limonada - $350
 Cancel
 Cancelar
-
 [Map44]
 
 The door handle doesn't budge, but you hear a strange noise from behind it.
@@ -3953,6 +4013,8 @@ Ah, well. I’ve still got work here to do. Some day I’ll ask you about how be
 Ah, bueno. Todavía tengo trabajo que hacer aquí. Algún día te preguntaré cómo es ser Campeón.
 Some day.
 Algún día.
+It unlocks a little prison on this island – a prison for an avatar that’s been locked up for years.
+Desbloquea una pequeña prisión en esta isla – una prisión para un avatar que ha estado encerrado por años.
 [Map45]
 Empty bottles of seltzer water.
 Botellas vacías de soda.
@@ -5245,6 +5307,12 @@ Someone.
 Alguien.
 Maybe later.
 Quizás luego.
+You see that Corviknight up on top of that building?
+¿Viste al Corviknight encima de ese edificio?
+I've heard rumors that if you earn the trust of those birds, they'll fly you other places.
+Escuché rumores de que si te ganas la confianza de esas aves, te llevarán volando a otros lugares.
+No where outside of Makya, though. Shouldn't worry about it undercutting my line of work, I guess.
+Pero a ningún lado afuera de Makya. No debería preocuparme sobre ellos compitiendo en mi línea de trabajo, supongo.
 [Map57]
 
 
@@ -5867,6 +5935,40 @@ Bruh... this waiting room doesn't have any places to sit down.
 Esta... esta sala de espera no tiene lugares para sentarse.
 No pain, no gain? Must be what Eko's thinking.
 ¿Sin esfuerzo no hay recompensa? Eso es lo que Eko debe estar pensando. 
+What, do you miss the lick of flames and bite of acid? Shall we duel once more?
+¿Qué, extrañas el golpe de las llamas y la mordida del ácido? ¿Nos batimos en duelo una vez más?
+Congratulations on reaching me!
+¡Felicidades en llegar hasta mí!
+And congratulations to all your Pokémon! Especially the ones that are on fire!
+¡Y felicidades a todos tus Pokémon! ¡Especialmente a aquellos que están en llamas!
+Show us what you’re made of and push through that pain! Just a little longer now!
+¡Muéstrame de lo que estás hecho y hazte paso por el dolor! ¡Sólo por un poco más! 
+Are you ready for the grand finale?
+¿Listo para la gran final?
+Go on, then! Take a minute! Get your Pokémon some antidotes, or a fire extinguisher!
+¡Ve, entonces! ¡Tómate tu tiempo! ¡Consigue un par de antídotos para tus Pokémon, o un matafuegos!
+Very well, challenger! I present to you the fullest onslaught I can muster!
+¡Muy bien, aspirante! ¡Te presento todo el arsenal que puedo manejar!
+Every other gym leader is a coward, but not I!
+¡Todos los otros líderes de gimnasio son cobardes, pero no yo!
+Lovely! Make no mistake: my panoply of agony takes no half measures.
+¡Encantador! No te equivoces: mi panoplia de agonía no va a medias tintas.
+I’ll test you with fire and acid, claw and fang!
+¡Te pondré a prueba con fuego y ácido, garra y colmillo!
+Let me tend to the Pokémon while you bask in your victory.
+Déjame atender a tus Pokémon mientras te regocihjas en tu victoria.
+I’ve got a mission for you, challenger! Something worthy of your skill, I promise.
+¡Tengo una misión para ti, aspirante! Algo merecedor de tu habilidad, lo prometo.
+Your victory was delightfully explosive!
+¡Tu victoria fue deliciosamente explosiva!
+I could use more challengers like you!
+¡Podría encontrarme más aspirantes como tú!
+Wow! I’m feeling the burn – how about you?
+¡Wow! Estoy sintiendo el fuego – ¿y tú? 
+Not yet.
+Aún no.
+Of course.
+Por supuesto.
 [Map65]
 
 The Aether Foundation, from Alola, is looking to establish a branch in Makya.
@@ -7774,6 +7876,28 @@ I'm gonna make the most of it, by relaxing...
 Voy a disfrutarlo al máximo, relajandome… 
 The door resists your attempts to open it with a mystic force.
 La puerta resiste tus intentos de abrirla con una fuerza mística.
+You’re back? Really? I mean, fine, but please stop.
+¿Regresaste? ¿En serio? Osea, está bien, pero por favor para.
+I run doubles, and doubles only. You ready for that?
+Juego en dobles, y sólo dobles. ¿Listo para eso?
+You’ve got the aura of someone with real audacity.
+Tienes el aura de alguien con osadía verdadera.
+The only reason I’m here is to find a true Pokémon master, and you’ve at least got the ferocity fighting your way to me.
+La única razón por la que estoy aquí es para encontrar a un verdadero maestro Pokémon, y por lo menos tienes la ferocidad al abrirte paso ante mí. 
+Finally. How many years and I finally – it’s done! It’s done!
+Finalmente. Despues de cuántos años y finalmente – ¡está hecho! ¡Esta hecho!
+And for what, a big old game?
+¿Y para qué, un gran juego?
+Take your badge.
+Toma tu medalla.
+And, yeah, I’m not angry with you, got it? I’m angry with Helena and Andris and everyone for setting this up.
+Y, seh, no estoy enojado contigo, ¿entiendes? Estoy enojado con Helena y Andris y todos por hacer esto.
+Now get outta here, ‘kay?
+Ahora sal de aquí, ¿está bien?
+Give me a sec.
+Dame un segundo.
+Of course.
+Por supuesto.
 [Map107]
 
 Velenz Gym
@@ -10039,6 +10163,80 @@ The third is her sending pictures of Ceruledge to several people, asking if they
 El tercero es ella enviándole imágenes de Ceruledge a varias personas, preguntándoles si conocían al Pokémon. Se ve muy impresionada por él.
 There isn't a magic typing here that I could recommend you. These types are a pretty good combo.
 Aquí no hay un tipo mágico que puedo recomendarte. Estos tipos hacen un muy buen combo.
+Turns out you’re gonna have to face down BOTH of us if you want the badge.
+Resulta que tienes que enfrentarnos a AMBOS si quieres la medalla.
+Technicalities and all that. Trust me, I’m not any happier about it than you are!
+Tecnicismos y todo eso. Creéme, ¡no estoy más feliz que tú al respecto!
+So, you ready for a showdown against the two of us?
+Entonces, ¿listo para una contienda contra nosotros dos?
+Aight. Just do me a solid and don’t try and win Zoé over. It’ll go straight to her head.
+Muy bien. Sólo hazme el favor y no intentes persuadir a Zoé. Se le subirá a la cabeza.
+Wait, you – you think you’re as good as she was, huh?
+Espera, tú – ¿crees que eres tan bueno como ella lo fue, eh?
+Zoé! Get your ass over here! We’ve got a challenger to put in the DIRT!
+¡Zoé! ¡Trae tu trasero aquí! ¡Tenemos un aspirante que tirar al SUELO!
+Aw, I knew you’d be a good sport about it.
+Ow, sabía que te lo tomarías bien.
+Oh, and don’t think this is gonna be easy. Our gym may be disorganized, but I’ve been keeping in practice.
+Oh, y no creas que esto va a ser fácil. Nuestro gimnasio podrá estar desorganizado, pero nos hemos estado manteniendo en práctica.
+I was trained by the best. Lemme show you.
+Fui entrenado por la mejor. Déjame mostrarte.
+*hiss* Don’t tell me what to do.
+*hiss* No me digas qué hacer.
+But, yeah, alright. I’ll run support for you if you’re gonna give me such an arrogant target. You ain’t her, kid.
+Pero, seh, está bien. Te daré apoyo si me vas a dar tal objetivo arrogante. No eres ella, niño.
+We’re gonna kick the crap out of you. But, hmph, I guess it’ll be fun.
+Vamos a barrer el suelo contigo. Pero, je, supongo que será divertido.
+And, uh, if you ever see Yezera, tell her to come back. Would you do that? Thanks.
+Y, eh, si en algún momento ves a Yezera, dile que regresa. ¿Podrías hacer eso? Gracias.
+Ignore the poser and let’s cut to the chase: this is gonna be a double battle. Us two versus you.
+Ignora al pretencioso y vayamos al grano: esto va a ser un combate doble. Nosotros dos contra tí.
+Don’t ask why; it’s complicated and don’t change the facts.
+No preguntes por qué; es complicado y no cambiamos los hechos.
+And because of… circumstances… we’ve got to include the clout chaser in the mix.
+Y debido a... circunstancias... debemos incluir al buscafamas en esto.
+So, you down? Think you’re tough enough to take on me and Bence at the same time?
+Entonces, ¿vamos? ¿Crees que eres lo suficientemente duro para ir a por mí y Bence al mismo tiempo?
+*hiss* We were trained by the girl who swept Team Chasm.
+*hiss* Fuimos entrenados por la chica que barrió con el Team Chasm.
+Now I’m ‘bout to sweep you. Don’t take it personally, ‘kay?
+Y ahora yo voy a brarrer contigo. No te lo tomes personal, ¿okay?
+*hiss* You remind me of a girl I once knew. You ain’t her.
+*hiss* Me recuerdas de la chica que una vez conocí. No eres ella.
+I’d tell you to stop pretending, but how ‘bout Bence and I just teach an object lesson, huh?
+Te diría que dejes de fingir, ¿pero qué tal si Bence y yo te enseñamos una lección práctica, eh?
+Time for the grand two versus one?
+¿Hora de un gran dos contra uno?
+Oh, you are NOT going to regret this!
+¡Oh, NO vas a arrepentirte de esto!
+Do whatever it is you do for luck, ‘cause you’re gonna need it!
+¡Haz lo que sea que hagas por tu suerte, porque vas a necesitarla!
+Oh, you got Zoé riled up?
+¿Oh, hiciste que Zoé se emocionara?
+You are NOT gonna like how this goes, friend.
+NO te va a gustar esto, amigo.
+We don’t agree on much, but if you think you’re like our teacher, we’re gonna humble you REAL fast.
+No nos ponemos de acuerdo en mucho, pero si crees que eres como nuestra profesora, vamos a enseñarte humildad EN SEGUIDA.
+*hiss* Clear as day. You’re just better.
+*hiss* Claro como el agua. Eres simplemente mejor.
+Humility isn’t my strong suit, but I’m not stupid. Least, not as stupid as Bence thinks I am.
+La humildad no es mi mejor cualidad, pero no soy estúpida. Al menos, no tan estúpida como Bence lo piensa.
+Always good to see someone that can keep pace with me. And isn’t as smug about it as Bence.
+Siempre es bueno ver a alguien que puede mantener el ritmo conmig. Y que no es engreído al respecto como Bence.
+*hiss* So that’s that. Bit of a mess.
+*hiss* Así que es eso. Medio un desastre.
+But you’ve got a real knack for handling chaos, huh? You remind me of… whatever.
+Pero tienes madera para manejar el caos, ¿eh? Me recuerdas a... cómo sea.
+And Zoé’s wrong. We don’t need to watch you.
+Y Zoé se equivoca. No tenemos que observarte.
+Not right now.
+No ahora mismo.
+Hell yeah.
+Claro que sí.
+Give me a sec.
+Dame un segundo.
+Yeah, I do.
+Seh, lo estoy.
 [Map135]
 My family has trained here for generations.
 Mi familia ha entrenado aquí durante generaciones.
@@ -11131,6 +11329,58 @@ So you've got the Solidarity Badge. Well done!
 Así que conseguiste la Medalla Solidaridad. ¡Bien hecho!
 ...I can’t believe it.
 ...No puedo creerlo.
+Local legend has it that these stone pillars are quite old.
+Las leyendas locales dicen que los pilares de piedra son bastante viejos.
+Bence claims that they were here before plans to construct Prizca west, let alone specifically this gym.
+Bence dice que estaban aquí antes de los planes de construir Prizca Occidental, por no hablar de específicamente este gimnasio.
+Makya does have it fairs share of strange rock formations, I'll give you that.
+Makya tiene su buena cantidad de extrañas formaciones rocosas, te daré la razón en eso.
+But Chasm members could talk about Pikachu being an Electric-type and I'd still pull out my MasterDex to double check.
+Pero los miembros Chasm podrían decir que Pikachu es un tipo Eléctrico y aún así sacaría mi MasterDex para asegurarme.
+Now that there's no cars on the road, there's nobody gonna stop me from tearing it up wherever the hell I want!!
+¡¡Ahora que no hay autos en el camino, nadie va a poder detenerme de destrozarla en donde sea que quiera!!
+Have you heard of the Black Market, located in the sewers beneath the city?
+¿Has oído hablar del Mercado Negro, ubicado en las alcantarillas debajo de la ciudad?
+Once I find it, I'll be sure to dish out some justice.
+Una vez lo encuentre, me encargaré de servir algo de justicia.
+Those ruffians give Prizca a bad name!
+¡Esos rufianes manchan el nombre de Prizca!
+I'm following a list I found online: "Prizca West's Best Sights for Intrepid Tourists."
+Estoy siguiendo una lista que encontré en línea: "Mejors Vistas en Prizca Occidental para Turistas Intrépidos."
+The agenda for today includes a visit to a... cement company.
+La agenda de hoy incluye una visita a... una compañía de cemento.
+Maybe it'll be less boring than it sounds.
+Quizás sea menos aburrido de lo que suena.
+I'm on break. Nothing much to do until the rock shipment's done being unloaded.
+Estoy en mi descanso. No tengo mucho que hacer hasta que terminen de descargar el cargamento de rocas.
+What's that? You wanna know where the rocks come from?
+¿Cómo? ¿Quieres saber de dónde vienen las rocas?
+There's a big quarry to the north north, near one of the mountains up there.
+Hay una gran cantera muy al norte, cerca de una de las montañas allí.
+It's not part of Makya anymore, but there's a lot of historic ties, so business relations are good.
+Ya no es parte de Makya, pero hay muchos lazos históricos, así que las relaciones de negocio son buenas.
+Look at the shiny bird!
+¡Mira al ave brillante!
+I wanna go up there to talk to it, but my dads never let me.
+Quiero ir allí arriba para hablar con ella, pero mis papás nunca me dejan.
+You're a grown up. I bet you've gotten to talk to the shiny bird...
+Eres tan grande. Apuesto a que pudiste hablar con el ave brillante...
+I'm a bit of a Striker.
+Soy algo así como un Delantero
+I got all sorts of tools that I can use to put the ball in the net.
+Tengo todo tipo de herramientras que puedo usar para llevar la pelota a la red.
+This one's my favorite.
+Esta es una de mis favoritas.
+You would not believe the mix-ups I do with this.
+No creerías las jugadas que hago con esto.
+I might be the best to ever do it, just saying.
+Podría ser el mejor en la historia, sólo digo.
+Whooo-ee, look at them water towers!
+¡Yuju, mira esas torres de agua!
+Always surprises me how much is needed for concrete and other such manufacturin'.
+Siempre me sorprende todo lo que se necesita para el concreto y otras manufacturas.
+And I thought growin' crops needed a lot...
+Y pensaba que los cultivos necesitaban demasiado...
 [Map157]
 
 The destruction of the bridge over at the Eleig River Crossing has really put a hamper on things.
@@ -11604,6 +11854,14 @@ You're just the type of Trainer that I'm looking for! One that can withstand dar
 ¡Eres justo el tipo de Entrenador qué estaba buscando! Uno que puede aguantar las oscuras profundidades aplastantes.
 Awwww...
 Owwww...
+Me and me crew host a Fishing Contest in an ocean preserve on Makya's eastern shore.
+Mi tripulación y yo hacemos un Concurso de Pesca en un terreno oceánico en la costa oriental de Makya.
+You'll earn a prize depending on the best creature yer capable of haulin' in.
+Ganarás un premio dependiendo de la mejor criatura que seas capaz de capturar.
+Only condition is ya' bring your own Pokeballs and ya' pitch in $1000 for fuelin' costs.
+La única condición es que lleves tus propias Poké Balls y que pongas $1000 por costos de combustible.
+What, lost all yer money in a shipwreck?
+¿Qué, perdiste todo tu dinero en un naufragio?
 [Map166]
 Ah, you must be the new intern.
 Ah, tú debes ser el nuevo interno.
@@ -14257,6 +14515,30 @@ I sparkled and shown... but you much moreso.
 Brillé y me lucí... pero tú todavía más.
 A rare defeat.
 Una extraña derrota
+How’re you? Holding up? Good.
+¿Cómo estás? ¿Todo bien? Bien.
+Feeling up for it?
+¿Te apetece hacerlo?
+Makes sense. Get some rest. You look like you’ve been pushing yourself.
+Tiene sentido. Descansa un poco. Parece que te has estado sobreesforzando.
+Cool. If you don’t mind, I’m gonna add a little bit of chaos into the mix: you’ll lose your cool before I do.
+Genial. Si no te importa, voy a agregar un poco de caos en la mezcla: perderás tu tranquilidad antes que yo.
+Masterwork. A masterwork, without a doubt.
+Obra maestra. Una obra maestra, sin lugar a dudas.
+You’re the only person in this town that’s impressed me.
+Eres la única persona en el pueblo que me ha impresionado.
+So I’ve got a favor to ask you.
+Así que tengo un favor que pedirte.
+No mistaking the work of an expert.
+No hay forma de confundir el trabajo de un experto.
+Please take my badge.
+Por favor toma mi medalla.
+If you’ve got an appreciation for Ice or Psychic after all of this is done, come back. You’d make a better gym leader than I.
+Si llegas a apreciar al tipo Hielo o Psíquico después de que todo esto termine, regresa. Serías un mejor líder de gimnasio que yo.
+Not right now.
+No ahora mismo.
+You bet.
+Seguro.
 [Map196]
 Casaba Island is home to wonderful waterfront properties, but people are scared of the next wave -- lavafront!
 La Isla Casaba es hogar de maravillosas propiedades con vista a la lava, pero la gente le tiene miedo a la siguiente ola -- ¡vista a la lava!
@@ -18984,6 +19266,30 @@ In space has been angrily scribbled out and, in much newer ink, ‘on the moon�
 En el espacio ha sido tachado con enojo y, con una tinta mucho más nueva, se ha escrito ‘en la luna’ debajo de este. 
 ...In small letters on the side is scrawled “haute couture spacesuit?”
 ...A un costado con pequeñas letras dice “¿Traje especial de alta costura?”
+We would be happy to test you again, if you’d like.
+Nos alegraría ponerte a prueba de nuevo, si te gustaría.
+Beauty, grace, tensile strength – everything will be analyzed.
+Belleza, gracia, fuerza maleable – todo será analizada.
+Our preparations are made and our safeties are disengaged.
+Nuestras preparaciones han sido hechas y las medidas de seguridad han sido retiradas.
+Hmph – so be it. Allow me to personally stress test your team.
+Hmph – que así sea. Permíteme darle una prueba de estrés personal a tu equipo.
+My role is to please, to advertise, to popularize. Generously, a raconteur; truly, a deceiver.
+Mi rol es complacer, publicitar, popularizar. Generosamente, una cuentista; verdaderamente, una farsante.
+You triumphed undeterred. Please, take our badge.
+Triunfaste sin complicaciones. Por favor, toma nuestra medalla.
+But you are, and I can’t award you with anything more than praise.
+Pero lo eres, y no puedo galardonarte con nada más que mis elogios.
+You have proven your ability to pierce misdirection and manipulation.
+Has demostrado tu habilidad de penetrar la distracción y manipulación.
+That being true, there is a request we would like to make.
+Dicho esto, hay una demanda que nos gustaría hacerte.
+This concludes our test. A trivial victory – réussir haut la main.
+Esto concluye nuestra prueba. Una victoria trivial – réussir haut la main.
+Sorry, not yet.
+Lo siento, aún no.
+Hah, évidemment.
+Ja, évidemment.
 [Map280]
 
 A complex looking program is slowly charting out very scientific looking data.
@@ -19980,6 +20286,20 @@ The bookshelf is full of books on science and history.
 El librero está lleno de libres en ciencia e historia.
 They seem targeted at a younger audience.
 Parecen estar orientados a un público infantil.
+Excuse me if I seem a bit terse. I’ll have to focus for this one. You’re not to be underestimated, you know.
+Discúlpame si parezco un poco brusca. Tendré que concentrarme para esto. No debes ser subestimado, sabes.
+“Wrack and ruin broke our ships/And plucked us from our heavens.”
+"Destrucción y ruina rompió nuestros barcos/Y nos sacó de nuestros paraísos.”
+Speaking of plucking from heavens, though… you ought to know what that victory means.
+Hablando de sacarnos de nuestros paraísos, eso sí... ya debes saber lo que esa victoria significa.
+Shall we chat a little longer?
+¿Conversamos un poco más?
+Goodbye. …Oh, excuse me. It takes me a moment to remember my manners after a battle.
+Adiós. ...Oh, discúlpame. Me toma un momento recordar mis modales luego de un combate.
+On second thought…
+Pensándolo de nuevo...
+Let’s do this.
+Hagamos esto.
 [Map301]
 
 Wow, that was… a complete breeze.
