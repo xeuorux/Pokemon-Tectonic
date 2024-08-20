@@ -349,7 +349,8 @@ class PokeBattle_Move_AddSteelTypeToTargetLowerTargetSpd4 < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = 60 if !target.pbHasTypeAI?(:STEEL)
+        score = 0
+        score += 60 unless target.pbHasTypeAI?(:STEEL)
         score += getMultiStatDownEffectScore([:SPEED,4],user,target)
         return score
     end

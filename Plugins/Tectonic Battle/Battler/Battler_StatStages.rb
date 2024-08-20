@@ -654,7 +654,7 @@ class PokeBattle_Battler
             # Eccentric
             if hasActiveAbility?(:ECCENTRIC)
                 aiLearnsAbility(:ECCENTRIC)
-                statArray.map! { |statArrayElement|
+                statArray = statArray.map { |statArrayElement|
                     if statArrayElement.is_a?(Integer)
                         next (statArrayElement / 2.0).ceil
                     else
@@ -726,7 +726,7 @@ class PokeBattle_Battler
                 # Eccentric
                 if hasActiveAbility?(:ECCENTRIC)
                     aiLearnsAbility(:ECCENTRIC)
-                    statArray.map! { |statArrayElement|
+                    statArray = statArray.map { |statArrayElement|
                         if statArrayElement.is_a?(Integer)
                             next (statArrayElement / 2.0).ceil
                         else
@@ -752,7 +752,7 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1} resists the large stat drop!", pbThis))
             hideMyAbilitySplash
 
-            statArray.map! { |statArrayElement|
+            statArray = statArray.map { |statArrayElement|
                 if statArrayElement.is_a?(Integer)
                     next [statArrayElement,1].min
                 else
