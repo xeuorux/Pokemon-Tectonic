@@ -140,7 +140,7 @@ def playerOffsetY
 end
 
 def playerCirclesThisToFaceNorth
-    return if playerFacingNorth?
+    return if playerFacingNorth? && playerOffsetX == 0
     eventWidth = get_self.width
     eventHeight = get_self.width
 
@@ -151,7 +151,7 @@ def playerCirclesThisToFaceNorth
 
     echoln("#{playerOffsetX},#{playerOffsetY}")
 
-    if playerOffsetX >= eventWidth
+    if playerOffsetX >= eventWidth || playerFacingNorth?
         yDir = yMovement > 0 ? Up/2 : Down/2
         (yMovement.abs).times do |i|
             new_move_route.list.push(RPG::MoveCommand.new(yDir))
