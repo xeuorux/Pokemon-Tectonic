@@ -126,7 +126,11 @@ class PokemonPokedexInfo_Scene
         @gender, @form = $Trainer.pokedex.last_form_seen(@species)
         species_data = GameData::Species.get_species_form(@species, @form)
         metrics_data = GameData::SpeciesMetrics.get_species_form(@species, @form)
-        @title = species_data.form_name ? "#{species_data.name} (#{species_data.form_name})" : species_data.name
+        if species_data.form != 0 && species_data.form_name.blank?
+            @title = species_data.form_name
+        else
+            @title = species_data.name
+        end
         @sprites["infosprite"].setSpeciesBitmap(@species, @gender, @form)
         @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, @showShinyForms) if @sprites["formfront"]
         if @sprites["formback"]
@@ -845,84 +849,83 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             formname = i[0]
             fSpecies = GameData::Species.get_species_form(@species, i[2])
 
-            coordinateY = 54
-            if @species != :EEVEE
-                prevoTitle = _INTL("Pre-Evolutions of {1}", @title)
-                drawTextEx(overlay, (Graphics.width - prevoTitle.length * 10) / 2, coordinateY, 450, 1, prevoTitle,
-              base, shadow)
-                coordinateY += 34
-            end
-            index = 0
-
-            # Show pre-volutions
             prevolutions = fSpecies.get_prevolutions
-            if @species != :EEVEE
-                if prevolutions.length == 0
-                    drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
-                    coordinateY += 30
-                else
-                    prevolutions.each do |evolution|
-                        method = evolution[1]
-                        parameter = evolution[2]
-                        species = evolution[0]
-                        return if !method || !species
-                        evolutionName = GameData::Species.get_species_form(species, i[2]).name
-                        methodDescription = describeEvolutionMethod(method, parameter)
-                        # Draw preevolution description
-                        color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                        evolutionLineText = _INTL("Evolves from {1} {2}",evolutionName,methodDescription)
-                        drawTextEx(overlay, xLeft, coordinateY, 450, 2, evolutionLineText, color, shadow)
-                        coordinateY += 30
-                        coordinateY += 30 if method != :Level
-                        index += 1
-                    end
-                end
-            end
-
-            evoTitle = _INTL("Evolutions of {1}", @title)
-            drawTextEx(overlay, (Graphics.width - evoTitle.length * 10) / 2, coordinateY, 450, 1, evoTitle, base,
-              shadow)
-            coordinateY += 34
-
-            @evolutionsArray = prevolutions
-
-            # Show evolutions
             allEvolutions = getEvolutionsRecursive(fSpecies)
 
-            if allEvolutions.length == 0
-                drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
+            coordinateY = 54
+            index = 0
+            @evolutionsArray = []
+
+            # Show pre-volutions
+            unless prevolutions.empty?
+                prevoTitle = _INTL("<u>Pre-Evolutions of {1}</u>", @title)
+                drawFormattedTextEx(overlay, xLeft, coordinateY, 450, prevoTitle, base, shadow)
+                coordinateY += 34
+
+                prevolutions.each do |evolution|
+                    method = evolution[1]
+                    parameter = evolution[2]
+                    species = evolution[0]
+                    return if !method || !species
+                    @evolutionsArray.push(evolution)
+                    evolutionName = GameData::Species.get_species_form(species, i[2]).name
+                    methodDescription = describeEvolutionMethod(method, parameter)
+                    # Draw preevolution description
+                    color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
+                    evolutionLineText = _INTL("Evolves from {1} {2}",evolutionName,methodDescription)
+                    drawTextEx(overlay, xLeft, coordinateY, 450, 2, evolutionLineText, color, shadow)
+                    coordinateY += 30
+                    coordinateY += 30 if method != :Level
+                    index += 1
+                end
+
                 coordinateY += 30
-            elsif @species == :EEVEE
-                drawTextEx(overlay, xLeft, coordinateY, 450, 7, _INTL("Evolves into Vaporeon with a Water Stone, " +
-                    _INTL("Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, ") +
-                        _INTL("Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, ") +
-                            _INTL("Sylveon with a Moon Stone, and Giganteon at level 40.")
-                                                                     ), base, shadow)
-            else
-                allEvolutions.each do |fromSpecies, evolutions|
-                    evolutions.each do |evolution|
-                        species = evolution[0]
-                        method = evolution[1]
-                        parameter = evolution[2]
-                        next if method.nil? || species.nil?
-                        speciesData = GameData::Species.get_species_form(species, i[2])
-                        next if speciesData.nil?
-                        @evolutionsArray.push(evolution)
-                        evolutionName = speciesData.name
-                        methodDescription = describeEvolutionMethod(method, parameter)
-                        # Draw evolution description
-                        color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                        fromSpeciesName = GameData::Species.get(fromSpecies).name
-                        evolutionTextLine = _INTL("Evolves into {1} {2}",evolutionName,methodDescription)
-                        if fromSpecies != fSpecies.species
-                            evolutionTextLine = evolutionTextLine + " " +  _INTL("(through {1})",fromSpeciesName)
+            end
+
+            # Show evolutions
+            if @species == :EEVEE || !allEvolutions.empty?
+                evoTitle = _INTL("<u>Evolutions of {1}</u>", @title)
+                drawFormattedTextEx(overlay, xLeft, coordinateY, 450, evoTitle, base, shadow)
+                coordinateY += 34
+
+                if @species == :EEVEE
+                    drawTextEx(overlay, xLeft, coordinateY, 450, 7, _INTL("Evolves into Vaporeon with a Water Stone, " +
+                        _INTL("Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, ") +
+                            _INTL("Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, ") +
+                                _INTL("Sylveon with a Moon Stone, and Giganteon at level 40.")
+                                                                        ), base, shadow)
+                elsif !allEvolutions.empty?
+                    allEvolutions.each do |fromSpecies, evolutions|
+                        evolutions.each do |evolution|
+                            species = evolution[0]
+                            method = evolution[1]
+                            parameter = evolution[2]
+                            next if method.nil? || species.nil?
+                            speciesData = GameData::Species.get_species_form(species, i[2])
+                            next if speciesData.nil?
+                            @evolutionsArray.push(evolution)
+                            evolutionName = speciesData.name
+                            methodDescription = describeEvolutionMethod(method, parameter)
+                            # Draw evolution description
+                            color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
+                            fromSpeciesName = GameData::Species.get(fromSpecies).name
+                            evolutionTextLine = _INTL("Evolves into {1} {2}",evolutionName,methodDescription)
+                            if fromSpecies != fSpecies.species
+                                evolutionTextLine = evolutionTextLine + " " +  _INTL("(through {1})",fromSpeciesName)
+                            end
+                            drawTextEx(overlay, xLeft, coordinateY, 450, 3, evolutionTextLine, color, shadow)
+                            coordinateY += 30
+                            coordinateY += 30 if method != :Level || fromSpecies != fSpecies.species
+                            index += 1
                         end
-                        drawTextEx(overlay, xLeft, coordinateY, 450, 3, evolutionTextLine, color, shadow)
-                        coordinateY += 30
-                        coordinateY += 30 if method != :Level || fromSpecies != fSpecies.species
-                        index += 1
                     end
                 end
+            end
+
+            if @evolutionsArray.empty?
+                noneLabel = _INTL("None")
+                noneLabelWidth = @sprites["overlay"].bitmap.text_size(noneLabel).width
+                drawTextEx(overlay, Graphics.width / 2 - noneLabelWidth / 2, coordinateY + 30, 450, 1, noneLabel, base, shadow)
             end
         end
     end
@@ -973,14 +976,29 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             enc_data.types.each do |type, slots|
                 next unless slots
+
+                totalEncounterWeight = 0
+                slots.each	do |slot|
+                    totalEncounterWeight += slot[0]
+                end
+
                 slots.each	do |slot|
                     next unless GameData::Species.get(slot[1]).species == species
-                    name = begin
+                    mapName = begin
                         pbGetMessage(MessageTypes::MapNames, enc_data.map)
                     rescue StandardError
                         nil
                     end || "???"
-                    name = "#{name} [#{getNameForEncounterType(type)}]"
+                    encounterTypeName = getNameForEncounterType(type)
+
+                    encounterChance = "%g" % (100 * (slot[0] / totalEncounterWeight.to_f)).round(1)
+
+                    if type == :Special
+                        name = mapName
+                    else
+                        name = _INTL("{1}: {2} ({3}\%)",mapName,encounterTypeName,encounterChance)
+                    end
+
                     areas.push(name)
                     break
                 end
@@ -1005,9 +1023,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             # Draw the areas the pokemon can be encountered in
             coordinateY = 54
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Encounterable Areas for {1}", @title),
-  base, shadow)
-            coordinateY += 30
+            mainAreaLabel = _INTL("<u>Encounterable Areas for {1}</u>", @title)
+            drawFormattedTextEx(overlay, xLeft, coordinateY, 450, mainAreaLabel, base, shadow)
+            coordinateY += 34
             if areas.length == 0
                 drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
             else
@@ -1040,15 +1058,14 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             next unless prevo_areas.length != 0
             # Draw the areas the pokemon's pre-evos can be encountered in
             coordinateY += 60
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Encounter Areas for Pre-Evolutions", @title),
-                      base, shadow)
-            coordinateY += 30
+            prevoAreaLabel = _INTL("<u>Encounter Areas for Pre-Evolutions</u>")
+            drawFormattedTextEx(overlay, xLeft, coordinateY, 450, prevoAreaLabel, base, shadow)
+            coordinateY += 34
             if prevo_areas.length == 0
                 drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
             else
                 prevo_areas.each do |area_name, prevo_name|
-                    drawTextEx(overlay, xLeft, coordinateY, 450, 1, "#{area_name} (#{prevo_name})", base,
-  shadow)
+                    drawTextEx(overlay, xLeft, coordinateY, 450, 1, area_name, base, shadow)
                     coordinateY += 30
                 end
             end
