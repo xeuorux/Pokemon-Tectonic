@@ -252,7 +252,7 @@ class PokeBattle_AI
             end
 
             # Account for the items of the target
-            unless user.hasActiveItemAI?(:PROXYFIST)
+            if user.activatesTargetItem?(true)
                 begin
                     scoreModifierTargetItem = 0
                     target.eachAIKnownActiveItem do |item|

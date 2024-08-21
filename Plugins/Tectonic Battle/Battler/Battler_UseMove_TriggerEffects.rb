@@ -17,8 +17,9 @@ class PokeBattle_Battler
                 BattleHandlers.triggerUserAbilityOnHit(ability, user, target, move, @battle)
                 user.pbItemHPHealCheck
             end
+
             # Target's item
-            unless user.hasActiveItem?(:PROXYFIST)
+            if user.activatesTargetItem?
                 target.eachActiveItem(true) do |item|
                     oldHP = user.hp
                     BattleHandlers.triggerTargetItemOnHit(item, user, target, move, @battle)
@@ -41,7 +42,7 @@ class PokeBattle_Battler
                 target.aiLearnsAbility(abilityID)
             end
         end
-        if target.opposes?(user) && !user.hasActiveItem?(:PROXYFIST)
+        if target.opposes?(user) && user.activatesTargetEffects?
             # Rage
             if target.effectActive?(:Rage) && !target.fainted? && target.tryRaiseStat(:ATTACK, target, increment: 2)
                 @battle.pbDisplay(_INTL("{1}'s rage is building!", target.pbThis))

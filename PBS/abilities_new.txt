@@ -20,6 +20,10 @@ Description = Grants immunity to Flying-type moves and raises Speed if hit by on
 Name = Aeroshell
 Description = After using a wind move, raises both of the Pokémon's defensive stats.
 #-------------------------------
+[AFROTECTION]
+Name = Afrotection
+Description = Protects the Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
+#-------------------------------
 [AFTERIMAGE]
 Name = Afterimage
 Description = Slips past all types of spikes. Deals 50% more damage to targets that switched in this turn.
