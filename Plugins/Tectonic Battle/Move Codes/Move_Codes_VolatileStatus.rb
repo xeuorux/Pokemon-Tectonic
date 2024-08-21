@@ -649,7 +649,7 @@ end
 
 #===============================================================================
 # Grounds the target while it remains active. Hits some semi-invulnerable
-# targets. (Smack Down, Thousand Arrows)
+# targets. (Smack Down, Thousand Arrows, Weigh Anchor)
 #===============================================================================
 class PokeBattle_Move_HitsTargetInSkyGroundsTarget < PokeBattle_Move
     def hitsFlyingTargets?; return true; end

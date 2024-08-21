@@ -18,3 +18,10 @@ BattleHandlers::AnyoneAbilityEndOfMove.add(:CHOREOGRAPHY,
         battler.pbRaiseMultipleStatSteps([:SPEED, 1], user, ability: :CHOREOGRAPHY)
     }
 )
+
+BattleHandlers::AnyoneAbilityEndOfMove.add(:GROOVY,
+    proc { |ability, battler, user, targets, move, battle|
+        next unless move.danceMove?
+        battler.pbRaiseMultipleStatSteps([:ATTACK, 1], user, ability: :GROOVY)
+    }
+)

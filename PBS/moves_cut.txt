@@ -294,6 +294,18 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove
 Description = Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.
 #-------------------------------
+[HEADCHARGE]
+Name = Head Charge
+Type = NORMAL
+Category = Physical
+Power = 170
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user charges its head into the foe. As a result, it takes 2/3 of the damage as recoil.
+#-------------------------------
 [HIDDENPOWER]
 Name = Hidden Power
 Type = NORMAL
@@ -1249,6 +1261,19 @@ Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user unleashes its grudge on the move last used by the target by cutting 4 PP from it.
 #-------------------------------
 #		STEEL MOVES
+#-------------------------------
+[ANCHORSHOT]
+Name = Anchor Shot
+Type = STEEL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user entangles the target with its anchor chain. The target becomes unable to flee.
 #-------------------------------
 [GEARUP]
 Name = Gear Up

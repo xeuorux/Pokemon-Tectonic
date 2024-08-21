@@ -3244,6 +3244,18 @@ Flags = CanSnatch
 Description = The user prepares its dual cannons. Until switch out, each special attack hits twice.
 Animation = FOCUSENERGY
 #-------------------------------
+[WEIGHANCHOR]
+Name = Weigh Anchor
+Type = STEEL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = HitsTargetInSkyGroundsTarget
+Flags = CanProtect,CanMirrorMove
+Description = The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
+#-------------------------------
 [WELD]
 Name = Weld
 Type = STEEL
@@ -5906,8 +5918,8 @@ FunctionCode = LowerTargetAtk2StartEclipse8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The Pokémon blots out the sky, summoning eclipse for eight turns and lowering each opponent's Attack by two steps.
 #-------------------------------
-[WYRMSWOUNDING]
-Name = Wyrm's Wounding
+[WYRMWOUNDING]
+Name = Wyrmwounding
 Type = DRAGON
 Category = Physical
 Power = 80

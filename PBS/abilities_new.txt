@@ -762,6 +762,10 @@ Description = Moves that bind the opponent deal 50% more damage (on the initial 
 Name = Grit
 Description = Boosts Sp. Def by two steps when hit by an attack.
 #-------------------------------
+[GROOVY]
+Name = Groovy
+Description = Raises Attack whenever any Pokémon uses a dance move.
+#-------------------------------
 [GROTESQUEVITALS]
 Name = Grotesque Vitals
 Description = Heals 1/12th HP every turn. Protected from being poisoned.
@@ -1812,11 +1816,6 @@ Description = Powers up Water-type moves by 50%.
 Name = Survivalist
 Description = It avoids hazards and can't be knocked out with one hit.
 Flags = HazardImmunity
-#-------------------------------
-[SUSTAINABLE]
-Name = Sustainable
-Description = Upon entry in sunshine, regenerates its used berry.
-Flags = SunSynergy
 #-------------------------------
 [SWIFTSTOMPS]
 Name = Swift Stomps

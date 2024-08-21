@@ -822,6 +822,11 @@ Description = Takes half damage from Psychic- and Ghost-type attacks.
 Name = Surge Surfer
 Description = Doubles Speed on Electric Terrain.
 #-------------------------------
+[SUSTAINABLE]
+Name = Sustainable
+Description = Upon entry in sunshine, regenerates its used berry.
+Flags = SunSynergy
+#-------------------------------
 [SWARM]
 Name = Swarm
 Description = Powers up Bug-type moves in a pinch.

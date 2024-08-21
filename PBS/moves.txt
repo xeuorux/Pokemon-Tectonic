@@ -446,18 +446,6 @@ Flags = CanProtect,CanMirrorMove
 EffectChance = 20
 Description = The user sticks out its head and attacks by charging into the foe. It has a 20% chance to numb.
 #-------------------------------
-[HEADCHARGE]
-Name = Head Charge
-Type = NORMAL
-Category = Physical
-Power = 170
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = RecoilTwoThirdsOfDamageDealt
-Flags = CanProtect,CanMirrorMove
-Description = The user charges its head into the foe. As a result, it takes 2/3 of the damage as recoil.
-#-------------------------------
 [HEALBELL]
 Name = Heal Bell
 Type = NORMAL
@@ -3505,19 +3493,6 @@ Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user shoots a sinister, bluish-white flame at the target to inflict a burn.
 #-------------------------------
 #		STEEL MOVES
-#-------------------------------
-[ANCHORSHOT]
-Name = Anchor Shot
-Type = STEEL
-Category = Physical
-Power = 80
-Accuracy = 100
-TotalPP = 15
-Target = NearOther
-FunctionCode = TrapTarget
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = The user entangles the target with its anchor chain. The target becomes unable to flee.
 #-------------------------------
 [AUTOTOMIZE]
 Name = Autotomize
