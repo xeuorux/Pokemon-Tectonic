@@ -20,41 +20,20 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 					}
 				},
 			},
-			:MASTERDEX =>  {
-				:label => _INTL("MasterDex"),
-				:active_proc => Proc.new {
-					$Trainer.has_pokedex || $DEBUG
-				},
+			:DOCUMENTATION =>  {
+				:label => _INTL("Documents"),
 				:press_proc => Proc.new { |scene|
-					pbPlayDecisionSE
-					if Settings::USE_CURRENT_REGION_DEX
-					pbFadeOutIn {
-						dexScene = PokemonPokedex_Scene.new
-						screen = PokemonPokedexScreen.new(dexScene)
-						screen.pbStartScreen
+                    storedLastMenuChoice = $PokemonTemp.menuLastChoice
+                    $PokemonTemp.menuLastChoice = 0
+                    
+                    pbPlayDecisionSE
+                    docsMenuScene = PokemonDocumentationMenu_Scene.new
+                    docsMenuScreen = PokemonDocumentationMenu.new(docsMenuScene)
+                    docsMenuScreen.pbStartPokemonMenu
 
-						scene.drawButtons
-					}
-					else
-					if $Trainer.pokedex.accessible_dexes.length == 1
-						$PokemonGlobal.pokedexDex = $Trainer.pokedex.accessible_dexes[0]
-						pbFadeOutIn {
-							dexScene = PokemonPokedex_Scene.new
-							screen = PokemonPokedexScreen.new(dexScene)
-							screen.pbStartScreen
-
-							scene.drawButtons
-						}
-						else
-						pbFadeOutIn {
-							dexScene = PokemonPokedexMenu_Scene.new
-							screen = PokemonPokedexMenuScreen.new(dexScene)
-							screen.pbStartScreen
-
-							scene.drawButtons
-						}
-						end
-					end
+                    scene.drawButtons
+                    
+                    $PokemonTemp.menuLastChoice = storedLastMenuChoice
 				},
 			},
 			:BAG => {
@@ -63,15 +42,15 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 					pbPlayDecisionSE
 					item = nil
 					pbFadeOutIn {
-					bagScene = PokemonBag_Scene.new
-					screen = PokemonBagScreen.new(bagScene,$PokemonBag)
-					item = screen.pbStartScreen
-					(item) ? scene.pbEndScene : scene.drawButtons
+                        bagScene = PokemonBag_Scene.new
+                        screen = PokemonBagScreen.new(bagScene,$PokemonBag)
+                        item = screen.pbStartScreen
+                        (item) ? scene.pbEndScene : scene.drawButtons
 					}
 					if item
-					$game_temp.in_menu = false
-					pbUseKeyItemInField(item)
-					next true
+                        $game_temp.in_menu = false
+                        pbUseKeyItemInField(item)
+                        next true
 					end
 				},
 			},
@@ -102,7 +81,7 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 				}
 			},
 			:GAME_INFO => {
-				:label => _INTL("Game Info"),
+				:label => _INTL("Game State"),
 				:press_proc => Proc.new { |scene|
 					storedLastMenuChoice = $PokemonTemp.menuLastChoice
 					$PokemonTemp.menuLastChoice = 0
