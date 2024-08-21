@@ -8249,6 +8249,7 @@ Pokemon = JUMPLUFF,70
 #-------------------------------
 [SEEKER_Nora,Nora,1]
 ExtendsVersion = 0
+Policies = CURSE_NO_MERCY_3
 Pokemon = HARIYAMA,70
     Name = Tenacity
     Moves = PROTECT,BELLYDRUM,STORMTHROW,LIQUIDATION

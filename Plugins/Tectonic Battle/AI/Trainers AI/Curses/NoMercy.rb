@@ -19,3 +19,14 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_NO_MERCY_2,
         next curses_array
     }
 )
+
+PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_NO_MERCY_3,
+    proc { |curse_policy, battle, curses_array|
+        battle.amuletActivates(
+            _INTL("Singular Hypocrisy, Repeated Sixfold"),
+            _INTL("Despite making you use 4, Nora is using 6 battlers!")
+        )
+        curses_array.push(curse_policy)
+        next curses_array
+    }
+)
