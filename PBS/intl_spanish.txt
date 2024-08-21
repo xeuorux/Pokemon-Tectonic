@@ -57022,7 +57022,180 @@ Perennial Payload
 Munición Perenne
 Traumatized
 Traumatizado
+[32]
+Ability Surpressed
+Habilidad Suprimida
+Mirror Herb Consumed
+Hierba Copia consumida
+Mirror Herb Copied Stats
+Hierba Copia Stats Copiadas
+Paradox Herb Consumed
+Hierba Paradoja Consumida
+Move Speed Doubled
+Velocidad Duplicada
+Indestructible
+Indestructible
+Last Gasp
+Aliento Final
+Natural Protection
+Protección Natural
+Spikes Removed
+Púas Removidas
 [33]
-# Achievement names
+Crowning Achievement
+Coronación
+Pace Setter
+Batedor de Récords
+Ultimate Flex
+Alarde Definitivo
+Please Leave a Message at the Tone
+Por Favor Deja un Mensaje
+I'm Not Trapped Here With You
+No Estoy Atrapado Aquí Contigo
+Handicap
+Handicap
+Last Call
+Llamada Final
+No Pain No Gain
+Dolorosa Victoria
+Demoted
+Degradada
+Make Like a Tree
+Como un Tronco
+Enemy of my Enemies
+Enemigo de mis Enemigos
+Artist's Block
+Bloqueo Artístico
+You Get Nothing!
+¡No Obtienes Nada!
+Dread Not
+Quiebra-Corazas
+Slayer
+Asesino de Leyendas
+Primirror
+Espejo Primitivo
+Clay Army
+Ejército de Arcilla
+Ozone Depletion
+Ozono Destrozada
+Back to Basics
+Captura Regular
+Having a Ball
+Elegancia
+Failed to Fail
+Fallar en Fallar
+Full House
+Casa Completa
+Field Medic
+Médico de Campo
+Sequence Break
+¿Cómo Llegaste Aquí?
+Detour
+Rodeo
+Totemly Obsessed
+Totemaníaco
+Champion of Champions
+Campeón de Campeons
+Gender Schmender
+Generalmente Neutros
+Monumental
+Monumental
+Limited Time
+Tiempo Limitado
+Motley Crew
+Grupo Variopinto
+Clannish
+Parte de un Clan
+Hazardous
+Trampero
+Worldbuilder
+Ambientación
+Isn't That Grand
+Eso Debió Doler 
+Overkill
+Algo Excesivo
+No Inheritance Needed
+Herencia No Necesitada
+Banking on It
+La Experiencia Hace al Maestro
+Hook Line and Sinker
+Pescador Maestro
 [34]
-# Achievement descriptions
+Be officially crowned Champion of Makya.
+Se oficialmente coronado Campeón de Makya.
+Reach the credits with 10 or fewer hours on your save file.
+Llega a los créditos con 10 o menos horas en tu partida.
+Defeat Zain in Prizca West with a shiny Skitty in your party.
+Vence a Zain en Prizca Occidental con un Skitty variocolor en tu equipo.
+Decline Mavis' phone call at the end of the game.
+Rechaza la llamada telefónica de Mavis al final del juego.
+Perfectly defeat Yezera in the Catacombs with the Tarot Amulet activated.
+Vence perfectamente a Yezera en las Catacumbas con el Amuleto Tarot activado.
+Defeat a gym leader while at a level cap below that of the leader's team.
+Vence a un líder de gimnasio con un límite de nivel inferior al del equipo del líder.
+Perfect Lambert, the first gym leader, at level cap 15 or below with the Tarot Amulet activated.
+Perfecciona a Lambert, el primer líder de gimansio, con un límite de nivel de 15 o menos con el Amuleto Tarot activado.
+Perfect Eko, the second gym leader, at level cap 20 or below with the Tarot Amulet activated.
+Perfecciona a Eko, segundo líder de gimnasio, con un límite de nivel de 20 o menos con el Amuleto Tarot activado.
+Perfect Helena, the third gym leader, at level cap 25 or below with the Tarot Amulet activated.
+Perfecciona a Helena, la tercer líder de gimnasio, con un límite de nivel de 25 o menos con el Amuleto Tarot activado.
+Perfect Rafael, the fourth gym leader, at level cap 30 or below with the Tarot Amulet activated.
+Perfecciona a Rafael, el cuarto líder de gimnasio, con un límite de nivel de 30 o menos con el Amuleto Tarot activado.
+Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Perfecciona a Bence y Zoé, los quintos líderes de gimnasio, con un límite de nivel de 40 o menos con el Amuleto Tarot activado. 
+Perfect Noel, the sixth gym leader, at level cap 45 or below with the Tarot Amulet activated.
+Perfecciona a Noel, el sexto líder de gimnasio, con un límite de nivel de 45 o menos con el Amuleto Tarot activado.
+Perfect Victoire, the seventh gym leader, at level cap 55 or below with the Tarot Amulet activated.
+Perfecciona a Victoire, la séptima líder de gimnasio, con un límite de nivel de 55 o menos con el Amuleto Tarot activado.
+Perfect Samorn, the eighth gym leader, at level cap 55 or below with the Tarot Amulet activated.
+Perfecciona a Samorn, la octava líder de gimnasio, con un límite de nivel de 55 o menos con el Amuleto Tarot activado.
+Destroy any legendary avatar.
+Destruye cualquier avatar legendario.
+Use a Primeval Move.
+Usa un Movimiento Primitivo.
+Defeat all 8 Team Chasm-created avatars within the locked chambers.
+Vence a los 8 avatares creados por el Team Chasm dentro de las cámaras selladas.
+Destroy the avatar of Rayquaza in the Tempest Realm.
+Destruye al avatar de Rayquaza en el Reino de la Tempestad.
+Capture a legendary Pokemon in a regular PokeBall (thrown normally or created by the Ball Launcher.)
+Atrapa a un Pokémon legendario en una Poké Ball regular (lanzada normalmente o creada con el Lanza-Balls.)
+Capture at least one Pokémon in a Premier Ball, a Cherish Ball, and a Royal Ball.
+Atrapa a al menos un Pokémon en una Honor Ball, una Gloria Ball, y una Magni Ball.
+Capture at least one Pokémon in a Potion Ball, a Slice Ball, a Leech Ball, and a Disable Ball.
+Atrapa a al menos un Pokémon en una Cura Ball, una Filo Ball, una Infecta Ball, y una Anula Ball.
+Visit a PokEstate plot that has 30 Pokémon in it.
+Visita un Terreno que tenga 30 Pokémon en él.
+Fully upgrade your Aid Kit.
+Mejora por completo a tu Botiquín.
+Reach Frostflow Farms Center without aquiring the Surf Board.
+Llega al Centro Pokémon de las Granjas Escarcha sin conseguir la Tabla de Surf.
+Reach Prizca West without defeating the Avatar of Terrakion.
+Llega a Prizca Occidental sin derrotar al Avatar de Terrakion.
+Connect all Avatar Totems.
+Conecta a todos los Totems Avatar. 
+Defeat all 7 former Makyan champions.
+Vence a los 7 antiguos campeones de Makya.
+After being crowned champion, defeat Pokémon Master Vanya in the Tournament Grounds with a full team of genderless Pokémon.
+Luego de ser coronado campeón, vence al Maestro Pokémon Vanya en las Tierras de Campeona con un equipo de seis Pokémon sin género.
+Complete a full attempt of the Battle Monument (5 battles won).
+Completa un intento del Monumento Batalla (5 batallas ganadas).
+Complete a full attempt of the Battle Monument (5 battles won) with a Team whose members were all introduced in the same generation (Pokémon introduced in Tectonic count as a generation.)
+Completa un intento del Monumento Batalla (5 batallas ganadas) con un Equipo cuyos miembros hayan sido todos introducidos en la misma generación (Pokémon introducidos en Tectonic cuentan como una generación.)
+Complete a full attempt of the Battle Monument (5 battles won) with a Team whose members share no tribes in common.
+Completa un intento del Monumento Batalla (5 batallas ganadas) con un Equipo cuyos miembros no compartan ningún clan. 
+Start a battle while having an active Tribal bonus.
+Empieza un combate un bonus de Clan activo.
+At the end of a turn, have four or more hazards active on the opponent's side.
+Al final de un turno, ten cuatro o más trampas activas en el lado oponente.
+At the end of a turn, have a Weather, a Room, and a Screen (on your side) active at the same time.
+Al final de un turno, ten un Clima, una Zona, y una Pantalla (en tu lado) activos al mismo tiempo.
+Deal 1,000 or more damage in one hit.
+Lidia 1000 o más daño en un solo golpe.
+Deal 10,000 or more damage in one hit.
+Lidia 10000 o más daño en un solo golpe.
+Hold 500,000 or more money at once.
+Ten 500000 o más dinero a la vez.
+Have more than 1,000,000 experience stored in the EXP-EZ Dispenser at once.
+Ten más de 1000000 de experiencia almacenada en el Dispensador EXP-EZ a la vez.
+Achieve the top prize at Aquatopia Menagerie's Ocean Fishing Contest.
+Obtén el premio gordo en el Concurso de Pesca Oceánica de Aquatopia.
