@@ -426,8 +426,8 @@ Land,20
     25,IMPIDIMP,7,9
     25,LITLEO,7,9
 LandTall,20
-    20,MEDITITE,7,9
     40,PICHU,7,9
+    20,MEDITITE,7,9
     20,RIOLU,7,9
     20,SHUPPET,7,9
 #-------------------------------
