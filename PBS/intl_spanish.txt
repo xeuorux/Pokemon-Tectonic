@@ -1061,6 +1061,36 @@ I'm enjoying the my little Rufflet immensely!
 ¡Estoy disfrutando enormemente mi pequeño Rufflet!
 Maybe later.
 Quizás luego.
+I was supposed to have a meeting with Kurt today about gracefully decommissioning some of the cluster, but he never showed up.
+Se suponía que hoy iba a reunirme con Kurt sobre elegantemente desmantelar parte del grupo, pero nunca apareció.
+Doesn’t he know that maintaining legacy systems adds unnecessary fragility?
+¿Acaso no sabe que mantener sistemas de lealtad añade fragilidad innecesaria?
+It’s hard to get promoted when the top level talent here are former Team Chasm lieutenants.
+Es díficil ser ascendido cuando el mejor talento aquí son los antiguos sargentos del Team Chasm.
+They're such good battlers. It makes one jealous.
+Son tan buenos combatienes. Hace que uno se ponga celoso.
+LuxTech Main
+LuxTech Principal
+If you plan on facing her, you best be wary of her hit and run tactics.
+Si planeas enfrentarla, ten en cuenta de sus tácticas escurridizas.
+Most of her Pokemon use switch-out moves: Flip Turn, Volt Switch, or U-Turn.
+La mayoría de sus Pokémon usan movimientos de cambio: Viraje, Voltiocambio, o Ida y Vuelta.
+If you want a leg up, hazards like Stealth Rocks and Spikes can help a lot.
+Si quieres obtener una ventaja, trampas como las Púas y Trampa Rocas pueden ser de gran utilidad.
+Or you could trap her 'mons, so they just...can't switch out!
+O podrías atrapar a sus 'mons, ¡así no pueden cambiar en primer lugar!
+LuxTech Cold Storage
+Refrigeración LuxTech 
+Yesterday was terrible.
+Ayer fue terrible.
+I was forced to wind down the cluster I had running on the archive.
+Me forzaron a terminar el proyecto que tenía en el archivo.
+"Ecology of the Lingering Delta", my pet project.
+"Ecología del Delta Duradero"
+Even worse, I had to go down into the Cold Storage basement level to do the deed.
+Aún peor, tuve que bajar al sótano de la Refrigeración para hacer el trabajo.
+LuxTech Condos
+Apartamentos LuxTech 
 [Map7]
 The Growlithe seems to be cowering from everything.
 Este Growlithe parece acobardarse por todo.
@@ -1329,6 +1359,18 @@ Come back anytime.
 Vuelve cuando quieras.
 A small handmade sign. It lists an eight-digit code in a big, blocky style.
 Un pequeño cartel hecho a mano. Muestra un código de ocho dígitos en grandes letras.
+Rafael may have a layer of earth protecting him from the surface, but it doesn't protect him from my astral projection.
+Rafael podrá tener una capa de tierra protegiéndolo de la superficie, pero no lo protege de mi proyección astral.
+I've been watching his battles with some fervor. I wish to grasp the essence of his strategy.
+He estado observando sus combates con algo de fevor. Deseo captar la esencia de su estrategia.
+It is, at it's core, about dancing.
+Es, en su núcleo, sobre el baile.
+His Oricorio and Alolan Marowak both gain power from dancing done by their allies.
+Su Oricorio y Marowak de Alola ambos ganan poder con el baile hecho por sus aliados.
+If one was feeling particularly devilish, one could aquire a Hattrem.
+Si uno se siente particularmente diabólico, uno podría conseguir un Hattrem.
+That witch has a special ability which can prevent Pokemon from utilizing dance.
+La bruja tiene una habilidad especial que impide bailar a los Pokémon.
 [Map9]
 STAY AWAY FROM MY PLANTS!
 ¡ALÉJATE DE MIS PLANTAS!
@@ -5313,6 +5355,10 @@ I've heard rumors that if you earn the trust of those birds, they'll fly you oth
 Escuché rumores de que si te ganas la confianza de esas aves, te llevarán volando a otros lugares.
 No where outside of Makya, though. Shouldn't worry about it undercutting my line of work, I guess.
 Pero a ningún lado afuera de Makya. No debería preocuparme sobre ellos compitiendo en mi línea de trabajo, supongo.
+They love Pokemon that can apply damaging statuses: burn, poison, and even frostbite.
+Ama a los Pokémon que pueden aplicar problemas de estado dañinos: quemadura, veneno e incluso la heladura.
+They also run a few moves that trap the target, and damage them over time. Brutal!
+También usa algunos movimientos que pueden atrapar al objetivo y dañarlos con el pasar del tiempo. ¡Brutal!
 [Map57]
 
 
@@ -7093,7 +7139,7 @@ Por ejemplo, Pokémon bípedos y cuadrúpedos están en diferentes ligas.
 The TV shows a famous scene from an old performance of "Phantump of the Opera".
 El programa de TV muestra una famosa escena de una vieja función del "Phantump de la Opera".
 Have you visited the cold storage building, next to this one?
-¿Alguna vez has visitado al edificio de almacenamiento frío, al lado de este?
+¿Alguna vez has visitado al edificio de refrigeración, al lado de este?
 Some people find it boring, but I think it's a pretty COOL place, myself.
 Yo creo que es un lugar bastante genial, pero a mucha gente les tiene FRÍO.
 Heh.
@@ -7448,7 +7494,7 @@ Sí
 
 [Map96]
 This place is LuxTech's Cold Storage Facility.
-Este lugar es la Facilidad de Depósito Frío de LuxTech.
+Este lugar es la Facilidad de Refrigeración de LuxTech.
 It serves two functions.
 Sirve para dos funciones.
 The first is to cut server running costs by keeping the hardware at low temperatures.
@@ -7494,9 +7540,13 @@ Apparently my "expertise" means I need to be "on- site"..."at all times"...
 Aparentemente mi “” significa que deba estar “en-sitio”...”todo el tiempo”...
 Ugh. At least the Pokemon here keep me company.
 Ugh. Al menos mis Pokémon me hacen compañía.
-
+Most of our servers are in here, but some of the older ones we keep in a room in the lower level.
+La mayoría de nuestros servidores están aquí, pero algunos de los más viejos los dejamos en el nivel inferior.
+It's pretty dark and dingy. I try to go there as little as possible.
+Está bastante oscuro y sucio. Intento ir allí lo menos posible.
 [Map98]
-
+Server Archive
+Archivo de los Servidores
 The Seel seems distressed. It gives you and the worker nervous glances.
 El Seel parece estresado. Te da a ti y al trabajador miradas nerviosas.
 It probably just wants to get out of here. Being stuck in a shipping crate didn't help.
@@ -7542,7 +7592,7 @@ Sí
 This Seel was stuck in one of the crates. No idea how.
 Este Seel estaba estancado en uno de los cargamentos. Ni idea cómo.
 It seems really scared, so...while we could just put it to work here in Cold Storage, I think it'd be more humane to get it out of here.
-Parece muy asustado, así...aunque podríamos ponerlo a trabajar aquí en el Almacenamiento Frío, creo que sería más humano sacarlo de aquí. 
+Parece muy asustado, así...aunque podríamos ponerlo a trabajar aquí en la Refrigeración, creo que sería más humano sacarlo de aquí. 
 I have their whole order here, but there's an extra thing inside.
 Tenga toda su orden aquí, pero hay una cosa extra aquí.
 Someone must have slipped it in here while no one was looking.
@@ -10578,6 +10628,14 @@ I – you know what, just don’t ask questions and appreciate the damn thing.
 Yo - sabes qué, sólo no hagas preguntas y aprecia la maldita cosa.
 The point is, in the future, maybe you help me out and I keep giving you free stuff, OK?
 El punto es, en el futuro, quizás me puedes ayudar así te sigo dando cosas gratis, ¿ok?
+I volunteer at the PokeCenter here sometimes.
+A veces hago voluntariado aquí en el Centro Pokémon.
+So many trainers come in with Numbed Pokemon after battling Lambert.
+Muchos entrenadores vienen aquí con Pokémon Aturdidos luego de combatir con Lambert.
+Apparently a lot of new trainers struggle with that status, as it halves the Pokemon's speed and reduces the damage they do.
+Aparentemente muchos de los nuevos entrenadores les cuesta lidiar con ese estado, ya que baja a la mitad la velocidad del Pokémon y reduce el daño que hacen.
+I'm not sure, but I swear I saw a sparring match, where the two seemed identical...
+No estoy segura, pero juraría haber visto un combate de prueba, donde los dos parecían idénticos...
 [Map137]
 
 I'm a safety minded person.
@@ -11381,6 +11439,16 @@ Always surprises me how much is needed for concrete and other such manufacturin'
 Siempre me sorprende todo lo que se necesita para el concreto y otras manufacturas.
 And I thought growin' crops needed a lot...
 Y pensaba que los cultivos necesitaban demasiado...
+If they took working together more seriously, the Gym might be much harder!
+Si se tomaran más en serio lo de trabajar juntos, ¡el Gimnasio podría ser mucho más difícil!
+Zoé has a penchant for more supportive Pokemon.
+Zoé tiene una inclinación a Pokémon más de soporte.
+Bence is the opposite. He mainly focuses on offense.
+Bence es lo contrario. Se concentra más en la ofensa.
+On the surface, the ideals seem conflicting, but they'd actually work together quite well.
+En un inicio, los ideales parecen conflictivos, pero de hecho funcionan bastante bien juntos.
+When I grow up, I wanna be a shiny bird...
+Cuando crezca, quiero ser una ave brillante...
 [Map157]
 
 The destruction of the bridge over at the Eleig River Crossing has really put a hamper on things.
@@ -13771,6 +13839,12 @@ Nevermind, it looks like he's just like this...
 Olvídalo, parece que sólo se ve así...
 If you happen to have one, I'll trade you a Relicanth for it.
 Si resulta que tienes uno, te lo intercambiaré por un Relicanth.
+The amount of offensive pressure his Pokemon create is simply breathtaking.
+La cantido de presión ofensiva que sus Pokémon crean es simplemente impresionante.
+Especially if he manages to set up Frost Spikes.
+Especialmente si puede colocar las Púas Heladas.
+So cool!
+¡Qué genial!
 [Map188]
 
 People are always doing cool things here!
@@ -14327,6 +14401,20 @@ The door is securely locked.
 La puerta está firmemente bloqueada.
 The sign lists off rules you have to follow to schedule meetings with Members of Parliament.
 El cartel lista las reglas que debes decir para citar reuniones con los Miembros del Parlamento.
+Capitol Library
+Biblioteca del Capitolio
+The door is locked.
+La puerta está bloqueada.
+A peice of laminated paper is stuck onto it.
+Una pedazo de papel laminado está pegado a ella.
+"Closed for deep cleaning", it says.
+Dice: "Cerrado por limpieza profunda".
+The predicted date of completion is also listed.
+También muestra la fecha de terminación prevista.
+Coincidentally, it's the exact same date as the Championship Tournament.
+Casualmente, es exactamente la misma fecha que el Campeonato.
+Perhaps you should come back after that's completed.
+Quizás deberías regresar una vez que eso termine.
 [Map195]
 
 It's a beautifully carved ice sculpture of a Grumpig.
@@ -15906,6 +15994,12 @@ Primero pensé que ella usaría a sus dragones para ayudarla, pero aparentemente
 "Hasta nuevo aviso, esta base ahora es parte de los académicos de la Facultad Novo."
 They're good, but be warned - her Volcarona and Flygon can both use Fire-type moves to hurt 'em.
 Son buenos, pero ten cuidado - su Volcarona y Flygon pueden usar movimientos de tipo Fuego para lastimarlos.
+I was prepped for countering a Sandstorm strategy, based on the legends I heard.
+Me estaba preparando para enfrentar a una estrategia de Tormenta de Arena, basándome en las leyendas que escuché.
+But she apparently hasn't used that strategy in forever, despite how well suited to it some of her Pokemon are.
+Pero aparentemente hace tiempo que ella no usa esa estrategia, a pesar de lo bien que le sienta a varios de sus Pokémon.
+Maybe it's a "hiding your true power level" thing? I just don't get it...
+¿Quizás es algo de "esconder tu verdadero poder"? Realmente no lo entiendo...
 [Map216]
 Phione! \PN! What just happened here?
 ¡Phione! ¡\PN! ¿Qué acaba de pasar?
@@ -16736,7 +16830,13 @@ Lo siento, niño. Eres un poco muy rápido. Debo detenerte. Regirock, cariño, v
 But, cheer up, kid. I’m ‘bout to give ya what you always want: a good fight. Facing a Regi oughta cheer ya up. Heh.
 Pero, alégrate, niño. Voy a darte lo que siempre quieres: un buen combate. Enfrentar un Regi seguro debe alegrarte. Je.
 Too rough ‘nd tumble. I ain’t built for cloak-and-dagger.
-Demasiado brusca y severa. No estoy hecha para esto.
+Demasiado brusca y severa. No estoy hecha para esto..
+Some of them are a bit hard to believe.
+Algunas de ellas son algo difíciles de ceer.
+I heard some people saying that she uses a Rainstorm strategy.
+Escuché a algunas personas decir que usa una estrategia de Tormenta de Lluvia.
+With Fairy and Steel-type Pokemon? How does she manage that?
+¿Con Pokémon de tipo Hada y Acero? ¿Cómo logra hacer eso?
 [Map218]
 
 A cap of rock is holding back a geyser of boiling water.
@@ -26478,6 +26578,77 @@ Cabina Número 1
 [Map437]
 Up Ahead: Product Showroom
 Más Adelante: Muestra de Producto
+Bogdan Cement has been used in both construction and furniture!
+¡El Cemento Bogdan ha sido usando en tanto construcción y muebles!
+Our work is present in over 40% of Makyan homes!
+¡Nuestro trabajo está presente en más del 40% de los hogares de Makya!
+I'm looking to secure a deal here, but I've been stonewalled by management.
+Estoy intentando asegurar un trato aquí, pero es como si la gerencia me haya puesto un muro. 
+No pun intended.
+Bastante irónico, la verdad.
+I feel like I see these furniture pieces in a lot of places.
+Siento que veo estos mueblos en un montón de lugares.
+I wonder why.
+Me pregunto por qué.
+My job is to keep things clean, but I'm a big sewers enthusiast.
+Mi trabajo es mantener las cosas limpias, pero soy un entusiasta de las alcantarillas.
+I've been exploring Makya's for years. My dream is to take a trip to see some of tunnels under Kalos.
+He estado explorando Makya por años. Mi sueño es viajar a alguno de los túneles debajo de Kalos.
+For now though, I'll look at the concrete.
+Pero por ahora, miraré al concreto.
+Welcome to the Bogdan Cement Plant!
+¡Bienvenido a la Planta de Cemento Bogdan!
+We reserve guided tours for business partners, but you are more than welcome to view our products.
+Nos reservamos las visitas guiadas para compañeros de negocios, pero eres más que bienvenido a ver nuestros productos.
+[Map438]
+I caught a few extra Pokemon on my last vacation to Hoenn.
+Atrapé a un par de Pokémon extra en mis últimas vacaciones a Hoenn.
+I don't really need 'em, but I REALLY need coffee right now.
+Realmente no los necesito, pero REALMENTE necesito café ahora mismo.
+I'll trade you one for a cup. I got a Corsola and a Shuckle up for grabs.
+Te intercambiaré uno por una taza. Tengo un Corsola y un Shuckle disponibles.
+Dang. Really pegged you as the type to carry around arbitrary cups of coffee.
+Rayos. Realmente te identifiqué como el tipo que arbitrariamente llevaría tazas de café.
+Oh yeah. That hits the spot.
+Oh sí. Eso es justo lo que necesitaba.
+Aite, a deal is a deal. Which 'mon are you feeling?
+Muy bien, un trato es un trato. ¿Cúal 'mon es el que quieres?
+Alright. I'll be here.
+Muy bien. Aquí estaré.
+All yours.
+Todo tuyo.
+Now to get through the rest of my day...
+Ahora toca atravesar el resto de mi día...
+No cups? Hmm.
+¿Sin tazas? Vaya.
+These barrels aren't going to inspect themselves...
+Estos barriles no van a inspeccionarse solos...
+This plant has been running since Prizca was still mostly brick and wood.
+Esta planta ha estado en funcionamiento desde que Prizca era mayormente ladrillos y madera.
+A bit interesting that there was a huge uptick in fires when Team Chasm took it over.
+Un poco interesante que hubo un gran repunte en despidos cuando el Team Chasm tomó el mando.
+Ah well, I'm paid to think it's a coincidence.
+Ah bueno, me pagan para pensar que es una coincidencia.
+I don't even really work. I just watch the Pokemon do it.
+Realmente ni siquiera trabajo. Sólo veo a los Pokémon hacerlo.
+Sometimes I go out and grab them lunch. It's boring, but the benefits are surprisingly good.
+A veces voy y les consigo un almuerzo. Es aburrido, pero los beneficios son sorprendentemente buenos.
+Geodude is managing the supply chain! Impressive!
+¡Geodude está dirigiendo la cadena de suministro! ¡Impresionante! 
+Shh, don't report me. This is the most hidden place in the city. No one ever finds me here.
+Shh, no me reportes. Este es el lugar más oculto en la ciudad. Nadie nunca me encuentra aquí.
+Plus, I can torrent whatever I want on the WiFi here.
+Además, puedo descargar lo que quiera con el WiFi aquí.
+Don't give coffee.
+No dar café.
+Give coffee.
+Dar café.
+I'll choose later.
+Elegiré luego.
+I'll take the Corsola.
+Tomaré el Corsola.
+I'll take the Shuckle.
+Tomaré el Shuckle.
 [Map442]
 There seems to be rocks in here. Does he feed this to his Pokemon?
 Parece haber rocas aquí. ¿Acaso él alimenta a sus Pokémon con esto?
@@ -54710,6 +54881,12 @@ Every PokéCenter and every Ranger Station will contain the 3 Team Customization
 Cada PokéCenter y cada Estaciones de Ranger contendrá los 3 PNJ del personalización de equipo.
 Speak to them to learn how they can upgrade your team!
 ¡Habla con ellos para saber cómo pueden mejorar tu equipo!
+Game State
+Estado Juego
+Documents
+Documentos
+Achievements
+Logros
 [26]
 [27]
 [27]
@@ -57061,7 +57238,7 @@ Dolorosa Victoria
 Demoted
 Degradada
 Make Like a Tree
-Como un Tronco
+Alivio
 Enemy of my Enemies
 Enemigo de mis Enemigos
 Artist's Block
@@ -57095,7 +57272,7 @@ Rodeo
 Totemly Obsessed
 Totemaníaco
 Champion of Champions
-Campeón de Campeons
+Campeón de Campeones
 Gender Schmender
 Generalmente Neutros
 Monumental
