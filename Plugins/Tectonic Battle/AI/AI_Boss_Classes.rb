@@ -891,3 +891,19 @@ class PokeBattle_AI_GARDEVOIR < PokeBattle_AI_Boss
         secondMoveEveryTurn(:LIFEDEW)
     end
 end
+
+class PokeBattle_AI_Druddigon < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @wholeRound += :OCCULTATION
+
+        @warnedIFFMove.add(:OCCULTATION, {
+            :condition => proc { |_move, _user, _target, battle|
+                next battle.turnCount % 2 == 0
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} is haloed in Dragon Energy!",user.pbThis)
+            },
+        })
+    end
+end
