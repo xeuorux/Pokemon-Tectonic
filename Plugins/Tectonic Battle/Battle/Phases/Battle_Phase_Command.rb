@@ -512,8 +512,8 @@ class PokeBattle_Battle
                         commandsEnd = true
                         break
                     end
-                when 6 # Battle Guide
-                    showBattleGuide
+                when 6 # Documentation menu
+                    showDocumentationMenu
                 when -2   # Debug
                     pbDebugMenu
                     next

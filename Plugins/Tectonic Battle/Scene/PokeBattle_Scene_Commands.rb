@@ -589,12 +589,6 @@ class PokeBattle_Scene
               cw.index = idxBattlerTry
               break
             end
-        elsif Input.trigger?(Input::ACTION) && dexSelect
-          pbFadeOutIn {
-            scene = PokemonPokedex_Scene.new
-            screen = PokemonPokedexScreen.new(scene)
-            screen.pbStartScreen
-          }
           end
           if cw.index!=oldIndex
             pbPlayCursorSE

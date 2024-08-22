@@ -6,40 +6,9 @@ class PokemonGameInfoMenu_Scene
 		@sprites["cmdwindow"] = Window_CommandPokemon.new([])
 		@sprites["cmdwindow"].visible = false
 		@sprites["cmdwindow"].viewport = @viewport
-		@sprites["infowindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-		@sprites["infowindow"].visible = false
-		@sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-		@sprites["helpwindow"].visible = false
 		@infostate = false
 		@helpstate = false
 		pbSEPlay("GUI menu open")
-	  end
-	
-	  def pbShowInfo(text)
-		@sprites["infowindow"].resizeToFit(text,Graphics.height)
-		@sprites["infowindow"].text    = text
-		@sprites["infowindow"].visible = true
-		@infostate = true
-	  end
-	
-	  def pbShowHelp(text)
-		@sprites["helpwindow"].resizeToFit(text,Graphics.height)
-		@sprites["helpwindow"].text    = text
-		@sprites["helpwindow"].visible = true
-		pbBottomLeft(@sprites["helpwindow"])
-		@helpstate = true
-	  end
-	
-	  def pbShowMenu
-		@sprites["cmdwindow"].visible = true
-		@sprites["infowindow"].visible = @infostate
-		@sprites["helpwindow"].visible = @helpstate
-	  end
-	
-	  def pbHideMenu
-		@sprites["cmdwindow"].visible = false
-		@sprites["infowindow"].visible = false
-		@sprites["helpwindow"].visible = false
 	  end
 	
 	  def pbShowCommands(commands)

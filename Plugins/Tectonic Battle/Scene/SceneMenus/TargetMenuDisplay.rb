@@ -5,7 +5,7 @@
 #===============================================================================
 class TargetMenuDisplay < BattleMenuBase
     attr_accessor :mode
-    attr_reader :dexSelect
+    attr_accessor :dexSelect
   
     # Lists of which button graphics to use in different situations/types of battle.
     MODES = [
@@ -32,7 +32,6 @@ class TargetMenuDisplay < BattleMenuBase
 		#       0=select 1 button (@index), 1=select all buttons with text
 		# Create bitmaps
 		@buttonBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_target")))
-		@dexReminderBitmap 		= AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/pokedex_reminder")))
 		# Create target buttons
 		@buttons = Array.new(maxIndex+1) do |i|
 		  numButtons = @sideSizes[i%2]
@@ -63,14 +62,6 @@ class TargetMenuDisplay < BattleMenuBase
 		pbSetNarrowFont(@overlay.bitmap)
 		addSprite("overlay",@overlay)
 		
-		# Create dex reminder
-		@dexReminder = SpriteWrapper.new(viewport)
-		@dexReminder.bitmap = @dexReminderBitmap.bitmap
-		@dexReminder.x = self.x + 4
-		@dexReminder.y = self.y - @dexReminderBitmap.height
-		@dexReminder.visible = false
-		addSprite("dexReminder",@dexReminder)
-		
 		self.z = z
 		refresh
 	end
@@ -78,18 +69,12 @@ class TargetMenuDisplay < BattleMenuBase
 	def dispose
 		super
 		@buttonBitmap.dispose if @buttonBitmap
-		@dexReminderBitmap.dispose if @dexReminderBitmap
 	end
   
     def z=(value)
       super
       @overlay.z += 5 if @overlay
     end
-
-    def dexSelect=(value)
-		dexSelect = value
-		@dexReminder.visible = value
-	end
   
     def setDetails(texts,mode)
       @texts = texts
