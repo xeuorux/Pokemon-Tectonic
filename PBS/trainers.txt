@@ -3514,6 +3514,18 @@ Pokemon = PINSIR,30
     Moves = FURYPECKS,CAPOEIRA,BUGBITE,BULKUP
     AbilityIndex = 1 # Juggernaut
 #-------------------------------
+[BURGLAR,Barret]
+Pokemon = DUDUNSPARCE,26
+    Moves = DUSTDEVIL,BOREALWIND,PETRIFY,BALEFULBOP
+    AbilityIndex = 0 # Serene Grace
+Pokemon = SLOWPOKE,26
+    Moves = PSYCHOCUT,SLACKOFF,SPATTERINGRAM,DISABLE
+    AbilityIndex = 1 # Mental Block
+Pokemon = WEEPINBELL,27
+    Moves = CROSSPOISON,VINEBIND,CLEARSMOG,AERIALACE
+    AbilityIndex = 1 # Flytrap
+    Item = FLYINGGEM
+#-------------------------------
 [TUBER_M,Derek]
 Pokemon = INTELEON,41
     Moves = SNIPESHOT,DARKPULSE,SHINESHOT
