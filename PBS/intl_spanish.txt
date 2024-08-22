@@ -10690,7 +10690,7 @@ Tengo un par de sobra ahora que los usuarios originales fueron... empleados en o
 It’s a way to <imp>read up on an opponent’s team</imp> before trying to take them on.
 Es una forma de <imp>leer el equipo de un oponente</imp> antes de ir a por ellos.
 Please do not ask me why it’s called the Poké X-Ray. It doesn’t even use x-rays.
-Por favor no me preguntes por qué se llama Poké Rayos X. Ni siquiera usa rayos x.
+Por favor no me preguntes por qué se llama Poké-Rayos X. Ni siquiera usa rayos x.
 I – you know what, just don’t ask questions and appreciate the damn thing.
 Yo - sabes qué, sólo no hagas preguntas y aprecia la maldita cosa.
 The point is, in the future, maybe you help me out and I keep giving you free stuff, OK?
@@ -26673,7 +26673,7 @@ Do you think you can search LuxTech for any servers hosting data from before Tea
 I’ll keep on searching here in the meantime for something hidden in the stacks.
 Por mientras seguiré buscando aquí por algo oculto entre las pilas.
 Let me know if you find something over at LuxTech.
-Házme saber si encuentras algo en LuxTech.
+Hazme saber si encuentras algo en LuxTech.
 I’ve only been finding fun facts, the kind you’d see on a moving truck.
 Sólo he estado encontrado datos curiosos, del tipo que encontrarías en un camión de mudanzas.
 Did you know that hexagons were an important symbols of the Seekers?
@@ -41707,6 +41707,22 @@ Soothe Charm
 Amuleto Alivio
 Magnetic Gauntlet
 Guante Magnético
+Fairy Feather
+Pluma Feérica
+Reveal Glass
+Espejo Veraz
+Prison Bottle
+Vasija Castigo
+Figment
+Fantasía
+Flora Sceptre
+Cetro Floral
+Poké X-Ray
+Poké-Rayos X
+Space-time Shard
+Fragmento Espaciotiempo
+Old USB Drive
+Unidad USB Antigua
 [8]
 Repels
 Repelentes
@@ -42422,8 +42438,12 @@ Tart Apples
 Manzanas Ácidas
 Noise Machines
 Máquinas de Ruido
-Cell Boosters
-Refuerzos de Células
+Figments
+Fantasías
+Fairy Feathers
+Plumas Feathers
+Space-time Shard
+Fragmentos Espaciotiempo
 [9]
 An item that prevents wild Pokémon from appearing for 100 steps after its use.
 Un objeto que impide que Pokémon salvajes aparezcan por 100 pasos.
@@ -43173,6 +43193,60 @@ A comforting charm which doubles the happiness your Pokémon gain from being clo
 Un amuleto reconfortarte que duplica la felicidad que tus Pokémon ganan al estar cerca a ti.
 A wisp of ideas with infinite potential. Use it on a Pokemon to teach any one of their legal moves.
 Un puñado de ideas con un potencial infinito. Úselo en un Pokémon para enseñarle cualquiera de sus movimientos legales.
+A very tasty tail of something. It can be sold to shops for $4000.
+Una cola sabrosa de algo. Puede venderse en tiendas por $4000.
+When held by a Pokémon who can still evolve, reduces move damage taken by 33%. Prevents evolution.
+Cuando la sostiene un Pokémon que puede evolucionar, reduce el daño de ataques 33%. Impide la evolución.
+A Pokémon held item. When the holder summons rainstorm, it lasts twice as long.
+Un objeto equipable. Cuando el portador invoca tormenta de lluvia, esta dura el doble.
+A held item. The holder recovers 30% more HP from draining moves, Ingrain, Aqua Ring, and leech.
+Un objeto equipable. El portador recupera un 30% más de PS de parte de movimientos que drenan, Arraigo, Acua Aro y la infección.
+A sinister, eerie tag that boosts the holder's Ghost-type moves by 20%.
+Un amuleto espeluzante que potencia un 20% los ataques Fantasma del portador.
+A gleaming feather that boosts the holder's Fairy-type moves by 20%.
+Una ala brillante que potencia un 20% los ataques Hada del portador.
+A spray-type medicine for wounds. It restores the HP of one Pokémon, fainted or able, by 40 points.
+Una medicina en forma de spray. Restaura los PS de un Pokémon, incluso debilitado, 40 puntos.
+A spray-type medicine for wounds. It restores the HP of one Pokémon, fainted or able, by 80 points.
+Una medicina en forma de spray. Restaura los PS de un Pokémon, incluso debilitado, 80 puntos.
+A spray-type medicine for wounds. It restores the HP of one Pokémon, fainted or able, by 120 points.
+Una medicina en forma de spray. Restaura los PS de un Pokémon, incluso debilitado, 120 puntos.
+A spray-type medicine for wounds. It completely restores the HP of a single Pokémon, fainted or able.
+Una medicina en forma de spray. Restaura completamente los PS de un Pokémon, incluso debilitado.
+A medicine that fully restores the HP and heals any status problems of a single Pokémon, fainted or able.
+Una medicina en forma de spray. Restaura completamente los PS y estado de un Pokémon, incluso debilitado.
+Very sweet chocolate. It restores the HP of one Pokémon by 40 points and makes it happier.
+Chocolate muy dulce. Restaura 40 puntos los PS de un Pokémon y lo hace más feliz.
+Fried dough dipped in vanilla syrup. Heals a single Pokémon by 100 HP, and grants it 4000 Experience points.
+Masa frita llena de jarabe de vainilla. Cura a un Pokémon 100 PS y le da 4000 puntos de Experiencia.
+A mentally disrupting Poké Ball that disables the Pokémon's last used move for 10 turns if it fails to catch it.
+Una Poké Ball que anula el último movimiento usado por el Pokémon por 10 turnos si no llega a atraparlo.
+If held by a Pokémon, it raises its accuracy by four steps in a pinch.
+Al ser sostenida por un Pokémon, aumenta su precisión cuatro grados en un apuro.
+If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP damage.
+Al ser sostenida por un Pokémon, quita 1/4 de los PS de un Pokémon que le ataque físicamente.
+A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.
+Un espejo que revela la verdad. Es un espejo misterioso que regresa a Pokémon a su forma original.
+A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.
+Una botella la cual se cree fue usada para sellar el poder de cierto Pokémon hace mucho, mucho tiempo.
+A candy that is packed with energy. When consumed, it will grant a single Pokémon 64,000 Exp. Points.
+Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 64000 Puntos de Experiencia.
+An ancient kingly rod. You can use it to make certain plants grow.
+Un antiguo cetro real. Puedes usarlos para hacer crecer ciertas plantas.
+An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.
+Un transportador avanzada que te permite acceder a tu Almacenamiento para sacar o depositar Pokémon.
+A small, versatile machine that can be used to repel wild Pokémon, or draw them near.
+Una pequeña máquina versátil que puedes usar para repeler Pokémon salvajes, o acercarlos.
+A high tech surveillance device. Use it to scout out the teams of nearby trainers.
+Un dispositivo de vigilancia de alta tecnología. Puedes usarlo para observar el equipo de entrenadores cercanos.
+A hi-tech recording device which creates a Battle Report by analyzing the results of momentous battles.
+Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de combates importantes.
+An upgraded, hi-tech recording device. It increases experience earned from battles by 10%.
+Un dispositivo de alta tecnología mejorda. Aumenta la experiencia ganada por combates un 10%.
+A sliver of the fragment of the universe. Highly unstable.
+Un trozo de fragmento del universo. Muy inestable.
+A USB containing data from a Team Chasm's early days.
+Un USB que contiene datos de los días tempranos del Team Chasm.
 [10]
 Shell Armor
 Caparazón
@@ -55213,11 +55287,189 @@ Cada PokéCenter y cada Estaciones de Ranger contendrá los 3 PNJ del personaliz
 Speak to them to learn how they can upgrade your team!
 ¡Habla con ellos para saber cómo pueden mejorar tu equipo!
 Game State
-Estado Juego
+Est. Juego
 Documents
-Documentos
+Document.
 Achievements
 Logros
+Some Avatars have Empowered attacks, which are powered-up versions of other attacks. They take up both of an Avatar's moves on that turn.
+Algunos Avatares tienen ataques Empoderos, versiones más fuertes de otros ataques. Estos usan los dos movimientos del Avatar en ese turno.
+{1} is ruinous! Everyone deals 40 percent more damage!
+¡{1} es ruinoso! ¡Todos lidian un 40 por ciento más de daño!
+Oh no! The avatar of {1} appeared!
+¡Oh no! ¡El avatar de {1} apareció!
+Oh no! The avatars of {1} and {2} appeared!
+¡Oh no! ¡Los avatares de {1} y {2} aparecieron!
+Oh no! The avatars of {1}, {2} and {3} appeared!
+¡Oh no! ¡Los avatares de {1}, {2} y {3} aparecieron!
+But it failed, since #{user.pbThis(true)}'s roots are already planted and all foes are already cursed!
+¡Pero falló, ya que las raíces #{user.pbThis(true)}'s roots are already planted and all foes are already cursed!
+A tall metal tree. One side has been notched by something sharp.
+Un alto árbol de metal. Un lado ha sido golpeado por algo filoso
+Finish chopping it down?
+¿Terminas de cortarlo?
+You get the sense that you shouldn't teleport away right now.
+Tienes la sensación de que no deberías teletransportarte ahora mismo.
+Name on Showcase
+Nombre en Muestra
+#{battler.pbThis} also heals #{healTarget.name}!
+¡#{battler.pbThis} también cura a #{healTarget.name}!
+{1} is pained!
+¡{1} está adolorido!
+{1} survived the hit!
+¡{1} sobrevivió el golpe!
+But it failed, since #{target.pbThis(true)} can't be leeched or have either of its attacking stats lowered!
+¡Pero falló, ya que #{target.pbThis(true)} no puede ser infectado ni puede tener ninguno de sus ataques reducidos!
+\db[#{badgeNum}]\me[Badge get]You've earned the {1} Badge!\wtnp[120]
+\db[#{badgeNum}]\me[Badge get]¡Ganaste la Medalla {1}!\wtnp[120]
+Screenshot saved to folder #{DIR_SCREENSHOTS}<<1>>
+Captura de pantalla guardada en la carpeta #{DIR_SCREENSHOTS}<<1>>
+With a touch, the crystal reservoir activates!
+¡Con un toque, la reserva de cristal es activada!
+The crystal reservoir has already spent its energy.
+La reserve de cristal ya gastó su energía.
+Budding crystals. They're much too weak to climb on.
+Cristales en cierne. Son muy débiles como para ser escalados.
+Champion, huh? You got the gumption to face my surprises?
+¿Campeón, eh? ¿Tienes las agallas para enfrentar mis sorpresas?
+{1} is interfering! No one gets same-type damage bonus!
+¡{1} da interferencias! ¡Nadie obtiene el bonus del mismo tipo!
+{1} is a bad influence! No one can heal!
+¡{1} es una mala influencia! No one can heal!
+{1} worsens {2}'s failure!
+¡{1} empeora la falla de {2}!
+The pain caught up to {1}!
+¡El dolor le llegó a {1}!
+#{user.pbThis} has already mutated!
+¡#{user.pbThis} ya ha mutado!
+But {1} has already mutated!
+¡Pero {1} ya ha mutado!
+{1} reforms its genes with space energy!
+¡{1} reforma sus genes con energía espacial!
+Ring Eclipse
+Eclipse de Anillo
+Blood Moon
+Luna de Sangre
+But it failed, since #{target.pbThis(true)} is already Steel-type and its Speed can't be lowered!
+¡Pero falló, ya que #{target.pbThis(true)} ya es tipo Acero y su Velocidad no puede ser disminuida!
+But it failed, since #{target.pbThis(true)} can't have its type changed and its Speed can't be lowered!
+¡Pero falló, ya que #{target.pbThis(true)} no puede tener su tipo cambiado y su Velocidad no puede ser disminuida!
+Your party is not legal for this challenge.
+Tu equipo no es legal para este desafío.
+But it failed, since #{target.pbThis(true)}'s #{statName} can't go any higher!
+¡Pero falló, ya que #{target.pbThis(true)}'s #{statName} ya está al máximo!
+But it failed, since #{target.pbThis(true)}'s #{statName} can't go any lower!
+¡Pero falló, ya que #{target.pbThis(true)}'s #{statName} ya está al mínimo!
+{1} became trapped!
+¡{1} fue atrapado!
+Use Item
+Usar Objeto
+Which form shall the Pokemon take?
+¿Qué forma debería tomar el Pokémon?
+Cannot use this item on that Pokemon.
+No puedes usar este objeto en ese Pokémon.
+Congratulations on your victory!
+¡Felicidades en tu victoria!
+Better luck next time.
+Te deseamos suerte para la próxima.
+\me[Earn battle points]\ptYou've earned #{battlePointsAdded} battle points.\wtnp[30]
+\me[Earn battle points]\Ganaste #{battlePointsAdded} puntos de batalla.\wtnp[30]
+{1} speeds up the music!
+¡{1} acelera la música!
+{1} is up to no good!
+¡{1} está tramando algo!
+{1} is flying quickly!
+¡{1} vuela rápidamente!
+{1} is barging through!
+¡{1} se abre paso!
+{1} has a huge ego!
+¡{1} tiene un gran ego!
+{1} prioritizes healing!
+¡{1} prioriza la curación!
+{1} really enjoyed the chocolate!
+¡{1} disfrutó el chocolate!
+{1} changes its cloak to fit its next move!
+¡{1} cambia su tronco para usar su siguiente movimiento!
+{1} is finished chewing on the {2}!
+¡{1} terminó de masticar la {2}!
+{1} is chewing on the {2}!
+¡{1} está masticando la {2}!
+{1} gained a Sweet-Tooth boosted {2} Exp. Points!
+¡{1} ganó {2} Puntos de Experiencia, aumentado por el Diente Suerte!
+There's no trainers nearby to use the Stink Bomb on.
+No hay entrenadores cercanos para usar la Bomba Apestosa.
+#{eventsToRemove.count} trainers fled from the stench!
+¡#{eventsToRemove.count} entrenadores escaparon del hedor!
+A nearby trainer fled from the stench!
+¡Un entrenador cercano escapó del hedor!
+Oh, a strange item was left behind!
+¡Oh, un extraño objeto fue dejado atrás!
+Oh, some strange items were left behind!
+¡Oh, algunos extraños objetos fueron dejados atrás!
+Welcome to Sweetrock Candy Outlet! How may I serve you?
+¡Bienvenido a la Tienda de Caramelos Sweetrock! ¿Cómo puedo servirte?
+You can now boat to Tri Island.
+Ahora puedes viajar a la Isla Elemental en tu bote.
+Which option?
+¿Qué opción?
+Search
+Buscar
+Search how?
+¿Buscar cómo?
+Pokemon Name?
+¿Nombre Pokémon?
+This box is locked!
+¡Esta caja está bloqueada!
+"#{search}" is not a valid type.
+"#{search}" no es un tipo válido.
+"#{search}" is not a valid tribe.
+"#{search}" no es un clan válido.
+The current box contains the only match.
+La caja actual contiene la única coincidencia.
+Multiple matches. Jump to which box?
+Múltiples coincidencias. ¿Saltar a cuál caja?
+Can't sort while you have a Pokémon in your hand!
+¡No puedes ordenar mientras sostienes a un Pokémon!
+The box is sort locked!
+¡La caja está bloqueada!
+The box is empty.
+La caja está vacía.
+Each Pokémon is already in the right place!
+¡Cada Pokémon ya está en el lugar correcto!
+No boxes were sorted.
+Ninguna caja fue ordenada.
+Only one box was sorted.
+Sólo una caja fue ordenada.
+#{boxesSorted} boxes were sorted!
+¡#{boxesSorted} cajas fueron ordenadas!
+But it failed, since {1} doesn't have any positive stat steps!
+¡Pero falló, ya que {1} no tienen ningún cambio de stats positivos!
+But it failed, since {1} and {2} can't raise the other's highest stat step!
+¡Pero falló, ya que {1} y {2} no puede aumentar la stat más alta de otro!
+{1} and {2} shared their highest stat steps!
+¡{1} y {2} compartieron sus stats más altas!
+{1} was frostbitten by the {2}! {3}!
+¡{1} fue helado por el {2}! ¡{3}!
+{1} was burned by the {2}! {3}!
+¡{1} fue quemado por el {2}! ¡{3}!
+#{@pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!
+¡#{@pkmn.name} cambió su #{getItemName(typeSettingItem)} al tipo #{typeCommands[chosenNumber]}!
+Total points
+Puntos totales
+New points
+Nuevos puntos
+\me[Voltorb Flip game over]Oh no! You get 0 Points!\wtnp[50]
+\me[Voltorb Flip game over]¡Oh no! ¡Obtienes 0 Puntos!\wtnp[50]
+\se[Voltorb Flip gain coins]{1} received {2} Points!
+\se[Voltorb Flip gain coins]¡{1} recibió {2} Puntos!
+Professor Tamarind called you, requesting your urgent help dealing with a problem in the Prizca Catacombs. The Catacombs can be found in the Sewers underneath Prizca East.
+La Profesora Tamarind te llamó, pidiéndote ayudar urgente para lidiar con un problema en las Catacumbas de Prizcas. Las Catacumbas pueden ser encontradas en las Alcantarillas debajo de Prizca Oriental.
+Go with Professor Tamarind to confront the thieves inside of the Catacombs. The Catacombs can be found in the Sewers underneath Prizca East.
+Ve con la Profesora Tamarind antes de confrontar a los ladrones dentro de las Catacumbas. Las Catacumbas pueden ser encontradas en las Alcantarillas debajo de Prizca Oriental.
+Confront Yezera, who appears to be leading a small group to steal Regidrago. The Catacombs can be found in the Sewers underneath Prizca East.
+Enfrenta a Yezera, quien parece estar liderando un pequeño grupo para robar a Regidrago. Las Catacumbas pueden ser encontrados en las Alcantarillas debajo de Prizca Oriental.
+Continue to delve into the Chamber of Regigigas, so you can finally put a stop to Yezera's plan. The Chamber of Regigias is behind a large door in the eastern side of the Hollowed Layer.
+Continua indagando en la Cámara de Regigigas, así finalmente puedes parar el plan de Yezera. La Cámara de Regigigas está detrás de una gran puerta en el lado este de la Capa Hueca. 
 [26]
 [27]
 [27]

@@ -92,68 +92,6 @@ Patrat
 [Map37]
 South: Wet Walkways
 South: Wet Walkways
-There you are.
-There you are.
-I’ve had a chance to look more at the data on that USB.
-I’ve had a chance to look more at the data on that USB.
-The people you got this from really didn’t bother to scrub anything off of it, huh?
-The people you got this from really didn’t bother to scrub anything off of it, huh?
-I feel a little silly for spending all that time in the stacks.
-I feel a little silly for spending all that time in the stacks.
-All these findings and life's work worth of knowledge makes you feel very, very, small.
-All these findings and life's work worth of knowledge makes you feel very, very, small.
-Are they satisfied to just, never act on the knowledge that they’ve obtained?
-Are they satisfied to just, never act on the knowledge that they’ve obtained?
-Hey. This might be an odd question, but…
-Hey. This might be an odd question, but…
-Could you come and talk to me again when you have 4 or less Pokemon in your party?
-Could you come and talk to me again when you have 4 or less Pokemon in your party?
-I think it’d be best if you come back when you have 4 or less Pokemon in your party.
-I think it’d be best if you come back when you have 4 or less Pokemon in your party.
-Great. Sorry.
-Great. Sorry.
-Most trainers I’ve seen around the region only use parties of 4, so I felt a bit… Intimidated by your overwhelming strength.
-Most trainers I’ve seen around the region only use parties of 4, so I felt a bit… Intimidated by your overwhelming strength.
-I have another possibly odd question for you.
-I have another possibly odd question for you.
-Have you ever caught a Legendary Pokemon before?
-Have you ever caught a Legendary Pokemon before?
-I was dreading that.
-I was dreading that.
-I don’t think I have it in me to let you become a hoarder like Team Chasm was.
-I don’t think I have it in me to let you become a hoarder like Team Chasm was.
-These are forces of nature you’re messing with. And they need to be respected as such.
-These are forces of nature you’re messing with. And they need to be respected as such.
-You need to know where you stand.
-You need to know where you stand.
-You need to know your place.
-You need to know your place.
-Oh, good. Right, yeah!
-Oh, good. Right, yeah!
-That’d be ridiculous if you did. It’d be like owning an Avatar.
-That’d be ridiculous if you did. It’d be like owning an Avatar.
-But… The Seekers were able to work with The Crafter to attain some sort of harmony with those.
-But… The Seekers were able to work with The Crafter to attain some sort of harmony with those.
-Even if I can find beauty in the primalness… Somehow, humanity managed to take control.
-Even if I can find beauty in the primalness… Somehow, humanity managed to take control.
-…If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
-…If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
-I’m the one who put in all the time reading the research here.
-I’m the one who put in all the time reading the research here.
-I’m the one who picked their bones clean.
-I’m the one who picked their bones clean.
-If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
-If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
-I’m so sorry.
-I’m so sorry.
-I don’t know what came over me, I really lost myself for a moment.
-I don’t know what came over me, I really lost myself for a moment.
-Shows how easy it could’ve been for the Seekers and Team Chasm to let this go to their heads.
-Shows how easy it could’ve been for the Seekers and Team Chasm to let this go to their heads.
-Here, let me heal your team up.
-Here, let me heal your team up.
-Let’s go find what we came here for together.
-Let’s go find what we came here for together.
 Yes
 Yes
 No
@@ -330,6 +268,14 @@ No
 [Map127]
 [Map128]
 [Map129]
+You could use a Moomoo Milk or a Full Restore to heal its partial petrification.
+You could use a Moomoo Milk or a Full Restore to heal its partial petrification.
+You apply the Moomoo Milk to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
+You apply the Moomoo Milk to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
+You don't have a Moomoo Milk to use.
+You don't have a Moomoo Milk to use.
+Use a Moomoo Milk
+Use a Moomoo Milk
 [Map130]
 No
 No
@@ -955,70 +901,6 @@ No
 No
 [Map427]
 [Map428]
-Hey, \PN! Come around to the front.
-Hey, \PN! Come around to the front.
-It’s still so striking to me that at any time, Team Chasm could’ve added this protector of the region to its arsenal.
-It’s still so striking to me that at any time, Team Chasm could’ve added this protector of the region to its arsenal.
-Sure, they managed to capture Heatran, the Titans, and other oddities I still need to comb that USB about.
-Sure, they managed to capture Heatran, the Titans, and other oddities I still need to comb that USB about.
-But… It all seems so short sighted.
-But… It all seems so short sighted.
-Anyway, ready?
-Anyway, ready?
-Nora brings out a small MP3 player, and presses a button.
-Nora brings out a small MP3 player, and presses a button.
-A soothing recording of an ancient flute fills the air.
-A soothing recording of an ancient flute fills the air.
-Ah. I realize now that, while I patched your team up after our battle, I’m out of supplies to heal my own.
-Ah. I realize now that, while I patched your team up after our battle, I’m out of supplies to heal my own.
-I’ll be counting on you!
-I’ll be counting on you!
-What a painful cry…
-What a painful cry…
-I can’t imagine how it must feel to wake up thousands of years after the disappearance of the people you were meant to protect.
-I can’t imagine how it must feel to wake up thousands of years after the disappearance of the people you were meant to protect.
-I realize now that I’ve only thought about how others would USE Volcanion.
-I realize now that I’ve only thought about how others would USE Volcanion.
-As a tool, a reward, or something in that vein…
-As a tool, a reward, or something in that vein…
-I haven't been seeing this creature as a living being.
-I haven't been seeing this creature as a living being.
-I saw it as words on a page.
-I saw it as words on a page.
-Volcanion seems to be looking to you for guidance.
-Volcanion seems to be looking to you for guidance.
-Take Volcanion with you?
-Take Volcanion with you?
-Nora, seeing your intent, comes over and hands you a PokeBall.
-Nora, seeing your intent, comes over and hands you a PokeBall.
-The Volcanion seems to sigh in relief as it enters the ball.
-The Volcanion seems to sigh in relief as it enters the ball.
-Wonderful.
-Wonderful.
-I hope you don’t mind, but I’m going to keep the USB you gave me.
-I hope you don’t mind, but I’m going to keep the USB you gave me.
-Turning away from it all now would be to live a life knowing what passion is, but never permitting myself to experience it.
-Turning away from it all now would be to live a life knowing what passion is, but never permitting myself to experience it.
-There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else on it that I want to see through.
-There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else on it that I want to see through.
-Volcanion nods. It will wait for you.
-Volcanion nods. It will wait for you.
-I still think it’d be for the best if you took Volcanion with you.
-I still think it’d be for the best if you took Volcanion with you.
-I’ve spent so much time looking towards the past for answers.
-I’ve spent so much time looking towards the past for answers. 
-Though, I guess I can keep them company for the time being…
-Though, I guess I can keep them company for the time being…
-The snow here seems to be heating up directly into steam.
-The snow here seems to be heating up directly into steam.
-Is this what Svait looked like before Team Chasm did what it did…?
-Is this what Svait looked like before Team Chasm did what it did…?
-The sublimation seems to be a different effect from the subthermal vents in the Svait Sauna.
-The sublimation seems to be a different effect from the subthermal vents in the Svait Sauna.
-But maybe… The sources of those phenomena are the same?
-But maybe… The sources of those phenomena are the same?
-Yes
-Yes
 No
 No
 [Map429]
@@ -1037,6 +919,7 @@ Dialogue here.
 [Map440]
 [Map441]
 [Map442]
+[Map443]
 No.
 No.
 [1]
@@ -8297,6 +8180,8 @@ Rainbow Feather
 Rainbow Feather
 Amwi Berry
 Amwi Berry
+Test Item
+Test Item
 [8]
 Alolan Wreathes
 Alolan Wreathes
@@ -9692,6 +9577,8 @@ TM199s
 TM199s
 Lighthouse Keycards
 Lighthouse Keycards
+Test Items
+Test Items
 [9]
 A very tasty tail of something. It can be sold to shops for $4000.
 A very tasty tail of something. It can be sold to shops for $4000.
@@ -10503,6 +10390,8 @@ A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certa
 A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.
 A strange feather that gleams in rainbow colors.
 A strange feather that gleams in rainbow colors.
+An item to test the PBS Extensions feature. It can be sold to shops for $1.
+An item to test the PBS Extensions feature. It can be sold to shops for $1.
 [10]
 Sharpness
 Sharpness
