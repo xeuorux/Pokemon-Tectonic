@@ -1049,9 +1049,9 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = UserAddStockpileRaiseDefSpDef1
+FunctionCode = UserAddStockpileRaiseDefSpDef2
 Flags = CanSnatch
-Description = The user charges up power and raises both its Defense and Sp. Def. The move can be used twice.
+Description = The user charges up power and raises its Defense and Sp. Def by two steps. The move can be stacked twice.
 #-------------------------------
 [STOMP]
 Name = Stomp

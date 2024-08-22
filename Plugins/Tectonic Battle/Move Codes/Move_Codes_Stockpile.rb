@@ -1,11 +1,11 @@
 #===============================================================================
-# Increases the user's Defense and Special Defense by 1 step each. Ups the
+# Increases the user's Defense and Special Defense by 2 steps each. Ups the
 # user's stockpile by 1 (max. 2). (Stockpile)
 #===============================================================================
-class PokeBattle_Move_UserAddStockpileRaiseDefSpDef1 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_UserAddStockpileRaiseDefSpDef2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = DEFENDING_STATS_1
+        @statUp = DEFENDING_STATS_2
     end
 
     def pbMoveFailed?(user, _targets, show_message)
