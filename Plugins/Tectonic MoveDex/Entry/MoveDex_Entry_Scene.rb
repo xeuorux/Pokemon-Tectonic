@@ -105,7 +105,7 @@ class MoveDex_Entry_Scene
             learningEntry[1]
         }
         @levelUpLearnables.reject! { |learningEntry|
-            !speciesInfoViewable?(learningEntry[1])
+            !speciesInfoViewable?(learningEntry[0])
         }
     end
 
