@@ -1380,14 +1380,6 @@ Price = 50000
 FieldUse = Direct
 Description = It revives all fainted Pokémon. In doing so, it also fully restores their HP.
 #-------------------------------
-[STATUSHEAL]
-Name = Status Heal
-NamePlural = Status Heals
-Pocket = 2
-Price = 400
-FieldUse = OnPokemon
-Description = A spray-type medicine. It heals all the status problems of a single Pokémon.
-#-------------------------------
 [LAVACOOKIE]
 Name = Lava Cookie
 NamePlural = Lava Cookies

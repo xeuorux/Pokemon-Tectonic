@@ -4460,3 +4460,11 @@ Pocket = 7
 Price = 0
 Flags = KeyItem
 Description = A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.
+#-------------------------------
+[STATUSHEAL]
+Name = Status Heal
+NamePlural = Status Heals
+Pocket = 2
+Price = 400
+FieldUse = OnPokemon
+Description = A spray-type medicine. It heals all the status problems of a single Pokémon.
