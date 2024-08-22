@@ -1204,6 +1204,12 @@ No
 No
 Yes
 Sí
+The Growlithe is cowering from everything.
+El Growlithe está temblando.
+You notice a tag on its collar. Though it's moving around, you can just make out what's written on it.
+Notas una etiqueta en su collar. Aunque se está moviendo, apenas puedes notar lo que está escrito en ella.
+Its owner apparently lives in Novo Apartments, in Novo Town.
+Su dueño aparentemente vive en los Apartamentos Novo, en Pueblo Novo.
 [Map8]
 Hey there. Miss me?
 Buenas. ¿Me extrañabas?
@@ -3521,7 +3527,68 @@ What could have caused such an abnormal change in temperature in such a concentr
 ¿Que podría haber causado un anormal cambio en la temperatura concentrado en esta área?
 If you do go in, you legally absolve the Rangers and the Svait Rescue Operation of responsibility.
 Si entras, legalmente absuelves a los Rangers y a la Operación de Rescate Svait de toda responsabilidad.
-
+There you are.
+Ahí estás.
+I’ve had a chance to look more at the data on that USB.
+Tuve la oportunidad de ver más datos en ese USB.
+The people you got this from really didn’t bother to scrub anything off of it, huh?
+La gente de la que obtuviste esto ni se molestó en limpiar nada de esto, ¿eh?
+I feel a little silly for spending all that time in the stacks.
+Me siento algo tonta por pasar tanto tiempo en la biblioteca.
+All these findings and life's work worth of knowledge makes you feel very, very, small.
+Todos estos descubrimientos y el equivalente a una vida de conocimiento te hace sentir muy, muy, pequeño.
+Are they satisfied to just, never act on the knowledge that they’ve obtained?
+¿Acaso están satisfechos en simplemente, no hacer nada con todo el conocimiento que han obtenido?
+Hey. This might be an odd question, but…
+Hey. Esta pregunta podrá parecer extraña, pero...
+Could you come and talk to me again when you have 4 or less Pokemon in your party?
+¿Podrías regresar y hablar conmigo de nuevo cuando tengas 4 o menos Pokémon en tu equipo?
+I think it’d be best if you come back when you have 4 or less Pokemon in your party.
+Creo que sería mejor su regresaras cuando tengas 4 o menos Pokémon en tu equipo.
+Great. Sorry.
+Genial. Lo siento.
+Most trainers I’ve seen around the region only use parties of 4, so I felt a bit… Intimidated by your overwhelming strength.
+La mayoría de entrenadores que he visto en esta región sólo usan equipos de 4, así que me sentí algo... intimidada por tu fuerza abrumadora.
+I have another possibly odd question for you.
+Tengo otra pregunta posiblemente rara para tí.
+Have you ever caught a Legendary Pokemon before?
+¿Alguna vez has atrapado a un Pokémon Legendario?
+I was dreading that.
+Temía eso.
+I don’t think I have it in me to let you become a hoarder like Team Chasm was.
+No creo que pueda dejarte convertirte en un acaparador como lo fue el Team Chasm.
+These are forces of nature you’re messing with. And they need to be respected as such.
+Estás jugando con fuerzas de la naturaleza. Y tienen que ser respetadas como tales.
+You need to know where you stand.
+Tienes que saber dónde estás parado.
+You need to know your place.
+Tienes que conocer tu lugar.
+Oh, good. Right, yeah!
+Oh, bien. Cierto, ¡seh!
+That’d be ridiculous if you did. It’d be like owning an Avatar.
+Sería ridículo si lo hicieras. Sería como atrapar un Avatar.
+But… The Seekers were able to work with The Crafter to attain some sort of harmony with those.
+Pero... Los Buscadores fueron capaces de trabajar con El Escultor para tener algún tipo de armonía con ellos.
+Even if I can find beauty in the primalness… Somehow, humanity managed to take control.
+Incluso si puedo encontrar belleza en lo primigenio... De algún modo, la humanidad logró tomar control.
+…If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+…Si alguien es merecedor de heredar el legado de los Buscadores, soy yo.
+I’m the one who put in all the time reading the research here.
+Yo soy quien pasó todo ese tiempo leyendo las investigaciones allí.
+I’m the one who picked their bones clean.
+Yo soy quien meditó sobre ellas.
+If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+Si alguien es merecedor de heredar el legado de los Buscadores, soy yo.
+I’m so sorry.
+Lo siento tanto.
+I don’t know what came over me, I really lost myself for a moment.
+No sé que me pasó, realmente me perdí a mí misma por un momento.
+Shows how easy it could’ve been for the Seekers and Team Chasm to let this go to their heads.
+Es una buena demostración de lo fácil que se les pudo haber subido esto a la cabeza los Buscadores y al Team Chasm.
+Here, let me heal your team up.
+Ok, déjame curar a tu equipo.
+Let’s go find what we came here for together.
+Busquemos juntos lo que vinimos a encontrar aquí.
 [Map38]
 
 Okay, now just to dig the moat!
@@ -22120,6 +22187,10 @@ Now it's basically my own waterfront apartment, with the Rangers paying the rent
 Ahora es básicamente mi propio apartamento costero, con los Rangers pagando el alquiler por mi.
 Got a good deal for myself, if I do say so myself.
 Toda una ganga, diría.
+I've got a Figment for your contribution.
+Tengo una Fantasía por tu contribución.
+It's made of magic. I'm sure you want it.
+Está hecha de magia. Seguramente la quieres.
 [Map323]
 
 Fossil records show that Pokemon in ancient times were significantly more powerful than they are today.
@@ -26542,9 +26613,172 @@ East: Battle Plaza Underground
 Este: Plaza Batalla Subterránea
 South-East: Exit to Eleig River Crossing
 Sureste: Salida a Cruce del Río Eleig
+The insurance business is all about predicting the future.
+El trabajo de una aseguradora es predecir el futuro.
+Too bad I'm completely unpredictable!
+¡Qué mal que soy completamente impredecible!
+Well, I definitely didn't predict that.
+Bueno, definitivamente no predije eso.
+Excuse me, I've got to update my mathematical models...
+Discúlpame, tengo que actualizar mis modelos matemáticos...
+No matter. Even a loss is just more data to feed to the algorithm.
+No importa. Incluso una derrota es sólo más información para alimentar al algoritmo.
+[Map427]
+An old, beaten up laptop. A couple dozen windows are open all at once.
+Una vieja laptop algo destartalada. Un par de docenas de ventanas están abiertas a la vez.
+Something is being researched, but it's impossible to tell what specifically.
+Algo está siendo investigado, pero es imposible decir qué específicamente.
+It's Nora's laptop. She must have forgotten it in her hurry to get to Svait.
+Es la laptop de Nora. Debió haberla olvidado en su apuro para llegar a Svait.
+A map displayed on the screen shows a path to the west of the Ranger Station there.
+Una mapa mostrado en el mapa muestra un camino al oeste de la Estación Ranger allí.
+“Over 2500 years ago, there existed a sect of itinerant priests who worshipped a Legendary Carver of Clay.
+"Hace más de 2500 años, existía una secta de sacerdotes nómadas que adoraban al Legendario Escultor de Arcilla. 
+And by its hand, people were able to claim dominion over inhospitable lands high and low.
+Y por su mano, la gente fue capaz de reclamar dominio sobre las tierras inhóspitas en cada rincón de la región. 
+Yet, despite their efforts, humanity was cast out from the lands where the primal forces of this world worked.
+Aún así, a pesar de sus esfuerzos, la humanidad fue desterrada de las tierras donde las fuerzas primigenias de este mundo funcionaban.
+Back to the caves; which their species used to call home. Now the caverns would be their tombs…"
+De vuelta a las cuevas; las que su especie solía llamar hogar. Ahora las cavernas serían sus tumbas..."
+Guess I forgot to keep the door locked.
+Supongo que olvidé dejar la puerta cerrada.
+You don’t look like staff, so...you’re searching for something, like me.
+No pareces parte del personal, así que... estás buscando algo, como yo.
+Name’s Nora. I like to think of myself as a seeker of knowledge.
+Me llamo Nora. Me gusta pensar que soy una buscadora del conocimiento.
+I took up a job as a janitor here to gain access to this library, since it’s sealed off to the public.
+Tomé un trabajo de conserje aquí para ganar acceso a esta biblioteca, ya que está cerrada al público.
+It’s not trespassing if they’re paying you to be here.
+No es allanamiento si te pagan por estar aquí.
+Team Chasm apparently had roots in anthropology, based on all the records they’ve shoved away here.
+El Team Chasm aparentemente tuvo raíces en la antropología, basado en todos los registros que dejaron aquí.
+Translated passages with way too many sticky notes go over all kinds of myths and legends.
+Pasajes traducidos con una cantidad exagerada de notas mencionan todo tipo de mitos y leyendas.
+One that caught my eye involves the Seekers, those ancient priests I mentioned earlier.
+Una que me llamó la atención implica a los Buscadores, aquellos sacerdotes antiguos que mencioné anteriormente.
+They were ultimately destroyed by a great darkness that some protector deity was apparently equipped to handle.
+Fueron finalmente destruídos por una gran oscuridad que algún tipo de deidad protectora estaba aparentemente equipada para manejar.
+But, based on the fact that the Seekers disappeared, the guardian must have failed in its duty.
+Pero, basándome en el hecho de que los Buscadores desaparecieron, el guardián debió haber fallado en su labor.
+Why? I don’t know.
+¿Por qué? No lo sé.
+The notes here make reference to materials that I can’t find anywhere in this room.
+Las notas aquí hacen referencia a materiales que no puedo encontrar en ninguna parte de esta habitación.
+I’m thinking that these records have to exist elsewhere.
+Pienso que estos registros deben existir en alguna otra parte.
+And I’m going to assume that they must have been saved digitally, as there’s nowhere else in the region with this much literature.
+Y voy a a sumir que debieron haber sido guardados digitalmente, ya que no hay ninguna otra parte en la región con esta cantidad de literatura.
+Do you think you can search LuxTech for any servers hosting data from before Team Chasm was established?
+¿Puedes buscar en LuxTech cualquier tipo de servidores que guarden información de antes que el Team Chasm se estableciera?
+I’ll keep on searching here in the meantime for something hidden in the stacks.
+Por mientras seguiré buscando aquí por algo oculto entre las pilas.
+Let me know if you find something over at LuxTech.
+Házme saber si encuentras algo en LuxTech.
+I’ve only been finding fun facts, the kind you’d see on a moving truck.
+Sólo he estado encontrado datos curiosos, del tipo que encontrarías en un camión de mudanzas.
+Did you know that hexagons were an important symbols of the Seekers?
+¿Sabías que los hexágonos eran uno de los símbolos importantes de los Buscadores?
+That’s apparently what inspired Team Chasm’s logo.
+Aparentemente eso fue lo que inspiró el logo del Team Chasm.
+You’re back! Excellent.
+¡Regresaste! Excelente.
+I managed to make a breakthrough while you were away.
+Logré hacer un descubrimiento mientras estabas fuera.
+Would you mind showing me what you’ve found first?
+Pero antes, ¿te importaría mostrarme lo que encontraste?
+You hand over the Old USB Drive.
+Le alcanzas la Vieja Unidad USB.
+Nora loads the device on her laptop.
+Nora carga el aparato en su laptop.
+Fascinating.
+Fascinante.
+This one file, Project Chrysopoeia Albedo, goes into great detail of a large volcanic eruption thousands of years ago which heavily impacted the region.
+Este archivo, el Proyecto Crisopea Albedo, entra en gran detalle sobre una gran erupción volcánica hacer miles de años que impactó gravemente en la región.
+It makes sense that the large clouds of ash would be devastating to a civilization in its technological infancy.
+Tiene sentido que grandes nubes de ceniza serían desvastadoras para una civilización con bajo nivel de tecnología.
+This must be the "great darkness" that the Seekers mentioned.
+Quizás esta sea la "gran oscuridad" que los Buscadores mencionaron.
+Perhaps that’s also why they built what would become the underground ruins; like those found in Mt. Kilna?
+Quizá también es por eso que construyeron lo que se terminarían convirtiendo en las ruinas subterráneas; ¿cómo aquellas encontradas en el Mt. Kilna?
+Maybe those places were meant to be safe spaces from the smog?
+¿Quizás se suponía que esos lugares eran espacios seguros del humo?
+Wait, no. Why would they have built shelters if they had the guardian?
+Espera, no. ¿Por qué construirían refugios si tenían al guardián?
+Hahaha. This is the rush I’ve been seeking.
+Jajaja. Esta es la emoción que estaba buscando.
+Questions whose answers are more questions.
+Preguntas cuyas respuestas llevan a más preguntas.
+As for my own findings: I found references to an aboveground ruins site which might lead to what we’re after.
+Respecto a lo que encontré: encontré referencias a unas ruinas sobre las tierras que podrían llevarnos a lo que estamos buscandos.
+I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
+Estaré esperando por tí en <imp>Svait, en el nivel superior</imp>.
 [Map428]
 Wow! It's a Volcanion, trapped inside a large boulder!
 ¡Wow! ¡Es un Volcanion, atrapado dentro de un pedrusco!
+Hey, \PN! Come around to the front.
+¡Hey, \PN! Ven hacia el frente.
+It’s still so striking to me that at any time, Team Chasm could’ve added this protector of the region to its arsenal.
+Todavía me sorprende que en cualquier momento, el Team Chasm pudo haber añadido a este protector de la región a su arsenal.
+Sure, they managed to capture Heatran, the Titans, and other oddities I still need to comb that USB about.
+Seguro, pudieron atrapar a Heatran, los Titanes, y otras rarezas que todavía tengo que investigar en ese USB.
+But… It all seems so short sighted.
+Pero... todo parece tan cortoplacista.
+Anyway, ready?
+Como sea, ¿listo?
+Nora brings out a small MP3 player, and presses a button.
+Nora toma un pequeño reproductor MP3, y presiona un botón.
+A soothing recording of an ancient flute fills the air.
+Una relajante grabación de una flauta antigua llena el aire.
+Ah. I realize now that, while I patched your team up after our battle, I’m out of supplies to heal my own.
+Ah. Ahora me doy cuenta, luego de sanar a tu equipo luego de nuestro combate, me quedé sin suministros para curar al mío.
+I’ll be counting on you!
+¡Cuento contigo!
+What a painful cry…
+Qué grito doloroso…
+I can’t imagine how it must feel to wake up thousands of years after the disappearance of the people you were meant to protect.
+No puedo imaginar lo que se debe sentir despertar luego de miles de años de la desaparición de la gente que se supone debías proteger.
+I realize now that I’ve only thought about how others would USE Volcanion.
+Ahora me doy cuenta de que sólo he estado pensando en cómo otros USARÍAN a Volcanion.
+As a tool, a reward, or something in that vein…
+Como una herramienta, una recompensa, o algo de ese estilo...
+I haven't been seeing this creature as a living being.
+No he estado viendo a esta criatura como un ser vivo.
+I saw it as words on a page.
+Si no como palabras en una página.
+Volcanion seems to be looking to you for guidance.
+Volcanion parece que te mira buscando guianza.
+Take Volcanion with you?
+¿Te llevas a Volcanion contigo?
+Nora, seeing your intent, comes over and hands you a PokeBall.
+Nora, viendo tus intenciones, se acerca y te alcanza una Poké Ball.
+The Volcanion seems to sigh in relief as it enters the ball.
+El Volcanion parece suspirar de alivio mientras entra a la ball.
+Wonderful.
+Maravilloso.
+I hope you don’t mind, but I’m going to keep the USB you gave me.
+Espero que no te importe, pero me voy a quedar con el USB que me diste.
+Turning away from it all now would be to live a life knowing what passion is, but never permitting myself to experience it.
+Abandonarlo ahora sería vivir una vida sabiendo lo que es la pasión, pero nunca permitirme experimentarla.
+There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else on it that I want to see through.
+Hay otros cabos sueltos dejados atrás por el Team Chasm, los Buscadores, y quién sabe qué más que quiero conocer.
+Volcanion nods. It will wait for you.
+Volcanion asiente. Estará esperando por tí.
+I still think it’d be for the best if you took Volcanion with you.
+Todavía pienso que sería mejor que te llevaras a Volcanion contigo.
+I’ve spent so much time looking towards the past for answers.
+He pasado demasiado tiempo buscando hacia el pasado por respuestas.
+Though, I guess I can keep them company for the time being…
+Pero, supongo que le puedo hacer compañía por el momento...
+The snow here seems to be heating up directly into steam.
+La nieve aquí parece calentarse directamente hacia vapor.
+Is this what Svait looked like before Team Chasm did what it did…?
+¿Es esto como se veía Svait antes de que el Team Chasm hiciera lo que hizo...?
+The sublimation seems to be a different effect from the subthermal vents in the Svait Sauna.
+La sublimación parece ser un efecto diverente al de los conductos subtermales en el Sauna Svait.
+But maybe… The sources of those phenomena are the same?
+Pero quizás... ¿La fuente de estos fenómenos es la misma?
+Yes
+Sí
 [Map429]
 Multiple copies of the same sign, all advertising an insurance package deal that will be available in the future.
 Múltiples copias del mismo cartel, todos publicitando un paquete de seguros que será disponible en el futuro.
@@ -26664,6 +26898,103 @@ You see a few photos of Bence with a Hoppip and Alolan Geodude.
 Ves algunas fotos de Bence con un Hoppip y un Geoduded Alola.
 It seems like they lost a lot of Pokemon battles back then...
 Parece que perdían muchos combates Pokémon en ese entonces...
+[Map443]
+Man, that battle really tuckered me out.
+Uff, ese combate sí que me hizo polvo.
+I'm not a stranger to hard work, mind you.
+Eso sí, no creas que soy un extraño al trabajo duro.
+I went through so much coffee when I was an architect.
+Bebí demasiado café cuando era un arquitecto.
+I’m the one who came up with the designs for the Ranger Outposts you see all over.
+Soy quien diseñó los diseños de los Puestos Rangers que ves por todos lados.
+Bless Bogdan Cement for their cheap prices.
+Bendito sea Cemento Bogdan por sus bajos precios.
+A dusty, ancient computer terminal.
+Una terminal de computadora vieja y polvorienta.
+"EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
+Puedes leer "ARCHIVO PROYECTOS TEMPRANOS" en grandes letras en la parte superior de la pantalla. 
+Below that, it prompts you to enter a password.
+Debajo de eso, te pide escribir una contraseña.
+A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
+Un viejo y polvoriento registro. "Catálogo de Archivo" está escrito al frente con marcador negro.
+As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
+Mientras te acerchas, puedes escuchar a los hombres conversando, quejándose sobre el frío y la dificultad de sus tareas.
+Apparently these are Kurt and Pearce, LuxTech employees.
+Aparentemente ellos son Kurt y Pearce, empleados de LuxTech.
+Jeez, this stuff really is ancient.
+Vaya, estas cosas sí que son antiguas.
+Whose idea was it to let Tamarind name the Projects and Operation files for internal use?
+¿Quién tuvo la idea de dejar que Tamarind nombre a los archivos de Proyectos y Operaciones para uso interno?
+Her naming conventions require a thesaurus to decipher.
+Hace falta un tesauro para descifrar estos nombres.
+She always was kind of a slob. Lambert was always cleaning up her messes.
+Siempre fue algo desaliñada. Lambert siempre estaba limpiando sus desastres.
+Speaking of, I do wonder how the chop off the old block is doing these days.
+Hablando de, me pregunto cómo le va a los antiguos miembros estos días.
+Yeah, we should reach out to him sometime. Rafael too.
+Seh, deberíamos ir a hablarle alguno de estos días. También a Rafael.
+We’ve both accrued too much PTO, after all. Haha.
+Acumulamos demasiados vacaciones pagas después de todo. Jaja.
+…Don’t you think it’s kinda odd that those two ended up as Gym Leaders?
+¿...No te parece algo raro que esos dos hayan terminado como Líderes de Gimnasio?
+I mean, Lambert, I kinda understand. But Rafael was primarily a scientist.
+Osea, Lambert, algo lo entiendo. Pero Rafael era principalmente un científico.
+And that’s not even mentioning Noel. Who is. Noel.
+Y eso sin mencionar a Noel. Quién es. Noel.
+And we’re… here.
+Y nosotros... estamos aquí.
+And it seems we’re not the only ones here. You got something to say, or…?
+Y parece que no somos los únicos aquí. ¿Tienes algo que decir, o...?
+What? No!
+¿Qué? ¡No!
+This is a sensitive piece of machinery!
+¡Estas son piezas de maquinaria sensibles!
+There was a whole scrum ceremony covering this.
+Hubo toda una ceremonia cubriendo esto.
+We can’t just give it away!
+¡No podemos simplemente darlo!
+Forget the ceremony, Josh. It’s Mavis’ kid.
+Olvida la ceremonia, Josh. Es el hijo de Mavis.
+So? Helena has been on our behinds for a while and we’ve already pushed this back again and again.
+¿Y qué? Helena ha estado detrás de nosotros por un tiempo y ya hemos postergado esto una y otra vez.
+If we don’t do this now, she’ll have someone else do it.
+Si no hacemos esto ahora, ella hará que alguien más lo haga.
+And I guess that makes you our "someone else."
+Y supongo que eso te hace nuestro "alguien más."
+If there’s something you want in this life, you have to take it.
+Si hay algo que quieres en esta vida, tienes que tomarlo.
+Using your own overwhelming strength.
+Usando tu fuerza abrumadora.
+So, you want us to hand the archive data over to you, huh?
+Entonces, ¿quieres que te demos la información del archivo, eh?
+If there’s something you want in this life, you have to take it. Using your own overwhelming strength.
+SI hay algo que quieres en esta vida, tienes que tormalo. Usando tu propia fuerza abrumadora.
+Losing a fight like that reminds you of the good old days, dont’cha think, Kurt?
+Perder un combate de este modo me recuerda a los buenos viejos días, ¿no lo crees, Kurt?
+You mean having to trudge through the lava filled chambers of an active volcano?
+¿Te refieres a tener que atravesar cámaras llenas de lava dentro de un volcán activo?
+Yeah, no. I’ll take my cushy office job with air conditioning any day.
+Seh, no. Tomaré mi cómodo trabajo de oficina con aire acondicionado cualquier otro día.
+But, a win’s a win, so here ya go…
+Pero, una victoria es una victoria, así que aquí tienes...
+This thing is filled with early Chasm data.
+Esta cosa está llena con información temprana del Chasm.
+When you get the chance, take a look at "Project Chrysopoeia Albedo".
+Cuando tengas la oportunidad, ojea el "Proyecto Crisopea Albedo".
+I remember that one causing the eggheads a lot of pain.
+Recuerdo que ese le dió jaquecas a nuestros intelectuales.
+The ritual to capture the target required a flute that was excavated much later on, in a place no one would ever think to find it.
+El ritual para atrapar al objetivo requería una flaura que fue excavada mucho después, en un lugar donde ninguno pensaría encontrarla.
+And by that time, there wasn’t really a pressing need for another mythical fire type on our team’s roster, y’know?
+Y para ese entonces, realmente no había mucha necesidad para otro singular tipo fuego enter las filas de nuestro equipo, ¿sabes?
+You really gave it your all in that battle.
+Sí que lo diste todo en ese combate.
+It made me realize that I haven’t been giving mine here.
+Me hizo darme cuenta de que no he estado dando lo mío.
+Think I’m going to give my two weeks’ notice to Helena. Try my hand at being a Pro Trainer.
+Creo que voy a dar mi aviso a Helena. Intentaré ser un Profesional.
+Can you give me that?
+¿Podrías darme eso?
 [1]
 29
 Nidoran-F

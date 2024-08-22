@@ -21,28 +21,6 @@ Skyler.
 [Map4]
 [Map5]
 [Map6]
-I was supposed to have a meeting with Kurt today about gracefully decommissioning some of the cluster, but he never showed up.
-I was supposed to have a meeting with Kurt today about gracefully decommissioning some of the cluster, but he never showed up.
-Doesn’t he know that maintaining legacy systems adds unnecessary fragility?
-Doesn’t he know that maintaining legacy systems adds unnecessary fragility?
-It’s hard to get promoted when the top level talent here are former Team Chasm lieutenants.
-It’s hard to get promoted when the top level talent here are former Team Chasm lieutenants.
-They're such good battlers. It makes one jealous.
-They're such good battlers. It makes one jealous.
-LuxTech Main
-LuxTech Main
-LuxTech Cold Storage
-LuxTech Cold Storage
-Yesterday was terrible.
-Yesterday was terrible.
-I was forced to wind down the cluster I had running on the archive.
-I was forced to wind down the cluster I had running on the archive.
-"Ecology of the Lingering Delta", my pet project.
-"Ecology of the Lingering Delta", my pet project.
-Even worse, I had to go down into the Cold Storage basement level to do the deed.
-Even worse, I had to go down into the Cold Storage basement level to do the deed.
-LuxTech Condos
-LuxTech Condos
 No
 No
 [Map7]
@@ -114,6 +92,72 @@ Patrat
 [Map37]
 South: Wet Walkways
 South: Wet Walkways
+There you are.
+There you are.
+I’ve had a chance to look more at the data on that USB.
+I’ve had a chance to look more at the data on that USB.
+The people you got this from really didn’t bother to scrub anything off of it, huh?
+The people you got this from really didn’t bother to scrub anything off of it, huh?
+I feel a little silly for spending all that time in the stacks.
+I feel a little silly for spending all that time in the stacks.
+All these findings and life's work worth of knowledge makes you feel very, very, small.
+All these findings and life's work worth of knowledge makes you feel very, very, small.
+Are they satisfied to just, never act on the knowledge that they’ve obtained?
+Are they satisfied to just, never act on the knowledge that they’ve obtained?
+Hey. This might be an odd question, but…
+Hey. This might be an odd question, but…
+Could you come and talk to me again when you have 4 or less Pokemon in your party?
+Could you come and talk to me again when you have 4 or less Pokemon in your party?
+I think it’d be best if you come back when you have 4 or less Pokemon in your party.
+I think it’d be best if you come back when you have 4 or less Pokemon in your party.
+Great. Sorry.
+Great. Sorry.
+Most trainers I’ve seen around the region only use parties of 4, so I felt a bit… Intimidated by your overwhelming strength.
+Most trainers I’ve seen around the region only use parties of 4, so I felt a bit… Intimidated by your overwhelming strength.
+I have another possibly odd question for you.
+I have another possibly odd question for you.
+Have you ever caught a Legendary Pokemon before?
+Have you ever caught a Legendary Pokemon before?
+I was dreading that.
+I was dreading that.
+I don’t think I have it in me to let you become a hoarder like Team Chasm was.
+I don’t think I have it in me to let you become a hoarder like Team Chasm was.
+These are forces of nature you’re messing with. And they need to be respected as such.
+These are forces of nature you’re messing with. And they need to be respected as such.
+You need to know where you stand.
+You need to know where you stand.
+You need to know your place.
+You need to know your place.
+Oh, good. Right, yeah!
+Oh, good. Right, yeah!
+That’d be ridiculous if you did. It’d be like owning an Avatar.
+That’d be ridiculous if you did. It’d be like owning an Avatar.
+But… The Seekers were able to work with The Crafter to attain some sort of harmony with those.
+But… The Seekers were able to work with The Crafter to attain some sort of harmony with those.
+Even if I can find beauty in the primalness… Somehow, humanity managed to take control.
+Even if I can find beauty in the primalness… Somehow, humanity managed to take control.
+…If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+…If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+I’m the one who put in all the time reading the research here.
+I’m the one who put in all the time reading the research here.
+I’m the one who picked their bones clean.
+I’m the one who picked their bones clean.
+If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+If anyone should be worthy of inheriting the legacy of the Seekers, it's me.
+I’m so sorry.
+I’m so sorry.
+I don’t know what came over me, I really lost myself for a moment.
+I don’t know what came over me, I really lost myself for a moment.
+Shows how easy it could’ve been for the Seekers and Team Chasm to let this go to their heads.
+Shows how easy it could’ve been for the Seekers and Team Chasm to let this go to their heads.
+Here, let me heal your team up.
+Here, let me heal your team up.
+Let’s go find what we came here for together.
+Let’s go find what we came here for together.
+Yes
+Yes
+No
+No
 [Map38]
 <i>Sniff sniff</i>
 <i>Sniff sniff</i>
@@ -239,8 +283,6 @@ No
 No
 [Map97]
 [Map98]
-Server Archive
-Server Archive
 No
 No
 [Map99]
@@ -907,110 +949,78 @@ It was a pretty sick experience, all things considered.
 [Map426]
 Silver Ninjask. Hacker.
 Silver Ninjask. Hacker.
-The insurance business is all about predicting the future.
-The insurance business is all about predicting the future.
-Too bad I'm completely unpredictable!
-Too bad I'm completely unpredictable!
-Well, I definitely didn't predict that.
-Well, I definitely didn't predict that.
-Excuse me, I've got to update my mathematical models...
-Excuse me, I've got to update my mathematical models...
-No matter. Even a loss is just more data to feed to the algorithm.
-No matter. Even a loss is just more data to feed to the algorithm.
 Dialogue here.
 Dialogue here.
 No
 No
 [Map427]
-An old, beaten up laptop. A couple dozen windows are open all at once.
-An old, beaten up laptop. A couple dozen windows are open all at once. 
-Something is being researched, but it's impossible to tell what specifically.
-Something is being researched, but it's impossible to tell what specifically.
-It's Nora's laptop. She must have forgotten it in her hurry to get to Svait.
-It's Nora's laptop. She must have forgotten it in her hurry to get to Svait.
-A map displayed on the screen shows a path to the west of the Ranger Station there.
-A map displayed on the screen shows a path to the west of the Ranger Station there.
-“Over 2500 years ago, there existed a sect of itinerant priests who worshipped a Legendary Carver of Clay.
-“Over 2500 years ago, there existed a sect of itinerant priests who worshipped a Legendary Carver of Clay.
-And by its hand, people were able to claim dominion over inhospitable lands high and low.
-And by its hand, people were able to claim dominion over inhospitable lands high and low.
-Yet, despite their efforts, humanity was cast out from the lands where the primal forces of this world worked.
-Yet, despite their efforts, humanity was cast out from the lands where the primal forces of this world worked.
-Back to the caves; which their species used to call home. Now the caverns would be their tombs…"
-Back to the caves; which their species used to call home. Now the caverns would be their tombs…"
-Guess I forgot to keep the door locked.
-Guess I forgot to keep the door locked.
-You don’t look like staff, so...you’re searching for something, like me.
-You don’t look like staff, so...you’re searching for something, like me.
-Name’s Nora. I like to think of myself as a seeker of knowledge.
-Name’s Nora. I like to think of myself as a seeker of knowledge.
-I took up a job as a janitor here to gain access to this library, since it’s sealed off to the public.
-I took up a job as a janitor here to gain access to this library, since it’s sealed off to the public.
-It’s not trespassing if they’re paying you to be here.
-It’s not trespassing if they’re paying you to be here.
-Team Chasm apparently had roots in anthropology, based on all the records they’ve shoved away here.
-Team Chasm apparently had roots in anthropology, based on all the records they’ve shoved away here.
-Translated passages with way too many sticky notes go over all kinds of myths and legends.
-Translated passages with way too many sticky notes go over all kinds of myths and legends.
-One that caught my eye involves the Seekers, those ancient priests I mentioned earlier.
-One that caught my eye involves the Seekers, those ancient priests I mentioned earlier.
-They were ultimately destroyed by a great darkness that some protector deity was apparently equipped to handle.
-They were ultimately destroyed by a great darkness that some protector deity was apparently equipped to handle.
-But, based on the fact that the Seekers disappeared, the guardian must have failed in its duty.
-But, based on the fact that the Seekers disappeared, the guardian must have failed in its duty.
-Why? I don’t know.
-Why? I don’t know.
-The notes here make reference to materials that I can’t find anywhere in this room.
-The notes here make reference to materials that I can’t find anywhere in this room.
-I’m thinking that these records have to exist elsewhere.
-I’m thinking that these records have to exist elsewhere.
-And I’m going to assume that they must have been saved digitally, as there’s nowhere else in the region with this much literature.
-And I’m going to assume that they must have been saved digitally, as there’s nowhere else in the region with this much literature.
-Do you think you can search LuxTech for any servers hosting data from before Team Chasm was established?
-Do you think you can search LuxTech for any servers hosting data from before Team Chasm was established?
-I’ll keep on searching here in the meantime for something hidden in the stacks.
-I’ll keep on searching here in the meantime for something hidden in the stacks.
-Let me know if you find something over at LuxTech.
-Let me know if you find something over at LuxTech.
-I’ve only been finding fun facts, the kind you’d see on a moving truck.
-I’ve only been finding fun facts, the kind you’d see on a moving truck.
-Did you know that hexagons were an important symbols of the Seekers?
-Did you know that hexagons were an important symbols of the Seekers?
-That’s apparently what inspired Team Chasm’s logo.
-That’s apparently what inspired Team Chasm’s logo. 
-You’re back! Excellent.
-You’re back! Excellent.
-I managed to make a breakthrough while you were away.
-I managed to make a breakthrough while you were away.
-Would you mind showing me what you’ve found first?
-Would you mind showing me what you’ve found first?
-You hand over the Old USB Drive.
-You hand over the Old USB Drive.
-Nora loads the device on her laptop.
-Nora loads the device on her laptop.
-Fascinating.
-Fascinating.
-This one file, Project Chrysopoeia Albedo, goes into great detail of a large volcanic eruption thousands of years ago which heavily impacted the region.
-This one file, Project Chrysopoeia Albedo, goes into great detail of a large volcanic eruption thousands of years ago which heavily impacted the region.
-It makes sense that the large clouds of ash would be devastating to a civilization in its technological infancy.
-It makes sense that the large clouds of ash would be devastating to a civilization in its technological infancy.
-This must be the "great darkness" that the Seekers mentioned.
-This must be the "great darkness" that the Seekers mentioned.
-Perhaps that’s also why they built what would become the underground ruins; like those found in Mt. Kilna?
-Perhaps that’s also why they built what would become the underground ruins; like those found in Mt.  Kilna?
-Maybe those places were meant to be safe spaces from the smog?
-Maybe those places were meant to be safe spaces from the smog?
-Wait, no. Why would they have built shelters if they had the guardian?
-Wait, no. Why would they have built shelters if they had the guardian?
-Hahaha. This is the rush I’ve been seeking.
-Hahaha. This is the rush I’ve been seeking.
-Questions whose answers are more questions.
-Questions whose answers are more questions.
-As for my own findings: I found references to an aboveground ruins site which might lead to what we’re after.
-As for my own findings: I found references to an aboveground ruins site which might lead to what we’re after.
-I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
-I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
 [Map428]
+Hey, \PN! Come around to the front.
+Hey, \PN! Come around to the front.
+It’s still so striking to me that at any time, Team Chasm could’ve added this protector of the region to its arsenal.
+It’s still so striking to me that at any time, Team Chasm could’ve added this protector of the region to its arsenal.
+Sure, they managed to capture Heatran, the Titans, and other oddities I still need to comb that USB about.
+Sure, they managed to capture Heatran, the Titans, and other oddities I still need to comb that USB about.
+But… It all seems so short sighted.
+But… It all seems so short sighted.
+Anyway, ready?
+Anyway, ready?
+Nora brings out a small MP3 player, and presses a button.
+Nora brings out a small MP3 player, and presses a button.
+A soothing recording of an ancient flute fills the air.
+A soothing recording of an ancient flute fills the air.
+Ah. I realize now that, while I patched your team up after our battle, I’m out of supplies to heal my own.
+Ah. I realize now that, while I patched your team up after our battle, I’m out of supplies to heal my own.
+I’ll be counting on you!
+I’ll be counting on you!
+What a painful cry…
+What a painful cry…
+I can’t imagine how it must feel to wake up thousands of years after the disappearance of the people you were meant to protect.
+I can’t imagine how it must feel to wake up thousands of years after the disappearance of the people you were meant to protect.
+I realize now that I’ve only thought about how others would USE Volcanion.
+I realize now that I’ve only thought about how others would USE Volcanion.
+As a tool, a reward, or something in that vein…
+As a tool, a reward, or something in that vein…
+I haven't been seeing this creature as a living being.
+I haven't been seeing this creature as a living being.
+I saw it as words on a page.
+I saw it as words on a page.
+Volcanion seems to be looking to you for guidance.
+Volcanion seems to be looking to you for guidance.
+Take Volcanion with you?
+Take Volcanion with you?
+Nora, seeing your intent, comes over and hands you a PokeBall.
+Nora, seeing your intent, comes over and hands you a PokeBall.
+The Volcanion seems to sigh in relief as it enters the ball.
+The Volcanion seems to sigh in relief as it enters the ball.
+Wonderful.
+Wonderful.
+I hope you don’t mind, but I’m going to keep the USB you gave me.
+I hope you don’t mind, but I’m going to keep the USB you gave me.
+Turning away from it all now would be to live a life knowing what passion is, but never permitting myself to experience it.
+Turning away from it all now would be to live a life knowing what passion is, but never permitting myself to experience it.
+There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else on it that I want to see through.
+There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else on it that I want to see through.
+Volcanion nods. It will wait for you.
+Volcanion nods. It will wait for you.
+I still think it’d be for the best if you took Volcanion with you.
+I still think it’d be for the best if you took Volcanion with you.
+I’ve spent so much time looking towards the past for answers.
+I’ve spent so much time looking towards the past for answers. 
+Though, I guess I can keep them company for the time being…
+Though, I guess I can keep them company for the time being…
+The snow here seems to be heating up directly into steam.
+The snow here seems to be heating up directly into steam.
+Is this what Svait looked like before Team Chasm did what it did…?
+Is this what Svait looked like before Team Chasm did what it did…?
+The sublimation seems to be a different effect from the subthermal vents in the Svait Sauna.
+The sublimation seems to be a different effect from the subthermal vents in the Svait Sauna.
+But maybe… The sources of those phenomena are the same?
+But maybe… The sources of those phenomena are the same?
+Yes
+Yes
+No
+No
 [Map429]
 [Map430]
 Dialogue here.
@@ -1022,178 +1032,11 @@ Dialogue here.
 [Map435]
 [Map436]
 [Map437]
-Bogdan Cement has been used in both construction and furniture!
-Bogdan Cement has been used in both construction and furniture! 
-Our work is present in over 40% of Makyan homes!
-Our work is present in over 40% of Makyan homes!
-I'm looking to secure a deal here, but I've been stonewalled by management.
-I'm looking to secure a deal here, but I've been stonewalled by management. 
-No pun intended.
-No pun intended.
-I feel like I see these furniture pieces in a lot of places.
-I feel like I see these furniture pieces in a lot of places.
-I wonder why.
-I wonder why.
-My job is to keep things clean, but I'm a big sewers enthusiast.
-My job is to keep things clean, but I'm a big sewers enthusiast.
-I've been exploring Makya's for years. My dream is to take a trip to see some of tunnels under Kalos.
-I've been exploring Makya's for years. My dream is to take a trip to see some of tunnels under Kalos.
-For now though, I'll look at the concrete.
-For now though, I'll look at the concrete. 
-Welcome to the Bogdan Cement Plant!
-Welcome to the Bogdan Cement Plant!
-We reserve guided tours for business partners, but you are more than welcome to view our products.
-We reserve guided tours for business partners, but you are more than welcome to view our products.
 [Map438]
-I caught a few extra Pokemon on my last vacation to Hoenn.
-I caught a few extra Pokemon on my last vacation to Hoenn. 
-I don't really need 'em, but I REALLY need coffee right now.
-I don't really need 'em, but I REALLY need coffee right now.
-I'll trade you one for a cup. I got a Corsola and a Shuckle up for grabs.
-I'll trade you one for a cup. I got a Corsola and a Shuckle up for grabs.
-Dang. Really pegged you as the type to carry around arbitrary cups of coffee.
-Dang. Really pegged you as the type to carry around arbitrary cups of coffee.
-Oh yeah. That hits the spot.
-Oh yeah. That hits the spot.
-Aite, a deal is a deal. Which 'mon are you feeling?
-Aite, a deal is a deal. Which 'mon are you feeling?
-Alright. I'll be here.
-Alright. I'll be here.
-All yours.
-All yours.
-Now to get through the rest of my day...
-Now to get through the rest of my day...
-No cups? Hmm.
-No cups? Hmm. 
-These barrels aren't going to inspect themselves...
-These barrels aren't going to inspect themselves... 
-This plant has been running since Prizca was still mostly brick and wood.
-This plant has been running since Prizca was still mostly brick and wood.
-A bit interesting that there was a huge uptick in fires when Team Chasm took it over.
-A bit interesting that there was a huge uptick in fires when Team Chasm took it over.
-Ah well, I'm paid to think it's a coincidence.
-Ah well, I'm paid to think it's a coincidence. 
-I don't even really work. I just watch the Pokemon do it.
-I don't even really work. I just watch the Pokemon do it.
-Sometimes I go out and grab them lunch. It's boring, but the benefits are surprisingly good.
-Sometimes I go out and grab them lunch. It's boring, but the benefits are surprisingly good.
-Geodude is managing the supply chain! Impressive!
-Geodude is managing the supply chain! Impressive!
-Shh, don't report me. This is the most hidden place in the city. No one ever finds me here.
-Shh, don't report me. This is the most hidden place in the city. No one ever finds me here.
-Plus, I can torrent whatever I want on the WiFi here.
-Plus, I can torrent whatever I want on the WiFi here.
-Don't give coffee.
-Don't give coffee.
-Give coffee.
-Give coffee.
-I'll choose later.
-I'll choose later.
-I'll take the Corsola.
-I'll take the Corsola.
-I'll take the Shuckle.
-I'll take the Shuckle.
 [Map439]
 [Map440]
 [Map441]
 [Map442]
-[Map443]
-Man, that battle really tuckered me out.
-Man, that battle really tuckered me out.
-I'm not a stranger to hard work, mind you.
-I'm not a stranger to hard work, mind you.
-I went through so much coffee when I was an architect.
-I went through so much coffee when I was an architect.
-I’m the one who came up with the designs for the Ranger Outposts you see all over.
-I’m the one who came up with the designs for the Ranger Outposts you see all over.
-Bless Bogdan Cement for their cheap prices.
-Bless Bogdan Cement for their cheap prices.
-A dusty, ancient computer terminal.
-A dusty, ancient computer terminal.
-"EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
-"EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
-Below that, it prompts you to enter a password.
-Below that, it prompts you to enter a password.
-A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
-A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
-As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
-As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
-Apparently these are Kurt and Pearce, LuxTech employees.
-Apparently these are Kurt and Pearce, LuxTech employees.
-Jeez, this stuff really is ancient.
-Jeez, this stuff really is ancient.
-Whose idea was it to let Tamarind name the Projects and Operation files for internal use?
-Whose idea was it to let Tamarind name the Projects and Operation files for internal use?
-Her naming conventions require a thesaurus to decipher.
-Her naming conventions require a thesaurus to decipher. 
-She always was kind of a slob. Lambert was always cleaning up her messes.
-She always was kind of a slob. Lambert was always cleaning up her messes.
-Speaking of, I do wonder how the chop off the old block is doing these days.
-Speaking of, I do wonder how the chop off the old block is doing these days.
-Yeah, we should reach out to him sometime. Rafael too.
-Yeah, we should reach out to him sometime. Rafael too.
-We’ve both accrued too much PTO, after all. Haha.
-We’ve both accrued too much PTO, after all. Haha.
-…Don’t you think it’s kinda odd that those two ended up as Gym Leaders?
-…Don’t you think it’s kinda odd that those two ended up as Gym Leaders?
-I mean, Lambert, I kinda understand. But Rafael was primarily a scientist.
-I mean, Lambert, I kinda understand. But Rafael was primarily a scientist.
-And that’s not even mentioning Noel. Who is. Noel.
-And that’s not even mentioning Noel. Who is. Noel.
-And we’re… here.
-And we’re… here.
-And it seems we’re not the only ones here. You got something to say, or…?
-And it seems we’re not the only ones here. You got something to say, or…?
-What? No!
-What? No!
-This is a sensitive piece of machinery!
-This is a sensitive piece of machinery!
-There was a whole scrum ceremony covering this.
-There was a whole scrum ceremony covering this.
-We can’t just give it away!
-We can’t just give it away!
-Forget the ceremony, Josh. It’s Mavis’ kid.
-Forget the ceremony, Josh. It’s Mavis’ kid. 
-So? Helena has been on our behinds for a while and we’ve already pushed this back again and again.
-So? Helena has been on our behinds for a while and we’ve already pushed this back again and again.
-If we don’t do this now, she’ll have someone else do it.
-If we don’t do this now, she’ll have someone else do it.
-And I guess that makes you our "someone else."
-And I guess that makes you our "someone else."
-If there’s something you want in this life, you have to take it.
-If there’s something you want in this life, you have to take it.
-Using your own overwhelming strength.
-Using your own overwhelming strength.
-So, you want us to hand the archive data over to you, huh?
-So, you want us to hand the archive data over to you, huh?
-If there’s something you want in this life, you have to take it. Using your own overwhelming strength.
-If there’s something you want in this life, you have to take it. Using your own overwhelming strength.
-Losing a fight like that reminds you of the good old days, dont’cha think, Kurt?
-Losing a fight like that reminds you of the good old days, dont’cha think, Kurt?
-You mean having to trudge through the lava filled chambers of an active volcano?
-You mean having to trudge through the lava filled chambers of an active volcano?
-Yeah, no. I’ll take my cushy office job with air conditioning any day.
-Yeah, no. I’ll take my cushy office job with air conditioning any day.
-But, a win’s a win, so here ya go…
-But, a win’s a win, so here ya go…
-This thing is filled with early Chasm data.
-This thing is filled with early Chasm data.
-When you get the chance, take a look at "Project Chrysopoeia Albedo".
-When you get the chance, take a look at "Project Chrysopoeia Albedo".
-I remember that one causing the eggheads a lot of pain.
-I remember that one causing the eggheads a lot of pain.
-The ritual to capture the target required a flute that was excavated much later on, in a place no one would ever think to find it.
-The ritual to capture the target required a flute that was excavated much later on, in a place no one would ever think to find it.
-And by that time, there wasn’t really a pressing need for another mythical fire type on our team’s roster, y’know?
-And by that time, there wasn’t really a pressing need for another mythical fire type on our team’s roster, y’know?
-You really gave it your all in that battle.
-You really gave it your all in that battle.
-It made me realize that I haven’t been giving mine here.
-It made me realize that I haven’t been giving mine here.
-Think I’m going to give my two weeks’ notice to Helena. Try my hand at being a Pro Trainer.
-Think I’m going to give my two weeks’ notice to Helena. Try my hand at being a Pro Trainer.
-Can you give me that?
-Can you give me that?
 No.
 No.
 [1]
@@ -6856,6 +6699,8 @@ Clackaclack
 Clackaclack
 Natural Protection
 Natural Protection
+Weigh Anchor
+Weigh Anchor
 Invite Rainstorm
 Invite Rainstorm
 Brain Freeze
@@ -6868,8 +6713,8 @@ Pulsar
 Pulsar
 Iceberg Bash
 Iceberg Bash
-Wyrm's Wounding
-Wyrm's Wounding
+Wyrmwounding
+Wyrmwounding
 Abyssal Mist
 Abyssal Mist
 Primeval Deep Breathing
@@ -7229,6 +7074,8 @@ The user blows up to inflict damage on all Pokémon in battle. The user faints u
 The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
 The user's edges become sharper, raising its Attack stat by three steps.
 The user's edges become sharper, raising its Attack stat by three steps.
+The user charges up power and raises its Defense and Sp. Def by two steps. The move can be stacked twice.
+The user charges up power and raises its Defense and Sp. Def by two steps. The move can be stacked twice.
 The user eats its held Berry, then raises both its defensive stats by three steps.
 The user eats its held Berry, then raises both its defensive stats by three steps.
 The user spends 25% HP to create a doll to protect it from move damage, additional effects, and status moves.
@@ -7347,6 +7194,8 @@ The user attacks the target with a sword. If it faints, tons of money is earned 
 The user attacks the target with a sword. If it faints, tons of money is earned after the battle.
 Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.
 Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.
+The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
+The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
 Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
 Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
 A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
@@ -10661,6 +10510,8 @@ Simple
 Simple
 Transistor
 Transistor
+Afrotection
+Afrotection
 Bully
 Bully
 Constrictor
@@ -10675,6 +10526,8 @@ Gourmand
 Gourmand
 Gravitas
 Gravitas
+Groovy
+Groovy
 Honorable
 Honorable
 Indestructible
@@ -11090,6 +10943,8 @@ Doubles the Pokémon's Speed in rainstorm.
 Doubles the Pokémon's Speed in rainstorm.
 Prevents other Pokémon from lowering its stats.
 Prevents other Pokémon from lowering its stats.
+Protects the Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
+Protects the Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
 Inflicts 1/6th max HP damage to the foe when damaged during rainstorm.
 Inflicts 1/6th max HP damage to the foe when damaged during rainstorm.
 Boosts Sp. Atk and Speed by 25% in rainstorm.
@@ -11098,6 +10953,8 @@ Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rains
 Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rainstorm, takes 25% more from Water-type moves.
 Grants immunity to Bug-type moves, and raises both attacking stats when hit by one.
 Grants immunity to Bug-type moves, and raises both attacking stats when hit by one.
+Raises Attack whenever any Pokémon uses a dance move.
+Raises Attack whenever any Pokémon uses a dance move.
 Raises Electric-type allies' Sp. Def by 50%.
 Raises Electric-type allies' Sp. Def by 50%.
 Boosts Sp. Atk by 30% in rainstorm.
@@ -12123,14 +11980,14 @@ Scientist
 Scientist
 Scientist
 258
-Shadow
-Shadow
+Seeker
+Seeker
 259
-Sis and Bro
-Sis and Bro
+Shadow
+Shadow
 260
-Skier
-Skier
+Sis and Bro
+Sis and Bro
 261
 Skier
 Skier
@@ -12138,17 +11995,17 @@ Skier
 Skier
 Skier
 263
-Smasher
-Smasher
+Skier
+Skier
 264
-Socialite
-Socialite
+Smasher
+Smasher
 265
 Socialite
 Socialite
 266
-Spirit Guardian
-Spirit Guardian
+Socialite
+Socialite
 267
 Spirit Guardian
 Spirit Guardian
@@ -12159,17 +12016,17 @@ Spirit Guardian
 Spirit Guardian
 Spirit Guardian
 270
-Striker
-Striker
+Spirit Guardian
+Spirit Guardian
 271
-Super Nerd
-Super Nerd
+Striker
+Striker
 272
-Suspicious Man
-Suspicious Man
+Super Nerd
+Super Nerd
 273
-Swimmer
-Swimmer
+Suspicious Man
+Suspicious Man
 274
 Swimmer
 Swimmer
@@ -12204,8 +12061,8 @@ Swimmer
 Swimmer
 Swimmer
 285
-Guardian Deity
-Guardian Deity
+Swimmer
+Swimmer
 286
 Guardian Deity
 Guardian Deity
@@ -12216,23 +12073,23 @@ Guardian Deity
 Guardian Deity
 Guardian Deity
 289
-Teacher
-Teacher
+Guardian Deity
+Guardian Deity
 290
-Teenager
-Teenager
+Teacher
+Teacher
 291
 Teenager
 Teenager
 292
-Tourist
-Tourist
+Teenager
+Teenager
 293
 Tourist
 Tourist
 294
-Pokémon Trainer
-Pokémon Trainer
+Tourist
+Tourist
 295
 Pokémon Trainer
 Pokémon Trainer
@@ -12261,11 +12118,11 @@ Pokémon Trainer
 Pokémon Trainer
 Pokémon Trainer
 304
-Your Brother
-Your Brother
+Pokémon Trainer
+Pokémon Trainer
 305
-Tuber
-Tuber
+Your Brother
+Your Brother
 306
 Tuber
 Tuber
@@ -12276,8 +12133,8 @@ Tuber
 Tuber
 Tuber
 309
-Twins
-Twins
+Tuber
+Tuber
 310
 Twins
 Twins
@@ -12285,11 +12142,11 @@ Twins
 Twins
 Twins
 312
-Ultra
-Ultra
+Twins
+Twins
 313
-Veteran
-Veteran
+Ultra
+Ultra
 314
 Veteran
 Veteran
@@ -12303,11 +12160,11 @@ Veteran
 Veteran
 Veteran
 318
-Wild
-Wild
+Veteran
+Veteran
 319
-Waiter
-Waiter
+Wild
+Wild
 320
 Waiter
 Waiter
@@ -12315,8 +12172,8 @@ Waiter
 Waiter
 Waiter
 322
-Waitress
-Waitress
+Waiter
+Waiter
 323
 Waitress
 Waitress
@@ -12324,11 +12181,11 @@ Waitress
 Waitress
 Waitress
 325
-Wild Pack
-Wild Pack
+Waitress
+Waitress
 326
-Wild Party
-Wild Party
+Wild Pack
+Wild Pack
 327
 Wild Party
 Wild Party
@@ -12339,8 +12196,8 @@ Wild Party
 Wild Party
 Wild Party
 330
-Worker
-Worker
+Wild Party
+Wild Party
 331
 Worker
 Worker
@@ -12357,14 +12214,14 @@ Worker
 Worker
 Worker
 336
-Young Couple
-Young Couple
+Worker
+Worker
 337
 Young Couple
 Young Couple
 338
-Youngster
-Youngster
+Young Couple
+Young Couple
 339
 Youngster
 Youngster
@@ -12372,6 +12229,9 @@ Youngster
 Youngster
 Youngster
 341
+Youngster
+Youngster
+342
 Test Trainer
 Test Trainer
 [14]
@@ -13033,8 +12893,8 @@ Kurt
 Kurt
 Pearce
 Pearce
-NORA
-NORA
+Nora
+Nora
 Volcanion
 Volcanion
 Vasily
@@ -21712,8 +21572,6 @@ Achievement hidden.
 <outln2>Achievements: {1}</outln2>
 <<[>>{1}/{2}<<]>>
 <<[>>{1}/{2}<<]>>
-Achievements
-Achievements
 You peer into the binoculars...
 You peer into the binoculars...
 An impassable hole, filled with stunted grass.
@@ -22050,6 +21908,24 @@ Pearce
 Pearce
 Status conditions affect your Pokemon twice as much!
 Status conditions affect your Pokemon twice as much!
+{1} Exp. Points were stored in the EXP-EZ Dispenser.
+{1} Exp. Points were stored in the EXP-EZ Dispenser.
+<u>Pre-Evolutions of {1}</u>
+<u>Pre-Evolutions of {1}</u>
+<u>Evolutions of {1}</u>
+<u>Evolutions of {1}</u>
+{1}: {2} ({3}\%)
+{1}: {2} ({3}\%)
+<u>Encounterable Areas for {1}</u>
+<u>Encounterable Areas for {1}</u>
+<u>Encounter Areas for Pre-Evolutions</u>
+<u>Encounter Areas for Pre-Evolutions</u>
+Singular Hypocrisy, Repeated Sixfold
+Singular Hypocrisy, Repeated Sixfold
+Despite making you use 4, Nora is using 6 battlers!
+Despite making you use 4, Nora is using 6 battlers!
+{1} is haloed in Dragon Energy!
+{1} is haloed in Dragon Energy!
 [25]
 1
 Cool Ribbon
@@ -22759,3 +22635,542 @@ Anime
 100
 Wasabi
 Wasabi
+[32]
+Aqua Ring
+Aqua Ring
+Attract
+Attract
+Beak Blast
+Beak Blast
+Condensate
+Condensate
+Bide Turns
+Bide Turns
+Bide Damage
+Bide Damage
+Bide Target
+Bide Target
+Burnt Up
+Burnt Up
+Dried Out
+Dried Out
+Charged
+Charged
+Charge Expended
+Charge Expended
+Choice Locked
+Choice Locked
+Confusion Turns
+Confusion Turns
+Counter Damage
+Counter Damage
+Counter Target
+Counter Target
+Curse-Warned
+Curse-Warned
+Cursed
+Cursed
+Dancer
+Dancer
+Curled Up
+Curled Up
+Destiny Bond
+Destiny Bond
+Destiny Bond Previous
+Destiny Bond Previous
+Destiny Bond Target
+Destiny Bond Target
+Disable Turns
+Disable Turns
+Disabled Move
+Disabled Move
+Electrify
+Electrify
+Embargoed
+Embargoed
+Encore Turns
+Encore Turns
+Must Use
+Must Use
+Endure
+Endure
+Fight Forever
+Fight Forever
+First Pledge
+First Pledge
+Flinch
+Flinch
+Crit Chance Up
+Crit Chance Up
+Focus Punch
+Focus Punch
+Follow Me
+Follow Me
+Gem Consumed
+Gem Consumed
+Empowering Herb Consumed
+Empowering Herb Consumed
+Skill Herb Consumed
+Skill Herb Consumed
+Luck Herb Consumed
+Luck Herb Consumed
+Grudge
+Grudge
+Healing Blocked
+Healing Blocked
+Helping Hand
+Helping Hand
+Lucky Cheer
+Lucky Cheer
+Spotting
+Spotting
+Recharging
+Recharging
+Attached
+Attached
+Attached To
+Attached To
+Illusion
+Illusion
+Moves Imprisoned
+Moves Imprisoned
+Ingrained
+Ingrained
+Deeply Ingrained
+Deeply Ingrained
+Instruct
+Instruct
+Instructed
+Instructed
+Laser Focus Turns
+Laser Focus Turns
+Seeded
+Seeded
+Locked On
+Locked On
+Locked On To
+Locked On To
+Magic Bounce
+Magic Bounce
+Magic Coat
+Magic Coat
+Magnet Risen
+Magnet Risen
+Cannot Escape
+Cannot Escape
+Marked for Death
+Marked for Death
+Imprisoned in ice
+Imprisoned in ice
+Me First
+Me First
+Metronome Count
+Metronome Count
+Micle Berry
+Micle Berry
+Minimized
+Minimized
+Miracle Eye
+Miracle Eye
+Mirror Coat Damage
+Mirror Coat Damage
+Mirror Coat Target
+Mirror Coat Target
+Will Move Next
+Will Move Next
+Nightmared
+Nightmared
+Rampage Turns
+Rampage Turns
+Parental Bond
+Parental Bond
+Perish Song Turns
+Perish Song Turns
+Pickup Item
+Pickup Item
+Pickup Use
+Pickup Use
+Pinch
+Pinch
+Powder
+Powder
+Power Tricked
+Power Tricked
+Energy Tricked
+Energy Tricked
+Base Attack Set
+Base Attack Set
+Base Sp. Atk Set
+Base Sp. Atk Set
+Base Defense Set
+Base Defense Set
+Base Sp. Def Set
+Base Sp. Def Set
+Base Speed Set
+Base Speed Set
+Agility Herb
+Agility Herb
+Prankster
+Prankster
+Priority Ability
+Priority Ability
+Priority Item
+Priority Item
+Pursuit
+Pursuit
+Quash
+Quash
+Rage
+Rage
+Roosting
+Roosting
+Shell Trap
+Shell Trap
+Masquerblade
+Masquerblade
+Sky Drop
+Sky Drop
+Slow Start Turns
+Slow Start Turns
+Smacked Down
+Smacked Down
+Snatch
+Snatch
+Spotlight
+Spotlight
+Stockpile Charges
+Stockpile Charges
+Stockpile Def
+Stockpile Def
+Stockpile Sp Def
+Stockpile Sp Def
+Substitute Health
+Substitute Health
+Taunted Turns
+Taunted Turns
+Barred Turns
+Barred Turns
+Telekinesis Turns
+Telekinesis Turns
+Throat Injured Turns
+Throat Injured Turns
+Tormented
+Tormented
+Transformed
+Transformed
+Transformed Into
+Transformed Into
+Trapping Turns
+Trapping Turns
+Trapping Move
+Trapping Move
+Trapped By
+Trapped By
+Not Slacking Off
+Not Slacking Off
+Two Turn Attack
+Two Turn Attack
+Added Type
+Added Type
+Item Lost
+Item Lost
+Uproar Turns
+Uproar Turns
+Weight Changed
+Weight Changed
+Weight Doubled
+Weight Doubled
+Weight Halved
+Weight Halved
+Drowsy
+Drowsy
+Choice Locking
+Choice Locking
+Stats Dropped
+Stats Dropped
+Burning Jealousy
+Burning Jealousy
+Jaw Lock
+Jaw Lock
+Jaw Locker
+Jaw Locker
+Covered In Tar
+Covered In Tar
+Octolocked
+Octolocked
+Octolocked By
+Octolocked By
+Blunder Policy
+Blunder Policy
+Switched Ally
+Switched Ally
+Chose Status
+Chose Status
+Chose Attack
+Chose Attack
+Assisting
+Assisting
+Confusion Chance
+Confusion Chance
+Flinch Immune
+Flinch Immune
+Sublimate
+Sublimate
+Weak to Bug
+Weak to Bug
+Added Crit Chance
+Added Crit Chance
+Charm Turns
+Charm Turns
+Charm Chance
+Charm Chance
+No Weaknesses
+No Weaknesses
+No Retreat!!
+No Retreat!!
+Healing Reversed
+Healing Reversed
+Healing Halved
+Healing Halved
+Fury Cutter Count
+Fury Cutter Count
+Snowball Count
+Snowball Count
+Rock Roll Count
+Rock Roll Count
+Heart Rhythm Count
+Heart Rhythm Count
+Stunning Curl
+Stunning Curl
+Venom Guard
+Venom Guard
+Root Shelter
+Root Shelter
+Extra Turns
+Extra Turns
+Extra Turn
+Extra Turn
+Stats Swapped Around
+Stats Swapped Around
+Enduring Turns
+Enduring Turns
+Laser Focus
+Laser Focus
+Empowered Bond
+Empowered Bond
+Volley Stance
+Volley Stance
+Carrying
+Carrying
+Riding Dragon
+Riding Dragon
+Shimmering Heat
+Shimmering Heat
+Flare Witch
+Flare Witch
+Halving Damage Turns
+Halving Damage Turns
+Echo
+Echo
+Eroding
+Eroding
+Total Focus
+Total Focus
+Indestructible
+Indestructible
+Swapping to Cushion
+Swapping to Cushion
+Exhaustion
+Exhaustion
+Protect Will Fail
+Protect Will Fail
+Protect
+Protect
+King's Shield
+King's Shield
+Shining Shell
+Shining Shell
+Obstruct
+Obstruct
+Reverb Ward
+Reverb Ward
+Baneful Bunker
+Baneful Bunker
+Red-Hot Retreat
+Red-Hot Retreat
+Icicle Armor
+Icicle Armor
+Spiky Shield
+Spiky Shield
+Mirror Shield
+Mirror Shield
+Cranial Guard
+Cranial Guard
+Volatile Toxin
+Volatile Toxin
+Switched In
+Switched In
+Mutated
+Mutated
+Delayed Reaction
+Delayed Reaction
+Bubble Barrier
+Bubble Barrier
+Chewing Berry
+Chewing Berry
+Auto-Pilot
+Auto-Pilot
+Amulet Coin
+Amulet Coin
+Fairy Lock
+Fairy Lock
+Fusion Bolt
+Fusion Bolt
+Fusion Flare
+Fusion Flare
+Gravity Turns
+Gravity Turns
+Happy Hour
+Happy Hour
+Ion Deluge
+Ion Deluge
+Money Dropped
+Money Dropped
+Fortune
+Fortune
+Neutralizing Gas
+Neutralizing Gas
+Trick Room
+Trick Room
+Puzzle Room
+Puzzle Room
+Odd Room
+Odd Room
+Polarized Room
+Polarized Room
+Insight Room
+Insight Room
+Emotion Room
+Emotion Room
+Willful Room
+Willful Room
+Grey Mist Turns
+Grey Mist Turns
+Bliss
+Bliss
+Floral Gramarye
+Floral Gramarye
+Turns Till Move
+Turns Till Move
+Incoming Move
+Incoming Move
+Foretold Move User Index
+Foretold Move User Index
+Foretold Move User Party Index
+Foretold Move User Party Index
+Incoming Move Type
+Incoming Move Type
+Healing Wish
+Healing Wish
+Lunar Dance
+Lunar Dance
+Turns Till Wish
+Turns Till Wish
+Wish Heal Amount
+Wish Heal Amount
+Wish Maker
+Wish Maker
+Refuge
+Refuge
+PassingAbility
+PassingAbility
+PassingStats
+PassingStats
+Kickback
+Kickback
+Kickback Amount
+Kickback Amount
+Gauss Aftershock
+Gauss Aftershock
+Echoed Voice Counter
+Echoed Voice Counter
+Echoed Voice Used
+Echoed Voice Used
+Round Singers
+Round Singers
+Reflect
+Reflect
+Light Screen
+Light Screen
+Aurora Veil
+Aurora Veil
+Repulsion Field
+Repulsion Field
+Lucky Chant
+Lucky Chant
+Mist
+Mist
+Safeguard
+Safeguard
+Diamond Field
+Diamond Field
+Crafty Shield
+Crafty Shield
+Mat Block
+Mat Block
+Quick Guard
+Quick Guard
+Wide Guard
+Wide Guard
+Quarantine
+Quarantine
+Rainbow Turns
+Rainbow Turns
+Sea of Fire Turns
+Sea of Fire Turns
+Swamp Turns
+Swamp Turns
+Spikes
+Spikes
+Poison Spikes
+Poison Spikes
+Flame Spikes
+Flame Spikes
+Frost Spikes
+Frost Spikes
+Stealth Rock
+Stealth Rock
+Feather Ward
+Feather Ward
+Sticky Web
+Sticky Web
+Misdirecting Fog
+Misdirecting Fog
+Primal Forest
+Primal Forest
+Cruel Cocoon
+Cruel Cocoon
+Turbulent Sky
+Turbulent Sky
+Last Round Fainted
+Last Round Fainted
+Spent Tyrannical Immunity
+Spent Tyrannical Immunity
+Tailwind Turns
+Tailwind Turns
+Items Supressed
+Items Supressed
+Bulwark
+Bulwark
+Eroded Rocks
+Eroded Rocks
+Perennial Payload
+Perennial Payload
+Traumatized
+Traumatized
+[33]
+Handicap
+Handicap
+Monumental
+Monumental
+[34]
