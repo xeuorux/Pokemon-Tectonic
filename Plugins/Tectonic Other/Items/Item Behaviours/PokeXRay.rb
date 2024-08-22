@@ -6,7 +6,8 @@ ItemHandlers::UseFromBag.add(:POKEXRAY,proc { |item|
     next 2
 })
 
-POKE_XRAY_RANGE = 6
+POKE_XRAY_WIDTH = 8
+POKE_XRAY_HEIGHT = 6
 
 def getViewableTeams
     viewableTeams = []
@@ -14,7 +15,7 @@ def getViewableTeams
 		next if event.name.downcase.include?("noxray")
 		xDif = (event.x - $game_player.x).abs
 		yDif = (event.y - $game_player.y).abs
-		next unless xDif <= POKE_XRAY_RANGE && yDif <= POKE_XRAY_RANGE # Must be nearby
+		next unless xDif <= POKE_XRAY_WIDTH && yDif <= POKE_XRAY_HEIGHT # Must be nearby
         next if pbGetSelfSwitch(event.id,'D') # Must not already be fled
         next if event.character_name == ""
 
