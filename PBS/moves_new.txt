@@ -1013,7 +1013,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableInSky
 Flags = CanProtect,CanMirrorMove
-Description = The user soars up high, then strikes on the second turn by dive bombing the target.
+Description = The user soars up high, becoming invulnerable, then strikes on the second turn by dive bombing the target.
 Animation = FLY
 #-------------------------------
 [DRAFT]
@@ -1834,7 +1834,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderground
 Flags = CanProtect,CanMirrorMove
-Description = The user burrows deep, then attacks with devastating power on the second turn.
+Description = The user burrows deep, becoming invulnerable, then attacks with devastating power on the second turn.
 #-------------------------------
 #		ROCK MOVES
 #-------------------------------
@@ -3499,7 +3499,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt
 Flags = CanProtect,CanMirrorMove
-Description = The user launches up high, then explodes down on the second turn, taking 25% recoil.
+Description = The user launches up high, becoming invulnerable, then explodes down on the second turn, taking 25% recoil.
 Animation = FLY
 #-------------------------------
 [LIKEWILDFIRE]
@@ -3735,7 +3735,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = CanProtect,CanMirrorMove
-Description = Diving deep on the first turn, the user rises and strikes with explosive strength on second.
+Description = The user dives deep on the first turn, becoming invulnerable, then rises and strikes with explosive strength on the second turn.
 Animation = DIVE
 #-------------------------------
 [DRAGBENEATH]

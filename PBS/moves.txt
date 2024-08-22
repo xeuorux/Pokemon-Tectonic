@@ -1909,7 +1909,7 @@ Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableInSkyNumbTarget
 Flags = CanProtect,CanMirrorMove,Kicking
 EffectChance = 30
-Description = The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to numb.
+Description = The user bounces up high, becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
 #-------------------------------
 [BRAVEBIRD]
 Name = Brave Bird
@@ -2004,7 +2004,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableInSky
 Flags = CanProtect,CanMirrorMove
-Description = The user soars, then strikes on the second turn.
+Description = The user soars, becoming invulnerable, then strikes on the second turn.
 #-------------------------------
 [FURYPECKS]
 Name = Fury Pecks
@@ -2460,7 +2460,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderground
 Flags = CanProtect,CanMirrorMove
-Description = The user burrows, then attacks on the second turn.
+Description = The user burrows, becoming invulnerable, then attacks on the second turn.
 #-------------------------------
 [DRILLRUN]
 Name = Drill Run
@@ -3345,7 +3345,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = CanMirrorMove
-Description = The user vanishes somewhere, then strikes on the next turn. Skips and destroys protections.
+Description = The user vanishes somewhere, becoming invulnerable, then strikes on the next turn. Skips and destroys protections.
 #-------------------------------
 [POLTERGEIST]
 Name = Poltergeist
@@ -3418,7 +3418,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = CanMirrorMove
-Description = The user disappears, then strikes the foe on the second turn. It hits even if the foe protects itself.
+Description = The user disappears, becoming invulnerable, then strikes the foe on the second turn. It hits even if the foe protects itself.
 #-------------------------------
 [SHADOWPUNCH]
 Name = Shadow Punch
@@ -4325,7 +4325,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = CanProtect,CanMirrorMove
-Description = Diving on the first turn, the user rises and hits from below water on the next turn.
+Description = Diving on the first turn, becoming invulnerable, the user rises and hits from below water on the next turn.
 #-------------------------------
 [FISHIOUSREND]
 Name = Fishious Rend
