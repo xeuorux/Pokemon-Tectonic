@@ -1,0 +1,16 @@
+#-------------------------------
+[TESTPOKEMON]
+# horizontal shift, vertical shift
+BackSprite = 0,0
+# horizontal shift, vertical shift
+FrontSprite = 0,10
+# horizontal shift
+ShadowX = 0
+# 1 (small), 2 (medium), or 3 (large)
+ShadowSize = 3
+#-------------------------------
+[TESTPOKEMON2]
+BackSprite = 0,0
+FrontSprite = 0,10
+ShadowX = 0
+ShadowSize = 3

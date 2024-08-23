@@ -8,6 +8,7 @@ If making PBS changes, consider using the PBS Extensons feature!
 If you place a PBS file (e.g. “pokemon.txt”) inside a plugin, it will be hot loaded at runtime. This only works for defining new content, and will not work for trying to edit existing content.
 This currently supports:
 pokemon.txt
+pokemon_metrics.txt
 avatars.txt
 abilities.txt
 moves.txt
@@ -16,3 +17,5 @@ regionaldexes.txt
 trainers.txt
 trainertypes.txt
 metadata.txt
+
+Examples of using each can be found in the MOD TEMPLATE folder.
