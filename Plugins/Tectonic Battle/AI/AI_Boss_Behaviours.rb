@@ -29,6 +29,7 @@ class PokeBattle_AI_Boss
     def rejectExtraSetUp
         @rejectMovesIf.push(proc { |move, user, _battle|
             next false if move.statUp.empty?
+            next false if move.damagingMove?(true)
             anyPositive = false
             for i in 0...move.statUp.length / 2
                 statSym = move.statUp[i * 2]
