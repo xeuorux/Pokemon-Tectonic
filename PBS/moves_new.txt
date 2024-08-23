@@ -3255,6 +3255,7 @@ Target = NearOther
 FunctionCode = HitsTargetInSkyGroundsTarget
 Flags = CanProtect,CanMirrorMove
 Description = The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
+Animation = ANCHORSHOT
 #-------------------------------
 [WELD]
 Name = Weld
