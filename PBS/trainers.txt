@@ -8234,28 +8234,28 @@ Pokemon = EMPOLEON,70
 Pokemon = COALOSSAL,70
     Name = Certainty
     Moves = ROLLINGBOULDER,FLAREUP,RAPIDSPIN,FLAMESPIKES
-    AbilityIndex = 1 # Fuel Hungry
+    AbilityIndex = 0 # Steam Power
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
 Pokemon = HZOROARK,70
     Name = Curiosity
     Moves = MALEFACTION,LIGHTSCREEN,RECOVER,RUIN
-    AbilityIndex = 1 # Mental Block
+    AbilityIndex = 0 # Illusion
     Item = LIGHTCLAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 17,20,0,13,20,0
 Pokemon = SKUNTANK,70
     Name = Ferocity
     Moves = FLOWSTATE,BULLETTRAIN,GUNKSHOT,SUCKERPUNCH
-    AbilityIndex = 1 # Pure Energy
+    AbilityIndex = 0 # Stench
     Item = LUMBERAXE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = JUMPLUFF,70
     Name = Velocity
     Moves = MOONBLAST,SYNTHESIS,ENERGYBALL,AIRSLASH
-    AbilityIndex = 1 # Seed Sowing
+    AbilityIndex = 0 # Aerodynamic
     Item = ROCKYHELMET
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -8266,13 +8266,13 @@ Policies = CURSE_NO_MERCY_3
 Pokemon = HARIYAMA,70
     Name = Tenacity
     Moves = PROTECT,BELLYDRUM,STORMTHROW,LIQUIDATION
-    AbilityIndex = 2 # Thick Fat
+    AbilityIndex = 1 # Fighting Vigor
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 11,20,15,0,20,4
 Pokemon = AMPHAROS,70
     Name = Visibility
     Moves = VOLTSWITCH,RECOVER,TRANSCENDENTENERGY,DRAGONPULSE
-    AbilityIndex = 1 # Stubborn
+    AbilityIndex = 0 # Static
     Item = POWERHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
