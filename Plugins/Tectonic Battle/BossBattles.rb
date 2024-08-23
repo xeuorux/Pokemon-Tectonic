@@ -2,7 +2,7 @@ def pbBigAvatarBattle(*args)
     rule = "3v#{args.length}"
     setBattleRule(rule)
     victorious = pbAvatarBattleCore(*args)
-    unlockAchievement(:DEFEAT_ANY_LEGENDARY_AVATAR)
+    unlockAchievement(:DEFEAT_ANY_LEGENDARY_AVATAR) if victorious
     return victorious
 end
 
