@@ -263,15 +263,12 @@ class PokeBattle_Battle
         end
         # Pokémon already knows the maximum number of moves; try to forget one to learn the new move
         loop do
-            pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
-            pkmnName, moveName, pkmn.moves.length.to_word))
             pbDisplayPaused(_INTL("Which move should be forgotten?"))
             forgetMove = @scene.pbForgetMove(pkmn, newMove)
             if forgetMove >= 0
                 oldMoveName = pkmn.moves[forgetMove].name
                 pkmn.moves[forgetMove] = Pokemon::Move.new(newMove)   # Replaces current/total PP
                 battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
-                pbDisplayPaused(_INTL("1, 2, and... ... ... Ta-da!"))
                 pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...", pkmnName, oldMoveName))
                 pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
                 battler.pbCheckFormOnMovesetChange if battler
