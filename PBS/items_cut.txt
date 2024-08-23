@@ -4468,3 +4468,11 @@ Pocket = 2
 Price = 400
 FieldUse = OnPokemon
 Description = A spray-type medicine. It heals all the status problems of a single Pokémon.
+#-------------------------------
+[TMSAFEGUARD]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SAFEGUARD

@@ -344,14 +344,6 @@ Price = 4000
 FieldUse = TM
 Move = LIGHTSCREEN
 #-------------------------------
-[TMSAFEGUARD]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = SAFEGUARD
-#-------------------------------
 [TMGREYMIST]
 Name = Unnamed
 NamePlural = Unnamed
@@ -1015,3 +1007,11 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = DISSIPATION
+#-------------------------------
+[TMNATURALPROTECTION]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = NATURALPROTECTION
