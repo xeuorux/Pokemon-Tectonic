@@ -892,7 +892,7 @@ class PokeBattle_AI_GARDEVOIR < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_Druddigon < PokeBattle_AI_Boss
+class PokeBattle_AI_DRUDDIGON < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @wholeRound += :OCCULTATION
@@ -905,5 +905,13 @@ class PokeBattle_AI_Druddigon < PokeBattle_AI_Boss
                 _INTL("{1} is haloed in Dragon Energy!",user.pbThis)
             },
         })
+    end
+end
+
+class PokeBattle_AI_BELLOSSOM < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @firstTurnOnly.push(:HELPINGHAND)
+        @requiredMoves.push(:HELPINGHAND)
     end
 end
