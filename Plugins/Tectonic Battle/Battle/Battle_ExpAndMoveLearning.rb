@@ -263,6 +263,8 @@ class PokeBattle_Battle
         end
         # Pokémon already knows the maximum number of moves; try to forget one to learn the new move
         loop do
+            pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
+                pkmnName, moveName, pkmn.moves.length.to_word))
             pbDisplayPaused(_INTL("Which move should be forgotten?"))
             forgetMove = @scene.pbForgetMove(pkmn, newMove)
             if forgetMove >= 0

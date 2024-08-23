@@ -339,6 +339,8 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,addfirstmove=false
     return true
   end
   loop do
+    pbMessage(_INTL("{1} wants to learn {2}, but it already knows {3} moves.\1",
+                pkmnname, movename, pkmn.numMoves.to_word), &block) if !bymachine
     pbMessage(_INTL("Please choose a move that will be replaced with {1}.",movename),&block)
     forgetmove = pbForgetMove(pkmn,move)
     if forgetmove>=0
