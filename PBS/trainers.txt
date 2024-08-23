@@ -2951,7 +2951,6 @@ Pokemon = MAMOSWINE,45
     AbilityIndex = 0 # Thick Fat
     Item = LUMBERAXE
 Pokemon = MEOWSTIC,45
-    Gender = female
     Moves = PATTERNRELEASE,PSYCHICFANGS,SUCKERPUNCH,FAKEOUT
     AbilityIndex = 1 # Liminal
     Item = LOADEDDICE
@@ -8191,7 +8190,7 @@ Pokemon = MILTANK,70
 #-------------------------------
 [OFFICEWORKER_M,Kurt]
 Pokemon = MEOWSTIC,70
-    Gender = male
+    Form = 1 # Meowstic♀ Form
     Moves = REFLECT,HELPINGHAND,HEALBELL,LIGHTSCREEN
     AbilityIndex = 0 # Prankster
     Item = LIGHTCLAY
