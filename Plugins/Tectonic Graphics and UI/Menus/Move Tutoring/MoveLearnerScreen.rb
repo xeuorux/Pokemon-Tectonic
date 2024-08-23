@@ -11,12 +11,10 @@ class MoveLearnerScreen
       loop do
         move = @scene.pbChooseMove
         if move
-          if @scene.pbConfirm(_INTL("Teach {1}?", GameData::Move.get(move).name))
             if pbLearnMove(pkmn, move, false, false, addFirstMove)
-              @scene.pbEndScene
-              return true
+                @scene.pbEndScene
+                return true
             end
-          end
         else
           @scene.pbEndScene
           return false

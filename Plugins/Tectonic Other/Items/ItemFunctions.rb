@@ -353,7 +353,6 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,addfirstmove=false
       pkmn.add_first_move(move) if addfirstmove
       return true
   else
-      pbMessage(_INTL("{1} did not learn {2}.",pkmnname,movename),&block)
       return false
     end
   end

@@ -274,7 +274,6 @@ class PokeBattle_Battle
                 battler.pbCheckFormOnMovesetChange if battler
                 break
             else
-                pbDisplay(_INTL("{1} did not learn {2}.", pkmnName, moveName))
                 break
             end
         end
