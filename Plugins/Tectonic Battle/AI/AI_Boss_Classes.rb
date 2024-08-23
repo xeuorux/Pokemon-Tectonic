@@ -895,7 +895,7 @@ end
 class PokeBattle_AI_DRUDDIGON < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @wholeRound += :OCCULTATION
+        @wholeRound.push(:OCCULTATION)
 
         @warnedIFFMove.add(:OCCULTATION, {
             :condition => proc { |_move, _user, _target, battle|
