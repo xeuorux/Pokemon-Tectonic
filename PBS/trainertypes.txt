@@ -1548,6 +1548,7 @@ Name = Seeker
 Gender = Female
 BaseMoney = 40
 IntroBGM = PSYCHIC
+BattleBGM = Battle nora
 #-------------------------------
 [SHADOWMAVIS]
 Name = Shadow
