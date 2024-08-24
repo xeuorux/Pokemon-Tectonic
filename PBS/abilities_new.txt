@@ -322,7 +322,7 @@ Description = When a foe hits the Pokémon, they are warned. If they hit the Pok
 #-------------------------------
 [DARING]
 Name = Daring
-Description = When this Pokémon becomes statused, its Attack is raised by four steps.
+Description = When this Pokémon becomes statused, its Attack is raised by three steps.
 #-------------------------------
 [DARKENEDSKIES]
 Name = Darkened Skies
@@ -916,7 +916,7 @@ Description = Its same-type attack bonus is based on its party members rather th
 #-------------------------------
 [IMPULSIVE]
 Name = Impulsive
-Description = When this Pokémon becomes statused, its Sp. Atk is raised by four steps.
+Description = When this Pokémon becomes statused, its Sp. Atk is raised by three steps.
 #-------------------------------
 [INDESTRUCTIBLE]
 Name = Indestructible

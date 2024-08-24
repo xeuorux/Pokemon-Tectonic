@@ -147,7 +147,7 @@ Flags = SunSynergy
 #-------------------------------
 [DRYSKIN]
 Name = Dry Skin
-Description = Restores 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
+Description = Heals 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
 Flags = RainstormSynergy
 #-------------------------------
 [EMERGENCYEXIT]

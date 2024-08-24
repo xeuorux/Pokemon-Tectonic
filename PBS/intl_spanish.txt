@@ -45433,10 +45433,10 @@ Makes the foe nervous and unable to eat Berries or Leftovers.
 Pone al oponente nervioso, haciendo que no pueda comer ni sus Bayas o Restos.
 Makes foes stressed and unable to use their items.
 Pone al oponente estresado, haciendo que no pueda usar su objeto.
-When this Pokémon becomes statused, its Attack is raised by four steps.
-Al recibir un problema de estado, su Ataque es aumentado cuatro grados.
-When this Pokémon becomes statused, its Sp. Atk is raised by four steps.
-Al recibir un problema de estado, su Ataque Especial es aumentado cuatro grados.
+When this Pokémon becomes statused, its Attack is raised by three steps.
+Al recibir un problema de estado, su Ataque es aumentado tres grados.
+When this Pokémon becomes statused, its Sp. Atk is raised by three steps.
+Al recibir un problema de estado, su Ataque Especial es aumentado tres grados.
 Fly and Dive Bomb deal 50% more damage.
 Vuelo y Caída en Picado son potenciados un 50%.
 Critical hits lower all of the victim's stats.

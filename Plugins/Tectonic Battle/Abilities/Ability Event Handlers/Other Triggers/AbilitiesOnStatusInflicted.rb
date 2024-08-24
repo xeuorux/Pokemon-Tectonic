@@ -10,12 +10,12 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
 
 BattleHandlers::AbilityOnStatusInflicted.add(:DARING,
     proc { |ability, battler, _user, _status|
-        battler.tryRaiseStat(:ATTACK, battler, increment: 4, ability: ability)
+        battler.tryRaiseStat(:ATTACK, battler, increment: 3, ability: ability)
     }
 )
 
 BattleHandlers::AbilityOnStatusInflicted.add(:IMPULSIVE,
     proc { |ability, battler, _user, _status|
-        battler.tryRaiseStat(:SPECIAL_ATTACK, battler, increment: 4, ability: ability)
+        battler.tryRaiseStat(:SPECIAL_ATTACK, battler, increment: 3, ability: ability)
     }
 )
