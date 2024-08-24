@@ -4,6 +4,7 @@ class MoveDex_Scene
     MAX_LENGTH_MOVE_LIST = 7
 	MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT = 56
     MOVE_LIST_X_LEFT = 32
+    SIGNATURE_COLOR = Color.new(211, 175, 44)
 
     def generateMoveList
         moveList = []
@@ -127,10 +128,10 @@ class MoveDex_Scene
                 listIndex += 1
                 next if listIndex < @scroll
                 maxWidth = displayIndex == 0 ? 200 : 212
-                moveName = getFormattedMoveName(dex_item[:data], 200)
+                moveName, moveShadow = getFormattedMoveName(dex_item[:data], 200)
                 @selected_move = dex_item[:move] if listIndex == @scroll
                 moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 32 * displayIndex
-                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, moveDrawY, 450, moveName, base, shadow)
+                drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, moveDrawY, 450, moveName, base, moveShadow)
                 if listIndex == @scroll
                     @sprites["selectionarrow"].y = moveDrawY - 4
                     @sprites["selectionarrow"].visible = true
@@ -179,8 +180,13 @@ class MoveDex_Scene
             shavedName = shavedName[0..-1] if shavedName[shavedName.length-1] == " "
             moveName = shavedName + "..."
         end
-
-        return moveName
+        if move_data.is_signature?
+            moveName = "<outln>" + moveName + "</outln>"
+            shadow = SIGNATURE_COLOR
+        else
+            shadow = MessageConfig.pbDefaultTextShadowColor
+        end
+        return moveName, shadow
     end
 
     def navigateMoveDex
