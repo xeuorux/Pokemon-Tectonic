@@ -1246,6 +1246,10 @@ end
 class PokeBattle_PartyAttackMove < PokeBattle_Move
     def multiHitMove?; return true; end
 
+    def listEmpty?
+        return @partyAttackerList.nil? || @partyAttackerList.empty?
+    end
+
     def calculatePartyAttackerList(user)
         @partyAttackerList = []
         @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn, i|
@@ -1266,7 +1270,7 @@ class PokeBattle_PartyAttackMove < PokeBattle_Move
     end
 
     def pbNumHits(user, _targets, _checkingForAI = false)
-        calculatePartyAttackerList(user) if @partyAttackerList.empty?
+        calculatePartyAttackerList(user) if listEmpty?
         return @partyAttackerList.length
     end
 
@@ -1281,7 +1285,7 @@ class PokeBattle_PartyAttackMove < PokeBattle_Move
     end
 
     def pbBaseDamageAI(_baseDmg, user, _target)
-        calculatePartyAttackerList(user) if @partyAttackerList.empty?
+        calculatePartyAttackerList(user) if listEmpty?
         totalBaseStat = 0
         @partyAttackerList.each do |i|
             totalBaseStat += @battle.pbParty(user.index)[i].baseStats[@statUsed]
