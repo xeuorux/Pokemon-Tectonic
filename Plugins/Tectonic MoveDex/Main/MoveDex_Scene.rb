@@ -181,6 +181,7 @@ class MoveDex_Scene
             moveName = shavedName + "..."
         end
         if move_data.is_signature?
+            moveName = "<outln>" + moveName + "</outln>"
             shadow = SIGNATURE_COLOR
         else
             shadow = MessageConfig.pbDefaultTextShadowColor
