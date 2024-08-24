@@ -34769,9 +34769,126 @@ Se diferencia de otros Basculin en varios aspectos, incluido el comportamiento. 
 676
 Natural
 Salvaje
-718
-50%
-50%
+412
+Plant Cloak
+Tronco Planta
+413
+Plant Cloak
+Tronco Planta
+421
+Overcast
+Encapotada
+422
+West Sea
+Mar Oeste
+423
+West Sea
+Mar Oeste
+487
+Altered
+Alterada
+492
+Land
+Tierra
+550
+Red-Striped
+Raya Roja
+555
+Standard Mode
+Modo Normal
+585
+Spring
+Primavera
+586
+Spring
+Primavera
+641
+Incarnate
+Avatar
+642
+Incarnate
+Avatar
+645
+Incarnate
+Avatar
+647
+Ordinary
+Ordinario
+648
+Aria
+Lírica
+666
+Meadow Pattern
+Motivo Floral
+669
+Red Flower
+Flor Roja
+670
+Red Flower
+Flor Roja
+671
+Red Flower
+Flor Roja
+678
+Male
+Macho
+681
+Shield
+Escudo
+710
+Average Size
+Tamaño Pequeño
+711
+Average Size
+Tamaño Pequeño
+716
+Neutral Mode
+Modo Neutral
+720
+Hoopa Confined
+Hoopa Contenido
+741
+Baile Style
+Estilo Apasionado
+745
+Midday
+Diurno
+746
+Solo
+Individual
+773
+Type: Normal
+Tipo: Normal
+774
+Meteor
+Meteoro
+778
+Disguised
+Encubierto
+875
+Ice Face
+Cara Hielo
+876
+Male
+Macho
+877
+Full Belly
+Saciada
+888
+Hero of Many Battles
+Guerrero Avezado
+889
+Hero of Many Battles
+Guerrero Avezado
+892
+Single Strike
+Estilo Brusco
+2034
+Standard Mode
+Modo Normal
+2060
+Incarnate
+Avatar
 5002
 Cosplay
 Coqueta
@@ -43561,7 +43678,7 @@ Arco Voltáico
 Honorable
 Honorable
 Gargantuan
-Colosal
+Gigantesco
 Ruinous
 Ruinoso
 Fortified
@@ -44410,6 +44527,14 @@ Heavy Duty Hooves
 Cascos Gruesos
 Last Gasp
 Aliento Final
+Afrotection
+Afrotección
+Time Skip
+Salto Temporal
+Unconventional
+Inusual
+Groovy
+Rítmico
 [11]
 When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
@@ -44453,7 +44578,7 @@ All status problems heal when it switches out.
 Cura cualquier problema de estado al cambiar.
 Doubles the likelihood of the user's random added effects activating.
 Duplica la probabilidad de que los efectos secundarios aleatorios del usuario se activen.
-Doubles the Pokémon's Speed in rain.
+Doubles the Pokémon's Speed in rainstorm.
 Duplica la Velocidad del Pokémon bajo lluvia.
 Doubles the Pokémon's Speed in sunshine.
 Duplica la Velocidad del Pokémon bajo el sol.
@@ -44505,8 +44630,8 @@ Doubles the Pokémon's Speed if its held item is consumed or lost.
 Duplica la Velocidad del Pokémon si su objeto equipable es consumido o perdido.
 Stat changes in the Pokemon are doubled.
 Si un cambio de estadísticas afecta al Pokémon, este es duplicado.
-Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
-Restaura 1/8 PS bajo lluvia, 1/4 al recibir un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por Fuego. 
+Heals 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
+Cura 1/8 PS bajo lluvia, 1/4 al recibir un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por Fuego. 
 Boosts one Attacking stat by two steps according to the foe's defenses.
 Aumenta una stat ofensiva por dos grados de acuerdo a la defensa mjs baja del rival.
 Boosts the power of punching moves by 30%.
@@ -44515,7 +44640,7 @@ Powers up moves of the same type by 33%.
 Potencia movimientos del mismo tipo un 33%.
 Maximizes the frequency of multi-strike moves.
 Maximiza las veces que movimientos que golpean múltiples veces pueden hacerlo.
-Heals status problems each turn if it is raining.
+Heals status problems each turn if in rainstorm.
 Se cura cualquier problema de estado cada turno si está lloviendo.
 In sunshine, Sp. Atk is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn.
 Bajo sol, el Ataque Especial es potenciado un 50%, pero pierde 1/10 de sus PS máximos cada turno.
@@ -44807,7 +44932,7 @@ Takes 25% less damage while using a status move.
 Recibe 25% menos de daño mientras usa un movimiento de estado.
 Doubles the money gained from battles in which it participates.
 Duplica el dinero ganado en los combates que participe.
-Grants immunity to Bug-type moves and raises both attacking stats when hit by one.
+Grants immunity to Bug-type moves, and raises both attacking stats when hit by one.
 Inmune a movimientos tipo Bicho y aumenta ambas stats ofensivas cuando es alcanzado por uno. 
 Boosts Sp. Def by two steps when hit by an attack.
 Aumenta su Defensa Especial por dos grados al ser alcanzado por un ataque. 
@@ -44835,7 +44960,7 @@ Takes half damage from Dragon- and Fairy-type attacks.
 Movimientos tipo Dragón y Hada lo dañan por la mitad.
 Special attacks against the Pokémon have a 30% chance to dizzy the attacker.
 Cuando el Pokémon es atacado por un movimiento especial, tiene un 30% de probabilidad de marear al atacante.
-Boosts Sp. Atk and Speed by 25% in rain.
+Boosts Sp. Atk and Speed by 25% in rainstorm.
 Potencia su Ataque Especial y Velocidad un 25% bajo lluvia.
 The user raises the related defensive stat by two steps after each hit taken.
 Al ser atacado, el usuario aumenta la stat defensiva correspondiente por dos grados.
@@ -44855,7 +44980,7 @@ Boosts the power of punching moves by 30%, and makes them special when that woul
 Potencia movimientos de puños un 30% y los hace especiales en caso de ser más efectivo. 
 Doubled Speed if any enemy has a status condition.
 Duplica su Velocidad si cualquier rival tiene un problema de estado.
-Boosts Sp. Atk by 30% in rain.
+Boosts Sp. Atk by 30% in rainstorm.
 Aumenta su Ataque Especial un 30% bajo lluvia.
 Has a 30% chance to dizzy targets when using special moves.
 Tiene un 30% de probabilidad de marear a enemigos al usar movimientos especiales.
@@ -44905,7 +45030,7 @@ Summons sunshine for four turns when hit by an attack.
 Invoca la luz solar durante cuatro turnos al ser atacado.
 Summons rainstorm for four turns when hit by an attack.
 Invoca tormenta de lluvia durante cuatro turnos al ser atacado.
-Inflicts 1/6th max HP damage to the foe when damaged during rain.
+Inflicts 1/6th max HP damage to the foe when damaged during rainstorm.
 Daña al rival por 1/6 de sus PS totales al ser atacado durante la lluvia.
 Lowers priority of status moves used by any Pokémon.
 Baja la prioridad de todo movimiento de estado usado por cualquier Pokémon.
@@ -45059,7 +45184,7 @@ Move damage that's decreased by sunshine is decreased twice as much.
 Duplica la reducción del daño causado por el sol.
 Move damage that's decreased by rainstorm is decreased twice as much.
 Duplica la reducción del daño causada por la tormenta de lluvia.
-Powers up Fairy-type moves by 50% in rain.
+Powers up Fairy-type moves by 50% in rainstorm.
 Potencia movimientos tipo Hada un 50% bajo lluvia.
 Restores HP based on damage from hail.
 Restaura sus PS basado en el daño del granizo.
@@ -45085,7 +45210,7 @@ The Pokémon benefits twice as much from style points.
 Los puntos de estilo afectan x2 a este Pokémon.
 Gets 50% more healing from all sources.
 Se cura un 50% más mediante cualquier método curativo.
-Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves.
+Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rainstorm, takes 25% more from Water-type moves.
 Restaura 1/8 de sus PS bajo sol, 1/4 al recibir un movimiento Fuego. Pierde 1/8 bajo lluvia, recibe 25% más daño por Fuego.
 The user's Speed is doubled while using recoil moves.
 La Velocidad del usuario es duplicada mientras usa movimientos de retroceso.
@@ -45271,7 +45396,7 @@ Uses Assist upon entry, copying a random team-mates move.
 Usa Ayuda al entrar al campo, que usa un movimiento aleatorio de su equipo.
 Prevents other Pokémon from lowering its stat steps. Immune to weather downsides.
 Inmune a disminucions de stats realizadas por otros Pokémon. Es inmune a las desventajas del clima.
-In rain, each of its hits is followed by an extra hit at 25% power.
+In rainstorm, each of its hits is followed by an extra hit at 25% power.
 Bajo lluvia, usa dos veces el mismo movimiento, el segundo con sólo el 25% de su poder. 
 Doubles Defense in moonglow.
 Duplica su Defensa bajo brillo lunar.
@@ -45737,6 +45862,18 @@ Boosts the power of kicking moves by 30%. Immune to hazards.
 Potencia movimientos de patada un 30%. Inmune a trampas en el campo.
 Cannot take damage or be switched out. Hears Perish Song upon entering, ensuring its demise.
 No puede recibir daño o ser cambiado. Escucha el Canto Mortal al entrar al campo, asegurando su fin.
+Reverses "Aura" Abilities to weaken affected moves.
+Invierte habilidades de "Aura" para debilitar movimientos afectados.
+Reduces damage from super-effective attacks.
+Reduce daño de ataques súper efectivos.
+Protects the Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
+Protege al Pokémon del daño de retroceso. El Pokémon no activa objetos, habilidades o efectos del objetivo que golpee.
+Raises Attack whenever any Pokémon uses a dance move.
+Aumenta el Ataque cada vez que un Pokémon use un movimiento de baile.
+Moves that use stats other than the default deal 50% more damage.
+Potencia un 50% movimientos que usen una estadística que no sea la predeterminada. 
+Takes 50% less damage from not-very-effective or barely-effective attacks.
+Recibe un 50% menos de daño de movimientos no-muy o apenas efectivos.
 [12]
 0
 Normal
