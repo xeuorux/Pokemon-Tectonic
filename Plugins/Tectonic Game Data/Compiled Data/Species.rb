@@ -427,7 +427,7 @@ module GameData
                     SURGINGSTRIKES
                 ]
             elsif @species == :NECROZMA
-                [
+                return [
                     nil,
                     :SUNSTEELSTRIKE, # Dusk Mane (with Solgaleo) (form 1)
                     :MOONGEISTBEAM, # Dawn Wings (with Lunala) (form 2)
