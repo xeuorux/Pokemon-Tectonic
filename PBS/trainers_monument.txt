@@ -1216,8 +1216,8 @@ Pokemon = NIDOKING,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
 Pokemon = SCARODON,70
-    Moves = DEPTHCHARGE,AQUAJET,SCARRINGSWING,CLOSECOMBAT
-    AbilityIndex = 1 # Marine Menace
+    Moves = WATERFALL,AQUAJET,SCARRINGSWING,CLOSECOMBAT
+    AbilityIndex = 1 # Armor Piercing
     Item = CHOICEBAND
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
