@@ -307,6 +307,7 @@ def cloneMinorLegend
 	unless pbHasItem?(:ORIGINORE)
 		setSpeaker(HISUIAN_WITCH)
 		pbMessage(_INTL("I do not spy any Origin Ore among your possessions."))
+		return	
 	end
 
 	possibleSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
