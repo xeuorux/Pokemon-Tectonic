@@ -478,6 +478,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			pokemon.form = species_data.form
 			pokemon.reset_moves
 			pokemon.learn_move($PokemonTemp.currentDexSearch[1]) if $PokemonTemp.currentDexSearch[1]
+			pokemon.removeItems
 			pokemon.setItems($PokemonTemp.currentDexSearch[3]) if $PokemonTemp.currentDexSearch[3]
 			# There is a higher chance for shininess
 			pokemon.shinyRolls *= 2
