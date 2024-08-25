@@ -2,7 +2,6 @@ def pbBigAvatarBattle(*args)
     rule = "3v#{args.length}"
     setBattleRule(rule)
     victorious = pbAvatarBattleCore(*args)
-    unlockAchievement(:DEFEAT_ANY_LEGENDARY_AVATAR) if victorious
     return victorious
 end
 
@@ -93,7 +92,22 @@ def pbAvatarBattleCore(*args)
     #    4 - Wild Pokémon was caught
     #    5 - Draw
     pbSet(outcomeVar, decision)
-    return (decision == 1)
+
+    victorious = (decision == 1)
+
+    if victorious
+        anyLegendariesDefeated = false
+        for arg in args
+            next unless arg.is_a?(Array)
+            species = arg[0]
+            next unless GameData::Species.get(species).isLegendary?
+            anyLegendariesDefeated = true
+            break
+        end
+        unlockAchievement(:DEFEAT_ANY_LEGENDARY_AVATAR) if anyLegendariesDefeated
+    end
+
+    return victorious
 end
 
 SUMMON_MIN_HEALTH_LEVEL = 15
