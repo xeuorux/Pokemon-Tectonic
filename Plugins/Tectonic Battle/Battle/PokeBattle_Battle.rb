@@ -350,7 +350,7 @@ class PokeBattle_Battle
     def opposes?(idxBattler1, idxBattler2 = 0)
         idxBattler1 = idxBattler1.index if idxBattler1.respond_to?("index")
         idxBattler2 = idxBattler2.index if idxBattler2.respond_to?("index")
-        return (idxBattler1 & 1) != (idxBattler2 & 1)
+        return (idxBattler1 & 1) != (idxBattler2 & 1) # True if they're not both even or both odd
     end
 
     def nearBattlers?(idxBattler1, idxBattler2)

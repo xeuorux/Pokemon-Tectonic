@@ -3,7 +3,7 @@ class PokeBattle_Battle
     # Shifting a battler to another position in a battle larger than double
     #=============================================================================
     def pbCanShift?(idxBattler)
-        return false if pbSideSize(0) <= 2 && pbSideSize(1) <= 2 # Double battle or smaller
+        return false if !@doubleShift && pbSideSize(0) <= 2 && pbSideSize(1) <= 2 # Double battle or smaller
         idxOther = -1
         case pbSideSize(idxBattler)
         when 1

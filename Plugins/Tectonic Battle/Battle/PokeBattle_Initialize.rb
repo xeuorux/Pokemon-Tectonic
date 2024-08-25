@@ -64,6 +64,9 @@ class PokeBattle_Battle
     attr_accessor :foeAmbushing
     attr_reader   :statItemsAreMetagameRevealed
     attr_reader   :magneticGauntletBallsRecovered
+    attr_accessor :laneTargeting # Whether or not pokemon can only target foes across from them
+    attr_accessor :shiftEnabled # Whether a Pokemon can use an action to switch spots with their ally
+    attr_accessor :doubleShift # Whether shifting is allowed in double battles
 
     #=============================================================================
     # Creating the battle class
@@ -156,6 +159,9 @@ class PokeBattle_Battle
         @playerAmbushing = false
         @foeAmbushing = false
         @magneticGauntletBallsRecovered = 0
+        @laneTargeting = false
+        @shiftEnabled = false
+        @doubleShift = false
         if GameData::Move.exists?(:STRUGGLE)
             @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
         else

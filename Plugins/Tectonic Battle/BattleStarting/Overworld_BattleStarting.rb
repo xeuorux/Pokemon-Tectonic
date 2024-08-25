@@ -148,6 +148,10 @@ def pbPrepareBattle(battle)
   battle.foeAmbushing = true if battleRules["foeambush"]
   # Auto testing
   battle.autoTesting = battleRules["autotesting"]
+  # Lane battles
+  battle.laneTargeting = battleRules["lanetargeting"]
+  battle.doubleShift = battleRules["doubleshift"]
+  battle.shiftEnabled = true if battleRules["doubleshift"]
 end
 
 #===============================================================================

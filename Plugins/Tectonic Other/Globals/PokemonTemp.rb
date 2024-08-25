@@ -96,7 +96,9 @@ class PokemonTemp
       when "turnstosurvive";        then rules["turnsToSurvive"] = var
       when "autotesting"            then rules["autotesting"]    = true
       when "playerambush"           then rules["playerambush"]   = true
-      when "foeambush"              then rules["foeambush"]   = true
+      when "foeambush"              then rules["foeambush"]      = true
+      when "lanetargeting"          then rules["lanetargeting"]   = true
+      when "doubleshift"           then rules["doubleshift"]   = true
       else
         raise _INTL("Battle rule \"{1}\" does not exist.", rule)
       end

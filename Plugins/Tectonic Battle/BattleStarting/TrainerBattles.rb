@@ -224,6 +224,12 @@ def pbTrainerBattleRandom(trainerID, trainerName, partyID = 0)
     pbTrainerBattle(trainerID, trainerName, nil, false, partyID, false, 1, true)
 end
 
+def pbLaneTrainerBattle(trainerID, trainerName, trainerPartyID = 0, canLose = false, outcomeVar = 1)
+    setBattleRule("lanetargeting")
+    setBattleRule("doubleshift")
+    return pbTrainerBattle(trainerID, trainerName, nil, true, trainerPartyID, canLose, outcomeVar)
+end
+
 PERFECTED_SWITCH = 38
 def trackPerfectBattle(perfectingState)
     $game_switches[PERFECTED_SWITCH] = perfectingState

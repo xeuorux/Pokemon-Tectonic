@@ -25,13 +25,13 @@ Pokemon = LILLIGANT,50
     AbilityIndex = 1 # Herbalist
     Item = PARADOXHERB,MIRRORHERB
 #-------------------------------
-[HIKER,Conroy]
+[ROLLERSKATER_M,Lane Tester]
 Pokemon = MACHOP,10
-    AbilityIndex = 0 # Feel the Burn
-Pokemon = MACHOP,10
-    AbilityIndex = 0 # Feel the Burn
-Pokemon = MACHOP,10
-    AbilityIndex = 0 # Feel the Burn
+    AbilityIndex = 1 # No Guard
+Pokemon = PIKACHU,10
+    AbilityIndex = 1 # Break Through
+Pokemon = SEEDOT,10
+    AbilityIndex = 0 # Air Lock
 #-------------------------------
 [BUGCATCHER_F,Caitlyn]
 Policies = REMARKONSTARTER

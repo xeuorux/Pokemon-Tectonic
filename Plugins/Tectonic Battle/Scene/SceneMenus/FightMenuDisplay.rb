@@ -24,7 +24,7 @@ class FightMenuDisplay < BattleMenuBase
         self.y = Graphics.height-96
         @battler   = nil
         @shiftMode = 0
-          @extraInfoToggled = false
+        @extraInfoToggled = false
         # NOTE: @mode is for the display of the Mega Evolution button.
         #       0=don't show, 1=show unpressed, 2=show pressed
         if USE_GRAPHICS

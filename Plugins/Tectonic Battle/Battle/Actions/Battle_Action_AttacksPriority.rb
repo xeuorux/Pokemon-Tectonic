@@ -105,32 +105,42 @@ class PokeBattle_Battle
         case target_data.id
         when :NearAlly
             return false if opposes?(idxUser, idxTarget)
-            return false unless nearBattlers?(idxUser, idxTarget)
+            return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
         when :Ally
             return false if idxUser == idxTarget
             return false if opposes?(idxUser, idxTarget)
         when :UserOrNearAlly
             return true if idxUser == idxTarget
             return false if opposes?(idxUser, idxTarget)
-            return false unless nearBattlers?(idxUser, idxTarget)
+            return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
         when :UserAndAllies
             return false if opposes?(idxUser, idxTarget)
         when :UserOrNearOther
             return true if idxUser == idxTarget
-            return false unless nearBattlers?(idxUser, idxTarget)
+            return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
         when :NearFoe, :RandomNearFoe, :AllNearFoes, :ClosestNearFoe
             return false unless opposes?(idxUser, idxTarget)
-            return false unless nearBattlers?(idxUser, idxTarget)
+            return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
         when :Foe
             return false unless opposes?(idxUser, idxTarget)
         when :AllFoes
             return false unless opposes?(idxUser, idxTarget)
         when :NearOther, :AllNearOthers
-            return false unless nearBattlers?(idxUser, idxTarget)
+            return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
         when :Other
             return false if idxUser == idxTarget
         end
         return true
+    end
+
+    def nearEnoughForMoveTargeting?(idxBattler1, idxBattler2)
+        return false if idxBattler1 == idxBattler2
+        if @laneTargeting && pbSideSize(idxBattler2 % 2) > 1
+            closestIndex = pbGetOpposingIndicesInOrder(idxBattler1)[0]
+            return idxBattler2 == closestIndex
+        else
+            return nearBattlers?(idxBattler1, idxBattler2)
+        end
     end
 
     #=============================================================================
