@@ -545,31 +545,31 @@ class PokemonPartyScreen
     end
 end
 
-def styleValuesTrainer(skipExplanation = false)
+def styleValuesTrainer
     unless teamEditingAllowed?
         showNoTeamEditingMessage
         return
     end
 
-    skipExplanation = true if $PokemonSystem.brief_team_building_npcs == 0
+    choices = []
+    choices[cmdAdjustStylePoints = choices.length] = _INTL("Adjust Style Points")
+    choices[cmdExplainStylePoints = choices.length] = _INTL("What are Style Points?")
+    choices.push(_INTL("Cancel"))
+    choice = pbMessage(_INTL("I'm the Style Points adjuster. How can I help?"),choices,choices.length)
 
-    if isTempSwitchOff?("A") && !skipExplanation
-        pbMessage(_INTL("I'm the Style Points adjuster. I can adjust your Pokémon's Style Points any time."))
-        pbMessage(_INTL("To add Style Points to a stat, you'll have to remove them from another."))
-        setTempSwitchOn("A")
-    end
-    if skipExplanation || pbConfirmMessage(_INTL("Would you like to adjust the Style Points of any of your Pokémon?"))
-        pbMessage(_INTL("Choose the party member to adjust.")) if skipExplanation
+    if choice == cmdAdjustStylePoints
         while true
             choosePokemonToStyle
-            if $game_variables[1] < 0
-                pbMessage(_INTL("If your Pokémon need to have their Style Points adjusted, come to me.")) unless skipExplanation
-                break
-            else
-                pbStyleValueScreen(pbGetPokemon(1))
-            end
+            break if $game_variables[1] < 0
+            pbStyleValueScreen(pbGetPokemon(1))
         end
-    else
-        pbMessage(_INTL("If your Pokémon need to have their Style Points adjusted, come to me."))
-    end
+    elsif choice == cmdExplainStylePoints
+        pbMessage(_INTL("Style Points are numbers which have an effect on your Pokemon's stats."))
+        pbMessage(_INTL("Pokemon start with 10 Style Points in each of their stats."))
+        pbMessage(_INTL("To add Style Points to a stat, you have to remove them from another."))
+        pbMessage(_INTL("Investing into Attack and Sp. Atk is extra efficient: they go up at the same time!"))
+        pbMessage(_INTL("Each stat's Style Points value can go as low as 0, and can go as high as 20."))
+        pbMessage(_INTL("A Pokemon's Style Point total never changes, but Style Points give bigger stat bonuses at higher levels."))
+        pbMessage(_INTL("If you need to move quickly, try using the Quick Set option!"))
+    end        
 end
