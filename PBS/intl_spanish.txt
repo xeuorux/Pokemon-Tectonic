@@ -1893,7 +1893,7 @@ Dizzy Pokemon have their abilities surpressed and take extra damage!
 ¡Los Pokémon mareados tienen sus habilidades suprimidas y reciben daño extra!
 Leeched Pokemon have their health stolen by their opponent! In a double battle, the healing is split between both opponents.
 ¡Los Pokémon Infectados tienen su salud robada por su oponente! En un combate doble, la curación se divide entre ambos oponentes.
-It seems like the Riolu is trying to reach for a book, but it's too short to grab it on it's own.
+It seems like the Riolu is trying to reach for a book, but it's too short to grab it on its own.
 Parece que el Riolu intenta alcanzar un libro, pero es demasiado bajo para agarrarlo por su cuenta.
 Do you want to help the Pokemon?
 ¿Quieres ayudar al Pokémon?
