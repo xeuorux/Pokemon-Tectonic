@@ -1417,6 +1417,18 @@ Gender = Male
 BaseMoney = 60
 IntroBGM = ELITETRAINER
 #-------------------------------
+[ROLLERSKATER_F]
+Name = Roller Skater
+Gender = Female
+BaseMoney = 32
+IntroBGM = CYCLING2
+#-------------------------------
+[ROLLERSKATER_M]
+Name = Roller Skater
+Gender = Male
+BaseMoney = 32
+IntroBGM = CYCLING2
+#-------------------------------
 [ROUGHNECK]
 Name = Roughneck
 Gender = Male
