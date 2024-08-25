@@ -36,7 +36,6 @@ class PokemonSystem
     attr_accessor :dark_mode
     attr_accessor :forced_time_tint
     attr_accessor :aid_kit_animation
-    attr_accessor :brief_team_building_npcs
     attr_accessor :quick_evolution
     attr_accessor :name_on_showcases
 
@@ -104,7 +103,6 @@ class PokemonSystem
         @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
         @aid_kit_animation        = 0 # (0=true, 1=false)
-        @brief_team_building_npcs = 1 # (0=true, 1=false)
         @quick_evolution          = 1 # (0=true, 1=false)
         @name_on_showcases        = 0 # (0=true, 1=false)
     end
@@ -603,10 +601,6 @@ class PokemonOption_Scene_Speed < PokemonOption_Scene_Base
             EnumOption.new(_INTL("Aid Kit Animation"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.aid_kit_animation },
 				proc { |value| $PokemonSystem.aid_kit_animation = value }
-			),
-            EnumOption.new(_INTL("Brief Team NPCs"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.brief_team_building_npcs },
-				proc { |value| $PokemonSystem.brief_team_building_npcs = value }
 			),
             EnumOption.new(_INTL("Quick Evolution"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.quick_evolution },
