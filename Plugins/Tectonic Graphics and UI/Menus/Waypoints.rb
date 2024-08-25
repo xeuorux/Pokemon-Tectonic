@@ -150,11 +150,6 @@ class WaypointsTracker
 					return
 				end
 				transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
-				if pbGetSelfSwitch(waypointInfo, 'A', mapID) &&
-						getGlobalVariable(37) == 0 && # Legend cloning quest
-						getGlobalSwitch(68) # Yezera defeated
-					setGlobalSwitch(DR_HEKATA_PHONECALL_GLOBAL)
-				end
 			end
 			$scene.transfer_player
 			$game_map.autoplay

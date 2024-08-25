@@ -45,12 +45,14 @@ Events.onMapChange += proc { |_sender, _e|
 			$PokemonGlobal.shouldProc3BadgesZainCall = false
         end
 	end
+}
 
-	if 		gameWon? &&
-			!$game_switches[99] && # Battle monument not yet unlocked
-			$game_map.map_id == 188 # In Prizca Castle
-		$game_switches[BATTLE_MONUMENT_PHONECALL_GLOBAL] = true # Trigger the phonecall from Vanya
-	end
+Events.onMapChange += proc { |_sender, _e|
+    checkForVanyaBattleMonumentPhonecallTrigger
+}
+
+Events.onMapChange += proc { |_sender, _e|
+    checkForDrHekataPhonecallTrigger
 }
 
 Events.onStepTaken += proc { |_sender,_e|
@@ -59,3 +61,31 @@ Events.onStepTaken += proc { |_sender,_e|
         $PokemonGlobal.shouldProcEstateCall = false
     end
 }
+
+def checkForVanyaBattleMonumentPhonecallTrigger
+    return unless gameWon?
+    return if boatWaypointUnlocked?(:MONUMENT_ISLAND)
+    return unless $game_map.map_id == 188 # Prizca Castle
+    setGlobalSwitch(BATTLE_MONUMENT_PHONECALL_GLOBAL) # Trigger the phone call from Vanya
+end
+
+WHITE_CHAMBER_MAP_IDS = [
+    42, # Zeraora's Chamber
+    84, # Meloetta's Chamber
+    24, # Shaymin's Chamber
+    106, # Yveltal's Chamber
+    176, # Heroes' Chamber
+    199, # Xerneas' Chamber
+    291, # Deoxys's Chamber
+    303, # Zygarde's Chamber
+    330, # King's Chamber
+    315, # Uplifted Abysm
+    5, # Secret Location
+]
+
+def checkForDrHekataPhonecallTrigger
+    return unless WHITE_CHAMBER_MAP_IDS.include?($game_map.map_id)
+    return unless gameWon?
+    return unless getGlobalVariable(37) == 0 && # Legend cloning quest has not started
+	setGlobalSwitch(DR_HEKATA_PHONECALL_GLOBAL) # Trigger the phone call from Dr. Hekata
+end
