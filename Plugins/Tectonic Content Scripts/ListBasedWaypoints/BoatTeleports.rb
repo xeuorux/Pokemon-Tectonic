@@ -104,6 +104,15 @@ def boatTravel(currentDock = nil)
     warpToBoatWaypoint(chosenDockID)
 end
 
+def boatWaypointUnlocked?(dockID)
+    dockInfo = DOCK_LOCATIONS[dockID]
+    if dockInfo[:unlock_switch]
+        return getGlobalSwitch(dockInfo[:unlock_switch])
+    else
+        return true
+    end
+end
+
 def warpToBoatWaypoint(dockID)
     dockInfo = DOCK_LOCATIONS[dockID]
     direction = dockInfo[:direction] || Up
