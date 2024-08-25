@@ -519,12 +519,12 @@ class PokeBattle_Scene
       case target_data.id
       when :NearAlly
         @battle.eachSameSideBattler(idxBattler) do |b|
-          next if b.index==idxBattler || !@battle.nearEnoughForMoveTargeting?(b,idxBattler)
+          next if b.index==idxBattler || !@battle.nearBattlers?(b,idxBattler)
           next if b.fainted?
           return b.index
         end
         @battle.eachSameSideBattler(idxBattler) do |b|
-          next if b.index==idxBattler || !@battle.nearEnoughForMoveTargeting?(b,idxBattler)
+          next if b.index==idxBattler || !@battle.nearBattlers?(b,idxBattler)
           return b.index
         end
       when :Ally

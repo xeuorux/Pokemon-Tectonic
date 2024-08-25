@@ -118,15 +118,20 @@ class PokeBattle_Battle
         when :UserOrNearOther
             return true if idxUser == idxTarget
             return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
-        when :NearFoe, :RandomNearFoe, :AllNearFoes, :ClosestNearFoe
+        when :NearFoe, :RandomNearFoe, :ClosestNearFoe
             return false unless opposes?(idxUser, idxTarget)
             return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
+        when :AllNearFoes
+            return false unless opposes?(idxUser, idxTarget)
+            return false unless nearBattlers?(idxUser, idxTarget)
         when :Foe
             return false unless opposes?(idxUser, idxTarget)
         when :AllFoes
             return false unless opposes?(idxUser, idxTarget)
-        when :NearOther, :AllNearOthers
+        when :NearOther
             return false unless nearEnoughForMoveTargeting?(idxUser, idxTarget)
+        when :AllNearOthers
+            return false unless nearBattlers?(idxUser, idxTarget)
         when :Other
             return false if idxUser == idxTarget
         end
