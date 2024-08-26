@@ -44804,8 +44804,8 @@ Can poison the target even if it's a Steel or Poison type.
 Puede envenenar al objetivo incluso si es un tipo Veneno o Acero.
 It's always drowsing, and attacks without waking.
 Siempre está somnoliento, y ataca sin despertarse.
-Makes foes unable to use priority attacks.
-No permite que los rivales usen ataques de prioridad.
+Makes foes unable to use priority moves.
+No permite que los rivales usen movimientos de prioridad.
 Damages an attacker that lands the finishing hit.
 Daña al Pokémon que lo debilite con la misma potencia.
 Repeats another Pokémon's dance move immediately.
