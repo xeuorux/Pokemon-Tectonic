@@ -3281,7 +3281,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackChargeStartSunshine5
 Flags = CanProtect,CanMirrorMove
-Description = Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.
+Description = Summons Sunshine for five turns on the first turn, then overwhelms the foe with fiery light on the second.
 Animation = FIREBLAST
 #-------------------------------
 [BLAZINGSPEED]
