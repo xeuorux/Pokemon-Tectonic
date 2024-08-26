@@ -4,8 +4,8 @@ end
 
 Events.onStepTaken += proc {
   $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
-  $PokemonGlobal.autosaveSteps += 1 unless Input.press?(Input::CTRL)
-  if $PokemonGlobal.autosaveSteps>=40
+  $PokemonGlobal.autosaveSteps += 1 unless debugControl
+  if $PokemonGlobal.autosaveSteps >= 40
     autoSave
     $PokemonGlobal.autosaveSteps = 0
   end
