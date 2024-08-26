@@ -472,7 +472,7 @@ Description = Physical moves against it inflict 1/8th max HP damage to the foe.
 #-------------------------------
 [ROYALMAJESTY]
 Name = Royal Majesty
-Description = Makes foes unable to use priority attacks.
+Description = Makes foes unable to use priority moves.
 #-------------------------------
 [SANDPOWER]
 Name = Sand Power
