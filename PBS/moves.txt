@@ -4996,7 +4996,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = IncreasedPriorityInSunshine
 Flags = CanProtect,CanMirrorMove
-Description = Attacks by gliding on the ground. This move always goes first in sun.
+Description = Attacks by gliding on the ground. This move always goes first in Sunshine.
 #-------------------------------
 [SPIKYSHIELD]
 Name = Spiky Shield
