@@ -35,24 +35,26 @@ def getWeatherForTimeAndMap(time,map_id)
     wetness = wetnessThisHour
     wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min)
 
-    metaData = GameData::MapMetadata.get(map_id)
+    if GameData::MapMetadata.exists?(map_id)
+        metaData = GameData::MapMetadata.get(map_id)
 
-    case metaData.temperature
-    when 0 # Hot
-        hotness += 1
-    when 1 # Cold
-        hotness -= 1
-    when 2 # Stable
-        hotness *= 0.7
-    end
-
-    case metaData.humidity
-    when 0 # Wet
-        wetness += 1
-    when 1 # Dry
-        wetness -= 1
-    when 2 # Stable
-        wetness *= 0.7
+        case metaData.temperature
+        when 0 # Hot
+            hotness += 1
+        when 1 # Cold
+            hotness -= 1
+        when 2 # Stable
+            hotness *= 0.7
+        end
+    
+        case metaData.humidity
+        when 0 # Wet
+            wetness += 1
+        when 1 # Dry
+            wetness -= 1
+        when 2 # Stable
+            wetness *= 0.7
+        end
     end
 
     weatherSym = :None
