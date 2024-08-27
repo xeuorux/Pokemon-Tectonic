@@ -47,13 +47,8 @@ def makeBackupSave
 end
 
 def savingAllowed?
-    begin
-        return false if GameData::MapMetadata.get($game_map.map_id).saving_blocked
-    # return false if $PokemonGlobal.tournament&.tournamentActive?
-    rescue StandardError
-        return true
-    end
-    return true
+    return true unless GameData::MapMetadata.exists?($game_map.map_id)
+    return !GameData::MapMetadata.get($game_map.map_id).saving_blocked
 end
 
 def showSaveBlockMessage
