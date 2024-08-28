@@ -2516,9 +2516,9 @@ Pokemon = KINGDRA,70
 Pokemon = MAROWAK,70
     Moves = BONEMERANG,DRAINPUNCH,POWERUPPUNCH,THUNDERCLAP
     AbilityIndex = 1 # Break Through
-    Item = ASSAULTVEST
+    Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,20,0,0,20,10
+    EV = 20,20,10,0,20,0
 Pokemon = DURANT,70
     Moves = HONECLAWS,EARTHQUAKE,XSCISSOR,BULLETTRAIN
     AbilityIndex = 0 # Hustle

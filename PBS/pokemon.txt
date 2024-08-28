@@ -1843,7 +1843,7 @@ Name = Machamp
 InternalName = MACHAMP
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,140,80,55,65,85
+BaseStats = 90,140,85,55,65,80
 # Total = 515
 GenderRate = Female25Percent
 GrowthRate = Medium
@@ -2853,7 +2853,7 @@ InternalName = CUBONE
 Type1 = GROUND
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,85,60,40,60,100
+BaseStats = 65,85,80,50,70,60
 # Total = 410
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -2883,7 +2883,7 @@ InternalName = MAROWAK
 Type1 = GROUND
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,70,55,100,120
+BaseStats = 80,120,120,55,100,70
 # Total = 545
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -5791,8 +5791,8 @@ InternalName = GRANBULL
 Type1 = FAIRY
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,120,95,85,60,60
-# Total = 520
+BaseStats = 100,120,100,85,60,60
+# Total = 525
 GenderRate = Female75Percent
 GrowthRate = Medium
 BaseEXP = 158
@@ -5906,7 +5906,7 @@ InternalName = HERACROSS
 Type1 = BUG
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,105,70,70,40,90
+BaseStats = 70,105,90,70,40,70
 # Total = 445
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -12559,7 +12559,7 @@ InternalName = CROAGUNK
 Type1 = POISON
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 58,76,55,60,76,70
+BaseStats = 58,76,60,60,76,65
 # Total = 395
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -12588,7 +12588,7 @@ InternalName = TOXICROAK
 Type1 = POISON
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 88,106,75,75,106,105
+BaseStats = 88,106,85,75,106,95
 # Total = 555
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -13928,7 +13928,7 @@ InternalName = SAMUROTT
 Type1 = WATER
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,103,85,96,80,75
+BaseStats = 95,103,95,96,70,75
 # Total = 534
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -18641,7 +18641,7 @@ Name = Skiddo
 InternalName = SKIDDO
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 66,70,48,52,70,57
+BaseStats = 66,70,57,52,70,48
 # Total = 363
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -18670,7 +18670,7 @@ InternalName = GOGOAT
 Type1 = GRASS
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 123,110,62,68,110,81
+BaseStats = 123,110,81,68,110,62
 # Total = 554
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -23395,7 +23395,7 @@ Name = Silicobra
 InternalName = SILICOBRA
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,35,55,46,57,70
+BaseStats = 52,35,70,46,57,55
 # Total = 315
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -23424,7 +23424,7 @@ Name = Sandaconda
 InternalName = SANDACONDA
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,65,60,65,85,90
+BaseStats = 65,65,90,65,85,60
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -23645,8 +23645,8 @@ Name = Clobbopus
 InternalName = CLOBBOPUS
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 76,62,54,32,44,72
-# Total = 340
+BaseStats = 76,62,64,32,44,60
+# Total = 338
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 62
@@ -23674,7 +23674,7 @@ Name = Grapploct
 InternalName = GRAPPLOCT
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 115,98,90,52,65,115
+BaseStats = 115,98,105,52,65,100
 # Total = 535
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -25367,7 +25367,7 @@ InternalName = SAHARICANE
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,85,70,85,115,105
+BaseStats = 80,85,105,85,115,70
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -25519,7 +25519,7 @@ InternalName = ATLACROSS
 Type1 = BUG
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,135,85,85,60,105
+BaseStats = 80,135,105,85,60,85
 # Total = 550
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -27063,7 +27063,7 @@ InternalName = HSAMUROTT
 Type1 = WATER
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 105,88,75,111,60,95
+BaseStats = 105,88,75,111,75,80
 # Total = 534
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -27481,7 +27481,7 @@ InternalName = HQWILFISH
 Type1 = DARK
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,95,65,85,65,85
+BaseStats = 65,95,85,85,65,65
 # Total = 460
 GenderRate = Female50Percent
 GrowthRate = Medium
