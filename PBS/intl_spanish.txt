@@ -1017,7 +1017,7 @@ Just like that, my team's put to the sidelines.
 Y así nada más, mi equipo fue llevado al banquillo.
 A knack for tactics, that's what you got. Helena'll be impressed, I know it.
 Se te dan muy bien las tácticas. Helena estará impresionada, lo sé.
-Healing centers uhh... to the west. So go off and do that now.
+Healing center's uhh... to the west. So go off and do that now.
 El centro Pokémon está eeeh... al oeste. Así que ve y haz lo que debas.
 She just switches around a lot? That's the "tactics" everyone around here's been hyping up?
 ¿Ella sólo cambia de Pokémon un montón? ¿Esas son las "tácticas" que todo el mundo aquí está promocionando?
@@ -2092,13 +2092,13 @@ That's why she's focused her gym around Electric-type and Water-type Pokemon!
 ¡Por eso su gimnasio usa Pokémon tipo Agua y Eléctrico!
 They're a strong pair in battles, sharing no weaknesses.
 Son un fuerte par en combate, al no compartir ninguna debilidad.
-Firstly, Grass-type Pokemon are your best bet against her, since they're strong against Water- types, and resist Electric.
+Firstly, Grass-type Pokemon are your best bet against her, since they're strong against Water-types, and resist Electric.
 Primero, Pokémon tipo Planta son tu mejor apuesta contra ella, ya que son fuertes contra los tipo Agua, y resisten Eléctrico.
 Secondarily, Dragon-type Pokemon will resist both Water and Electric.
 Segundo, Pokémon tipo Dragón resisten tanto Agua como Eléctrico.
 Finally, mirroring her with Electric-type Pokemon of your own can work well too.
 Finalmente, copiandole usando tus propios Pokémon tipo eléctrico puede funcionar.
-They're strong against Water-type, and resist Electric.
+They're strong against Water-types, and resist Electric.
 Son fuertes contra los tipo Agua, y resisten Eléctrico.
 Hope that helps!
 ¡Espero que eso ayude!
@@ -6797,7 +6797,7 @@ Participate in battles against our scientists, and you may earn a hi-tech prize.
 Participa en combates contra nuestros científicos, y puede que ganes un premio de alta tecnología.
 Do be careful though, if you're not yet at the right skill level. Four badges is the threshold our data suggests is optimal.
 Pero ten cuidado, si no estás todavía en el nivel de combate. Cuatro medallas es el umbral que nuestros datos consideran óptimos.
-My dad brings me to work everyday after school since I like to watch the Pokemon battles.
+My dad brings me to work every day after school since I like to watch the Pokemon battles.
 Mi papá me trae al trabajo todos los días después del trabajo ya que me gusta ver combates Pokémon.
 You get to see all sorts of Pokemon here. Sometimes the Trainers let me pet them!
 Llegas a ver todo tipo de Pokémon aquí. ¡A veces los Entrenadores me dejan acariciarlos!
