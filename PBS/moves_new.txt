@@ -4940,7 +4940,7 @@ TotalPP = 3
 Target = NearOther
 FunctionCode = SleepTargetUserLosesHalfMaxHP
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.
+Description = By sacrificing half its total HP, the user jinxes the target with a kiss, making it fall asleep.
 Animation = LOVELYKISS
 #-------------------------------
 [DISCOVEREDPOWER]
