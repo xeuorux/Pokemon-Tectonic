@@ -1,6 +1,7 @@
 COMBINE_ATTACKING_STATS = true
 STYLE_VALUE_TOTAL = 50
 DEFAULT_STYLE_VALUE = 10
+STYLE_VALUE_MAX = 20
 
 def pbStyleValueScreen(pkmn)
     unless teamEditingAllowed?
@@ -415,17 +416,25 @@ class StyleValueScreen
             elsif Input.repeat?(Input::RIGHT) && @index < 6
                 stat = stats[@index]
                 stat = :ATTACK if COMBINE_ATTACKING_STATS && stat == :SPECIAL_ATTACK
-                if pkmn.ev[stat] < 20 && @pool > 0
+                if pkmn.ev[stat] < STYLE_VALUE_MAX && @pool > 0
                     pkmn.ev[stat] = (pkmn.ev[stat] + 1)
                     @pool -= 1
                     pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
                     @scene.pool = @pool
                     pbPlayDecisionSE
                     updateStats(pkmn)
-                elsif pkmn.ev[stat] == 20 && Input.trigger?(Input::RIGHT)
+                elsif pkmn.ev[stat] == STYLE_VALUE_MAX && Input.trigger?(Input::RIGHT)
                     pkmn.ev[stat] = 0
                     pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
-                    @pool += 20
+                    @pool += STYLE_VALUE_MAX
+                    @scene.pool = @pool
+                    pbPlayDecisionSE
+                    updateStats(pkmn)
+                elsif @pool == 0 && Input.trigger?(Input::RIGHT)
+                    toAddToPool = pkmn.ev[stat]
+                    pkmn.ev[stat] = 0
+                    pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
+                    @pool += toAddToPool
                     @scene.pool = @pool
                     pbPlayDecisionSE
                     updateStats(pkmn)
@@ -443,7 +452,7 @@ class StyleValueScreen
                     pbPlayDecisionSE
                     updateStats(pkmn)
                 elsif @pool > 0 && Input.trigger?(Input::LEFT)
-                    pkmn.ev[stat] = [@pool, 20].min
+                    pkmn.ev[stat] = [@pool, STYLE_VALUE_MAX].min
                     pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
                     @pool -= pkmn.ev[stat]
                     @scene.pool = @pool
@@ -454,8 +463,10 @@ class StyleValueScreen
                 end
             elsif Input.trigger?(Input::ACTION)
                 if COMBINE_ATTACKING_STATS
+                    # HP, Attack, Defense, Sp. Atk, Sp. Def, Speed
                     choices = {
                         _INTL("Fast Attacker") => [10,20,0,20,0,20],
+                        _INTL("Bulky Attacker") => [20,20,0,20,0,10],
                         _INTL("Physical Tank") => [10,20,20,20,0,0],
                         _INTL("Special Tank") => [10,20,0,20,20,0],
                         _INTL("Physical Wall") => [20,0,20,0,10,0],
@@ -465,6 +476,8 @@ class StyleValueScreen
                     choices = {
                         _INTL("Physical Attacker") => [10,20,0,0,0,20],
                         _INTL("Special Attacker") => [10,0,0,20,0,20],
+                        _INTL("Bulky Physical") => [20,20,0,0,0,10],
+                        _INTL("Bulky Attacker") => [20,0,0,20,0,10],
                         _INTL("Physical Tank") => [10,20,20,0,0,0],
                         _INTL("Special Tank") => [10,0,0,20,20,0],
                         _INTL("Physical Wall") => [20,0,20,0,10,0],
