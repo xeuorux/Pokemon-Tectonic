@@ -2,7 +2,7 @@ def blackFadeOutIn(length=10,&block)
 	if $PokemonSystem.skip_fades == 1 || !$DEBUG
 		fadeToBlack(length)
 	end
-	block.call
+	block.call if block_given?
 	if $PokemonSystem.skip_fades == 1 || !$DEBUG
 		fadeIn(length)
 	end

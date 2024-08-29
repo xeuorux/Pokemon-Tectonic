@@ -1486,6 +1486,15 @@ BattleUse = OnFoe
 Flags = PokeBall,SnagBall
 Description = The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.
 #-------------------------------
+[RADIANTBALL]
+Name = Radiant Ball
+NamePlural = Radiant Balls
+Pocket = 3
+Price = 0
+BattleUse = OnFoe
+Flags = PokeBall,SnagBall
+Description = A ball with a mythical quality. It will catch any wild Pokémon without fail, and turn that Pokémon shiny.
+#-------------------------------
 [ULTRABALL]
 Name = Ultra Ball
 NamePlural = Ultra Balls
@@ -2924,3 +2933,11 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A USB containing data from a Team Chasm's early days.
+#-------------------------------
+[GILDEDAPRICORN]
+Name = Gilded Apricorn
+NamePlural = Gilded Apricorns
+Pocket = 7
+Price = 0
+Flags = KeyItem
+Description = A gleaming golden fruit. Someone skilled may be able to craft it into a unique Poké Ball.

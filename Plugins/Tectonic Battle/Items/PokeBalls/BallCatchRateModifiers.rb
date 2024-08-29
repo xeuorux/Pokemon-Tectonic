@@ -5,6 +5,8 @@ BallHandlers::IsUnconditional.add(:MASTERBALL, proc { |_ball, _battle, _battler|
     next true
 })
 
+BallHandlers::IsUnconditional.copy(:MASTERBALL,:RADIANTBALL)
+
 #===============================================================================
 # ModifyCatchRate
 # NOTE: This code is not called if the battler is an Ultra Beast (except if the
