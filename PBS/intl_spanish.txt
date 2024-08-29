@@ -31014,6 +31014,18 @@ Cosecha
 5218
 Mellow
 Meloso
+5067
+Alpha
+Alfa
+5101
+Paleozoic
+Paleozoico
+5189
+Prism
+Prisma
+5190
+Prism
+Prisma
 [3]
 1
 Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.
@@ -34765,6 +34777,9 @@ Usa tanto magia blanca como negra. Cosecha las flores que crecen en brujas que r
 5218
 It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 Se diferencia de otros Basculin en varios aspectos, incluido el comportamiento. Es mucho más gentil que sus otra variantes.
+5197
+They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
+Sirven diligentemente a la gente y Pokémon así pueden reunir sentimientos de gratitud. Las hembras son particularmente buenas con niños.
 [4]
 676
 Natural
@@ -36601,7 +36616,7 @@ Ferropuño Doble
 Gear Grind
 Rueda Doble
 Metal Claw
-Garra de Metal
+Garra Metal
 Bullet Punch
 Puño Bala
 Gyro Ball
@@ -36733,7 +36748,7 @@ Retumbar
 Tremor
 Temblor
 Cold Embrace
-Fría Acogida
+Agarre Helado
 Stink Cloud
 Nube Apestosa
 Blind Side
@@ -36851,7 +36866,7 @@ Psicoperforación
 Light Show
 Show de Luces
 Signal Overload
-Sobrecarga de Señal
+Sobrecarga Señal
 Petrify
 Petrificar
 Crystal Gleam
@@ -36991,7 +37006,7 @@ Pulso Difuso
 Particle Pulse
 Rayo de Partículas
 Stellarate
-Lluvia de Estrellas
+Lluvia Estelar
 Pilfer
 Birlar
 Tease
@@ -37561,7 +37576,7 @@ Multi Aguijón
 Rising Tide
 Agua Creciente
 Exsanguinate
-Chupasangre
+Exanguinar
 Gleeful Grasp
 Apretón Alegre
 Play Bite
@@ -37862,7 +37877,7 @@ Gloat
 Regodearse
 Bully
 Amedrentar
-Fire for Effect
+Fire For Effect
 Artillería
 Snap
 Mordisqueo
@@ -37938,6 +37953,44 @@ Selective Memory
 Memoria Selectiva
 Elemental Fang
 Colmillo Elemental
+Bleakwind Storm
+Vendaval Gélido
+Sandsear Storm
+Simún de Arena
+Rainstorm
+Tormenta de Lluvia
+Wildbolt Storm
+Electormenta
+Springtide Storm
+Ciclón Primavera
+Cloudbreak
+Reinicio Climático
+Dissipation
+Disipación
+Rock Out
+A Roquear
+Natural Protection
+Protección Natural
+Weigh Anchor
+Levar Ancla
+Invite Rainstorm
+Invitar a la Tormenta
+Brain Freeze
+Cerebro Congelado
+Iceberg Bash
+Choque de Iceberg
+Wyrmwounding
+Garfio Wyrm
+Abyssal Mist
+Niebla Abisal
+Primeval Deep Breathing
+Inhalación Profunda Primitiva
+Primeval Gravity
+Gravedad Primitiva
+Primeval Polarized Room
+Zona Polarizada Primitiva
+Primeval Odd Room
+Zona Anómala Primitiva
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -38720,15 +38773,15 @@ La energía que haya sido guardada con Reserva es liberada de golpe con un fuert
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
 The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
-The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+El usuario desata su movimiento definitivo. No falla y esquiva protecciones. Sólo un uso por combate.
 The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
 El usuario estruja con fuerza al objetivo. Cuantos más PS tenga el objetivo, más fuerte es el movimiento.
 The user helps the target and makes it use its move right after the user.
 El usuario ayuda al objetivo, haciendo que pueda usar un movimiento justo después del usuario.
 The user hurriedly and randomly uses a move among those known by other Pokémon in the party.
 El usuario se apura y usa aleatoriamente un movimiento entre los que conozcan otros Pokémon en su equipo.
-The user switches places with a party Pokémon in waiting, passing along any stat step changes.
-El usuario cambia de lugar con un Pokémon de su equipo, pasando cualquier cambio de stats en el proceso.
+The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
+El usuario cambia de lugar con uno de los Pokémon en tu equipo, pasando cualquier cambio de stat. Siempre va último.
 The user maximizes its Attack stat in exchange for HP equal to half its max HP.
 El usuario maximiza su Ataque a cambio de perder la mitad de sus PS totales.
 The user passes its held item to the target when the target isn't holding an item.
@@ -40252,7 +40305,7 @@ Un ataque distinguido que movita a aliados cercanos que continúen, dejando que 
 The user attacks with bitter emotion. This lowers the target's attacking stats by 2 steps if in hail.
 El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados bajo granizo.
 The target is subjected to a violent and frightening prank. It has a 10% chance to numb.
-El objetivo es sucjeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
+El objetivo es sujeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
 The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.
 El usuario canta con abandono temerario, molestando al objetivo. Tiene un 30% de probabilidad de aturdir al objetivo.
 The user creates a bubble to shield their ally. The next time they're hit, 50% of the move damage is instead dealt back as recoil.
@@ -40377,6 +40430,212 @@ The user peruses it's kingly stores of knowledge, selecting three random non-Psy
 El usuario analiza su conocimiento real, eligiendo tres movimientos no-psíquicos aleatoriamente. Tú eliges cuál usar.
 The user chooses between Fire Fang, Thunder Fang, or Ice Fang to use this turn.
 El usuario elige entre usar Colmillo Ígneo, Colmillo Rayo, o Colmillo Hielo este turno.
+The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
+El usuario explota para infligir daño a todos los Pokémon en combate. El usuario se debilita al usar este movimiento.
+The user's edges become sharper, raising its Attack stat by three steps.
+Las puntas del usuario se afilan, aumentando su Ataque tres grados.
+The user charges up power and raises its Defense and Sp. Def by two steps. The move can be stacked twice.
+El usuario carga poder y aumenta su Defensa y Defensa Especial dos grados. Puedes acumularlo dos veces.
+The user eats its held Berry, then raises both its defensive stats by three steps.
+El usuario come la Baya que tenga equipada, luego aumenta sus stats defensivas tres grados.
+The user spends 25% HP to create a doll to protect it from move damage, additional effects, and status moves.
+El usuario usa 25% de sus PS para crear un muñeco que lo protege de ataques, efectos secundarios y movimientos de estado.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+El usuario desata su movimiento definitivo. No falla y atraviesa protecciones. Sólo un uso por combate.
+The user yawns, making the target drowsy. They'll fall asleep at end of the next turn.
+El usuario bosteza, adormeciendo al objetivo. Caerán dormidos al final del siguiente turno.
+The user looses a flurry of open-palmed arm thrusts that hit two to five times in a row. Has a 10% chance to numb.
+El usuario desata una ráfaga de palmadas que golpean de dos a cinco veces seguidas. Tiene un 10% de probabilidad de aturdir.
+The user attacks with a swift chop. It also breaks any screens protecting the target's side.
+El usuario ataca con un rápido manotazo. También rompe cualquier pantalla en el lado del objetivo.
+The user nimbly strikes the foe. Doubles in damage if the user has no item when the move starts.
+El usuario ataca ágilmente al objetivo. Duplica su daño si el usuario no tiene objeto cuando inicia el movimiento.
+The user attacks foes with savagely cold winds. It has a 30% chance to frostbite.
+El usuario ataca con vientos extremadamente fríos. Tiene un 30% de probabilidad de helar.
+The user bounces up high, becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
+El usuario salta a lo alto, volviéndose invulnerable, luego cae al objetivo en el segundo turno. Tiene un 30% de probabilidad de aturdir.
+The user whips up a wind to blow away the target's protective screens. Also removes hazards on both sides.
+El usuario levanta un viento que remueve las pantallas del objetivo. También quita trampas en ambos lados.
+The user soars, becoming invulnerable, then strikes on the second turn.
+El usuario vuela, volviéndose invulnerable, y luego ataca en el segundo turno.
+The user whips up a gust of wind to attack the target.
+El usuario levanta una ráfaga de viento para atacar al objetivo.
+The user lets out a damaging belch at the target. Deals double damage if the user has eaten a berry this battle.
+El usuario suelta un eructo dañino al objetivo. Duplica su potencia si el usuario ha comido una baya en el mismo combate.
+The user coils up and concentrates. This raises its Attack, Defense, and accuracy by two steps each.
+El usuario se enrosca y concentra. Esto aumenta su Ataque, Defensa y precisión tres grados cada una.
+The user shoots filthy garbage at the target to attack.
+El usuario lanza residuos sucios al objetivo para atacar.
+The user shoots poisonous threads to poison the target and lowers the target's Speed stat by four steps.
+El usuario dispara hilos venenos al objetivo que lo envenena y disminuye su Velocidad cuatro grados.
+The user burrows, becoming invulnerable, then attacks on the second turn.
+El usuario va bajo tierra, volviéndose invulnerable, luego ataca en el segundo turno.
+The user wraps foes in fierce winds and searingly hot sand. It has a 30% chance to burn.
+El usuario atrapa a rivales en feroces vientos y arena abrasadora. Tiene un 30% de probabilidad de quemar.
+Gathers space power and boosts its Sp. Atk by two steps on one turn, then attacks on the next turn.
+Junta poder espacial y aumenta su Ataque Especial dos grados en el primer turno, luego ataca en el segundo.
+The user stabs the foe with sharpened stones from below.
+El usuario atraviesa al objetivo con piedras afiladas desde abajo.
+For five turns, this move prevents the target from using the move it last used.
+Durante cinco turnos, este movimiento impide al objetivo usar su último movimiento.
+The user vanishes somewhere, becoming invulnerable, then strikes on the next turn. Skips and destroys protections.
+El usuario se desvance, volviéndose invulnerable, luego ataca en el siguiente turno. Salta y atraviesa protecciones.
+The user disappears, becoming invulnerable, then strikes the foe on the second turn. It hits even if the foe protects itself.
+El usuario se desvance, volviéndose invulnerable, luego ataca al objetivo en el segundo turno. Golpea incluso si el objetivo se protege.
+The target is slammed with a steel-hard tail.
+El usuario ataca con una cola dura como el hierro.
+Protects the user from damage this turn. It also lowers the Attack of physical attackers by two steps.
+Protege el usuario del daño por un turno. También disminuye el Ataque de atacantes físicos dos grados.
+The target is razed by a fiery explosion. The user must rest on the next turn, however.
+El usuario arrasa con una explosión ígnea. El usuario debe descansar en el siguiente turno.
+The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It has a 30% chance to burn.
+El usuario ataca sepultando al objetivo en una intensa llamarada azul. Tiene un 30% de probabilidad de quemar.
+The user attacks in an explosive fury. Weakens in damage as the user loses HP. Weakest at half HP.
+El usuario ataca en una furia explosiva. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+Attacks by igniting a small stone and launching it as a fiery ball.
+El usuario ataca encendiendo una pequeña roca y lanzándola como una pelota en llamas.
+The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts all near foes.
+El usuario pone una trampa coraza. Si es golpeado por un movimiento físico, la trampa explota y lastima todos los rivales cercanos.
+Diving on the first turn, becoming invulnerable, the user rises and hits from below water on the next turn.
+Se sumerge en el primer turno, volviéndose invulnerable, luego ataca desde abajo del agua en el siguiente turno.
+The user spouts water to damage the foe. Weakens in damage as the user loses HP. Weakest at half HP.
+El usuario dispara agua para atacar al rival. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+The user slams the target with an enormous tree. The user can't move on the next turn.
+El usuario aplasta al objetivo con un árbol gigante. El usuario debe descansar en el siguiente turno.
+Attacks by gliding on the ground. This move always goes first in Sunshine.
+Ataca impulsándose por la tierra. Siempre va primero en Luz Solar.
+The user charges at its foe, surrounding itself with lightning. It has a 30% chance to numb.
+El usuario carga hacia el objetivo, envolviéndose en electricidad. Tiene un 30% de probabilidad de aturdir.
+The user savagely attacks foes with lightning and wind. It has a 30% chance to numb.
+El usuario ataca salvajemente a los rivales con electricidad y viento. Tiene un 30% de probabilidad de aturdir.
+The user faints. In return, the Pokémon taking its place will have its status and HP fully restored.
+El usuario se debilita. A cambio, el Pokémon que toma su lugar tendrá su estado y PS completamente restaurados.
+The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by one.
+El usuario realiza una poderosa danza mística, aumentando su Ataque dos grados y Velocidad uno.
+Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP. Weakest at half HP.
+Ataca a los Pokémon rivales con vitalidad pura. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+The user gets all the party Pokémon to attack the foe with punches and kicks.
+El usuario hace que todo el equipo ataque al objetivo con puños y patadas.
+The user prevents the target from using its held item.
+El usuario impide al objetivo usar su objeto equipable.
+The user feigns crying to worry the target, lowering its Sp. Def stat by four steps.
+El usuario finge llorar para preocupar al objetivo, disminuyendo su Defensa Especial cuatro grados.
+The user sharpens its claws to raise its Attack and accuracy by three steps each.
+El usuario afila sus garras para aumentar su Ataque y precisión tres grados.
+Protects the user from damage this turn. It also lowers the Defense of physical attackers by four steps.
+Protege al usuario del daño por un turno. También disminuye la Defensa de atacantes físicos cuatro grados.
+The user attacks foes with love and hate. It has a 30% chance to lower both attacking stats.
+El usuario ataca con amor y odio. Tiene un 30% de probabilidad de disminuir ambas stats ofensivas del objetivo. 
+A tremendous strike that clears any active weather.
+Un golpe tremendo que quita cualquier clima activo.
+An unusual shockwave that breaks down all active Rooms.
+Una onda inusual que rompe cualquier Zona activa.
+The user focuses its aim to raise its Sp. Atk and accuracy by three steps each.
+El usuario concentra su mira para aumentar su Ataque Especial y precisión tres grados.
+The user attacks by spreading its body wide. Its power doubles if Curl Up was used previously.
+El usario ataca aplastando con todo su cuerpo. Duplica su potencia si Rizo Guardia fue usado anteriormente.
+The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.
+El usuario ataca liberándose de sus apegos terrenales. Duplica su potencia si el usuario no tiene objeto cuando empieza el movimiento.
+The user endures attacks with 1 HP. If so, raises its Attack by two steps. Fails if used in succession.
+El usuario aguanta ataques con 1 PS. En tal caso, aumenta su Ataque dos grados. Falla si se usa consecutivamente.
+The user raises all of their stats by two steps. Fails unless a foe fainted last turn.
+El usuario aumenta todas sus stats dos grados. Falla a no ser que un oponente haya sido debilitado en el último turno.
+The user soars up high, becoming invulnerable, then strikes on the second turn by dive bombing the target.
+El usuario vuelta a lo alto, volviéndose invulnerable, luego ataca en el segundo turno cayendo hacia el objetivo.
+Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.
+Sujeta al objetivo con toda su boca. El usuario no puede atacar a no ser que el objetivo sea debilitado o cambie.
+Summons a storm of poisonous gas to hit all nearby pokemon with a 30% chance to poison.
+Invoca una tormenta de gas venenoso para atacar a todos los Pokémon cercanos con un 30% de probabilidad de envenenar.
+The user attacks by hurling a blob of mud. It has a 20% chance to reduce the target's Speed.
+El usuario ataca lanzando una masa de lodo. Tiene nu 20% de probabilidad de disminuir la Velocidad del objetivo. 
+The user burrows deep, becoming invulnerable, then attacks with devastating power on the second turn.
+El usuario excava a lo profundo, volviéndose invulnerable, luego ataca con un poder devastador en el segundo turno.
+The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.
+El usuario araña al objetivo con fuertes rocas. En tormenta de arena, la Defensa del objetivo es disminuida tres grados.
+The user sweeps away hazards while charging. User also takes 33% recoil.
+El usuario barre trampas mientras carga. Recibe un 33% de daño de retroceso.
+The user dances wildly while churning rocks towards the target. This raises the user's Attack by 2 steps.
+El usuario danza locamente mientras lanza rocas al objetivo. Esto aumenta el Ataque del usuario dos grados.
+The user makes a plea for survival, halving the damage their side takes from non-attack sources for 4 turns.
+El usuario hace un pedido por supervivencia, reduciendo a la mitad el daño de no-ataques en tu lado durante 4 turnos.
+The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.
+El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados en granizo.
+Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.
+Anula el último movimiento usado por el objetivo cuatro turnos, luego reduce una stat relevante en él cuatro grados.
+Disables the target's last used move for five turns, and cuts 5 PP from it.
+Anula el último movimiento usado por el objetivo cinco turnos, y le quita 5 PP.
+A reckless charge that forces the user to switch out if it misses. Always goes first.
+Una carga sin cuidado que fuerza al usuario a cambiar si falla. Siempre va primero.
+The target is hit by a wave of magnetic energy. It has a 20% chance to lower their Speed.
+El objetivo es golpeado por una onda de energía magnética. Tiene un 20% de probabilidad de disminuir su Velocidad.
+The user attacks the target with a sword. If it faints, tons of money is earned after the battle.
+El usuario ataca con una espada. Si el objetivo se debilita, montones de dinero son ganados luego del combate.
+Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.
+Protege al usuario del daño por un turno. También disminuye el Ataque Especial de atacantes especiales dos grados.
+The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
+El usuario encadena al objetivo con un ancla pesada. Pokémon que vuelen caerán al suelo al ser golpeados.
+Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
+Solda metal pesado al objetivo, dándole el tipo Acero y reduciendo su Velocidad cuatro grados.
+Summons Sunshine for five turns on the first turn, then overwhelms the foe with fiery light on the second.
+Invoca la Luz Solar cinco turnos en el primer turno, luego abruma al objetivo con una luz abrasadora en el segundo.
+The user launches up high, becoming invulnerable, then explodes down on the second turn, taking 25% recoil.
+El usuario despega al cielo, volviéndose invulnerable, luego aterriza en el segundo turno, recibiendo 25% de daño de retroceso.
+A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
+Un ataque distinguido que motiva a aliados cercanos a continuar, dejándoles actuar inmediatamente luego.
+The user dives deep on the first turn, becoming invulnerable, then rises and strikes with explosive strength on the second turn.
+El usuario nada a lo profundo en el primer turno, volviéndose invulnerable, luego ataca con fuerza explosiva en el segundo turno.
+The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.
+El usuario ataca con una ola de agua mugriento, que golpea a todos los objetivos cercanos y disminuye su Velocidad dos grados.
+The user applies anesthetic substances, numbing the target.
+El usuario aplica sustancias anestésicas, aturdiéndo al objetivo.
+The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.
+El usuario esconde su filo. Si es golpeado por un movimiento especial, ataca rápidamente, cortando a todos los objetivos cercanos.
+The user surges with electricity. If it deals less than 50% of the target's max health, the user takes the difference as recoil.
+El usuario ataca con electricidad. Si lidia menos del 50% de la salud máxima del objetivo, el usuario toma la diferencia como retroceso.
+The user charges, then attacks on the second turn. Charges instantly in rainstorm.
+El usuario carga, luego ataca en el segundo turno. Carga instantáneamente en tormenta de lluvia.
+The user slows the target's mind with a psychically infused blow. This has a 30% chance to frostbite.
+El usuario ralentiza a la mente del objetivo con golpe psíquico. Tiene un 30% de probabilidad de helar al objetivo.
+By sacrificing half its total HP, the user jinxes the target with a kiss, making it fall asleep.
+Al sacrificar la mitad de sus PS totales, el usuario maldice al objetivo con un beso, haciéndolo dormir.
+The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.
+El usuario modifica psíquicamente sus propios genes, transformándose en ya sea su forma Sobremasa o Sobremente.
+Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.
+Protege al usuario de daño un turno. También disminuye la Defensa Especial de atacantes especiales cuatro grados.
+The user picks up an iceberg and slams it into the target. Lowers the user's Attack by four steps.
+El usuario toma un iceberge y aplasta al objetivo con él. Disminuye el Ataque del usuario cuatro grados.
+Attacks all near others with dragon energy. Power increases by 50% in eclipse.
+Ataca a todos los objetivos con energía dracónicas. Aumenta su potencia 50% en eclipse.
+The user roots itself, then strikes at the target with serpentine strength. This has a 30% chance to leech.
+El usuario echa raíces, luego ataca al objetivo con fuerza serpentina. Tiene un 30% de probabilidad de infectar.
+Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.
+Oscuridad arrasa sobre el objetivo, dañando a todos los otros Pokémon y colocando Niebla Gris durante 5 turnos.
+Defly sets a layer of damaging Spikes around the foe, then switches out.
+Pone una capa de Púas alrededor del rival, luego cambia.
+The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.
+El usuario ataca con ilusiones oscuras. Esto disminuye la Defensa del objetivo dos grados.
+The user demands tribute from the target. Much money is earned after the battle.
+El usuario exige un tributo del objetivo. Mucho dinero es ganado luego del combate.
+Explodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.
+Explota, lidiando un 50 de daño base extra a todos los rivales por cada capa de púas debajo de ellos. El usuario es debilitado.
+The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.
+El usuario se transforma en una nube de peste, evadiendo todos los ataques en el primer turno. En el segundo embosca al objetivo.
+Power increases by 20 each time it's used in succession. User heals for half of damage dealt.
+Es potenciado por 20 por cada vez que sea usada consecutivamente. El usuario es curado por la mitad de daño que lidie.
+The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.
+El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial dos grados.
+The user raises their Speed by 4 steps, quadruples their critical hit chance, and becomes Fighting-type.
+El usuario aumenta su Velocidad 4 grados, cuadruplicando su índice de golpe crítico, y se vuelve tipo Lucha.
+The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
+El usuario intensifica la gravedad durante cinco turnos, dañando a todo enemigo por 1/4 de sus PS totales, y se vuelve tipo Tierra.
+The user attacks with a prehistoric power which raises all its stats.
+El usuario ataca con un poder prehistórico que aumenta todas sus stats.
+The user creates a Polarized Room for 5 turns, raises both of its Defensive stats, and becomes Steel-type.
+El usuario crea una Zona Polarizada durante 5 turnos, aumenta ambas de sus stats Defensivas, y se vuelve tipo Acero.
+The user creates an Odd Room for 5 turns, raises its Speed, and becomes Psychic-type.
+El usuario crea una Zona Anómala durante 5 turnos, aumentado su Velocidad, y se vuelve tipo Psíquico.
+The user torments all near foes, preventing them from repeating moves. The user becomes Dark-type.
+El usuario tormenta a todos los objetivos cercanos, impidiendo que repita movimientos. El usuario se vuelve tipo Siniestro.
 [7]
 Repel
 Repelente
