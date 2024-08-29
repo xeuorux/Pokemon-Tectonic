@@ -105,19 +105,13 @@ class PokeBattle_Move_UseMoveDependingOnEnvironment < PokeBattle_Move
         case @battle.environment
         when :Grass, :TallGrass, :Forest, :ForestGrass
             npMove = :ENERGYBALL if GameData::Move.exists?(:ENERGYBALL)
-        when :MovingWater, :StillWater, :Underwater
-            npMove = :HYDROPUMP if GameData::Move.exists?(:HYDROPUMP)
-        when :Puddle
-            npMove = :MUDBOMB if GameData::Move.exists?(:MUDBOMB)
+        when :MovingWater, :StillWater, :Underwater, :Puddle
+            npMove = :BUBBLEBLASTER if GameData::Move.exists?(:BUBBLEBLASTER)
         when :Cave
             npMove = :POWERGEM if GameData::Move.exists?(:POWERGEM)
-        when :Rock
+        when :Rock, :Sand
             npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
-        when :Sand
-            npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
-        when :Snow
-            npMove = :FROSTBREATH if GameData::Move.exists?(:FROSTBREATH)
-        when :Ice
+        when :Snow, :Ice
             npMove = :ICEBEAM if GameData::Move.exists?(:ICEBEAM)
         when :Volcano
             npMove = :LAVAPLUME if GameData::Move.exists?(:LAVAPLUME)
@@ -128,7 +122,7 @@ class PokeBattle_Move_UseMoveDependingOnEnvironment < PokeBattle_Move
         when :Space
             npMove = :DRACOMETEOR if GameData::Move.exists?(:DRACOMETEOR)
         when :UltraSpace
-            npMove = :PSYSHOCK if GameData::Move.exists?(:PSYSHOCK)
+            npMove = :PSYCHOBOOST if GameData::Move.exists?(:PSYCHOBOOST)
         end
         return npMove
     end
