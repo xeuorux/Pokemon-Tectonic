@@ -33,7 +33,7 @@ Events.onStartBattle += proc {
 def checkUltimateFlexAchievement
     $Trainer.party.each do |partyMember|
         next unless partyMember.species == :SKITTY
-        next unless partyMember.shiny
+        next unless partyMember.shiny?
         unlockAchievement(:DEFEAT_ZAIN_PRIZCA_WEST_SHINY_SKITTY)
     end
 end
