@@ -1816,7 +1816,7 @@ Pokemon = LILLIGANT,70
     EV = 20,20,2,8,20,0
 Pokemon = HELIOLISK,70
     Moves = THUNDERBOLT,SOLARBEAM,WEATHERBURST,VOLTSWITCH
-    AbilityIndex = 0 # Solar Power
+    AbilityIndex = 0 # Sun Burning
     Item = ELECTRICGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10

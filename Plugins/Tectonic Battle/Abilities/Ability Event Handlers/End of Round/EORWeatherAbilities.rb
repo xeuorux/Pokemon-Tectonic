@@ -70,26 +70,26 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
             battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, ability: ability, customMessage: healingMessage)
         end
     }
-  )
+)
   
-  BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
-      proc { |ability, _weather, battler, battle|
-          if battle.rainy?
-              battle.pbShowAbilitySplash(battler, ability)
-              battle.pbDisplay(_INTL("{1} was hurt by the rain!", battler.pbThis))
-              battler.applyFractionalDamage(WEATHER_ABILITY_HEALING_FRACTION)
-              battle.pbHideAbilitySplash(battler)
-          end
-          if battle.sunny?
-              healingMessage = _INTL("{1} caramlizes slightly in the heat.", battler.pbThis)
-              battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, ability: ability, customMessage: healingMessage)
-          end
-      }
-  )
+BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
+    proc { |ability, _weather, battler, battle|
+        if battle.rainy?
+            battle.pbShowAbilitySplash(battler, ability)
+            battle.pbDisplay(_INTL("{1} was hurt by the rain!", battler.pbThis))
+            battler.applyFractionalDamage(WEATHER_ABILITY_HEALING_FRACTION)
+            battle.pbHideAbilitySplash(battler)
+        end
+        if battle.sunny?
+            healingMessage = _INTL("{1} caramlizes slightly in the heat.", battler.pbThis)
+            battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, ability: ability, customMessage: healingMessage)
+        end
+    }
+)
 
-  EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION = 0.1 # 1/10
+EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION = 0.1 # 1/10
 
-  BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
+BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
     proc { |ability, _weather, battler, battle|
         next unless battle.sunny?
         battle.pbShowAbilitySplash(battler, ability)
@@ -97,14 +97,34 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
         battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
         battle.pbHideAbilitySplash(battler)
     }
-  )
+)
   
-  BattleHandlers::EORWeatherAbility.add(:NIGHTSTALKER,
-      proc { |ability, _weather, battler, battle|
-          next unless battle.moonGlowing?
-          battle.pbShowAbilitySplash(battler, ability)
-          battle.pbDisplay(_INTL("{1} was hurt by the moonlight!", battler.pbThis))
-          battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
-          battle.pbHideAbilitySplash(battler)
-      }
-  )
+BattleHandlers::EORWeatherAbility.add(:NIGHTSTALKER,
+    proc { |ability, _weather, battler, battle|
+        next unless battle.moonGlowing?
+        battle.pbShowAbilitySplash(battler, ability)
+        battle.pbDisplay(_INTL("{1} was hurt by the moonlight!", battler.pbThis))
+        battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
+        battle.pbHideAbilitySplash(battler)
+    }
+)
+
+BattleHandlers::EORWeatherAbility.add(:ACIDRAIN,
+  proc { |ability, _weather, battler, battle|
+        next unless battle.rainy?
+        battler.eachOther do |b|
+            next unless b.debuffedByRain?
+            b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+        end
+  }
+)
+
+BattleHandlers::EORWeatherAbility.add(:SUNBURNING,
+  proc { |ability, _weather, battler, battle|
+        next unless battle.sunny?
+        battler.eachOther do |b|
+            next unless b.debuffedBySun?
+            b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+        end
+  }
+)

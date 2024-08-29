@@ -4,6 +4,11 @@
 Name = Above It All
 Description = After being attacked, uses Parting Shot to switch out.
 #-------------------------------
+[ACIDRAIN]
+Name = Acid Rain
+Description = At the end of each turn, if in rainstorm, each Pokémon not immune to Rainstorm has their defensive stats lowered by 1 step.
+Flags = RainstormSynergy
+#-------------------------------
 [ADAPTIVESKIN]
 Name = Adaptive Skin
 Description = The user raises the related defensive stat by two steps after each hit taken.
@@ -1797,6 +1802,11 @@ Description = Uses Rapid Spin after its first attack to clear hazards, raise Spe
 Name = Summit Spirit
 Description = Boosts Sp. Atk by 30% in hail.
 Flags = HailSynergy
+#-------------------------------
+[SUNBURNING]
+Name = Sun Burning
+Description = At the end of each turn, if in sunshine, each Pokémon not immune to Sunshine has their defensive stats lowered by 1 step.
+Flags = SunSynergy
 #-------------------------------
 [SUNCHASER]
 Name = Sun Chaser
