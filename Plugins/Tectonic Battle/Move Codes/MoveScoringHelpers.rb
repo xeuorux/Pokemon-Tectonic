@@ -922,12 +922,13 @@ def getSafeguardEffectScore(user, duration)
     return score
 end
 
-def getEnchantmentEffectScore(user, duration)
+def getNaturalProtectionEffectScore(user, duration)
     score = 0
     duration -= user.pbOwnSide.countEffect(:NaturalProtection) if user.pbOwnSide.effectActive?(:NaturalProtection)
     user.battle.eachSameSideBattler(user.index) do |b|
         score += duration * 5
         score += 20 if b.burned? || b.frostbitten? || b.poisoned? || b.leeched?
+        score += 40 if b.hasRecoilMove?
     end
     score += 30 if user.battle.sandy? || user.battle.icy?
     

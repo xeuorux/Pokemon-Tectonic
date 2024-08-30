@@ -8318,6 +8318,119 @@ Pokemon = CRYOGONAL,70
     AbilityIndex = 0 # Levitate
     Item = UTILITYUMBRELLA
 #-------------------------------
+[GARDENER,Bud]
+Pokemon = WORMADAM,70
+    Moves = NATURALPROTECTION,LEECHSEED,LEECHLIFE,LEAFBLADE
+    AbilityIndex = 0 # Impervious
+    Item = FOCUSSASH
+Pokemon = GIGACHU,70
+    Moves = THUNDERBELLY,KNOCKOFF,PLAYROUGH,BRICKBREAK
+    AbilityIndex = 0 # Arc Conductor
+Pokemon = ALAKAZAM,70
+    Moves = STEELBEAM,MISTBURST,PSYCHIC,SHADOWBALL
+    AbilityIndex = 1 # Steelworker
+    Item = SITRUSBERRY
+Pokemon = ARAQUANID,70
+    Moves = NATURALPROTECTION,SKITTERSMACK,SCALD,ICEBEAM
+    AbilityIndex = 1 # Water Bubble
+#-------------------------------
+[TOURISTM,Calvin]
+Pokemon = SANDSLASH,70
+    Moves = RAPIDSPIN,ROCKSLIDE,EARTHQUAKE,UTURN
+    AbilityIndex = 1 # Tough Claws
+Pokemon = KRICKETUNE,70
+    Moves = BUGBUZZ,EERIESPELL,MASSDESTRUCTION,UTURN
+    AbilityIndex = 1 # Maestro
+    Item = CHOICESPECS
+Pokemon = TSAREENA,70
+    Moves = TROPKICK,SCYTHEKICK,KNOCKOFF,UTURN
+    AbilityIndex = 1 # Swift Stomps
+Pokemon = TALONFLAME,70
+    Moves = FLAREBLITZ,BRAVEBIRD,BULLETTRAIN,UTURN
+    AbilityIndex = 1 # Gale Wings
+    Item = CHOICEBAND
+#-------------------------------
+[BUGCATCHER_F,April]
+Pokemon = GALVANTULA,70
+    Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
+    AbilityIndex = 0 # Ocular
+    Item = FOCUSSASH
+Pokemon = HUNTAIL,70
+    Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
+    AbilityIndex = 0 # Intimidate
+Pokemon = DIGGERSBY,70
+    Moves = DRILLRUN,CLOUDBREAK,SWORDSDANCE,ADAMANTINEPRESS
+    AbilityIndex = 1 # Paranoid
+Pokemon = SIRFETCHD,70
+    Moves = DRILLPECK,LEAFBLADE,PSYCHOSCISSION,ARTOFWAR
+    AbilityIndex = 1 # Super Luck
+    Item = SCOPELENS
+#-------------------------------
+[HARLEQUIN,Regis]
+Pokemon = PACHIRISU,70
+    Moves = AMPUP,VOLTTACKLE,ANGELSKISS,SUPERFANG
+    AbilityIndex = 0 # Bad Luck
+Pokemon = DRAMPA,70
+    Moves = DRAGONENERGY,HYPERVOICE,SHADOWBALL,BUBBLEBLASTER
+    AbilityIndex = 0 # Berserk
+    Item = STRIKEVEST
+Pokemon = KLEAVOR,70
+    Moves = BUGBITE,ROCKSLIDE,ACROBATICS,PSYCHOSCISSION
+    AbilityIndex = 1 # Weak Armor
+    Item = LUCKHERB
+Pokemon = INDEEDEE,70
+    Form = 1 # ♀ Form
+    Moves = KICKSTART,BRAINFREEZE,ENERGYBALL,ALLYSWITCH
+    AbilityIndex = 1 # Fascinate
+#-------------------------------
+[SAILOR,Dom]
+Pokemon = CRAMORANT,70
+    Moves = SURF,FLIPTURN,BRAVEBIRD,ROOST
+    AbilityIndex = 0 # Gulp Missile
+Pokemon = DUDUDUNSPARCE,70
+    Moves = FLEURCANNON,HEAVENSEYES,DIAMONDFORCE,ROOST
+    AbilityIndex = 1 # Adapted
+    Item = STRIKEVEST
+Pokemon = HARIYAMA,70
+    Moves = SMELLINGSALTS,STORMTHROW,FAKEOUT,NERVEBLOCK
+    AbilityIndex = 1 # Fighting Vigor
+Pokemon = LICKILICKY,70
+    Moves = BELLYDRUM,SLACKOFF,THRASH,TONGUETWISTER
+    AbilityIndex = 0 # Tenderize
+    Item = SITRUSBERRY
+#-------------------------------
+[CHEF,Gordon]
+Pokemon = PYUKUMUKU,70
+    Moves = LATCHON,LIFEDEW,LIGHTSCREEN,REFLECT
+    AbilityIndex = 1 # Realist
+    Item = LIGHTCLAY
+Pokemon = MAROMATISSE,70
+    Moves = SHADOWSNEAK,INFINITEFORCE,HEX,FLORALGRAMARYE
+    AbilityIndex = 1 # Uncanny Luck
+    Item = LEFTOVERS
+Pokemon = LEAVANNY,70
+    Moves = INFERNOIMPACT,KNOCKOFF,LEAFBLADE,SILKBLADE
+    AbilityIndex = 0 # Cold Reception
+Pokemon = DRIFBLIM,70
+    Moves = TAILWIND,HEATWAVE,HEX,SUBSTITUTE
+    AbilityIndex = 1 # Drifting Mist
+#-------------------------------
+[BURGLAR,Devin]
+Pokemon = MUK,70
+    Moves = SLUDGEWAVE,EARTHPOWER,FLAMETHROWER,HELPINGHAND
+    AbilityIndex = 1 # Toxic Attitude
+    Item = AGILITYHERB
+Pokemon = ZANGOOSE,70
+    Moves = PALEBLADE,PSYCHICFANGS,POISONJAB,CLOSECOMBAT
+    AbilityIndex = 0 # Venomdetta
+Pokemon = VENUSAUR,70
+    Moves = SLUDGEWAVE,SAPPINGSEED,HELPINGHAND,ENERGYBALL
+    AbilityIndex = 0 # Poison Absorb
+Pokemon = KINGAMBIT,70
+    Moves = BULLETPUNCH,CHECKMATE,PSYCHOCUT,SWORDSDANCE
+    AbilityIndex = 0 # Defiant
+    Item = PSYCHICGEM
+#-------------------------------
 [IDEALTRAINER,of Origins]
 Pokemon = GIGACHU,70
     AbilityIndex = 1 # Gargantuan
@@ -8445,35 +8558,3 @@ Pokemon = LEDIAN,70
     AbilityIndex = 1 # Star Guardian
 Pokemon = HZOROARK,70
     AbilityIndex = 1 # Mental Block
-#-------------------------------
-[TOURISTM,Calvin]
-Pokemon = SANDSLASH,70
-    Moves = RAPIDSPIN,ROCKSLIDE,EARTHQUAKE,UTURN
-    AbilityIndex = 1 # Tough Claws
-Pokemon = KRICKETUNE,70
-    Moves = BUGBUZZ,EERIESPELL,MASSDESTRUCTION,UTURN
-    AbilityIndex = 1 # Maestro
-    Item = CHOICESPECS
-Pokemon = TSAREENA,70
-    Moves = TROPKICK,SCYTHEKICK,KNOCKOFF,UTURN
-    AbilityIndex = 1 # Swift Stomps
-Pokemon = TALONFLAME,70
-    Moves = FLAREBLITZ,BRAVEBIRD,BULLETTRAIN,UTURN
-    AbilityIndex = 1 # Gale Wings
-    Item = CHOICEBAND
-#-------------------------------
-[BUGCATCHER_F,April]
-Pokemon = GALVANTULA,70
-    Moves = STICKYWEB,VOLTSWITCH,NUMB,BUGBUZZ
-    AbilityIndex = 0 # Ocular
-    Item = FOCUSSASH
-Pokemon = HUNTAIL,70
-    Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
-    AbilityIndex = 0 # Intimidate
-Pokemon = DIGGERSBY,70
-    Moves = DRILLRUN,CLOUDBREAK,SWORDSDANCE,ADAMANTINEPRESS
-    AbilityIndex = 1 # Paranoid
-Pokemon = SIRFETCHD,70
-    Moves = DRILLPECK,LEAFBLADE,PSYCHOSCISSION,ARTOFWAR
-    AbilityIndex = 1 # Super Luck
-    Item = SCOPELENS

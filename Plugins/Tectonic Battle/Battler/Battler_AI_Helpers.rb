@@ -339,6 +339,14 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasRecoilMove?
+        eachAIKnownMove do |m|
+            next unless m.recoilMove?
+            return true
+        end
+        return false
+    end
+
     ###############################################################################
     # Understanding the battler's allies and party.
     ###############################################################################
