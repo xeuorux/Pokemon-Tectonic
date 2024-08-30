@@ -179,7 +179,7 @@ BattleHandlers::UserItemAfterMoveUse.copy(:SHELLBELL,:SPELLBELL)
 BattleHandlers::DamageCalcUserItem.copy(:SPELLTAG,:SPELLBELL)
 
 # Big Red Button
-BattleHandlers::TargetItemAfterMoveUse.add(:EJECTBUTTON,
+BattleHandlers::TargetItemAfterMoveUse.add(:BIGREDBUTTON,
   proc { |item,battler,user,move,switched,battle|
     next if battle.pbAllFainted?(battler.idxOpposingSide)
     next if !battle.pbCanChooseNonActive?(battler.index)
