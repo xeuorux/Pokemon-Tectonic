@@ -618,6 +618,10 @@ Description = Immune to Fire-type moves, and raises both attacking stats if hit 
 Name = First Strike
 Description = Powers up priority moves by 30%.
 #-------------------------------
+[FITTOSURVIVE]
+Name = Fit to Survive
+Description = Upon entry, summons Natural Protection for 4 turns.
+#-------------------------------
 [FLAMEWINGS]
 Name = Flame Wings
 Description = Flying-type attacks have a 40% chance to burn.

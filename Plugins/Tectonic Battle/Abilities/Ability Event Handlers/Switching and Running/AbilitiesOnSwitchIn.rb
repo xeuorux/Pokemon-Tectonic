@@ -580,6 +580,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRIFTINGMIST,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:FITTOSURVIVE,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          next getGravityEffectScore(battler, 4)
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:NATURALPROTECTION, battler, nil, 0)
+          battle.field.applyEffect(:NaturalProtection, 4)
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
 ##########################################
 # Free move use
 ##########################################

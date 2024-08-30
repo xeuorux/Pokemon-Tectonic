@@ -8321,7 +8321,7 @@ Pokemon = CRYOGONAL,70
 [GARDENER,Bud]
 Pokemon = WORMADAM,70
     Moves = NATURALPROTECTION,LEECHSEED,LEECHLIFE,LEAFBLADE
-    AbilityIndex = 0 # Impervious
+    AbilityIndex = 0 # Fit to Survive
     Item = FOCUSSASH
 Pokemon = GIGACHU,70
     Moves = THUNDERBELLY,KNOCKOFF,PLAYROUGH,BRICKBREAK
