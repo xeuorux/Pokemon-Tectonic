@@ -461,9 +461,15 @@ end
 #===============================================================================
 class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
-        return false if user.hasAnyBerry?
-        @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
-        return true
+        unless user.hasAnyBerry?
+            @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
+            return true
+        end
+        unless user.itemActive?
+            @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} cannot eat its berry!")) if show_message
+            return true
+        end
+        return false
     end
 
     def pbEffectGeneral(user)
