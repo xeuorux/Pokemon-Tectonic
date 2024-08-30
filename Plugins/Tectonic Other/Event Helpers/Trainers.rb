@@ -289,9 +289,12 @@ def eachTrainerWithAutoFollowerInMap
             trainerVersion += 1
         end
 
-        trainer = pbLoadTrainer(trainerClass, trainerName, trainerVersion)
-
-        yield event, trainer, partyIndex
+        begin
+            trainer = pbLoadTrainer(trainerClass, trainerName, trainerVersion)
+            yield event, trainer, partyIndex
+        rescue Exception
+            pbPrintException($!)
+        end
     end
 
     eachRandomNPCAutoFollowerInMap do |event, match|
@@ -301,9 +304,12 @@ def eachTrainerWithAutoFollowerInMap
         trainerClass, trainerName, trainerVersion = getRandomNPCTrainerDetails(villainNumber,fightVersion)
         partyIndex = match[3].to_i || 0
 
-        trainer = pbLoadTrainer(trainerClass, trainerName, trainerVersion)
-
-        yield event, trainer, partyIndex
+        begin
+            trainer = pbLoadTrainer(trainerClass, trainerName, trainerVersion)
+            yield event, trainer, partyIndex
+        rescue Exception
+            pbPrintException($!)
+        end
     end
 end
 
