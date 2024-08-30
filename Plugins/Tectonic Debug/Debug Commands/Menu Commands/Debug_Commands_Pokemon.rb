@@ -15,46 +15,18 @@ DebugMenuCommands.register("addpokemon", {
     }
   })
   
-  DebugMenuCommands.register("demoparty", {
+  DebugMenuCommands.register("copyparty", {
     "parent"      => "pokemonmenu",
-    "name"        => _INTL("Give Demo Party"),
-    "description" => _INTL("Give yourself 6 preset Pokémon. They overwrite the current party."),
+    "name"        => _INTL("Copy Trainer Party"),
+    "description" => _INTL("Give yourself the same party as a given trainer."),
     "effect"      => proc {
-      party = []
-      species = [:PIKACHU, :PIDGEOTTO, :KADABRA, :GYARADOS, :DIGLETT, :CHANSEY]
-      for id in species
-        party.push(id) if GameData::Species.exists?(id)
-      end
-      $Trainer.party.clear
-      # Generate Pokémon of each species at level 20
-      party.each do |species|
-        pkmn = Pokemon.new(species, 20)
-        $Trainer.party.push(pkmn)
-        $Trainer.pokedex.register(pkmn)
-        $Trainer.pokedex.set_owned(species)
-        case species
-        when :PIDGEOTTO
-          pkmn.learn_move(:FLY)
-        when :KADABRA
-          pkmn.learn_move(:FLASH)
-          pkmn.learn_move(:TELEPORT)
-        when :GYARADOS
-          pkmn.learn_move(:SURF)
-          pkmn.learn_move(:DIVE)
-          pkmn.learn_move(:WATERFALL)
-        when :DIGLETT
-          pkmn.learn_move(:DIG)
-          pkmn.learn_move(:CUT)
-          pkmn.learn_move(:HEADBUTT)
-          pkmn.learn_move(:ROCKSMASH)
-        when :CHANSEY
-          pkmn.learn_move(:SOFTBOILED)
-          pkmn.learn_move(:STRENGTH)
-          pkmn.learn_move(:SWEETSCENT)
+        trainerdata = pbListScreen(_INTL("SINGLE TRAINER"), TrainerBattleLister.new(0, false))
+        if trainerdata
+            trainer = pbLoadTrainer(*trainerdata)
+            $Trainer.party = trainer.party.clone
+            pbMessage(_INTL("Copied the party of {1}.", trainer.full_name))
         end
-        pkmn.record_first_moves
-      end
-      pbMessage(_INTL("Filled party with demo Pokémon."))
+        next false
     }
   })
   
