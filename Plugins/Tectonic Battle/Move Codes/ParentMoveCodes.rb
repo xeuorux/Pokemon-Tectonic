@@ -657,10 +657,11 @@ module Recoilable
     end
 
     def finalRecoilFactor(user, checkingForAI = false)
-        return 0 if user.shouldAbilityApply?(:ROCKHEAD, checkingForAI)
+        return 0 unless user.takesRecoilDamage?(checkingForAI)
         factor = recoilFactor
-        factor /= 2 if user.shouldAbilityApply?(:UNBREAKABLE, checkingForAI)
-        factor *= 2 if user.shouldAbilityApply?(:LINEBACKER, checkingForAI)
+        if checkingForAI
+            factor * user.recoilDamageMult
+        end
         return factor
     end
 
