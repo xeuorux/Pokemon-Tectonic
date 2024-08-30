@@ -435,6 +435,12 @@ class PokeBattle_Battler
         return true
     end
 
+    def takesRecoilDamage?(aiCheck = false)
+        return false if shouldAbilityApply?(%i[ROCKHEAD AFROTECTION], aiCheck)
+        return false unless takesIndirectDamage?(false, aiCheck)
+        return true
+    end
+
     def canHeal?(overheal = false)
         return false if fainted?
         if overheal

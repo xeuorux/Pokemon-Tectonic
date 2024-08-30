@@ -89,19 +89,25 @@ class PokeBattle_Battler
         end
         unless struggle
             damageAmount *= 0.66 if hasTribeBonus?(:ANIMATED)
-            damageAmount *= 0.66 if pbOwnSide.effectActive?(:NaturalProtection)
+            damageAmount *= 0.5 if pbOwnSide.effectActive?(:NaturalProtection)
         end
         damageAmount = damageAmount.ceil
         return damageAmount
     end
 
+    def recoilDamageMult(checkingForAI = false)
+        multiplier = 1.0
+        multiplier *= 0.66 if hasTribeBonus?(:ANIMATED)
+        multiplier *= 0.5 if pbOwnSide.effectActive?(:NaturalProtection)
+        multiplier /= 2 if shouldAbilityApply?(:UNBREAKABLE, checkingForAI)
+        multiplier *= 2 if shouldAbilityApply?(:LINEBACKER, checkingForAI)
+        return multiplier
+    end
+
     def applyRecoilDamage(damage, showDamageAnimation = true, showMessage = true, recoilMessage = nil, cushionRecoil = false)
-        return unless takesIndirectDamage?
-        return if hasActiveAbility?(:ROCKHEAD)
+        return unless takesRecoilDamage?
         # return if @battle.pbAllFainted?(@idxOpposingSide)
-        damage *= 0.66 if hasTribeBonus?(:ANIMATED)
-        damage *= 0.66 if pbOwnSide.effectActive?(:NaturalProtection)
-        damage = damage.round
+        damage = (damage * recoilDamageMult).round
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:KICKBACK)
             showMyAbilitySplash(:KICKBACK)
