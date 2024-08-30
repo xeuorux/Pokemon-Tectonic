@@ -251,6 +251,7 @@ GameData::Target.register({
   :name             => _INTL("Both Sides"),
   :affects_foe_side => true,
   :affects_user_side => true,
+  :targeting_label  => "Field",
 })
 
 GameData::Target.register({
