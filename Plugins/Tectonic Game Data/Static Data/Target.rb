@@ -81,6 +81,10 @@ module GameData
           end
           return _INTL("Error")
       end
+
+      def spread?
+        return @num_targets > 1
+      end
   end
 end
 

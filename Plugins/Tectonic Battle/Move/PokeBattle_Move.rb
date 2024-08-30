@@ -180,6 +180,10 @@ class PokeBattle_Move
       return @effectChance >= 100
     end
 
+    def spreadMove?
+        return GameData::Target.get(@target).spread?
+    end
+
     def getDetailsForMoveDex(detailsList = []); end;
   end
   
