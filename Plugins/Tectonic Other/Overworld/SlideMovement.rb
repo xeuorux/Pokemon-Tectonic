@@ -1,3 +1,11 @@
+def isPlayerSliding?
+    if $PokemonGlobal
+        return $PokemonGlobal.sliding
+    else
+        return false
+    end 
+end
+
 # Auto-move the player over waterfalls, pushing water, and ice
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
