@@ -329,20 +329,25 @@ class FightMenuDisplay < BattleMenuBase
 
     def setMoveOutcomePredictor(move,opposingBattler)
       begin
+        typeOfMove = move.pbCalcType(@battler)
+        effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler,true)
+
         if move.is_a?(PokeBattle_FixedDamageMove)
-          effectivenessCategory = 3
+            if effectiveness == 0
+                effectivenessCategory = 0
+            else
+                effectivenessCategory = 3
+            end
         else
-          typeOfMove = move.pbCalcType(@battler)
-          effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler,true)
-          ration = effectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
-          case ration
-            when 0              then effectivenessCategory = 0
-            when 0.00001..0.25  then effectivenessCategory = 1
-            when 0.5 	          then effectivenessCategory = 2
-            when 1 		    	    then effectivenessCategory = 3
-            when 2 			        then effectivenessCategory = 4
-            when 4.. 			      then effectivenessCategory = 5
-          end
+            ration = effectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
+            case ration
+                when 0                  then effectivenessCategory = 0
+                when 0.00001..0.25      then effectivenessCategory = 1
+                when 0.5 	            then effectivenessCategory = 2
+                when 1 		    	    then effectivenessCategory = 3
+                when 2 			        then effectivenessCategory = 4
+                when 4.. 			    then effectivenessCategory = 5
+            end
         end
 
         moveOutcomeText = [_INTL("No Effect"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
@@ -352,7 +357,7 @@ class FightMenuDisplay < BattleMenuBase
       end
 
       opposingBattler.moveOutcomePredictor.setEffectiveness(moveOutcomeText,effectivenessColor)
-      if move.baseDamage == 1
+      if move.baseDamage == 1 && !move.is_a?(PokeBattle_FixedDamageMove)
         opposingBattler.moveOutcomePredictor.basePower = move.predictedBasePower(@battler, opposingBattler).to_s
       else
         opposingBattler.moveOutcomePredictor.basePower = nil
