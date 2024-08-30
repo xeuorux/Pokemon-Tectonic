@@ -2941,3 +2941,12 @@ Pocket = 7
 Price = 0
 Flags = KeyItem
 Description = A gleaming golden fruit. Someone skilled may be able to craft it into a unique Poké Ball.
+#-------------------------------
+[RAGGEDJOURNAL]
+Name = Ragged Journal
+NamePlural = Ragged Journal
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.

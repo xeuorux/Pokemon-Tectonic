@@ -63,6 +63,8 @@ class PokemonGlobalMetadata
     attr_accessor :teamHealerUpgrades
     # Tarot amulet
     attr_accessor :tarot_amulet_active
+    # Ragged journal
+    attr_accessor :ragged_journal_pages_collected
     # Randomizer
     attr_accessor :randomizedData
     attr_accessor :isRandomizer
@@ -150,12 +152,17 @@ class PokemonGlobalMetadata
         @happinessSteps       = 0
         # Save file
         @safesave             = false
+        # EXP-EZ Dispenser
         @expJAR				  = 0
+        # DexNav
         @caughtCountsPerMap	  = {}
+        # Aid Kit
         @teamHealerUpgrades   = 0
         @teamHealerMaxUses	  = 1
         @teamHealerCurrentUses= 1
+        # Tarot Amulet
         @tarot_amulet_active  = false
+        @ragged_journal_pages_collected  = []
         # Masterdex
         @stored_search		  = nil
         @dex_forms_shows_shinies = false
