@@ -4,7 +4,7 @@ end
 
 Events.onStepTaken += proc {
   $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
-  $PokemonGlobal.autosaveSteps += 1 unless debugControl
+  $PokemonGlobal.autosaveSteps += 1 unless debugControl || isPlayerSliding?
   if $PokemonGlobal.autosaveSteps >= 40
     autoSave
     $PokemonGlobal.autosaveSteps = 0
