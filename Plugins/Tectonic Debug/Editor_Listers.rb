@@ -714,9 +714,10 @@ class TrainerBattleLister
     if !@includeNew || index > 0
       tr_data = GameData::Trainer.get(@ids[index][0], @ids[index][1], @ids[index][2])
       if tr_data
-        tr_data.pokemon.each_with_index do |pkmn, i|
+        realTrainer = tr_data.to_trainer
+        realTrainer.party.each_with_index do |pkmn, i|
           text += "\r\n" if i > 0
-          text += sprintf("%s Lv.%d", GameData::Species.get(pkmn[:species]).real_name, pkmn[:level])
+          text += sprintf("%s Lv.%d", pkmn.species_data.real_name, pkmn.level)
         end
       end
     end
