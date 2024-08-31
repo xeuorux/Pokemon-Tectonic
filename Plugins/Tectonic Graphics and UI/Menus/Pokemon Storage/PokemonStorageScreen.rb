@@ -154,7 +154,7 @@ class PokemonStorageScreen
     end
 
     def pbRefreshSingle(i) # For debug
-        @scene.pbUpdateOverlay(i[1], (i[0] == -1) ? @storage.party : nil)
+        @scene.pbUpdateOverlay(i[1], (i[0] == -1) ? @storage.party : nil, true)
         @scene.pbHardRefresh
     end
 

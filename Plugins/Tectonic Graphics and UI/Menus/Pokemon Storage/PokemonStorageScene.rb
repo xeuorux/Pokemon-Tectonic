@@ -929,7 +929,7 @@ class PokemonStorageScene
         end
     end
 
-    def pbUpdateOverlay(selection, party = nil)
+    def pbUpdateOverlay(selection, party = nil, forceUpdatePokemon = false)
         overlay = @sprites["overlay"].bitmap
         overlay.clear
         buttonbase = Color.new(248, 248, 248)
@@ -999,7 +999,7 @@ class PokemonStorageScene
             pbDrawImagePositions(overlay, imagepos)
         end
         pbDrawTextPositions(overlay, textstrings)
-        @sprites["pokemon"].setPokemonBitmap(pokemon) unless @sprites["pokemon"].pokemon == pokemon
+        @sprites["pokemon"].setPokemonBitmap(pokemon) if forceUpdatePokemon || @sprites["pokemon"].pokemon != pokemon
     end
 
     def update
