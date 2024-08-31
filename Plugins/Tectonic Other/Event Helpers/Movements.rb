@@ -192,24 +192,15 @@ def modulateOpacityOverTime(speed)
 	self.set_move_route(new_move_route)
 end
 
-def birdCrossing(directions=[Left,Right,Up,Down],speed=4)
-	bird_route = getNewMoveRoute()
-	bird_route.repeat = true
-	
-	bird_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
-		["chooseDirection(#{directions.to_s},#{$game_map.width},#{$game_map.height})"]))
-	
-	bird_route.list.push(RPG::MoveCommand.new(0))
-	
-	self.set_move_route(bird_route)
-	self.event.pages[0].move_speed = speed
+def birdCrossing(directions=[Left,Right,Up,Down],speed=nil)
+	chooseDirection(directions,$game_map.width,$game_map.height)
+	self.event.pages[0].move_speed = speed if speed
 end
 
 def chooseDirection(directions,width,height)
 	direction = directions.sample
 	
 	new_route = getNewMoveRoute()
-	new_route.repeat = true
 	new_route.skippable = true
 	
 	self.direction = direction
@@ -240,6 +231,11 @@ def chooseDirection(directions,width,height)
 	for i in 0..length
 		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Forward))
 	end
+
+    new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,rand(20..60)))
+
+    new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
+		["chooseDirection(#{directions.to_s},#{$game_map.width},#{$game_map.height})"]))
 	
 	new_route.list.push(RPG::MoveCommand.new(0))
 		
