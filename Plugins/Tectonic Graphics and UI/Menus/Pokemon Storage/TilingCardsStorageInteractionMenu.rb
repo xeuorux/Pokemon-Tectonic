@@ -283,7 +283,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 				evo.pbStartScreen(@pkmn, newspecies)
 				evo.pbEvolution
 				evo.pbEndScreen
-				@storageScene.pbRefresh
+				pbRefreshSingle(@selected)
 			end
 			return true
 		elsif cmdStyle >= 0 && modifyCommand == cmdStyle
