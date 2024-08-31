@@ -18946,6 +18946,42 @@ An ancient grandfather clock.
 Es un reloj antiguo.
 It's in pristine condition, probably due to careful maintenance.
 Está en una condición impecable, probablemente debido a un mantenimiento cuidadoso.
+Oh, goodness...
+Oh, vaya...
+You've got a truly amazing apricorn in your posession.
+Tienes una bonguri verdaderamente impresionante en tus manos.
+It's been my life's dream to work with such a fine specimen.
+Un sueño que tuve toda mi vida ha sido trabajar con tal espécimen.
+Where did you find it?
+¿Dónde la encontraste?
+Nevermind that. I'll respect your privacy.
+Olvídalo. Respetaré tu privacidad.
+But still, I implore you, let me craft a Poke Ball from that beautiful fruit.
+Pero aún así, te lo imploro, déjame fabricar una Poké Ball con esa maravillosa fruta.
+Mmmm... exercise some self-restraint, now.
+Mmmm... ejercita tu autocontrol, ahora.
+Well, if you feel differently later on, I'll be right here.
+Bueno, si luego cambias de opinión, estaré justo aquí.
+I've been praying for you to change your mind about that Gilded Apricorn.
+He estado rezando a que cambies de opinión respecto a esa Bonguri Dorada.
+*sigh*
+*sigh*
+Wish I didn't get my hopes up.
+Ojalá no me hubiera hecho ilusiones.
+I'm giddy with excitement!
+¡No sabes cómo me emociona!
+To work I go...
+A trabajar voy yo...
+Crafting Poke Balls from Apricorns is an old art, but not an exact science.
+Crear Poké Balls a base de Bonguris es un viejo arte, pero no una ciencia exacta.
+But I can already tell that this ball has wonderous properties.
+Pero ya puedo decirte que esta ball tiene propiedades maravillosas.
+Please, go out and use it on something special.
+Por favor, ve y úsala en algo especial.
+That Radiant Ball is my crowning achievement.
+Esa Refulge Ball es un logro supremo.
+Haven't felt this good in 3 decades.
+No me había sentido así en 3 décadas.
 [Map268]
 
 My husband is always so busy with work. He leaves trash everywhere and is rarely home.
@@ -23151,7 +23187,11 @@ Trainers always come through here. The lady with the Combees sometimes asks as w
 Siempre pasan entrenadores por aquí. Y la señora con los Combees a veces también lo pide, así que practican seguido.
 They're always so cool when they're battlin'. I wanna be like them when I'm older.
 Siempre es genial cuando combaten. Quiero ser como ellas cuando sea mayor.
-
+[Map333]
+A beautifully carved statue of the legendary king Calyrex.
+Una estatua maravillosamante escuplida del legendario rey Calyrex.
+Oh? There's something hanging from the statue!
+¿Oh? ¡Hay algo colgado de la estatua!
 [Map334]
 I'm an out-of-towner visiting family.
 Soy alguien de afuera visitando a mi familia.
@@ -26712,6 +26752,10 @@ As for my own findings: I found references to an aboveground ruins site which mi
 Respecto a lo que encontré: encontré referencias a unas ruinas sobre las tierras que podrían llevarnos a lo que estamos buscandos.
 I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
 Estaré esperando por tí en <imp>Svait, en el nivel superior</imp>.
+Guess I forgot to keep the door locked… but I can’t really turn away the esteemed Champion \PN, now can I?
+Supongo que olvidé mantener la puerta cerrada... pero realmente no puedo echar al estimado Campeón \PN, ¿me equivoco?
+I don’t know why you’re here but, if I had to make a guess… you’re searching for something; like I am.
+No sé por qué estás aquí pero, si tengo que adivinar... estás buscando algo; como yo.
 [Map428]
 Wow! It's a Volcanion, trapped inside a large boulder!
 ¡Wow! ¡Es un Volcanion, atrapado dentro de un pedrusco!
@@ -26779,9 +26823,32 @@ But maybe… The sources of those phenomena are the same?
 Pero quizás... ¿La fuente de estos fenómenos es la misma?
 Yes
 Sí
+But were they so dominated by Yezera that they thought Volcanion wouldn’t make a difference?
+¿Pero fueron tan dominados por Yezera que pensaron que Volcanion no haría la diferencia?
+It makes me realize how terrifying going against a single person with overwhelming power can be.
+Me hace pensar lo terrorífico que puede ser enfrentarse a una sola persona poder abrumador.
+...as you showed me, \PN.
+...como me mostraste, \PN.
+Ah. Seems like we have unwanted guests at this once private concert.
+Ah. Parece que tenemos invitados indeseados en este concierto una vez privado.
+Awesome. At least they look in the mood to dance.
+Asombroso. Al menos parecen estar de humor para bailar
+I guess we can crack some heads open, show them a genuine mosh pit experience.
+Supngo que podemos abrir algunas cabezas, mostrarles la genuina experiencia de la olla. 
+What do you think, \PN?
+¿Qué piensas, \PN?
+Well, I guess this is where we go our separate ways, \PN.
+Bueno, supongo que aquí es donde nuestros caminos se separan, \PN.
+There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else that I want to see through.
+Hay otros cabos sueltos dejados atrás por el Team Chasm, los Buscadores, y quién sabe qué mas que quiero averiguar.
+Toodles.
+Adiós.
 [Map429]
 Multiple copies of the same sign, all advertising an insurance package deal that will be available in the future.
 Múltiples copias del mismo cartel, todos publicitando un paquete de seguros que será disponible en el futuro.
+[Map430]
+A golden fruit glistens in a space atop the tree.
+Una fruta dorada brilla en una espacio sobre el árbol.
 [Map433]
 Cabin Room 2
 Cabina Número 2
@@ -26995,6 +27062,22 @@ Think I’m going to give my two weeks’ notice to Helena. Try my hand at being
 Creo que voy a dar mi aviso a Helena. Intentaré ser un Profesional.
 Can you give me that?
 ¿Podrías darme eso?
+My body’s shaking. I… How did you…?
+Mi cuerpo está temblando. Cómo... ¿Cómo pudiste...?
+I guess it really shows that you aren’t just Mavis’ kid anymore.
+Supongo que esto realmente muestra que ya no eres el niño de 
+You’re a champion. Through and through.
+Eres un campeón. De la caveza a los pies.
+I’m just glad Team Chasm’s gone.
+Simplemente me alegra que el Team Chasm ya no exista.
+Imagine if we somehow managed to win back then?
+¿Imagina si de algún modo hubiéramos podido ganar en ese entonce?
+You’d come around years later and tear what we built down. That’s horrifying.
+Habrías llegado años después y hubieras destrozado lo que habríamos construido. Eso es terorífico.
+By that time, there wasn’t a pressing need for that whole song and dance.
+Para ese entonces, no había mucha mucha necesidad de toda esa historia.
+Not with something like Yezera keeping us on our toes.
+No con alguien como Yezera manteniéndonos a raya.
 [1]
 29
 Nidoran-F
