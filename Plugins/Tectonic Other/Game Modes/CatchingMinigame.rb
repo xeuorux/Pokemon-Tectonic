@@ -1,3 +1,5 @@
+HAZARD_POKEMON_GLOBAL_SWITCH = 255
+
 SaveData.register(:catching_minigame) do
 	ensure_class :CatchingMinigame
 	save_value { $catching_minigame }
@@ -31,7 +33,10 @@ class CatchingMinigame
         @cutSceneLocation = cutSceneLocation
         @returnLocation = returnLocation
         @active = true
-        transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
+        blackFadeOutIn {
+            enableHazardPokemon
+            transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
+        }
         pbMessage(_INTL("Catch the best Pokemon you can in {1} turns of battle!",turnsGiven))
     end
 
@@ -72,7 +77,10 @@ class CatchingMinigame
     end
 
     def endMinigame()
-        transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
+        blackFadeOutIn {
+            disableHazardPokemon
+            transferPlayerToEvent(@cutSceneLocation[0],@cutSceneLocation[1],@cutSceneLocation[2])
+        }
         pbWait(20)
         if @currentMaxScorePokemon.nil?
             pbMessage(_INTL("You caught no Pokemon worth any points."))
@@ -128,6 +136,14 @@ class CatchingMinigame
         else
             pbMessage(_INTL("Unfortunately, that's not enough to earn a reward."))
         end
+    end
+
+    def enableHazardPokemon
+        setGlobalSwitch(HAZARD_POKEMON_GLOBAL_SWITCH,false)
+    end
+
+    def disableHazardPokemon
+        setGlobalSwitch(HAZARD_POKEMON_GLOBAL_SWITCH,true)
     end
 end
 
