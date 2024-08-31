@@ -616,6 +616,12 @@ The <imp>What Next?</imp> feature tells you what to do to progress the main stor
 La función <imp>¿Qué Sigue?</imp> te dice lo que debes hacer para progresar en la historia principal, si lo olvidaste o te pierdes.
 The <imp>Battle Guide</imp> explains the battle mechanics as well as battling strategy.
 La <imp>Guía de Combate</imp> explica las mecánicas de combate así como estrategias en este.
+Pokemon Tectonic has features to help you make sense of its open world, and its many mechanical changes.
+Pokémon Tectonic tienen funciones para ayudarte a darle sentido a su mundo abierto, y a sus muchos cambios mecánicos.
+It can be found in the <imp>Game State</imp> menu.
+Pueden ser encontradas en el menú <imp>Estado Juego</imp>.
+It can be found in the <imp>Documents</imp> menu.
+Puede ser encontrado en el menú <imp>Documentos</imp>.
 [Map2]
 You got to wonder where all this circuitry came from... It feels natural, but it obviously isn't.
 Me pregunto de dónde vinieron todos estos circuitos… se sienten naturales, pero obviamente no lo son.
@@ -1091,6 +1097,8 @@ Even worse, I had to go down into the Cold Storage basement level to do the deed
 Aún peor, tuve que bajar al sótano de la Refrigeración para hacer el trabajo.
 LuxTech Condos
 Apartamentos LuxTech 
+Healing centers uhh... to the west. So go off and do that now.
+Los Centros Pokémon aah... al oeste. Así que ve y haz eso ahora.
 [Map7]
 The Growlithe seems to be cowering from everything.
 Este Growlithe parece acobardarse por todo.
@@ -2092,7 +2100,7 @@ That's why she's focused her gym around Electric-type and Water-type Pokemon!
 ¡Por eso su gimnasio usa Pokémon tipo Agua y Eléctrico!
 They're a strong pair in battles, sharing no weaknesses.
 Son un fuerte par en combate, al no compartir ninguna debilidad.
-Firstly, Grass-type Pokemon are your best bet against her, since they're strong against Water-types, and resist Electric.
+Firstly, Grass-type Pokemon are your best bet against her, since they're strong against Water- types, and resist Electric.
 Primero, Pokémon tipo Planta son tu mejor apuesta contra ella, ya que son fuertes contra los tipo Agua, y resisten Eléctrico.
 Secondarily, Dragon-type Pokemon will resist both Water and Electric.
 Segundo, Pokémon tipo Dragón resisten tanto Agua como Eléctrico.
@@ -3589,6 +3597,20 @@ Here, let me heal your team up.
 Ok, déjame curar a tu equipo.
 Let’s go find what we came here for together.
 Busquemos juntos lo que vinimos a encontrar aquí.
+Even when I pull out all the stops, when I try my best to defang you, you bite down anyway.
+Incluso cuando opuse toda mi resistencia, cuando realmente intento descolmillarte, muerdes de todos modos.
+You’re not human… You know, for a moment, it really flashed in my mind that maybe I could do something with all of this.
+No eres humano... Sabes, por un momento, realmente se me vino a la cabeza que podría hacer algo con todo esto.
+That I could attain my own facsimile of overwhelming power...
+Que podría alcanzar mi propio facsímil de fuerza abrumante...
+But you’re just too strong.
+Pero simplemente eres demasiado fuerte.
+I’m all bark and no bite…
+Muerdo pero no ladro...
+I don’t know what came over me, \PN. I really lost myself for a moment.
+No sé qué me pasó, \PN. Me perdí a mí misma por un momento.
+Yes
+Sí
 [Map38]
 
 Okay, now just to dig the moat!
@@ -9063,6 +9085,14 @@ South: Exit to LuxTech Rec Center
 Sur: Salida a Centro Recreativo LuxTech
 Train people’s Pokémon for money. We had a scuffle back in Novo… which ya won.
 Entreno a los Pokémon de la gente por dinero. Tuvimos un enfrentamiento en Novo... el cual ganaste.
+You're a LuxTech employee, aren't you?!
+¡¿Eres un empleado de LuxTech, me equivoco?!
+I'm gonna steal your TMs!
+¡Voy a robar tus MTs!
+Silver Ninjask isn't going to be happy...
+Silver Ninjask no va a estar feliz...
+Now this job's gone completely sideways. Thanks a lot.
+Ahora este trabajo se fue por los suelos. Te lo agradezco.
 [Map123]
 
 I brought some family heirlooms with me from Galar.
@@ -9742,20 +9772,20 @@ No--That's a living Pokemon! Its body is partially covered in stone!
 No–¡Eso es un Pokémon vivo! ¡Su cuerpo está parcialmente cubierto por piedra!
 The Lillipup is unable to move, and in obvious distress.
 El Lillipup es incapaz de moverse, y está obviamente estresado.
-You could use a Status Heal or a Full Restore to heal its partial petrification.
-Podrías usar una Cura Total o un Restaurar Todo para curar su petrificación parcial.
+You could use a Moomoo Milk or a Full Restore to heal its partial petrification.
+Podrías usar una Leche Mu-mu o un Restaurar Todo para curar su petrificación parcial.
 What would you like to do?
 ¿Qué quieres hacer?
 You leave the Pokemon here for now.
 Dejas al Pokémon aquí por ahora.
-You apply the Status Heal to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
-Aplicas la Cura Total al Lillipup. En un instante, se libera, sacudiéndose pezados de piedra.
+You apply the Moomoo Milk to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
+Aplicas la Leche Mu-mu al Lillipup. En un instante, se libera, sacudiéndose pezados de piedra.
 You notice a Pokeball wedged into the nearby boulder.
 Notas una Pokéball entre un peñasco cercano.
 Lillipup brings over the Pokeball and enters it in front of you.
 Lillipup trae la Poké Ball y entra en ella en frente tuyo.
-You don't have a Status Heal to use.
-No tienes una Cura Total para usar.
+You don't have a Moomoo Milk to use.
+No tienes una Leche Mu-mu para usar.
 You apply the Full Restore to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
 Aplicas el Restaurar Todo al Lillipup. En un instante, se libera, sacudiendose pezados de piedra.
 You don't have a Full Restore to use.
@@ -9766,8 +9796,8 @@ North: Velenz
 Norte: Velenz
 Leave it
 Dejarlo
-Use a Status Heal
-Usar una Cura Total
+Use a Moomoo Milk
+Usar una Leche Mu-mu
 Use a Fresh
 Usar un Restaurar Todo
 I'm a consultant for the government, sent to review this station for improper activity.
@@ -14654,8 +14684,8 @@ You may have bested me in battle, but you'll still struggle against Noel.
 Podrás haberme ganado en combate, pero no será tan fácil contra Noel.
 Leave me be, you nincompoop.
 Déjame estar, bobo.
-Hey, sorry champ, but Noel's policy here is that everybody's gotta move through the gym clockwise.
-Hey, lo siento campeón, pero la política de Noel es que todos deben moverse por el gimnasio en el sentido de las agujas del reloj.
+Hey, sorry champ, but Noel's policy here is that everybody's gotta move through the gym counter-clockwise.
+Hey, lo siento campeón, pero la política de Noel es que todos deben moverse por el gimnasio en el sentido contrario de las agujas del reloj.
 I'm assuming its got some artsy-fartsy reason.
 Asumo que es por algún motivo artístico o algo.
 So, come on over this way, yeah?
