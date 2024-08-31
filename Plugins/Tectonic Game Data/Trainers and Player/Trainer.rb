@@ -197,6 +197,11 @@ class Trainer
       @policies 	  = []
       @tribalBonus  = TribalBonus.new(self)
     end
+
+    def ==(other)
+        self.name  == other.name &&
+        self.trainer_type == other.trainer_type
+    end
   end
   
   #===============================================================================

@@ -23,11 +23,11 @@ def getViewableTeams
         # if appropriate
         lowestPartyIndex = partyIndex
         viewableTeams.each do |existingEvent,existingtrainer,existingPartyIndex|
-            next unless existingtrainer.full_name == trainer.full_name
+            next unless existingtrainer == trainer
             lowestPartyIndex = existingPartyIndex if existingPartyIndex < lowestPartyIndex
         end
         viewableTeams.reject! do |existingEvent,existingtrainer,existingPartyIndex|
-            existingtrainer.full_name == trainer.full_name
+            existingtrainer == trainer
         end
 		viewableTeams.push([event,trainer,lowestPartyIndex])
     end
