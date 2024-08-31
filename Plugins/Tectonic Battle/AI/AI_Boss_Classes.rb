@@ -224,6 +224,18 @@ class PokeBattle_AI_DEOXYS < PokeBattle_AI_Boss
 end
 
 ##################################################
+# Calyrex and Mounts
+##################################################
+class PokeBattle_AI_SPECTRIER < PokeBattle_AI_Boss
+end
+
+class PokeBattle_AI_GLASTRIER < PokeBattle_AI_Boss
+end
+
+class PokeBattle_AI_CALYREX < PokeBattle_AI_Boss
+end
+
+##################################################
 # Other Legends
 ##################################################
 class PokeBattle_AI_GENESECT < PokeBattle_AI_Boss

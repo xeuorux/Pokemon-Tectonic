@@ -88,6 +88,12 @@ Description = Defeat all 8 Team Chasm-created avatars within the locked chambers
 Page = 3
 Hidden = true
 #-------------------------------
+[DEFEAT_AVATAR_CALYREX]
+Name = Regicide
+Description = Destroy the avatars of Spectrier, Glastrier, and Calyrex in the Crown Chamber.
+Page = 3
+Hidden = true
+#-------------------------------
 [DEFEAT_AVATAR_RAYQUAZA]
 Name = Ozone Depletion
 Description = Destroy the avatar of Rayquaza in the Tempest Realm.

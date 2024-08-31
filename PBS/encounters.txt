@@ -105,10 +105,10 @@ Special
 #-------------------------------
 [030] # Windy Way
 Land,20
+    25,HOPPIP,8,10
     25,MAREEP,8,10
     25,RALTS,8,10
     25,ROCKRUFF,8,10
-    25,HOPPIP,8,10
 LandTall,20
     25,STARLY,8,10
     25,STUNKY,8,10
@@ -422,9 +422,9 @@ FloweryGrass,20
 [138] # Scenic Trail
 Land,20
     25,CATERPIE,7,9
-	25,SEEDOT,7,9
     25,IMPIDIMP,7,9
     25,LITLEO,7,9
+    25,SEEDOT,7,9
 LandTall,20
     40,PICHU,7,9
     20,MEDITITE,7,9
