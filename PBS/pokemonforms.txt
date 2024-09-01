@@ -602,7 +602,7 @@ FormName = Kabuki Trim
 FormName = Pharaoh Trim
 #-------------------------------
 [MEOWSTIC,1]
-FormName = Meowstic♀
+FormName = Female
 BaseStats = 74,118,66,104,83,91
 Color = White
 #-------------------------------
@@ -922,7 +922,7 @@ FormName = Gorging
 Pokedex = The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back.
 #-------------------------------
 [EISCUE,1]
-FormName = Melted
+FormName = Noice Face
 BaseStats = 85,90,105,100,90,50
 Pokedex = The hair on its head connects to the surface of its brain. When this Pokémon has something on its mind, its hair chills the air around it.
 #-------------------------------
@@ -936,7 +936,7 @@ FormName = Antique
 Pokedex = Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
 #-------------------------------
 [INDEEDEE,1]
-FormName = ♀
+FormName = Female
 BaseStats = 80,80,65,85,80,105
 EffortPoints = 0,0,0,0,0,2
 Pokedex = They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
