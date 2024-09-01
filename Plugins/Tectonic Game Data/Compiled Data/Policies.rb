@@ -10,14 +10,14 @@ module Compiler
 		policyTextFiles.concat(policyExtensions)
 		policyTextFiles.each do |path|
 			baseFile = baseFiles.include?(path)
-			# Read each line of policies.txt at a time and compile it into a trainer type
+			# Read each line of policies.txt at a time and compile it into a policy
 			pbCompilerEachCommentedLine(path) { |line, line_no|
 				line = pbGetCsvRecord(line, line_no, [0, "*n"])
 				policy_symbol = line[0].to_sym
 				if GameData::Policy::DATA[policy_symbol]
 					raise _INTL("Trainer policy ID '{1}' is used twice.\r\n{2}", policy_symbol, FileLineData.linereport)
 				end
-				# Construct trainer type hash
+				# Construct policy hash
 				policy_hash = {
 					:id          => policy_symbol,
 					:defined_in_extension => !baseFile,
