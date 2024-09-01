@@ -621,7 +621,7 @@ def basicBallVendor
 	]
 	pbPokemonMart(
 		basicBallStock,
-		_INTL("Welcome to the PokeBall Depot! How may I serve you?"),
+		_INTL("Welcome to the Poké Ball Depot! How may I serve you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end

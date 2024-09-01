@@ -635,7 +635,7 @@ Events.OnTalkToFollower += proc {|pkmn,event,random_val|
       _INTL("{1} has an intense look on its' face."),
       _INTL("{1} is staring off into the distance."),
       _INTL("{1} seems to be carefully examining {2}'s face."),
-      _INTL("{1} seems to be trying to communicate with its' eyes."),
+      _INTL("{1} seems to be trying to communicate with its' eye(s)."),
       _INTL("...{1} seems to have sneezed!"),
       _INTL("...{1} noticed that {2}'s shoes are a bit dirty."),
       _INTL("Seems {1} ate something strange, it's making an odd face... "),

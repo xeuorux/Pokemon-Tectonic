@@ -1025,7 +1025,7 @@ Description = Protected from critical hits. Can't be burned or frostbitten.
 #-------------------------------
 [LIFELINE]
 Name = Lifeline
-Description = At the end of each turn, heals self by 1/20th and a party member by the amount the Pokémon was healed.
+Description = At the end of each turn, heals self by 1/20 and a party member by the amount the Pokémon was healed.
 #-------------------------------
 [LIGHTTRICK]
 Name = Light Trick
@@ -1858,7 +1858,7 @@ Description = Deals 25% more move damage for each ally in battle.
 #-------------------------------
 [TENDERIZE]
 Name = Tenderize
-Description = At the end of each round, lowers other numbed Pokémons' Defense and Sp. Def by two steps.
+Description = At the end of each round, lowers other numbed Pokémon's Defense and Sp. Def by two steps.
 #-------------------------------
 [TERRITORIAL]
 Name = Territorial
