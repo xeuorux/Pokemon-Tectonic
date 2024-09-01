@@ -149,7 +149,7 @@ Pocket = 1
 Price = 5000
 FieldUse = OnPokemon
 Flags = EvolutionStone,Clothing
-Description = A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.
+Description = A wreath made from woven Galarica Twigs. It makes certain species of Pokémon evolve.
 #-------------------------------
 [SWEETAPPLE]
 Name = Sweet Apple
@@ -579,7 +579,7 @@ Name = Lumber Axe
 NamePlural = Lumber Axes
 Pocket = 5
 Price = 8000
-Description = Held item which boosts move damage by 25%, but lower's the user's Speed by 1 step on entry.
+Description = Held item which boosts move damage by 25%, but lowers the user's Speed by 1 step on entry.
 #-------------------------------
 [HEATROCK]
 Name = Heat Rock

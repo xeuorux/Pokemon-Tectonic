@@ -1186,7 +1186,7 @@ He crafted something mighty gross outta my failed harvest.
 Hizo algo bien asqueroso con mi cosecha fallida.
 So, you gots one of them mushroom 'mons?
 Entonces, ¿Tienes uno de esos 'mons hongos?
-It's called <i>my</i>cology because <i>i</i> need it!
+It's called <i>my</i>cology because <i>I</i> need it!
 ¡Se llama <i>mi</i>cología porque <i>yo</i> la necesito!
 Just what the Nurse Joy ordered!
 ¡Justo lo que la Enfermera Joy ordenó!
@@ -1377,7 +1377,7 @@ Rafael may have a layer of earth protecting him from the surface, but it doesn't
 Rafael podrá tener una capa de tierra protegiéndolo de la superficie, pero no lo protege de mi proyección astral.
 I've been watching his battles with some fervor. I wish to grasp the essence of his strategy.
 He estado observando sus combates con algo de fevor. Deseo captar la esencia de su estrategia.
-It is, at it's core, about dancing.
+It is, at its core, about dancing.
 Es, en su núcleo, sobre el baile.
 His Oricorio and Alolan Marowak both gain power from dancing done by their allies.
 Su Oricorio y Marowak de Alola ambos ganan poder con el baile hecho por sus aliados.
@@ -1614,7 +1614,7 @@ For the absolute steal of $200,000, I'll let you get your hands on one. And gues
 Por el absoluto robo de $200.000, te dejaré en tus manos uno. Y adivina qué – es variocolor.
 Show that to your... mom? Dad? No, definitely mom. Probably a sibling in there as well, huh?
 Muestrale esto a tu… ¿Madre? ¿Padre? No, definitivamente madre. Probablemente un hermano de por medio, ¿eh?
-I'm sure you'll get at least a week's worth of self- worth flaunting that to them. All that quality time for just $200,000.
+I'm sure you'll get at least a week's worth of self-worth flaunting that to them. All that quality time for just $200,000.
 Estoy seguro que conseguirás al menos una semana para presumir de esto. Todo ese tiempo de calidad por sólo $200.000.
 Hah! That's what they all say. You'll be back, sooner or later.
 ¡Ja! Eso es lo que todos dicen. Volverás, más pronto que tarde.
@@ -3477,9 +3477,9 @@ I wouldn't put it past them to be behind it, they got their hands in everything.
 No descartaría que ellos estuvieron detrás de ello, tienen sus manos en todo.
 I've been trying to learn every sport lately.
 Últimamente estuve intentando aprender todos los deportes.
-Judo, baseball, tennis, even lacross. I've managed to hold my own against players in each of them.
+Judo, baseball, tennis, even lacrosse. I've managed to hold my own against players in each of them.
 Judo, baseball, tennis, incluso lacross. Logré ir frente a frente contra jugadores de cada uno.
-It's a long but reward process. My next project is figure skating.
+It's a long but rewarding process. My next project is figure skating.
 Es un largo proceso pero compensa. Mi siguiente proyecto es aprender a patinar.
 That lady over there is killing it, so I'm trying to copy her movements.
 Esa señorita lo está rompiendo, así que intento copiar sus movimientos.
@@ -6837,7 +6837,7 @@ Your effect seems to be an aura of fear, based on what I'm feeling right now.
 Tu efecto parece ser un aura de miedo, basado en lo que estoy sintiendo ahora.
 Great test, but I need more data.
 Genial prueba, pero necesito más información.
-It looks releived to no longer be floating!
+It looks relieved to no longer be floating!
 ¡Parece aliviado que ya no esté flotando!
 One of the scientists here gave me a batch of weird rocks, and told me to give some to my Mudsdale.
 Uno de los científicos me dió un puñado de rocas extrañas, y me dijo que le dieron algunas a mi Mudsdale.
@@ -11592,7 +11592,7 @@ La gente no les presta mucha atención, y están cruzando por donde quieren.
 [Map158]
 Thanks to my Swoobat's ability, it's completely code compliant for construction!
 ¡Gracias a la habilidad de mi Swoobat, cumple al pie de la letra el código para la construcción!
-Thanks to it's ability, Swoobat can wear two pieces of saftey gear! It can work on construction sites!
+Thanks to its ability, Swoobat can wear two pieces of saftey gear! It can work on construction sites!
 ¡Gracias a su habilidad, Swoobat puede usar dos piezas de equipo de seguridad! ¡Puede trabajar en la obra!
 I'll take your Pokémon for a few seconds.
 Tomaré tus Pokémon por un par de segundos.
@@ -12887,7 +12887,7 @@ You see the name "Yezera" carved onto the table.
 Ves el nombre "Yezera" tallado en la mesa.
 You see the name "Tamarind" carved onto the table.
 Ves el nombre "Tamarind" tallado en la mesa.
-A vase filled with flowers lays delicately on the floor.
+A vase filled with flowers sits delicately on the floor.
 Una maceta llena de flores se encuentra en el suelo.
 You could totally smash this thing, if you wanted to.
 Podrías destruir esta cosa, si lo quisieras.
@@ -19917,7 +19917,7 @@ Dar café.
 
 Me and sister are much better battlers than our parents.
 Yo y mi hermana somos mucho mejores que nuestros padres.
-Our Pokemon couldn't beat your's?!
+Our Pokemon couldn't beat yours?!
 ¡¿Nuestros Pokémon no derrotar a los tuyos?!
 That was fun, we should battle again soon.
 Eso fue divertido, deberíamos combatir luego pronto.
@@ -25658,7 +25658,7 @@ What a mess.
 Vaya desastre.
 Svait Lodge is one of the most popular tourist spots in Makya.
 El Alojamiento Svait es uno de los destinos turísticos más populares de Makya.
-In the winter, skiiers will even double up on rooms to make sure they get the chance to visit the nearby hills.
+In the winter, skiers will even double up on rooms to make sure they get the chance to visit the nearby hills.
 En el invierno, los esquiadores incluso comparten sus habitacinoes para asegurarse de tener la oportunidad de visitar las colinas cercanas.
 Apparently, the snow is very high quality!
 ¡Aparentemente, la nieve es de muy alta calidad!
@@ -25764,7 +25764,7 @@ A group of rangers set up a rest stop to help out trainers such as yourself.
 Un grupo de rangers pusieron una parada para ayudar a entrenadores como tú.
 The Velenz Menagerie was built by a very eccentric woman over 100 years ago.
 La Muestra de Velenz fue construida por una mujer muy excéntrica hace 100 años.
-Since then, it's been passed down to her great- great-granddaughter.
+Since then, it's been passed down to her great-great-granddaughter.
 Con el pasar de los años, este fue heredado a su tataranieta.
 She shares her ancestor's love for the world, and is every bit as unusual.
 Ella tiene el mismo amor por el mundo que tenía su ancestra, al igual que sus peculiaridades.
@@ -54365,7 +54365,7 @@ La mente de {1} parece estar en otra parte.
 {1} observa a la distancia.
 {1} seems to be carefully examining {2}'s face.
 {1} parece examinar con cuidado la cara de {2}.
-{1} seems to be trying to communicate with its' eyes.
+{1} seems to be trying to communicate with its' eye(s).
 {1} parece intentar comunicarse con sus ojos..
 ...{1} seems to have sneezed!
 ¡...{1} parece haber estornudado!
@@ -54775,7 +54775,7 @@ when traded holding an {1}
 cuando es intercambiado sosteniendo {1}
 when leveled up while a {1} is also in the party
 cuando es subido de nivel mientras un {1} está también en el equipo.
-also if you have an empty pokeball and party slot
+also if you have an empty Poké Ball and party slot
 también si tienes una poké ball y un espacio de equipo vacío
 when a {1} is used on it at level {1}
 cuando un {1} es usado al nivel {1}

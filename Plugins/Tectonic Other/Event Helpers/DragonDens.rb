@@ -54,5 +54,5 @@ def dragonDenEnterPrompt()
 end
 
 def dragonDenExitMessage()
-	pbMessage(_INTL("You clambor out of the den!"))
+	pbMessage(_INTL("You clamber out of the den!"))
 end
