@@ -1449,7 +1449,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByThirdOfDamageDone
 Flags = CanProtect,CanMirrorMove,Punch
-Description = An energy-draining punch. The user's HP is restored by one third the damage taken by the target.
+Description = An energy-draining punch. The user's HP is restored by 33% of the damage dealt.
 #-------------------------------
 [DYNAMICPUNCH]
 Name = Dynamic Punch
@@ -3009,7 +3009,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user drains the target's blood. The user's HP is restored by half the damage taken by the target.
+Description = The user drains the target's blood. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [LUNGE]
 Name = Lunge
@@ -4640,7 +4640,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+Description = A nutrient-draining attack. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [AROMATHERAPY]
 Name = Aromatherapy
@@ -4759,7 +4759,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+Description = A nutrient-draining attack. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [GRASSKNOT]
 Name = Grass Knot
@@ -4886,7 +4886,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+Description = A nutrient-draining attack. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [NEEDLEARM]
 Name = Needle Arm
@@ -5247,7 +5247,7 @@ TotalPP = 15
 Target = AllNearOthers
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks everything around it. The user's HP is restored by half the damage dealt.
+Description = The user attacks everything around it. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [PLASMAFISTS]
 Name = Plasma Fists
@@ -5507,7 +5507,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep
 Flags = CanProtect,CanMirrorMove
-Description = Heals the user for 50% of the damage caused. Power doubles if the foe is asleep.
+Description = The user's HP is restored by 50% of the damage dealt. Power doubles if the foe is asleep.
 #-------------------------------
 [EERIESPELL]
 Name = Eerie Spell

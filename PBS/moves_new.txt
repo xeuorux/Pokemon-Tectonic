@@ -1481,7 +1481,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByThirdOfDamageDone
 Flags = CanProtect,CanMirrorMove,Biting
-Description = The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.
+Description = The user chomps with venomous teeth. The user's HP is restored by 33% of the damage dealt.
 #-------------------------------
 [TRASHTREASURE]
 Name = Trash Treasure
@@ -2238,7 +2238,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user consumes a bit of the target's blood. The user's HP is restored by half the damage dealt.
+Description = The user consumes a bit of the target's blood. The user's HP is restored by 50% the damage dealt.
 Animation = LEECHLIFE
 #-------------------------------
 [GUIDINGAROMA]
@@ -2454,7 +2454,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user leeches the target's life. The user's HP is restored by half the damage taken by the target.
+Description = The user leeches the target's life. The user's HP is restored by 50% the damage dealt.
 Animation = LEECHLIFE
 #-------------------------------
 [SWARMBURST]
@@ -4469,7 +4469,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
+Description = A nutrient-draining attack. The user's HP is restored by 75% of the damage dealt.
 Animation = GIGADRAIN
 #-------------------------------
 [THORNRATTLE]
@@ -4496,7 +4496,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByTwoThirdsOfDamageDoneIfTargetHurtUserThisTurn
 Flags = CanProtect,CanMirrorMove,Biting
-Description = Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.
+Description = Lures an enemy into its jaws. If they hit the user this turn, the user's HP is restored by 66% the damage dealt.
 #-------------------------------
 [VINEBIND]
 Name = Vinebind
@@ -4965,7 +4965,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal
 Flags = CanProtect,CanMirrorMove
-Description = Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
+Description = Doubles in power if the foe is asleep. The user's HP is restored by 50% the damage dealt. This can overheal.
 #-------------------------------
 [ECLIPSE]
 Name = Eclipse
@@ -5636,7 +5636,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = Drains the heat from the target, restoring HP by half the damage taken by the target.
+Description = Drains the heat from the target. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [WINTEROPS]
 Name = Winter Ops
@@ -6189,7 +6189,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user chomps hard, cutting the target's HP by half, and healing for half of that.
+Description = The user chomps hard, cutting the target's HP by 50%, and the user's HP is restored by 50% of that.
 Animation = SUPERFANG
 #-------------------------------
 [NIGHTCHILL]
