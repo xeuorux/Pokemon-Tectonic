@@ -52,7 +52,7 @@ module GameData
 			@id = hash[:id]
 			@id_number = hash[:id_number]
 			@real_name = hash[:real_name]
-			@defined_in_extension = hash[:defined_in_extension]
+			@defined_in_extension = hash[:defined_in_extension] || false
 		end
 
 		def name
