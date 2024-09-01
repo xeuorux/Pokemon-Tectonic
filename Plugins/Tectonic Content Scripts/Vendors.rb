@@ -215,6 +215,28 @@ def styleFurfrou
 	return false
 end
 
+def styleVivillon
+	pbChoosePokemon(1,3,
+		proc { |poke|
+			!poke.egg? && poke.species == :VIVILLON
+		}
+	)
+	return false if pbGet(1) < 0
+	pkmn = $Trainer.party[pbGet(1)]
+	possibleForms, possibleFormNames = getFormSelectionChoices(:VIVILLON,pkmn.form)
+	pbMessage(_INTL("What pattern would you like me to give it?"))
+	choice = pbShowCommands(nil,possibleFormNames,possibleFormNames.length+1)
+	if choice < possibleForms.length
+		pbMessage(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"))
+		
+		pkmn.form = possibleForms[choice].form
+		#pkmn.changeHappiness("groom")
+		refreshFollow(false)
+		return true
+	end
+	return false
+end
+
 def createHisuian
 	unless pbHasItem?(:ORIGINORE)
 		setSpeaker(HISUIAN_WITCH)
