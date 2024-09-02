@@ -246,7 +246,6 @@ end
 #===============================================================================
 class PokeBattle_Move_StealsBerryGem < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
-        return unless target.hasAnyBerry? || target.hasAnyItem?
         target.eachItem do |item|
             next unless GameData::Item.get(item).is_berry? || GameData::Item.get(item).is_gem?
             stealItem(user, target, item)
