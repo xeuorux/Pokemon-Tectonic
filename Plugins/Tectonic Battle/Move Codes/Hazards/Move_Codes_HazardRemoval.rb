@@ -157,6 +157,7 @@ class PokeBattle_Move_Icebreaker < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 
     def pbEffectAfterAllHits(user, target)
+        super
         return if user.fainted? || target.damageState.unaffected
         user.pbOwnSide.eachEffect(true) do |effect, _value, data|
             next unless data.is_hazard?
