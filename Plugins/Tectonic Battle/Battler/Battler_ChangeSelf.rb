@@ -492,7 +492,7 @@ class PokeBattle_Battler
         if isSpecies?(:CHERRIM)
             if hasActiveAbility?(:FLOWERGIFT)
                 newForm = 0
-                newForm = 1 if %i[Sun HarshSun].include?(@battle.pbWeather)
+                newForm = 1 if @battle.sunny?
                 if @form != newForm
                     showMyAbilitySplash(:FLOWERGIFT, true)
                     hideMyAbilitySplash
