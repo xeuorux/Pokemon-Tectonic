@@ -949,7 +949,7 @@ Bicycle = false
 # Monument Lobby
 Outdoor = false
 ShowArea = false
-Bicycle = true
+Bicycle = false
 HealingSpot = 357,31,29
 #-------------------------------
 [129]
@@ -1469,7 +1469,7 @@ Environment = Cave
 # Emma's Empolorium
 Outdoor = false
 ShowArea = false
-Bicycle = true
+Bicycle = false
 #-------------------------------
 [201]
 # Nature's Gallery
