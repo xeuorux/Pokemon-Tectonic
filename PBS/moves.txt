@@ -4122,7 +4122,7 @@ Power = 150
 Accuracy = 100
 TotalPP = 5
 Target = AllNearOthers
-FunctionCode = UserLosesHalfOfTotalHPExplosive
+FunctionCode = UserLosesHalfOfTotalHP
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks everything by causing its own head to explode. This also damages the user.
 #-------------------------------
