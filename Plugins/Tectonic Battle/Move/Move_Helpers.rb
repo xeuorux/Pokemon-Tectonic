@@ -88,7 +88,7 @@ class PokeBattle_Move
             next unless validItemProc.nil? || validItemProc.call(item)
             victim.removeItem(item)
             if block_given?
-                yield item
+                yield item, itemName
             else
                 removeMessage = _INTL("{1} forced {2} to drop their {3}!", remover.pbThis,
                     victim.pbThis(true), itemName)
