@@ -633,9 +633,9 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:COREPROVENANCE,
-    proc { |ability, target, battler, move, battle, aiCheck, aiNumHits|
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if target.pbOpposingSide.effectAtMax?(:ErodedRock)
+        next if target.pbOwnSide.effectAtMax?(:ErodedRock)
         if aiCheck
             next (target.aboveHalfHealth? ? -10 : 0) * aiNumHits
         end

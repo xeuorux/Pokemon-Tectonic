@@ -121,7 +121,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is shrouded in mist!", teamName))
-        battle.pbDisplay(_INTL("Their stats can't be lowered for #{value - 1} more turns!", teamName))
+        battle.pbDisplay(_INTL("Their stats can't be lowered for #{value - 1} more turns!"))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Mist was swept away!", teamName))
@@ -624,7 +624,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Eroded Rocks",
     :type => :Integer,
     :maximum => 4,
-    :apply_proc => proc do |battle, _side, teamName, _value|
+    :increment_proc => proc do |battle, _side, teamName, _value, increment|
         battle.pbDisplay(_INTL("A rock lands on the ground around {1}.", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
