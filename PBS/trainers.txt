@@ -8190,7 +8190,7 @@ Pokemon = MILTANK,70
 #-------------------------------
 [OFFICEWORKER_M,Kurt]
 Pokemon = MEOWSTIC,70
-    Form = 1 # Meowstic♀ Form
+    Form = 1 # Female Form
     Moves = REFLECT,HELPINGHAND,HEALBELL,LIGHTSCREEN
     AbilityIndex = 0 # Prankster
     Item = LIGHTCLAY
@@ -8379,7 +8379,7 @@ Pokemon = KLEAVOR,70
     AbilityIndex = 1 # Weak Armor
     Item = LUCKHERB
 Pokemon = INDEEDEE,70
-    Form = 1 # ♀ Form
+    Form = 1 # Female Form
     Moves = KICKSTART,BRAINFREEZE,ENERGYBALL,ALLYSWITCH
     AbilityIndex = 1 # Fascinate
 #-------------------------------
