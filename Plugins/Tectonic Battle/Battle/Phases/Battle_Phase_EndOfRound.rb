@@ -22,6 +22,7 @@ class PokeBattle_Battle
         if @field.effectActive?(:EmotionRoom)
             priority.each { |b|
                 next if b.fainted?
+                next if b.immutableAbility?
                 possibleAbilitySwitches = []
                 b.legalAbilities.each do |abil|
                     next if b.hasAbility?(abil)
