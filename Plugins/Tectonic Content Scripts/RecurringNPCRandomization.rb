@@ -136,13 +136,13 @@ def getRandomNPCTrainerDetails(villainNumber,fightSection=0)
     trainerType += "_DOUBLE" if doubleBattle
     trainerName = ["Crimson", "Teal"][villainNumber]
 
-    return trainerType, trainerName, trainerVersion
+    return trainerType, trainerName, trainerVersion, doubleBattle
 end
 
 def randomNPCTrainerBattle(villainNumber,fightSection=0)
-    trainerType, trainerName, trainerVersion = getRandomNPCTrainerDetails(villainNumber,fightSection)
+    trainerType, trainerName, trainerVersion, doubleBattle = getRandomNPCTrainerDetails(villainNumber,fightSection)
 
-    setBattleRule("double") if trainerVersion == 0
+    setBattleRule("double") if doubleBattle
 
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
