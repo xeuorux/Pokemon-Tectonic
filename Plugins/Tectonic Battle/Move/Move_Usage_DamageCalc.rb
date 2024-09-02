@@ -477,7 +477,7 @@ class PokeBattle_Move
         # Mass Attack
         if @battle.pbCheckGlobalAbility(:MASSATTACK)
             hpFraction = user.hp / user.totalhp.to_f
-            multipliers[:final_damage_multiplier] *= (1 - hpFraction)
+            multipliers[:final_damage_multiplier] *= hpFraction
         end
 
         # Multi-targeting attacks
