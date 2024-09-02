@@ -22,11 +22,11 @@ end
 #===============================================================================
 # Burns the target and sets Sun
 #===============================================================================
-class PokeBattle_Move_BurnTargetStartSunshine4 < PokeBattle_InviteMove
+class PokeBattle_Move_BurnTargetStartSunshine8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sunshine
-        @durationSet = 4
+        @durationSet = 8
         @statusToApply = :BURN
     end
 end
@@ -56,11 +56,11 @@ end
 #===============================================================================
 # Numbs the target and sets Rain
 #===============================================================================
-class PokeBattle_Move_NumbTargetStartRainstorm4 < PokeBattle_InviteMove
+class PokeBattle_Move_NumbTargetStartRainstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Rainstorm
-        @durationSet = 4
+        @durationSet = 8
         @statusToApply = :NUMB
     end
 end
@@ -89,11 +89,11 @@ end
 #===============================================================================
 # Dizzies the target and sets Sandstorm
 #===============================================================================
-class PokeBattle_Move_DizzyTargetStartSandstorm4 < PokeBattle_InviteMove
+class PokeBattle_Move_DizzyTargetStartSandstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm
-        @durationSet = 4
+        @durationSet = 8
         @statusToApply = :DIZZY
     end
 end
@@ -124,11 +124,11 @@ end
 #===============================================================================
 # Frostbites the target and sets Hail
 #===============================================================================
-class PokeBattle_Move_FrostbiteTargetStartHail4 < PokeBattle_InviteMove
+class PokeBattle_Move_FrostbiteTargetStartHail8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Hail
-        @durationSet = 4
+        @durationSet = 8
         @statusToApply = :FROSTBITE
     end
 end
