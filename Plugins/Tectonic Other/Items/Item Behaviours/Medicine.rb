@@ -153,19 +153,19 @@ ItemHandlers::UseOnPokemon.add(:SWEETHEART, proc { |_item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:VANILLATULUMBA, proc { |item, pkmn, scene|
-    if pkmn.hp == pkmn.totalhp || pkmn.fainted?
+    level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
+    if pkmn.fainted? || (pkmn.hp == pkmn.totalhp && pkmn.level >= level_cap)
         pbSceneDefaultDisplay(_INTL("It won't have any effect."), scene)
         next false
     end
-    hpGain = pbItemRestoreHP(pkmn, 100)
-    scene&.pbRefresh
-    pbSceneDefaultDisplay(_INTL("{1}'s HP was restored by {2} points.", pkmn.name, hpGain), scene)
-
-    # Don't add EXP if the pokemon's already at the level cap
-    level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
-    if pkmn.level >= level_cap
-        pbSceneDefaultDisplay(_INTL("There was no other effect."), scene)
-        next false
+    
+    if pkmn.hp < pkmn.totalhp
+        hpGain = pbItemRestoreHP(pkmn, 100)
+        scene&.pbRefresh
+        pbSceneDefaultDisplay(_INTL("{1}'s HP was restored by {2} points.", pkmn.name, hpGain), scene)
     end
-    next pbEXPAdditionItem(pkmn, 4000, item, scene, true)
+
+    pbEXPAdditionItem(pkmn, 4000, item, scene, true) unless pkmn.level >= level_cap
+    
+    next true
 })
