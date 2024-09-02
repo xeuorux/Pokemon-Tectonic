@@ -1607,6 +1607,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 3
 Target = UserSide
+Priority = 4
 FunctionCode = ProtectUserSideFromDamagingMovesIfUserFirstTurn
 Flags = CanSnatch
 Description = The user protects itself and allies from damaging moves. It only works the first turn the user is in battle.
