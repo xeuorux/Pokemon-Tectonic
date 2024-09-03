@@ -24668,9 +24668,6 @@ Pokedex = This Pokémon has slumbered for many years. Some say it's Zamazenta's 
 FormName = Hero of Many Battles
 Generation = 8
 Flags = Legendary
-WildItemCommon = RUSTEDSWORD
-WildItemUncommon = RUSTEDSWORD
-WildItemRare = RUSTEDSWORD
 #-------------------------------
 [889]
 Name = Zamazenta
@@ -24699,9 +24696,6 @@ Pokedex = This Pokémon slept for aeons while in the form of a statue. It was as
 FormName = Hero of Many Battles
 Generation = 8
 Flags = Legendary
-WildItemCommon = RUSTEDSHIELD
-WildItemUncommon = RUSTEDSHIELD
-WildItemRare = RUSTEDSHIELD
 #-------------------------------
 [890]
 Name = Eternatus
