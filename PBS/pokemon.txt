@@ -19719,7 +19719,7 @@ Color = Brown
 Shape = Head
 Kind = Pumpkin
 Pokedex = It is said to carry wandering spirits to the place where they belong so they can move on.
-FormName = Average Size
+FormName = Small Size
 Generation = 6
 Evolutions = GOURGEIST,Level,28
 #-------------------------------
@@ -19748,7 +19748,7 @@ Color = Brown
 Shape = Head
 Kind = Pumpkin
 Pokedex = It enwraps its prey in its hairlike arms. It sings joyfully as it observes the suffering of its prey.
-FormName = Average Size
+FormName = Small Size
 Generation = 6
 WildItemCommon = MIRACLESEED
 #-------------------------------
