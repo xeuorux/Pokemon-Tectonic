@@ -1712,7 +1712,7 @@ Description = Sets a Light Screen for 4 turns upon entering the battle.
 #-------------------------------
 [STARSALIGN]
 Name = Stars Align
-Description = During eclipse, can't miss and always activates its moves random added effects.
+Description = During eclipse, its move can't miss and always activates their random effects.
 Flags = EclipseSynergy
 #-------------------------------
 [STEAMPOWER]
