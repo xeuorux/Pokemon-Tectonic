@@ -44,6 +44,7 @@ class PokeBattle_Move_CureUserPartyStatus < PokeBattle_Move
         # NOTE: This intentionally affects the partner trainer's inactive Pokémon
         #       too.
         @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next unless pkmn
             battler = @battle.pbFindBattler(i, user)
             if battler
                 healStatus(battler)

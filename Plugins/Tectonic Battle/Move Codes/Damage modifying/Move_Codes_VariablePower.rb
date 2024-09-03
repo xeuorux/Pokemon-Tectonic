@@ -134,6 +134,7 @@ end
 class PokeBattle_Move_ScalesFaintedPartyMembers < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, target)
         user.ownerParty.each do |partyPokemon|
+            next unless partyPokemon
             next if partyPokemon.personalID == user.personalID
             next unless partyPokemon.fainted?
             baseDmg += 20

@@ -144,13 +144,15 @@ GameData::BattleEffect.register_effect(:Position, {
     :entry_proc => proc do |battle, _index, position, battler|
         if battler.hasActiveAbility?(:LONGRECEIVER)
             abilityPasser = battler.ownerParty[position.effects[:PassingAbility]]
-            abilityPasserName = battle.pbThisEx(battler.index, position.effects[:PassingAbility])
-            unless battler.hasAbility?(abilityPasser.ability)
-                battler.showMyAbilitySplash(:LONGRECEIVER)
-                battle.pbDisplay(_INTL("{1} passes its ability to {2}!", abilityPasserName, battler.pbThis(true)))
-                battler.hideMyAbilitySplash
-                battler.addAbility(abilityPasser.ability,true)
-                position.disableEffect(:PassingAbility)
+            if abilityPasser
+                abilityPasserName = battle.pbThisEx(battler.index, position.effects[:PassingAbility])
+                unless battler.hasAbility?(abilityPasser.ability)
+                    battler.showMyAbilitySplash(:LONGRECEIVER)
+                    battle.pbDisplay(_INTL("{1} passes its ability to {2}!", abilityPasserName, battler.pbThis(true)))
+                    battler.hideMyAbilitySplash
+                    battler.addAbility(abilityPasser.ability,true)
+                    position.disableEffect(:PassingAbility)
+                end
             end
         end
     end,
@@ -165,17 +167,19 @@ GameData::BattleEffect.register_effect(:Position, {
     :entry_proc => proc do |battle, _index, position, battler|
         if battler.hasActiveAbility?(:OVERFLOWINGHEART)
             statPasser = battler.ownerParty[position.effects[:PassingStats]]
-            statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
-            unless battler.hasAbility?(statPasser.ability)
-                battler.showMyAbilitySplash(:OVERFLOWINGHEART)
-                battle.pbDisplay(_INTL("{2} reads {1}'s heart and gains its stats!", statPasserName, battler.pbThis(true)))
-                battler.applyEffect(:BaseAttack,statPasser.attack)
-                battler.applyEffect(:BaseDefense,statPasser.defense)
-                battler.applyEffect(:BaseSpecialAttack,statPasser.spatk)
-                battler.applyEffect(:BaseSpecialDefense,statPasser.spdef)
-                battler.applyEffect(:BaseSpeed,statPasser.speed)
-                position.disableEffect(:PassingStats)
-                battler.hideMyAbilitySplash
+            if statPasser
+                statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
+                unless battler.hasAbility?(statPasser.ability)
+                    battler.showMyAbilitySplash(:OVERFLOWINGHEART)
+                    battle.pbDisplay(_INTL("{2} reads {1}'s heart and gains its stats!", statPasserName, battler.pbThis(true)))
+                    battler.applyEffect(:BaseAttack,statPasser.attack)
+                    battler.applyEffect(:BaseDefense,statPasser.defense)
+                    battler.applyEffect(:BaseSpecialAttack,statPasser.spatk)
+                    battler.applyEffect(:BaseSpecialDefense,statPasser.spdef)
+                    battler.applyEffect(:BaseSpeed,statPasser.speed)
+                    position.disableEffect(:PassingStats)
+                    battler.hideMyAbilitySplash
+                end
             end
         end
     end,

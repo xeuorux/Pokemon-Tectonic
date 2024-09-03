@@ -640,14 +640,16 @@ GameData::BattleEffect.register_effect(:Side, {
         value.each_key do |key|
             value[key] -= 1
             pkmn = battle.pbParty(side.index)[key]
-            if value[key] <= 0
-                # Revive the pokemon
-                pkmn.heal_HP
-                pkmn.heal_status
-                battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
-                value[key] = nil
-            else
-                battle.pbDisplay(_INTL("{1} is regrowing.", pkmn.name))
+            if pkmn
+                if value[key] <= 0
+                    # Revive the pokemon
+                    pkmn.heal_HP
+                    pkmn.heal_status
+                    battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
+                    value[key] = nil
+                else
+                    battle.pbDisplay(_INTL("{1} is regrowing.", pkmn.name))
+                end
             end
         end
         value.compact!

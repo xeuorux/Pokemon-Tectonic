@@ -322,6 +322,7 @@ class PokeBattle_Battler
             if hasActiveItem?(:HOOHSASHES)
                 faintedPartyMembers = []
                 ownerParty.each do |partyPokemon|
+                    next unless partyPokemon
                     next if @battle.pbFindBattler(partyIndex, @index)
                     next unless partyPokemon.fainted?
                     faintedPartyMembers.push(partyPokemon)

@@ -197,6 +197,7 @@ BattleHandlers::EOREffectAbility.add(:LIFELINE,
     if healingAmount > 0
         potentialHeals = []
         battle.pbParty(battler.index).each_with_index do |pkmn,partyIndex|
+            next unless pkmn
             next if pkmn.fainted?
             next if pkmn.hp == pkmn.totalhp
             next if battle.pbFindBattler(partyIndex, battler.index)
