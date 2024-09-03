@@ -47,7 +47,7 @@ class PokeBattle_AI
         if battler.boss?
             pbChooseMovesBoss(idxBattler)
         elsif @battle.wildBattle? && @battle.opposes?(idxBattler) # Checks for opposing because it could be an partner trainer's pokemon
-            @battle.pbRegisterMove(idxBattler, pbAIRandom(battler.getMoves.length), false)
+            pbChooseMovesWild(idxBattler)
         else
             return if !battler.effectActive?(:AutoPilot) && pbEnemyShouldWithdraw?(idxBattler)
             defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
