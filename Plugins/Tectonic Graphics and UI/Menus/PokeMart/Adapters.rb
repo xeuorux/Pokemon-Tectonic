@@ -59,14 +59,22 @@ class PokemonMartAdapter
     end
   
     def getPrice(item, selling = false)
-      if $game_temp.mart_prices && $game_temp.mart_prices[item]
-        if selling
-          return $game_temp.mart_prices[item][1] if $game_temp.mart_prices[item][1] >= 0
-        else
-          return $game_temp.mart_prices[item][0] if $game_temp.mart_prices[item][0] > 0
+        price = getUnmodifiedPrice(item, selling)
+        if vipCardActive? && !selling
+            price = (price * 0.9).ceil
         end
-      end
-      return GameData::Item.get(item).price
+        return price
+    end
+
+    def getUnmodifiedPrice(item, selling = false)
+        if $game_temp.mart_prices && $game_temp.mart_prices[item]
+            if selling
+              return $game_temp.mart_prices[item][1] if $game_temp.mart_prices[item][1] >= 0
+            else
+              return $game_temp.mart_prices[item][0] if $game_temp.mart_prices[item][0] > 0
+            end
+        end
+        return GameData::Item.get(item).price
     end
   
     def getDisplayPrice(item, selling = false)

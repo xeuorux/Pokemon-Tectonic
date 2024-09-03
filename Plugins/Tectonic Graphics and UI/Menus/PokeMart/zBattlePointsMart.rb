@@ -21,6 +21,10 @@ class BattlePointsAdapter < PokemonMartAdapter
     end
 
     def moneyOnNewLine?; return false; end
+
+    def getPrice(item, selling = false)
+        return getUnmodifiedPrice(item, selling)
+    end
 end
 
 class BattlePointsMartScreen < PokemonMartScreen

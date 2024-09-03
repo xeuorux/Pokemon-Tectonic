@@ -2959,3 +2959,12 @@ Price = 0
 FieldUse = Direct
 Flags = KeyItem
 Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.
+#-------------------------------
+[VIPCARD]
+Name = VIP Card
+NamePlural = VIP Cards
+Pocket = 8
+Price = 0
+FieldUse = OnPokemon
+Flags = KeyItem
+Description = A glamorous steel card. While holding it, all vendors cost 10% less and Poké Marts have extra items.
