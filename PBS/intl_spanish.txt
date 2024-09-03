@@ -10264,7 +10264,7 @@ Yo, champ in the making!
 ¡Hey, aspirante!
 We have two Gym Leaders here on the West side of Prizca.
 Tenemos dos Líderes de Gimnasio aquí en el lado Occidental de Prizca.
-Bence and Zoe are Rock-type and Flying-type users.
+Bence and Zoé are Rock-type and Flying-type users.
 Bence y Zoé son usuarios de tipo Roca y tipo Volador.
 There isn't a magic typing here that I could recommend you. These types are pretty good combo.
 No hay un tipo mágico aquí que te recomendaría, estos tipos son una muy buena combinación.
@@ -11166,7 +11166,7 @@ Closed while Bence....participate in the Makya Championship Tournament.
 Cerrado mientras Bence… participa en el Torneo del Campeonato de Makya.
 Heavy graffiti covers a part that you think may have said "and Zoé"
 Un graffiti cubre una parte que piensas que podría haber dicho “Y Zoé”
-Poor Bence and Zoe, the two can't seem to agree on anything.
+Poor Bence and Zoé, the two can't seem to agree on anything.
 Pobres Bence y Zoé, los dos parecen no poder ponerse en acuerdo en nada.
 If they worked together, the Gym might be much harder!
 Si trabajaran juntos, ¡El Gimnasio podría ser mucho más difícil!
@@ -11410,7 +11410,7 @@ Just head north from this sign, and then exit through the eastern gatehouse.
 Sólo ve al norte de este cartel, y luego atraviesa la portería al este.
 A sign reads "Entry only to trainers with 8 or more gyms badges."
 Un cartel dice "Sólo se permite la entrada a entrenadores con 8 o más medallas".
-Bence or Zoe.... Zoe or Bence....
+Bence or Zoé.... Zoé or Bence....
 Bence or Zoé.... Zoé or Bence....
 Oh, forgive me, I just don't know which of the two gym leaders here I should fight.
 Oh, disculpa, sólo no sé a cuál de los dos líderes de gimnasio debería enfrentar.
@@ -11486,9 +11486,9 @@ Así que conseguiste la Medalla Solidaridad. ¡Bien hecho!
 ...No puedo creerlo.
 Local legend has it that these stone pillars are quite old.
 Las leyendas locales dicen que los pilares de piedra son bastante viejos.
-Bence claims that they were here before plans to construct Prizca west, let alone specifically this gym.
+Bence claims that they were here before plans to construct Prizca West, let alone specifically this gym.
 Bence dice que estaban aquí antes de los planes de construir Prizca Occidental, por no hablar de específicamente este gimnasio.
-Makya does have it fair share of strange rock formations, I'll give you that.
+Makya does have its fair share of strange rock formations, I'll give you that.
 Makya tiene su buena cantidad de extrañas formaciones rocosas, te daré la razón en eso.
 But Chasm members could talk about Pikachu being an Electric-type and I'd still pull out my MasterDex to double check.
 Pero los miembros Chasm podrían decir que Pikachu es un tipo Eléctrico y aún así sacaría mi MasterDex para asegurarme.
@@ -11510,7 +11510,7 @@ I'm on break. Nothing much to do until the rock shipment's done being unloaded.
 Estoy en mi descanso. No tengo mucho que hacer hasta que terminen de descargar el cargamento de rocas.
 What's that? You wanna know where the rocks come from?
 ¿Cómo? ¿Quieres saber de dónde vienen las rocas?
-There's a big quarry to the north north, near one of the mountains up there.
+There's a big quarry to the north, near one of the mountains up there.
 Hay una gran cantera muy al norte, cerca de una de las montañas allí.
 It's not part of Makya anymore, but there's a lot of historic ties, so business relations are good.
 Ya no es parte de Makya, pero hay muchos lazos históricos, así que las relaciones de negocio son buenas.
@@ -26981,7 +26981,7 @@ Tomaré el Corsola.
 I'll take the Shuckle.
 Tomaré el Shuckle.
 [Map442]
-There seems to be rocks in here. Does he feed this to his Pokemon?
+There seem to be rocks in here. Does he feed this to his Pokemon?
 Parece haber rocas aquí. ¿Acaso él alimenta a sus Pokémon con esto?
 Bence almost has a week of prepared meals in the fridge.
 Bence casi tiene una semana de comidas preparadas en el frigorífico.
@@ -58206,7 +58206,7 @@ Perfect Helena, the third gym leader, at level cap 25 or below with the Tarot Am
 Perfecciona a Helena, la tercer líder de gimnasio, con un límite de nivel de 25 o menos con el Amuleto Tarot activado.
 Perfect Rafael, the fourth gym leader, at level cap 30 or below with the Tarot Amulet activated.
 Perfecciona a Rafael, el cuarto líder de gimnasio, con un límite de nivel de 30 o menos con el Amuleto Tarot activado.
-Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Perfect Bence and Zoé, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Perfecciona a Bence y Zoé, los quintos líderes de gimnasio, con un límite de nivel de 40 o menos con el Amuleto Tarot activado. 
 Perfect Noel, the sixth gym leader, at level cap 45 or below with the Tarot Amulet activated.
 Perfecciona a Noel, el sexto líder de gimnasio, con un límite de nivel de 45 o menos con el Amuleto Tarot activado.

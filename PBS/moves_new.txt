@@ -2545,7 +2545,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = CurseTargetUserPaysQuarterOfTotalHP
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.
+Description = The user loses 25% of their max HP to curse the target, damaging their HP by 25% each turn.
 Animation = CURSE
 #-------------------------------
 [DEADEND]
