@@ -2608,6 +2608,15 @@ Price = 0
 Flags = KeyItem
 Description = An electrified glove with a claw-like shape. Allows you to recover the first failed Poké Ball thrown in a wild battle.
 #-------------------------------
+[CHROMACLARION]
+Name = Chroma Clarion
+NamePlural = Chroma Clarions
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = An ancient horn. Sound it to call 3 rare Pokémon to battle you. Recharged by walking in encounter zones.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds
