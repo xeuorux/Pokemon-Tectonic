@@ -2002,7 +2002,7 @@ NamePlural = Jaboca Berries
 Pocket = 5
 Price = 0
 Flags = Berry
-Description = If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.
+Description = If held by a Pokémon and a physical attack hits it, the attacker takes 25% HP damage.
 #-------------------------------
 [ROWAPBERRY]
 Name = Rowap Berry
