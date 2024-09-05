@@ -165,7 +165,7 @@ end
 # Ends target's protections, screens, and substitute immediately. (Siege Breaker)
 #===============================================================================
 class PokeBattle_Move_RemoveScreensSubstituteProtections < PokeBattle_Move
-    def ignoresSubstitute?; return true; end
+    def ignoresSubstitute?(_user); return true; end
     def ignoresReflect?; return true; end
     
     def pbEffectAgainstTarget(_user, target)
