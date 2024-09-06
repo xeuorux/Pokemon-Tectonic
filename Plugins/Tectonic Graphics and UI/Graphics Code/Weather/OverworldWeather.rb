@@ -370,6 +370,9 @@ class OverworldWeather
 
     # From 0 to 1
     def random_flash_intensity
+        if $PokemonSystem.disable_flashing_weather == 0
+            return 0
+        end
         return strengthRatio * 0.5 + rand(0.5)
     end
 
