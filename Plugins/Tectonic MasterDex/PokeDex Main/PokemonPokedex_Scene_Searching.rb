@@ -159,7 +159,7 @@ class PokemonPokedex_Scene
                         break
                     end
                 end
-                if actualMove.nil?
+                if actualMove.nil? || !GameData::Move.get(actualMove).learnable?
                     pbMessage(_INTL("Invalid input: {1}", moveNameInput))
                     next
                 end

@@ -24,7 +24,7 @@ Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.
 #-------------------------------
 [BARRAGE]
-Name = Fury Swipes
+Name = Barrage
 Type = NORMAL
 Category = Physical
 Power = 15
