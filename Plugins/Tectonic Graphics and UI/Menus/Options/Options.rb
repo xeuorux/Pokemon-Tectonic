@@ -791,7 +791,7 @@ class PokemonOption_Scene_Overworld < PokemonOption_Scene_Base
 					end
 				}
 			),
-            EnumOption.new(_INTL("Lessen Flashing"), [_INTL("On"), _INTL("Off")],
+            EnumOption.new(_INTL("No Flashing"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.disable_flashing_weather },
 				proc { |value|
 					$PokemonSystem.disable_flashing_weather = value

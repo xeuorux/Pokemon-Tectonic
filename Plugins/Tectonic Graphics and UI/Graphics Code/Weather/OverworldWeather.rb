@@ -370,16 +370,13 @@ class OverworldWeather
 
     # From 0 to 1
     def random_flash_intensity
-        if $PokemonSystem.disable_flashing_weather == 0
-            return 0
-        end
         return strengthRatio * 0.5 + rand(0.5)
     end
 
     def update_flashes
         return if @strength == 0
         # Storm flashes
-        if %i[Storm DryLightning].include?(@type)
+        if %i[Storm DryLightning].include?(@type) && $PokemonSystem.disable_flashing_weather != 0
             if @time_until_flash > 0
                 @time_until_flash -= Graphics.delta_s
                 if @time_until_flash <= 0
