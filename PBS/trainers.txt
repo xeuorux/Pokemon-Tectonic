@@ -5270,7 +5270,7 @@ Pokemon = XATU,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = MGIGALITH,70
-    Moves = SCALD,PSYCHIC,DIAMONDFORCE,ECLIPSE
+    Moves = WATERFALL,ABERRANTMOTE,SINGINGSTONE,ECLIPSE
     AbilityIndex = 0 # Time Interloper
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -5863,7 +5863,7 @@ Pokemon = BLAZIKEN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = MGIGALITH,70
-    Moves = SINGINGSTONE,ABERRANTMOTE,MYSTICALFIRE,HALTINGCOLD
+    Moves = SINGINGSTONE,ABERRANTMOTE,LEECHLIFE,HALTINGCOLD
     AbilityIndex = 1 # Space Interloper
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
