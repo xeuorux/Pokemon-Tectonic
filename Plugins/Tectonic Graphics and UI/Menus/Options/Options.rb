@@ -38,6 +38,7 @@ class PokemonSystem
     attr_accessor :aid_kit_animation
     attr_accessor :quick_evolution
     attr_accessor :name_on_showcases
+    attr_accessor :disable_flashing_weather
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -84,6 +85,7 @@ class PokemonSystem
         @color_shifts = 0 # (0=true, 1=false)
         @particle_effects = 0 # (0=true, 1=false)
         @overworld_weather        = 0 # (0=true, 1=false)
+        @disable_flashing_weather = 1 # (0=true, 1=false)
         @forced_time_tint         = 0 # (0=off,1=morning,2=mid-day,3=evening,4=night)
         @screenshake              = 0 # (0=true, 1=false)
         @skip_fades = 1 # (0=true, 1=false)
@@ -787,6 +789,12 @@ class PokemonOption_Scene_Overworld < PokemonOption_Scene_Base
 					else
 						$game_screen.resetWeather
 					end
+				}
+			),
+            EnumOption.new(_INTL("No Flashing"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.disable_flashing_weather },
+				proc { |value|
+					$PokemonSystem.disable_flashing_weather = value
 				}
 			),
             EnumOption.new(_INTL("Force Time"), [_INTL("Off"), _INTL("6"), _INTL("12"), _INTL("18"), _INTL("24")],
