@@ -772,6 +772,7 @@ class PokeBattle_Battler
         return @battle.pbGetOwnerFromBattlerIndex(@index)
     end
 
+    # Checks for trainer ID match, so won't return yes if e.g. the pokemon was traded for
     def ownedByPlayer?
         return false unless @pokemon
         return @pokemon.ownedByPlayer?
@@ -782,7 +783,7 @@ class PokeBattle_Battler
     end
 
     def ownerLevelCap
-        if ownedByPlayer?
+        if pbOwnedByPlayer?
             return getLevelCap
         else
             highestLevel = 0
