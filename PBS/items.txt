@@ -1906,7 +1906,7 @@ NamePlural = Roseli Berries
 Pocket = 5
 Price = 0
 Flags = Berry
-Description = If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.
+Description = Weakens a supereffective Fairy-type attack against the holding Pokémon.
 #-------------------------------
 [CHILANBERRY]
 Name = Chilan Berry
@@ -1914,7 +1914,7 @@ NamePlural = Chilan Berries
 Pocket = 5
 Price = 0
 Flags = Berry
-Description = Weakens a Normal-type attack against the Pokémon holding this berry.
+Description = Weakens a Normal-type attack against the holding Pokémon.
 #-------------------------------
 [LIECHIBERRY]
 Name = Liechi Berry
@@ -2010,7 +2010,7 @@ NamePlural = Rowap Berries
 Pocket = 5
 Price = 0
 Flags = Berry
-Description = If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.
+Description = If held by a Pokémon and a special attack hits it, the attacker takes 25% HP damage.
 #-------------------------------
 [KEEBERRY]
 Name = Kee Berry

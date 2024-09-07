@@ -43208,9 +43208,9 @@ Weakens a supereffective Dark-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Siniestro contra el Pokémon que la sostenga.
 Weakens a supereffective Steel-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Acero contra el Pokémon que la sostenga.
-If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.
+Weakens a supereffective Fairy-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Hada contra el Pokémon que la sostenga.
-Weakens a Normal-type attack against the Pokémon holding this berry.
+Weakens a Normal-type attack against the holding Pokémon.
 Debilita un ataque tipo Normal contra el Pokémon que la sostenga.
 If held by a Pokémon, it raises its Attack by two steps in a pinch.
 Al ser sostenida por un Pokémon, aumentará su Ataque por dos grados en un apuro.
@@ -43234,7 +43234,7 @@ If held by a Pokémon, it gets to move first just once in a pinch.
 Al ser sostenida por un Pokémon, podrá moverse primero en un apuro.
 If held by a Pokémon and a physical attack hits it, the attacker takes 25% HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque físico, el atacante recibe 1/4 de sus PS de daño.
-If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.
+If held by a Pokémon and a special attack hits it, the attacker takes 25% HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque especial, el atacante recibe 1/4 de sus PS de daño.
 If held by a Pokémon, this Berry will increase the holder's Defense by four steps if it's hit with a physical move.
 Al ser sostenida por un Pokémon, esta Baya incrementará la Defensa del portador por cuatro grados si es golpeado por un movimiento físico.
