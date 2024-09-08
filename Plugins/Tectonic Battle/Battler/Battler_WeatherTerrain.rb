@@ -10,14 +10,14 @@ class PokeBattle_Battler
     def debuffedBySun?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:FIRE, checkingForAI) || shouldTypeApply?(:GRASS, checkingForAI)
-        return false if shouldAbilityApply?(GameData::Ability.getByFlag("SunSynergy"), checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability.getByFlag("SunshineSynergy"), checkingForAI)
         return true
     end
 
     def debuffedByRain?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
-        return false if shouldAbilityApply?(GameData::Ability.getByFlag("RainSynergy"), checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability.getByFlag("RainstormSynergy"), checkingForAI)
         return true
     end  
 
@@ -25,7 +25,7 @@ class PokeBattle_Battler
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false unless takesIndirectDamage?
         return false if shouldTypeApply?(:GROUND,checkingForAI) || shouldTypeApply?(:ROCK,checkingForAI)
-        return false if shouldAbilityApply?(GameData::Ability.getByFlag("SandSynergy"), checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability.getByFlag("SandstormSynergy"), checkingForAI)
         return true
     end
 
