@@ -483,7 +483,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SEALINGBODY,
         next if user.effectActive?(:Disable)
         next -15 if aiCheck
         battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Disable, 3) if user.canBeDisabled?(true)
+        user.applyEffect(:Disable, 2) if user.canBeDisabled?(true)
         battle.pbHideAbilitySplash(target)
     }
 )

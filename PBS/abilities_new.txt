@@ -1550,7 +1550,7 @@ Flags = SandstormSynergy
 #-------------------------------
 [SEALINGBODY]
 Name = Sealing Body
-Description = Moves used on the Pokémon are disabled for three turns.
+Description = Moves used on the Pokémon are disabled for two turns.
 #-------------------------------
 [SECRETIONSECRET]
 Name = Secretion Secret

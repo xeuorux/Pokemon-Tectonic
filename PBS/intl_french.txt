@@ -49694,8 +49694,8 @@ Restores 1/4th health after any foe faints.
 Restores 1/4th health after any foe faints.
 Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.
 Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.
-Moves used on the Pokémon are disabled for three turns.
-Moves used on the Pokémon are disabled for three turns.
+Moves used on the Pokémon are disabled for two turns.
+Moves used on the Pokémon are disabled for two turns.
 When targeted by a status move, the offending Pokémon becomes poisoned.
 When targeted by a status move, the offending Pokémon becomes poisoned.
 Special moves have a 30% chance to leech targets.
@@ -49986,8 +49986,8 @@ The Pokémon's accuracy is boosted.
 The Pokémon's accuracy is boosted.
 Upon entry, uses the move Endure on itself.
 Upon entry, uses the move Endure on itself.
-Moves used on the Pokémon are disabled for 3 turns.
-Moves used on the Pokémon are disabled for 3 turns.
+Moves used on the Pokémon are disabled for two turns.
+Moves used on the Pokémon are disabled for two turns.
 Physical moves against the Pokémon have a 30% chance to cause infatuation.
 Physical moves against the Pokémon have a 30% chance to cause infatuation.
 Prevents the use of self-destructing moves.
