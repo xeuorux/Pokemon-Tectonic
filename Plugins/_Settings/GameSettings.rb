@@ -296,7 +296,8 @@ module Settings
     # from.
     LANGUAGES = [
       ["English", "english.dat"],
-      ["Español", "spanish.dat"]
+      ["Español", "spanish.dat"],
+      ["Francais", "french.dat"]
     ]
   
     #=============================================================================
