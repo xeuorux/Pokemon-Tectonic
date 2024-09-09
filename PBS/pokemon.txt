@@ -18717,7 +18717,6 @@ Shape = Head
 Kind = Playful
 Pokedex = It does its level best to glare and pull a scary face, but it can't help grinning if anyone pats its head.
 Generation = 6
-WildItemUncommon = LOADEDDICE
 Evolutions = PANGORO,Level,32
 #-------------------------------
 [675]
