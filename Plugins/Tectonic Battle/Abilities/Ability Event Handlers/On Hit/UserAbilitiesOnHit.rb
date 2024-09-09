@@ -148,7 +148,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
       next 15
     else
       battle.pbShowAbilitySplash(user, ability)
-      target.applyEffect(:Disable,3) if target.canBeDisabled?(true, move)
+      target.applyEffect(:Disable,2) if target.canBeDisabled?(true, move)
       battle.pbHideAbilitySplash(user)
     end
   }

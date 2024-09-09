@@ -43466,8 +43466,8 @@ And advanced transporter which allows you to access your Pokémon Storage to wit
 Un transportador avanzado que te permite acceder a tu Almacenamiento Pokémon cuando quieras.
 A hi-tech recording device which creates a Battle Report by analyzing the results of momentuos battles.
 Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de ciertos Combates.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Anula el último movimiendo usado por el oponente durante dos turnos al ser usada.
 Condensed essence of life. Holding it allows you to run, bike, and surf faster.
 Esencia de vida condensada. Sostenerla te permite correr, ir en bici, y surfear más rápido.
 A small compass. Relic of a heroic age. It can be used to find lootable items nearby.

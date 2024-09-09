@@ -49498,8 +49498,8 @@ Raises each stat by two steps when a Total Eclipse happens.
 Raises each stat by two steps when a Total Eclipse happens.
 The Pokemon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
 The Pokemon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Disables the opponent's most recently-used move for three turns upon hitting it.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Disables the opponent's most recently-used move for two turns upon hitting it.
 Boosts Speed by 50% in sandstorm or hail.
 Boosts Speed by 50% in sandstorm or hail.
 Boosts Attack by 50% if it used a special move last turn, or boosts Sp. Atk if physical.
