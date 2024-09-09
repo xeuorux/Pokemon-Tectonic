@@ -18717,7 +18717,6 @@ Shape = Head
 Kind = Playful
 Pokedex = It does its level best to glare and pull a scary face, but it can't help grinning if anyone pats its head.
 Generation = 6
-WildItemUncommon = LOADEDDICE
 Evolutions = PANGORO,Level,32
 #-------------------------------
 [675]
@@ -18745,7 +18744,6 @@ Shape = Head
 Kind = Daunting
 Pokedex = It charges ahead and bashes its opponents like a berserker, uncaring about any hits it might take. Its arms are mighty enough to snap a telephone pole.
 Generation = 6
-WildItemUncommon = LOADEDDICE
 #-------------------------------
 [676]
 Name = Furfrou
