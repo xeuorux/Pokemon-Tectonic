@@ -43466,8 +43466,8 @@ And advanced transporter which allows you to access your Pokémon Storage to wit
 Un transportador avanzado que te permite acceder a tu Almacenamiento Pokémon cuando quieras.
 A hi-tech recording device which creates a Battle Report by analyzing the results of momentuos battles.
 Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de ciertos Combates.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Anula el último movimiendo usado por el oponente durante dos turnos al ser usada.
 Condensed essence of life. Holding it allows you to run, bike, and surf faster.
 Esencia de vida condensada. Sostenerla te permite correr, ir en bici, y surfear más rápido.
 A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
@@ -45260,8 +45260,8 @@ Possesses two Abilities: Unnerve and Grim Neigh.
 Tiene dos Habilidades: Nerviosismo y Relincho Blanco.
 Takes 25% less damage in a hailstorm.
 Recibe 25% menos de daño bajo granizo.
-Moves used on the Pokémon are disabled for three turns.
-Al ser atacado, anula el movimiento del atacante durante tres turnos.
+Moves used on the Pokémon are disabled for two turns.
+Al ser atacado, anula el movimiento del atacante durante dos turnos.
 Boosts power of sound-based moves by 30%.
 Potencia movimientos de sonido un 30%.
 Summons a sandstorm for four turns when hit by an attack.
@@ -45824,8 +45824,8 @@ Boosts the power of wind-based moves by 30%.
 Potencia sus movimientos de viento un 30%.
 Becomes charged upon entry, doubling the power of its next Electric-type attack.
 Se carga apenas entrar al campo, duplicando el poder de su siguiente ataque de tipo Eléctrico.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Al atacar a un oponete, anula el movimiento que acaba de usar durante tres turnos.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Al atacar a un oponete, anula el movimiento que acaba de usar durante dos turnos.
 On the first turn, its attacks frostbite the target.
 En su primer turno, sus ataques helan al objetivo.
 Prevents the foe from escaping during hail.

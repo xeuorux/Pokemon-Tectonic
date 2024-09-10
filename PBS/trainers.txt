@@ -2587,6 +2587,21 @@ Pokemon = YANMEGA,70
 Pokemon = MPOLTEAGEIST,70
     AbilityIndex = 1 # Chill Out
 #-------------------------------
+[HEXMANIAC,Riptide]
+TrainerTypeLabel = DEVELOPER
+Pokemon = HELECTRODE,70
+    AbilityIndex = 0 # Perennial Payload
+Pokemon = PORYGONMAV,70
+    AbilityIndex = 1 # Swordplay
+Pokemon = KABUTOPS,70
+    AbilityIndex = 0 # Super Luck
+Pokemon = MNINETALES,70
+    AbilityIndex = 0 # Gild
+Pokemon = WISHIWASHI,70
+    AbilityIndex = 0 # Schooling
+Pokemon = ARCLAMOR,70
+    AbilityIndex = 1 # Thunderstruck
+#-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
 Flags = NoPerfect

@@ -1127,7 +1127,7 @@ Flags = FlinchImmunity
 #-------------------------------
 [MENTALDAMAGE]
 Name = Mental Damage
-Description = Disables the opponent's most recently-used move for three turns upon hitting it.
+Description = Disables the opponent's most recently-used move for two turns upon hitting it.
 #-------------------------------
 [METEORIC]
 Name = Meteoric
@@ -1550,7 +1550,7 @@ Flags = SandstormSynergy
 #-------------------------------
 [SEALINGBODY]
 Name = Sealing Body
-Description = Moves used on the Pokémon are disabled for three turns.
+Description = Moves used on the Pokémon are disabled for two turns.
 #-------------------------------
 [SECRETIONSECRET]
 Name = Secretion Secret
