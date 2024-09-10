@@ -60390,7 +60390,7 @@ Battler index {1} already exists
 Oh no! The avatar of {1} appeared!
 Oh no! The avatar of {1} appeared!
 Oh! A wild {1} appeared!
-Oh! A wild {1} appeared!
+Oh! Un sauvage {1} est apparu!
 Oh no! The avatars of {1} and {2} appeared!
 Oh no! The avatars of {1} and {2} appeared!
 Oh! A wild {1} and {2} appeared!
