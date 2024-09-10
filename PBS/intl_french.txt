@@ -60418,7 +60418,7 @@ The {1} joined the battle!
 {1}, {2} and {3} joined the battle!
 {1}, {2} and {3} joined the battle!
 Go! {1}!
-Go! {1}!
+Aller! {1}!
 Go! {1} and {2}!
 Go! {1} and {2}!
 Go! {1}, {2} and {3}!
