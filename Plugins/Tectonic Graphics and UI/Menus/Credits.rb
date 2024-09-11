@@ -8,7 +8,9 @@ IgnitedxSoul<s>LucaSantosSims
 Darlvon<s>Jaggedthorn
 Splitmoon<s>TikiShades
 Valrex<s>Steeb
-Tirankin
+Tirankin<s>Ci
+Yufeng
+
 
 Other Contributors
 Arenastellez<s>Zufaix
