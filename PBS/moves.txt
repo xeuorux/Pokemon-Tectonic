@@ -2510,18 +2510,6 @@ Target = BothSides
 FunctionCode = StartGravity5
 Description = Gravity is intensified for five turns, forcing Pokemon down from the air and doubling all move accuracy.
 #-------------------------------
-[HIGHHORSEPOWER]
-Name = High Horsepower
-Type = GROUND
-Category = Physical
-Power = 95
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove
-Description = The user fiercely attacks the target using its entire body.
-#-------------------------------
 [LANDSWRATH]
 Name = Land's Wrath
 Type = GROUND
