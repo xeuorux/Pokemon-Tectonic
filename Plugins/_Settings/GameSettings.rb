@@ -297,7 +297,8 @@ module Settings
     LANGUAGES = [
       ["English", "english.dat"],
       ["Español", "spanish.dat"],
-      ["Francais", "french.dat"]
+      ["Francais", "french.dat"],
+      ["中文（简体)", "chinese.dat"],
     ]
   
     #=============================================================================
