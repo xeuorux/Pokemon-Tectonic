@@ -119,8 +119,9 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "tc_prison",
         :interactables =>
         [
-            [:tswitch_cross,3,2,1],
-            [:tswitch_cross,3,3,2],
+            [:tswitch_right,3,2,0],
+            [:tswitch_right,2,3,0],
+            [:tswitch_up,3,3,0]
         ],
         :solution_states =>
         [
@@ -131,7 +132,10 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "tc_exit",
         :interactables =>
         [
-            [:tswitch_right,3,2,0],
+            [:tswitch_up,4,1,1],
+            [:tswitch_up,3,2,1],
+            [:tswitch_cross,2,3,3],
+            [:turntable,4,3,1],
         ],
         :solution_states =>
         [
@@ -153,10 +157,10 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "ic_avatar_cage",
         :interactables =>
         [
-            [:turntable,1,1,3],
-            [:cross_switch,1,2,0],
-            [:turntable,2,2,1],
-            [:tswitch_cross,3,0,2],
+            [:cross_switch,3,1,1],
+            [:turntable,2,2,2],
+            [:tswitch_cross,3,2,3],
+            [:tswitch_up,4,2,1]
         ],
         :solution_states =>
         [
@@ -167,9 +171,9 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "ic_electric_maze",
         :interactables =>
         [
-            [:tswitch_cross,2,3,0],
-            [:cross_switch,2,4,1],
-            [:tswitch_cross,3,0,2],
+            [:tswitch_up,2,1,0],
+            [:tswitch_down,3,1,1],
+            [:tswitch_cross,4,1,2],
         ],
         :solution_states =>
         [
