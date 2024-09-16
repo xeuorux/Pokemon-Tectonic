@@ -33,6 +33,7 @@ CIRCUIT_PUZZLES = {
             [0,0], # Disables Integration Chamber barrier (map 382, EV041) and enables Integration Chamber ground signal (map 382, EV074), but not nearby barrier.
             [0,1], # Changes nothing: nearby barrier enabled, Integration Chamber barrier enabled.
             [0,2], # Changes nothing: nearby barrier enabled, Integration Chamber barrier enabled.
+            [0,3], # (Initial state.) Nearby barrier enabled, Integration Chamber barrier enabled.
             [1,3], # Changes nothing: nearby barrier enabled, Integration Chamber barrier enabled.
             [1,1], # Changes nothing: nearby barrier enabled, Integration Chamber barrier enabled.
             [1,2], # Changes nothing: nearby barrier enabled, Integration Chamber barrier enabled.
@@ -74,6 +75,7 @@ CIRCUIT_PUZZLES = {
             [3,0], # Legal, but changes nothing.
             [0,0], # Legal, but changes nothing.
             [1,1], # Legal, but changes nothing.
+            [1,0], # (Initial state.) Legal, but changes nothing.
             [2,1], # Ideal solution. Disables nearby barrier (EV043), disables two barriers in Sandstone Switchbox (map 406, EV062 and 084), disables ground signal in Sandstone Switchbox (map 406, EV016).
         ]
     },
@@ -87,6 +89,7 @@ CIRCUIT_PUZZLES = {
         ],
         :solution_states =>
         [
+            [0,0,0], # (Initial state.) Legal, but changes nothing.
             [0,0,1], # Legal, but changes nothing.
             [0,1,0], # Legal, but changes nothing.
             [0,1,1], # Legal, but changes nothing.
