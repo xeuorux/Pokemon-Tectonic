@@ -57,7 +57,7 @@ Description = Boosts Attack after knocking out any Pokémon.
 [CHLOROPHYLL]
 Name = Chlorophyll
 Description = Doubles the Pokémon's Speed in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [CLEARBODY]
 Name = Clear Body
@@ -120,7 +120,7 @@ Description = Changes the weather to Strong Winds, which remove Flying-type's we
 [DESOLATELAND]
 Name = Desolate Land
 Description = Changes the weather to Harsh Sunlight, which nullifies Water-type moves. Lingers for 3 turns after leaving.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [DISGUISE]
 Name = Disguise
@@ -143,7 +143,7 @@ Flags = RainstormSynergy
 [DROUGHT]
 Name = Drought
 Description = Turns the weather to sunshine for 4 turns when it enters battle.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [DRYSKIN]
 Name = Dry Skin
@@ -169,7 +169,7 @@ Description = Physical moves against the Pokémon have a 30% chance to burn the 
 [FLOWERGIFT]
 Name = Flower Gift
 Description = In sunshine boosts its and allies' Attack and Sp. Def by 50%.
-Flags = SunSynergy,Immutable
+Flags = SunshineSynergy,Immutable
 #-------------------------------
 [FLOWERVEIL]
 Name = Flower Veil
@@ -303,7 +303,7 @@ Description = Boosts the power of punching moves by 30%.
 [LEAFGUARD]
 Name = Leaf Guard
 Description = Immune to status conditions while in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [LEVITATE]
 Name = Levitate
@@ -477,22 +477,22 @@ Description = Makes foes unable to use priority moves.
 [SANDPOWER]
 Name = Sand Power
 Description = Boosts Sp. Atk by 30% in sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SANDRUSH]
 Name = Sand Rush
 Description = Doubles the Pokémon's Speed in a sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SANDSHROUD]
 Name = Sand Shroud
 Description = Takes 25% less damage in a sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SANDSTREAM]
 Name = Sand Stream
 Description = Summons a sandstorm for 4 turns when it enters battle.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SAPSIPPER]
 Name = Sap Sipper
@@ -569,7 +569,7 @@ Flags = HailSynergy
 [SOLARPOWER]
 Name = Solar Power
 Description = In sunshine, Sp. Atk is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [SOLIDROCK]
 Name = Solid Rock

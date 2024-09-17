@@ -148,12 +148,8 @@ class PokemonDataBox < SpriteWrapper
 		@sprites["expBar"] = @expBar
 	
 		# Create the type icons
-		[1,2,3].each do |i|
-			newIcon = SpriteWrapper.new(viewport)
-			newIcon.bitmap = @typeBitmap.bitmap
-			newIcon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
-			@sprites["type_icon_#{i}"] = newIcon
-			@typeIcons.push(newIcon)
+		2.times do |i|
+			createNewTypeIcon
 		end
 	
 		# Create sprite wrapper that displays everything except the above
@@ -165,6 +161,16 @@ class PokemonDataBox < SpriteWrapper
 		pbSetSystemFont(self.bitmap)
 		
 	end
+
+    def createNewTypeIcon
+        newIcon = SpriteWrapper.new(viewport)
+        newIcon.bitmap = @typeBitmap.bitmap
+        newIcon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
+        newIcon.visible = false
+        index = @typeIcons.length + 1
+        @sprites["type_icon_#{index}"] = newIcon
+        @typeIcons.push(newIcon)
+    end
   
 	def disposeBitmaps()
 		@databoxBitmap.dispose
@@ -426,6 +432,7 @@ class PokemonDataBox < SpriteWrapper
 
 		types = @battler.pbTypes(true,true)
 		types.each_with_index do |type,index|
+            createNewTypeIcon unless @typeIcons.length > index
 			icon = @typeIcons[index]
 			if type.nil?
 				icon.visible = false

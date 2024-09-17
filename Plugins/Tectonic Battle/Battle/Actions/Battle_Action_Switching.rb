@@ -157,7 +157,7 @@ class PokeBattle_Battle
     # For choosing a replacement Pokémon when prompted in the middle of other
     # things happening (U-turn, Baton Pass, in def pbSwitch).
     def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: nil)
-        if pbOwnedByPlayer?(idxBattler) && !@autoTesting
+        if pbOwnedByPlayer?(idxBattler) && !@autoTesting && !@controlPlayer
             return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) 
         else
             return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
@@ -205,7 +205,7 @@ class PokeBattle_Battle
                 next if !b || !b.fainted?
                 idxBattler = b.index
                 next unless pbCanChooseNonActive?(idxBattler)
-                if !pbOwnedByPlayer?(idxBattler) # Opponent/ally is switching in
+                if !pbOwnedByPlayer?(idxBattler) || @controlPlayer # Opponent/ally is switching in
                     next if wildBattle? && opposes?(idxBattler) # Wild Pokémon can't switch
                     idxPartyNew = pbSwitchInBetween(idxBattler, safeSwitch: true)
                     pbRecallAndReplace(idxBattler, idxPartyNew)

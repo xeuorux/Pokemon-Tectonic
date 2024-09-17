@@ -11,6 +11,10 @@ CIRCUIT_COMPONENTS = {
         :graphic => "tswitch_up",
         :states => 2,
     },
+    :tswitch_down => {
+        :graphic => "tswitch_down",
+        :states => 2,
+    },
     :tswitch_cross => {
         :graphic => "tswitch_cross",
         :states => 4,

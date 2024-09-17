@@ -24,7 +24,7 @@ Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.
 #-------------------------------
 [BARRAGE]
-Name = Fury Swipes
+Name = Barrage
 Type = NORMAL
 Category = Physical
 Power = 15
@@ -993,6 +993,18 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove
 Description = The user smashes into the target in a full-body tackle. This cuts the user's Defenses.
 Animation = STOMPINGTANTRUM
+#-------------------------------
+[HIGHHORSEPOWER]
+Name = High Horsepower
+Type = GROUND
+Category = Physical
+Power = 95
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user fiercely attacks the target using its entire body.
 #-------------------------------
 [LAHAR]
 Name = Lahar

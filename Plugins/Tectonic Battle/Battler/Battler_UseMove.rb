@@ -821,7 +821,7 @@ class PokeBattle_Battler
             # Animate the hit flashing and HP bar changes
             move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
 
-            if ownedByPlayer?
+            if pbOwnedByPlayer?
                 unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000
                 unlockAchievement(:DEAL_LARGE_DAMAGE_2) if maxDamageOnTargets >= 10_000
             end

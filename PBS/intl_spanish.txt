@@ -10264,7 +10264,7 @@ Yo, champ in the making!
 ¡Hey, aspirante!
 We have two Gym Leaders here on the West side of Prizca.
 Tenemos dos Líderes de Gimnasio aquí en el lado Occidental de Prizca.
-Bence and Zoe are Rock-type and Flying-type users.
+Bence and Zoé are Rock-type and Flying-type users.
 Bence y Zoé son usuarios de tipo Roca y tipo Volador.
 There isn't a magic typing here that I could recommend you. These types are pretty good combo.
 No hay un tipo mágico aquí que te recomendaría, estos tipos son una muy buena combinación.
@@ -11166,7 +11166,7 @@ Closed while Bence....participate in the Makya Championship Tournament.
 Cerrado mientras Bence… participa en el Torneo del Campeonato de Makya.
 Heavy graffiti covers a part that you think may have said "and Zoé"
 Un graffiti cubre una parte que piensas que podría haber dicho “Y Zoé”
-Poor Bence and Zoe, the two can't seem to agree on anything.
+Poor Bence and Zoé, the two can't seem to agree on anything.
 Pobres Bence y Zoé, los dos parecen no poder ponerse en acuerdo en nada.
 If they worked together, the Gym might be much harder!
 Si trabajaran juntos, ¡El Gimnasio podría ser mucho más difícil!
@@ -11410,7 +11410,7 @@ Just head north from this sign, and then exit through the eastern gatehouse.
 Sólo ve al norte de este cartel, y luego atraviesa la portería al este.
 A sign reads "Entry only to trainers with 8 or more gyms badges."
 Un cartel dice "Sólo se permite la entrada a entrenadores con 8 o más medallas".
-Bence or Zoe.... Zoe or Bence....
+Bence or Zoé.... Zoé or Bence....
 Bence or Zoé.... Zoé or Bence....
 Oh, forgive me, I just don't know which of the two gym leaders here I should fight.
 Oh, disculpa, sólo no sé a cuál de los dos líderes de gimnasio debería enfrentar.
@@ -11486,9 +11486,9 @@ Así que conseguiste la Medalla Solidaridad. ¡Bien hecho!
 ...No puedo creerlo.
 Local legend has it that these stone pillars are quite old.
 Las leyendas locales dicen que los pilares de piedra son bastante viejos.
-Bence claims that they were here before plans to construct Prizca west, let alone specifically this gym.
+Bence claims that they were here before plans to construct Prizca West, let alone specifically this gym.
 Bence dice que estaban aquí antes de los planes de construir Prizca Occidental, por no hablar de específicamente este gimnasio.
-Makya does have it fair share of strange rock formations, I'll give you that.
+Makya does have its fair share of strange rock formations, I'll give you that.
 Makya tiene su buena cantidad de extrañas formaciones rocosas, te daré la razón en eso.
 But Chasm members could talk about Pikachu being an Electric-type and I'd still pull out my MasterDex to double check.
 Pero los miembros Chasm podrían decir que Pikachu es un tipo Eléctrico y aún así sacaría mi MasterDex para asegurarme.
@@ -11510,7 +11510,7 @@ I'm on break. Nothing much to do until the rock shipment's done being unloaded.
 Estoy en mi descanso. No tengo mucho que hacer hasta que terminen de descargar el cargamento de rocas.
 What's that? You wanna know where the rocks come from?
 ¿Cómo? ¿Quieres saber de dónde vienen las rocas?
-There's a big quarry to the north north, near one of the mountains up there.
+There's a big quarry to the north, near one of the mountains up there.
 Hay una gran cantera muy al norte, cerca de una de las montañas allí.
 It's not part of Makya anymore, but there's a lot of historic ties, so business relations are good.
 Ya no es parte de Makya, pero hay muchos lazos históricos, así que las relaciones de negocio son buenas.
@@ -26601,7 +26601,7 @@ LuxTech still thinks I'm a myth, but I'm real alright.
 LuxTech todavía piensa que soy un mito, pero soy bien real.
 Real enough to sell you these TMs, none of which have been brought to market.
 Lo suficiente para venderte estas MTs, las cuales ninguna está en el mercado.
-I'm just here for business kid.
+I'm just here for business, kid.
 Sólo estoy aquí por negocios niño.
 Doing a run for a few friends.
 Haciendo los mandados para un par de amigos.
@@ -26981,7 +26981,7 @@ Tomaré el Corsola.
 I'll take the Shuckle.
 Tomaré el Shuckle.
 [Map442]
-There seems to be rocks in here. Does he feed this to his Pokemon?
+There seem to be rocks in here. Does he feed this to his Pokemon?
 Parece haber rocas aquí. ¿Acaso él alimenta a sus Pokémon con esto?
 Bence almost has a week of prepared meals in the fridge.
 Bence casi tiene una semana de comidas preparadas en el frigorífico.
@@ -43208,9 +43208,9 @@ Weakens a supereffective Dark-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Siniestro contra el Pokémon que la sostenga.
 Weakens a supereffective Steel-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Acero contra el Pokémon que la sostenga.
-If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.
+Weakens a supereffective Fairy-type attack against the holding Pokémon.
 Debilita un ataque superefectivo de tipo Hada contra el Pokémon que la sostenga.
-Weakens a Normal-type attack against the Pokémon holding this berry.
+Weakens a Normal-type attack against the holding Pokémon.
 Debilita un ataque tipo Normal contra el Pokémon que la sostenga.
 If held by a Pokémon, it raises its Attack by two steps in a pinch.
 Al ser sostenida por un Pokémon, aumentará su Ataque por dos grados en un apuro.
@@ -43232,9 +43232,9 @@ If held by a Pokémon, it raises its Accuracy by 4 steps in a pinch.
 Al ser sostenida por un Pokémon, aumentará su Precisión por 4 grados en un apuro.
 If held by a Pokémon, it gets to move first just once in a pinch.
 Al ser sostenida por un Pokémon, podrá moverse primero en un apuro.
-If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.
+If held by a Pokémon and a physical attack hits it, the attacker takes 25% HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque físico, el atacante recibe 1/4 de sus PS de daño.
-If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.
+If held by a Pokémon and a special attack hits it, the attacker takes 25% HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque especial, el atacante recibe 1/4 de sus PS de daño.
 If held by a Pokémon, this Berry will increase the holder's Defense by four steps if it's hit with a physical move.
 Al ser sostenida por un Pokémon, esta Baya incrementará la Defensa del portador por cuatro grados si es golpeado por un movimiento físico.
@@ -43466,8 +43466,8 @@ And advanced transporter which allows you to access your Pokémon Storage to wit
 Un transportador avanzado que te permite acceder a tu Almacenamiento Pokémon cuando quieras.
 A hi-tech recording device which creates a Battle Report by analyzing the results of momentuos battles.
 Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de ciertos Combates.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Anula el último movimiendo usado por el oponente durante dos turnos al ser usada.
 Condensed essence of life. Holding it allows you to run, bike, and surf faster.
 Esencia de vida condensada. Sostenerla te permite correr, ir en bici, y surfear más rápido.
 A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
@@ -45260,8 +45260,8 @@ Possesses two Abilities: Unnerve and Grim Neigh.
 Tiene dos Habilidades: Nerviosismo y Relincho Blanco.
 Takes 25% less damage in a hailstorm.
 Recibe 25% menos de daño bajo granizo.
-Moves used on the Pokémon are disabled for three turns.
-Al ser atacado, anula el movimiento del atacante durante tres turnos.
+Moves used on the Pokémon are disabled for two turns.
+Al ser atacado, anula el movimiento del atacante durante dos turnos.
 Boosts power of sound-based moves by 30%.
 Potencia movimientos de sonido un 30%.
 Summons a sandstorm for four turns when hit by an attack.
@@ -45824,8 +45824,8 @@ Boosts the power of wind-based moves by 30%.
 Potencia sus movimientos de viento un 30%.
 Becomes charged upon entry, doubling the power of its next Electric-type attack.
 Se carga apenas entrar al campo, duplicando el poder de su siguiente ataque de tipo Eléctrico.
-Disables the opponent's most recently-used move for three turns upon hitting it.
-Al atacar a un oponete, anula el movimiento que acaba de usar durante tres turnos.
+Disables the opponent's most recently-used move for two turns upon hitting it.
+Al atacar a un oponete, anula el movimiento que acaba de usar durante dos turnos.
 On the first turn, its attacks frostbite the target.
 En su primer turno, sus ataques helan al objetivo.
 Prevents the foe from escaping during hail.
@@ -58206,7 +58206,7 @@ Perfect Helena, the third gym leader, at level cap 25 or below with the Tarot Am
 Perfecciona a Helena, la tercer líder de gimnasio, con un límite de nivel de 25 o menos con el Amuleto Tarot activado.
 Perfect Rafael, the fourth gym leader, at level cap 30 or below with the Tarot Amulet activated.
 Perfecciona a Rafael, el cuarto líder de gimnasio, con un límite de nivel de 30 o menos con el Amuleto Tarot activado.
-Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Perfect Bence and Zoé, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Perfecciona a Bence y Zoé, los quintos líderes de gimnasio, con un límite de nivel de 40 o menos con el Amuleto Tarot activado. 
 Perfect Noel, the sixth gym leader, at level cap 45 or below with the Tarot Amulet activated.
 Perfecciona a Noel, el sexto líder de gimnasio, con un límite de nivel de 45 o menos con el Amuleto Tarot activado.

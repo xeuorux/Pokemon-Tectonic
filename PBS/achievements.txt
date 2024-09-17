@@ -54,7 +54,7 @@ Page = 2
 #-------------------------------
 [PERFECT_CURSED_GYM_5]
 Name = Enemy of my Enemies
-Description = Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Description = Perfect Bence and Zoé, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
 [PERFECT_CURSED_GYM_6]

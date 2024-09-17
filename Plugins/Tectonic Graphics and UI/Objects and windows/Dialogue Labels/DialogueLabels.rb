@@ -3,7 +3,7 @@ def setSpeaker(speakerName,viewport = nil)
         $SpeakerNameWindow = Window_AdvancedTextPokemon.new
         $SpeakerNameWindow.setSkin(MessageConfig.pbGetSpeechFrame)
     end
-    $SpeakerNameWindow.text = speakerName
+    $SpeakerNameWindow.text = _INTL(speakerName)
     $SpeakerNameWindow.viewport = viewport
     refreshSpeakerWindow
 end

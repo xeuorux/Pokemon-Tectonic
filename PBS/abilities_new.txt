@@ -183,7 +183,7 @@ Description = Its special attacks reduce the target's Sp. Def.
 [BLINDINGLIGHT]
 Name = Blinding Light
 Description = Move damage that's decreased by sunshine is decreased twice as much.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [BLISS]
 Name = Bliss
@@ -323,7 +323,7 @@ Description = When hit with a special move, hits back instantly with Breach.
 #-------------------------------
 [CURSEDTAIL]
 Name = Cursed Tail
-Description = When a foe hits the Pokémon, they are warned. If they hit the Pokémon again, they become Cursed.
+Description = When a foe hits the Pokémon, they are warned. If they do it again, they become Cursed, taking 25% HP damage per turn.
 #-------------------------------
 [DARING]
 Name = Daring
@@ -332,7 +332,7 @@ Description = When this Pokémon becomes statused, its Attack is raised by three
 [DARKENEDSKIES]
 Name = Darkened Skies
 Description = Powers up Dark-type moves by 50% in sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [DARTER]
 Name = Darter
@@ -349,7 +349,7 @@ Description = On the first turn, its attacks burn the target.
 [DEBRISFIELD]
 Name = Debris Field
 Description = Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [DECONTAMINATION]
 Name = Decontamination
@@ -371,17 +371,17 @@ Description = 33% of all move damage taken is instead taken at the end of the ne
 [DESERTARMOR]
 Name = Desert Armor
 Description = Doubles Defense in a sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [DESERTSCAVENGER]
 Name = Desert Scavenger
 Description = Restores HP based on damage from sandstorm.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [DESERTSPIRIT]
 Name = Desert Spirit
 Description = Immune to Ground-type moves. Takes 20% less damage in Sandstorm.
-Flags = SandSynergy,Levitation
+Flags = SandstormSynergy,Levitation
 #-------------------------------
 [DESICCATE]
 Name = Desiccate
@@ -457,7 +457,7 @@ Description = Boosts power of sound-based moves by 50%.
 [EARTHSHAKER]
 Name = Earthshaker
 Description = In sandstorm, Attack is boosted by 30%.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [ECCENTRIC]
 Name = Eccentric
@@ -604,7 +604,7 @@ Description = Immune to Poison-type moves, and boosts both defensive stats when 
 [FINESUGAR]
 Name = Fine Sugar
 Description = Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rainstorm, takes 25% more from Water-type moves.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [FIREFESTIVAL]
 Name = Fire Festival
@@ -819,12 +819,12 @@ Description = Immune to Dark-type moves, and boosts both attacking stats when hi
 [HEATSAVOR]
 Name = Heat Savor
 Description = Heals by 1/8th of its max HP each turn if in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [HEATVEIL]
 Name = Heat Veil
 Description = Doubled Sp. Def in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [HEAVENSCROWN]
 Name = Heaven's Crown
@@ -946,7 +946,7 @@ Description = Also Grass in addition to its other types. When hit by a physical 
 [INNERLIGHT]
 Name = Inner Light
 Description = Summons sunshine for four turns when hit by an attack.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [INSIGHTAURA]
 Name = Insight Aura
@@ -971,7 +971,7 @@ Description = Boosts the power of kicking moves by 30%.
 [IRONSTORM]
 Name = Iron Storm
 Description = Causes sandstorm to deal double damage and increase Sp. Def of Rock types by 2.0x instead of 1.5x.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [IRREFUTABLE]
 Name = Irrefutable
@@ -1100,7 +1100,7 @@ Description = Prevents foes whose Sp. Atk is less than its from fleeing.
 #-------------------------------
 [MALICE]
 Name = Malice
-Description = If an attack lowers its HP to half or less, curses the attacker.
+Description = If an attack lowers its HP to half or less, they become Cursed, taking 25% HP damage per turn.
 #-------------------------------
 [MALICIOUSGLOW]
 Name = Malicious Glow
@@ -1127,12 +1127,12 @@ Flags = FlinchImmunity
 #-------------------------------
 [MENTALDAMAGE]
 Name = Mental Damage
-Description = Disables the opponent's most recently-used move for three turns upon hitting it.
+Description = Disables the opponent's most recently-used move for two turns upon hitting it.
 #-------------------------------
 [METEORIC]
 Name = Meteoric
 Description = Boosts Speed by 50% in sandstorm or hail.
-Flags = SandSynergy,HailSynergy
+Flags = SandstormSynergy,HailSynergy
 #-------------------------------
 [MIDDLEWAY]
 Name = Middle Way
@@ -1145,7 +1145,7 @@ Description = Using a status move in moonglow extends the weather by a turn.
 [MIDNIGHTSUN]
 Name = Midnight Sun
 Description = Powers up Dark-type moves by 50% in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [MOONBASKING]
 Name = Moon Basking
@@ -1284,7 +1284,7 @@ Flags = RainstormSynergy
 [OXYGENATION]
 Name = Oxygenation
 Description = Heals status problems each turn if in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [PALEOLITHIC]
 Name = Paleolithic
@@ -1452,7 +1452,7 @@ Description = Before using a status move against a single foe, lowers their Sp. 
 [REFRESHMENTS]
 Name = Refreshments
 Description = Upon entry during sunshine, heals the lowest HP ally or self by 50%.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [REFUGE]
 Name = Refuge
@@ -1505,7 +1505,7 @@ Description = The Pokémon is also Steel-type, but it takes 15% more damage from
 [SANDBURST]
 Name = Sand Burst
 Description = Summons a sandstorm for four turns when hit by an attack.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SANDSMACABRE]
 Name = Sands Macabre
@@ -1519,7 +1519,7 @@ Description = Boosts Speed by 50% in sand. Can't miss during sandstorm.
 [SANDWORNAUGER]
 Name = Sandworn Auger
 Description = During sandstorm, Speed is boosted by 50% and twice as likely to crit.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SAPPER]
 Name = Sapper
@@ -1546,11 +1546,11 @@ Description = Restores 1/4th health after any foe faints.
 [SCOUREDSILHOUETTE]
 Name = Scoured Silhouette
 Description = Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.
-Flags = SandSynergy
+Flags = SandstormSynergy
 #-------------------------------
 [SEALINGBODY]
 Name = Sealing Body
-Description = Moves used on the Pokémon are disabled for three turns.
+Description = Moves used on the Pokémon are disabled for two turns.
 #-------------------------------
 [SECRETIONSECRET]
 Name = Secretion Secret
@@ -1658,7 +1658,7 @@ Flags = HailSynergy
 [SOLARCELL]
 Name = Solar Cell
 Description = In sunshine, gets a 25% boost to Sp. Atk and Sp. Def.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [SOLONOCTURNE]
 Name = Solo Nocturne
@@ -1712,7 +1712,7 @@ Description = Sets a Light Screen for 4 turns upon entering the battle.
 #-------------------------------
 [STARSALIGN]
 Name = Stars Align
-Description = During eclipse, can't miss and always activates its moves random added effects.
+Description = During eclipse, its move can't miss and always activates their random effects.
 Flags = EclipseSynergy
 #-------------------------------
 [STEAMPOWER]
@@ -1810,12 +1810,12 @@ Flags = HailSynergy
 [SUNBURNING]
 Name = Sun Burning
 Description = At the end of each turn, if in sunshine, each Pokémon not immune to Sunshine has their defensive stats lowered by 1 step.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [SUNCHASER]
 Name = Sun Chaser
 Description = Boosts Attack by 30% in sunshine.
-Flags = SunSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [SUNEATER]
 Name = Sun Eater
