@@ -303,6 +303,7 @@ class PokeBattle_AI
         battlerSlot = @battle.battlers[idxBattler]
 
         @battle.pbParty(idxBattler).each_with_index do |pkmn, partyIndex|
+            next unless pkmn
             next unless pkmn.able?
             next if battlerSlot.pokemonIndex == partyIndex
             next unless @battle.pbCanSwitch?(idxBattler, partyIndex)

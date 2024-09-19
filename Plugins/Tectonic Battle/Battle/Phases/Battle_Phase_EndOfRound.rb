@@ -140,11 +140,13 @@ class PokeBattle_Battle
         if pbCheckGlobalAbility(:INEXORABLE)
             battlersInOrder = []
             pbParty(0).each do |partyMember, partyIndex|
+                next unless partyMember
                 dummyBattler = PokeBattle_Battler.new(self, 0)
                 dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
                 battlersInOrder.push(dummyBattler)
             end
             pbParty(1).each do |partyMember, partyIndex|
+                next unless partyMember
                 dummyBattler = PokeBattle_Battler.new(self, 1)
                 dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
                 battlersInOrder.push(dummyBattler)

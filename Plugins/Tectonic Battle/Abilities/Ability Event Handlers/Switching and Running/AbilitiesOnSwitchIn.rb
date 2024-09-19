@@ -745,12 +745,13 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALIMPOSTER,
 
       # Give each cloned pokemon a stat boost to each stat
       trainerClone.party.each do |partyMember|
-          next if partyMember.fainted?
-          party.push(partyMember)
-          partyMember.ev = partyMember.ev.each_with_object({}) do |(statID, evValue), evArray|
-              evArray[statID] = evValue + 10
-          end
-          partyMember.calc_stats
+        next unless partyMember
+        next if partyMember.fainted?
+        party.push(partyMember)
+        partyMember.ev = partyMember.ev.each_with_object({}) do |(statID, evValue), evArray|
+            evArray[statID] = evValue + 10
+        end
+        partyMember.calc_stats
       end
 
       partyOrder = battle.pbPartyOrder(battler.index)

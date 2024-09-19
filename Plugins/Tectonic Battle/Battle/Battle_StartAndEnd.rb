@@ -330,6 +330,7 @@ class PokeBattle_Battle
             # Update each of the player's pokemon's battling streak
             if (trainerBattle? || bossBattle?) && HOT_STREAKS_ACTIVE
                 pbParty(0).each_with_index do |pkmn, i|
+                    next unless pkmn
                     wasOnStreak = pkmn.onHotStreak?
                     if pkmn.fainted? || [2, 3].include?(@decision)
                         pkmn.battlingStreak = 0
@@ -548,6 +549,7 @@ class PokeBattle_Battle
             autoPilots = []
             [0,1].each do |sideIndex|
                 pbParty(sideIndex).each_with_index do |partyMember,partyIndex|
+                    next unless partyMember
                     next if partyMember.fainted?
                     next unless partyMember.hasAbility?(:AUTOPILOT)
                     next if partyMember.status == :DIZZY

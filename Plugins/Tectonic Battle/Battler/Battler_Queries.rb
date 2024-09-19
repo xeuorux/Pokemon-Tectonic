@@ -788,6 +788,7 @@ class PokeBattle_Battler
         else
             highestLevel = 0
             ownerParty.each do |pkmn|
+                next unless pkmn
                 next unless pkmn.level > highestLevel
                 highestLevel = pkmn.level
             end

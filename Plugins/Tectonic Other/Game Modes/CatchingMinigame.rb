@@ -341,3 +341,9 @@ def hearAboutCatchingMinigameHighScore
     end
   end
 end
+
+def hazardPokemonTrigger
+    get_self.move_to_original
+    $PokemonTemp.forceSingleBattle
+    pbCatchingMinigameWildBattle(:WINGULL,10)
+end
