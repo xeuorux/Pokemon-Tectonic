@@ -1993,7 +1993,7 @@ Name = Custap Berry
 NamePlural = Custap Berries
 Pocket = 5
 Price = 0
-Flags = Berry
+Flags = Berry,Pinch
 Description = If held by a Pokémon, it gets to move first just once in a pinch.
 #-------------------------------
 [JABOCABERRY]
