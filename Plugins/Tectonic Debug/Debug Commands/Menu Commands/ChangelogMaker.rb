@@ -7,7 +7,7 @@ MOVE_RENAMES =
 	:DREAMEATER => :DREAMABSORB,
 	:TOXICSPIKES => :POISONSPIKES,
 	:SUNNYDAY => :SUNSHINE,
-	:RAINDANCE => :RAIN,
+	:RAINDANCE => :RAINSTORM,
 	:HORNLEECH => :HORNDRAIN,
 	:ROLLOUT => :ROCKROLL,
 	:ICEBALL => :SNOWBALL,
@@ -71,8 +71,7 @@ DebugMenuCommands.register("generatechangelogpergen", {
   "description" => _INTL("Generate a species changelog per generation of Pokemon"),
   "effect"      => proc { |sprites, viewport|
 	for index in 1...9
-		echoln("Creating the changelog between the IDs of #{startID} and #{endID}")
-		createChangeLog(startID,endID,"Changelogs/changelog_gen#{index.to_s}.txt")
+		createChangeLog(index,"Changelogs/changelog_gen#{index.to_s}.txt")
 	end
   }
 })
