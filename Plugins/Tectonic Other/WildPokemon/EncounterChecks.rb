@@ -93,17 +93,23 @@ class PokemonEncounters
     return !$game_map.encounter_terrain_tag($game_player.x, $game_player.y).nil?
   end
 
+  def encounters_blocked?(considerRepels = false)
+    return true if !$Trainer
+    return true if $Trainer.first_pokemon&.hasItem?(:CLEANSETAG)
+    return true if $game_system.encounter_disabled
+    return true if debugControl
+    return true if $PokemonGlobal.noise_machine_state == 1
+    return true if considerRepels && $PokemonGlobal.repel > 0
+    return false
+  end
+
   # Returns whether a wild encounter should happen, based on its encounter
   # chance. Called when taking a step and by Rock Smash.
   def encounter_triggered?(enc_type, repel_active = false, triggered_by_step = true)
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
       raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
     end
-    return false if $Trainer.first_pokemon&.hasItem?(:CLEANSETAG)
-    return false if $game_system.encounter_disabled
-    return false if !$Trainer
-    return false if debugControl
-    return false if $PokemonGlobal.noise_machine_state == 1
+    return false if encounters_blocked?
     # Check if enc_type has a defined step chance/encounter table
     return false if !@step_chances[enc_type] || @step_chances[enc_type] == 0
     return false if !has_encounter_type?(enc_type)

@@ -63,6 +63,8 @@ class PokemonGlobalMetadata
     attr_accessor :teamHealerUpgrades
     # Tarot amulet
     attr_accessor :tarot_amulet_active
+    # Chroma Clarion
+    attr_accessor   :chroma_clarion_recharge_steps
     # Ragged journal
     attr_accessor :ragged_journal_pages_collected
     # Randomizer
@@ -120,7 +122,7 @@ class PokemonGlobalMetadata
         @pokedexIndex         = []
         @pokedexMode          = 0
         for i in 0...numRegions+1     # National Dex isn't a region, but is included
-        @pokedexIndex[i]    = 0
+            @pokedexIndex[i]    = 0
         end
         # Day Care
         @daycare              = [[nil,0],[nil,0]]
@@ -162,7 +164,10 @@ class PokemonGlobalMetadata
         @teamHealerCurrentUses= 1
         # Tarot Amulet
         @tarot_amulet_active  = false
+        # Ragged Journal
         @ragged_journal_pages_collected  = []
+        # Chroma Clarion
+        @chroma_clarion_recharge_steps = 0
         # Masterdex
         @stored_search		  = nil
         @dex_forms_shows_shinies = false

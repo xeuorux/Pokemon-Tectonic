@@ -325,7 +325,11 @@ class NewDexNav
   end
 
   def generateSearch(species_data)
-	move = getRandomNonLevelMove(species_data.species)
+    if !defined?($PokemonGlobal.dexNavEggMovesUnlocked) || !$PokemonGlobal.dexNavEggMovesUnlocked
+        move = nil
+    else
+        move = getRandomNonLevelMove(species_data.species)
+    end
 	item = generateWildHeldItem(species_data.species,herdingActive?)
 	abilityIndex = rand(2)
 	$PokemonTemp.currentDexSearch = [species_data,move,abilityIndex,item]
@@ -499,7 +503,6 @@ end
 
 # Gets a random ID of a legal egg move of the given species and returns it as a move object.
 def getRandomNonLevelMove(species)
-	return nil if !defined?($PokemonGlobal.dexNavEggMovesUnlocked) || !$PokemonGlobal.dexNavEggMovesUnlocked
 	generatedSpeciesData = GameData::Species.get(species)
 	moves = generatedSpeciesData.non_level_moves
 	return moves.sample

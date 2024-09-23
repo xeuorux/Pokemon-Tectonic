@@ -2608,6 +2608,15 @@ Price = 0
 Flags = KeyItem
 Description = An electrified glove with a claw-like shape. Allows you to recover the first failed Poké Ball thrown in a wild battle.
 #-------------------------------
+[CHROMACLARION]
+Name = Chroma Clarion
+NamePlural = Chroma Clarions
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = An ancient horn. Sound it to call 3 rare Pokémon to battle you. Recharged by walking in encounter zones.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds
@@ -2950,3 +2959,19 @@ Price = 0
 FieldUse = Direct
 Flags = KeyItem
 Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.
+#-------------------------------
+[VIPCARD]
+Name = VIP Card
+NamePlural = VIP Cards
+Pocket = 7
+Price = 0
+Flags = KeyItem
+Description = A glamorous steel card. While holding it, all vendors cost 10% less and Poké Marts have extra items.
+#-------------------------------
+[OMINOUSEGG]
+Name = Ominous Egg
+NamePlural = Ominous Eggs
+Pocket = 8
+Price = 0
+Flags = KeyItem
+Description = A vessel for negative emotions. If you perfectly defeat enough route or gym trainers, it will grant you rewards.

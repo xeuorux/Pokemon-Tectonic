@@ -4,6 +4,7 @@ def perfectTrainer(maxTrainerLevel=15,giveDrop=true)
 		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel) if giveDrop
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def perfectAncientTrainer
@@ -13,6 +14,7 @@ def perfectAncientTrainer
 	}
 	pbMessage(_INTL("The fleeing trainer dropped some food!"))
 	pbReceiveItem(:VANILLATULUMBA)
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def perfectDittoTrainer(maxTrainerLevel=15)
@@ -22,8 +24,8 @@ def perfectDittoTrainer(maxTrainerLevel=15)
 		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel)
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
-
 
 def perfectAceTrainer(maxTrainerLevel=15)
 	blackFadeOutIn() {
@@ -31,6 +33,7 @@ def perfectAceTrainer(maxTrainerLevel=15)
 		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel,4)
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
@@ -42,6 +45,7 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 		setFollowerGone(event2)
 	}
 	pbTrainerDropsItem(maxTrainerLevel,2,true)
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def perfectDoubleAncientTrainer(event1,event2)
@@ -55,6 +59,7 @@ def perfectDoubleAncientTrainer(event1,event2)
 
 	pbMessage(_INTL("The fleeing trainers dropped some food!"))
 	pbReceiveItem(:VANILLATULUMBA,2)
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)

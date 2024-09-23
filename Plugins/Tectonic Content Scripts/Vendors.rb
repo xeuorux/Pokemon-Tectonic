@@ -1,18 +1,34 @@
 ######################################################
 # Mart vendors
 ######################################################
-BASIC_MART_STOCK = [
-	:POKEBALL,
-	:ABILITYCAPSULE,
-	:REPEL,
-]
+BASIC_MART_STOCK = %i[POKEBALL ABILITYCAPSULE REPEL]
+
+VIP_CARD_EXTRA_STOCK = %i[REPEATBALL ROYALBALL LUXURYBALL SITRUSBERRY EXPCANDYXS]
+
+def vipCardActive?
+    return false unless $PokemonBag
+    return pbHasItem?(:VIPCARD)
+end
+
+def martStock
+    stock = BASIC_MART_STOCK.clone
+    stock += VIP_CARD_EXTRA_STOCK.clone if vipCardActive?
+    return stock
+end
 
 def basicPokeMart
-    pbPokemonMart(BASIC_MART_STOCK)
+    setPrice(:SITRUSBERRY,2000)
+    pbPokemonMart(martStock)
 end
 
 def rangerMart
-    pbPokemonMart(BASIC_MART_STOCK,_INTL("Get your supplies here!"))
+    setPrice(:SITRUSBERRY,200)
+    if vipCardActive?
+        message = _INTL("You a big shot, huh? Well, we're here to supply you.")
+    else
+        message = _INTL("Get your supplies here!")
+    end
+    pbPokemonMart(martStock,)
 end
 
 ######################################################
