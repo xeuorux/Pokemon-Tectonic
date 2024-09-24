@@ -14,6 +14,10 @@ def showNormal(eventID = 0)
 	showAnimation(FollowerSettings::Emo_Normal,eventID)
 end
 
+def showSad(eventID = 0)
+	showAnimation(FollowerSettings::Emo_Sad,eventID)
+end
+
 def showHate(eventID = 0)
 	showAnimation(FollowerSettings::Emo_Hate,eventID)
 end

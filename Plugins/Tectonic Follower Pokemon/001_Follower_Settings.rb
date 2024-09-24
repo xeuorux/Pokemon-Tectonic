@@ -9,6 +9,7 @@ module FollowerSettings
   Animation_Come_In   = 29
   Emo_Happy           = 10
   Emo_Normal          = 13
+  Emo_Sad             = 14
   Emo_Hate            = 15
   Emo_Poison          = 17
   Emo_Sing            = 12
