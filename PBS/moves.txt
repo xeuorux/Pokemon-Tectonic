@@ -2508,7 +2508,7 @@ Accuracy = 0
 TotalPP = 5
 Target = BothSides
 FunctionCode = StartGravity5
-Description = Gravity is intensified for five turns, forcing Pokemon down from the air and doubling all move accuracy.
+Description = Gravity is intensified for five turns, forcing Pokémon down from the air and doubling all move accuracy.
 #-------------------------------
 [LANDSWRATH]
 Name = Land's Wrath
@@ -2815,7 +2815,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartSandstorm8
-Description = Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokemon every turn.
+Description = Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokémon every turn.
 #-------------------------------
 [SMACKDOWN]
 Name = Smack Down
@@ -5640,7 +5640,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = RemoveProtectionsBypassSubstituteAlwaysHits
 Flags = CanMirrorMove
-Description = Using a hyperspace hole, the user appears right next to the target and strikes. Skips and destroys protections and substitutes. Always hits.
+Description = Using a hyperspace hole, the user appears next to the target and strikes. Skips and destroys protections and substitutes. Always hits.
 #-------------------------------
 [INSTRUCT]
 Name = Instruct

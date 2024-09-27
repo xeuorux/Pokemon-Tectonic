@@ -99,7 +99,7 @@ Description = Doubles Sp. Def, but the Pokémon can't use status moves.
 #-------------------------------
 [ASSISTANT]
 Name = Assistant
-Description = Uses Assist upon entry, copying a random team-mates move.
+Description = Uses Assist upon entry, using a random move known by a party member.
 #-------------------------------
 [AURORAPRISM]
 Name = Aurora Prism
@@ -1514,7 +1514,7 @@ Flags = Immutable
 #-------------------------------
 [SANDSNIPER]
 Name = Sand Sniper
-Description = Boosts Speed by 50% in sand. Can't miss during sandstorm.
+Description = Boosts Speed by 50% in sandstorm. Can't miss during sandstorm.
 #-------------------------------
 [SANDWORNAUGER]
 Name = Sandworn Auger
@@ -1712,7 +1712,7 @@ Description = Sets a Light Screen for 4 turns upon entering the battle.
 #-------------------------------
 [STARSALIGN]
 Name = Stars Align
-Description = During eclipse, its move can't miss and always activates their random effects.
+Description = During eclipse, its moves can't miss and always activate their random effects.
 Flags = EclipseSynergy
 #-------------------------------
 [STEAMPOWER]

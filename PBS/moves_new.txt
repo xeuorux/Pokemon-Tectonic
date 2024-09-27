@@ -614,7 +614,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TypeDependsOnWeather
 Flags = CanProtect,CanMirrorMove
-Description = The user causes the air around the target to explode. It's type is changed based on the active weather.
+Description = The user causes the air around the target to explode. The move's type is changed based on the active weather.
 Animation = WEATHERBALL
 #-------------------------------
 [YOUNGAGAIN]
@@ -1222,7 +1222,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DestroysHerbs
 Flags = CanProtect,CanMirrorMove
-Description = The user infects the target with a touch and also destroys any Herbs its holding.
+Description = The user infects the target with a touch and also destroys any Herbs it's holding.
 Animation = POISONJAB
 #-------------------------------
 [CAUSTICPUNCH]
@@ -1428,7 +1428,7 @@ Target = AllNearFoes
 FunctionCode = Poison
 Flags = CanProtect,CanMirrorMove,Wind
 EffectChance = 30
-Description = Summons a storm of poisonous gas to hit all nearby pokemon with a 30% chance to poison.
+Description = Summons a storm of poisonous gas to hit all nearby Pokémon with a 30% chance to poison.
 Animation = SMOG
 #-------------------------------
 [STINGINGJEALOUSY]
@@ -6139,7 +6139,7 @@ Target = AllNearOthers
 FunctionCode = ReverseTargetHealingThisTurn
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
-Description = For the rest of the round, the healing of all damaged Pokemon is reversed.
+Description = For the rest of the round, the healing of all damaged Pokémon is reversed.
 Animation = GLARE
 #-------------------------------
 [INCISION]

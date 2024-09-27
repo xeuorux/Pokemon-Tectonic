@@ -27604,7 +27604,7 @@ Weight = 160.0
 Color = Brown
 Shape = Head
 Kind = Long Neck
-Pokedex = Now that the brain waves from the head and tail are synced up, the psychic power of this Pokémon is 10 times stronger than Girafarig’s.
+Pokedex = Now that the brain waves from the head and tail are synced up, the psychic power of this Pokémon is 10 times stronger than Girafarig's.
 Generation = 9
 WildItemUncommon = SITRUSBERRY
 #-------------------------------

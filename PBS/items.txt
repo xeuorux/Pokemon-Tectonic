@@ -823,7 +823,7 @@ Name = Metronome
 NamePlural = Metronomes
 Pocket = 5
 Price = 4000
-Description = A Pokémon held item that boosts a move used consecutively by 20% more each time. This resets if another move is used.
+Description = A held item. Boosts a move used consecutively by 20% more each time. This resets if another move is used.
 #-------------------------------
 [MUSCLEBAND]
 Name = Muscle Band

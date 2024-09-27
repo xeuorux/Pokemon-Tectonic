@@ -537,7 +537,7 @@ Description = Blocks all random added effects of attacks taken.
 #-------------------------------
 [SHIELDSDOWN]
 Name = Shields Down
-Description = It can't be statused while it has its shell. Below half HP its shell breaks and it becomes aggressive.
+Description = Cannot be statused while it has its shell. Below half HP, its shell breaks and it turns aggressive.
 Flags = Immutable
 #-------------------------------
 [SIMPLE]
