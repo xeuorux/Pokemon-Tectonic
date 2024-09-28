@@ -3771,8 +3771,8 @@ Can you believe the nerve of some people?
 Can you believe the nerve of some people?
 The TV is turned off.
 The TV is turned off.
-A peice of laminated paper attached to front lists the over 300 available TV channels.
-A peice of laminated paper attached to front lists the over 300 available TV channels.
+A piece of laminated paper attached to front lists the over 300 available TV channels.
+A piece of laminated paper attached to front lists the over 300 available TV channels.
 Oh, don't mind me, I'm just restocking this Vending Machine.
 Oh, don't mind me, I'm just restocking this Vending Machine.
 One of my many hats I wear.
@@ -3932,8 +3932,8 @@ Talking to me like this does demonstrate rather unusual abilities...
 Will you cease bothering me? I'm trying to massage this data into significance.
 Will you cease bothering me? I'm trying to massage this data into significance.
 [Map54]
-A male and female TV host are all smiles as they take a wakthrough of a historic Prizca East house for sale.
-A male and female TV host are all smiles as they take a wakthrough of a historic Prizca East house for sale.
+A male and female TV host are all smiles as they take a walkthrough of a historic Prizca East house for sale.
+A male and female TV host are all smiles as they take a walkthrough of a historic Prizca East house for sale.
 Cyndaquil is entertaining itself by repeatedly extinguishing and reigniting the candle.
 Cyndaquil is entertaining itself by repeatedly extinguishing and reigniting the candle.
 Oh, you must be that kid I’ve heard so much about! How are you?
@@ -4214,8 +4214,8 @@ Can't wait!
 Can't wait!
 Good fight. Was fun.
 Good fight. Was fun.
-if you ever fly to Alola during evening hours come see if I'm the one flying ya.
-if you ever fly to Alola during evening hours come see if I'm the one flying ya.
+If you ever fly to Alola during evening hours come see if I'm the one flying ya.
+If you ever fly to Alola during evening hours come see if I'm the one flying ya.
 Closed while Eko participates in the Makya Championship Tournament.
 Closed while Eko participates in the Makya Championship Tournament.
 This town is a haven for us Bikeaholics.
@@ -4322,8 +4322,8 @@ You're a marvelous addition to the club, friend. Everyone here looks forward to 
 You're a marvelous addition to the club, friend.  Everyone here looks forward to your next showing.
 It seems like you've managed to best everyone here.
 It seems like you've managed to best everyone here. 
-No doubt you are a talented trainer, and you've made this backyard as lively as its ever been.
-No doubt you are a talented trainer, and you've made this backyard as lively as its ever been.
+No doubt you are a talented trainer, and you've made this backyard as lively as it's ever been.
+No doubt you are a talented trainer, and you've made this backyard as lively as it's ever been.
 Thank you, friend.
 Thank you, friend.
 During your last battle, a friend of mine dropped by. They do that sometimes.
@@ -5581,8 +5581,8 @@ If you manage a 60% completion, I have more rewards for you.
 80%! Fantastic work, Trainer. 
 You might be one of the few to ever accomplish the feat of 100% completion.
 You might be one of the few to ever accomplish the feat of 100% completion.
-Regardless of whether you do that, I have your 80% rewards for you.
-Regardless of whether you do that, I have your 80% rewards for you.
+Regardless of whether you do that, I have your 80% reward for you.
+Regardless of whether you do that, I have your 80% reward for you.
 Well, if you manage to collect every Pokemon, LuxTech still has payment planned.
 Well, if you manage to collect every Pokemon, LuxTech still has payment planned.
 Best of luck.
@@ -7167,8 +7167,8 @@ Well, I suppose that's three months of training down the drain.
 Well, I suppose that's three months of training down the drain.
 Peace.
 Peace.
-My mom told me not to come up here, but I really wanted to see what it was like to pee of the side of a mountain.
-My mom told me not to come up here, but I really wanted to see what it was like to pee of the side of a mountain.
+My mom told me not to come up here, but I really wanted to see what it was like to pee off the side of a mountain.
+My mom told me not to come up here, but I really wanted to see what it was like to pee off the side of a mountain.
 I uh... don't need to pee anymore. For no real reason.
 I uh... don't need to pee anymore. For no real reason.
 I felt like peeing off Makya's highest point would be great, but I'm not feeling as liberated as I thought I would be.
@@ -8238,8 +8238,8 @@ That Trainer really proved their worth. Let's look at the replays to see how the
 That Trainer really proved their worth. Let's look at the replays to see how they did it!
 I'd like to take a moment to thank our sponsor, Emma's Empolorium!
 I'd like to take a moment to thank our sponsor, Emma's Empolorium! 
-Just a hop and a skip to the north, a legendar Avatar has been causing a commotion.
-Just a hop and a skip to the north, a legendar Avatar has been causing a commotion.
+Just a hop and a skip to the north, a legendary Avatar has been causing a commotion.
+Just a hop and a skip to the north, a legendary Avatar has been causing a commotion.
 How exciting!
 How exciting!
 Onwards, to ever greater victories!
@@ -8748,8 +8748,8 @@ Hey!
 Hey!
 I'm bored and want to have fun. Let's play hide and seek!
 I'm bored and want to have fun. Let's play hide and seek! 
-I took some TM from my Pa when he wasn't looking.
-I took some TM from my Pa when he wasn't looking.
+I took some TMs from my Pa when he wasn't looking.
+I took some TMs from my Pa when he wasn't looking.
 If you can find me, I'll give the TMs to you.
 If you can find me, I'll give the TMs to you.
 I'll be somewhere on the route to the foreclosed tunnel. Smell ya later!
@@ -9367,8 +9367,8 @@ I bet the Trainers at the Battle Plaza are itching to battle you.
 I bet the Trainers at the Battle Plaza are itching to battle you.
 Prizca's West Gym
 Prizca's West Gym
-Leaders: Bence, Zoe
-Leaders: Bence, Zoe
+Leaders: Bence, Zoé
+Leaders: Bence, Zoé
 Two birds for every stone.
 Two birds for every stone.
 Bence or Zoé.... Zoé or Bence....
@@ -10191,7 +10191,7 @@ Pokemon dancers! That's what we need!
 Pokemon dancers! That's what we need!
 You, Trainer. This has been a great talk, but now I need your help.
 You, Trainer. This has been a great talk, but now I need your help.
-I need to a dance session with a Pokemon with the Dancer ability.
+I need to do a dance session with a Pokemon with the Dancer ability.
 I need to a dance session with a Pokemon with the Dancer ability.
 If you can show me one, I'll make sure you're rewarded.
 If you can show me one, I'll make sure you're rewarded.
@@ -10372,10 +10372,10 @@ We used to get more guests a looooong time ago, but we don't get them much now. 
 We used to get more guests a looooong time ago, but we don't get them much now. I guess a sinking island isn't the best place for investors...
 Oh well! Can't save 'em all... just uhh... enjoy it while it lasts? Haha...
 Oh well! Can't save 'em all... just uhh... enjoy it while it lasts? Haha...
-Anyways! We have a healing center! I'm qualified nurse, actually! Just don't have the typical uniform.
-Anyways! We have a healing center! I'm qualified nurse, actually! Just don't have the typical uniform.
-We certainly like to battle here on this island! Just like uhhh... literally ever other person... So that's cool!
-We certainly like to battle here on this island! Just like uhhh... literally ever other person... So that's cool!
+Anyways! We have a healing center! I'm a qualified nurse, actually! Just don't have the typical uniform.
+Anyways! We have a healing center! I'm a qualified nurse, actually! Just don't have the typical uniform.
+We certainly like to battle here on this island! Just like uhhh... literally every other person... So that's cool!
+We certainly like to battle here on this island! Just like uhhh... literally every other person... So that's cool!
 Anyways I'll be in that building behind me if you need me! Ummm, enjoy your stay and uhhh... talk with some of the locals!
 Anyways I'll be in that building behind me if you need me! Ummm, enjoy your stay and uhhh... talk with some of the locals!
 Leave us to our ways, Trainer.
@@ -10560,8 +10560,8 @@ I must treat the little hair I have left kindly.
 I must treat the little hair I have left kindly.
 Mmm. Maybe I should buy a hat.
 Mmm. Maybe I should buy a hat.
-Hon hon! This island has exception beauty! It is a shame I will be the last visitor to see it.
-Hon hon! This island has exception beauty! It is a shame I will be the last visitor to see it.
+Hon hon! This island has exceptional beauty! It is a shame I will be the last visitor to see it.
+Hon hon! This island has exceptional beauty! It is a shame I will be the last visitor to see it.
 Oh, are you also foreign to here? Well, that ruins the title of "last visitor".
 Oh, are you also foreign to here? Well, that ruins the title of "last visitor".
 Ah, the locals here are so good at battling.
@@ -11563,8 +11563,8 @@ Of course, that was over 50 years ago!
 Of course, that was over 50 years ago!
 It's been upgraded to a "College" since then.
 It's been upgraded to a "College" since then.
-I used to be Chasm, but now I work at the Capital Building.
-I used to be Chasm, but now I work at the Capital Building.
+I used to be Chasm, but now I work at the Capitol Building.
+I used to be Chasm, but now I work at the Capitol Building.
 Got myself a nice office and everything. A pretty decent setup for being a former grunt.
 Got myself a nice office and everything. A pretty decent setup for being a former grunt.
 I mean, mostly everyone got off alright. Helena made sure everyone at least had a job before the Team disbanded.
@@ -11758,8 +11758,8 @@ You're a good friend.
 [Map188]
 People are always doing cool things here!
 People are always doing cool things here!
-This guy juggles and has his pokemon go BOOM!
-This guy juggles and has his pokemon go BOOM!
+This guy juggles and has his Pokémon go BOOM!
+This guy juggles and has his Pokémon go BOOM!
 EXPLOSIONS, EXPLOSIONS!
 EXPLOSIONS, EXPLOSIONS!
 I LOVE EXPLOSIONS!
@@ -11836,7 +11836,7 @@ To be honest, I was nervous -- being the returning champion and all. I suppose t
 To be honest, I was nervous -- being the returning champion and all. I suppose that will be you soon enough.
 Ah, I recognize you. You're the new Trainer blazing through the Makyan Gym Challenge.
 Ah, I recognize you. You're the new Trainer blazing through the Makyan Gym Challenge.
-At the rate you're going, I have no doubt that you'll be attending this years tournament?
+At the rate you're going, I have no doubt that you'll be attending this year's tournament?
 At the rate you're going, I have no doubt that you'll be attending this years tournament?
 To be honest, I'm a little nervous -- being the returning champion and all.
 To be honest, I'm a little nervous -- being the returning champion and all.
@@ -12182,8 +12182,8 @@ I'm the Ranger Captain assigned to the Barren Crater Station.
 I'm the Ranger Captain assigned to the Barren Crater Station.
 We've been helping with the nightmare in Velenz so I figured I'd come here to learn what I can.
 We've been helping with the nightmare in Velenz so I figured I'd come here to learn what I can.
-I've been gone for a while. I hope my unit taking advantage of my absence...
-I've been gone for a while. I hope my unit taking advantage of my absence...
+I've been gone for a while. I hope my unit is taking advantage of my absence...
+I've been gone for a while. I hope my unit is taking advantage of my absence...
 I worry about my grandson.
 I worry about my grandson.
 He works at the castle on the north side of the city.
@@ -12443,8 +12443,8 @@ You're just here for the badge right?
 You're just here for the badge right?
 Heh, poser.
 Heh, poser.
-I sparkled and shown... but you much moreso.
-I sparkled and shown... but you much moreso.
+I sparkled and shone... but you much moreso.
+I sparkled and shone... but you much moreso.
 A rare defeat.
 A rare defeat.
 Not right now.
@@ -12674,8 +12674,8 @@ I gotta give her a call, she's probably away on a fishing trip.
 I gotta give her a call, she's probably away on a fishing trip.
 Training here really gets the stress out.
 Training here really gets the stress out.
-Working at the Capital Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
-Working at the Capital Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
+Working at the Capitol Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
+Working at the Capitol Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
 I mean, not everyone can set aside some time to train Pokemon, but can't they ask a friend or something?
 I mean, not everyone can set aside some time to train Pokemon, but can't they ask a friend or something?
 Our battle was fun, I wasn't even thinking about my job while doing it.
@@ -12696,7 +12696,7 @@ I can't wait! We're probably going do a ton of swimming!
 I can't wait! We're probably going do a ton of swimming!
 It looks like Kubfu wants to join your team!
 It looks like Kubfu wants to join your team!
-It holds out its own Pokemon ball, seeing if you will accept it.
+It holds out its own Poké ball, seeing if you will accept it.
 It holds out its own Pokemon ball, seeing if you will accept it.
 Accept the Kubfu onto your team?
 Accept the Kubfu onto your team?
@@ -12885,18 +12885,18 @@ Oh? Come here often?
 Oh? Come here often?
 No? Oh..
 No? Oh..
-The Makyan Furret is bobbing along to the music. It seems to realy enjoy it!
-The Makyan Furret is bobbing along to the music. It seems to realy enjoy it!
+The Makyan Furret is bobbing along to the music. It seems to really enjoy it!
+The Makyan Furret is bobbing along to the music. It seems to really enjoy it!
 No
 No
 Yes
 Yes
 Don't know.
 Don't know.
-City Person.
-City Person.
-Nature Person.
-Nature Person.
+City person.
+City person.
+Nature person.
+Nature person.
 Not right now.
 Not right now.
 Sure, I'll pay for that.
@@ -12975,8 +12975,8 @@ Northern Trail
 Northern Trail
 Thank you so much!
 Thank you so much!
-There's a creepy person in a Mask using a Regirock to scare people away from Sweetrock Gym!
-There's a creepy person in a Mask using a Regirock to scare people away from Sweetrock Gym!
+There's a creepy person in a mask using a Regirock to scare people away from Sweetrock Gym!
+There's a creepy person in a mask using a Regirock to scare people away from Sweetrock Gym!
 I tried to escape through the tunnel here, but I forgot that it's blocked up by that stupid Virizion.
 I tried to escape through the tunnel here, but I forgot that it's blocked up by that stupid Virizion.
 Then these avatars appeared and I just... I just panicked.
@@ -12997,8 +12997,8 @@ Foolish! Get real!
 Foolish! Get real!
 The berry plant is growing.
 The berry plant is growing.
-I certain friend introduced me to cycling! You might know about her!
-I certain friend introduced me to cycling! You might know about her!
+A certain friend introduced me to cycling! You might know about her!
+A certain friend introduced me to cycling! You might know about her!
 You know Lainie right? We go on biking trips together.
 You know Lainie right? We go on biking trips together.
 Speaking of which, I should go give her a call...
@@ -13045,7 +13045,7 @@ I don't know either, but it's higher than 428 grams.
 I don't know either, but it's higher than 428 grams.
 Yo, homeboss, we are Chara and Scilla's number one fans. We study all their techniques.
 Yo, homeboss, we are Chara and Scilla's number one fans. We study all their techniques.
-Yo, homeboss, you have devestated our team. Our styles are cramped and yours is cramping. We take our departure.
+Yo, homeboss, you have devastated our team. Our styles are cramped and yours is cramping. We take our departure.
 Yo, homeboss, you have devestated our team. Our styles are cramped and yours is cramping. We take our departure.
 Yo, homeboss, our combined adoration was not enough to overcome your battle style. We admire your dedication to the craft.
 Yo, homeboss, our combined adoration was not enough to overcome your battle style. We admire your dedication to the craft.
@@ -13438,8 +13438,8 @@ You see, I used to be obsessed with her. It’s why I’m here.
 You see, I used to be obsessed with her. It’s why I’m here.
 I could be the one to track her down, lure her out like a timid beast. I just wanted to take care of her.
 I could be the one to track her down, lure her out like a timid beast. I just wanted to take care of her.
-And she was beautiful, of course. I’m not so high- minded as to discount her graceful splendor as part of my reasoning.
-And she was beautiful, of course. I’m not so high- minded as to discount her graceful splendor as part of my reasoning.
+And she was beautiful, of course. I’m not so high-minded as to discount her graceful splendor as part of my reasoning.
+And she was beautiful, of course. I’m not so high-minded as to discount her graceful splendor as part of my reasoning.
 But then I arrived here... and I found you. My attention was caught immediately.
 But then I arrived here... and I found you. My attention was caught immediately.
 I’m so sorry. I just can’t really contain my feelings any longer. I like you. A lot. And I’d like you to be mine.
@@ -13570,8 +13570,8 @@ Heh, now I know how the grunts felt when Yezera whipped their butts.
 Heh, now I know how the grunts felt when Yezera whipped their butts.
 Leave me to the task of reviving my battlers.
 Leave me to the task of reviving my battlers.
-Vanya breaths out heavily.
-Vanya breaths out heavily.
+Vanya breathes out heavily.
+Vanya breathes out heavily.
 So, this is it. The very last badge. After this comes the championship, you know.
 So, this is it. The very last badge. After this comes the championship, you know.
 Even more than usual, I can't afford to mess this one up.
@@ -13762,8 +13762,8 @@ That's a nice feeling, you know?
 That's a nice feeling, you know?
 Sheeeeeeesh, let's get a looksie at this this little Trainer now!
 Sheeeeeeesh, let's get a looksie at this this little Trainer now!
-Well butter my butt and call me a biscuit, this here Trainers got us slapped silly!
-Well butter my butt and call me a biscuit, this here Trainers got us slapped silly!
+Well butter my butt and call me a biscuit, this here Trainer's got us slapped silly!
+Well butter my butt and call me a biscuit, this here Trainer's got us slapped silly!
 What a howdown from our Trainer friend here. Bet they got one o' those fancy candy thingamajigs.
 What a howdown from our Trainer friend here. Bet they got one o' those fancy candy thingamajigs.
 A Pokemon world, and within every battle, a world of struggle.
@@ -14233,8 +14233,8 @@ Toodles. And don’t you dare follow – I’m playing hard to get, so respect i
 Toodles. And don’t you dare follow – I’m playing hard to get, so respect it. Hah!
 More than a million years ago, a meteor struck this area of Makya, plowing through a large mountain to the west.
 More than a million years ago, a meteor struck this area of Makya, plowing through a large mountain to the west.
-That large mountain become two smaller mountains, which we now know as Split Peaks.
-That large mountain become two smaller mountains, which we now know as Split Peaks.
+That large mountain became two smaller mountains, which we now know as Split Peaks.
+That large mountain became two smaller mountains, which we now know as Split Peaks.
 The impact site itself would fill with water and become Sweetrock Harbor.
 The impact site itself would fill with water and become Sweetrock Harbor.
 The ocean to the east brings calming winds.
@@ -15096,8 +15096,8 @@ Sure, I'll take the place.
 [Map232]
 I'm a biologist by profession, studying many of the fascinating Pokemon of the world.
 I'm a biologist by profession, studying many of the fascinating Pokemon of the world.
-Lately I've found an interesting in xenobiology, studying the Pokemon from the stars.
-Lately I've found an interesting in xenobiology, studying the Pokemon from the stars.
+Lately I've found an interest in xenobiology, studying the Pokemon from the stars.
+Lately I've found an interest in xenobiology, studying the Pokemon from the stars.
 Where could they have come from? What do Pokemon on those planets look like?
 Where could they have come from? What do Pokemon on those planets look like?
 I would certainly like to know. If you have any of these Pokemon I can certainly offer a trade for it.
@@ -15131,8 +15131,8 @@ It also means we have to check the Pokeball donations to make sure they're empty
 It also means we have to check the Pokeball donations to make sure they're empty!
 We had some pretty uh....interesting scenarios before that policy.
 We had some pretty uh....interesting scenarios before that policy.
-We've got too many Pokedolls and Smokeballs 'cause people keep donating them.
-We've got too many Pokedolls and Smokeballs 'cause people keep donating them.
+We've got too many Poké Dolls and Smoke Balls 'cause people keep donating them.
+We've got too many Poké Dolls and Smoke Balls 'cause people keep donating them.
 I don't think they realize that they're useless against avatars..
 I don't think they realize that they're useless against avatars..
 Welcome to the donations center!
@@ -15271,16 +15271,16 @@ Yo! Greetings from Unova.
 Yo! Greetings from Unova.
 Want some Dream Balls?
 Want some Dream Balls?
-They're an Unovan invention that got improved by some scientists in Galar.
-They're an Unovan invention that got improved by some scientists in Galar.
+They're a Unovan invention that got improved by some scientists in Galar.
+They're a Unovan invention that got improved by some scientists in Galar.
 I brought a ton of them with me since I figured I'd catch some Pokemon here.
 I brought a ton of them with me since I figured I'd catch some Pokemon here.
 I've caught all the Pokemon I need though, so I'm giving them out to Trainers who need them.
 I've caught all the Pokemon I need though, so I'm giving them out to Trainers who need them.
 Anything to combat the avatar threat.
 Anything to combat the avatar threat.
-Dunno if you can find dreamballs in Makya, haven't seen any in the shops.
-Dunno if you can find dreamballs in Makya, haven't seen any in the shops.
+Dunno if you can find Dream Balls in Makya, haven't seen any in the shops.
+Dunno if you can find Dream Balls in Makya, haven't seen any in the shops.
 Maybe a specialty shop, but not one in Prizca.
 Maybe a specialty shop, but not one in Prizca.
 [Map238]
@@ -15721,8 +15721,8 @@ HELP ME, LAINIE! HELP ME!
 HELP ME, LAINIE! HELP ME!
 They can be bested, they can be bested, they can...
 They can be bested, they can be bested, they can...
-Bestie, it's time to invest in us stocks while they're low. We're accepting bestie buyouts!
-Bestie, it's time to invest in us stocks while they're low. We're accepting bestie buyouts!
+Bestie, it's time to invest in our stocks while they're low. We're accepting bestie buyouts!
+Bestie, it's time to invest in our stocks while they're low. We're accepting bestie buyouts!
 Time to cash in on the best bonds... get my bestie estate in order...
 Time to cash in on the best bonds... get my bestie estate in order...
 Maybe it's time to invest in you stocks instead...
@@ -16218,7 +16218,7 @@ It may be cute, but I'm raising enough Pokemon back at the farm as is.
 It may be cute, but I'm raising enough Pokemon back at the farm as is.
 That's why I'll offer 'em to you for $5000.
 That's why I'll offer 'em to you for $5000.
-'s alright. I'll cultivate some patience.
+'S alright. I'll cultivate some patience.
 's alright. I'll cultivate some patience.
 Hoooyaaaahhh!
 Hoooyaaaahhh!
@@ -16468,8 +16468,8 @@ We'll get started as soon as you sign.
 We'll get started as soon as you sign.
 Very well, have a great day!
 Very well, have a great day!
-Wonderful! I'm so glad you've taken an interesting in our fine establishment.
-Wonderful! I'm so glad you've taken an interesting in our fine establishment. 
+Wonderful! I'm so glad you've taken an interest in our fine establishment.
+Wonderful! I'm so glad you've taken an interest in our fine establishment. 
 Follow me, if you would.
 Follow me, if you would.
 Would you like to take our tour again? Your waver from before is still valid.
@@ -16498,7 +16498,7 @@ A sign reads "Take our Gym Challenge Tours! Sign up at the front desk."
 A sign reads "Take our Gym Challenge Tours! Sign up at the front desk."
 Can't you see I'm watchin' TV here? I--Oh, sorry, are you a gym challenger?
 Can't you see I'm watchin' TV here? I--Oh, sorry, are you a gym challenger?
-Most of my interuptions are shift managers givin' me a hard time for watching TV "on the clock."
+Most of my interruptions are shift managers givin' me a hard time for watching TV "on the clock."
 Most of my interuptions are shift managers givin' me a hard time for watching TV "on the clock."
 Hard to get it through to them that they're not my boss. I'm an employee of the Makyan Government!
 Hard to get it through to them that they're not my boss. I'm an employee of the Makyan Government!
@@ -17025,7 +17025,7 @@ You see a drawing of a Clefable in the bottom right corner, seperated from the r
 You see a drawing of a Clefable in the bottom right corner, seperated from the rest of the board by a protective quarter circle of chalk.
 My big brother is the coolest. I want to do everything he does!
 My big brother is the coolest. I want to do everything he does!
-Childrens finger paintings.
+Children's finger paintings.
 Childrens finger paintings.
 You notice a drawing of a container ship surrounded by rocks.
 You notice a drawing of a container ship surrounded by rocks.
@@ -17083,7 +17083,7 @@ Ok! I'll just insert this USB...
 --and that should be it! I hope you continue to enjoy that Sweetrock Candy product!
 How do you feel about your field test of the upgraded EXP-EZ Dispenser?
 How do you feel about your field test of the upgraded EXP-EZ Dispenser?
-I expect that you think its amazing--most of our reviews say the same thing!
+I expect that you think it's amazing--most of our reviews say the same thing!
 I expect that you think its amazing--most of our reviews say the same thing!
 A variety of pre-packaged candy products line the shelf.
 A variety of pre-packaged candy products line the shelf.
@@ -17536,8 +17536,8 @@ With how quiet the gym is, you think it'd stand out as rude if you tried to turn
 With how quiet the gym is, you think it'd stand out as rude if you tried to turn it on.
 Yo, champ in the making!
 Yo, champ in the making!
-Samorn's might not look like it, but she was one of Team Chasm's top battlers.
-Samorn's might not look like it, but she was one of Team Chasm's top battlers.
+Samorn might not look like it, but she was one of Team Chasm's top battlers.
+Samorn might not look like it, but she was one of Team Chasm's top battlers.
 Her specialties are Dragon and Bug-types.
 Her specialties are Dragon and Bug-types.
 That makes Ice-type your silver bullet. She'll have some answers for it, but it's still a counter.
@@ -17554,7 +17554,7 @@ Sorry, am I in your way?
 Sorry, am I in your way?
 Wait, of course I am, I'm a trainer!
 Wait, of course I am, I'm a trainer!
-I've been reading about ancient Makyan hero- trainers.
+I've been reading about ancient Makyan hero-trainers.
 I've been reading about ancient Makyan hero- trainers.
 You might be even stronger than them!
 You might be even stronger than them!
@@ -17664,7 +17664,7 @@ A fossil of an aquatic plant.
 A fossil of an aquatic plant.
 A plaque lists a very long scientific name for it. Your eyes glaze over as you try and read it.
 A plaque lists a very long scientific name for it. Your eyes glaze over as you try and read it.
-A simple plague simply stats "Armaldo Fossil"
+A simple plaque simply states "Armaldo Fossil"
 A simple plague simply stats "Armaldo Fossil"
 The rest of the description plate probably hasn't been manufactured yet.
 The rest of the description plate probably hasn't been manufactured yet.
@@ -18458,8 +18458,8 @@ No one knows why, but they've been doing it ever since the cave-in eight years a
 No one knows why, but they've been doing it ever since the cave-in eight years ago.
 Maybe it's a memorial of sorts. It was a pretty bad day for everyone.
 Maybe it's a memorial of sorts. It was a pretty bad day for everyone.
-You find a PokeBall in the trash can!
-You find a PokeBall in the trash can!
+You find a Poké Ball in the trash can!
+You find a Poké Ball in the trash can!
 An empty trash can.
 An empty trash can.
 [Map313]
@@ -20853,7 +20853,7 @@ With recent events...well, I just hope I'll still have a job.
 With recent events...well, I just hope I'll still have a job.
 I specialize in training Pokemon to surf.
 I specialize in training Pokemon to surf.
-You might look over at Gogoat and think to yourself: "That can learn surf?"
+You might look over at Gogoat and think to yourself: "That can learn Surf?"
 You might look over at Gogoat and think to yourself: "That can learn surf?"
 Yes, yes it can.
 Yes, yes it can.
@@ -21917,7 +21917,7 @@ Whoa, Uxie! How did it get here?
 Whoa, Uxie! How did it get here?
 It looks at you intently. Before it, your memories are laid bare.
 It looks at you intently. Before it, your memories are laid bare.
-It ponders for a moment. With a snap, conjures a Pokeball in its hands.
+It ponders for a moment. With a snap, it conjures a Pokeball in its hands.
 It ponders for a moment. With a snap, conjures a Pokeball in its hands.
 Uxie wants to join your team. Will you have it?
 Uxie wants to join your team. Will you have it?
@@ -21965,8 +21965,8 @@ The inscription is illegible, but you can make out the symbols of a setting sun,
 The inscription is illegible, but you can make out the symbols of a field of crystals and a rising sun.
 The inscription is illegible, but you can make out the symbols of a field of crystals and a rising sun.
 [Map379]
-Legends say that a crystals here can link us to the future.
-Legends say that a crystals here can link us to the future.
+Legends say that the crystals here can link us to the future.
+Legends say that the crystals here can link us to the future.
 Well I'm going to go eat a bowl of ramen while singing old opera music! I want to see the crystals link me to THAT!
 Well I'm going to go eat a bowl of ramen while singing old opera music! I want to see the crystals link me to THAT!
 If only I could forsee what Pokemon you used...
@@ -22074,8 +22074,8 @@ It seems willing to be caught by you.
 It seems willing to be caught by you.
 Tapu Koko gives a cheeky nod.
 Tapu Koko gives a cheeky nod.
-After a short dance of excitement, it enters a PokeBall.
-After a short dance of excitement, it enters a PokeBall.
+After a short dance of excitement, it enters a Poké Ball.
+After a short dance of excitement, it enters a Poké Ball.
 Leave Tapu Koko for now.
 Leave Tapu Koko for now.
 Catch Tapu Koko.
@@ -22087,8 +22087,8 @@ It seems willing to be caught by you.
 It seems willing to be caught by you.
 It briefly hides in its shell, seemingly embarassed.
 It briefly hides in its shell, seemingly embarassed.
-It bops you on the nose playfully, then enters a PokeBall.
-It bops you on the nose playfully, then enters a PokeBall.
+It bops you on the nose playfully, then enters a Poké Ball.
+It bops you on the nose playfully, then enters a Poké Ball.
 Leave Tapu Lele for now.
 Leave Tapu Lele for now.
 Catch Tapu Lele.
@@ -22100,8 +22100,8 @@ It seems willing to be caught by you.
 It seems willing to be caught by you.
 Tapu Bulu merely returns to its stoic stance.
 Tapu Bulu merely returns to its stoic stance.
-With a nod of the head, it enters a PokeBall.
-With a nod of the head, it enters a PokeBall.
+With a nod of the head, it enters a Poké Ball.
+With a nod of the head, it enters a Poké Ball.
 Leave Tapu Bulu for now.
 Leave Tapu Bulu for now.
 Catch Tapu Bulu.
@@ -22113,8 +22113,8 @@ It seems willing to be caught by you.
 It seems willing to be caught by you.
 Tapu Fini closes its eyes, then shakes its head.
 Tapu Fini closes its eyes, then shakes its head.
-It brings its webbed hands together in satisfaction, then enters a PokeBall.
-It brings its webbed hands together in satisfaction, then enters a PokeBall.
+It brings its webbed hands together in satisfaction, then enters a Poké Ball.
+It brings its webbed hands together in satisfaction, then enters a Poké Ball.
 Leave Tapu Fini for now.
 Leave Tapu Fini for now.
 Catch Tapu Fini.
@@ -22462,8 +22462,8 @@ Thanks again for that beautiful coffee you found for me.
 Thanks again for that beautiful coffee you found for me.
 Hello, Trainer. It seems we meet at the end of my long and painful journey with hubris.
 Hello, Trainer. It seems we meet at the end of my long and painful journey with hubris.
-I thought, with the power of science, that I could end the eons long rivalry between Zangoose and Seviper.
-I thought, with the power of science, that I could end the eons long rivalry between Zangoose and Seviper. 
+I thought, with the power of science, that I could end the eons-long rivalry between Zangoose and Seviper.
+I thought, with the power of science, that I could end the eons-long rivalry between Zangoose and Seviper. 
 Social engineering, genetic modification, cognitive behavioral therapy, lo-fi hip hop music to study and relax to...
 Social engineering, genetic modification, cognitive behavioral therapy, lo-fi hip hop music to study and relax to...
 Nothing worked. And here I am, begging a stranger to take one of them. They will never be happy otherwise.
@@ -22515,7 +22515,7 @@ Oh dearie, you look like a strong trainer! Perhaps you can satisfy a bucket list
 Oh dearie, you look like a strong trainer! Perhaps you can satisfy a bucket list item of mine?
 I've always wanted to see a legendary Pokemon. Not everyone gets to see one, you know.
 I've always wanted to see a legendary Pokemon. Not everyone gets to see one, you know.
-If you happen to have one in your party, would you mind showing it to me? I'll make sure you get something out of it as well.
+If you happen to have one, would you mind showing it to me? I'll make sure you get something out of it as well.
 If you happen to have one in your party, would you mind showing it to me? I'll make sure you get something out of it as well.
 Oh dearie, your Pokemon are nice! Just... not legendary.
 Oh dearie, your Pokemon are nice! Just... not legendary.
@@ -22616,16 +22616,16 @@ I... It was to do something. To be ok.
 I... It was to do something. To be ok.
 Team Chasm was doing me well but... those things don't last forever, you know.
 Team Chasm was doing me well but... those things don't last forever, you know.
-I just wanted a way to flat on my feet.
-I just wanted a way to flat on my feet.
+I just wanted a way to land flat on my feet.
+I just wanted a way to land flat on my feet.
 Hoopa. I was told it had the power to grant wishes. I just... didn't know there was a bit more to the story.
 Hoopa. I was told it had the power to grant wishes. I just... didn't know there was a bit more to the story.
 What? I don't know... I don't know what happened to me.
 What? I don't know...  I don't know what happened to me.
 I... I don't know what happened. It couldn't have been good. I... need some time.
 I... I don't know what happened. It couldn't have been good. I... need some time.
-I'm still confused, but I can tell some time has past. Things feel... different now.
-I'm still confused, but I can tell some time has past.  Things feel... different now.
+I'm still confused, but I can tell some time has passed. Things feel... different now.
+I'm still confused, but I can tell some time has passed.  Things feel... different now.
 I think... I think I'll be ok. I'm going to see what's out there for me.
 I think... I think I'll be ok. I'm going to see what's out there for me.
 If you want whatever's in this jar, it's yours. I... don't need it anymore.
@@ -23044,9 +23044,9 @@ Leave Mesprit.
 [Map420]
 Whoa, Azelf! How did it get here?
 Whoa, Azelf! How did it get here?
-The only thing you can glean from it is the self- assured smirk on it's face.
-The only thing you can glean from it is the self- assured smirk on it's face.
-It leans back in the air, kicking up it's feet. It points towards your hand.
+The only thing you can glean from it is the self-assured smirk on it's face.
+The only thing you can glean from it is the self-assured smirk on it's face.
+It leans back in the air, kicking up its feet. It points towards your hand.
 It leans back in the air, kicking up it's feet. It points towards your hand.
 You were... holding a Pokeball? You look back up to see Azelf shrugging at you, still sporting the same grin.
 You were... holding a Pokeball? You look back up to see Azelf shrugging at you, still sporting the same grin.
@@ -23653,8 +23653,8 @@ A dusty, ancient computer terminal.
 "EARLY PROJECTS ARCHIVE" is displayed in big block letters at the top of the screen.
 Below that, it prompts you to enter a password.
 Below that, it prompts you to enter a password.
-A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
-A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
+A dusty, old logbook. "Archive Catalogue" is written on the front in black marker.
+A dusty, old logbook. "Archive Catalogue" is written on the front in black marker.
 As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
 As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
 Apparently these are Kurt and Pearce, LuxTech employees.
@@ -39145,7 +39145,7 @@ Only works on the first turn the user is in battle. This move always goes first.
 Only works on the first turn the user is in battle. This move always goes first.
 The target is slashed with scythes or claws. Its power doubles if it hits in succession.
 The target is slashed with scythes or claws. Its power doubles if it hits in succession.
-The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.
+The user calls out its underlings to heal it. The user regains 60% of its max HP.
 The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.
 The user summons bugs to swarm the target, trapping and damaging it for three turns.
 The user summons bugs to swarm the target, trapping and damaging it for three turns.
@@ -40007,7 +40007,7 @@ Wind rapidly spins the target in place to hit them two to five times. Has a 10% 
 Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy.
 The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.
 The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.
-The user infects the target with a touch and also destroys any Herbs its holding.
+The user infects the target with a touch and also destroys any Herbs it's holding.
 The user infects the target with a touch and also destroys any Herbs its holding.
 The user strikes with an acidic punch that destroys Gems and Berries.
 The user strikes with an acidic punch that destroys Gems and Berries.
@@ -58631,7 +58631,7 @@ Position {1},{2} is empty...
 Position {1},{2} is empty...
 You can't release an Egg.
 You can't release an Egg.
-Are you sure you want to release this pokemon?
+Are you sure you want to release this Pokémon?
 Are you sure you want to release this pokemon?
 They will be gone forever. Are you sure?
 They will be gone forever. Are you sure?
@@ -60515,7 +60515,7 @@ The {1} is holding an {2}!
 The {1} is holding an {2}!
 But it mysteriously crumbled to ash...
 But it mysteriously crumbled to ash...
-You register {1} as caught in the Pokédex.
+You register {1} as caught in the MasterDex.
 You register {1} as caught in the Pokédex.
 Would you like to give a nickname to {1}?
 Would you like to give a nickname to {1}?
@@ -63705,7 +63705,7 @@ You've earned a reward!
 You've earned a reward!
 Unfortunately, that's not enough to earn a reward.
 Unfortunately, that's not enough to earn a reward.
-You've ran out of turns!
+You've run out of turns!
 You've ran out of turns!
 You have #{$catching_minigame.turnsLeft} turns left in the contest.
 You have #{$catching_minigame.turnsLeft} turns left in the contest.
@@ -64321,8 +64321,8 @@ Trial complete.
 {1} is standing still and twitching.
 {1} looks dazed and confused.
 {1} looks dazed and confused.
-{1} energy is slowly being leeched away.
-{1} energy is slowly being leeched away.
+{1}'s energy is slowly being leeched away.
+{1}'s energy is slowly being leeched away.
 lab
 lab
 {1} is touching some kind of switch.
@@ -66863,7 +66863,7 @@ You look ready to help me find a Knight Helmet. Don't ask why I need it.
 You look ready to help me find a Knight Helmet. Don't ask why I need it.
 So, cough it up.
 So, cough it up.
-My safety comes first. En guard!
+My safety comes first. En garde!
 My safety comes first. En guard!
 Don't you know who I am? I can't keep risking my head every day!
 Don't you know who I am? I can't keep risking my head every day!

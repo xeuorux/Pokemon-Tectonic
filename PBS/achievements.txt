@@ -102,7 +102,7 @@ Hidden = true
 #-------------------------------
 [CAPTURE_LEGENDARY_BASIC_BALL]
 Name = Back to Basics
-Description = Capture a legendary Pokemon in a regular PokeBall (thrown normally or created by the Ball Launcher.)
+Description = Capture a legendary Pokemon in a regular Poké Ball (thrown normally or created by the Ball Launcher.)
 Page = 4
 #-------------------------------
 [CAPTURE_WITH_ALL_AESTHETIC_BALLS]
@@ -117,7 +117,7 @@ Page = 4
 #-------------------------------
 [FILL_ENTIRE_POKESTATE_PLOT]
 Name = Full House
-Description = Visit a PokEstate plot that has 30 Pokémon in it.
+Description = Visit a PokÉstate plot that has 30 Pokémon in it.
 Page = 4
 #-------------------------------
 [FULLY_UPGRADE_AID_KIT]

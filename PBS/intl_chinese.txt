@@ -3778,7 +3778,7 @@ Can you believe the nerve of some people?
 你敢信世上竟然还有这种生物！
 The TV is turned off.
 电视没开。
-A peice of laminated paper attached to front lists the over 300 available TV channels.
+A piece of laminated paper attached to front lists the over 300 available TV channels.
 上面贴着一叠便签，\n列出了300多个可以接收的频道。
 Oh, don't mind me, I'm just restocking this Vending Machine.
 我正在给自动售货机补货。
@@ -3939,7 +3939,7 @@ Talking to me like this does demonstrate rather unusual abilities...
 Will you cease bothering me? I'm trying to massage this data into significance.
 你能不能别烦我了？\n我正在整理数据！
 [Map54]
-A male and female TV host are all smiles as they take a wakthrough of a historic Prizca East house for sale.
+A male and female TV host are all smiles as they take a walkthrough of a historic Prizca East house for sale.
 一男一女两位主持人\n笑容满面地参观了东宏礼市\n一栋历史悠久的待售房屋。
 Cyndaquil is entertaining itself by repeatedly extinguishing and reigniting the candle.
 火球鼠正通过反复点燃\n和熄灭蜡烛来自娱自乐。
@@ -4223,7 +4223,7 @@ Can't wait!
 我已经等不及了！
 Good fight. Was fun.
 GG，打得不错！
-if you ever fly to Alola during evening hours come see if I'm the one flying ya.
+If you ever fly to Alola during evening hours come see if I'm the one flying ya.
 如果你那天傍晚起飞去阿罗拉，\n可以去看看机长是不是我。
 Closed while Eko participates in the Makya Championship Tournament.
 艾克参加马凯亚竞技大会期间，\n道馆暂停营业。
@@ -4331,7 +4331,7 @@ You're a marvelous addition to the club, friend. Everyone here looks forward to 
 你已经是俱乐部里的蒂花之秀了，\n大家都期待着你的下一次表现。
 It seems like you've managed to best everyone here.
 你已经击败俱乐部的所有成员了。
-No doubt you are a talented trainer, and you've made this backyard as lively as its ever been.
+No doubt you are a talented trainer, and you've made this backyard as lively as it's ever been.
 毫无疑问，\n你肯定是一位天才训练家，\n你让这里重新恢复了以前的热闹。
 Thank you, friend.
 谢谢。
@@ -5590,7 +5590,7 @@ If you manage a 60% completion, I have more rewards for you.
 80%！干得漂亮，训练家。
 You might be one of the few to ever accomplish the feat of 100% completion.
 你是极少数能完成这些目标的人之一。
-Regardless of whether you do that, I have your 80% rewards for you.
+Regardless of whether you do that, I have your 80% reward for you.
 不管怎么样，\n我都会给你达成了\n80%图鉴的奖励。
 Well, if you manage to collect every Pokemon, LuxTech still has payment planned.
 好的，如果你能集齐所有的宝可梦，\n那么光华就会再次给予你奖励。
@@ -7176,7 +7176,7 @@ Well, I suppose that's three months of training down the drain.
 虽然这三个月的训练都白费了...
 Peace.
 谢天谢地。
-My mom told me not to come up here, but I really wanted to see what it was like to pee of the side of a mountain.
+My mom told me not to come up here, but I really wanted to see what it was like to pee off the side of a mountain.
 我妈妈不让我来这里，\n但我真想体验一下站在悬崖边，\n往下撒尿是什么感觉。
 I uh... don't need to pee anymore. For no real reason.
 我...再也不尿尿了...\n我是说在这种地方。
@@ -8235,7 +8235,7 @@ My power is growing! I feel like I can swim forever!
 我的力量在增长！我觉得我可以永远游下去
 One day, I'll be able to swim from one side of Makya to the other.
 总有一天，我能够从马凯亚的一边游到另一边。
-Just a hop and a skip to the north, a legendar Avatar has been causing a commotion.
+Just a hop and a skip to the north, a legendary Avatar has been causing a commotion.
 就在这里的北边，\n有一个传说化身引起了骚乱。
 How exciting!
 真令人兴奋！
@@ -8761,7 +8761,7 @@ Hey!
 嘿
 I'm bored and want to have fun. Let's play hide and seek!
 太无聊了，来跟我捉迷藏吧！
-I took some TM from my Pa when he wasn't looking.
+I took some TMs from my Pa when he wasn't looking.
 我趁爸爸不注意拿了一些技能机，
 If you can find me, I'll give the TMs to you.
 只要你能找到我，\n它们就是你的了。
@@ -9374,7 +9374,7 @@ I bet the Trainers at the Battle Plaza are itching to battle you.
 我相信战斗区的那些训练家，\n都会争着抢着跟你对决。
 Prizca's West Gym
 西宏礼道馆
-Leaders: Bence, Zoe
+Leaders: Bence, Zoé
 馆主：本斯，佐伊
 Two birds for every stone.
 一石二鸟。
@@ -10190,7 +10190,7 @@ Pokemon dancers! That's what we need!
 比如宝可梦中的舞蹈家！\n这就是我们想要的！
 You, Trainer. This has been a great talk, but now I need your help.
 哦，出色的训练家，\n我想你一定愿意帮助我的。
-I need to a dance session with a Pokemon with the Dancer ability.
+I need to do a dance session with a Pokemon with the Dancer ability.
 我需要一只\n拥有舞者特性的宝可梦，\n并和它相伴曼舞。
 If you can show me one, I'll make sure you're rewarded.
 你能给我找到合适的舞伴吗？\n我会给你丰厚的奖励。
@@ -10371,9 +10371,9 @@ We used to get more guests a looooong time ago, but we don't get them much now. 
 很久之前这里的客人还比较多，\n但现在已经没有往日的辉煌了，\n对投资者来说这里并不是啥好地方...
 Oh well! Can't save 'em all... just uhh... enjoy it while it lasts? Haha...
 好吧，这样也挺好...\n只是，呃...现在好好享受吧，哈哈！
-Anyways! We have a healing center! I'm qualified nurse, actually! Just don't have the typical uniform.
+Anyways! We have a healing center! I'm a qualified nurse, actually! Just don't have the typical uniform.
 起码，我们这里还有治疗中心！\n其实我也是个有执照的护士，\n只是没有制服罢了。
-We certainly like to battle here on this island! Just like uhhh... literally ever other person... So that's cool!
+We certainly like to battle here on this island! Just like uhhh... literally every other person... So that's cool!
 我们岛上的人也很喜欢对战，\n跟其它...地方的人一样，大概...\n毕竟这很酷！
 Anyways I'll be in that building behind me if you need me! Ummm, enjoy your stay and uhhh... talk with some of the locals!
 总之，如果你需要我的帮助，\n那就到后面的房子里找我，\n祝你在这里玩得开心...\n另外，多和当地人聊聊天吧！
@@ -10559,7 +10559,7 @@ I must treat the little hair I have left kindly.
 必须善待我所剩无几的头发。
 Mmm. Maybe I should buy a hat.
 嗯...或许我该买顶帽子。
-Hon hon! This island has exception beauty! It is a shame I will be the last visitor to see it.
+Hon hon! This island has exceptional beauty! It is a shame I will be the last visitor to see it.
 吼吼，这座岛真漂亮啊！\n很遗憾，我将是最后一个\n看到它的游客了。
 Oh, are you also foreign to here? Well, that ruins the title of "last visitor".
 哦？你也是外乡人啊？\n好吧，这下“最后的游客”\n就不是我了。
@@ -11564,7 +11564,7 @@ Of course, that was over 50 years ago!
 当然那已经是50多年前的事了
 It's been upgraded to a "College" since then.
 后来它被升级为大学了。
-I used to be Chasm, but now I work at the Capital Building.
+I used to be Chasm, but now I work at the Capitol Building.
 我曾经是裂隙队的一员，\n但现在就业于国会大厦。
 Got myself a nice office and everything. A pretty decent setup for being a former grunt.
 我有一个不错的办公室\n和一切我需要的设备。\n对于一名退伍士兵来说，\n这是一个相当不错的结局。
@@ -11759,7 +11759,7 @@ You're a good friend.
 [Map188]
 People are always doing cool things here!
 这里的人经常做些很酷的事情！
-This guy juggles and has his pokemon go BOOM!
+This guy juggles and has his Pokémon go BOOM!
 这个人一边跟他的宝可梦表演杂技，\n一边让它们爆炸
 EXPLOSIONS, EXPLOSIONS!
 你没听错，是爆炸！\n是艺术的巅峰呈现！
@@ -11837,7 +11837,7 @@ To be honest, I was nervous -- being the returning champion and all. I suppose t
 其实，我很紧张...\n因为你估计很快就能成为冠军，\n而我是去年得到的这个头衔。
 Ah, I recognize you. You're the new Trainer blazing through the Makyan Gym Challenge.
 啊，我认得你，\n你是最近在道馆挑战中\n声名鹊起的训练家。
-At the rate you're going, I have no doubt that you'll be attending this years tournament?
+At the rate you're going, I have no doubt that you'll be attending this year's tournament?
 按照你现在的进度，\n我确信你肯定来得及\n参加今年的竞技大会.
 To be honest, I'm a little nervous -- being the returning champion and all.
 老实说，你让我有点紧张\n - 毕竟我是卫冕冠军。
@@ -12183,7 +12183,7 @@ I'm the Ranger Captain assigned to the Barren Crater Station.
 我是被派往蛮荒火山的义军军官。
 We've been helping with the nightmare in Velenz so I figured I'd come here to learn what I can.
 我们一直在协助大家\n对付夜幽市的幽灵，\n所以我想来这里看看能学到什么。
-I've been gone for a while. I hope my unit taking advantage of my absence...
+I've been gone for a while. I hope my unit is taking advantage of my absence...
 希望离开的这段时间里，\n我的手下们能顶得住……
 I worry about my grandson.
 我很担心我的孙子。
@@ -12444,7 +12444,7 @@ You're just here for the badge right?
 你是来拿徽章的吧？
 Heh, poser.
 呵，装腔作势。
-I sparkled and shown... but you much moreso.
+I sparkled and shone... but you much moreso.
 我熠熠生辉...但你更加耀眼。
 A rare defeat.
 罕见的失败。
@@ -12675,7 +12675,7 @@ I gotta give her a call, she's probably away on a fishing trip.
 现在她估计在钓鱼，\n我可以帮忙打个电话。
 Training here really gets the stress out.
 在这里训练能减轻压力。
-Working at the Capital Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
+Working at the Capitol Building has been real rough lately, it's always "avatar crisis" this and "Makya's League" that.
 最近在国会的工作很不顺利，\n不是“化身”就是“马凯亚联盟”的。
 I mean, not everyone can set aside some time to train Pokemon, but can't they ask a friend or something?
 又不是每个人都能抽出时间\n训练自己的宝可梦，\n他们不能找些朋友帮忙吗？
@@ -12886,7 +12886,7 @@ Oh? Come here often?
 哦？你经常来这里吗？
 No? Oh..
 不是吗？哦...
-The Makyan Furret is bobbing along to the music. It seems to realy enjoy it!
+The Makyan Furret is bobbing along to the music. It seems to really enjoy it!
 这只大尾立正在跟着音乐摇摆，\n看起来它很享受！
 No
 不要
@@ -12894,9 +12894,9 @@ Yes
 要
 Don't know.
 不知道
-City Person.
+City person.
 城市人
-Nature Person.
+Nature person.
 自然人
 Not right now.
 现在不弄
@@ -12976,7 +12976,7 @@ Northern Trail
 山北小径
 Thank you so much!
 非常感谢！
-There's a creepy person in a Mask using a Regirock to scare people away from Sweetrock Gym!
+There's a creepy person in a mask using a Regirock to scare people away from Sweetrock Gym!
 最近有个戴面具的家伙，\n在用雷吉洛克恐吓人们，\n不许前往蜜岩道馆！
 I tried to escape through the tunnel here, but I forgot that it's blocked up by that stupid Virizion.
 我本打算通过这里的隧道过去，\n但被那只毕力吉翁吓到了。
@@ -12998,7 +12998,7 @@ Foolish! Get real!
 愚蠢！现实点吧！
 The berry plant is growing.
 树果还在生长中。
-I certain friend introduced me to cycling! You might know about her!
+A certain friend introduced me to cycling! You might know about her!
 我是在朋友的推荐下才开始骑车的，\n或许你也听说过她！
 You know Lainie right? We go on biking trips together.
 你知道兰妮对吧？\n我们曾一起骑车出去旅行。
@@ -13046,7 +13046,7 @@ I don't know either, but it's higher than 428 grams.
 我也不知道，反正多于428克。
 Yo, homeboss, we are Chara and Scilla's number one fans. We study all their techniques.
 哟，老大，我们是\n夏菈和希拉的头号粉丝，\n我们研究过她们的所有战术。
-Yo, homeboss, you have devestated our team. Our styles are cramped and yours is cramping. We take our departure.
+Yo, homeboss, you have devastated our team. Our styles are cramped and yours is cramping. We take our departure.
 哟，老大，你把我们都打趴下了，\n我们虽然很带劲但你更带劲！
 Yo, homeboss, our combined adoration was not enough to overcome your battle style. We admire your dedication to the craft.
 哟，老大，我们的崇拜\n加在一起也敌不过你的战斗风格啊，\n我们钦佩你的实力。
@@ -13439,7 +13439,7 @@ You see, I used to be obsessed with her. It’s why I’m here.
 所以，这就是我曾经迷恋她，\n但现在出现在这里的原因。
 I could be the one to track her down, lure her out like a timid beast. I just wanted to take care of her.
 我只是想照顾她，\n也愿意成为那个追踪她，\n像一只胆怯的野兽一样\n引诱她出来的人。
-And she was beautiful, of course. I’m not so high- minded as to discount her graceful splendor as part of my reasoning.
+And she was beautiful, of course. I’m not so high-minded as to discount her graceful splendor as part of my reasoning.
 当然，她也很美，\n我也不会高估自己的能力，\n不会将她优美的风度\n排除在我的行动之外。
 But then I arrived here... and I found you. My attention was caught immediately.
 但是当我来到这里…发现了你，\n我的注意力立刻被吸引了。
@@ -13571,7 +13571,7 @@ Heh, now I know how the grunts felt when Yezera whipped their butts.
 呵呵，现在我好像明白\n叶泽拉在面对那些士兵时的感受了。
 Leave me to the task of reviving my battlers.
 让我先复活我的战士吧。
-Vanya breaths out heavily.
+Vanya breathes out heavily.
 凡雅重重地出了口气。
 So, this is it. The very last badge. After this comes the championship, you know.
 就是它了，最后一枚徽章，\n之后就是竞技大会了。
@@ -13763,7 +13763,7 @@ That's a nice feeling, you know?
 你不觉得这种感觉很好吗？
 Sheeeeeeesh, let's get a looksie at this this little Trainer now!
 哦哦哦，快看这个小训练家！
-Well butter my butt and call me a biscuit, this here Trainers got us slapped silly!
+Well butter my butt and call me a biscuit, this here Trainer's got us slapped silly!
 好吧，你可以随便给我取外号，\n竟然被这样打败了！
 What a howdown from our Trainer friend here. Bet they got one o' those fancy candy thingamajigs.
 我们的训练家朋友真会说话，\n想必一定吃了不少糖吧。
@@ -14234,7 +14234,7 @@ Toodles. And don’t you dare follow – I’m playing hard to get, so respect i
 再见了，不要试图跟着我...\n请尊重我不想暴露身份的意愿，哈！
 More than a million years ago, a meteor struck this area of Makya, plowing through a large mountain to the west.
 百万年前，有颗陨石从天而降，\n撞上了马凯亚的一座大山。
-That large mountain become two smaller mountains, which we now know as Split Peaks.
+That large mountain became two smaller mountains, which we now know as Split Peaks.
 巨大的冲击力将其一分为二，\n我们现在管那里叫嵌口峰。
 The impact site itself would fill with water and become Sweetrock Harbor.
 而被直接撞击的地方，\n则逐渐被海水灌满，\n并变成了今天的蜜岩港。
@@ -15097,7 +15097,7 @@ Sure, I'll take the place.
 [Map232]
 I'm a biologist by profession, studying many of the fascinating Pokemon of the world.
 我是一名生物学家，\n研究世界上那些迷人的宝可梦。
-Lately I've found an interesting in xenobiology, studying the Pokemon from the stars.
+Lately I've found an interest in xenobiology, studying the Pokemon from the stars.
 最近我对异星生物产生了兴趣，\n想深入研究外星宝可梦的基因。
 Where could they have come from? What do Pokemon on those planets look like?
 它们到底是来自哪里的？\n那些星球上的宝可梦都长什么样子？
@@ -15132,7 +15132,7 @@ It also means we have to check the Pokeball donations to make sure they're empty
 所以我们必须检查\n通过募捐手段拿到的精灵球，\n确保它们是空的！
 We had some pretty uh....interesting scenarios before that policy.
 至于为什么需要这样做...\n呃...以前出现过一些...\n很有趣的情况。
-We've got too many Pokedolls and Smokeballs 'cause people keep donating them.
+We've got too many Poké Dolls and Smoke Balls 'cause people keep donating them.
 我们再募捐活动中，\n收到了太多的宝可梦玩偶和烟雾球。
 I don't think they realize that they're useless against avatars..
 我不觉得这些东西\n在对付化身时能起到作用...
@@ -15272,7 +15272,7 @@ Yo! Greetings from Unova.
 嗨！来自合众的问候！
 Want some Dream Balls?
 你想要一些梦境球吗？
-They're an Unovan invention that got improved by some scientists in Galar.
+They're a Unovan invention that got improved by some scientists in Galar.
 这是一种经过伽勒尔科学家改进，\n由我们合众发明的宝可梦球。
 I brought a ton of them with me since I figured I'd catch some Pokemon here.
 我带了很多过来，\n想多抓一些宝可梦。
@@ -15280,7 +15280,7 @@ I've caught all the Pokemon I need though, so I'm giving them out to Trainers wh
 现在我抓的数量已经够多了，\n剩下的球就给其他训练家吧。
 Anything to combat the avatar threat.
 为了对抗化身的威胁，\n我愿意做任何事情。
-Dunno if you can find dreamballs in Makya, haven't seen any in the shops.
+Dunno if you can find Dream Balls in Makya, haven't seen any in the shops.
 不知道马凯亚的商店\n卖不卖梦境球，\n起码我没有看到。
 Maybe a specialty shop, but not one in Prizca.
 或许哪里有专门的商店，\n起码宏礼市没有。
@@ -15722,7 +15722,7 @@ HELP ME, LAINIE! HELP ME!
 救命，兰妮！救救我！
 They can be bested, they can be bested, they can...
 它们可以被打败，\n它们可以被打败，它们可以…
-Bestie, it's time to invest in us stocks while they're low. We're accepting bestie buyouts!
+Bestie, it's time to invest in our stocks while they're low. We're accepting bestie buyouts!
 姐妹，你看今天的股市了吗，\n是时候投资股市了！
 Time to cash in on the best bonds... get my bestie estate in order...
 该把那些债券变现了...\n该整理好我姐妹的遗产了...
@@ -16219,7 +16219,7 @@ It may be cute, but I'm raising enough Pokemon back at the farm as is.
 它很可爱，\n但我已经养了太多宝可梦。
 That's why I'll offer 'em to you for $5000.
 所以我打算$5000卖给你。
-'s alright. I'll cultivate some patience.
+'S alright. I'll cultivate some patience.
 没关系，我会暂时照顾好它的。
 Hoooyaaaahhh!
 好耶！！！
@@ -16433,7 +16433,7 @@ We'll get started as soon as you sign.
 所有游客都必须\n签署免责和赔偿协议的哦。
 Very well, have a great day!
 好吧，祝你有愉快的一天！
-Wonderful! I'm so glad you've taken an interesting in our fine establishment.
+Wonderful! I'm so glad you've taken an interest in our fine establishment.
 很高兴你对我们的机构感兴趣。
 Follow me, if you would.
 请跟我来。
@@ -16463,7 +16463,7 @@ A sign reads "Take our Gym Challenge Tours! Sign up at the front desk."
 标志上写着：\n“道馆挑战请前台报名。”
 Can't you see I'm watchin' TV here? I--Oh, sorry, are you a gym challenger?
 没看到我在看电视吗？我…\n抱歉，你是来挑战道馆的吗？
-Most of my interuptions are shift managers givin' me a hard time for watching TV "on the clock."
+Most of my interruptions are shift managers givin' me a hard time for watching TV "on the clock."
 这里的值班经理经常就我\n“上班看电视”这件事进行刁难。
 Hard to get it through to them that they're not my boss. I'm an employee of the Makyan Government!
 他们把自己当做我的上司，\n但我是马凯亚政府的雇员！
@@ -16990,7 +16990,7 @@ You see a drawing of a Clefable in the bottom right corner, seperated from the r
 不知道谁在右下角画了一只皮可西，\n并用一个粉笔圈跟其它部分隔开。
 My big brother is the coolest. I want to do everything he does!
 我哥哥是最酷的，\n我也想做他做过的那些事！
-Childrens finger paintings.
+Children's finger paintings.
 孩子们的手指画。
 You notice a drawing of a container ship surrounded by rocks.
 其中一副画的是\n被岩石包围起来的集装箱货船。
@@ -17048,7 +17048,7 @@ Ok! I'll just insert this USB...
 可以了！希望你喜欢\n我们蜜岩糖果的产品！
 How do you feel about your field test of the upgraded EXP-EZ Dispenser?
 你觉得升级后的\n经验分配器怎么样？
-I expect that you think its amazing--most of our reviews say the same thing!
+I expect that you think it's amazing--most of our reviews say the same thing!
 我相信你会给我们一个好评，\n毕竟大家都是这样说的！
 A variety of pre-packaged candy products line the shelf.
 货架上摆放着各种\n预先包装好的糖果产品。
@@ -17499,7 +17499,7 @@ With how quiet the gym is, you think it'd stand out as rude if you tried to turn
 道馆里面非常安静，\n如果你打开它，立即就会引起注意，\n这十分不礼貌。
 Yo, champ in the making!
 嘿，未来的冠军！
-Samorn's might not look like it, but she was one of Team Chasm's top battlers.
+Samorn might not look like it, but she was one of Team Chasm's top battlers.
 赛蒙可能看起来很和善，\n但她以前可是裂隙队的王牌。
 Her specialties are Dragon and Bug-types.
 她所擅长的是龙和虫，\n两种仿佛很别扭但又很搭的属性。
@@ -17517,7 +17517,7 @@ Sorry, am I in your way?
 对不起，我挡到你了吗？
 Wait, of course I am, I'm a trainer!
 等下，挡你就对了，\n我是个训练家呀！
-I've been reading about ancient Makyan hero- trainers.
+I've been reading about ancient Makyan hero-trainers.
 我一直在阅读关于\n古代的马凯亚英雄训练家的事情。
 You might be even stronger than them!
 你可能比他们还要强大！
@@ -17627,7 +17627,7 @@ A fossil of an aquatic plant.
 一种水生植物化石。
 A plaque lists a very long scientific name for it. Your eyes glaze over as you try and read it.
 一块牌子上列出了很长的学名，\n瞪大了眼睛也很难读懂它。
-A simple plague simply stats "Armaldo Fossil"
+A simple plaque simply states "Armaldo Fossil"
 简单的困扰，简单的变化，\n“太古盔甲”
 The rest of the description plate probably hasn't been manufactured yet.
 下面留有一大片空白，\n或许准备在这里填上详细说明。
@@ -18421,7 +18421,7 @@ No one knows why, but they've been doing it ever since the cave-in eight years a
 没人知道具体原因，\n自从八年前那里塌方之后，\n就一直这样了。
 Maybe it's a memorial of sorts. It was a pretty bad day for everyone.
 或许是为了纪念\n那个对大家来说都很糟糕的日子。
-You find a PokeBall in the trash can!
+You find a Poké Ball in the trash can!
 你在垃圾桶里找到了一个宝可梦球！
 An empty trash can.
 垃圾桶空了。
@@ -20814,7 +20814,7 @@ With recent events...well, I just hope I'll still have a job.
 但现在...\n我只求自己能保住工作。
 I specialize in training Pokemon to surf.
 我专门教宝可梦学习冲浪。
-You might look over at Gogoat and think to yourself: "That can learn surf?"
+You might look over at Gogoat and think to yourself: "That can learn Surf?"
 你可能在看着我的坐骑山羊想：\n“它也能学会冲浪？”
 Yes, yes it can.
 没错，它能。
@@ -21880,7 +21880,7 @@ Whoa, Uxie! How did it get here?
 哇，由克希！它为什么在这里？
 It looks at you intently. Before it, your memories are laid bare.
 它紧紧地盯着你，\n在它眼中，你的记忆一览无余。
-It ponders for a moment. With a snap, conjures a Pokeball in its hands.
+It ponders for a moment. With a snap, it conjures a Pokeball in its hands.
 它思考了一会儿，\n啪的一声，变出了一个宝可梦球。
 Uxie wants to join your team. Will you have it?
 要带走由克希吗？
@@ -21928,7 +21928,7 @@ The inscription is illegible, but you can make out the symbols of a setting sun,
 The inscription is illegible, but you can make out the symbols of a field of crystals and a rising sun.
 碑文有些难以辨认，\n但可以辨认出水晶和旭日。
 [Map379]
-Legends say that a crystals here can link us to the future.
+Legends say that the crystals here can link us to the future.
 传说，这里的水晶可以\n让我们与未来联系在一起。
 Well I'm going to go eat a bowl of ramen while singing old opera music! I want to see the crystals link me to THAT!
 好吧，我要去吃拉面了，\n还要一边唱着古老的歌剧，\n一边把这里的水晶\n让我想到的东西记录下来！
@@ -22037,7 +22037,7 @@ It seems willing to be caught by you.
 它似乎愿意跟你走。
 Tapu Koko gives a cheeky nod.
 卡璞·鸣鸣点了点头。
-After a short dance of excitement, it enters a PokeBall.
+After a short dance of excitement, it enters a Poké Ball.
 它兴奋地短暂舞蹈了一会儿，\n便钻进了宝可梦球里。
 Leave Tapu Koko for now.
 暂时先不带它走
@@ -22050,7 +22050,7 @@ It seems willing to be caught by you.
 它似乎愿意跟你走。
 It briefly hides in its shell, seemingly embarassed.
 它好像感到有些尴尬，\n躲进了自己的壳里。
-It bops you on the nose playfully, then enters a PokeBall.
+It bops you on the nose playfully, then enters a Poké Ball.
 它俏皮地拍了拍你的鼻子，\n便钻进了宝可梦球里。
 Leave Tapu Lele for now.
 暂时先不带它走
@@ -22063,7 +22063,7 @@ It seems willing to be caught by you.
 它似乎愿意跟你走。
 Tapu Bulu merely returns to its stoic stance.
 卡璞·哞哞恢复了拘谨的样子。
-With a nod of the head, it enters a PokeBall.
+With a nod of the head, it enters a Poké Ball.
 它点了点头，\n便钻进了宝可梦球里。
 Leave Tapu Bulu for now.
 暂时先不带它走
@@ -22076,7 +22076,7 @@ It seems willing to be caught by you.
 它似乎愿意跟你走。
 Tapu Fini closes its eyes, then shakes its head.
 卡璞·鳍鳍闭上了眼睛，\n然后摇了摇头。
-It brings its webbed hands together in satisfaction, then enters a PokeBall.
+It brings its webbed hands together in satisfaction, then enters a Poké Ball.
 它满意地合拢了手蹼，\n钻进了宝可梦球里。
 Leave Tapu Fini for now.
 暂时先不带它走
@@ -22425,7 +22425,7 @@ Thanks again for that beautiful coffee you found for me.
 谢谢你给我的咖啡。
 Hello, Trainer. It seems we meet at the end of my long and painful journey with hubris.
 你好，训练家，\n看起来我们在旅程的终点见面了。
-I thought, with the power of science, that I could end the eons long rivalry between Zangoose and Seviper.
+I thought, with the power of science, that I could end the eons-long rivalry between Zangoose and Seviper.
 我曾觉得凭借着科技的力量，\n有办法结束猫鼬斩\n和饭匙蛇之间长久以来的恩怨。
 Social engineering, genetic modification, cognitive behavioral therapy, lo-fi hip hop music to study and relax to...
 比如说社会工程、基因改造、\n认知行为疗法、低保真的嘻哈音乐，\n或者说其他什么放松的办法...
@@ -22478,7 +22478,7 @@ Oh dearie, you look like a strong trainer! Perhaps you can satisfy a bucket list
 你看起来是一个很厉害的训练家，\n或许你能帮我完成愿望？
 I've always wanted to see a legendary Pokemon. Not everyone gets to see one, you know.
 我一直希望此生能见到一次\n传说中的宝可梦，\n毕竟不是每个人都能遇到它们。
-If you happen to have one in your party, would you mind showing it to me? I'll make sure you get something out of it as well.
+If you happen to have one, would you mind showing it to me? I'll make sure you get something out of it as well.
 如果你正好有一只，\n可以给我看看吗？\n我保证你也会得到很不错的东西。
 Oh dearie, your Pokemon are nice! Just... not legendary.
 啊，这只宝可梦很不错！\n但...它并不是传说中宝可梦。
@@ -22579,7 +22579,7 @@ I... It was to do something. To be ok.
 我...需要先做点什么，\n让自己好受起来。
 Team Chasm was doing me well but... those things don't last forever, you know.
 裂隙队对我们很好，但是...\n我不认为这个任务能完成。
-I just wanted a way to flat on my feet.
+I just wanted a way to land flat on my feet.
 我现在只想让我的双脚站稳。
 Hoopa. I was told it had the power to grant wishes. I just... didn't know there was a bit more to the story.
 胡帕。我听说它有这样的能力...\n但我就只知道这些了。
@@ -22587,7 +22587,7 @@ What? I don't know... I don't know what happened to me.
 什么？我不知道...\n我不知道我怎么了。
 I... I don't know what happened. It couldn't have been good. I... need some time.
 我...我不知道究竟发生了什么，\n反正不是什么好事。\n我...需要点时间。
-I'm still confused, but I can tell some time has past. Things feel... different now.
+I'm still confused, but I can tell some time has passed. Things feel... different now.
 我现在仍然一头雾水，\n但能感觉到时间已经过去了很久。\n感觉现在...很不一样。
 I think... I think I'll be ok. I'm going to see what's out there for me.
 我...我应该没什么事，\n我得去看看都发生了什么。
@@ -23007,9 +23007,9 @@ Leave Mesprit.
 [Map420]
 Whoa, Azelf! How did it get here?
 哇，亚克诺姆！它为什么在这里？
-The only thing you can glean from it is the self- assured smirk on it's face.
+The only thing you can glean from it is the self-assured smirk on it's face.
 你唯一能从它脸上看到的，\n就是那自信满满的笑容。
-It leans back in the air, kicking up it's feet. It points towards your hand.
+It leans back in the air, kicking up its feet. It points towards your hand.
 它在空中后仰翻腾，\n指向了你的双手。
 You were... holding a Pokeball? You look back up to see Azelf shrugging at you, still sporting the same grin.
 你...正拿着一个宝可梦球？\n你抬起头，看到亚克诺姆耸耸肩，\n脸上还挂着同样的笑容。
@@ -23151,7 +23151,7 @@ It was a pretty sick experience, all things considered.
 [Map426]
 You want power enlargement pills?
 你需要增效药丸吗？
-There has to be a batter way to run this business...
+There has to be a better way to run this business...
 一定有开张的一天...
 Not interested in my pills?
 对我的药丸不感兴趣？
@@ -23608,7 +23608,7 @@ A dusty, ancient computer terminal.
 屏幕上大大的字写着：\n早期项目档案。
 Below that, it prompts you to enter a password.
 下面提示需要输入密码。
-A dusty, old logbook. "Archive Catalogue" is written on front in black marker.
+A dusty, old logbook. "Archive Catalogue" is written on the front in black marker.
 一本满是灰尘的旧日志，\n上面有黑色记号笔写的“档案目录”。
 As you approach, you overhear the men talking back and forth, complaining about the cold and the difficulty of their task.
 当你走近时，\n无意中听到了有说话的声音，\n好像在抱怨\n这里的寒冷和任务的艰巨。
@@ -38645,7 +38645,7 @@ The user summons bugs to swarm the target, trapping and damaging it for three tu
 在三回合内死缠烂打地进行攻击。在此期 间对手将无法逃走。
 The user calls its underlings to shield it, raising its defensive stats by two steps. Always goes first.
 召唤手下，让其附在自己的身体上。可以 大幅度提高自己的防御，必定先出手。
-The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.
+The user calls out its underlings to heal it. The user regains 60% of its max HP.
 召唤手下疗伤。回复自己最大ＨＰ的3/5。
 The user raises their Sp. Atk and Sp. Def by two steps, and Speed by one step.
 轻巧地跳起神秘而又美丽的舞蹈。大幅度 提高自己的特攻、特防，并且提高自身速 度。
@@ -40545,7 +40545,7 @@ The user attacks and steals items from all near foes. Items stolen from wild Pok
 在攻击时偷取所有临近对手的道具，如果 对方是野生宝可梦，则道具可以保留下来 。
 The user summons bugs to terrorize the target, trapping and damaging it for three turns.
 召唤虫子将对手包围起来，对方无法进行 替换，且持续受到三回合伤害。
-The user infects the target with a touch and also destroys any Herbs its holding.
+The user infects the target with a touch and also destroys any Herbs it's holding.
 在触碰的过程中感染对方，并摧毁其身上 携带的香草类道具。
 The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.
 摆脱尘世的牵绊进行攻击，如果招式发动 时没有携带道具，则威力翻倍。
@@ -57622,7 +57622,7 @@ Position {1},{2} is empty...
 Position {1},{2} is empty...
 You can't release an Egg.
 You can't release an Egg.
-Are you sure you want to release this pokemon?
+Are you sure you want to release this Pokémon?
 Are you sure you want to release this pokemon?
 They will be gone forever. Are you sure?
 They will be gone forever. Are you sure?
@@ -59612,7 +59612,7 @@ The {1} is holding an {2}!
 {1} 带着一个 {2}!
 But it mysteriously crumbled to ash...
 但它却变成灰烬了...
-You register {1} as caught in the Pokédex.
+You register {1} as caught in the MasterDex.
 你将 {1} 登记在索引中
 Would you like to give a nickname to {1}?
 要给{1}取一个昵称吗?
@@ -62812,7 +62812,7 @@ You've earned a reward!
 You've earned a reward!
 Unfortunately, that's not enough to earn a reward.
 Unfortunately, that's not enough to earn a reward.
-You've ran out of turns!
+You've run out of turns!
 You've ran out of turns!
 You have #{$catching_minigame.turnsLeft} turns left in the contest.
 You have #{$catching_minigame.turnsLeft} turns left in the contest.
@@ -63404,7 +63404,7 @@ Trial complete.
 {1} 站在原地不动 还在不住地抽搐
 {1} looks dazed and confused.
 {1} 一脸茫然和困惑
-{1} energy is slowly being leeched away.
+{1}'s energy is slowly being leeched away.
 {1} 体内的能量正在流失
 {1} is touching some kind of switch.
 {1} 好像在摸什么开关
@@ -65934,7 +65934,7 @@ You look ready to help me find a Knight Helmet. Don't ask why I need it.
 你帮我准备一顶骑士头盔吧， 别问我为什么需要。
 So, cough it up.
 所以，那就这样吧。
-My safety comes first. En guard!
+My safety comes first. En garde!
 安全第一，守卫！
 Don't you know who I am? I can't keep risking my head every day!
 你不知道我是谁？ 我不能每天都拿自己的脑袋冒险！

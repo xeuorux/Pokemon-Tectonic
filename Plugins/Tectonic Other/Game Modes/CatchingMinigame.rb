@@ -175,7 +175,7 @@ class CatchingMinigameBattle < PokeBattle_Battle
     @scene.updateTurnCountReminder($catching_minigame.turnsLeft)
     super
     if $catching_minigame.turnsLeft == 0
-      pbMessage(_INTL("You've ran out of turns!"))
+      pbMessage(_INTL("You've run out of turns!"))
       @decision = 3
     else
       #pbMessage(_INTL("You have #{$catching_minigame.turnsLeft} turns left in the contest."))

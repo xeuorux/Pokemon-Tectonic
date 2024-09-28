@@ -501,7 +501,7 @@ class PokemonStorageScreen
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
         end
-        command = pbShowCommands(_INTL("Are you sure you want to release this pokemon?"), [_INTL("No"), _INTL("Yes")])
+        command = pbShowCommands(_INTL("Are you sure you want to release this Pokémon?"), [_INTL("No"), _INTL("Yes")])
         if command == 1
             command = pbShowCommands(_INTL("They will be gone forever. Are you sure?"), [_INTL("No"), _INTL("Yes")])
             if command == 1

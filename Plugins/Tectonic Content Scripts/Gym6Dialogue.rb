@@ -43,7 +43,7 @@ def needyTrainerKnightHelmet
         _INTL("I'm skilled in everything. That includes battling!"),
         _INTL("You look ready to help me find a Knight Helmet. Don't ask why I need it."),
         _INTL("So, cough it up."),
-        _INTL("My safety comes first. En guard!"),
+        _INTL("My safety comes first. En garde!"),
         _INTL("Don't you know who I am? I can't keep risking my head every day!"),
         _INTL("Tch, don't have one? They sell them in the castle courtyard. Diego's something or another."))
 end

@@ -76,7 +76,7 @@ Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   when :LEECHED
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, event.x, event.y)
     pbWait(72)
-    pbMessage(_INTL("{1} energy is slowly being leeched away.",pkmn.name))
+    pbMessage(_INTL("{1}'s energy is slowly being leeched away.",pkmn.name))
   end
   next true if pkmn.status != :NONE
 }

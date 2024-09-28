@@ -2974,7 +2974,7 @@ TotalPP = 10
 Target = User
 FunctionCode = HealUserThreeFifthsOfTotalHP
 Flags = CanSnatch
-Description = The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.
+Description = The user calls out its underlings to heal it. The user regains 60% of its max HP.
 #-------------------------------
 [INFESTATION]
 Name = Infestation
