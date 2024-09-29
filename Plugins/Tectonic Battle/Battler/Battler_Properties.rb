@@ -6,7 +6,7 @@ class PokeBattle_Battler
     attr_accessor  :empoweredTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
-    attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUSedCategory
+    attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUsedCategory
     attr_accessor  :lastRoundMove, :lastRoundMoveType, :lastRoundMoveCategory
     attr_accessor  :lastRegularMoveUsed, :lastRegularMoveTarget, :usedDamagingMove
     attr_accessor  :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove
