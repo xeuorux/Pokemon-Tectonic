@@ -672,7 +672,7 @@ class PokeBattle_Battler
             increment = statArray[i * 2 + 1]
             next unless pbCanRaiseStatStep?(stat, user, move, false, false)
             increment = raiseStatStepEX(stat, increment, user: user, showMessages: false, showAnim: false)
-            next if increment <= 0
+            next if increment == false
             if endResult.key?(increment)
                 endResult[increment].push(stat)
             else
