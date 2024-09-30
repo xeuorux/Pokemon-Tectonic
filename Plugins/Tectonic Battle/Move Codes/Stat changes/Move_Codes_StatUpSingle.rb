@@ -424,15 +424,15 @@ end
 class PokeBattle_Move_CategoryDependsOnHigherDamageRaisesUserOtherAttackingStat < PokeBattle_Move
     def initialize(battle, move)
         super
-        @calculated_category = 1
+        @category_override = 1
     end
 
-    def calculateCategory(user, targets)
+    def calculateCategoryOverride(user, targets)
         return selectBestCategory(user, targets[0])
     end
 
     def pbAdditionalEffect(user, _target)
-        if @calculated_category == 0
+        if @category_override == 0
             return user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 1, move: self)
         else
             return user.tryRaiseStat(:ATTACK, user, increment: 1, move: self)

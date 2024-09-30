@@ -31,10 +31,17 @@ class PokeBattle_Move
         end
     end
 
-    def calculateCategory(user, targets)
+    def calculateUsageOverrides(user, targets)
+        # Calculate the move's category during this usage
+        @category_override = calculateCategoryOverride(user, targets)
+        # Calculate the move's type during this usage
+        @calcType = pbCalcType(user)
+    end
+
+    def calculateCategoryOverride(user, targets)
         return selectBestCategory(user, targets[0]) if punchingMove? && user.hasActiveAbility?(:MYSTICFIST)
         return selectBestCategory(user) if adaptiveMove?
-        return -1
+        return nil
     end
 
     def resolutionChoice(user); end
@@ -62,13 +69,13 @@ class PokeBattle_Move
         @battle.pbDisplay(_INTL("{1} unleashed its full force Z-Move!", user.pbThis))
     end
 
-    def displayDamagingMoveMessages(user, calcType, calcCategory, targets = [])
+    def displayDamagingMoveMessages(user, move, targets = [])
         if $PokemonSystem.move_clarifying_messages == 0
             displayBPAdjustmentMessage(user, targets) unless multiHitMove?
-            displayCategoryChangeMessage(calcCategory) unless calcCategory == -1
+            displayCategoryChangeMessage(move.category_override) if move.category_override
         end
         # Display messages letting the player know that weather is debuffing a move (if it is)
-        displayWeatherDebuffMessages(user, calcType) if $PokemonSystem.weather_messages == 0
+        displayWeatherDebuffMessages(user, move.calcType) if $PokemonSystem.weather_messages == 0
     end
 
     def displayBPAdjustmentMessage(user, targets)

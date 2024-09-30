@@ -332,7 +332,7 @@ class PokeBattle_Battle
         return false unless predictedAction[0] == :UseMove
         return false unless predictedAction[2].damagingMove?(true)
         return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
-        return false if categoryOnly != -1 && predictedAction[2].calculated_category != categoryOnly
+        return false if categoryOnly != -1 && predictedAction[2].category_override != categoryOnly
         return true
     end
 

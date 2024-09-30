@@ -16,10 +16,10 @@ end
 class PokeBattle_Move_CategoryDependsOnHigherDamagePoisonTarget < PokeBattle_Move_Poison
     def initialize(battle, move)
         super
-        @calculated_category = 1
+        @category_override = 1
     end
 
-    def calculateCategory(user, targets)
+    def calculateCategoryOverride(user, targets)
         return selectBestCategory(user, targets[0])
     end
 end
