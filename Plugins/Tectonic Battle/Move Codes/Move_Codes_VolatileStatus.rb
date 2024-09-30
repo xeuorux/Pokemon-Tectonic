@@ -111,8 +111,8 @@ class PokeBattle_Move_DisableTargetLastMoveUsedLowerTargetRelevantStat4 < PokeBa
     end
 
     def getDebuffingStat(battler)
-        return :SPEED unless battler.lastRegularMoveUsed
-        case GameData::Move.get(battler.lastRegularMoveUsed).category
+        return :SPEED unless battler.lastMoveUsedCategory
+        case battler.lastMoveUsedCategory
         when 0
             return :ATTACK
         when 1
