@@ -8050,7 +8050,7 @@ Pokemon = BEWEAR,70
 #-------------------------------
 [SPIRITGUARDIAN2,Sonya,1]
 ExtendsVersion = 0
-Policies = CURSE_NO_MERCY_2
+Policies = CURSE_NO_MERCY_4
 Pokemon = MMUSHARNA,70
     Moves = CALMMIND,SLACKOFF,SCOUR,PSYCHOBOOST
     AbilityIndex = 1 # Fatigued
