@@ -94,11 +94,24 @@ end
 
 def avatarSpawnsIn(event_id)
 	pbSEPlay("Avatar summoning")
-	avatarEvent = get_event(event_id)
-	for i in 20..180 do
-		avatarEvent.opacity = i
-		pbWait(1)
-	end
+    if event_id.is_a?(Array)
+        avatarEvents = []
+        event_id.each do |id|
+            avatarEvents.push(get_event(id))
+        end
+        for i in 20..180 do
+            avatarEvents.each do |event|
+                event.opacity = i
+            end
+            pbWait(1)
+        end
+	else
+        avatarEvent = get_event(event_id)
+        for i in 20..180 do
+            avatarEvent.opacity = i
+            pbWait(1)
+        end
+    end
 end
 
 def thunderClap

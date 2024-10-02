@@ -7,10 +7,10 @@ end
 def unlockRaggedJournalPage(pageNumber)
     unless pbHasItem?(:RAGGEDJOURNAL)
         pbReceiveItem(:RAGGEDJOURNAL)
-        pbMessage(_INTL("Looking inside the journal, you see that the only page that hasn't fallen out is page {1}.",pageNumber))
+        pbMessage(_INTL("Looking inside the journal, you see that the only page that hasn't fallen out is page {1}.",pageNumber+1))
         $PokemonGlobal.ragged_journal_pages_collected = []
     else
-        pbMessage(_INTL("\\i[RAGGEDJOURNAL]You've found page {1} of the {2}!",pageNumber,getItemName(:RAGGEDJOURNAL)))
+        pbMessage(_INTL("\\i[RAGGEDJOURNAL]You've found page {1} of the {2}!",pageNumber+1,getItemName(:RAGGEDJOURNAL)))
         pbMessage(_INTL("You slot the page into its proper place in the journal."))
     end
 
@@ -22,23 +22,46 @@ def unlockRaggedJournalPage(pageNumber)
 end
 
 def readRaggedJournalPage(pageNumber)
+    pageTitle = _INTL("Page {1}",pageNumber+1)
+    text = getRaggedJournalPageText(pageNumber)
+
+    viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
+    viewport.z=99999
+    pageNumberWindow = Window_UnformattedTextPokemon.newWithSize(pageTitle,
+      0, 0, 300, 64, viewport)
+    textWindow = Window_UnformattedTextPokemon.newWithSize(text,
+      0, 64, Graphics.width, Graphics.height-64, viewport)
+    loop do
+        Graphics.update
+        Input.update
+        pageNumberWindow.update
+        textWindow.update
+        if Input.trigger?(Input::BACK)
+            break
+        end
+    end
+    pageNumberWindow.dispose
+    textWindow.dispose
+end
+
+def getRaggedJournalPageText(pageNumber)
     case pageNumber
+    when 0
+        return _INTL("TO DO 1")
     when 1
-        pbMessage(_INTL("TO DO 1"))
+        return _INTL("TO DO 2")
     when 2
-        pbMessage(_INTL("TO DO 2"))
+        return _INTL("TO DO 3")
     when 3
-        pbMessage(_INTL("TO DO 3"))
+        return _INTL("TO DO 4")
     when 4
-        pbMessage(_INTL("TO DO 4"))
+        return _INTL("TO DO 5")
     when 5
-        pbMessage(_INTL("TO DO 5"))
+        return _INTL("TO DO 6")
     when 6
-        pbMessage(_INTL("TO DO 6"))
+        return _INTL("TO DO 7")
     when 7
-        pbMessage(_INTL("TO DO 7"))
-    when 8
-        pbMessage(_INTL("TO DO 8"))
+        return _INTL("TO DO 8")
     end
 end
 
@@ -46,7 +69,7 @@ def openRaggedJournal
     choices = []
     $PokemonGlobal.ragged_journal_pages_collected.each_with_index do |pageValue, index|
         next unless pageValue
-        choices.push(_INTL("Page {1}",index))
+        choices.push(_INTL("Page {1}",index+1))
     end
     choices.push(_INTL("Cancel"))
     pageChosen = pbMessage(_INTL("Which page would you like to read?"),choices,choices.length)
