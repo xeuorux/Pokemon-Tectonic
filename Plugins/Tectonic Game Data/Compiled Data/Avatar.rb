@@ -277,7 +277,7 @@ module Compiler
         GameData::Avatar.save
         Graphics.update
 
-        #createBossSpritesAllSpeciesForms(false)
+        createBossSpritesAllSpeciesForms(false)
     end
 
     def pbEachAvatarFileSection(f)
