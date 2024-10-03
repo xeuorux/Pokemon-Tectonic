@@ -2950,3 +2950,30 @@ Price = 0
 FieldUse = Direct
 Flags = KeyItem
 Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.
+#-------------------------------
+[DEADSKYSLIVER]
+Name = Dead Sky Sliver
+NamePlural = Dead Sky Slivers
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A dark sliver of something that hurts to look at. It bears an inscription.
+#-------------------------------
+[TIMELOSTALABASTER]
+Name = Timelost Alabaster
+NamePlural = Timelost Alabasters
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = Inscribed, delicate pale stone. It’s always been here, but it hasn’t always always been here.
+#-------------------------------
+[WRETCHEDWHITEWING]
+Name = Wretched Whitewing
+NamePlural = Wretched Whitewings
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A radiant wing. It radiates misery, but you feel peaceful holding it. Returning home, returning home...
