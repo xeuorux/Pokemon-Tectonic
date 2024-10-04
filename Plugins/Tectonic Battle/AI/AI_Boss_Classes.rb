@@ -226,13 +226,81 @@ end
 ##################################################
 # Calyrex and Mounts
 ##################################################
-class PokeBattle_AI_SPECTRIER < PokeBattle_AI_Boss
+def calyrexArrives(user, battle, version = 0)
+    battle.pbDisplayBossNarration(_INTL("Except, what's this!?"))
+    battle.pbDisplayBossNarration(_INTL("The Avatar of Calyrex has arrived to save its steed!"))
+    
+    newAvatar = generateAvatarPokemon(:CALYREX,70,version)
+    
+    sideIndex = user.index % 2
+    partyIndex = battle.pbParty(sideIndex).length
+    battle.pbParty(sideIndex)[partyIndex] = newAvatar
+    user.pbInitPokemon(newAvatar, sideIndex)
+    battle.scene.pbChangePokemon(user, newAvatar)
+    battle.scene.reviveBattler(user.index)
+    battle.remakeDataBoxes
+
+    user.pbEffectsOnSwitchIn(true)
 end
 
 class PokeBattle_AI_GLASTRIER < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:STAMPDOWN, {
+            :condition => proc { |_move, user, target, _battle|
+                next target.hasRaisedStatSteps?
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} reers up its hooves above {2}!",user.pbThis,targets[0].pbThis)
+            },
+        })
+        @requiredMoves.push(:CHILL)
+
+        @onDestroyed.push( proc { |user, battle|
+            calyrexArrives(user, battle, 0) unless user.hasAlly?
+        })
+    end
+end
+
+class PokeBattle_AI_SPECTRIER < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @requiredMoves.push(:DISABLE)
+
+        @onDestroyed.push( proc { |user, battle|
+            calyrexArrives(user, battle, 1) unless user.hasAlly?
+        })
+    end
 end
 
 class PokeBattle_AI_CALYREX < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:STORMDRIVE, {
+            :condition => proc { |_move, user, _target, battle|
+                next battle.rainy?
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("{1} raises a hand towards the thunderclouds.",user.pbThis(true))
+            },
+        })
+        secondMoveEveryOtherTurn(:WORKUP)
+    end
+end
+
+class PokeBattle_AI_CALYREX_1 < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:SOLARBEAM, {
+            :condition => proc { |_move, user, _target, battle|
+                next battle.sunny?
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("{1} opens its bulb towards the shining sun.",user.pbThis(true))
+            },
+        })
+        secondMoveEveryOtherTurn(:SLACKOFF)
+    end
 end
 
 ##################################################
