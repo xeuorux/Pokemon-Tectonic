@@ -149,6 +149,15 @@ def rejectTooFewPokemon(dialogue,movePlayer=true)
 	end
 end
 
+def rejectTooFewPokemonTriple(dialogue,movePlayer=true)
+	if $Trainer.able_pokemon_count <= 2
+		dialogue = "Unable to start triple battle without 3 able Pokemon." unless dialogue
+		pbMessage(dialogue)
+		forcePlayerBackwards if movePlayer
+		command_end # Exit event processing
+	end
+end
+
 def forcePlayerBackwards
 	new_move_route = RPG::MoveRoute.new
 	new_move_route.repeat    = false
