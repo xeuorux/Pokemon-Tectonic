@@ -68,17 +68,44 @@ class PokeBattle_AI_COBALION < PokeBattle_AI_Boss
     end
 end
 
-class POKEBATTLE_AI_TERRAKION < PokeBattle_AI_Boss
+class PokeBattle_AI_TERRAKION < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @warnedIFFMove.add(:LATCHON, {
             :condition => proc { |_move, _user, target, battle|
                 next target.fullHealth?
             },
-            :warning => proc { |_move, user, _targets, _battle|
-                _INTL("{1} gathers up a swarm!",user.pbThis)
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} notices how healthy {2} is!",user.pbThis,targets[0].pbThis(true))
             },
         })
+    end
+end
+
+class PokeBattle_AI_VIRIZION < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:STRENGTHSAP, {
+            :condition => proc { |_move, _user, target, battle|
+                next user.firstTurnThisRound? && battle.turnCount % 2 == 1
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} is jealous of {2}'s strength!",user.pbThis,targets[0].pbThis(true))
+            },
+        })
+
+        @warnedIFFMove.add(:MINDSAP, {
+            :condition => proc { |_move, _user, target, battle|
+                next user.firstTurnThisRound? && battle.turnCount % 2 == 1
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} is jealous of {2}'s mind!",user.pbThis,targets[0].pbThis(true))
+            },
+        })
+
+        @scoreMove[:BLADESOFGRASS] = proc { |move, user, target, battle|
+            next 200
+        }
     end
 end
 
