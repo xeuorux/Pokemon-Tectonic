@@ -131,7 +131,6 @@ class PokeBattle_Battle
             echoln("ERROR: Unable to change moveset.") if movesetToAssign.nil?
             b.assignMoveset(movesetToAssign)
             b.empoweredTimer = 0
-            b.indicesTargetedLastRound = []
             @scene.pbRefresh
 
             # Reset fear

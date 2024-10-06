@@ -2,9 +2,9 @@ class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
     attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :moves, :turnCount
-    attr_accessor  :gender, :iv, :steps, :captured, :effects, :boss, :avatarPhase
-    attr_accessor  :empoweredTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
-:dmgResist
+    attr_accessor  :gender, :iv, :steps, :captured, :effects
+
+    # Trackers
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
     attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUsedCategory
     attr_accessor  :lastRoundMove, :lastRoundMoveType, :lastRoundMoveCategory
@@ -12,6 +12,12 @@ class PokeBattle_Battler
     attr_accessor  :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove
     attr_accessor  :tookDamage, :tookPhysicalHit, :tookSpecialHit, :tookPhysicalHitLastRound, :tookSpecialHitLastRound
     attr_accessor :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
+
+    # Avatar stuff
+    attr_accessor  :boss, :avatarPhase
+    attr_accessor  :indicesTargetedThisRound, :indicesTargetedLastRound, :indicesTargetedRoundBeforeLast
+    attr_accessor  :empoweredTimer, :dmgMult, :dmgResist
+
     # The Pokémon and its properties
     attr_reader :pokemon
     attr_reader :fainted # Boolean to mark whether self has fainted properly

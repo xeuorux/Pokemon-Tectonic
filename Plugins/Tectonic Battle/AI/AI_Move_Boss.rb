@@ -228,7 +228,10 @@ class PokeBattle_AI
                 score = pbGetMoveScoreBoss(move, user, b, 1, bossAI, targetWeak)
                 score = score.round
                 if score > 0
-                    score += 50 if !user.indicesTargetedLastRound.include?(b.index) && AVATARS_PREFER_OTHER_SLOT_BETWEEN_TURNS
+                    if AVATARS_PREFER_DIFFERENT_SLOTS_EACH_TURN
+                        score += 50 unless user.indicesTargetedLastRound.include?(b.index)
+                        score += 30 unless user.indicesTargetedRoundBeforeLast.include?(b.index)
+                    end
                     scoresAndTargets.push([score, b.index])
                 else
                     PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) scores #{move.name} a 0.")
@@ -265,7 +268,7 @@ class PokeBattle_AI
 
             # Value moves that have a different targeting size than last turn
             if AVATARS_DIVERSIFY_TARGETING_BETWEEN_ROUNDS && numTargets != 0 && numTargets != targetingSizeLastRound
-                choice[1] += 30
+                choice[1] += 80
             end
 
             # Value moves that are STAB on the first turn of the battle or of a phase
@@ -322,6 +325,8 @@ class PokeBattle_AI
 
                 score += 10 if willFaint
             else
+                score = bossAI.scoreMove(move, user, target, @battle)
+
                 hpMod = AVATAR_DAMAGE_SCORE_MAX * target.hp.to_f / target.totalhp.to_f
                 hpMod = AVATAR_DAMAGE_SCORE_MAX - hpMod if targetWeak
                 score += hpMod

@@ -119,6 +119,20 @@ class PokeBattle_AI_Boss
         end
     end
 
+    def scoreMove(move, user, target, battle)
+        if @scoreMove.key?(move.id)
+            moveScoreProc = @scoreMove[move.id]
+            return moveScoreProc.call(move, user, target, battle)
+        else
+            @scoreMoves.each do |moveScoreProc|
+                score = moveScoreProc.call(move, user, target, battle)
+                next if score.nil?
+                return score
+            end
+        end
+        return 0
+    end
+
     def rejectMoveForTiming?(move, user, _battle)
         if user.firstTurnThisRound?
             return true if @nonFirstTurnOnly.include?(move.id)

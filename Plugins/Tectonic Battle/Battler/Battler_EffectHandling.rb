@@ -90,6 +90,7 @@ class PokeBattle_Battler
         @lastRoundMoveFailed                  = @lastMoveFailed
         @lastAttacker.clear
         @lastFoeAttacker.clear
+        @indicesTargetedRoundBeforeLast = @indicesTargetedLastRound.clone
         @indicesTargetedLastRound = @indicesTargetedThisRound.clone
         @indicesTargetedThisRound.clear
         @empoweredTimer += 1 if boss?

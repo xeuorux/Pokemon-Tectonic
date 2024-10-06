@@ -56,12 +56,15 @@ class PokeBattle_Battler
         @pokemonIndex   = -1
         @participants   = []
         @moves          = []
+
+        # Boss stuff
         @boss	= false
         @bossStatus	= :NONE
         @bossStatusCount = 0
         @empowered	= false
         @empoweredTimer	= 0
         @extraMovesPerTurn	= 0
+        @indicesTargetedRoundBeforeLast = []
         @indicesTargetedLastRound	= []
         @indicesTargetedThisRound	= []
         @dmgMult = 1
@@ -253,9 +256,12 @@ class PokeBattle_Battler
         @lastRoundMoveFailed   = false
         @movesUsed             = []
         @turnCount             = 0
+
+        # Boss stuff
         @avatarPhase           = 1
         @empoweredTimer		   = 0
         @extraMovesPerTurn = 0
+        @indicesTargetedRoundBeforeLast = []
         @indicesTargetedLastRound = []
         @indicesTargetedThisRound = []
     end

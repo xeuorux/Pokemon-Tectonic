@@ -52,7 +52,7 @@ class PokeBattle_AI
         # in the midst of performing the move (turnCount is incremented as the attack phase begins)
         user.turnCount += 1
 
-        fails = true unless user.pbTryUseMove(move, false, false, true)
+        fails = !(boss || user.pbTryUseMove(move, false, false, true))
 
         # Move blocking abilities make the move fail here
         unless fails
