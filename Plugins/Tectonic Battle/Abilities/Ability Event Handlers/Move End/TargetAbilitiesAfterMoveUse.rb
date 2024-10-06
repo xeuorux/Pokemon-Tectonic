@@ -49,7 +49,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
       next unless user.activatesTargetAbilities?
       next if battle.futureSight
       next unless battle.moonGlowing?
-      item = target.firstItem
+      item = user.firstItem
       if move.canStealItem?(user,target, item)
         move.stealItem(target, user, item, ability: ability)
       else
