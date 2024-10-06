@@ -4272,18 +4272,6 @@ Flags = CanProtect,CantForce
 Description = The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.
 Animation = CAMOUFLAGE
 #-------------------------------
-[MINDSAP]
-Name = Mind Sap
-Type = GRASS
-Category = Status
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = HealUserByTargetSpAtkLowerTargetSpAtk1
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.
-Animation = STRENGTHSAP
-#-------------------------------
 [MISTLETOE]
 Name = Mistletoe
 Type = GRASS
@@ -6179,6 +6167,18 @@ FunctionCode = RaiseUserAndAlliesAtk2StartMoonglow8
 Flags = CanSnatch
 Description = Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.
 Animation = HOWL
+#-------------------------------
+[MINDSAP]
+Name = Mind Sap
+Type = DARK
+Category = Status
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = HealUserByTargetSpAtkLowerTargetSpAtk1
+Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Description = Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.
+Animation = STRENGTHSAP
 #-------------------------------
 [MOUTHFUL]
 Name = Mouthful
