@@ -432,8 +432,7 @@ Pokemon = ASANDSLASH,70
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,5,0,20,5
-Pokemon = LYCANROC,70
-    Form = 2 # Dusk Form
+Pokemon = DLYCANROC,70
     Moves = ADAMANTINEPRESS,CLOSECOMBAT,KNOCKOFF,BULLETTRAIN
     AbilityIndex = 0 # Tough Claws
     Item = CHOICESCARF
@@ -947,8 +946,7 @@ Pokemon = GARDEVOIR,70
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
-Pokemon = ROTOM,70
-    Form = 4 # Fan Form
+Pokemon = FANROTOM,70
     Moves = MACHINATE,VOLTSWITCH,DEFOG,WILLOWISP
     AbilityIndex = 0 # Motor Drive
     Item = SITRUSBERRY
@@ -1420,8 +1418,7 @@ Pokemon = FALINKS,70
     Item = PAYAPABERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
-Pokemon = ROTOM,70
-    Form = 2 # Wash Form
+Pokemon = WROTOM,70
     Moves = MACHINATE,VOLTSWITCH,NUMB,DEFOG
     AbilityIndex = 0 # Levitate
     Item = LEFTOVERS
@@ -1827,9 +1824,9 @@ Pokemon = HOUNDOMINUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = GDARMANITAN,70
-    Form = 1 # Zen Form
+    Form = 1 # Standard Mode Form
     Moves = FLAMETHROWER,ICEBEAM,SOLARBEAM,PSYCHIC
-    AbilityIndex = 0 # Phase Shift
+    AbilityIndex = 0 # Gorilla Tactics
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10

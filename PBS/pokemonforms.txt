@@ -227,41 +227,6 @@ Color = Blue
 FormName = East Sea
 Color = Blue
 #-------------------------------
-[ROTOM,1]
-FormName = Heat
-Type1 = ELECTRIC
-Type2 = FIRE
-Abilities = LEVITATE,HAUNTED
-Pokedex = This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
-#-------------------------------
-[ROTOM,2]
-FormName = Wash
-Type1 = ELECTRIC
-Type2 = WATER
-Abilities = LEVITATE,HAUNTED
-Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
-#-------------------------------
-[ROTOM,3]
-FormName = Frost
-Type1 = ELECTRIC
-Type2 = ICE
-Abilities = LEVITATE,HAUNTED
-Pokedex = Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
-#-------------------------------
-[ROTOM,4]
-FormName = Fan
-Type1 = ELECTRIC
-Type2 = FLYING
-Abilities = MOTORDRIVE,HAUNTED
-Pokedex = In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find.
-#-------------------------------
-[ROTOM,5]
-FormName = Mow
-Type1 = ELECTRIC
-Type2 = GRASS
-Abilities = LEVITATE,HAUNTED
-Pokedex = This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
-#-------------------------------
 [GIRATINA,1]
 FormName = Origin
 BaseStats = 150,120,100,90,120,100
@@ -601,11 +566,6 @@ FormName = Kabuki Trim
 [FURFROU,9]
 FormName = Pharaoh Trim
 #-------------------------------
-[MEOWSTIC,1]
-FormName = Female
-BaseStats = 74,118,66,104,83,91
-Color = White
-#-------------------------------
 [AEGISLASH,1]
 FormName = Blade
 BaseStats = 60,150,50,60,150,50
@@ -688,27 +648,6 @@ Height = 6.5
 Weight = 490.0
 Shape = BipedalTail
 #-------------------------------
-[ORICORIO,1]
-FormName = Pom-Pom Style
-Type1 = ELECTRIC
-Type2 = FLYING
-Color = Yellow
-Pokedex = It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches.
-#-------------------------------
-[ORICORIO,2]
-FormName = Pa'u Style
-Type1 = PSYCHIC
-Type2 = FLYING
-Color = Pink
-Pokedex = This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies.
-#-------------------------------
-[ORICORIO,3]
-FormName = Sensu Style
-Type1 = GHOST
-Type2 = FLYING
-Color = Purple
-Pokedex = It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
-#-------------------------------
 [LYCANROC,1]
 FormName = Midnight
 Type1 = ROCK
@@ -719,11 +658,6 @@ Height = 1.1
 Color = Red
 Shape = BipedalTail
 Pokedex = It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
-#-------------------------------
-[LYCANROC,2]
-FormName = Dusk
-Abilities = TOUGHCLAWS
-Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]
 FormName = School
@@ -935,12 +869,6 @@ Evolutions = POLTEAGEIST,Item,CHIPPEDPOT
 FormName = Antique
 Pokedex = Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
 #-------------------------------
-[INDEEDEE,1]
-FormName = Female
-BaseStats = 80,80,65,85,80,105
-EffortPoints = 0,0,0,0,0,2
-Pokedex = They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
-#-------------------------------
 [MORPEKO,1]
 FormName = Hangry
 Type1 = DARK
@@ -962,13 +890,6 @@ Type2 = STEEL
 BaseStats = 92,130,145,128,80,145
 Weight = 785.0
 Pokedex = Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
-#-------------------------------
-[URSHIFU,1]
-FormName = Rapid Strike
-Type1 = FIGHTING
-Type2 = WATER
-Moves = 0,SURGINGSTRIKES,1,SURGINGSTRIKES,1,SMASH,1,LEER,4,ENDURE,8,FOCUSENERGY,12,AERIALACE,16,SCARYFACE,20,BULKUP,24,PROTECT,28,AQUAJET,32,COUNTER,36,LIQUIDATION,40,BRICKBREAK,44,DYNAMICPUNCH,48,IRONHEAD,52,CLOSECOMBAT,56,FOCUSPUNCH,60,HARBORBREAKER
-Pokedex = This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river.
 #-------------------------------
 [CALYREX,1]
 FormName = Ice
@@ -1015,24 +936,6 @@ BaseStats = 105,180,100,115,180,100
 Abilities = DELTASTREAM
 Height = 10.8
 Weight = 392.0
-#-------------------------------
-[DARMANITAN,1]
-FormName = Zen
-Type1 = FIRE
-Type2 = PSYCHIC
-BaseStats = 105,30,105,55,140,105
-EffortPoints = 0,0,0,0,2,0
-Abilities = TOUGH
-Color = Blue
-Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
-#-------------------------------
-[GDARMANITAN,1]
-FormName = Zen
-Type1 = ICE
-Type2 = FIRE
-BaseStats = 135,50,105,35,110,105
-Abilities = PHASESHIFT
-Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
 #-------------------------------
 [AMPHAROS,1]
 FormName = Ascended
