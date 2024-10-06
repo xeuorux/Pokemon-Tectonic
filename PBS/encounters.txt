@@ -536,6 +536,7 @@ Special
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
+    20,FINDEEDEE,62,64
     20,FURFROU,39,41
     20,INDEEDEE,39,41
     20,MAKUHITA,39,41
@@ -932,6 +933,7 @@ DarkCave,20
 [333] # Floral Maze
 FloweryGrass2,20
     20,APPLETUN,62,64
+    20,FINDEEDEE,62,64
     20,GRIMMSNARL,62,64
     20,INDEEDEE,62,64
     20,LURANTIS,62,64
@@ -1019,9 +1021,9 @@ Land,20
     20,RIBOMBEE,60,62
     20,TRUMBEAK,60,62
     6,ORICORIO,8,60
-    6,ORICORIO_1,60,62
-    6,ORICORIO_2,60,62
-    6,ORICORIO_3,60,62
+    6,PAUORICORIO,60,62
+    6,POMORICORIO,60,62
+    6,SORICORIO,60,62
 #-------------------------------
 [383] # Mirror Tundra
 LandTall,20
