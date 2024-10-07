@@ -30,28 +30,18 @@ module Compiler
           map.events[key] = newevent
           changed = true
         end
-		    newevent = convert_chasm_style_trainers(map.events[key])
+		newevent = convert_chasm_style_trainers(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		    newevent = convert_avatars(map.events[key])
+		newevent = convert_avatars(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		    newevent = convert_placeholder_pokemon(map.events[key])
+		newevent = convert_placeholder_pokemon(map.events[key])
         if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = convert_overworld_pokemon(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = change_overworld_placeholders(map.events[key])
-		    if newevent
           map.events[key] = newevent
           changed = true
         end
@@ -182,8 +172,11 @@ module Compiler
     trainerTypeName = match[1]
     return nil if !trainerTypeName || trainerTypeName == ""
     trainerName = match[2]
-    ret.name = "resettrainer(4)stinkable - " + trainerTypeName + " " + trainerName
     trainerMaxLevel = match[3]
+
+    echoln("Converting trainer event: #{trainerTypeName},#{trainerName},#{trainerMaxLevel}")
+
+    ret.name = "resettrainer(4)stinkable - " + trainerTypeName + " " + trainerName
     ret.pages = [3]
     
     # Create the first page, where the battle happens
@@ -263,6 +256,8 @@ module Compiler
         direction = Down
       end
     end
+
+    echoln("Converting avatar event: #{avatarSpecies},#{level},#{version},#{direction},#{item},#{itemCount}")
     
     ret.pages = [2]
     # Create the first page, where the battle happens
@@ -287,7 +282,7 @@ module Compiler
         push_script(firstPage.list,"defeatBoss(:#{item})",1)
       end
     end
-      push_branch_end(firstPage.list,1)
+    push_branch_end(firstPage.list,1)
     push_end(firstPage.list)
     
     # Create the second page, which has nothing
@@ -334,7 +329,7 @@ module Compiler
         shiny = true if shinyText.downcase.include?("true")
     end
     
-    echoln("Converting event: #{species},#{form},#{direction},#{shiny}")
+    echoln("Converting overworld pokemon event: #{species},#{form},#{direction},#{shiny}")
     
     ret = RPG::Event.new(event.x,event.y)
     ret.name = "Overworld " + speciesData.real_name
@@ -366,40 +361,6 @@ module Compiler
     
     return ret
   end
-  
-  #=============================================================================
-  # Convert events using the overworld name command to use the correct graphic.
-  #=============================================================================
-  def convert_overworld_pokemon(event)
-    return nil if !event || event.pages.length==0
-    match = event.name.match(/(.*)?overworld\(([a-zA-Z0-9]+)\)(.*)?/)
-    return nil if !match
-    nameStuff = match[1] || ""
-    nameStuff += match[3] || ""
-    nameStuff += match[2] || ""
-    species = match[2]
-    return nil if !species
-    
-    event.name = nameStuff
-    event.pages.each do |page|
-      next if page.graphic.character_name != "00Overworld Placeholder"
-      page.graphic.character_name = "Followers/#{species}" 
-    end
-    
-    return event
-    end
-    
-    def change_overworld_placeholders(event)
-    return nil if !event || event.pages.length==0
-    return nil unless event.name.downcase.include?("boxplaceholder")
-    
-    return nil
-    #event.pages.each do |page|
-    #	page.move_type = 1
-    #end
-    
-    return event
-    end
 end
 
 def overworldPokemonInteract(species, form = 0, shiny = false)
