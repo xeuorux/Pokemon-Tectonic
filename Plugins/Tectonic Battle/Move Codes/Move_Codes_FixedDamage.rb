@@ -28,7 +28,7 @@ class PokeBattle_Move_FixedDamageHalfTargetHealUserByHalfOfDamageDone < PokeBatt
 
     def pbFixedDamage(_user, target)
         damage = target.hp / 2.0
-        damage *= hpBasedEffectResistance if target.boss?
+        damage *= target.hpBasedEffectResistance if target.boss?
         return damage.round
     end
 
