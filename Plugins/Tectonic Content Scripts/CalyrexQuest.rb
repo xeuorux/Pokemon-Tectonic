@@ -46,7 +46,22 @@ end
 
 def calyrexLegendFight
     level = [70,getLevelCap].min
-    result = pbWildBattleCore(:CALYREX, level)
+
+    pkmn = pbGenerateWildPokemon(:CALYREX, level)
+    pkmn.forget_all_moves
+    pkmn.learn_move(:FUTURESIGHT)
+    pkmn.learn_move(:SEERSTRIKE)
+    pkmn.learn_move(:AROMATHERAPY)
+    pkmn.learn_move(:ENERGYBALL)
+
+    pkmn.Trait1 = _INTL("Green-thumbed")
+    pkmn.Trait2 = _INTL("Savior")
+    pkmn.Trait3 = _INTL("Scornful")
+    pkmn.Like = _INTL("Grand Design")
+    pkmn.Dislike = _INTL("Treason")
+    pkmn.happiness = MAX_HAPPINESS
+
+    result = pbWildBattleCore(pkmn)
     if result == 4 # Caught
         get_self.opacity = 0
         setSpeaker(CALYREX)
