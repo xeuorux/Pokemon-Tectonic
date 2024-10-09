@@ -4,6 +4,8 @@ module BallHandlers
     OnCatch         = ItemHandlerHash.new
     OnFailCatch     = ItemHandlerHash.new
 
+    OnPokemonCaught      = Event.new
+
     def self.isUnconditional?(ball, battle, battler)
         ret = IsUnconditional.trigger(ball, battle, battler)
         return !ret.nil? ? ret : false
@@ -18,6 +20,7 @@ module BallHandlers
     def self.onCatch(ball, battle, pkmn)
         battle.ballsUsed = 0
         OnCatch.trigger(ball, battle, pkmn)
+        OnPokemonCaught.trigger(ball, battle, pkmn)
         incrementSuccessfulCaptureCount(ball)
         checkForCaptureAchievements(ball, battle, pkmn)
     end
