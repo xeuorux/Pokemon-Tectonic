@@ -23,12 +23,14 @@ end
 
 def readRaggedJournalPage(pageNumber)
     pageTitle = _INTL("Page {1}",pageNumber+1)
-    text = getRaggedJournalPageText(pageNumber)
+    text, date = getRaggedJournalPageTextAndDate(pageNumber)
 
     viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     viewport.z=99999
     pageNumberWindow = Window_UnformattedTextPokemon.newWithSize(pageTitle,
       0, 0, 150, 64, viewport)
+    dateWindow = Window_UnformattedTextPokemon.newWithSize(date,
+      Graphics.width - 150, 0, 150, 64, viewport)
     textWindow = Window_AdvancedTextPokemon.newWithSize(text,
       0, 64, Graphics.width, Graphics.height-64, viewport)
     loop do
@@ -36,51 +38,63 @@ def readRaggedJournalPage(pageNumber)
         Input.update
         pageNumberWindow.update
         textWindow.update
+        dateWindow.update
         if Input.trigger?(Input::BACK)
             break
         end
     end
     pageNumberWindow.dispose
     textWindow.dispose
+    dateWindow.dispose
 end
 
-def getRaggedJournalPageText(pageNumber)
+def getRaggedJournalPageTextAndDate(pageNumber)
     text = ""
     case pageNumber
     when 0
         text += _INTL("Ah, to be on solid ground again. Away from Galar's suffocating industrial sprawl. Stable. Connected. Tranquil. No cold steel shifting and rocking beneath my feet. No stench of smoke and oil to burn my lungs.\n")
         text += _INTL("Just me, my companion, and Makya.\n")
+        date = _INTL("May 22nd")
     when 1
         text += _INTL("I wonder if it's just me. So sentimental and wistful over little things I thought I knew. Is nostalgia tainting my perceptions? Or is the world truly as broken as it looks?\n")
         text += _INTL("My new friend makes me expect the latter. A sad story. But... inspiring nonetheless. Maybe I'll meet them again someday.\n")
+        date = _INTL("May 26th")
     when 2
         text = _INTL("Life. Not just Life as life – Life as creation. Life as energy. Life as imagination, and falsehood, and memory, and motion. Over six days in Makya, this is the one place that seems to be governed by Life... and not its negation.\n")
         text += _INTL("The world is dead. And Makya stands as little more than a polished mirror. What a shame.\n")
+        date = _INTL("May 29th")
     when 3
         text = _INTL("I left last night when the earth began to rumble. I only returned for my companion, despite my... reservations.\n")
         text += _INTL("A great pit separates me from yesterday's memories. A dozen blackened eyes study my every step.\n")
         text += _INTL("What's done is done.\n")
+        date = _INTL("June 4th")
     when 4
         text = _INTL("At every turn, a set of eyes. On every perch, a silver scout. But... surely they cannot see everywhere? My friend at the Monument seemed to imply as much.\n")
         text += _INTL("But with every step I take, I find a new reason to check over my shoulder. Whether it's guilt or fear that guides me to that great tower... well. I'd rather not dwell on that yet.\n")
+        date = _INTL("June 6th")
     when 5
-        text = _INTL("I think this was a mistake. This was <i>all</i> a mistake...\n")
-        text += _INTL("A set of silver eyes rests atop Carnation Tower today. I couldn't shake the feeling that it expected me... that it knew. I'm well aware that He knows, at the very least. He knows I stole His reign. Nothing in the past week makes sense if He doesn't.\n")
-        text = _INTL("To anyone who can leave this place safely, I urge you: Speak to my friend at the monument. The longer a king stands without rule, the longer we can act without fear.\n")
+        text = _INTL("This was a mistake. This was <i>all</i> a mistake...\n")
+        text += _INTL("A set of silver eyes rests atop Carnation Tower today. I couldn't shake the feeling that it expected me... He must know I stole His reign. Nothing makes sense if He doesn't.\n")
+        text += _INTL("To anyone reading this, I urge you: Speak to my friend at the Monument. As long as He stands without rule, we can act without fear.\n")
+        date = _INTL("June 11th")
     when 6
         text = _INTL("I can't afford to speak.\n")
         text += _INTL("I can't afford to trust.\n")
         text += _INTL("I can barely afford to write this.\n")
         text += _INTL("A woman with hollow eyes and an uncanny smile approached me today. She asked about my history. She asked about Makya. She asked... about Him.\n")
         text += _INTL("Tomorrow. All of this ends tomorrow morning.\n")
+        date = _INTL("June 13th")
     when 7
         text = _INTL("This can't be a coincidence.\n")
         text += _INTL("My best hope of escaping His grasp... but I can tell we're not moving anymore.\n")
         text += _INTL("Nobody seems to believe me. We can't even see the waves! And I've heard four hooves circling my bed for hours...\n")
         text += _INTL("He won.\n")
+        date = _INTL("June 15th")
     end
 
     text += _INTL("  —Oriel")
+
+    return text,date
 end
 
 def openRaggedJournal
