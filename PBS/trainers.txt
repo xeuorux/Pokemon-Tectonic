@@ -8340,7 +8340,7 @@ Pokemon = VOLCANION,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 #-------------------------------
-[DANDY,Vasily]
+[DANDY,Roger]
 Pokemon = PERSIAN,70
     Moves = CHACHING,EARTHSPLITTER,XSCISSOR,INFERNOIMPACT
     AbilityIndex = 1 # All That Glitters
