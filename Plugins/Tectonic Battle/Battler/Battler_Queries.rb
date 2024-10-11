@@ -541,6 +541,10 @@ class PokeBattle_Battler
         setItems(prunedItems)
     end
 
+    def shouldStoreStolenItem?(item)
+        return @battle.wildBattle? && opposes? && !@battle.bossBattle? && hasInitialItem?(item)
+    end
+
     def recyclableItem
         return @battle.recycleItems[@index & 1][@pokemonIndex]
     end
