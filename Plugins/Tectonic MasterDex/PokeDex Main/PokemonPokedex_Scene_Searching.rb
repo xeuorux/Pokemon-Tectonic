@@ -274,32 +274,53 @@ class PokemonPokedex_Scene
     end
 
     def searchByEvolutionMethod
-        selections = [_INTL("Pre-Evolutions"), _INTL("Evolved Forms"), _INTL("Cancel")]
-        relationSelection = pbMessage(_INTL("Pre-evolutions, or evolved forms?"), selections, selections.length)
-        return if relationSelection == 2
+        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"), _INTL("Split Evo"), _INTL("Cancel")]
+        relationSelection = pbMessage(_INTL("Which search?"), selections, selections.length)
+        return if relationSelection == 5
 
-        evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
-        if evoMethodTextInput && evoMethodTextInput != ""
-            reversed = evoMethodTextInput[0] == "-"
-            evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
+        if [0,1].include?(relationSelection)
+            evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
+            if evoMethodTextInput && evoMethodTextInput != ""
+                reversed = evoMethodTextInput[0] == "-"
+                evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
+                dexlist = searchStartingList
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
+                    anyContain = false
+
+                    entries = relationSelection == 0 ? dex_item[:data].get_evolutions : dex_item[:data].get_prevolutions
+
+                    # Evolutions
+                    entries.each do |evomethod|
+                        strippedActualDescription = describeEvolutionMethod(evomethod[1], evomethod[2]).downcase.delete(" ")
+                        strippedInputString = evoMethodTextInput.downcase.delete(" ")
+                        anyContain = true if strippedActualDescription.include?(strippedInputString)
+                    end
+                    value = anyContain ^ reversed # Boolean XOR
+                    next value
+                end
+                return dexlist
+            end
+        else
             dexlist = searchStartingList
             dexlist = dexlist.find_all do |dex_item|
                 next false if autoDisqualifyFromSearch(dex_item[:species])
-                anyContain = false
 
-                entries = relationSelection == 0 ? dex_item[:data].get_evolutions : dex_item[:data].get_prevolutions
-
-                # Evolutions
-                entries.each do |evomethod|
-                    strippedActualDescription = describeEvolutionMethod(evomethod[1], evomethod[2]).downcase.delete(" ")
-                    strippedInputString = evoMethodTextInput.downcase.delete(" ")
-                    anyContain = true if strippedActualDescription.include?(strippedInputString)
+                case relationSelection
+                when 2
+                    next dex_item[:data].get_evolutions.empty?
+                when 3
+                    next dex_item[:data].get_prevolutions.empty?
+                when 4
+                    next dex_item[:data].get_evolutions.length > 1
                 end
-                value = anyContain ^ reversed # Boolean XOR
-                next value
+
+                next true
             end
             return dexlist
         end
+
+        
         return nil
     end
 
