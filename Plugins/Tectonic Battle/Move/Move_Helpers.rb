@@ -120,8 +120,8 @@ class PokeBattle_Move
             @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!", stealer.pbThis,
               victim.pbThis(true), oldVictimItemName))
             # Permanently steal items from wild pokemon
-            if @battle.wildBattle? && victim.opposes? && !@battle.bossBattle?
-                victim.setInitialItem(nil)
+            if victim.shouldStoreStolenItem?(item)
+                victim.setInitialItems(nil)
                 pbReceiveItem(item)
                 @battle.pbHideAbilitySplash(stealer) if ability
             else

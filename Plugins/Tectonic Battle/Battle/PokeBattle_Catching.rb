@@ -214,6 +214,7 @@ class PokeBattle_Battle
             pkmn.makeUnmega if pkmn.mega?
             pkmn.makeUnprimal
             pkmn.record_first_moves
+            pkmn.removeNonInitialItems
             # Reset form
             pkmn.forced_form = nil if MultipleForms.hasFunction?(pkmn.species, "getForm")
             @peer.pbOnLeavingBattle(self, pkmn, true, true)
