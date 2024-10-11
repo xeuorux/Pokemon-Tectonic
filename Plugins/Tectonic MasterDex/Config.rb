@@ -8,7 +8,7 @@ MAPS_AVAILABLE_BY_CAP = {
 		[
 			136,138,30,	# Casaba Villa, Scenic Trail, Windy Way
 			51,38,26,	# Foreclosed Tunnel, Beach Route, Seaside Grotto
-			35,27,		# Impromptu Lab, Casaba Mart
+			35,27,49,	# Impromptu Lab, Casaba Mart, Tourist's House
 		], 
 	20 =>
 		[
