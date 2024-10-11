@@ -27,12 +27,17 @@ def readRaggedJournalPage(pageNumber)
 
     viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     viewport.z=99999
+
+    background = ColoredPlane.new(Color.new(20,12,8),viewport)
+    # bitmapName = pbResolveBitmap("Graphics/Pictures/helpadventurebg")
+    # background.setBitmap(bitmapName)
     pageNumberWindow = Window_UnformattedTextPokemon.newWithSize(pageTitle,
       0, 0, 150, 64, viewport)
     dateWindow = Window_UnformattedTextPokemon.newWithSize(date,
       Graphics.width - 150, 0, 150, 64, viewport)
     textWindow = Window_AdvancedTextPokemon.newWithSize(text,
       0, 64, Graphics.width, Graphics.height-64, viewport)
+
     loop do
         Graphics.update
         Input.update
@@ -46,6 +51,7 @@ def readRaggedJournalPage(pageNumber)
     pageNumberWindow.dispose
     textWindow.dispose
     dateWindow.dispose
+    background.dispose
 end
 
 def getRaggedJournalPageTextAndDate(pageNumber)
@@ -101,15 +107,17 @@ def openRaggedJournal
     lastChoice = 0
     while true
         choices = []
+        valuesInOrder = []
         $PokemonGlobal.ragged_journal_pages_collected.each_with_index do |pageValue, index|
             next unless pageValue
             choices.push(_INTL("Page {1}",index+1))
+            valuesInOrder.push(index)
         end
         choices.push(_INTL("Cancel"))
-        pageChosen = pbMessage(_INTL("Which page would you like to read?"),choices,choices.length,nil,lastChoice)
-        break if pageChosen == choices.length - 1
-        readRaggedJournalPage(pageChosen)
-        lastChoice = pageChosen
+        indexChosen = pbMessage(_INTL("Which page would you like to read?"),choices,choices.length,nil,lastChoice)
+        break if indexChosen == choices.length - 1
+        readRaggedJournalPage(valuesInOrder[indexChosen])
+        lastChoice = indexChosen
     end
     return 1
 end

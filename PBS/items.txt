@@ -2949,7 +2949,7 @@ Pocket = 8
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
-Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.
+Description = A damaged traveler's journal. If you find its scattered pages, you can put them back in place.
 #-------------------------------
 [DEADSKYSLIVER]
 Name = Dead Sky Sliver

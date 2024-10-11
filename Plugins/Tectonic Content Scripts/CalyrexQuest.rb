@@ -24,6 +24,7 @@ def happinessCheckerCorviknight
         pbWait(20)
         showSad
         pbWait(40)
+        pbMessage(_INTL("You get the sense that you've failed some sort of test."))
         return false
     end
 end
