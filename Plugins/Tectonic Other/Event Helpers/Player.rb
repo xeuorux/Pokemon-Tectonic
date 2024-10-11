@@ -87,6 +87,7 @@ def healPartyWithDelay(skipAidKit = false)
 	pbMEPlay('Pkmn healing')
 	pbWait(68)
 	refillAidKit unless skipAidKit
+    refreshFollow(false)
 end
 
 def pumpedUp?
