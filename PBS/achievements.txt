@@ -69,7 +69,7 @@ Page = 2
 #-------------------------------
 [PERFECT_CURSED_GYM_8]
 Name = Dread Not
-Description = Perfect Samorn, the eighth gym leader, at level cap 55 or below with the Tarot Amulet activated.
+Description = Perfect Samorn, the eighth gym leader, at level cap 60 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
 [DEFEAT_ANY_LEGENDARY_AVATAR]
