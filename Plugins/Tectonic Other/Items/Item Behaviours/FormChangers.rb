@@ -200,3 +200,62 @@ ItemHandlers::UseOnPokemon.add(:REVEALGLASS,proc { |item,pkmn,scene|
     }
     next true
   })
+
+ItemHandlers::UseOnPokemon.add(:REINSOFUNITY, proc { |item, pkmn, scene|
+    unless pkmn.isSpecies?(:CALYREX)
+        scene.pbDisplay(_INTL("It has no effect on Pokémon other than Calyrex."))
+        next false
+    end
+
+    if pkmn.fainted?
+        scene.pbDisplay(_INTL("This can't be used on the fainted Pokémon."))
+        next false
+    end
+  
+    # Fusing
+    if pkmn.fused.nil?
+        chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
+        next false if chosen < 0
+        other_pkmn = $Trainer.party[chosen]
+        if pkmn == other_pkmn
+            scene.pbDisplay(_INTL("It cannot be fused with itself."))
+            next false
+        elsif other_pkmn.egg?
+            scene.pbDisplay(_INTL("It cannot be fused with an Egg."))
+            next false
+        elsif other_pkmn.fainted?
+            scene.pbDisplay(_INTL("It cannot be fused with that fainted Pokémon."))
+            next false
+        elsif !other_pkmn.isSpecies?(:GLASTRIER) &&
+                !other_pkmn.isSpecies?(:SPECTRIER)
+            scene.pbDisplay(_INTL("It cannot be fused with that Pokémon."))
+            next false
+        end
+        newForm = 0
+        newForm = 1 if other_pkmn.isSpecies?(:GLASTRIER)
+        newForm = 2 if other_pkmn.isSpecies?(:SPECTRIER)
+        pkmn.setForm(newForm) {
+            pkmn.fused = other_pkmn
+            $Trainer.remove_pokemon_at_index(chosen)
+            scene.pbHardRefresh
+            scene.pbDisplay(_INTL("{1} changed Forme!", pkmn.name))
+        }
+        next true
+    end
+
+    # unfusing
+
+    if $Trainer.party_full?
+        scene.pbDisplay(_INTL("You have no room to separate the Pokémon."))
+        next false
+    end
+
+    # Unfusing
+    pkmn.setForm(0) {
+        $Trainer.party[$Trainer.party.length] = pkmn.fused
+        pkmn.fused = nil
+        scene.pbHardRefresh
+        scene.pbDisplay(_INTL("{1} changed Forme!", pkmn.name))
+    }
+    next true
+})
