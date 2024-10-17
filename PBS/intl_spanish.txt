@@ -26693,6 +26693,16 @@ Excuse me, I've got to update my mathematical models...
 Discúlpame, tengo que actualizar mis modelos matemáticos...
 No matter. Even a loss is just more data to feed to the algorithm.
 No importa. Incluso una derrota es sólo más información para alimentar al algoritmo.
+There has to be a better way to run this business...
+Tiene que haber una mejor forma de manejar este negocio...
+Crunching numbers like Sharpedo, oh yeah.
+Echando cuentas como un Alakazam, oh sí.
+I'm wondering what made those strange grassy holes in the Amber Hills and the Floral Maze.
+Me pregunto qué hizo esos huecos herbosos extraños Colina Ámbar y el Laberinto Floral.
+There's another one out by the Fin as well.
+También hay otro en la Aleta.
+I ain't one of those superstitious types, but they don't look natural to me.
+No soy del tipo supersticioso, pero no parecen naturales para mí.
 [Map427]
 An old, beaten up laptop. A couple dozen windows are open all at once.
 Una vieja laptop algo destartalada. Un par de docenas de ventanas están abiertas a la vez.
@@ -26879,6 +26889,49 @@ Múltiples copias del mismo cartel, todos publicitando un paquete de seguros que
 [Map430]
 A golden fruit glistens in a space atop the tree.
 Una fruta dorada brilla en una espacio sobre el árbol.
+A gleaming silver tree. The space at the top is empty of any fruit.
+Un árbol de plata brillante. El espacio en la punta está libre de frutos.
+Behind me stand two sides of a similar coin – An arrogant child and a cowardly elder.
+Detrás de mí se paran dos lados de una moneda similar – Un niño arrogante y un anciano cobarde.
+Both too fearful to recognize the harm they cause our King of Kings.
+Ambos demasiados temorosos para reconocer el daño que le causan al Rey de Reyes. 
+But not I! With vigor and wit interwoven, <i>I see the world as it always was.</i>
+¡Pero no yo! Con vigor e ingenio entretejido <i>veo el mundo como siempre ha sido.</i> 
+A wonderful battle – nothing short of greatness! But to what do I owe this sudden late.. ness?
+Un maravilloso combate – ¡uno que no se queda corto de grandeza! ¿Pero a qué debo esta súbita... tardanza?
+No matter! <i>You are but a grain of sand against His will.</i>
+¡No importa! <i>No eres más que un grano de arena contra Su voluntad.</i>
+From above, from above! Our great King revealed Himself from above!
+¡Desde arriba, desde arriba! ¡Nuestro gran Rey se reveló a Si Mismo desde arriba!
+Mere prey, my critters and I both - but with a whispered edict and a gentle hand, <i>the meek will rise, by every means they can muster.</i>
+Meras presas, yo y mis insectos - pero con un edicto murmurado y una mano gentil, <i>los humilders se alzarán, por cualquier medio que puedan lograr.</i>
+Awwww… I thought <i>my</i> team was perfect! Oh well, time to go back home!!
+Owwww… ¡Y pensé que <i>mi</i> equipo era perfecto! ¡¡Oh bueno, hora de regresar a casa!!
+Neither heedless trainer nor winged creature <i>shall ever pluck away at His great reign.</i>
+Ningún entrenador imprudente o criatura alada <i>derrocará nunca Su gran reinado.</i>
+Fear, guilt, and shame - a trinity of self-imposed suffering.
+Miedo, culpa, y remordimiento - una trinidiad de sufrimiento auto-impuesto.
+They stood as my lifelong companions, but no longer must they.
+Me acompañaron toda mi vida, pero ya no deben hacerlo.
+<i>Fear means nothing under His watchful gaze.</i>
+<i>El miedo no significa nada ante Su ojo atento.</i>
+O-Oriel..?
+¿O-Oriel..?
+How foolish of you, <i>rejecting greater purpose with such conviction.</i>
+Qué insensato eres, <i>rechazando un próposito superior con tal convicción.</i>
+[Map431]
+You might want to slow down, Trainer. These ships are dangerous.
+Puede que quieras detenerte, Entrenador. Estos barcos son peligrosos.
+Even though I'm on land, my old sea legs are wobbling.
+Aunque esté en tierra, mis viejas piernas marinas están temblando.
+Something's off about these boats, and I don't want to be the one that finds the reason why.
+Algo está mal con esos botes, y no quiero ser el que descubra la razón del porqué.
+I hope all my numbing strategies will make you take it slow.
+Espero que mis estrategias de aturdimiento te ralenticen.
+Never been in a shipwreck, and I pride myself for it.
+Nunca estuve en un naufragio, y estoy orgulloso de ello.
+You get the shivers when you feel like disaster is coming. Guess it comes with experience.
+Te tiembla todo cuando sientes que el desastre está por llegar. Supongo que viene con la experiencia.
 [Map433]
 Cabin Room 2
 Cabina Número 2
@@ -26888,15 +26941,14 @@ Cabin Room 4
 Cabina Número 4
 Cabin Room 1
 Cabina Número 1
-[Map433]
-Cabin Room 2
-Cabina Número 2
-Cabin Room 3
-Cabina Número 3
-Cabin Room 4
-Cabina Número 4
-Cabin Room 1
-Cabina Número 1
+AHAHAHAHA! SO MUCH TRASH, SO MUCH TREASURE! THIS WHOLE SHIP IS MINE!
+¡AJAJAJAJA! ¡TANTA BASURA, TANTO TESORO! THIS WHOLE SHIP IS MINE!
+THE WORLD FITS IN MY POCKET! AN OYSTER ON THE SHIP! AND IT IS MINE!
+¡EL MUNDO CABE EN MI BOLSILLO! ¡UNA ALMEJA EN EL BARCO! ¡Y ES MÍA!
+RIDE THE WAVE! FEEL THE LIGHTNING! I FEAST LIKE A KING TONIGHT!
+¡SURFEA LAS OLAS! ¡SIENTE EL RAYO! ¡ESTA NOCHE CENO COMO UN REY!
+FEEL THE ROAR! SCAMPER LIKE THE COWARDS WE ARE!
+¡SIENTE EL RUGIDO! ¡HUYE COMO LOS COBARDES QUE SOMOS!
 [Map435]
 Cabin Room 2
 Cabina Número 2
@@ -26906,6 +26958,14 @@ Cabin Room 4
 Cabina Número 4
 Cabin Room 1
 Cabina Número 1
+Well hello there. Fancy a meal?
+Hey muy buenas. ¿Estás para una comida?
+I left my stove on at home!
+¡Deje mi horno encendido!
+Hmmm, maybe I'll use onions next time.
+Hmmm, quizás usaré cebollas la próxima vez.
+Perhaps garlic would work instead...
+Quizás algo de ajo funcionaría en su lugar...
 [Map437]
 Up Ahead: Product Showroom
 Más Adelante: Muestra de Producto
@@ -27108,6 +27168,50 @@ By that time, there wasn’t a pressing need for that whole song and dance.
 Para ese entonces, no había mucha mucha necesidad de toda esa historia.
 Not with something like Yezera keeping us on our toes.
 No con alguien como Yezera manteniéndonos a raya.
+A dusty, old logbook. "Archive Catalogue" is written on the front in black marker.
+Un viejo diario polvoriento. "Catálogo de Archivos" está escrito al frente en marcador negro.
+[Map444]
+The ephemeral voices of a thousand lost rulers echo in your head.
+Las voces efímeras de mil monarcas perdidos resuenan en tu cabeza.
+<i>You.</i>
+<i>Tú.</i>
+<i>Scoundrel.</i>
+<i>Canalla.</i>
+<i>Thief.</i>
+<i>Ladrón.</i>
+<i>Traitor.</i>
+<i>Traidor.</i>
+<i>After all you’ve done, you <b>dare</b> meet my gaze?</i>
+<i>Después de todo lo que has hecho, ¿te <b>atreves</b> a enfrentar mi mirada?</i>
+<i>Scum.</i>
+<i>Escoria.</i>
+<i>Leech.</i>
+<i>Parásito.</i>
+<i><b>Insect.</b></i>
+<i><b>Insecto.</b></i>
+<i>You have <b>one</b> chance to relinquish your relics..</i>
+<i>Tienes <b>una</b> oportunidad de ceder tus reliquias..</i>
+<i>My rule.</i>
+<i>Mi reinado.</i>
+<i>My <b>peace</b>.</i>
+<i>Mi <b>paz</b>.</i>
+You hand over the Flora Sceptre and the Reins of Unity.
+Abandonas el Cetro Floral y las Riendas Unión.
+<i>Good. Now… <b>pray we never meet again.</b></I>
+<i>Bien. Ahora… <b>reza que nuncan nos encontremos de nuevo.</b></I>
+<i>So be it.</I>
+<i>Que así sea.</I>
+Let this act as a lesson in humility, worm!
+¡Deja que esto sea una lección de humildad, gusano!
+<i>And again!</I>
+<i>¡Y de nuevo!</I>
+<i>You should have left when you could..</I>
+<i>Deberías haberte ido cuando pudiste..</I>
+You recover the relics you returned.
+Recuperas las reliquias que regresaste.
+[Map445]
+It hurriedly gestures for you to enter the chamber ahead.
+Te hace un ademán con apuro para que entres a la cámara adelante.
 [1]
 29
 Nidoran-F
@@ -38081,7 +38185,7 @@ Reinicio Climático
 Dissipation
 Disipación
 Rock Out
-A Roquear
+A Rockear
 Natural Protection
 Protección Natural
 Weigh Anchor
