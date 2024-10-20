@@ -2561,18 +2561,6 @@ EffectChance = 30
 Description = The user wraps foes in fierce winds and searingly hot sand. It has a 30% chance to burn.
 Animation = SCORCHINGSANDS
 #-------------------------------
-[SANDTOMB]
-Name = Sand Tomb
-Type = GROUND
-Category = Physical
-Power = 50
-Accuracy = 100
-TotalPP = 15
-Target = NearOther
-FunctionCode = BindTarget3
-Flags = CanProtect,CanMirrorMove
-Description = The user spins a sandstorm around the target, trapping and damaging it for three turns.
-#-------------------------------
 [SCORCHINGSANDS]
 Name = Scorching Sands
 Type = GROUND

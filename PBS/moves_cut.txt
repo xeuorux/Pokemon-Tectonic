@@ -1088,6 +1088,18 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = Sand is hurled in the target's face, reducing its accuracy.
 #-------------------------------
+[SANDTOMB]
+Name = Sand Tomb
+Type = GROUND
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user spins a sandstorm around the target, trapping and damaging it for three turns.
+#-------------------------------
 #		ROCK MOVES
 #-------------------------------
 [ROLLOUT]
