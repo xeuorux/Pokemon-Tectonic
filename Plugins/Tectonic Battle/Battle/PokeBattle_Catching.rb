@@ -204,8 +204,8 @@ class PokeBattle_Battle
                 pbGainExp
                 battler.captured = false
             end
-            battler.pbReset
             battler.removeNonInitialItems
+            battler.pbReset
             if pbAllFainted?(battler.index)
                 @decision = trainerBattle? ? 1 : 4 # Battle ended by win/capture
             end
