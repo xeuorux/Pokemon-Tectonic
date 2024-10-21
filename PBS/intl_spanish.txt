@@ -55879,6 +55879,256 @@ Confront Yezera, who appears to be leading a small group to steal Regidrago. The
 Enfrenta a Yezera, quien parece estar liderando un pequeño grupo para robar a Regidrago. Las Catacumbas pueden ser encontrados en las Alcantarillas debajo de Prizca Oriental.
 Continue to delve into the Chamber of Regigigas, so you can finally put a stop to Yezera's plan. The Chamber of Regigias is behind a large door in the eastern side of the Hollowed Layer.
 Continua indagando en la Cámara de Regigigas, así finalmente puedes parar el plan de Yezera. La Cámara de Regigigas está detrás de una gran puerta en el lado este de la Capa Hueca. 
+Bulky Attacker
+Atacante Bulky
+Bulky Physical
+Físico Bulky
+But it failed, because #{user.pbThis(true)} cannot eat its berry!
+¡Pero falló, porque #{user.pbThis(true)} no puede comer su baya!
+Looking inside the journal, you see that the only page that hasn't fallen out is page {1}.
+Viendo dentro del diario, puedes ver que la única página que no se ha caído es la página {1}.
+\i[RAGGEDJOURNAL]You've found page {1} of the {2}!
+\i[RAGGEDJOURNAL]¡Enontraste la página {1} del {2}!
+You slot the page into its proper place in the journal.
+Colocas la página en el lugar apropiado del diario.
+Read it now?
+¿La lees ahora?
+Page {1}
+Página {1}
+Which page would you like to read?
+¿Qué página te gustaría leer? 
+You clamber out of the den!
+¡Sales del nido!
+Welcome to the Poké Ball Depot! How may I serve you?
+¡Bienvenido al Depósito de Poké Balls! ¿Cómo puedo servirtE?
+What pattern would you like me to give it?
+¿Qué motivo quieres que le de?
+Wow, it's a shiny Pokémon!
+¡Wow, es un Pokémon variocolor!
+Are you sure you want to release this Pokémon?
+¿Estás seguro que quieres liberar este Pokémon?
+Spirit Guardian Sonya is using 12 battlers. This is a huge battle!
+Espíritu Guardián Sonya está usando 12 combatientes. ¡Este es un gran combate!
+You register {1} as caught in the MasterDex.
+Registras a {1} como atrapado en la MasterDex.
+You've run out of turns!
+¡Te quedaste sin turnos!
+{1}'s energy is slowly being leeched away.
+La energía de {1} está lentamente siendo drenada.
+The Corviknight stares at you intently.
+El Corviknight mira hacia tí fijamente.
+My safety comes first. En garde!
+La seguridad viene primero. ¡En garde!
+High King Calyrex
+Emperador Calyrex 
+Except, what's this!?
+Excepto, ¿¡qué es esto!?
+The Avatar of Calyrex has arrived to save its steed!
+¡El Avatar de Calyrex ha llegado para salvar a su corcel!
+{1} reers up its hooves above {2}!
+¡{1} alza su pezuña sobre {2}!
+{1} raises a hand towards the thunderclouds.
+{1} alza una mano sobre las nubes de tormenta.
+{1} opens its bulb towards the shining sun.
+{1} abre su bulbo hacia el sol brillante.
+The inscription reads:
+La inscripción dice:
+Part 1, X for Next Page
+Parte 1, X para la Siguiente Página
+Part 2, X to exit
+Parte 2, X para salir
+...Maybe you should transcribe this, just in case it does mean something.
+...Quizás deberías transcribir esto, en caso de que signifique algo.
+<i>What!!?</i>
+<i>¿¡¡Qué!!?</i>
+<i>How... how could you?</i>
+<i>¿Cómo... cómo pudiste?</i>
+<i>Insolent fool! Treasonous wretch!!! Usurping the King of All in your desperate attemp–</i>
+<i>¡Idiota insolente! ¡¡¡Desdichado traidor!!! Usurpar el Rey de Todo en tu intento despesp–</i>
+Calyrex's protests fade away, leaving an echoing silence in its absence.
+Las protestas de Calyrex de desvanecen, dejando un silencio resonante en su ausencia.
+<i>Drink the regal blood if you must.</i>
+<i>Bebe la sangre real si debes hacerlo.</i>
+<i>Indulge in your <b>traitorous nature</b> if you insist.</i>
+<i>Date el gusto en tu <b>naturaleza traicionara</b> si en eso insistes.</i>
+<i>Repulsive flea...</i>
+<i>Mosca repulsiva...</i>
+<i><b>I will swat you from the sky.</b></i>
+<i><b>Te aplastaré desde el cielo.</b></i>
+Can Evolve by Method
+Puede Evolucionar por Método
+Evolved From Method
+Evolucionado por Método
+No Evolutions
+No Evoluciones
+No Prevolutions
+No Preevoluciones
+Split Evo
+Evo Dividida
+{1} notices how healthy {2} is!
+¡{1} se da cuenta de lo saludable que está {2}!
+{1} is jealous of {2}'s strength!
+¡{1} está celoso de la fuerza de {2}!
+{1} is jealous of {2}'s mind!
+¡{1} está celoso de la mente de {2}!
+Ah, to be on solid ground again. Away from Galar's suffocating industrial sprawl. Stable. Connected. Tranquil. No cold steel shifting and rocking beneath my feet. No stench of smoke and oil to burn my lungs.
+Ah, estar en tierra sólida de nuevo. Lejos de la expansión industrial sofocante de Galar. Estable. Conectado. Tranquilo. Nada de movimiento mecánico debajo de mis pies. Nada de hedor de humo y petróleop ara quemar mis pulmones.<<n>>
+Just me, my companion, and Makya.
+Solo yo, mi compañero, y Makya.<<n>>
+May 22nd
+22 de Mayo
+I wonder if it's just me. So sentimental and wistful over little things I thought I knew. Is nostalgia tainting my perceptions? Or is the world truly as broken as it looks?
+Me pregunto si soy solo yo. Tan sentimental y nostálgico sobre las pequeñas cosas que pensé que conocía. ¿Acaso la nostalgia esta manchando mi percepción? ¿O es el mundo tan roto como parece?<<n>>
+My new friend makes me expect the latter. A sad story. But... inspiring nonetheless. Maybe I'll meet them again someday.
+Mi nuevo amigo me hace esperar lo última. Una triste historia. Pero... inspirador después de todo. Quizás me lo volveré a encontrar algún día.<<n>>
+May 26th
+26 de Mayo
+Life. Not just Life as life – Life as creation. Life as energy. Life as imagination, and falsehood, and memory, and motion. Over six days in Makya, this is the one place that seems to be governed by Life... and not its negation.
+Vida. No solo la Vida como vida – Vida como la creación. Vida como energía. Vida como imaginación, y falsedad, y memoria, y moción. Más de seis días en Makya, este es el único lugar que parece ser gobernado por la vida... y no su negación.<<n>>
+The world is dead. And Makya stands as little more than a polished mirror. What a shame.
+El mundo está muerto. Y Makya se alza como un poco más que un espejo pulido. Qué lástima.<<n>>
+May 29th
+29 de Mayo
+I left last night when the earth began to rumble. I only returned for my companion, despite my... reservations.
+Me fui anoche cuando la tierra empezó a rugir. Sólo regresé por mi compañero, a pesar de mis... dudas.<<n>>
+A great pit separates me from yesterday's memories. A dozen blackened eyes study my every step.
+Un gran agujero me separa de los recuerdos de ayer. Una docena de ojos oscurecidos estudian cada uno de mis pasos.<<n>>
+What's done is done.
+LO que está hecho está hecho.<<n>>
+June 4th
+4 de Junio
+At every turn, a set of eyes. On every perch, a silver scout. But... surely they cannot see everywhere? My friend at the Monument seemed to imply as much.
+En cada giro, un par de ojos. En cada posadera, un espía plateado. Pero... ¿seguramente no pueden ver por todas partes? Mi amigo en el Monumento pareció implicar eso.<<n>>
+But with every step I take, I find a new reason to check over my shoulder. Whether it's guilt or fear that guides me to that great tower... well. I'd rather not dwell on that yet.
+Pero con cada paso que doy, encuentro una nueva razón para mirar sobre mi hombro. Ya sea la culpa o miedo lo que me guía a esa gran torre... bueno. Prefiero no obcecarme mucho en ello aún.<<n>>
+June 6th
+6 de Junio
+This was a mistake. This was <i>all</i> a mistake...
+Esto fue un error. <i>Todo</i> esto fue un error...<<n>>
+A set of silver eyes rests atop Carnation Tower today. I couldn't shake the feeling that it expected me... He must know I stole His reign. Nothing makes sense if He doesn't.
+Un par de ojos plateados descansan en la cima de las Torres Clavel hoy. No puedo evitar la sensación de que me esperaba... Él debe ser que robé Su reino. Nada tiene sentido si Él no lo hace.<<n>>
+To anyone reading this, I urge you: Speak to my friend at the Monument. As long as He stands without rule, we can act without fear.
+Para cualquiera leyendo esto, te insto: Habla con mi amigo en el Monumento. Siempre y cuando Él se pare sin régimen, podemos actuar sin miedo.<<n>>
+June 11th
+11 de Junio
+I can't afford to speak.
+No me puedo permitir hablar.<<n>>
+I can't afford to trust.
+No me puedo permitir confiar.<<n>>
+I can barely afford to write this.
+Apenas me puedo permitir escribir esto.<<n>>
+A woman with hollow eyes and an uncanny smile approached me today. She asked about my history. She asked about Makya. She asked... about Him.
+Una mujer con ojos vacíos y una sonrisa extraña se me acercó hoy. Me preguntó sobre mi historia. Me pregunto sobre Makya. Me pregunto... sobre Él.<<n>>
+Tomorrow. All of this ends tomorrow morning.
+Mañana. Todo esto termina mañana temprano.<<n>>
+June 13th
+13 de Junio
+This can't be a coincidence.
+Esto no puede ser coincidencia.<<n>>
+My best hope of escaping His grasp... but I can tell we're not moving anymore.
+Mi mejor esperanza de escapar Su agarre... pero puedo decir que ya no nos estamos moviendo.<<n>>
+Nobody seems to believe me. We can't even see the waves! And I've heard four hooves circling my bed for hours...
+Nadie parece creerme. ¡Ni siquiera podemos ver las olas! Y he escuchado cuatro pezuñas haciendo círculos en mi cama por horas...<<n>>
+He won.
+Él ganó.<<n>>
+June 15th
+15 de Junio
+—Oriel
+  —Oriel
+You get the sense that you've failed some sort of test.
+Tienes la sensación de que fallaste algún tipo de prueba.
+Green-thumbed
+Jardinero
+Savior
+Salvador
+Scornful
+Despreciativo
+Grand Design
+Gran Propósito
+Treason
+Traición
+<i>Let this act as a lesson in humility, worm!</i>
+<i>¡Deja que esto actúe como una lección de humilded, gusano!</i>
+<i>To think!! My gift to the world, in the hands of the <b>undeserving</b>!</i>
+<i>¡¡Y pensar!! ¡Mi regalo hacia el mundo, en las manos del <b>indigno</b>!</i>
+It has no effect on Pokémon other than Calyrex.
+No tiene efecto en un Pokémon que no sea Calyrex.
+BY LEVEL 
+POR NIVEL
+BY OTHER
+POR OTRO 
+MATCHUPS 
+EFECTIVIDAD
+DETAILS
+DETALLES
+ANIMATION 
+ANIMACION
+Text
+Texto
+Search move description
+Buscar descripción movimiento
+Which category?
+¿Qué categoría?
+Tag
+Clase
+Effect Chance
+Probabilidad Efecto
+Priority
+Priodidad
+Signature
+Característico
+Has Notes
+Tiene Notas
+Physical moves that can be called:
+Movimientos físicos que pueden ser usados:
+Special moves that can be called:
+Movimientos especailes que pueden ser usados:
+<u>150 BP</u>: Pearl of Fate, Iron Ball
+<u>150 PB</u>: Perla del Destino, Bola Férrea
+<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb
+<u>100 PB</u>: Objetos Elección, Rocas Climáticas, Vidasfera
+<u>75 BP</u>: Everything else
+<u>75 PB</u>: Todo lo demás
+<u>Poison</u>: Poison Orb
+<u>Envenenar</u>: Venenosfera
+<u>Burn</u>: Burn Orb
+<u>Quemar</u>: Llamasfera
+<u>Frostbite</u>: Frost Orb
+<u>Helar</u>: Helasfera
+<u>Leech</u>: Big Root, Binding Band
+<u>Infectar</u>: Raíz Grande, Banda Atadura
+Form effects:
+Efectos por forma:
+<u>Heat</u>: Burn
+<u>Calor</u>: Quemar
+<u>Wash</u>: Numb
+<u>Lavado</u>: Aturdir
+<u>Frost</u>: Frostbite
+<u>Frío</u>: Helar
+<u>Fan</u>: Dizzy
+<u>Ventilador</u>: Mareo
+<u>Mow</u>: Leech
+<u>Corte</u>: Infectar
+Moves that can be rolled:
+Movimientos que pueden ser usados:
+Can't call focusing moves, moves that call other moves,
+No puede usar movimientos que concentran, movimientos que usan otros movimientos,
+Can't call moves that alter the moveset, moves that counter, moves that
+No puede usar movimientos que alteran tus movimientos, movimientos que contraatacan, movimientos que 
+Can't call moves that affect the moveset, moves that redirect or steal moves,
+No puede llamar movimientos que afectar tus movimientos, movimientos que redirigen o roban movimientos, 
+Can't call Signature moves, moves that affect the moveset,
+No puede usar movimientos Característicos, movimientos que afectan tus movimientos,
+There's no one near by to use the Poké X-Ray on!
+¡No hay nadie cerca para usar a los Poké-Rayos X!
+Point the Poké X-Ray at which trainer?
+¿A qué entrenador le apuntas los Poké-Rayos X?
+You point the Poké X-Ray at {1}...
+Le apuntas los Poké-Rayos X a {1}...
+Victoire notices you glancing at the Poké X-Ray.
+Victoire nota tu uso de los Poké-Rayos X. 
+She smiles slightly and gives you an inscrutable look.
+Te sonríe ligeramente y te da una mirada inescrutable.
 [26]
 [27]
 [27]
