@@ -258,6 +258,7 @@ Accuracy = 0
 TotalPP = 5
 Target = BothSides
 FunctionCode = EmpoweredGravity
+Flags = Empowered
 Description = The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
 #-------------------------------
 [PRIMEVALSHOREUP]
