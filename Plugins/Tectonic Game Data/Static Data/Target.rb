@@ -95,6 +95,7 @@ GameData::Target.register({
   :id               => :None,
   :id_number        => 1,
   :name             => _INTL("None"),
+  :targeting_label  => "None",
 })
 
 GameData::Target.register({
