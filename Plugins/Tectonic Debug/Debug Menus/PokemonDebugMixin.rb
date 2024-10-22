@@ -29,6 +29,8 @@
         end
       end
     end
+
+    def supportsFusion?; return false; end
   end
 
   class PokemonPartyScreen

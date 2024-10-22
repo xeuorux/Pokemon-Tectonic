@@ -15,12 +15,12 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
         return addLanguageSuffix("Graphics/Pictures/Party/background_fade")
     end
 
-    def initialize(pkmnid, party, summaryScene)
+    def initialize(pkmnid, party, partyScene)
         super()
         @pkmnid = pkmnid
         @pkmn = party[pkmnid]
         @party = party
-        @summaryScene = summaryScene
+        @partyScene = partyScene
         @buttonRowHeight = 68
     end
 
@@ -32,7 +32,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
                   :SUMMARY => {
                       :label => _INTL("Summary"),
                       :press_proc => proc do |_scene|
-                          @summaryScene.pbSummary(@pkmnid)
+                          @partyScene.pbSummary(@pkmnid)
                       end,
                   },
                   :ITEM => {
@@ -54,13 +54,13 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
                               if $PokEstate.setDownIntoEstate(@pkmn)
                                   @party[@pkmnid] = nil
                                   @party.compact!
-                                  @summaryScene.pbHardRefresh
+                                  @partyScene.pbHardRefresh
                                   next true
                               end
                           else
                               hideTileMenu
                               pbSetHelpText(_INTL("Move to where?"))
-                              newpkmnid = @summaryScene.pbChoosePokemon(true)
+                              newpkmnid = @partyScene.pbChoosePokemon(true)
                               pbSwitch(newpkmnid, @pkmnid) if newpkmnid >= 0 && newpkmnid != @pkmnid
                               next true
                           end
@@ -96,7 +96,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
                               @party[@pkmnid] = nil
                               @party.compact!
                               pbSEPlay("PC close")
-                              @summaryScene.pbHardRefresh
+                              @partyScene.pbHardRefresh
                               next true
                           end
                       end,
@@ -146,10 +146,10 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
         end
         itemcommands[cmdUseItem = itemcommands.length] = _INTL("Use")
         itemcommands[itemcommands.length] = _INTL("Cancel")
-        command = @summaryScene.pbShowCommands(_INTL("Do what with an item?"), itemcommands)
+        command = @partyScene.pbShowCommands(_INTL("Do what with an item?"), itemcommands)
         if cmdUseItem >= 0 && command == cmdUseItem # Use
             item = selectItemForUseOnPokemon($PokemonBag, @pkmn) do
-                @summaryScene.pbSetHelpText((@party.length > 1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+                @partyScene.pbSetHelpText((@party.length > 1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
             end
             if item
                 used = pbUseItemOnPokemon(item, @pkmn, self)
@@ -157,7 +157,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
                 return true if used
             end
         elsif cmdGiveItem >= 0 && command == cmdGiveItem # Give
-            item = @summaryScene.pbChooseItem($PokemonBag) do
+            item = @partyScene.pbChooseItem($PokemonBag) do
                 pbSetHelpText((@party.length > 1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
             end
             pbRefreshSingle(@pkmnid) if item && pbGiveItemToPokemon(item, @pkmn, self)
@@ -174,16 +174,16 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
         elsif cmdMoveItem >= 0 && command == cmdMoveItem # Move
             hideTileMenu
             item = @pkmn.firstItem
-            @summaryScene.pbSetHelpText(_INTL("Move {1} to where?", getItemName(item)))
+            @partyScene.pbSetHelpText(_INTL("Move {1} to where?", getItemName(item)))
             loop do
-                @summaryScene.pbPreSelect(@pkmnid)
-                newpkmnid = @summaryScene.pbChoosePokemon(true, @pkmnid)
+                @partyScene.pbPreSelect(@pkmnid)
+                newpkmnid = @partyScene.pbChoosePokemon(true, @pkmnid)
                 break if newpkmnid < 0
                 newpkmn = @party[newpkmnid]
                 break if newpkmnid == @pkmnid
                 next unless pbGiveItemToPokemon(item, newpkmn, self, false)
                 @pkmn.removeItem(item)
-                @summaryScene.pbClearSwitching
+                @partyScene.pbClearSwitching
                 pbRefresh
                 break
             end
@@ -204,7 +204,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
         end
         typeCommands.push("Cancel")
         existingIndex = typesArray.find_index(@pkmn.itemTypeChosen)
-        chosenNumber = @summaryScene.pbShowCommands(_INTL("What type should #{@pkmn.name} become?"), typeCommands,
+        chosenNumber = @partyScene.pbShowCommands(_INTL("What type should #{@pkmn.name} become?"), typeCommands,
 existingIndex)
         if chosenNumber > -1 && chosenNumber < typeCommands.length - 1
             typeSettingItem = @pkmn.hasTypeSetterItem?
@@ -226,7 +226,7 @@ existingIndex)
         commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
         commands[commands.length]                   = _INTL("Cancel")
 
-        modifyCommand = @summaryScene.pbShowCommands(_INTL("Do what with {1}?", @pkmn.name), commands)
+        modifyCommand = @partyScene.pbShowCommands(_INTL("Do what with {1}?", @pkmn.name), commands)
         if cmdRename >= 0 && modifyCommand == cmdRename
             currentName = @pkmn.name
             pbTextEntry("#{currentName}'s nickname?", 0, Pokemon::MAX_NAME_SIZE, 5)
@@ -243,7 +243,7 @@ existingIndex)
                 evo.pbStartScreen(@pkmn, newspecies)
                 evo.pbEvolution
                 evo.pbEndScreen
-                @summaryScene.pbRefresh
+                @partyScene.pbRefresh
             end
             return true
         elsif cmdStyle >= 0 && modifyCommand == cmdStyle
@@ -255,60 +255,67 @@ existingIndex)
 
     def pbSwitch(oldid, newid)
         if oldid != newid
-            @summaryScene.pbSwitchBegin(oldid, newid)
+            @partyScene.pbSwitchBegin(oldid, newid)
             tmp = @party[oldid]
             @party[oldid] = @party[newid]
             @party[newid] = tmp
-            @summaryScene.pbSwitchEnd(oldid, newid)
+            @partyScene.pbSwitchEnd(oldid, newid)
         end
     end
 
     # Interface methods
     def pbUpdate
-        @summaryScene.update
+        @partyScene.update
     end
 
     def pbHardRefresh
-        @summaryScene.pbHardRefresh
+        @partyScene.pbHardRefresh
     end
 
     def pbRefresh
-        @summaryScene.pbRefresh
+        @partyScene.pbRefresh
     end
 
     def pbRefreshSingle(i)
-        @summaryScene.pbRefreshSingle(i)
+        @partyScene.pbRefreshSingle(i)
     end
 
     def pbDisplay(string)
-        @summaryScene.pbDisplay(string)
+        @partyScene.pbDisplay(string)
     end
 
     def pbConfirm(text)
-        return @summaryScene.pbDisplayConfirm(text)
+        return @partyScene.pbDisplayConfirm(text)
     end
 
     def pbShowCommands(helptext, commands, index = 0)
-        return @summaryScene.pbShowCommands(helptext, commands, index)
+        return @partyScene.pbShowCommands(helptext, commands, index)
     end
 
     def pbRefreshAnnotations(ableProc) # For after using an evolution stone
-        return unless @summaryScene.pbHasAnnotations?
+        return unless @partyScene.pbHasAnnotations?
         annot = []
         for pkmn in @party
             elig = ableProc.call(pkmn)
             annot.push(elig ? _INTL("ABLE") : _INTL("NOT ABLE"))
         end
-        @summaryScene.pbAnnotate(annot)
+        @partyScene.pbAnnotate(annot)
     end
 
     def pbClearAnnotations
-        @summaryScene.pbAnnotate(nil)
+        @partyScene.pbAnnotate(nil)
     end
 
     def pbSetHelpText(helptext)
-        @summaryScene.pbSetHelpText(helptext)
+        @partyScene.pbSetHelpText(helptext)
     end
+
+    def pbChoosePokemon(helptext=nil)
+        @partyScene.pbSetHelpText(helptext) if helptext
+        return @partyScene.pbChoosePokemon
+      end
+
+    def supportsFusion?; return true; end
 end
 
 class TilingCardsPokemonMenu < TilingCardsMenu_Screen

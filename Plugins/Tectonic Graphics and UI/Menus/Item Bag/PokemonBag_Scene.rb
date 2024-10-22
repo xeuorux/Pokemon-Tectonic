@@ -303,4 +303,6 @@ class PokemonBag_Scene
           end
         }
       end
+
+      def supportsFusion?; return true; end
   end

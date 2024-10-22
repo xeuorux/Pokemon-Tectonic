@@ -957,6 +957,8 @@ end
     def pbShowCommands(helptext,commands,index=0)
       return @scene.pbShowCommands(helptext,commands,index)
     end
+
+    def supportsFusion?; return true; end
   
     # Checks for identical species
     def pbCheckSpecies(array)   # Unused
