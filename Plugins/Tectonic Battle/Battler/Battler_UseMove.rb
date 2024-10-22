@@ -173,8 +173,6 @@ class PokeBattle_Battler
             choice[2].pp = -1
             if @battle.futureSight && target >= 0 && @battle.positions[target].effectActive?(:FutureSightType)
                 choice[2].type = @battle.positions[target].effects[:FutureSightType]
-            else
-                echoln("#{@futureSight},#{target},#{@battle.positions[target].effects[:FutureSightType]}")
             end
         end
         choice[3] = target     # Target (-1 means no target yet)
@@ -195,7 +193,7 @@ class PokeBattle_Battler
         pbBeginTurn(choice)
 
         # Force the use of certain moves if they're already being used
-        unless @battle.futureSight || (choice[2]&.empoweredMove? && boss?)
+        unless specialUsage || @battle.futureSight || (choice[2]&.empoweredMove? && boss?)
             if usingMultiTurnAttack? && !@currentMove.nil?
                 choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
                 specialUsage = true
@@ -649,10 +647,10 @@ class PokeBattle_Battler
         pbEndTurn(choice)
 
         moveSucceeded = !user.lastMoveFailed && realNumHits > 0 && !move.snatched && magicCoater < 0
-        postMoveUseTriggers(user, move, targets, moveSucceeded)
+        postMoveUseTriggers(user, move, targets, choice, moveSucceeded)
     end
 
-    def postMoveUseTriggers(user, move, targets, moveSucceeded)
+    def postMoveUseTriggers(user, move, targets, choice, moveSucceeded)
         # Abilities that trigger from being in the presence of a successful move
         @battle.pbPriority(true).each do |b|
             b.eachActiveAbility do |ability|
@@ -672,7 +670,7 @@ class PokeBattle_Battler
             moveID = b.lastMoveUsed
             usageMessage = _INTL("{1} used the move instructed by {2}!", b.pbThis, user.pbThis(true))
             preTarget = b.lastRegularMoveTarget
-            @battle.forceUseMove(b, moveID, preTarget, false, usageMessage, :Instructed)
+            @battle.forceUseMove(b, moveID, preTarget, false, usageMessage, moveUsageEffect: :Instructed)
         end
         if moveSucceeded
             # Dancer
@@ -685,7 +683,7 @@ class PokeBattle_Battler
                     nextUser = dancers.pop
                     preTarget = choice[3]
                     preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-                    @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Dancer, ability: :DANCER)
+                    @battle.forceUseMove(nextUser, move.id, preTarget, moveUsageEffect: :Dancer, ability: :DANCER)
                 end
             end
             # Echo
@@ -698,7 +696,7 @@ class PokeBattle_Battler
                     nextUser = echoers.pop
                     preTarget = choice[3]
                     preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-                    @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Echo, ability: :ECHO)
+                    @battle.forceUseMove(nextUser, move.id, preTarget, moveUsageEffect: :Echo, ability: :ECHO)
                 end
             end
         end

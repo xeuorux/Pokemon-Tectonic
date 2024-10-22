@@ -558,6 +558,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:SUDDENTURN,
       break
     end
     next unless hitAnything
-    battle.forceUseMove(user, :RAPIDSPIN, -1, true, nil, :SuddenTurn, ability: ability)
+    battle.forceUseMove(user, :RAPIDSPIN, moveUsageEffect: :SuddenTurn, ability: ability)
   }
 )

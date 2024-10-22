@@ -17,7 +17,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
 BattleHandlers::AbilityOnSwitchOut.add(:FLYBY,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battle.forceUseMove(battler, :GUST, -1, ability: ability)
+      battle.forceUseMove(battler, :GUST, ability: ability)
   }
 )
 
@@ -50,7 +50,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:GAUSSAFTERSHOCK,
 BattleHandlers::AbilityOnSwitchOut.add(:MOTHBURGLAR,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battle.forceUseMove(battler, :THIEF, -1, ability: ability)
+      battle.forceUseMove(battler, :THIEF, ability: ability)
   }
 )
 
