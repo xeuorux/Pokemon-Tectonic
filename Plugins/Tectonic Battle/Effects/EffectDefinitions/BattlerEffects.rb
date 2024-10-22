@@ -1357,6 +1357,13 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :StatsRaised,
+    :real_name => "Stats Raised",
+    :resets_eor	=> true,
+    :info_displayed => false,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :StatsDropped,
     :real_name => "Stats Dropped",
     :resets_eor	=> true,
