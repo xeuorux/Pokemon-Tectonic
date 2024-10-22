@@ -23,13 +23,13 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:STICKYMOLD,
 
 BattleHandlers::TargetAbilityKnockedBelowHalf.add(:WRATHINSTINCT,
     proc { |ability, target, user, move, _switched, battle|
-        battle.forceUseMove(target, :DRAGONDANCE, user.index, ability: ability)
+        battle.forceUseMove(target, :DRAGONDANCE, ability: ability)
     }
 )
 
 BattleHandlers::TargetAbilityKnockedBelowHalf.add(:EMERGENCYPOWER,
     proc { |ability, target, user, move, _switched, battle|
-        battle.forceUseMove(target, :LIGHTNINGDANCE, user.index, ability: ability)
+        battle.forceUseMove(target, :LIGHTNINGDANCE, ability: ability)
     }
 )
 
@@ -54,6 +54,6 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:DREAMYHAZE,
 
 BattleHandlers::TargetAbilityKnockedBelowHalf.add(:AROMATIC,
     proc { |ability, target, user, move, _switched, battle|
-        battle.forceUseMove(target, :AROMATHERAPY, user.index, ability: ability)
+        battle.forceUseMove(target, :AROMATHERAPY, ability: ability)
     }
 )
