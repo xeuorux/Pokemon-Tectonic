@@ -154,6 +154,7 @@ class PokemonEncounters
     return false if pbInSafari?
     return true if $PokemonGlobal.partner
     return false if $Trainer.able_pokemon_count <= 1
+    return false if $PokemonTemp.currentDexSearch
     return true if $game_player.pbTerrainTag.double_wild_encounters
     return true if rand(100) < Settings::DOUBLE_WILD_BATTLE_CHANCE
     return false
