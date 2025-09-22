@@ -210,5 +210,5 @@ class PokeBattle_Move
     end
 
     def getDetailsForMoveDex(detailsList = []); end;
-  end
+end
   
