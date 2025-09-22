@@ -20,7 +20,7 @@ def pbAfterBattle(decision,canLose)
     end
     Events.onEndBattle.trigger(nil,decision,canLose)
     $game_player.straighten
-  end
+end
   
   Events.onEndBattle += proc { |_sender,e|
     decision = e[0]

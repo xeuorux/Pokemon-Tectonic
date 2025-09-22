@@ -170,7 +170,7 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech = nil,
     setBattleRule("randomOrder") if random
     # Perform the battle
     if $PokemonTemp.waitingTrainer
-        waitingTrainer = $PokemonTemp.waitingTrainer
+        # waitingTrainer = $PokemonTemp.waitingTrainer
         decision = pbTrainerBattleCore($PokemonTemp.waitingTrainer,
         [trainerID, trainerName, trainerPartyID, endSpeech]
         )

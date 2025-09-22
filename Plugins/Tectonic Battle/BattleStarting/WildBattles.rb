@@ -96,7 +96,7 @@ def pbWildBattleCore(*args)
     #    5 - Draw
     pbSet(outcomeVar,decision)
     return decision
-  end
+end
 
   def skipBattle(outcomeVar = 1,outcome = 1)
     pbSet(outcomeVar,outcome)  # Treat it as a win by default
