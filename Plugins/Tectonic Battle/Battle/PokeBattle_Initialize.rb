@@ -223,8 +223,8 @@ class PokeBattle_Battle
         @knownItems[pokemon.personalID] = knownItemsArray
         pokemon.items.each do |item|
             next # TO DO
-            knownItemsArray.push(item)
-            echoln("Pokemon #{pokemon.name}'s item #{getItemName(item)} is known by the AI")
+            # knownItemsArray.push(item)
+            # echoln("Pokemon #{pokemon.name}'s item #{getItemName(item)} is known by the AI")
         end
     end
 

@@ -215,7 +215,7 @@ class PokeBattle_Battle
 
     def countDownPerishSong(priority)
         # Perish Song
-        fainters = []
+        # fainters = []
         priority.each do |b|
             next if b.fainted?
             next unless b.effectActive?(:PerishSong)

@@ -478,7 +478,7 @@ class PokeBattle_Battle
 
             # Extra phases after main phases
             if numExtraPhasesThisTurn > 0
-                for i in 1..numExtraPhasesThisTurn do
+                for _i in 1..numExtraPhasesThisTurn do
                     echoln("Extra phase begins")
                     @battlers.each do |b|
                         next unless b

@@ -174,11 +174,11 @@ class PokeBattle_Battle
         end
         
         if aiCheck
-            moveScore = 0
-            if target >= 0
-                moveScore = @battleAI.pbGetMoveScore(fakeMove, forcedMoveUser, @battlers[target], forcedMoveUser.ownersPolicies)
-            else
-                newChoice,killInfo = @battleAI.pbEvaluateMoveTrainer(forcedMoveUser, fakeMove, random: true)
+            #moveScore = 0
+            # if target >= 0
+                #moveScore = @battleAI.pbGetMoveScore(fakeMove, forcedMoveUser, @battlers[target], forcedMoveUser.ownersPolicies)
+            unless target >= 0
+                newChoice,_killInfo = @battleAI.pbEvaluateMoveTrainer(forcedMoveUser, fakeMove, random: true)
                 if newChoice
                     return newChoice[0]
                 else
