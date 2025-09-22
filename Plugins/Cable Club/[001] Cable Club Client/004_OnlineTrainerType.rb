@@ -9,7 +9,7 @@ class Player
     return @online_win_text || 0
   end
   attr_writer :online_lose_text
-    def online_lose_text
+  def online_lose_text
     return @online_lose_text || 0
   end
 end

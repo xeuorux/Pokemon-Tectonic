@@ -274,7 +274,7 @@ class PokeBattle_CableClub < PokeBattle_Battle
         next if !pbCanChooseNonActive?(idxBattler)
         if !pbOwnedByPlayer?(idxBattler)   # Opponent/ally is switching in
           idxPartyNew = pbSwitchInBetween(idxBattler)
-          opponent = pbGetOwnerFromBattlerIndex(idxBattler)
+          # opponent = pbGetOwnerFromBattlerIndex(idxBattler)
           pbRecallAndReplace(idxBattler,idxPartyNew)
           switched.push(idxBattler)
         else
@@ -318,7 +318,7 @@ class PokeBattle_CableClub_AI < PokeBattle_AI
         writer.int(mega)
         # Send Choices for Player's Mons
         for our_index in our_indices
-          pkmn = @battle.battlers[our_index]
+          # pkmn = @battle.battlers[our_index]
           writer.sym(:choice)
           # choice picked was changed to be a symbol now.
           writer.sym(@battle.choices[our_index][0])

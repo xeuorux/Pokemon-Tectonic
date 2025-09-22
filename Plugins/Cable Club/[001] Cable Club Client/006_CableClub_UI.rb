@@ -624,11 +624,11 @@ class CableClubScreen
     battle_rules = @battle_settings[1][2]
     if battle_rules.team_preview?
       level_adjust=battle_rules.rules_hash[:level_adjust]
-      level_string=_INTL("FFA")
+      # level_string=_INTL("FFA")
       if level_adjust
-        level_string=_INTL("Cust.")
+        # level_string=_INTL("Cust.")
         if level_adjust[0] == FixedLevelAdjustment
-          level_string=sprintf("%d",level_adjust[1][1])
+          # level_string=sprintf("%d",level_adjust[1][1])
         end
       end
       partner = NPCTrainer.new(@partner_name, @partner_trainertype)
@@ -704,7 +704,8 @@ class CableClubScreen
         party_partner.push(@partner_party[i])
       end
     end
-    decision = CableClub::do_battle(connection, @client_id, seed, battle_rules[2], party_player, partner, party_partner)
+    # decision = 
+    CableClub::do_battle(connection, @client_id, seed, battle_rules[2], party_player, partner, party_partner)
     @battle_settings = nil
     if @client_id == 0
       choose_activity(connection)
