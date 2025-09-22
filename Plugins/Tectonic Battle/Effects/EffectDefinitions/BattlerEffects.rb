@@ -793,7 +793,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         recipient = battle.battlers[value]
         next if !recipient || recipient.fainted?
         battle.pbCommonAnimation("LeechSeed", recipient, battler)
-        oldHPRecipient = recipient.hp
+        # oldHPRecipient = recipient.hp
         hpLost = battler.applyFractionalDamage(1.0 / 8.0, false)
         recipient.pbRecoverHPFromDrain(hpLost, battler)
     end,
