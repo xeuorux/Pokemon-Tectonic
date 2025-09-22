@@ -113,7 +113,7 @@ BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
     proc { |item,battler,battle,forced|
       next false if !forced && !battler.canConsumeBerry?
       next false if !battler.hasAnyStatusNoTrigger
-      itemName = GameData::Item.get(item).name
+      # itemName = GameData::Item.get(item).name
       battle.pbCommonAnimation("Nom",battler) if !forced
       battler.pbCureStatus
       battler.pbRaiseMultipleStatSteps([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, item: item)

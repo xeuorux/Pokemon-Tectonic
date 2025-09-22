@@ -62,7 +62,7 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasAnyStatusNoTrigger
-      itemName = GameData::Item.get(item).name
+      # itemName = GameData::Item.get(item).name
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus
       next true
@@ -117,7 +117,7 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
 
       next false unless activate
 
-      itemName = GameData::Item.get(item).name
+      # itemName = GameData::Item.get(item).name
       battle.pbCommonAnimation("UseItem", battler) unless forced
 
       # Disable all mental effects
