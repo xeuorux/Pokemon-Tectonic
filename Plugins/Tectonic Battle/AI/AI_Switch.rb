@@ -94,7 +94,7 @@ class PokeBattle_AI
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
 
         # Value of its own moves
-        bestMoveScore, killInfo = switchRatingBestMoveScore(battler, killInfoArray: killInfoArray)
+        bestMoveScore, _killInfo = switchRatingBestMoveScore(battler, killInfoArray: killInfoArray)
         offensiveMatchupRating = (0.5 * bestMoveScore).floor
         
         urgency = 0
@@ -134,7 +134,7 @@ class PokeBattle_AI
             end
         end
         return -1
-    rescue StandardError => exception
+    rescue StandardError => _exception
         pbPrintException($!) if $DEBUG
         echoln("FAILURE ENCOUNTERED IN pbDetermineSwitch FOR BATTLER INDEX #{idxBattler}")
         return -1
@@ -144,7 +144,7 @@ class PokeBattle_AI
         stayInRating = 0
 
         # Less likely to switch when coming in later would cause it to die to hazards
-        entryDamage, hazardScore = @battle.applyHazards(battler, true)
+        entryDamage, _hazardScore = @battle.applyHazards(battler, true)
         if entryDamage >= battler.hp
             stayInRating += 30
             PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+30)")
@@ -189,7 +189,7 @@ class PokeBattle_AI
 
             pursuitMove = b.canChoosePursuit?(battler)
             if pursuitMove
-                pursuitScore, pursuitKillInfo = pbGetMoveScore(pursuitMove, b, battler)
+                pursuitScore, _pursuitKillInfo = pbGetMoveScore(pursuitMove, b, battler)
                 pursuitScore = (pursuitScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")

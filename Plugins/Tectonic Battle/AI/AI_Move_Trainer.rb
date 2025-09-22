@@ -1,8 +1,8 @@
 class PokeBattle_AI
     def pbChooseMovesTrainer(idxBattler, choices)
         user = @battle.battlers[idxBattler]
-        owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
-        policies = owner.policies || []
+        # owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
+        # policies = owner.policies || []
 
         # Log the available choices
         logMoveChoices(user, choices)
@@ -108,7 +108,7 @@ class PokeBattle_AI
                 end
             end
             targets.each do |b|
-                score,targetKillInfo,isSlowerDead2,isFasterDead2 = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores, killInfoArray)
+                score,targetKillInfo,_isSlowerDead2,_isFasterDead2 = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores, killInfoArray)
                 if target_data.targets_foe
                     if user.opposes?(b)
                         totalScore += score
@@ -140,7 +140,7 @@ class PokeBattle_AI
                         totalScore = score
                         battlerCount = 1
                         b.eachRedirectingAlly do |ally|
-                            allyScore,allyKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
+                            allyScore,_allyKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
                             totalScore += allyScore
                             battlerCount += 1
                         end
@@ -216,7 +216,7 @@ class PokeBattle_AI
             # and perhaps a percent chance to actually benefit from its effect score
             begin
                 damageScore,damageDealt,willFaint = pbGetMoveScoreDamage(move, user, target, numTargets)
-            rescue StandardError => exception
+            rescue StandardError => _exception
                 pbPrintException($!) if $DEBUG
             end
 
@@ -231,7 +231,7 @@ class PokeBattle_AI
                 end
                 triggersScore += scoreModifierUserAbility
                 echoln("\t[MOVE SCORING] #{user.pbThis}'s #{numHits} hits adjusts the score by #{scoreModifierUserAbility} due to the user's abilities") if scoreModifierUserAbility != 0
-            rescue StandardError => exception
+            rescue StandardError => _exception
                 pbPrintException($!) if $DEBUG
             end
 
@@ -245,7 +245,7 @@ class PokeBattle_AI
                     end
                     triggersScore += scoreModifierTargetAbility
                     echoln("\t[MOVE SCORING] #{numHits} hits adjusts the score by #{scoreModifierTargetAbility} due to the target's abilities") if scoreModifierTargetAbility != 0
-                rescue StandardError => exception
+                rescue StandardError => _exception
                     pbPrintException($!) if $DEBUG
                 end
             end
@@ -260,7 +260,7 @@ class PokeBattle_AI
                     end
                     triggersScore += scoreModifierTargetItem
                     echoln("\t[MOVE SCORING] #{numHits} hits adjusts the score by #{scoreModifierTargetItem} due to the target's items") if scoreModifierTargetItem != 0
-                rescue StandardError => exception
+                rescue StandardError => _exception
                     pbPrintException($!) if $DEBUG
                 end
             end
