@@ -218,7 +218,7 @@ class PokeBattle_Move_DisableTargetStatusMoves4 < PokeBattle_Move
             end
         end
 
-		if @battle.battleAI.userMovesFirst?(self, user, target)
+        if @battle.battleAI.userMovesFirst?(self, user, target)
             firstTurnScore *= 2
             firstTurnScore *= 1.3 if user.firstTurn? # Prevent hazards over setting them on lead
         end
