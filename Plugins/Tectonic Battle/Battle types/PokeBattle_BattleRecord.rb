@@ -133,7 +133,7 @@ module PokeBattle_RecordedBattleModule
       @randomnumbers.push(ret)
       return ret
     end
-  end
+end
   
   
   
@@ -173,7 +173,7 @@ module PokeBattle_RecordedBattleModule
   #===============================================================================
   #
   #===============================================================================
-  module PokeBattle_BattlePlayerModule
+module PokeBattle_BattlePlayerModule
     module Commands
       Fight   = 0
       Bag     = 1

@@ -81,5 +81,5 @@ class PokeBattle_DebugSceneNoLogging
         break if yield replacements[rand(replacements.length)],self
       end
     end
-  end
+end
   

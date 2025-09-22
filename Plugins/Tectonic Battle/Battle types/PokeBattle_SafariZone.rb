@@ -54,7 +54,7 @@ class PokeBattle_FakeBattler
     end
   
     def pbReset; end
-  end
+end
   
   
   

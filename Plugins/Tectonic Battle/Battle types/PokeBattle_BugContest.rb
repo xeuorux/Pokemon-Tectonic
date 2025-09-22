@@ -13,7 +13,7 @@ class PokeBattle_Scene
     def pbHideHelp
       @sprites["helpwindow"].visible = false
     end
-  end
+end
   
   #===============================================================================
   # Bug Catching Contest battle class

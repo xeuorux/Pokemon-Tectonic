@@ -43,7 +43,7 @@ class PokeBattle_RealBattlePeer
       pkmn.form = f if f && pkmn.form!=f
       pkmn.hp = pkmn.totalhp if pkmn.hp>pkmn.totalhp
     end
-  end
+end
   
   
   
