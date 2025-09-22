@@ -1253,7 +1253,7 @@ class Pokemon
 
         prevHappiness = @happiness
         @happiness = (@happiness + gain).clamp(0, MAX_HAPPINESS)
-        actualGain = @happiness - prevHappiness
+        # actualGain = @happiness - prevHappiness
 
         # echoln("Changing #{name}'s happiness by #{actualGain}") if actualGain != 0
 
