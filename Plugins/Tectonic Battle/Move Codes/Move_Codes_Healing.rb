@@ -308,7 +308,7 @@ end
 #===============================================================================
 class PokeBattle_Move_HealTargetHalfOfTotalHPAndCureStatus < PokeBattle_Move_HealTargetHalfOfTotalHP
     def pbFailsAgainstTarget?(_user, target, show_message)
-       if !target.canHeal? && !target.pbHasAnyStatus?
+        if !target.canHeal? && !target.pbHasAnyStatus?
             @battle.pbDisplay(_INTL("{1} can't be healed and it has no status conditions!", target.pbThis)) if show_message
             return true
         end

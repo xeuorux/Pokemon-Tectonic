@@ -54,8 +54,4 @@ class PokeBattle_Move_PowerUpAndIncreaseAccOfAllyMove < PokeBattle_HelpingMove
         super
         @helpingEffect = :Spotting
     end
-
-    def getEffectScore(user, target)
-        score = super
-    end
 end

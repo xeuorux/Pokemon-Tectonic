@@ -136,7 +136,7 @@ class PokeBattle_Move_CureUserPartyStatusDamagingMove < PokeBattle_Move
 
     def getEffectScore(user, _target)
         score = 0
-        statuses = 0
+        # statuses = 0
         @battle.pbParty(user.index).each do |pkmn|
             score += 40 if pkmn && pkmn.status != :NONE
         end

@@ -62,14 +62,14 @@ class PokeBattle_Move_Defog < PokeBattle_Move
         score += hazardWeightOnSide(target.pbOpposingSide) if user.alliesInReserve?
         target.pbOwnSide.eachEffect(true) do |effect, value, data|
             next unless data.is_screen? || @miscEffects.include?(effect)
-			case value
-				when 2
-					score += 30
-				when 3
-					score += 55
-				when 4..999
-					score += 140
-            end	
+            case value
+                when 2
+                    score += 30
+                when 3
+                    score += 55
+                when 4..999
+                    score += 140
+            end    
         end
         return score
     end

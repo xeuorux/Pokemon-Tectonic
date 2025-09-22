@@ -125,7 +125,7 @@ class PokeBattle_Move_TwoTurnAttackChargeSleep < PokeBattle_TwoTurnMove
         return false
     end
 
-     def pbMoveFailedAI?(user, targets)
+    def pbMoveFailedAI?(user, targets)
         return true unless user.canSleep?(user, false, self, true)
         return true if super
         return false

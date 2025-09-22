@@ -196,7 +196,7 @@ class PokeBattle_Move_DisableTargetStatusMoves4 < PokeBattle_Move
         
         # Setup
         if target.hasSetupStatusMove?
-           if target.lastRoundMoveCategory == -1 || target.lastRoundMoveCategory == 2 # No point stopping setup that already happened
+            if target.lastRoundMoveCategory == -1 || target.lastRoundMoveCategory == 2 # No point stopping setup that already happened
                 firstTurnScore = 50
                 lastingScore += 30
             end

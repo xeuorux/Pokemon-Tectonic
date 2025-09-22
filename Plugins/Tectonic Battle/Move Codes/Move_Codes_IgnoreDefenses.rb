@@ -119,14 +119,14 @@ class PokeBattle_Move_RemoveScreens < PokeBattle_Move
         score = 0
         target.pbOwnSide.eachEffect(true) do |effect, value, data|
             next unless data.is_screen?
-			case value
-				when 2
-					score += 30
-				when 3
-					score += 50
-				when 4..999
-					score += 130
-            end	
+            case value
+                when 2
+                    score += 30
+                when 3
+                    score += 50
+                when 4..999
+                    score += 130
+            end    
         end
         return score
     end
@@ -202,14 +202,14 @@ class PokeBattle_Move_RemoveScreensSubstituteProtections < PokeBattle_Move
         score = 0
         target.pbOwnSide.eachEffect(true) do |effect, value, data|
             next unless data.is_screen?
-			case value
-				when 2
-					score += 30
-				when 3
-					score += 50
-				when 4..999
-					score += 130
-            end	
+            case value
+                when 2
+                    score += 30
+                when 3
+                    score += 50
+                when 4..999
+                    score += 130
+            end    
         end
         score += 20 if target.substituted?
         return score

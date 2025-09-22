@@ -84,7 +84,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
             score += 20 if target.hp >= target.totalhp * 0.95
             score += 40 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 10
             score += 30 if target.trapped?
-			score += 60 if target.hasHealingMove?
+            score += 60 if target.hasHealingMove?
             score += NON_ATTACKER_BONUS unless user&.hasDamagingAttack?
             if user
                 score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
@@ -176,13 +176,13 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
         score = -10
         if target.takesIndirectDamage?
             score += 60
-            score += NON_ATTACKER_BONUS * 2 unless user&.hasDamagingAttack?			
+            score += NON_ATTACKER_BONUS * 2 unless user&.hasDamagingAttack?            
             score += 20 if target.hp >= target.totalhp * 0.95
             score += 40 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 10
-            score += 20 if target.totalhp > user&.totalhp * 1.5			
+            score += 20 if target.totalhp > user&.totalhp * 1.5            
             score += 20 if target.totalhp > user&.totalhp * 2
             score -= 30 if target.totalhp < user&.totalhp / 2
-			score += 50 if target.hasHealingMove?
+            score += 50 if target.hasHealingMove?
             score *= 2 if user&.hasActiveAbilityAI?(:AGGRAVATE)
             score *= 1.5 if user&.hasActiveAbilityAI?(:ROOTED)
             score *= 1.3 if user&.hasActiveItemAI?(:BIGROOT)
@@ -306,7 +306,7 @@ def getForceOutEffectScore(_user, target, random = true)
     return 0 if target.effectActive?(:Ingrain)
     score = random ? 10 : -15
     score += 0.5 * hazardWeightOnSide(target.pbOwnSide,[:StickyWeb])
-    score += statStepsValueScore(target)	
+    score += statStepsValueScore(target)    
     return score
 end
 
@@ -342,12 +342,12 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         echoln("\t\t[EFFECT SCORING] Grey Mist is active, scoring 0.")
         return 0
     end
-	
-	if user.effects[:PerishSong] > 0
-		echoln("\t\t[EFFECT SCORING] #{user.pbThis} (#{user.index}) has heard the perish song, scoring 0")
-		return 0
-	end
-	
+    
+    if user.effects[:PerishSong] > 0
+        echoln("\t\t[EFFECT SCORING] #{user.pbThis} (#{user.index}) has heard the perish song, scoring 0")
+        return 0
+    end
+    
     score = 0
 
     for i in 0...statUpArray.length / 2
@@ -384,11 +384,11 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         else # Currently only Accuracy
             increase = 16
         end
-		
-		# Increase the score more if getting offense and defense from same stat
-		increase += 12 if statSymbol == :DEFENSE && target.pbHasMoveFunction?("AttacksWithDefense") # Body Press
-		increase += 12 if statSymbol == :SPECIAL_DEFENSE && target.pbHasMoveFunction?("AttacksWithSpDef") # Aura Trick
-		increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase > 30 # Restrain the ai if it has defense move and took a hit
+        
+        # Increase the score more if getting offense and defense from same stat
+        increase += 12 if statSymbol == :DEFENSE && target.pbHasMoveFunction?("AttacksWithDefense") # Body Press
+        increase += 12 if statSymbol == :SPECIAL_DEFENSE && target.pbHasMoveFunction?("AttacksWithSpDef") # Aura Trick
+        increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase > 30 # Restrain the ai if it has defense move and took a hit
 
         # Different stat steps have different values
         stepTotal = target.steps[statSymbol] + fakeStepModifier
@@ -462,10 +462,8 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
             elsif target.numbed? || target.waterlogged?
                 if statSymbol == :SPEED
                     totalIncrease *= 0.4
-                elsif
-                    if target.getSpeedTier > 0
-                        totalIncrease *= 0.7
-                    end
+                elsif target.getSpeedTier > 0
+                    totalIncrease *= 0.7
                 else
                     totalIncrease *= 0.85
                 end
@@ -639,32 +637,32 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
     echoln("\t\t[EFFECT SCORING] Base score for setting weather #{weatherType} calculated as #{score} from difference of #{finalDuration}-turn final duration score (#{finalScore}) and #{currentDuration}-turn current duration score (#{currentScore})")
 
     weatherMatchesPolicy = false
-    hasSynergyAbility = false
+    # hasSynergyAbility = false
     hasSynergisticType = false
     case weatherType
     when :Sunshine
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SUN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunshineSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunshineSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FIRE)
     when :Rainstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:RAIN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainstormSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainstormSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:WATER)
     when :Sandstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SANDSTORM_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SandstormSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SandstormSynergy"))
         hasSynergisticType = true if user.pbHasTypeAI?(:ROCK)
     when :Hail
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:HAIL_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("HailSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("HailSynergy"))
         hasSynergisticType = true if user.pbHasTypeAI?(:ICE)
     when :Moonglow
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:MOONGLOW_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("MoonglowSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("MoonglowSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FAIRY)
     when :Eclipse
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:ECLIPSE_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("EclipseSynergy"))
+        # hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("EclipseSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     
@@ -715,12 +713,12 @@ end
 def getCurseEffectScore(user, target)
     score = 50
     score += 50 if target.aboveHalfHealth?
-	if user.battle.pbCanSwitch?(target.index)
-	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+    if user.battle.pbCanSwitch?(target.index)
+        score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
         score = score * 0.70
     else
         score += statStepsValueScore(target)
-	end
+    end
     score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     return score
 end
@@ -729,11 +727,11 @@ def getFractureEffectScore(user, target)
     return 0 unless target.hasDamagingAttack?
     score = 100
     if user.battle.pbCanSwitch?(target.index)
-	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
         score = score * 0.70
     else
         score += statStepsValueScore(target)
-	end
+    end
     return score
 end
 
@@ -742,11 +740,11 @@ def getJinxEffectScore(user, target)
     score += 30 if user.hasDamagingAttack?
     score += 30 if user.canChooseProtect?
     if user.battle.pbCanSwitch?(target.index)
-	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
         score = score * 0.70
     else
         score += statStepsValueScore(target)
-	end
+    end
     return score
 end
 
@@ -761,12 +759,12 @@ def passingTurnSideEffectScore(battle,sideIndex = 1)
 end
 
 def passingTurnBattlerEffectScore(battler,battle)
-    healthChange,healthPercentageChange = passingTurnBattlerHealthChange(battler,battle)
+    _healthChange,healthPercentageChange = passingTurnBattlerHealthChange(battler,battle)
     return healthPercentageChange * 2
 end
 
 def passingTurnBattlerHealthChange(battler,battle)
-	healthChange = predictedEOTDamage(battle,battler)
+    healthChange = predictedEOTDamage(battle,battler)
     healthChange -= predictedEOTHealing(battle,battler)
 
     healthPercentageChange = healthChange * 100 / battler.totalhp
@@ -895,11 +893,11 @@ end
 
 def getAquaRingEffectScore(user)
     return 0 if user.effectActive?(:AquaRing)
-	return 0 if user.effects[:PerishSong] > 0
+    return 0 if user.effects[:PerishSong] > 0
 
     score = 40
     score += 20 if user.hp > user.totalhp * 0.5
-	score += 20 if user.hp > user.totalhp * 0.75
+    score += 20 if user.hp > user.totalhp * 0.75
     return score
 end
 
@@ -933,7 +931,7 @@ def getGreyMistSettingEffectScore(user,duration)
     user.battle.eachBattler do |b|
         if b.opposes?(user)
             score += statStepsValueScore(b)
-            score += 15 * duration if b.hasSetupMove? && score = 0
+            score += 15 * duration if b.hasSetupMove? && score == 0
         else
             score -= statStepsValueScore(b)
         end

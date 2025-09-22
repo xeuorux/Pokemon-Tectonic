@@ -54,16 +54,16 @@ class PokeBattle_Move_RaiseUserAtkDef2CriticalHitRate1 < PokeBattle_MultiStatUpM
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2]
-	end
+    end
 
-	def pbMoveFailed?(user, _targets, show_message)
+    def pbMoveFailed?(user, _targets, show_message)
         return super if user.effectAtMax?(:RaisedCritChance) 
         return false
     end
 
-	def pbEffectGeneral(user)
-		super
-		user.incrementEffect(:RaisedCritChance, 1) unless user.effectAtMax?(:RaisedCritChance)
+    def pbEffectGeneral(user)
+        super
+        user.incrementEffect(:RaisedCritChance, 1) unless user.effectAtMax?(:RaisedCritChance)
     end
 
     def getEffectScore(user, _target)
@@ -434,16 +434,16 @@ class PokeBattle_Move_RaiseUserSpAtkSpDef2CriticalHitRate1 < PokeBattle_MultiSta
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
-	end
+    end
     
-	def pbMoveFailed?(user, _targets, show_message)
+    def pbMoveFailed?(user, _targets, show_message)
         return super if user.effectAtMax?(:RaisedCritChance)
         return false
     end
     
-	def pbEffectGeneral(user)
-		super
-		user.incrementEffect(:RaisedCritChance, 1) unless user.effectAtMax?(:RaisedCritChance)
+    def pbEffectGeneral(user)
+        super
+        user.incrementEffect(:RaisedCritChance, 1) unless user.effectAtMax?(:RaisedCritChance)
     end
 
     def getEffectScore(user, _target)
@@ -524,12 +524,12 @@ end
 # (Gloat)
 #===============================================================================
 class PokeBattle_Move_RaiseUserMainStats2IfFoeBelowHalf < PokeBattle_MultiStatUpMove
-	def initialize(battle, move)
+    def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
     end
-	
-	def pbMoveFailed?(user, targets, show_message)
+    
+    def pbMoveFailed?(user, targets, show_message)
         anyOppLow = false
         user.eachOpposing do |b|
             next if b.aboveHalfHealth?
@@ -549,12 +549,12 @@ end
 # (Foxtrot Finale)
 #===============================================================================
 class PokeBattle_Move_RaiseUserMainStats2IfFoeFaintedLastTurn < PokeBattle_MultiStatUpMove
-	def initialize(battle, move)
+    def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
     end
-	
-	def pbMoveFailed?(user, targets, show_message)
+    
+    def pbMoveFailed?(user, targets, show_message)
         unless user.pbOpposingSide.faintLastRound?
             @battle.pbDisplay(_INTL("But it failed, since there was no victory to celebrate!")) if show_message
             return true
@@ -656,11 +656,11 @@ class PokeBattle_Move_RaiseUserAtkSpDef2MagnetRise < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :SPECIAL_DEFENSE, 2]
-	end
+    end
 
-	def pbEffectGeneral(user)
-		super
-		user.applyEffect(:MagnetRise, applyEffectDurationModifiers(5,user))
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:MagnetRise, applyEffectDurationModifiers(5,user))
     end
 
     def getEffectScore(user, target)
