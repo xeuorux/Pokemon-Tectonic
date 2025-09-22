@@ -1,5 +1,5 @@
 Events.onMapLoadIn += proc { |_sender,_e|
-    mapID = $game_map.map_id
+    # mapID = $game_map.map_id
 
     next unless $PokEstate.isInEstate?
     currentBox = $PokEstate.estate_box
