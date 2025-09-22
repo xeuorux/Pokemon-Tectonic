@@ -180,7 +180,7 @@ class PokeBattle_Battler
              end
              echoln(msg)
              return false
-         end
+        end
         return true
     end
 

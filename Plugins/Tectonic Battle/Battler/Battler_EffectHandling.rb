@@ -70,7 +70,8 @@ class PokeBattle_Battler
     end
 
     def getReleventEffectHolders
-        holders = [self, @battle.positions[@index], pbOwnSide, @battle.field]
+        #holders = 
+        return [self, @battle.positions[@index], pbOwnSide, @battle.field]
     end
 
     def eachEffectAllLocations(onlyActive = false, &block)

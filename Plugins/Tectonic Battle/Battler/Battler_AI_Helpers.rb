@@ -545,7 +545,7 @@ class PokeBattle_Battler
     ###############################################################################
 
     def defensiveMatchupAI
-        score,killInfoArray = @battle.battleAI.worstDefensiveMatchupAgainstActiveFoes(self)
+        score,_killInfoArray = @battle.battleAI.worstDefensiveMatchupAgainstActiveFoes(self)
         return score
     end
 

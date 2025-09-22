@@ -207,14 +207,14 @@ class PokeBattle_Battler
         @battle.pbEndPrimordialWeather
         
         if items.length > 1
-            droppedItems = false
+            # droppedItems = false
             GameData::Ability.getByFlag("MultipleItems").each do |doubleItemAbility|
                 next unless oldAbilities.include?(doubleItemAbility) && !hasAbility?(doubleItemAbility)
                 itemKept = items[0]
                 setItems(itemKept)
                 @battle.pbDisplay(_INTL("{1} dropped all of its items except {2}!", pbThis, getItemName(itemKept)))
                 aiLearnsItem(itemKept)
-                droppedItems = true
+                # droppedItems = true
                 break
             end
         end

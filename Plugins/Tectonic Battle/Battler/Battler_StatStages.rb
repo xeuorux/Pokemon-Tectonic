@@ -598,10 +598,10 @@ class PokeBattle_Battler
         return unless pbCanRaiseAnyOfStats?(statArray, user, move: move, showFailMsg: showFailMsg)
         @battle.pbShowAbilitySplash(user, ability) if ability
 
-        cause = nil
+        # cause = nil
         if item
             @battle.pbCommonAnimation("UseItem", user)
-            cause = GameData::Item.get(item).name
+            # cause = GameData::Item.get(item).name
         end
 
         # Contrary
@@ -659,10 +659,10 @@ class PokeBattle_Battler
         return unless pbCanLowerAnyOfStats?(statArray, user, move: move, showFailMsg: showFailMsg)
         @battle.pbShowAbilitySplash(user, ability) if ability
 
-        cause = nil
+        # cause = nil
         if item
             @battle.pbCommonAnimation("UseItem", user)
-            cause = GameData::Item.get(item).name
+            # cause = GameData::Item.get(item).name
         end
 
         unless @battle.moldBreaker

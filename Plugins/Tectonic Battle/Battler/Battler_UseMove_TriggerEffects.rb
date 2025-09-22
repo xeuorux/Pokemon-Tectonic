@@ -280,7 +280,7 @@ user.pbThis(true)))
 
     # Everything in this method is negated by Sheer Force.
     def pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers)
-        hpNow = user.hp # Intentionally determined now, before Shell Bell
+        # hpNow = user.hp # Intentionally determined now, before Shell Bell
         # Target's held item (Eject Button, Red Card)
         switchByItem = []
         @battle.pbPriority(true).each do |b|
