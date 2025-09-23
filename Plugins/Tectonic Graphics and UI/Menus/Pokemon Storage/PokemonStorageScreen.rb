@@ -482,6 +482,10 @@ class PokemonStorageScreen
         box = selected[0]
         index = selected[1]
         raise _INTL("Position {1},{2} is empty...", box, index) unless @storage[box, index]
+        if @storage[box].isDonationBox?
+            pbDisplay(_INTL("Can't withdraw from a donation box.")) 
+            return false
+        end
         if box == -1 && pbAble?(@storage[box, index]) && pbAbleCount <= 1 && !pbAble?(@heldpkmn)
             pbPlayBuzzerSE
             pbDisplay(_INTL("That's your last Pokémon!"))
