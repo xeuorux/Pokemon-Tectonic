@@ -655,7 +655,7 @@ Flags = RainstormSynergy
 #-------------------------------
 [FIELDOFDEATH]
 Name = Field of Death
-Description = While the Pokémon is on the field, all attacks drain 30% HP.
+Description = While the Pokémon is on the field, all attacks drain 30% of damage dealt.
 #-------------------------------
 [FIELDOFLIFE]
 Name = Field of Life
