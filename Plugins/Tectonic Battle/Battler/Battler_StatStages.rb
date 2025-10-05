@@ -566,10 +566,11 @@ class PokeBattle_Battler
             BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
         end
 
-        # Trigger items upon stat loss
-        eachActiveItem do |item|
-            BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
-        end
+        # DO NOT Trigger items upon stat loss! The only example is eject pack and it is VERY BUGGY if triggered here!
+        # It has special handling in Battler_UseMove_TriggerEffects.rb
+        # eachActiveItem do |item|
+        #     BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
+        # end
     end
 
     #=============================================================================
