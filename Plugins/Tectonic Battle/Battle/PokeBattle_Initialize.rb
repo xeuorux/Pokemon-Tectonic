@@ -67,6 +67,10 @@ class PokeBattle_Battle
     attr_accessor :laneTargeting # Whether or not pokemon can only target foes across from them
     attr_accessor :shiftEnabled # Whether a Pokemon can use an action to switch spots with their ally
     attr_accessor :doubleShift # Whether shifting is allowed in double battles
+    attr_accessor :is_recorded
+	attr_accessor :is_replayed
+	attr_accessor :last_choice #Only used in recorded battles, logs the last non-move choice made
+	attr_accessor :next_choice #Only used in replayed battles, logs the next non-move choice that will be made
 
     #=============================================================================
     # Creating the battle class
@@ -162,6 +166,10 @@ class PokeBattle_Battle
         @laneTargeting = false
         @shiftEnabled = false
         @doubleShift = false
+        @last_choice = nil
+        @next_choice = nil
+        @is_recorded = false
+	    @is_replayed = false
         if GameData::Move.exists?(:STRUGGLE)
             @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
         else

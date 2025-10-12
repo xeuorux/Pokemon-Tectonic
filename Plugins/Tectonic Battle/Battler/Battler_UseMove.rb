@@ -230,7 +230,7 @@ class PokeBattle_Battler
         return unless move # if move was not chosen somehow
 
         # Make extra move choices
-        move.resolutionChoice(self)
+        @last_choice = move.resolutionChoice(self, @next_choice)
 
         # Subtract PP
         if !specialUsage && !pbReducePP(move)

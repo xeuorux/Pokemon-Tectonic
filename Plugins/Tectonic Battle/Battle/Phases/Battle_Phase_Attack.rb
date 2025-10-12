@@ -127,7 +127,9 @@ class PokeBattle_Battle
                 next unless b.effectActive?(:MoveNext) && !b.fainted?
                 next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                 next if b.movedThisRound?
+                registerNextChoice(b.index)
                 advance = b.pbProcessTurn(@choices[b.index])
+                registerLastChoice(b.index)
                 break if advance
             end
             return if @decision > 0
@@ -137,7 +139,9 @@ class PokeBattle_Battle
                 next if b.effectActive?(:Quash) || b.fainted?
                 next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                 next if b.movedThisRound?
+                registerNextChoice(b.index)
                 advance = b.pbProcessTurn(@choices[b.index])
+                registerLastChoice(b.index)
                 break if advance
             end
             return if @decision > 0
@@ -152,7 +156,9 @@ class PokeBattle_Battle
                     next unless b.effects[:Quash] == quashLevel && !b.fainted?
                     next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                     next if b.movedThisRound?
+                    registerNextChoice(b.index)
                     advance = b.pbProcessTurn(@choices[b.index])
+                    registerLastChoice(b.index)
                     break
                 end
                 break if advance || !moreQuash

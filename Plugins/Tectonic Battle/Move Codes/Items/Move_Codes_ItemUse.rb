@@ -32,7 +32,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, next_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -47,9 +47,12 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !next_choice.nil?
+                @chosenItem = next_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} give away?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end
@@ -159,7 +162,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, next_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -174,9 +177,12 @@ class PokeBattle_Move_Fling < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !next_choice.nil?
+                @chosenItem = next_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} fling?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end
@@ -311,7 +317,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, next_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -326,9 +332,12 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !next_choice.nil?
+                @chosenItem = next_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} use?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end

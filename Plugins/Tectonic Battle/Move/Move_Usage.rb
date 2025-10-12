@@ -49,7 +49,7 @@ class PokeBattle_Move
         return nil
     end
 
-    def resolutionChoice(user); end
+    def resolutionChoice(user, next_choice); return nil; end
 
     #=============================================================================
     # Methods for displaying stuff when the move is used
