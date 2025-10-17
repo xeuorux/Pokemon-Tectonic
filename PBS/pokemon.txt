@@ -9847,7 +9847,7 @@ BaseStats = 60,60,60,60,60,60
 BaseEXP = 60
 Rareness = 145
 Happiness = 50
-Abilities = SEALINGBODY,COLDBLOODED
+Abilities = COLDBLOODED,SEALINGBODY
 Moves = 1,POWDERSNOW,1,THINAIR,4,LEER,8,BITE,12,ICESHARD,16,SHIVER,20,ICEFANG,24,FRIGIDJEALOUSY
 LineMoves = AIMTRUE,AQUATICCRUNCH,AURORABEAM,AURORAVEIL,BIDE,BLIZZARD,BLOCK,BODYSLAM,CHARM,CLAMP,COLDEMBRACE,COLDSHOULDER,COVET,DREAMABSORB,EERIEIMPULSE,ENDURE,FACADE,FAKETEARS,FLING,FRIGIDFLURRY,FRIGIDJEALOUSY,FROSTBARB,FROSTBREATH,FROSTOVER,GEYSER,GHOSTLYGRASP,GIGAIMPACT,GLACIALCRUNCH,GLACIALRAM,HAIL,HALTINGCOLD,HEADBUTT,HELPINGHAND,HYDROFANG,HYPERBEAM,HYPOTHERMIATE,ICEBEAM,ICEBERGBASH,ICECALIBUR,ICEFANG,ICEPICK,ICEPUNCH,ICICLESPEAR,ICYWIND,IMMERSE,LASERBEAM,LASERFOCUS,LIGHTSCREEN,MENDINGSPRING,MOONGLOW,MULTISTRIKE,NATURALPROTECTION,NULLPULSE,NUMB,POLARIZEDROOM,PSYCHUP,PUZZLEROOM,REFLECT,RETREAT,ROUND,SCARYFACE,SLAMSHUT,SNATCH,SNIPESHOT,SNORE,SNOWBALL,SPIKES,SUBSTITUTE,SUPERCOOL,SUPERFANG,SURF,SWEETSELENE,SWITCHEROO,TAUNT,THINAIR,TORMENT,WATERFALL,WATERGUN,WATERPULSE,WEATHERBURST,WIPEOUT
 Tribes = FORTUNE
@@ -9857,7 +9857,7 @@ Weight = 16.8
 Kind = Snow Hat
 Pokedex = In Sinnoh, certain folklore says a house will prosper if a Snorunt lives there.
 Generation = 3
-Evolutions = GLALIE,Level,26,FROSLASS,Item,DAWNSTONE
+Evolutions = GLALIE,Ability0,26,FROSLASS,Ability1,26
 #-------------------------------
 [GLALIE]
 Name = Glalie
@@ -9869,7 +9869,7 @@ BaseStats = 80,80,95,60,65,80
 BaseEXP = 168
 Rareness = 60
 Happiness = 50
-Abilities = FLASHFREEZE,COLDBLOODED
+Abilities = COLDBLOODED,FLASHFREEZE
 Moves = 0,PAYBACK,28,FLOWSTATE,32,ICEPICK,36,SUCKERPUNCH,40,GLACIALCRUNCH,44,CRUNCH,48,HAIL,52,NIGHTFELLING,56,SHIVERDANCE,60,ICEBERGBASH
 LineMoves = ADAMANTINEPRESS,ASSURANCE,BEATUP,BULKUP,BULLDOZE,BULLETCHARGE,CRUNCH,DARKALLURE,DARKPULSE,EARTHQUAKE,EXPLOSION,FEINTATTACK,FLOWSTATE,GYROBALL,HEAVYSLAM,IRONHEAD,MONOLITHDROP,NIGHTCHILL,POWDERBOMB,RAPIDSPIN,ROCKBLAST,ROCKROLL,ROCKTHROW,RUMBLE,SELFDESTRUCT,SHOTPUT,SPIKECANNON,STONEEDGE
 Tribes = FORTUNE,ANIMATED
@@ -9891,7 +9891,7 @@ BaseStats = 95,100,120,65,70,100
 BaseEXP = 240
 Rareness = 60
 Happiness = 50
-Abilities = FLASHFREEZE,COLDBLOODED
+Abilities = COLDBLOODED,FLASHFREEZE
 Moves = 0,SUPERCOOL
 Tribes = FORTUNE,ANIMATED
 StepsToHatch = 5355
@@ -9905,12 +9905,12 @@ Name = Froslass
 Type1 = ICE
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,65,70,120,110,70
-# Total = 515
+BaseStats = 80,60,60,105,95,60
+# Total = 460
 BaseEXP = 179
 Rareness = 60
 Happiness = 50
-Abilities = SEALINGBODY,SUMMITSPIRIT
+Abilities = SUMMITSPIRIT,SEALINGBODY
 Moves = 0,SNOWYSORROWS,24,AURORABEAM,28,HEX,32,FROSTBREATH,36,HAIL,40,HYPOTHERMIATE,44,SUFFOCATE,48,AURORAVEIL,52,BLIZZARD,56,PHANTOMGATE,60,DRIFTOFF
 LineMoves = ARCLAMP,CALMMIND,CRYOSLEEP,CURSEDOATH,DEADEND,DEATHKNELL,DESTINYBOND,DIRGE,DISABLE,DISTURB,HEX,LIGHTSHOW,LUMINACHAIN,LUMINBURST,MINDWAVES,PAINSPLIT,PIERCINGDOUBT,PSYBEAM,PSYCHIC,PULSAR,RAPIDHERTZ,SEANCE,SHOCKWAVE,SIGNALBEAM,SPITEFULCHANT,THUNDER,THUNDERBOLT,THUNDERSHOCK,VANGUARD,WAILINGBLOW,WILLOWISP
 Tribes = FORTUNE,MYSTIC
@@ -9920,6 +9920,25 @@ Weight = 26.6
 Kind = Snow Land
 Pokedex = Legends in snowy regions say that a woman who was lost on an icy mountain was reborn as Froslass.
 Generation = 4
+Evolutions = YUKIMONO,Level,44
+#-------------------------------
+[YUKIMONO]
+Name = Yukimono
+Type1 = ICE
+Type2 = GHOST
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 85,65,80,130,110,80
+# Total = 550
+BaseEXP = 179
+Rareness = 60
+Happiness = 50
+Abilities = SUMMITSPIRIT,SEALINGBODY
+Tribes = FORTUNE,MYSTIC
+StepsToHatch = 5355
+Height = 1.3
+Weight = 26.6
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [SPHEAL]
 Name = Spheal
@@ -13031,14 +13050,14 @@ Weight = 8.5
 Kind = Mole
 Pokedex = By spinning its body, it can dig straight through the ground at a speed of 30 mph.
 Generation = 5
-Evolutions = EXCADRILL,Level,31
+Evolutions = EXCADRILL,Level,26
 #-------------------------------
 [EXCADRILL]
 Name = Excadrill
 Type1 = GROUND
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,125,60,110,70,70
+BaseStats = 90,110,60,90,60,70
 # Total = 535
 BaseEXP = 178
 Rareness = 50
@@ -13051,6 +13070,25 @@ Weight = 40.4
 Kind = Subterrene
 Pokedex = More than 300 feet below the surface, they build mazelike nests. Their activity can be destructive to subway tunnels.
 Generation = 5
+Evolutions = EXCADRILL,Level,36
+#-------------------------------
+[MEXCADRILL]
+Name = M-Excadrill
+Type1 = GROUND
+Type2 = STEEL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 100,125,65,110,70,75
+# Total = 535
+BaseEXP = 178
+Rareness = 50
+Happiness = 50
+Abilities = SANDWORNAUGER,JUGGERNAUT
+Moves = 0,DRILLRUN
+StepsToHatch = 5355
+Height = 0.7
+Weight = 40.4
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [AUDINO]
 Name = Audino
@@ -13792,15 +13830,15 @@ Kind = Shedding
 Pokedex = Proud of its sturdy skull, it suddenly headbutts everything, but its weight makes it unstable, too.
 Generation = 5
 WildItemUncommon = BLACKBELT
-Evolutions = SCRAFTY,Level,35
+Evolutions = SCRAFTY,Level,25
 #-------------------------------
 [SCRAFTY]
 Name = Scrafty
 Type1 = DARK
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,110,85,100,55,115
-# Total = 525
+BaseStats = 50,100,70,85,50,100
+# Total = 455
 BaseEXP = 171
 Rareness = 70
 Happiness = 50
@@ -13812,6 +13850,25 @@ Weight = 30.0
 Kind = Hoodlum
 Pokedex = It can smash concrete blocks with its kicking attacks. The one with the biggest crest is the group leader.
 Generation = 5
+WildItemUncommon = BLACKBELT
+Evolutions = SCRANGSTER,Level,36
+#-------------------------------
+[SCRANGSTER]
+Name = Scrangster
+Type1 = DARK
+Type2 = FIGHTING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 60,115,95,100,55,115
+# Total = 540
+BaseEXP = 171
+Rareness = 70
+Happiness = 50
+Abilities = SHEDSKIN,MOXIE
+StepsToHatch = 4080
+Height = 1.1
+Weight = 30.0
+Kind = TODO
+Pokedex = TODO
 WildItemUncommon = BLACKBELT
 #-------------------------------
 [SIGILYPH]
@@ -16316,7 +16373,6 @@ Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,55,60,75,80,55
 # Total = 390
-GenderRate = Female75Percent
 BaseEXP = 74
 Rareness = 155
 Abilities = STUBBORN,ROARINGFLAME
@@ -16329,16 +16385,33 @@ Weight = 13.5
 Kind = Lion Cub
 Pokedex = They set off on their own from their pride and live by themselves to become stronger. These hot-blooded Pokémon are quick to fight.
 Generation = 6
-Evolutions = PYROAR,Item,SUNSTONE
+Evolutions = PYROAR,Level,26
 #-------------------------------
 [PYROAR]
 Name = Pyroar
 Type1 = FIRE
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 80,60,70,90,95,60
+# Total = 455
+BaseEXP = 177
+Rareness = 155
+Abilities = STUBBORN,ROARINGFLAME
+StepsToHatch = 5120
+Height = 1.5
+Weight = 81.5
+Kind = Royal
+Pokedex = With fiery breath of more than 10,000 degrees Fahrenheit, they viciously threaten any challenger. The females protect the pride's cubs.
+Generation = 6
+Evolutions = PYREGAL,Item,SUNSTONE
+#-------------------------------
+[PYREGAL]
+Name = Pyregal
+Type1 = FIRE
+Type2 = NORMAL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,70,80,110,125,65
 # Total = 540
-GenderRate = Female75Percent
 BaseEXP = 177
 Rareness = 155
 Abilities = STUBBORN,ROARINGFLAME
@@ -16346,9 +16419,8 @@ Moves = 0,VAINGLORYFLAMES
 StepsToHatch = 5120
 Height = 1.5
 Weight = 81.5
-Kind = Royal
-Pokedex = With fiery breath of more than 10,000 degrees Fahrenheit, they viciously threaten any challenger. The females protect the pride's cubs.
-Generation = 6
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [FLABEBE]
 Name = Flabébé
@@ -16738,10 +16810,29 @@ Weight = 3.5
 Kind = Revolving
 Pokedex = It flashes the light-emitting spots on its body, which drains its opponent's will to fight. It takes the opportunity to scuttle away and hide.
 Generation = 6
-Evolutions = MALAMAR,Item,WATERSTONE
+Evolutions = MALAMAR,Level,24
 #-------------------------------
 [MALAMAR]
 Name = Malamar
+Type1 = DARK
+Type2 = PSYCHIC
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 90,80,70,60,60,65
+# Total = 425
+BaseEXP = 169
+Rareness = 95
+Happiness = 50
+Abilities = CONTRARY,TRAUMATIZING
+StepsToHatch = 5120
+Height = 1.5
+Weight = 47.0
+Kind = Overturning
+Pokedex = It lures its prey close with hypnotic motions, then wraps its tentacles around it before finishing it off with digestive fluids.
+Generation = 6
+Evolutions = KALAMENACE,Item,WATERSTONE
+#-------------------------------
+[KALAMENACE]
+Name = Kalamenace
 Type1 = DARK
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -16755,9 +16846,8 @@ Moves = 0,TOPSYTURVY
 StepsToHatch = 5120
 Height = 1.5
 Weight = 47.0
-Kind = Overturning
-Pokedex = It lures its prey close with hypnotic motions, then wraps its tentacles around it before finishing it off with digestive fluids.
-Generation = 6
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [BINACLE]
 Name = Binacle
@@ -16779,15 +16869,15 @@ Weight = 31.0
 Kind = Two-Handed
 Pokedex = They stretch and then contract, yanking their rocks along with them in bold hops. They eat seaweed that washes up on the shoreline.
 Generation = 6
-Evolutions = BARBARACLE,Level,32
+Evolutions = BARBARACLE,Level,26
 #-------------------------------
 [BARBARACLE]
 Name = Barbaracle
 Type1 = ROCK
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,105,100,55,50,100
-# Total = 495
+BaseStats = 70,85,90,50,35,90
+# Total = 420
 BaseEXP = 175
 Rareness = 195
 Happiness = 50
@@ -16799,6 +16889,24 @@ Weight = 96.0
 Kind = Collective
 Pokedex = Barbaracle's legs and hands have minds of their own, and they will move independently. But they usually follow the head's orders.
 Generation = 6
+Evolutions = MBARBARACLE,Level,32
+#-------------------------------
+[MBARBARACLE]
+Name = M-Barbaracle
+Type1 = ROCK
+Type2 = FIGHTING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 85,105,100,55,50,100
+# Total = 495
+BaseEXP = 175
+Rareness = 195
+Happiness = 50
+Abilities = EVENHANDED,STEELABSORB
+StepsToHatch = 5120
+Height = 1.3
+Weight = 96.0
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [SKRELP]
 Name = Skrelp
