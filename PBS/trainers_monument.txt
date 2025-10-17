@@ -703,7 +703,7 @@ Pokemon = MAMOSWINE,70
     EV = 20,20,5,0,20,5
 Pokemon = FROSLASS,70
     Moves = BLIZZARD,THUNDERBOLT,SUFFOCATE,HAIL
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 0 # Summit Spirit
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -911,7 +911,7 @@ Pokemon = HAEROBIC,70
     EV = 10,20,0,20,20,0
 Pokemon = GRIMICE,70
     Moves = RAPIDSPIN,ICEPICK,CRUNCH,SUPERFANG
-    AbilityIndex = 0 # Flash Freeze
+    AbilityIndex = 1 # Flash Freeze
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,10,0,0,20

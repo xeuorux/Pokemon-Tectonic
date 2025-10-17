@@ -699,7 +699,7 @@ Pokemon = WHIRLIPEDE,25
     AbilityIndex = 0 # Speed Boost
 Pokemon = SNORUNT,25
     Moves = ICICLESPEAR,SHIVER,AURORABEAM,BITE
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Sealing Body
     Item = LOADEDDICE
 #-------------------------------
 [COOLTRAINER_M7,Xander]
@@ -2440,7 +2440,7 @@ Pokemon = ANINETALES,70
 Pokemon = MISMAGIUS,70
     AbilityIndex = 0 # Snow Warning
 Pokemon = FROSLASS,70
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 0 # Summit Spirit
 Pokemon = SAURENAID,70
     AbilityIndex = 0 # Arctic Ariette
 Pokemon = ASANDSLASH,70
@@ -3285,7 +3285,7 @@ Pokemon = JYNX,45
     AbilityIndex = 0 # Fascinate
 Pokemon = FROSLASS,45
     Moves = SNOWYSORROWS,HYPOTHERMIATE,HEX,SHIVER
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Sealing Body
     Item = GHOSTGEM
 #-------------------------------
 [SKIER_F,Natalia]
@@ -3294,7 +3294,7 @@ Pokemon = MNOCTOWL,45
     AbilityIndex = 0 # Sentry
 Pokemon = GRIMICE,45
     Moves = ICEPICK,SHIVER,SUCKERPUNCH,ADAMANTINEPRESS
-    AbilityIndex = 1 # Cold-blooded
+    AbilityIndex = 0 # Cold-blooded
     Item = DARKGEM
 Pokemon = SLOWBRO,45
     Moves = LIQUIDATION,PSYCHOSCISSION,YAWN,SLACKOFF
@@ -4127,7 +4127,7 @@ Pokemon = VENUSAUR,51
     Item = LUMBERAXE
 Pokemon = GRIMICE,53
     Moves = GLACIALRAM,SUCKERPUNCH,SHIVER,CRUNCH
-    AbilityIndex = 0 # Flash Freeze
+    AbilityIndex = 0 # Cold-blooded
 #-------------------------------
 [RUINMANIAC,Matteo]
 Pokemon = ARCTOZOLT,52
@@ -4212,7 +4212,7 @@ Pokemon = MGIGALITH,53
     Item = ROCKGEM
 Pokemon = FROSLASS,53
     Moves = BLIZZARD,SUFFOCATE
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Sealing Body
     Item = SKILLHERB
 #-------------------------------
 [BLACKBELT,Santiago]
@@ -5591,7 +5591,7 @@ Policies = HAIL_TEAM
 Flags = NoPerfect
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,FRIGIDJEALOUSY
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 0 # Summit Spirit
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
@@ -5977,7 +5977,7 @@ Policies = HAIL_TEAM
 Flags = NoPerfect
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Sealing Body
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -9027,7 +9027,7 @@ Pokemon = HTYPHLOSION,70
 [MEDIUM,Izumi]
 Pokemon = FROSLASS,70
     Moves = PIERCINGDOUBT,SUFFOCATE,THUNDERBOLT,ICEBEAM
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Sealing Body
 Pokemon = CARNIVINE,70
     Moves = TRAPJAW,CRUNCH,FIREFANG,STRAFE
     AbilityIndex = 0 # Strong Jaw
