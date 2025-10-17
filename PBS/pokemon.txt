@@ -13058,7 +13058,7 @@ Type1 = GROUND
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,110,60,90,60,70
-# Total = 535
+# Total = 480
 BaseEXP = 178
 Rareness = 50
 Happiness = 50
@@ -13070,7 +13070,7 @@ Weight = 40.4
 Kind = Subterrene
 Pokedex = More than 300 feet below the surface, they build mazelike nests. Their activity can be destructive to subway tunnels.
 Generation = 5
-Evolutions = EXCADRILL,Level,36
+Evolutions = MEXCADRILL,Level,36
 #-------------------------------
 [MEXCADRILL]
 Name = M-Excadrill
@@ -13078,12 +13078,11 @@ Type1 = GROUND
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,125,65,110,70,75
-# Total = 535
+# Total = 545
 BaseEXP = 178
 Rareness = 50
 Happiness = 50
 Abilities = SANDWORNAUGER,JUGGERNAUT
-Moves = 0,DRILLRUN
 StepsToHatch = 5355
 Height = 0.7
 Weight = 40.4
