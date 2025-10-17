@@ -16926,15 +16926,15 @@ Weight = 7.3
 Kind = Mock Kelp
 Pokedex = It looks just like rotten kelp. It hides from foes while storing up power for its evolution.
 Generation = 6
-Evolutions = DRAGALGE,Item,WATERSTONE
+Evolutions = DRAGALGE,Level,25
 #-------------------------------
 [DRAGALGE]
 Name = Dragalge
 Type1 = POISON
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,95,90,65,75,145
-# Total = 565
+BaseStats = 80,85,80,50,70,115
+# Total = 480
 BaseEXP = 173
 Rareness = 170
 Abilities = DETERRENT,WATERABSORB
@@ -16945,6 +16945,23 @@ Weight = 81.5
 Kind = Mock Kelp
 Pokedex = Tales are told of ships that wander into seas where Dragalge live, never to return.
 Generation = 6
+Evolutions = MEGADRAGALGE,Item,WATERSTONE
+#-------------------------------
+[MEGADRAGALGE]
+Name = M-Dragalge
+Type1 = POISON
+Type2 = DRAGON
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 95,95,90,65,75,145
+# Total = 565
+BaseEXP = 173
+Rareness = 170
+Abilities = DETERRENT,WATERABSORB
+StepsToHatch = 5120
+Height = 1.8
+Weight = 81.5
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [MSKRELP]
 Name = M. Skrelp
@@ -16964,15 +16981,15 @@ Height = 0.5
 Weight = 7.3
 Kind = Lush Kelp
 Pokedex = Born in pristine waters, they escape detection by blending in seamlessly with underwater plants.
-Evolutions = MDRAGALGE,Level,34
+Evolutions = MDRAGALGE,Level,25
 #-------------------------------
 [MDRAGALGE]
 Name = M. Dragalge
 Type1 = GRASS
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,115,95,100,75,85
-# Total = 565
+BaseStats = 80,95,80,80,70,75
+# Total = 480
 BaseEXP = 173
 Rareness = 170
 Abilities = SINKINGFEELING,HASTY
@@ -16982,6 +16999,23 @@ Height = 1.8
 Weight = 81.5
 Kind = Kelp
 Pokedex = They gallop on the ocean floor, cleaning it by collecting algae on their hooves.
+Evolutions = MEGAMDRAGALGE,Level,34
+#-------------------------------
+[MEGAMDRAGALGE]
+Name = M-M. Dragalge
+Type1 = GRASS
+Type2 = WATER
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 95,115,95,100,75,85
+# Total = 565
+BaseEXP = 173
+Rareness = 170
+Abilities = SINKINGFEELING,HASTY
+StepsToHatch = 5120
+Height = 1.8
+Weight = 81.5
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [CLAUNCHER]
 Name = Clauncher
