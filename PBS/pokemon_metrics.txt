@@ -1482,12 +1482,6 @@ FrontSprite = 0,30
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
-[DIGNIPHITE]
-BackSprite = 0,2
-FrontSprite = -9,19
-ShadowX = 0
-ShadowSize = 3
-#-------------------------------
 [DIPPLIN]
 BackSprite = -6,15
 FrontSprite = 0,23

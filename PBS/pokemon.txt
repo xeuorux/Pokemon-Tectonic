@@ -20873,9 +20873,9 @@ Generation = 8
 Name = Cufant
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,70,50,40,40,60
-# Total = 330
-BaseEXP = 66
+BaseStats = 100,90,50,20,40,85
+# Total = 385
+BaseEXP = 125
 Rareness = 145
 Happiness = 50
 Abilities = HEAVYMETAL,FASCINATE
@@ -20884,48 +20884,30 @@ LineMoves = ADAMANTINEPRESS,BAR,BARETEETH,BELCH,BODYPRESS,BODYSLAM,BRICKBREAK,BR
 Tribes = INDUSTRIOUS,STAMPEDE
 StepsToHatch = 6681
 Height = 1.2
-Weight = 260.0
+Weight = 520.0
 Kind = Copperderm
 Pokedex = If a job requires serious strength, this Pokémon will excel at it. Its copper body tarnishes in the rain, turning a vibrant green color.
 Generation = 8
 WildItemUncommon = LAGGINGTAIL
-Evolutions = COPPERAJAH,Level,29
+Evolutions = COPPERAJAH,Level,37
 #-------------------------------
 [COPPERAJAH]
 Name = Copperajah
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 110,105,60,30,70,75
-# Total = 450
-BaseEXP = 175
-Rareness = 70
-Happiness = 50
-Abilities = HEAVYMETAL,FASCINATE
-StepsToHatch = 6681
-Height = 3.0
-Weight = 650.0
-Kind = Copperderm
-Pokedex = These Pokémon live in herds. Their trunks have incredible grip strength, strong enough to crush giant rocks into powder.
-Generation = 8
-WildItemUncommon = LAGGINGTAIL
-Evolutions = DIGNIPHITE,Level,49
-#-------------------------------
-[DIGNIPHITE]
-Name = Digniphite
-Type1 = STEEL
-# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 135,125,85,20,90,105
-# Total = 560
+BaseStats = 135,125,70,20,60,105
+# Total = 515
 BaseEXP = 250
-Rareness = 50
+Rareness = 70
 Happiness = 50
 Abilities = HEAVYMETAL,FASCINATE
 Moves = 0,HEAVYSLAM
 StepsToHatch = 6681
-Height = 12.0
+Height = 3.0
 Weight = 882.0
-Kind = Monumental
-Pokedex = After evolution, it has taken on the appearance of a great monument. If revered, it will protect nearby villages from all manner of disaster.
+Kind = Copperderm
+Pokedex = These Pokémon live in herds. Their trunks have incredible grip strength, strong enough to crush giant rocks into powder.
+Generation = 8
 WildItemUncommon = LAGGINGTAIL
 #-------------------------------
 [DRACOZOLT]
