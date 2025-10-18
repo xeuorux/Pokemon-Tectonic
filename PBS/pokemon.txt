@@ -6810,8 +6810,8 @@ Name = Skarmory
 Type1 = STEEL
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,80,130,80,80,70
-# Total = 515
+BaseStats = 60,75,110,70,75,60
+# Total = 450
 BaseEXP = 163
 Rareness = 95
 Abilities = MENTALBLOCK,WEATHERED
@@ -6824,6 +6824,26 @@ Weight = 50.5
 Kind = Armor Bird
 Pokedex = Despite being clad entirely in iron-hard armor, it flies at speeds over 180 mph.
 Generation = 2
+WildItemUncommon = METALCOAT
+Evolutions = AURMORY,Level,40
+#-------------------------------
+[AURMORY]
+Name = Aurmory
+Type1 = STEEL
+Type2 = FLYING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 75,90,130,80,90,70
+# Total = 535
+BaseEXP = 163
+Rareness = 95
+Abilities = MENTALBLOCK,WEATHERED
+Moves = 0,STEELWING,1,STEELWING
+Tribes = SCOURGE,WARRIOR
+StepsToHatch = 6630
+Height = 1.7
+Weight = 50.5
+Kind = TODO
+Pokedex = TODO
 WildItemUncommon = METALCOAT
 #-------------------------------
 [HOUNDOUR]
@@ -17180,8 +17200,8 @@ Name = Hawlucha
 Type1 = FIGHTING
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,90,95,120,75,65
-# Total = 535
+BaseStats = 75,80,80,100,65,60
+# Total = 460
 BaseEXP = 175
 Rareness = 100
 Happiness = 50
@@ -17195,6 +17215,27 @@ Weight = 21.5
 Kind = Wrestling
 Pokedex = With its wings, it controls its position in the air. It likes to attack from above, a maneuver that is difficult to defend against.
 Generation = 6
+WildItemUncommon = EXPERTBELT
+Evolutions = QUETZALUCHA,Level,38
+#-------------------------------
+[QUETZALUCHA]
+Name = Quetzalucha
+Type1 = FIGHTING
+Type2 = FLYING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 90,95,95,120,75,70
+# Total = 545
+BaseEXP = 175
+Rareness = 100
+Happiness = 50
+Abilities = TEAMPLAYER,UNBURDEN
+Moves = 0,ACROBATICS
+Tribes = SCRAPPER
+StepsToHatch = 5120
+Height = 0.8
+Weight = 21.5
+Kind = TODO
+Pokedex = TODO
 WildItemUncommon = EXPERTBELT
 #-------------------------------
 [DEDENNE]
@@ -18916,8 +18957,8 @@ Name = Drampa
 Type1 = NORMAL
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,70,90,45,135,100
-# Total = 535
+BaseStats = 90,60,70,30,115,90
+# Total = 455
 BaseEXP = 170
 Rareness = 95
 Happiness = 50
@@ -18931,6 +18972,27 @@ Weight = 185.0
 Kind = Placid
 Pokedex = If a child it has made friends with is bullied, Drampa will find the bully's house and burn it to the ground.
 Generation = 7
+WildItemUncommon = PERSIMBERRY
+Evolutions = DRATRIARCH,Level,40
+#-------------------------------
+[DRATRIARCH]
+Name = Dratriarch
+Type1 = NORMAL
+Type2 = DRAGON
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 100,70,90,45,135,100
+# Total = 540
+BaseEXP = 170
+Rareness = 95
+Happiness = 50
+Abilities = BERSERK,APPREHENSIVE
+Moves = 0,DRAGONPULSE
+Tribes = TYRANNICAL,CARETAKER
+StepsToHatch = 5120
+Height = 3.0
+Weight = 185.0
+Kind = TODO
+Pokedex = TODO
 WildItemUncommon = PERSIMBERRY
 #-------------------------------
 [DHELMISE]
@@ -20844,8 +20906,8 @@ Name = Falinks
 Type1 = FIGHTING
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 105,90,105,75,90,105
-# Total = 570
+BaseStats = 90,75,90,60,75,90
+# Total = 480
 GenderRate = Genderless
 BaseEXP = 165
 Rareness = 95
@@ -20860,6 +20922,26 @@ Weight = 62.0
 Kind = Formation
 Pokedex = The six of them work together as one Pokémon. Teamwork is also their battle strategy, and they constantly change their formation as they fight.
 Generation = 8
+#-------------------------------
+[FALEGION]
+Name = Falegion
+Type1 = FIGHTING
+Type2 = STEEL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 105,90,105,75,90,105
+# Total = 570
+GenderRate = Genderless
+BaseEXP = 165
+Rareness = 95
+Happiness = 50
+Abilities = IMPERIOUS,ARMORPIERCING
+Moves = 0,BULKUP
+Tribes = TACTICIAN,INDUSTRIOUS,WARRIOR
+StepsToHatch = 6681
+Height = 3.0
+Weight = 62.0
+Kind = TODO
+Pokedex = TODO
 #-------------------------------
 [PINCURCHIN]
 Name = Pincurchin
