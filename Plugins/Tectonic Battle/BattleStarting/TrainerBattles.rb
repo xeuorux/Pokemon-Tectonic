@@ -77,6 +77,7 @@ def pbTrainerBattleCore(*args)
     battle.endSpeeches  = foeEndSpeeches
     # Set various other properties in the battle class
     pbPrepareBattle(battle)
+    battle.registerRules
     $PokemonTemp.clearBattleRules
     # End the trainer intro music
     Audio.me_stop

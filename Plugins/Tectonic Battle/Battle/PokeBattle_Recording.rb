@@ -3,6 +3,7 @@ module PokeBattle_BattleRecorder
 	attr_accessor :type #Battle type. 0 for wild, 1 for trainer, 2 for avatar
 
 	attr_accessor :recorded_choices #Array of the move choices made
+	attr_accessor :recorded_switches #Array of switches made
 	attr_accessor :random #Array of the random numbers used in the battle
 
 	attr_accessor :player_info
@@ -23,11 +24,11 @@ module PokeBattle_BattleRecorder
 	def initialize(scene, playerParty, foeParty, playerTrainers, foeTrainers, type)
 		super(scene, playerParty, foeParty, playerTrainers, foeTrainers)
 		@recorded_choices = []
+		@recorded_switches = []
 		@random = []
 		@is_recorded = true
 		@save_battle = true
 		@type = type
-		echoln("TYPE: " + type.to_s)
 	end
 
 	def pbRandom(x)
@@ -38,72 +39,69 @@ module PokeBattle_BattleRecorder
 
 	def pbCommandPhase
 		@recorded_choices.push([]) #Add turn array
-      	(maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
+    (maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
 		@recorded_choices[@turnCount].each { |a| a.push(nil)} #Add first action placeholder
 
 		super
+
 		@choices.each_with_index do |c, i|
 			c_clone = c.clone
 			c_clone[2] = nil #Remove move object (not parsable)
 			@recorded_choices[@turnCount][i][0] = c_clone
 		end
-    end
+  end
 
 	def pbExtraCommandPhase
+		@recorded_choices[@turnCount].each { |a| a.push(nil)} #Add new action placeholder
 		super
 		@choices.each_with_index do |c, i|
-			b = @battlers[i]
 			c_clone = c.clone
-			c_clone[1] = b.moves.find_index(c[1]) #Transform move into move index
+			c_clone[2] = nil #Remove move object (not parsable)
 			@recorded_choices[@turnCount][i][@commandPhasesThisRound] = c_clone
 		end
 	end
 
-	def pbGetTrainerInfo(trainer)
-      return nil if !trainer
-      if trainer.is_a?(Array)
-        ret = []
-        for i in 0...trainer.length
-          if trainer[i].is_a?(Player)
-            ret.push([trainer[i].trainer_type,trainer[i].name.clone,trainer[i].id,trainer[i].badges.clone])
-          else   # NPCTrainer
-            ret.push([trainer[i].trainer_type,trainer[i].name.clone,trainer[i].id])
-          end
-        end
-        return ret
-      elsif trainer[i].is_a?(Player)
-        return [[trainer.trainer_type,trainer.name.clone,trainer.id,trainer.badges.clone]]
-      else
-        return [[trainer.trainer_type,trainer.name.clone,trainer.id]]
-      end
-    end
-
 	def pbStartBattle
-      	@player_info                  = pbGetTrainerInfo(@player)
-      	@opponent_info                = pbGetTrainerInfo(@opponent)
-      	@player_party                 = Marshal.dump(@party1)
-      	@opponent_party               = Marshal.dump(@party2)
-      	@player_party_starts          = Marshal.dump(@party1starts)
-      	@opponent_party_starts        = Marshal.dump(@party2starts)
-      	@starting_weather             = @field.weather
-      	@starting_weather_duration    = @field.weatherDuration
-      	@held_items                   = Marshal.dump(@items)
-      	super
-    end
+		@player_info                  = Marshal.dump(@player)
+		@opponent_info                = Marshal.dump(@opponent)
+		@player_party                 = Marshal.dump(@party1)
+		@opponent_party               = Marshal.dump(@party2)
+		@player_party_starts          = Marshal.dump(@party1starts)
+		@opponent_party_starts        = Marshal.dump(@party2starts)
+		@starting_weather             = @field.weather
+		@starting_weather_duration    = @field.weatherDuration
+		@held_items                   = Marshal.dump(@items)
+		super
+	end
 
 	def pbEndOfBattle
 		saveBattle("LastBattle") if @save_battle
 		super
 	end
 
+	def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: nil)
+		if pbOwnedByPlayer?(idxBattler) && !@autoTesting && !@controlPlayer
+			ret = pbPartyScreen(idxBattler, checkLaxOnly, canCancel) 
+			@recorded_switches.push(ret)
+			return ret
+		else
+			return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
+		end
+	end
+
 	def registerLastChoice(index)
-		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(last_choice) 
+		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(@last_choice)
+	end
+
+	def registerRules
+		@rules = $PokemonTemp.battleRules
 	end
 
 	def getBattleData
 		return Marshal.dump({
 			:type => @type,
 			:recorded_choices => @recorded_choices,
+			:recorded_switches => @recorded_switches,
 			:random => @random,
 			:player_info => @player_info,
 			:player_party => @player_party,
@@ -144,21 +142,19 @@ module PokeBattle_BattleReplayer
 		raise _INTL("Record {1} does not exist", file_name) unless File.exists?("./VSRecorder/" + file_name + ".dat")
 		battle = File.open("./VSRecorder/" + file_name + ".dat", "rb") {|f| Marshal.load(f)}
 		
-		@is_recorded               = false
-		@is_replayed               = true
 		@randomindex               = 0
-		@save_battle               = false
-		
+		@player_info               = Marshal.load(battle[:player_info])
+		@opponent_info             = Marshal.load(battle[:opponent_info])
 		@player_party              = Marshal.load(battle[:player_party])
-		@player_party_starts       = Marshal.load(battle[:player_party_starts])
 		@opponent_party            = Marshal.load(battle[:opponent_party])
+
+		Marshal.load(battle[:rules]).each_pair { |rule, val| setBattleRule(rule, val)}
+
+		super(scene, @player_party, @opponent_party, @player_info, @opponent_info, battle[:type])
+
+		@player_party_starts       = Marshal.load(battle[:player_party_starts])
 		@opponent_party_starts     = Marshal.load(battle[:opponent_party_starts])
 		@held_items                = Marshal.load(battle[:held_items])
-		@rules                     = Marshal.load(battle[:rules])
-		@recorded_choices          = battle[:recorded_choices]
-		@random                    = battle[:random]
-		@player_info               = battle[:player_info]
-		@opponent_info             = battle[:opponent_info]
 		@starting_weather          = battle[:starting_weather]
 		@starting_weather_duration = battle[:starting_weather_duration]
 		@endSpeeches               = battle[:endSpeeches]
@@ -166,16 +162,24 @@ module PokeBattle_BattleReplayer
 		@canRun                    = battle[:canRun]
 		@switchStyle               = battle[:switchStyle]
 		@showAnims                 = battle[:showAnims]
+		@level_cap                 = battle[:level_cap]
+		@recorded_choices          = battle[:recorded_choices]
+		@recorded_switches         = battle[:recorded_switches]
+		@random                    = battle[:random]
+		@save_battle               = false
+		@is_replayed               = true
+		@is_recorded               = false
 		@backdrop                  = battle[:backdrop]
 		@backdropBase              = battle[:backdropBase]
 		@time                      = battle[:time]
 		@environment               = battle[:environment]
-		@level_cap                 = battle[:level_cap]
 
-		@player                    = pbLoadTrainer(@player_info[0], @player_info[1], @player_info[2])
-      	@opponent                  = pbLoadTrainer(@opponent_info[0], @opponent_info[1], @opponent_info[2])
+		@party1starts              = @player_party_starts
+		@party2starts              = @opponent_party_starts
+		@field.weather             = @starting_weather
+		@field.weatherDuration     = @starting_weather_duration
+		@items                     = @held_items
 
-		super(scene, @player_party, @opponent_party, @player, @opponent, battle[:type])
 	end
 
 	def pbRandom(x)
@@ -185,43 +189,59 @@ module PokeBattle_BattleReplayer
 	end
 
 	def pbCommandPhase
-		choices = []
-		@recorded_choices.each_with_index do |c,i|
-			choices[@turnCount][i] = @choices[@turnCount][i][0]
-		end 
-    end
+		@choices = []
+		@recorded_choices[turnCount].each do |c|
+			@choices.push(c[0])
+			currentBattlerIndex = @choices.length - 1
+			if @choices[-1][0] == :UseMove
+				if @choices[-1][1] == -1
+					@choices[-1][2] = @struggle
+				else
+					@choices[-1][2] = @battlers[currentBattlerIndex].moves[@choices[-1][1]] #Restore move from index
+				end
+			elsif @choices[-1][0] == :None && !@battlers[currentBattlerIndex].fainted? #If no action was taken and the battler is able (run/forfeit)
+				pbRun(currentBattlerIndex)
+			end
+		end
+  end
 
 	def pbExtraCommandPhase
-		choices = []
-		@recorded_choices.each_with_index do |c, i|
-			@choices[@turnCount][i] = @choices[@turnCount][i][@commandPhasesThisRound]
+		@choices = []
+		@recorded_choices[turnCount].each do |c|
+			@choices.push(c[@commandPhasesThisRound])
+			if @choices[-1][0] == :UseMove
+				if @choices[-1][1] == -1
+					@choices[-1][2] = @struggle
+				else
+					@choices[-1][2] = @battlers[@choices.length-1].moves[@choices[-1][1]]
+				end
+			end
 		end
 	end
-
-	def pbStartBattle
-      	@party1                    = Marshal.load(@player_party)
-      	@party2                    = Marshal.load(@opponent_party)
-      	@party1starts              = Marshal.load(@player_party_starts)
-      	@party2starts              = Marshal.load(@opponent_party_starts)
-      	@field.weather             = @starting_weather
-      	@field.weatherDuration     = @starting_weather_duration
-      	@items                     = Marshal.load(@held_items)
-      	super
-    end
 
 	def registerNextChoice(index)
 		choice = @recorded_choices[@turnCount][index]
 		if choice.length < 5
-			next_choice = @recorded_choices[@turnCount][index][4]
+			@next_choice = @recorded_choices[@turnCount][index][4]
 		else
-			next_choice = nil
+			@next_choice = nil
 		end
 	end
+
+	def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: nil)
+		if pbOwnedByPlayer?(idxBattler) && !@autoTesting && !@controlPlayer
+			return @recorded_switches.shift
+		else
+			return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
+		end
+	end
+
 end
 
 class PokeBattle_Battle
 	def registerLastChoice(index); end
 	def registerNextChoice(index); end
+	def registerRules; end
 end
 
 class PokeBattle_TectonicRecordedBattle < PokeBattle_Battle
@@ -236,6 +256,7 @@ def playRecordedBattle(record_name)
 	original_level_cap = getLevelCap()
 	scene = pbNewBattleScene
 	battle = PokeBattle_TectonicReplayedBattle.new(scene, record_name)
+	pbPrepareBattle(battle)
 	
 	setLevelCap(battle.level_cap, false)
 	decision = 0	
@@ -249,24 +270,23 @@ def playRecordedBattle(record_name)
 		end
 		Input.update
 	when 1 #Trainer battle
-		pbBattleAnimation(pbGetTrainerBattleBGM(battle.party2), battle.singleBattle? ? 1 : 3, battle.party2) do
-            pbSceneStandby do
-                decision = battle.pbStartBattle
-            end
-            pbAfterBattle(decision, true)
-        end
+		pbBattleAnimation(pbGetTrainerBattleBGM(battle.opponent), battle.singleBattle? ? 1 : 3, battle.opponent) do
+			pbSceneStandby do
+				decision = battle.pbStartBattle
+			end
+			pbAfterBattle(decision, true)
+		end
 		Input.update
 	when 2 #Avatar battle
-		pbBattleAnimation(pbGetAvatarBattleBGM(battle.party2), (foeParty.length == 1) ? 0 : 2, battle.party2) do
-            pbSceneStandby do
-                decision = battle.pbStartBattle
-            end
-            pbAfterBattle(decision, true)
-        end
+		pbBattleAnimation(pbGetAvatarBattleBGM(battle.party2), (battle.party2.length == 1) ? 0 : 2, battle.party2) do
+			pbSceneStandby do
+				decision = battle.pbStartBattle
+			end
+			pbAfterBattle(decision, true)
+		end
 		Input.update
 	else
 		raise _INTL("Recorded battle has an invalid battle type. ({1})", battle.type)
 	end
 	setLevelCap(original_level_cap, false)
 end
-

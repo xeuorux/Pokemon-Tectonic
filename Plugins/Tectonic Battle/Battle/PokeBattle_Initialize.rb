@@ -13,10 +13,12 @@ class PokeBattle_Battle
     attr_reader   :turnCount
     attr_accessor :decision         # Decision: 0=undecided; 1=win; 2=loss; 3=escaped; 4=caught
     attr_reader   :player           # Player trainer (or array of trainers)
-    attr_accessor   :opponent         # Opponent trainer (or array of trainers)
+    attr_accessor :opponent         # Opponent trainer (or array of trainers)
     attr_accessor :items            # Items held by opponents
     attr_accessor :endSpeeches
     attr_accessor :endSpeechesWin
+    attr_accessor :party1
+    attr_accessor :party2
     attr_accessor :party1starts     # Array of start indexes for each player-side trainer's party
     attr_accessor :party2starts     # Array of start indexes for each opponent-side trainer's party
     attr_accessor :internalBattle   # Internal battle flag

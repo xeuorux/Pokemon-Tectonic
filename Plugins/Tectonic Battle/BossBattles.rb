@@ -69,6 +69,7 @@ def pbAvatarBattleCore(*args)
     battle.bossBattle = true
     # Set various other properties in the battle class
     pbPrepareBattle(battle)
+    battle.registerRules
     $PokemonTemp.clearBattleRules
     # Perform the battle itself
     decision = 0
