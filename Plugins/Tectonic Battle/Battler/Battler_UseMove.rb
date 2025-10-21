@@ -580,11 +580,27 @@ class PokeBattle_Battler
                 move.pbEffectAfterAllHits(user, targetBattler)
                 move.pbEffectOnNumHits(user, targetBattler, realNumHits)
 
-                # Empowered Destiny Bond
-                if targetBattler.effectActive?(:EmpoweredDestinyBond) && targetBattler.damageState.totalHPLost > 0 
-                    recoilDamage = targetBattler.damageState.totalHPLost / 3.0
-                    recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true))
-                    user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
+                if targetBattler.damageState.totalHPLost > 0 
+                    # Empowered Destiny Bond
+                    if targetBattler.effectActive?(:EmpoweredDestinyBond)
+                        recoilDamage = targetBattler.damageState.totalHPLost / 3.0
+                        recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true))
+                        user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
+                    end
+
+                    # Severe burn
+                    if user.burned? && user.getStatusCount(:BURN) > 0
+                        recoilDamage = targetBattler.damageState.totalHPLost / 3.0
+                        recoilMessage = _INTL("{1} cringes from their severe burn!", user.pbThis)
+                        user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
+                    end
+
+                    # Summer Festivals
+                    if user.pbOwnSide.effectActive?(:SummerFestivalsEnd)
+                        recoilDamage = targetBattler.damageState.totalHPLost / 4.0
+                        recoilMessage = _INTL("{1} got too rowdy!", user.pbThis)
+                        user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
+                    end
                 end
             end
 

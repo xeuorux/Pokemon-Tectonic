@@ -482,7 +482,7 @@ class PokemonSummary_Scene
         end
         imagepos.push([ballimage, 14, 60])
         # Show status/fainted/Pokérus infected icon
-        statusImageIndex = @pokemon.getStatusImageIndex
+        statusImageIndex = @pokemon.getStatusImageIndex(true)
         imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 124, 100, 0, 16 * statusImageIndex, 44, 16]) if statusImageIndex >= 0
         # Show hot streak icon
         imagepos.push([sprintf("Graphics/Pictures/Summary/hot_streak"), 176, 100]) if @pokemon.onHotStreak?

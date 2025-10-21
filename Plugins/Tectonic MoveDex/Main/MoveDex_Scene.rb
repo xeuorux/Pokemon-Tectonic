@@ -92,7 +92,6 @@ class MoveDex_Scene
         bg_path += "_search" if @searchResults
         bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
-        echoln("Background")
     end
 
     def pbRefresh

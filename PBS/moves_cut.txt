@@ -646,6 +646,17 @@ FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user creates a protective field that prevents status problems for ten turns.
 #-------------------------------
+[SCREECH]
+Name = Screech
+Type = NORMAL
+Category = Status
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat,Sound
+Description = The user's earsplitting screech reduces the target's Defense stat by four steps.
+#-------------------------------
 [SING]
 Name = Sing
 Type = NORMAL
@@ -2346,6 +2357,20 @@ Flags = CanSnatch
 Description = The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.
 Animation = WITHDRAW
 #-------------------------------
+[SNAP]
+Name = Snap
+Type = WATER
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Biting
+EffectChance = 40
+Description = The user snaps like a fish at the target. This has a 40% chance to make it flinch.
+Animation = FISHIOUSREND
+#-------------------------------
 [SOAK]
 Name = Soak
 Type = WATER
@@ -2994,6 +3019,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
 #-------------------------------
+[ENERGYTRICK]
+Name = Energy Trick
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user employs psychic power to switch its unmodified Sp. Atk with its unmodified Sp. Def.
+#-------------------------------
 [EXPANDINGFORCE]
 Name = Expanding Force
 Type = PSYCHIC
@@ -3178,6 +3214,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.
+#-------------------------------
+[POWERTRICK]
+Name = Power Trick
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user employs psychic power to switch its unmodified Attack with its unmodified Defense.
+Animation = CALMMIND
 #-------------------------------
 [PSYCHICTERRAIN]
 Name = Psychic Terrain

@@ -65,10 +65,6 @@ Description = Raises Sp. Atk by four steps when a stat is lowered by a foe.
 Name = Contrary
 Description = Makes stat changes have an opposite effect.
 #-------------------------------
-[CORROSION]
-Name = Corrosion
-Description = Can poison the target even if it's a Steel or Poison-type.
-#-------------------------------
 [COTTONDOWN]
 Name = Cotton Down
 Description = Lowers everyone else's Speed by two steps when hit by an attack.

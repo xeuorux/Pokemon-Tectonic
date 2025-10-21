@@ -27,6 +27,9 @@ class PokeBattle_Battler
         @eor_proc = proc do |effectData|
             effectData.eor_battler(@battle, self)
         end
+        @sor_proc = proc do |effectData|
+            effectData.sor_battler(@battle, self)
+        end
         @remain_proc = proc do |effectData|
             effectData.remain_battler(@battle, self)
         end

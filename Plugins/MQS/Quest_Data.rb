@@ -630,7 +630,7 @@ module QuestModule
     :QuestGiver => _INTL("Scilla"),
     :Stage1 => _INTL("Find and defeat the former champ."),
     :Location1 => _INTL("Sweetrock Harbor"),
-    :QuestDescription => _INTL("It appears Chara is your next target, found in Sweetrock. You're certain this won't be anymore challenging than your previous fight."),
+    :QuestDescription => _INTL("It appears Chara is your next target, found in Sweetrock. You're certain this won't be any more challenging than your previous fight."),
   }
 
   QUEST_FORMER_ELISE = {

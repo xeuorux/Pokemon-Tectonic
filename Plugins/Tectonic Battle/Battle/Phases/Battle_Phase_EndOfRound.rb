@@ -118,10 +118,13 @@ class PokeBattle_Battle
             end
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
             fraction *= 2 if battler.hasActiveAbility?(:CLEANFREAK)
-            if status == :POISON
+            case status
+            when :POISON
                 battler.getPoisonDoublings.times do
                     fraction *= 2
                 end
+            when :FROSTBITE # Severely frostbite
+                fraction *= 2 if battler.getStatusCount(:FROSTBITE) > 0 && battler.belowHalfHealth?
             end
             damage = 0
             if aiCheck
@@ -225,6 +228,12 @@ class PokeBattle_Battle
     end
 
     def processTriggersEOR(priority)
+        # Severe numb
+        priority.each do |b|
+            next unless b.numbed? && b.getStatusCount(:NUMB) > 0
+            b.tryLowerStat(b.highestStat, nil, increment: 1)
+        end
+        
         # End of Round Effect Abilities
         priority.each do |b|
             next if b.fainted?

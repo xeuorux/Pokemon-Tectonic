@@ -57,3 +57,13 @@ end
 class PokeBattle_Move_HitTwoToFiveTimesWaterlog < PokeBattle_WaterlogMove
     include RandomHitable
 end
+
+#===============================================================================
+# May cause the target to be waterlogged or to lower their Defense by two steps. (Hydro Fang)
+#===============================================================================
+class PokeBattle_Move_WaterlogTargetLowerTargetDef2 < PokeBattle_Move_StatusTargetLowerTargetDef2
+    def initialize(battle, move)
+        super
+        @statusToApply = :WATERLOG
+    end
+end

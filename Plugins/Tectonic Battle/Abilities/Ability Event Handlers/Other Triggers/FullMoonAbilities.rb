@@ -18,3 +18,12 @@ BattleHandlers::FullMoonAbility.add(:WANINGWILLPOWER,
         battle.pbHideAbilitySplash(battler)
     }
 )
+
+BattleHandlers::FullMoonAbility.add(:MOONPRISMPOWER,
+    proc { |ability, battler, battle|
+        battle.pbShowAbilitySplash(battler, ability)
+        battle.pbDisplay(_INTL("{1} is restored by the full moon!", battler.pbThis))
+        battler.pbRecoverHP(battler.totalhp / 2.0, canOverheal: true)
+        battle.pbHideAbilitySplash(battler)
+    }
+)

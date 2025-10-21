@@ -989,6 +989,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite7
+TeleportBlocked = true
 #-------------------------------
 [135]
 # Nebula Ruins

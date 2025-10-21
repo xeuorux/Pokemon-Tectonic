@@ -173,6 +173,10 @@ Name = Berry Bunch
 Description = Can hold two different items, if both are Berries.
 Flags = MultipleItems
 #-------------------------------
+[BITEY]
+Name = Bitey
+Description = Boosts the power of biting moves by 30%.
+#-------------------------------
 [BITTERCOLD]
 Name = Bitter Cold
 Description = Causes hail to deal double damage and increase Defense of Ice-types by 2.0x instead of 1.5x.
@@ -702,10 +706,6 @@ Description = Powers up priority moves by 30%.
 Name = Fit to Survive
 Description = Upon entry, summons Natural Protection for four turns.
 #-------------------------------
-[FLAMEWINGS]
-Name = Flame Wings
-Description = Flying-type attacks have a 40% chance to burn.
-#-------------------------------
 [FLASHFREEZE]
 Name = Flash Freeze
 Description = On the first turn, its attacks frostbite the target.
@@ -786,10 +786,6 @@ Name = Frost Scatter
 Description = Summons a hail for four turns when hit by an attack.
 Flags = HailSynergy
 #-------------------------------
-[FROSTWINGS]
-Name = Frost Wings
-Description = Flying-type attacks have a 40% chance to frostbite.
-#-------------------------------
 [FRUSTRATE]
 Name = Frustrate
 Description = Upon entry, lowers the foe's Speed stat by two steps.
@@ -815,6 +811,10 @@ Description = Random added effects of wind-based moves are +50% more likely to o
 Name = Gale Force
 Description = Boosts the power of wind-based moves by 50%.
 #-------------------------------
+[GALVANICWINGS]
+Name = Galvanic Wings
+Description = Foes that become numbed are severely so. The Pokémon's Flying-type moves have a 30% chance to severely numb.
+#-------------------------------
 [GARGANTUAN]
 Name = Gargantuan
 Description = Completely protects allies from foes' spread moves.
@@ -826,6 +826,10 @@ Description = Pokémon that swap in for this have their Speed raised and their P
 [GILD]
 Name = Gild
 Description = Turns the held item of a Pokémon it hits into scattered gold coins for you to take.
+#-------------------------------
+[GLACIALWINGS]
+Name = Glacial Wings
+Description = Foes that become frostbitten are severely so. The Pokémon's Flying-type moves have a 30% chance to severely frostbite.
 #-------------------------------
 [GLASSFIRING]
 Name = Glass Firing
@@ -1321,6 +1325,11 @@ Name = Moonlighter
 Description = When hit in moonglow, steals the attacker's item, or knocks it away.
 Flags = MoonglowSynergy
 #-------------------------------
+[MOONPRISMPOWER]
+Name = Moon Prism Power
+Description = When the Full Moon rises, heals for 50% of its total HP. This can overheal.
+Flags = MoonglowSynergy
+#-------------------------------
 [MULTIHEADED]
 Name = Multiheaded
 Description = While the Pokémon is below half health, takes 33% less damage from attacks.
@@ -1357,7 +1366,7 @@ Flags = AllWeatherSynergy
 #-------------------------------
 [NEUROTOXIN]
 Name = Neurotoxin
-Description = While the Pokémon is unfainted (in battle or switched out), poisoned foes also suffer from dizzy.
+Description = While the Pokémon is unfainted (in battle or switched out), poisoned foes cannot use the same move twice in a row.
 #-------------------------------
 [NIGHTLIFE]
 Name = Night Life
@@ -1469,7 +1478,7 @@ Description = Immune to Flying-type moves and deals 50% more damage with them.
 #-------------------------------
 [PERENNIALPAYLOAD]
 Name = Perennial Payload
-Description = After fainting from exploding, revives after six turns.
+Description = After fainting from exploding, revives after five turns.
 #-------------------------------
 [PERFECTIONIST]
 Name = Perfectionist
@@ -1499,9 +1508,13 @@ Description = Whenever a foe raises their stats, the Pokémon follows suit.
 Name = Phase Shift
 Description = The Pokémon's moves deal 50% more damage if they're a different type than last.
 #-------------------------------
+[PIERCINGPOISON]
+Name = Piercing Poison
+Description = Poison-type foes can be poisoned. Poison applied to foes starts already worsened.
+#-------------------------------
 [PINDOWN]
 Name = Pin Down
-Description = The user's moves cannot miss against trapped targets.
+Description = The user's moves cannot miss against trapped targets. Takes 20% less damage from Pokemon that are trapped.
 #-------------------------------
 [PITFIGHTER]
 Name = Pit Fighter
@@ -1787,6 +1800,10 @@ Flags = SandstormSynergy
 Name = Sealing Body
 Description = Moves used on the Pokémon are disabled for two turns.
 #-------------------------------
+[SEARINGWINGS]
+Name = Searing Wings
+Description = Foes that become burned are severely so. The Pokémon's Flying-type moves have a 30% chance to severely burn.
+#-------------------------------
 [SECRETIONSECRET]
 Name = Secretion Secret
 Description = When targeted by a status move, the offending Pokémon becomes poisoned.
@@ -1826,10 +1843,6 @@ Description = Punching moves change the Pokémon's secondary type and their powe
 [SHOCKSTYLE]
 Name = Shock Style
 Description = Powers up Fighting-type moves by 50%.
-#-------------------------------
-[SHOCKWINGS]
-Name = Shock Wings
-Description = Flying-type attacks have a 40% chance to numb.
 #-------------------------------
 [SICKENING]
 Name = Sickening
@@ -1982,7 +1995,6 @@ Description = Its attacks are critical against waterlogged targets.
 [STICKYFINGERS]
 Name = Sticky Fingers
 Description = Can hold a second item by stealing it.
-Flags = MultipleItems
 #-------------------------------
 [STICKYMOLD]
 Name = Sticky Mold
@@ -2353,6 +2365,22 @@ Description = After knocking out any Pokémon, raises its Sp. Atk and Sp. Def.
 [WISHMAKER]
 Name = Wish Maker
 Description = The random added effects of moves by all battlers always activate.
+#-------------------------------
+[WISHOFAUTUMN]
+Name = Wish of Autumn
+Description = Upon entry, summons Autumn Harvests on the Pokémon's side for four turns.
+#-------------------------------
+[WISHOFSPRING]
+Name = Wish of Spring
+Description = Upon entry, summons Spring Plantings on the Pokémon's side for four turns.
+#-------------------------------
+[WISHOFSUMMER]
+Name = Wish of Summer
+Description = Upon entry, summons Summer Festivals on the Pokémon's side for four turns.
+#-------------------------------
+[WISHOFWINTER]
+Name = Wish of Winter
+Description = Upon entry, summons Winter Hunts on the Pokémon's side for four turns.
 #-------------------------------
 [WORLDQUAKE]
 Name = Worldquake

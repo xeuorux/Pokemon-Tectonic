@@ -2209,7 +2209,7 @@ Pokemon = HARCANINE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = HAWLUCHA,70
-    Moves = CLOSECOMBAT,ACROBATICS,SWORDSDANCE,THROATCHOP
+    Moves = CLOSECOMBAT,ACROBATICS,BULKUP,THROATCHOP
     AbilityIndex = 1 # Unburden
     Item = AGILITYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

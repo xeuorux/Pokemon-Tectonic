@@ -33,7 +33,7 @@ class PokeBattle_Move_MaxUserAtkLoseHalfOfTotalHP < PokeBattle_Move
 end
 
 #===============================================================================
-# Reduces the user's HP by half of max, and sets its Sp. Atk to maximum.
+# Reduces the user's HP by half of max, and sets its Sp. Atk to maximum. (Bad Blood)
 #===============================================================================
 class PokeBattle_Move_MaxUserSpAtkLoseHalfOfTotalHP < PokeBattle_Move
     def statUp; return [:SPECIAL_ATTACK,12]; end

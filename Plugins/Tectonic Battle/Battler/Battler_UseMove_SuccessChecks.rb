@@ -101,9 +101,13 @@ class PokeBattle_Battler
             return false
         end
         # Torment
-        if effectActive?(:Torment) && !effectActive?(:Instructed) &&
+        if tormented? && !effectActive?(:Instructed) &&
            @lastMoveUsed && move.id == @lastMoveUsed && move.id != @battle.struggle.id
-            msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
+            if neurotoxined?
+                msg = _INTL("{1} can't use the same move twice in a row due to the neurotoxin!", pbThis)
+            else
+                msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
+            end
             if showMessages
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
@@ -182,6 +186,12 @@ class PokeBattle_Battler
              return false
          end
         return true
+    end
+
+    def tormented?
+        return true if effectActive?(:Torment)
+        return true if neurotoxined?
+        return false
     end
 
     #=============================================================================

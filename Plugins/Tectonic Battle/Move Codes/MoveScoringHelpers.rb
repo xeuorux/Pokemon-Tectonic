@@ -782,10 +782,10 @@ def predictedEOTDamage(battle,battler)
     damage += battle.applyHailDamage(battler, aiCheck: true) if battle.icy?
 
     # Status DOTs
-    damage += battle.damageFromDOTStatus(battler, :POISON, true) if battler.poisoned?
-    damage += battle.damageFromDOTStatus(battler, :LEECHED, true) if battler.leeched?
-    damage += battle.damageFromDOTStatus(battler, :BURN, true) if battler.burned?
-    damage += battle.damageFromDOTStatus(battler, :FROSTBITE, true) if battler.frostbitten?
+    damage += battle.damageFromDOTStatus(battler, :POISON, aiCheck: true) if battler.poisoned?
+    damage += battle.damageFromDOTStatus(battler, :LEECHED, aiCheck: true) if battler.leeched?
+    damage += battle.damageFromDOTStatus(battler, :BURN, aiCheck: true) if battler.burned?
+    damage += battle.damageFromDOTStatus(battler, :FROSTBITE, aiCheck: true) if battler.frostbitten?
 
     # Check for aggravate
     aggravate = battle.pbCheckOpposingAbility(:AGGRAVATE, battler.index)

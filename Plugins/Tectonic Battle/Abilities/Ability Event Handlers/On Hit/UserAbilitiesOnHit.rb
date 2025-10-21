@@ -47,10 +47,10 @@ BattleHandlers::UserAbilityOnHit.add(:DAWNFALL,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
+BattleHandlers::UserAbilityOnHit.add(:SEARINGWINGS,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.calcType == :FLYING
-    randomStatusProcUserAbility(ability, :BURN, 40, user, target, move, battle, aiCheck, aiNumHits)
+    randomStatusProcUserAbility(ability, :BURN, 30, user, target, move, battle, aiCheck, aiNumHits)
   }
 )
 
@@ -78,10 +78,10 @@ BattleHandlers::UserAbilityOnHit.add(:FLASHFREEZE,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
+BattleHandlers::UserAbilityOnHit.add(:GLACIALWINGS,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.calcType == :FLYING
-    randomStatusProcUserAbility(ability, :FROSTBITE, 40, user, target, move, battle, aiCheck, aiNumHits)
+    randomStatusProcUserAbility(ability, :FROSTBITE, 30, user, target, move, battle, aiCheck, aiNumHits)
   }
 )
 
@@ -102,17 +102,17 @@ BattleHandlers::UserAbilityOnHit.add(:NERVENUMBER,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
-  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-    next unless move.calcType == :FLYING  
-    randomStatusProcUserAbility(ability, :NUMB, 40, user, target, move, battle, aiCheck, aiNumHits)
-  }
-)
-
 BattleHandlers::UserAbilityOnHit.add(:DISCONNECTION,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless user.firstTurn?
     randomStatusProcUserAbility(ability, :NUMB, 100, user, target, move, battle, aiCheck, aiNumHits)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:GALVANICWINGS,
+  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+    next unless move.calcType == :FLYING  
+    randomStatusProcUserAbility(ability, :NUMB, 30, user, target, move, battle, aiCheck, aiNumHits)
   }
 )
 

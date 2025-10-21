@@ -62,7 +62,7 @@ BattleHandlers::StatLossImmunityAbility.add(:RUNNINGFREE,
 )
 
 BattleHandlers::StatLossImmunitySelfAbility.add(:RUNNINGFREE,
-  proc { |ability, battler, _stat, battle, showMessages|
+  proc { |ability, battler, stat, battle, showMessages|
       next false unless stat == :SPEED
       if showMessages
           battle.pbShowAbilitySplash(battler, ability)

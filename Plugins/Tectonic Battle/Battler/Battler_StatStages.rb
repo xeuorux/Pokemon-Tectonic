@@ -394,7 +394,7 @@ class PokeBattle_Battler
         return lowerStatStepEX(stat, increment, user: user, showAnim: showAnim)
     end
 
-    def lowerStatStepEX(stat, increment, user: nil, showMessages: true, showAnim: true)
+    def lowerStatStepEX(stat, increment, user: nil, showMessages: true, showAnim: true, multiple: false)
         # Perform the stat step change
         increment = pbLowerStatStepBasic(stat, increment)
         return false if increment <= 0
@@ -430,7 +430,8 @@ class PokeBattle_Battler
             @battle.pbHideAbilitySplash(user) if showMessages
         end
 
-        triggersOnStatLoss(stat, increment, user: user)
+        # do not trigger item effects if dropping multiple stats - the multiple stat function will do that afterwards
+        triggersOnStatLoss(stat, increment, user: user, triggerItems: !multiple)
 
         return increment
     end
@@ -556,7 +557,7 @@ class PokeBattle_Battler
         end
     end
 
-    def triggersOnStatLoss(stat, increment, user: nil, move: nil)
+    def triggersOnStatLoss(stat, increment, user: nil, move: nil, triggerItems: true)
         playStatStepsTutorial unless $PokemonGlobal.statStepsTutorialized
 
         applyEffect(:StatsDropped)
@@ -566,7 +567,10 @@ class PokeBattle_Battler
             BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
         end
 
-        # Trigger items upon stat loss
+        triggersItemsOnStatLoss(user, move) if triggerItems
+    end
+
+    def triggersItemsOnStatLoss(user, move)
         eachActiveItem do |item|
             BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
         end
@@ -730,7 +734,7 @@ class PokeBattle_Battler
             stat = statArray[i * 2]
             increment = statArray[i * 2 + 1]
             next unless pbCanLowerStatStep?(stat, user, move, false, false)
-            increment = lowerStatStepEX(stat, increment, user: user, showMessages: false, showAnim: false)
+            increment = lowerStatStepEX(stat, increment, user: user, showMessages: false, showAnim: false, multiple: true)
             next if increment <= 0
             if endResult.key?(increment)
                 endResult[increment].push(stat)
@@ -744,6 +748,8 @@ class PokeBattle_Battler
         endResult.each do |increment, statIDList|
             showStatChangeMessage(statIDList, increment, lowering: true)
         end
+
+        triggersItemsOnStatLoss(user, move)
 
         @battle.pbHideAbilitySplash(user) if ability
         return loweredAnySteps

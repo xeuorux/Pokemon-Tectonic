@@ -85,6 +85,10 @@ Puddle,20,20
 Special,20
     1,SKITTY,15
 #-------------------------------
+[016] # LuxTech Center
+Special,20
+    1,MBUNEARY,15
+#-------------------------------
 [019] # Reading Ribombee Café
 Special,20
     1,MILCERY,15
@@ -165,6 +169,7 @@ DarkCave,20,20
 #-------------------------------
 [037] # Svait
 Land,20,20
+    25,CRYSCROSS,23,25
     25,MHOOTHOOT,23,25
     25,MIENFOO,23,25
     25,MISDREAVUS,23,25
@@ -758,8 +763,8 @@ Special,60
 [217] # Sweetrock Harbor
 Land,20,60
     40,APPLIN,49,51
-    20,COMFEY,49,51
     20,FALINKS,49,51
+    20,MBUNEARY,49,51
     20,MILCERY,49,51
 #-------------------------------
 [218] # Abyssal Cavern

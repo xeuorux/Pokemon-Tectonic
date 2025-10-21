@@ -193,7 +193,7 @@ NamePlural = Helix Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a seashell.
+Description = A fossil of an ancient Pokémon that lived in the sea. It resembles Omanyte.
 #-------------------------------
 [DOMEFOSSIL]
 Name = Dome Fossil
@@ -201,7 +201,7 @@ NamePlural = Dome Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a shell.
+Description = A fossil of an ancient Pokémon that lived in the sea. It resembles Kabuto.
 #-------------------------------
 [OLDAMBER]
 Name = Old Amber
@@ -209,7 +209,7 @@ NamePlural = Old Ambers
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.
+Description = A piece of amber that contains the genes of an Aerodactyl. It is clear with a reddish tint.
 #-------------------------------
 [ROOTFOSSIL]
 Name = Root Fossil
@@ -217,7 +217,7 @@ NamePlural = Root Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a plant root.
+Description = A fossil of an ancient Pokémon that lived in the sea. It resembles Lileep.
 #-------------------------------
 [CLAWFOSSIL]
 Name = Claw Fossil
@@ -225,7 +225,7 @@ NamePlural = Claw Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a claw.
+Description = A fossil of an ancient Pokémon that lived in the sea. It resembles Anorith.
 #-------------------------------
 [SKULLFOSSIL]
 Name = Skull Fossil
@@ -233,7 +233,7 @@ NamePlural = Skull Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a head.
+Description = A fossil from a prehistoric Pokémon that lived on the land. It resembles Cranidos.
 #-------------------------------
 [ARMORFOSSIL]
 Name = Armor Fossil
@@ -241,7 +241,7 @@ NamePlural = Armor Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a collar.
+Description = A fossil from a prehistoric Pokémon that lived on the land. It resembles Shieldon.
 #-------------------------------
 [COVERFOSSIL]
 Name = Cover Fossil
@@ -249,7 +249,7 @@ NamePlural = Cover Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be part of its back.
+Description = A fossil of an ancient Pokémon that lived in the sea in ancient times. It resembles Tirtouga.
 #-------------------------------
 [PLUMEFOSSIL]
 Name = Plume Fossil
@@ -257,7 +257,7 @@ NamePlural = Plume Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil of an ancient Pokémon that flew in the sky in ancient times. It appears to be part of its wing.
+Description = A fossil of an ancient Pokémon that flew in the sky in ancient times. It resembles Archen.
 #-------------------------------
 [JAWFOSSIL]
 Name = Jaw Fossil
@@ -265,7 +265,7 @@ NamePlural = Jaw Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.
+Description = A fossil from a prehistoric Pokémon that once lived on the land. It resembles Tyrunt.
 #-------------------------------
 [SAILFOSSIL]
 Name = Sail Fossil
@@ -273,7 +273,7 @@ NamePlural = Sail Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil from a prehistoric Pokémon that once lived on the land. It looks like the impression from a skin sail.
+Description = A fossil from a prehistoric Pokémon that once lived on the land. It resembles Amaura.
 #-------------------------------
 [ELDRITCHFOSSIL]
 Name = Eldritch Fossil
@@ -281,7 +281,7 @@ NamePlural = Eldritch Fossils
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = A fossil from a strange Pokémon that once lived on the land. It looks like the impression from a tentacled creature.
+Description = A fossil from a strange Pokémon that once lived on the land. It resembles Makyan Omanyte.
 #-------------------------------
 [HONEY]
 Name = Honey
@@ -2360,7 +2360,7 @@ NamePlural = Fossilized Birds
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.
+Description = The fossil of an ancient Pokémon that once soared through the sky. Is it Arctozolt or Dracozolt...?
 #-------------------------------
 [FOSSILIZEDFISH]
 Name = Fossilized Fish
@@ -2368,7 +2368,7 @@ NamePlural = Fossilized Fishes
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.
+Description = The fossil of an ancient Pokémon that once lived in the sea. Is it Arctovish or Dracovish...?
 #-------------------------------
 [FOSSILIZEDDRAKE]
 Name = Fossilized Drake
@@ -2376,7 +2376,7 @@ NamePlural = Fossilized Drakes
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.
+Description = The fossil of an ancient Pokémon that once roamed the land. Is it Dracozolt or Dracovish...?
 #-------------------------------
 [FOSSILIZEDDINO]
 Name = Fossilized Dino
@@ -2384,7 +2384,7 @@ NamePlural = Fossilized Dinos
 Pocket = 16
 Price = 5000
 Flags = Fossil
-Description = The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.
+Description = The fossil of an ancient Pokémon that once lived in the sea. Is it Arctozolt or Arctovish...?
 #-------------------------------
 [RUSTEDSHIELD]
 Name = Rusted Shield

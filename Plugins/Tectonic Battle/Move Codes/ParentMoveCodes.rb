@@ -1614,3 +1614,34 @@ class PokeBattle_Move_RaiseCriticalHitRate < PokeBattle_Move
         return getCriticalRateBuffEffectScore(user,@critStages)
     end
 end
+
+#===============================================================================
+# Has a chance to apply a status, and a chance to lower the target's Defense by 2 steps
+# Used for the elemental fangs and elemental crunches.
+# Child classes must define @statusToApply
+#===============================================================================
+class PokeBattle_Move_StatusTargetLowerTargetDef2 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @subEffectChance = 20
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        chance = pbAdditionalEffectChance(user, target, @calcType, @subEffectChance)
+        return if chance == 0
+        if @battle.pbRandom(100) < chance && target.pbCanInflictStatus?(@statusToApply, user, false, self) && canApplyRandomAddedEffects?(user,target,true)
+            target.pbInflictStatus(@statusToApply, 0, nil, user)
+        end 
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
+            target.tryLowerStat(:DEFENSE, user, move: self, increment: 2)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        score += ((@subEffectChance/100.0) * getStatusSettingEffectScore(@statusToApply, user, target)).floor
+        score += ((@subEffectChance/100.0) * getMultiStatDownEffectScore([:DEFENSE, 2], user, target)).floor
+        return score
+    end
+end

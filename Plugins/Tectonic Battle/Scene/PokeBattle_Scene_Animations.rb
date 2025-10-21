@@ -379,14 +379,16 @@ class PokeBattle_Scene
     def pbThrowSuccess
       return if @battle.opponent
       @briefMessage = false
-      pbMEPlay(pbGetWildCaptureME)
-      i = 0
-      loop do
-        pbUpdate
-        break if i>=Graphics.frame_rate*3.5   # 3.5 seconds
-        i += 1
-      end
-      pbMEStop
+      if $Options.bgmvolume > 0
+        pbMEPlay(pbGetWildCaptureME)
+        i = 0
+        loop do
+          pbUpdate
+          break if i>=Graphics.frame_rate*3.5   # 3.5 seconds
+          i += 1
+        end
+        pbMEStop
+        end
       pbWildBattleSuccess if @battle.is_a?(PokeBattle_SafariZone)
     end
   

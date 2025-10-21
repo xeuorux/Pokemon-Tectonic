@@ -571,8 +571,8 @@ class PokeBattle_Battle
                         otherHazardScore += 15
                         echoln("\t[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+15)")
                     else
-                        battler.pbOwnSide.disableEffect(effect)
-                        pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
+                        pbDisplay(_INTL("{1} absorbed a layer of the {2}!", battler.pbThis, data.name))
+                        battler.pbOwnSide.decrementEffect(effect)
                     end
                 elsif   battler.pbCanInflictStatus?(status, nil, false) &&
                         !battler.immuneToHazards?(aiCheck) &&

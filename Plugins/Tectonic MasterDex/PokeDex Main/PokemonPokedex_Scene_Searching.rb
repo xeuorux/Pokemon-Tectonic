@@ -1034,6 +1034,7 @@ class PokemonPokedex_Scene
     end
 
     def sortByOther
+        cmdSortByName = -1
         cmdSortByType = -1
         cmdSortByGenderRate = -1
         cmdSortByHeight = -1
@@ -1045,6 +1046,7 @@ class PokemonPokedex_Scene
         cmdSortByMonumentTrainerCount = -1
         cmdSortByCoverageTypesCount = -1
         selections = []
+        selections[cmdSortByName = selections.length] = _INTL("Name")
         selections[cmdSortByType = selections.length] = _INTL("Type")
         selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
         selections[cmdSortByHeight = selections.length] = _INTL("Height")
@@ -1058,8 +1060,11 @@ class PokemonPokedex_Scene
         selections.push(_INTL("Cancel"))
         selection = pbMessage(_INTL("Sort by what?"), selections, selections.length + 1)
         return if selection >= selections.length - 1
+        # handle name sort separately to handle inbuilt methods for lexicographic sort
+        if cmdSortByName > -1 && selection == cmdSortByName
+            return sortByName
+        end
         dexlist = @dexlist
-
         typesCount = 0
         GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type }
 
@@ -1111,4 +1116,15 @@ class PokemonPokedex_Scene
         end
         return dexlist
     end
+end
+
+def sortByName
+    sortDirection = pbMessage(_INTL("Which direction?"), [_INTL("A-Z"), _INTL("Z-A"), _INTL("Cancel")], 3)
+    return if sortDirection == 2
+    dexlist = @dexlist
+    dexlist.sort_by! { |dex_item| dex_item[:data].name }
+    if sortDirection == 1
+        dexlist.reverse!
+    end
+    return dexlist
 end

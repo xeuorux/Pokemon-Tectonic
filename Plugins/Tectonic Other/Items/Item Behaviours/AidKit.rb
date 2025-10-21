@@ -63,7 +63,7 @@ def useAidKit()
 		$Trainer.party.each do |p|
 			next if p.egg?
 			previousHealthValues.push(p.hp)
-			previousStatusIndices.push(getStatusIndexForPokemon(p))
+			previousStatusIndices.push(p.getStatusImageIndex)
 			pbItemRestoreHP(p,healAmount)
 			p.heal_status
 			p.heal_PP

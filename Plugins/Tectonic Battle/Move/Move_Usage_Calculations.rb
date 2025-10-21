@@ -176,10 +176,12 @@ class PokeBattle_Move
         target.eachActiveItem do |item|
             BattleHandlers.triggerAccuracyCalcTargetItem(item, modifiers, user, target, self, typeToUse)
         end
+        
         # Other effects, inc. ones that set accuracy_multiplier or evasion_step to
         # specific values
         modifiers[:accuracy_multiplier] *= 2.0 if @battle.gravityIntensified?
         modifiers[:accuracy_multiplier] *= 1.5 if user.effectActive?(:Spotting)
+        modifiers[:accuracy_multiplier] *= 1.5 if user.pbOwnSide.effectActive?(:WinterHunts)
 
         if aiCheck
             modifiers[:evasion_step] = 0 if @function == "IgnoreTargetDefSpDefEvaStatStages" # Chip Away

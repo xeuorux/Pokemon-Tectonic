@@ -135,7 +135,7 @@ class PokeBattle_Battle
         triggerWeatherChangeDialogue(oldWeather, :None)
         if affectAbilities
             battlers.each do |b|
-                b.eachActiveAbility do |ability|
+                b&.eachActiveAbility do |ability|
                     BattleHandlers.triggerWeatherChangedAbility(ability, oldWeather, b, self)
                 end
             end

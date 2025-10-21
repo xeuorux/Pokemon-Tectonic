@@ -758,17 +758,63 @@ class PokeBattle_Move_CantMissIfInMoonglow < PokeBattle_Move
 end
 
 #===============================================================================
-# The user chooses one of Fire Fang, Ice Fang, and Thunder Fang to use. (Elemental Fang)
+# The user chooses one of Fire Fang, Ice Fang, Hydro Fang, or Thunder Fang to use. (Elemental Fang)
 #===============================================================================
-class PokeBattle_Move_UseChoiceOf3ElementalFangs < PokeBattle_Move
+class PokeBattle_Move_UseChoiceOfElementalFangs < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
         super
         @validMoves = %i[
             FIREFANG
-            THUNDERFANG
             ICEFANG
+            HYDROFANG
+            THUNDERFANG
+        ]
+    end
+
+    def resolutionChoice(user)
+        validMoveNames = []
+        @validMoves.each do |move|
+            validMoveNames.push(getMoveName(move))
+        end
+
+        if @battle.autoTesting
+            @chosenMove = @validMoves.sample
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenMove = @validMoves[0]
+        else
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
+            @chosenMove = @validMoves[chosenIndex]
+        end
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        user.pbUseMoveSimple(@chosenMove, target.index) if @chosenMove
+    end
+
+    def resetMoveUsageState
+        @chosenMove = nil
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        return # No animation
+    end
+end
+
+#===============================================================================
+# The user chooses one of Searing Crunch, Glacial Crunch, Aquatic Crunch, and Volt Crunch to use. (Elemental Crunch)
+#===============================================================================
+class PokeBattle_Move_UseChoiceOfElementalCrunches < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @validMoves = %i[
+            SEARINGCRUNCH
+            GLACIALCRUNCH
+            VOLTCRUNCH
+            AQUATICCRUNCH
         ]
     end
 

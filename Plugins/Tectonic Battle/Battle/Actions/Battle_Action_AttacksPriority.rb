@@ -263,7 +263,10 @@ class PokeBattle_Battle
 
     def getMovePriority(move, user, targets, aiCheck = false)
         priority = move.priority
-        priority -= 1 if pbCheckGlobalAbility(:HONORABLE) && move.statusMove?
+
+        # Final turn of Winter Hunts
+        priority += 1 if user.pbOwnSide.effectActive?(:WinterHuntsEnd)
+        
         user.eachAbilityShouldApply(aiCheck) do |ability|
             abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(ability, user, move, 0, targets, aiCheck)
             priority += abilityPriorityChange

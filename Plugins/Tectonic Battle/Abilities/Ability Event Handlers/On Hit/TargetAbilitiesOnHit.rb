@@ -397,7 +397,7 @@ BattleHandlers::TargetAbilityOnHit.add(:LOUDSLEEPER,
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :NUMB
+        next if user.numbed?
         if aiCheck
             if user.effectActive?(:PhysNumbWarned) || aiNumHits > 1
                 next -getNumbEffectScore(target, user)
@@ -419,7 +419,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
 BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :NUMB
+        next if user.numbed?
         if aiCheck
             if user.effectActive?(:SpecNumbWarned) || aiNumHits > 1
                 next -getNumbEffectScore(target, user)
@@ -444,7 +444,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :POISON
+        next if user.poisoned?
         if aiCheck
             if user.effectActive?(:PhysPoisonWarned) || aiNumHits > 1
                 next -getPoisonEffectScore(target, user)
@@ -466,7 +466,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :POISON
+        next if user.poisoned?
         if aiCheck
             if user.effectActive?(:SpecPoisonWarned) || aiNumHits > 1
                 next -getPoisonEffectScore(target, user)
@@ -491,7 +491,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :BURN
+        next if user.burned?
         if aiCheck
             if user.effectActive?(:PhysBurnWarned) || aiNumHits > 1
                 next -getBurnEffectScore(target, user)
@@ -513,7 +513,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
 BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :BURN
+        next if user.burned?
         if aiCheck
             if user.effectActive?(:SpecBurnWarned) || aiNumHits > 1
                 next -getBurnEffectScore(target, user)
@@ -538,7 +538,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :FROSTBITE
+        next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:PhysFrostWarned) || aiNumHits > 1
                 next -getFrostbiteEffectScore(target, user)
@@ -560,7 +560,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :FROSTBITE
+        next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:SpecFrostWarned) || aiNumHits > 1
                 next -getFrostbiteEffectScore(target, user)
@@ -585,7 +585,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :DIZZY
+        next if user.dizzy?
         if aiCheck
             if user.effectActive?(:PhysDizzyWarned) || aiNumHits > 1
                 next -getDizzyEffectScore(target, user)
@@ -607,7 +607,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
 BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :DIZZY
+        next if user.dizzy?
         if aiCheck
             if user.effectActive?(:SpecDizzyWarned) || aiNumHits > 1
                 next -getDizzyEffectScore(target, user)
@@ -632,7 +632,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
 BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :LEECHED
+        next if user.leeched?
         if aiCheck
             if user.effectActive?(:PhysLeechWarned) || aiNumHits > 1
                 next -getLeechEffectScore(target, user)
@@ -654,7 +654,7 @@ BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
 BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :LEECHED
+        next if user.leeched?
         if aiCheck
             if user.effectActive?(:SpecLeechWarned) || aiNumHits > 1
                 next -getLeechEffectScore(target, user)
@@ -679,7 +679,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
 BattleHandlers::TargetAbilityOnHit.add(:SOPPING,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        next if user.status == :WATERLOG
+        next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:PhysWaterlogWarned) || aiNumHits > 1
                 next -getWaterlogEffectScore(target, user)
@@ -701,7 +701,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SOPPING,
 BattleHandlers::TargetAbilityOnHit.add(:BACKWASH,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        next if user.status == :WATERLOG
+        next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:SpecWaterlogWarned) || aiNumHits > 1
                 next -getWaterlogEffectScore(target, user)

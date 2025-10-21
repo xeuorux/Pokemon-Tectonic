@@ -114,6 +114,15 @@ BattleHandlers::DamageCalcUserAbility.add(:STONEMANE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:BITEY,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.bitingMove?
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:STRONGJAW,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.bitingMove?

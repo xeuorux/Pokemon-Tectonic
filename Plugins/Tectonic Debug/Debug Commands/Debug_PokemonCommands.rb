@@ -96,16 +96,14 @@ module PokemonDebugMenuCommands
             screen.pbRefreshSingle(pkmnid)
           else   # Give status problem
             count = 0
-            cancel = false
-            if ids[cmd] == :SLEEP
-              params = ChooseNumberParams.new
-              params.setRange(0, 9)
-              params.setDefaultValue(3)
-              count = pbMessageChooseNumber(
-                 _INTL("Set the Pokémon's sleep count."), params) { screen.pbUpdate }
-              cancel = true if count <= 0
-            end
-            if !cancel
+            # Choose count
+            params = ChooseNumberParams.new
+            max = ids[cmd] == :SLEEP ? 2 : 1
+            params.setRange(0, max)
+            params.setDefaultValue(2) if ids[cmd] == :SLEEP
+            count = pbMessageChooseNumber(
+                _INTL("Set the Pokémon's status count."), params) { screen.pbUpdate }
+            if ids[cmd] != :SLEEP || count > 0
               pkmn.status      = ids[cmd]
               pkmn.statusCount = count
               screen.pbRefreshSingle(pkmnid)

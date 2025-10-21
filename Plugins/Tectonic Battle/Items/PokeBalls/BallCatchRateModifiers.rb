@@ -122,7 +122,7 @@ BallHandlers::ModifyCatchRate.add(:SPORTBALL, proc { |_ball, catchRate, _battle,
 })
 
 BallHandlers::ModifyCatchRate.add(:DREAMBALL, proc { |_ball, catchRate, _battle, battler|
-    catchRate *= 4 if battler.status == :SLEEP
+    catchRate *= 4 if battler.asleep?
     next catchRate
 })
 

@@ -16,6 +16,7 @@ PokeBattle_Battle::BeginningOfTurnCurseEffect.add(:CURSE_NO_MOVING_CYCLICAL,
                 battle.pbAnimation(:SHEERCOLD, b, b)
                 b.applyEffect(:IceSculpture)
             end
+            battle.sides[0].applyEffect(:IceSculptureTurns, 4)
         elsif battle.turnCount % 4 == 3
             battle.pbDisplay(_INTL("The freeze will arrive next turn."))
         end

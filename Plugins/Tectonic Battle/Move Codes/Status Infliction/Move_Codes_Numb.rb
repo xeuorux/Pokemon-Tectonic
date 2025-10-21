@@ -29,43 +29,12 @@ class PokeBattle_Move_NumbTargetAlwaysHitsInRainstormHitsTargetInSky < PokeBattl
 end
 
 #===============================================================================
-# Numbs the target. May cause the target to flinch. (Thunder Fang)
+# May cause the target to be numbed or to lower their Defense by two steps. (Thunder Fang)
 #===============================================================================
-class PokeBattle_Move_NumbFlinchTarget < PokeBattle_Move
-    def flinchingMove?; return true; end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        chance = pbAdditionalEffectChance(user, target, @calcType, 10)
-        return if chance == 0
-        if @battle.pbRandom(100) < chance && target.canNumb?(user, false, self) && canApplyRandomAddedEffects?(user,target,true)
-            target.applyNumb(user)
-        end 
-        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
-            target.pbFlinch
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = 0
-        score += 0.1 * getNumbEffectScore(user, target)
-        score += 0.1 * getFlinchingEffectScore(60, user, target, self)
-        return score
-    end
-end
-
-#===============================================================================
-# Target is numbed if in eclipse. (Tidalkinesis)
-#===============================================================================
-class PokeBattle_Move_NumbTargetIfInEclipse < PokeBattle_NumbMove
-    def pbAdditionalEffect(user, target)
-        return unless @battle.eclipsed?
+class PokeBattle_Move_NumbTargetLowerTargetDef2 < PokeBattle_Move_StatusTargetLowerTargetDef2
+    def initialize(battle, move)
         super
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return 0 unless @battle.eclipsed?
-        super
+        @statusToApply = :NUMB
     end
 end
 

@@ -161,6 +161,10 @@ module GameData
             return !@eor_proc.nil?
         end
 
+        def has_sor_proc?
+            return !@sor_proc.nil?
+        end
+
         def has_remain_proc?
             return !@remain_proc.nil?
         end
@@ -223,8 +227,11 @@ module GameData
             # Called when the effect is applied by an action
             @apply_proc             = hash[:apply_proc]
 
-            # Called every round if active.
+            # Called at the end of every round if active.
             @eor_proc               = hash[:eor_proc]
+
+            # Called at the start of every round if active.
+            @sor_proc               = hash[:sor_proc]
 
             # Called when the effect is disabled
             @disable_proc			= hash[:disable_proc]
@@ -509,6 +516,31 @@ module GameData
         def eor_field(battle)
             value = battle.field.effects[@id]
             @eor_proc.call(battle, value) if @eor_proc
+        end
+
+        ### Methods dealing with effects at the start of each round
+        def sor_battler(battle, battler)
+            value = battler.effects[@id]
+            @sor_proc.call(battle, battler, value) if @sor_proc
+        end
+
+        def sor_position(battle, index)
+            position = battle.positions[index]
+            battler = battle.battlers[index]
+            return if battler.nil? || battler.fainted?
+            value = position.effects[@id]
+            @sor_proc.call(battle, index, position, battler, value) if @sor_proc
+        end
+
+        def sor_side(battle, side)
+            teamName = battle.battlers[side.index].pbTeam
+            value = side.effects[@id]
+            @sor_proc.call(battle, side, teamName, value) if @sor_proc
+        end
+
+        def sor_field(battle)
+            value = battle.field.effects[@id]
+            @sor_proc.call(battle, value) if @sor_proc
         end
 
         ### Methods dealing with the effect being incremented (call afterwards)

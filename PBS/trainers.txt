@@ -68,7 +68,7 @@ Pokemon = GROWLITHE,10
     AbilityIndex = 0 # Intimidate
 Pokemon = CHEWTLE,10
     Moves = HEADBANG,BREACH,BITE
-    AbilityIndex = 0 # Strong Jaw
+    AbilityIndex = 0 # Bitey
 #-------------------------------
 [NINJABOY,Matthew]
 Pokemon = BONSLY,12
@@ -129,7 +129,7 @@ Pokemon = TOTODILE,13
     AbilityIndex = 0 # Ferocious
 Pokemon = TRAPINCH,13
     Moves = TREADON,DAZZLE,SMUSH,BITE
-    AbilityIndex = 1 # Strong Jaw
+    AbilityIndex = 1 # Bitey
 #-------------------------------
 [BATTLEGIRL,Eliza]
 Pokemon = MAKUHITA,15
@@ -229,7 +229,7 @@ Pokemon = LARVESTA,18
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
 Pokemon = WHISMUR,17
-    Moves = AURAPULSE,SCREECH,ECHOEDVOICE,SHOUT
+    Moves = AURAPULSE,BARETEETH,ECHOEDVOICE,SHOUT
     AbilityIndex = 1 # Loud
     Item = THROATSPRAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -285,7 +285,7 @@ Pokemon = MARSHTOMP,17
 [ARTIST,Evan]
 Policies = PRIORITIZESTATDOWN
 Pokemon = SMEARGLE,18
-    Moves = HELPINGHAND,HEALPULSE,SCREECH,NOBLEROAR
+    Moves = HELPINGHAND,HEALPULSE,BARETEETH,NOBLEROAR
     AbilityIndex = 0 # Mental Block
     Item = SITRUSBERRY
 Pokemon = MISDREAVUS,16
@@ -303,7 +303,7 @@ Pokemon = BELDUM,17
 [SCIENTIST_M2,Dexter]
 Pokemon = GRIMER,20
     Moves = POISONGAS,SLUDGE,DISABLE,MUDSHOT
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Piercing Poison
 Pokemon = CHARMELEON,20
     Moves = IGNITE,VACUUMWAVE,FIREFANG,TWISTER
     AbilityIndex = 0 # Pure Rage
@@ -469,7 +469,7 @@ Pokemon = LICKITUNG,22
 #-------------------------------
 [LASS,Tara]
 Pokemon = ARROKUDA,23
-    Moves = FURYPECKS,SNAP,BITE,AQUAJET
+    Moves = FURYPECKS,HYDROFANG,BITE,AQUAJET
     AbilityIndex = 1 # Straight Ahead
     Item = WATERGEM
 Pokemon = PIDGEOTTO,22
@@ -997,7 +997,7 @@ Pokemon = BARBARACLE,35
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = MALAMAR,35
-    Moves = PSYCHICFANGS,INCISION,SCREECH,EERIEIMPULSE
+    Moves = PSYCHICFANGS,INCISION,BARETEETH,EERIEIMPULSE
     AbilityIndex = 0 # Contrary
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
@@ -3343,6 +3343,7 @@ Flags = NoPerfect
 Pokemon = MBEAUTIFLY,45
     Moves = SKEWER,ICYINJECTION,DEFOG,UTURN
     AbilityIndex = 1 # Schadenfreude
+    Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 15,20,0,15,20,0
 Pokemon = METAGROSS,45
@@ -3360,8 +3361,8 @@ Pokemon = MPOLTEAGEIST,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = BRUXISH,45
-    Moves = CRUNCH,PSYCHICFANGS,FIREFANG,SNAP
-    AbilityIndex = 1 # Strong Jaw
+    Moves = CRUNCH,PSYCHICFANGS,ELEMENTALCRUNCH
+    AbilityIndex = 1 # Bitey
     Item = EXPERTBELT
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,5,20,20,5
@@ -3381,7 +3382,6 @@ Pokemon = GDARMANITAN,45
 ExtendsVersion = 0
 Policies = CURSE_NO_MOVING_CYCLICAL
 Pokemon = MBEAUTIFLY,45
-    Item = HEAVYDUTYBOOTS
 Pokemon = METAGROSS,45
 Pokemon = BRUXISH,45
 Pokemon = GRAPIDASH,45
@@ -3587,7 +3587,7 @@ Pokemon = GLIGAR,27
 Flags = NoPerfect
 Pokemon = GRIMER,30
     Moves = POISONGAS,SLUDGE,FIREPULSE,DISSOLUTION
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Piercing Poison
     Item = EVIOLITE
 Pokemon = MIGHTYENA,30
     Moves = ASSURANCE,FROLIC,PLANTDOUBT,MIDNIGHTHUNT
@@ -3868,7 +3868,7 @@ Pokemon = DUSCLOPS,30
     Moves = WILLOWISP,CONFUSERAY,SHADOWSNEAK,SHADOWPUNCH
     AbilityIndex = 0 # Aggravate
 Pokemon = SHARPEDO,30
-    Moves = SNAP,POISONFANG,AQUAJET,BRUTALSWING
+    Moves = HYDROFANG,POISONFANG,AQUAJET,BRUTALSWING
     AbilityIndex = 1 # Armor Piercing
 Pokemon = PINSIR,30
     Moves = FURYPECKS,CAPOEIRA,BUGBITE,BULKUP
@@ -7456,8 +7456,8 @@ Pokemon = TITANIX,57
     AbilityIndex = 1 # Gravitas
     Item = SHELLBELL
 Pokemon = BOLTUND,57
-    Moves = THUNDERFANG,SNAP,CRUNCH,PSYCHICFANGS
-    AbilityIndex = 0 # Strong Jaw
+    Moves = VOLTCRUNCH,AQUATICCRUNCH,CRUNCH,PSYCHICFANGS
+    AbilityIndex = 0 # Bitey
 #-------------------------------
 [GUITARIST3,Athena]
 Pokemon = MSEVIPER,58
@@ -7973,7 +7973,7 @@ Pokemon = KLEFKI,70
 Pokemon = SMEARGLE,70
     AbilityIndex = 0 # Mental Block
 Pokemon = BOLTUND,70
-    AbilityIndex = 0 # Strong Jaw
+    AbilityIndex = 0 # Bitey
 Pokemon = AMBIPOM,70
     AbilityIndex = 1 # Skill Link
 Pokemon = WAILORD,70
@@ -8343,7 +8343,7 @@ Pokemon = TAUROS,70
     Moves = THRASH,RAGINGFURY,DIELECTRICBREAKDOWN,PETALDANCE
     AbilityIndex = 0 # Wreak Havoc
 Pokemon = HAWLUCHA,70
-    Moves = ACROBATICS,CLOSECOMBAT,SWORDSDANCE,XSCISSOR
+    Moves = ACROBATICS,CLOSECOMBAT,LASERFOCUS,XSCISSOR
     AbilityIndex = 1 # Unburden
     Item = WHITEHERB
 Pokemon = AEXEGGUTOR,70
@@ -9070,7 +9070,7 @@ Pokemon = GLACEON,70
     Item = LEFTOVERS
 Pokemon = MUK,70
     Moves = VENOSHOCK,FLAMETHROWER,POISONGAS,GIGADRAIN
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Piercing Poison
     Item = SITRUSBERRY
 #-------------------------------
 [TOURISTM,Francois]
@@ -9261,7 +9261,7 @@ Pokemon = HUNTAIL,70
     Moves = BUBBLEBLASTER,BLACKOUT,DREAMDANCE,ICEBEAM
     AbilityIndex = 0 # Intimidate
 Pokemon = DIGGERSBY,70
-    Moves = DRILLRUN,MEGAPUNCH,SWORDSDANCE,ADAMANTINEPRESS
+    Moves = DRILLRUN,MEGAPUNCH,SHADOWBOXING,ADAMANTINEPRESS
     AbilityIndex = 1 # Paranoid
 Pokemon = SIRFETCHD,70
     Moves = DRILLPECK,LEAFBLADE,PSYCHOSCISSION,ARTOFWAR

@@ -582,6 +582,130 @@ GameData::BattleEffect.register_effect(:Side, {
 })
 
 ##########################################
+# Genie Wish effects
+##########################################
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SpringPlantings,
+    :real_name => "Spring Plantings",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the spring plantings!", teamName))
+        battle.pbDisplay(_INTL("Their Sp. Def will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their spring plantings.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their spring plantings!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            battle.pbDisplay(_INTL("{1}'s spring plantings are finishing!", teamName))
+            battle.pbDisplay(_INTL("{1} is refreshed of physical and mental ailments!", teamName))
+            battle.eachSameSideBattler(side.index) do |b|
+                b.pbCureStatus
+
+                # Disable all mental effects
+                b.eachEffect(true) do |effect, _value, data|
+                    next unless data.is_mental?
+                    b.disableEffect(effect)
+                end
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SummerFestivals,
+    :real_name => "Summer Festivals",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the summer festivals!", teamName))
+        battle.pbDisplay(_INTL("Their Speed will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their summer festivals.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their summer festivals!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        side.applyEffect(:SummerFestivalsEnd) if value == 1
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SummerFestivalsEnd,
+    :real_name => "Festivals' End",
+    :resets_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1}'s summer festivals are finishing!", teamName))
+        battle.pbDisplay(_INTL("They'll deal 50 percent more move damage this turn, but take 25 percent recoil!"))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :AutumnHarvests,
+    :real_name => "Autumn Harvests",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the autumn harvests!", teamName))
+        battle.pbDisplay(_INTL("Their Defense will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their autumn harvests.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their autumn harvests!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            battle.pbDisplay(_INTL("{1}'s autumn harvests are finishing!", teamName))
+            battle.pbDisplay(_INTL("They receive a healthy bounty!"))
+
+            battle.eachSameSideBattler(side.index) do |b|
+                b.applyFractionalHealing(1.0 / 3.0, canOverheal: true)
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :WinterHunts,
+    :real_name => "Winter Hunts",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the winter hunts!", teamName))
+        battle.pbDisplay(_INTL("Their Accuracy will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their winter hunts.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their winter hunts!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            side.applyEffect(:WinterHuntsEnd)
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :WinterHuntsEnd,
+    :real_name => "Hunts' End",
+    :resets_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1}'s winter hunts are finishing!", teamName))
+        battle.pbDisplay(_INTL("They'll have +1 priority this turn!"))
+    end,
+})
+
+##########################################
 # Internal Tracking
 ##########################################
 GameData::BattleEffect.register_effect(:Side, {
@@ -750,4 +874,11 @@ GameData::BattleEffect.register_effect(:Side, {
     :expire_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1} is no longer blessed by the Wishing Well.", teamName))
     end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :IceSculptureTurns,
+    :real_name => "Turns Until Freeze",
+    :type => :Integer,
+    :ticks_down => true
 })

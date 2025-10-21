@@ -347,7 +347,7 @@ end
     def hp; return @pokemon.hp; end
 
     def statusIndex
-      return getStatusIndexForPokemon(@pokemon)
+      return @pokemon.getStatusImageIndex
     end
 
     def fainted?
@@ -363,13 +363,13 @@ end
             if self.preselected;     @panelbgsprite.changeBitmap("swapsel2")
             elsif @switching;        @panelbgsprite.changeBitmap("swapsel")
             elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraidsel")
-            elsif self.fainted?; @panelbgsprite.changeBitmap("faintedsel")
+            elsif self.fainted?;     @panelbgsprite.changeBitmap("faintedsel")
             else;                    @panelbgsprite.changeBitmap("ablesel")
             end
           else
             if self.preselected;     @panelbgsprite.changeBitmap("swap")
             elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraid")
-            elsif self.fainted?; @panelbgsprite.changeBitmap("fainted")
+            elsif self.fainted?;     @panelbgsprite.changeBitmap("fainted")
             else;                    @panelbgsprite.changeBitmap("able")
             end
           end
@@ -381,7 +381,7 @@ end
           @hpbgsprite.visible = (!@pokemon.egg? && !(@text && @text.length>0))
           if @hpbgsprite.visible
             if self.preselected || (self.selected && @switching); @hpbgsprite.changeBitmap("swap")
-            elsif self.fainted?;                              @hpbgsprite.changeBitmap("fainted")
+            elsif self.fainted?;                                  @hpbgsprite.changeBitmap("fainted")
             else;                                                 @hpbgsprite.changeBitmap("able")
             end
             @hpbgsprite.x     = self.x+96
@@ -1262,17 +1262,4 @@ def pbChoosePokemonForTrade(variableNumber,nameVarNumber,wanted)
 	pbChooseTradablePokemon(variableNumber,nameVarNumber,proc { |pkmn|
 		next pkmn.species==wanted
 	})
-end
-
-
-def getStatusIndexForPokemon(pokemon)
-  statusIndex = 0
-  if pokemon.afraid?
-    statusIndex = GameData::Status::DATA.keys.length / 2 + 1
-  elsif pokemon.fainted?
-    statusIndex = GameData::Status::DATA.keys.length / 2
-  elsif pokemon.status != :NONE
-    statusIndex = GameData::Status.get(pokemon.status).id_number
-  end
-  return statusIndex
 end

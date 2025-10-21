@@ -48,7 +48,7 @@ class PokeBattle_Move_UserIsPoisoned < PokeBattle_Move
         return if target.damageState.unaffected
         return if user.poisoned?
         user.applyPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
-           user.pbThis, getPoisonExplanation), false)
+           user.pbThis, getPoisonExplanation))
     end
 
     def getEffectScore(user, _target)

@@ -162,7 +162,7 @@ class PokemonPartyShowcase_Scene
 
         # Display status
         if @flags.include?("showstatuses")
-            statusImageIndex = pokemon.getStatusImageIndex
+            statusImageIndex = pokemon.getStatusImageIndex(true)
             if statusImageIndex >= 0
                 imagepos = [[addLanguageSuffix("Graphics/Pictures/statuses"), displayX + 10, mainIconY + 4, 0, 16 * statusImageIndex, 44, 16]]
                 pbDrawImagePositions(@overlay2, imagepos)

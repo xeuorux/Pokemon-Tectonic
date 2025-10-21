@@ -200,6 +200,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:BOTTOMFEEDER,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PINDOWN,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.trapped?
+      mults[:final_damage_multiplier] *= 0.8
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if aiCheck
@@ -286,7 +295,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
 BattleHandlers::DamageCalcTargetAbility.add(:MISTFORM,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if target.effectActive?(:SwitchedIn)
-      mults[:final_damage_multiplier] *= 0.33
+      mults[:final_damage_multiplier] *= 0.66
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }

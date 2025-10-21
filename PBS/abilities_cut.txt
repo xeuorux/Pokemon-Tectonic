@@ -183,6 +183,10 @@ Description = The Pokémon's accuracy is boosted.
 Name = Conviction
 Description = Upon entry, uses the move Endure on itself.
 #-------------------------------
+[CORROSION]
+Name = Corrosion
+Description = Can poison the target even if it's a Steel or Poison-type.
+#-------------------------------
 [COSMICCONTACT]
 Name = Cosmic Contact
 Description = Takes 35% less damage while using a status move.
@@ -309,6 +313,10 @@ Description = Gain priority with Grass-type moves.
 Name = Fiesta
 Description = Heals by 1/8th HP whenever any Pokémon uses a dance or sound move.
 #-------------------------------
+[FLAMEWINGS]
+Name = Flame Wings
+Description = Flying-type attacks have a 40% chance to burn.
+#-------------------------------
 [FLAREBOOST]
 Name = Flare Boost
 Description = Boosts Sp. Atk by 50% attacks when burned.
@@ -349,6 +357,10 @@ Flags = HailSynergy
 [FROSTSONG]
 Name = Arctic Ariette
 Description = Sound-based attacks turn Ice-type and are boosted by 30%.
+#-------------------------------
+[FROSTWINGS]
+Name = Frost Wings
+Description = Flying-type attacks have a 40% chance to frostbite.
 #-------------------------------
 [FUNGALFLURRY]
 Name = Fungal Flurry
@@ -921,6 +933,10 @@ Flags = CritImmunity
 [SHIELDWALL]
 Name = Shield Wall
 Description = Takes 50% less damage from hyper-effective attacks.
+#-------------------------------
+[SHOCKWINGS]
+Name = Shock Wings
+Description = Flying-type attacks have a 40% chance to numb.
 #-------------------------------
 [SHRIEKING]
 Name = Ear-Splitting
