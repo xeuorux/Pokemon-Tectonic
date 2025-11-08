@@ -434,7 +434,7 @@ class PokeBattle_AI
         totalAbilityScore = 0
         battler.eachAlly do |ally|
             ally.eachActiveAbility do |ability|
-                switchAbilityEffectScore = BattleHandlers.triggerAbilityOnSwitchIn(ability, battler, ally, battler.battle, true)
+                switchAbilityEffectScore = BattleHandlers.triggerAbilityOnAllySwitchIn(ability, battler, ally, battler.battle, true)
                 abilitySwitchModifier = (switchAbilityEffectScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                 totalAbilityScore += abilitySwitchModifier
             end
