@@ -40,24 +40,20 @@ module PokeBattle_BattleRecorder
 	def pbCommandPhase
 		@recorded_choices.push([]) #Add turn array
     (maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
-		@recorded_choices[@turnCount].each { |a| a.push(nil)} #Add first action placeholder
-
 		super
-
 		@choices.each_with_index do |c, i|
 			c_clone = c.clone
 			c_clone[2] = nil #Remove move object (not parsable)
-			@recorded_choices[@turnCount][i][0] = c_clone
+			@recorded_choices[@turnCount][i].push(c_clone)
 		end
   end
 
 	def pbExtraCommandPhase
-		@recorded_choices[@turnCount].each { |a| a.push(nil)} #Add new action placeholder
 		super
 		@choices.each_with_index do |c, i|
 			c_clone = c.clone
 			c_clone[2] = nil #Remove move object (not parsable)
-			@recorded_choices[@turnCount][i][@commandPhasesThisRound] = c_clone
+			@recorded_choices[@turnCount][i].push(c_clone)
 		end
 	end
 
@@ -95,6 +91,7 @@ module PokeBattle_BattleRecorder
 
 	def registerRules
 		@rules = $PokemonTemp.battleRules
+		echoln($PokemonTemp.battleRules)
 	end
 
 	def getBattleData
@@ -208,7 +205,7 @@ module PokeBattle_BattleReplayer
 	def pbExtraCommandPhase
 		@choices = []
 		@recorded_choices[turnCount].each do |c|
-			@choices.push(c[@commandPhasesThisRound])
+			@choices.push(c[@commandPhasesThisRound-1])
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
 					@choices[-1][2] = @struggle
