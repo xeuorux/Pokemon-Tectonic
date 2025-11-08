@@ -3,6 +3,8 @@
 #===============================================================================
 class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 	attr_reader :party
+	attr_reader :storageScene
+	attr_reader :storageScreen
 
     def cursorFileLocation
 		return addLanguageSuffix(("Graphics/Pictures/Party/cursor_pokemon"))

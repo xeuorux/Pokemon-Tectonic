@@ -67,3 +67,46 @@ class PokeBattle_Move_WaterlogTargetLowerTargetDef2 < PokeBattle_Move_StatusTarg
         @statusToApply = :WATERLOG
     end
 end
+
+#===============================================================================
+# Waterlogs the target and applies Aqua Ring to the user. (Seaborne Sacrament)
+#===============================================================================
+class PokeBattle_Move_WaterlogTargetStartHealUserEachTurn < PokeBattle_WaterlogMove
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        if !target.canWaterlog?(user, false, self) && user.effectActive?(:AquaRing)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since {1} can't be waterlogged and {2} already has an Aqua Ring!", target.pbThis(true), user.pbThis(true)))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return if damagingMove?
+        target.applyWaterlog if target.canWaterlog?(user, false, self)
+    end
+
+    def pbEffectGeneral(user)
+        return if damagingMove? && !spreadMove?
+        user.applyEffect(:AquaRing) unless user.effectActive?(:AquaRing)
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        targets.each do |b|
+            @battle.pbAnimation(:SOAK, user, [b]) if b.canWaterlog?(user, false, self)
+        end
+        @battle.pbAnimation(:AQUARING, user, nil) unless user.effectActive?(:AquaRing)
+    end
+
+    def pbAdditionalEffect(user, _target)
+        super
+        return if spreadMove?
+        user.applyEffect(:AquaRing) unless user.effectActive?(:AquaRing)
+    end
+
+    def getEffectScore(user, target)
+        return getAquaRingEffectScore(user) 
+    end
+end

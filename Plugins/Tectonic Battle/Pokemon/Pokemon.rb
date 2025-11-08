@@ -32,6 +32,8 @@ class Pokemon
     attr_accessor :moves
     # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
     attr_accessor :first_moves
+    # @return [Array<Pokemon::Item>] the items held by this Pokémon
+    attr_accessor :items
     # @return [Array<Symbol>] an array of ribbons owned by this Pokémon
     attr_accessor :ribbons
     # @return [Integer] contest stats
@@ -1135,7 +1137,7 @@ class Pokemon
 
     # avoid problematic characters for online communication
     def safe_name
-      if !name.include?("\\")
+      if !stringIsUnsafe(@name)
         return name
       end
       return speciesName

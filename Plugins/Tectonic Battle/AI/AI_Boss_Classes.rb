@@ -407,14 +407,18 @@ class PokeBattle_AI_DARKRAI < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @warnedIFFMove.add(:CALLOFTHEVOID, {
-            :condition => proc { |_move, user, _target, battle|
-                next battle.turnCount % 3 == 0
+            :condition => proc { |_move, user, _target, _battle|
+                anyAsleep = false
+                user.battle.battlers.each do |b|
+                    next if !b || !user.opposes?(b)
+                    anyAsleep = true if b.asleep? || b.effectActive?(:Yawn)
+                end
+                next !anyAsleep
             },
             :warning => proc { |_move, user, _targets, _battle|
                 _INTL("The air around {1} turns dark and distorted.",user.pbThis(true))
             },
         })
-        @requiredMoves.push(:LULLABY)
     end
 end
 
@@ -473,7 +477,7 @@ class PokeBattle_AI_ELECTRODE < PokeBattle_AI_Boss
                 next battle.turnCount >= TURNS_TO_EXPLODE
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("{1} is fully charged. Its about to explode!",user.pbThis)
+                _INTL("{1} is fully charged. It's about to explode!",user.pbThis)
             },
         })
 

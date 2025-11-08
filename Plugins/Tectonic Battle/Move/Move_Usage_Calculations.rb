@@ -309,10 +309,10 @@ class PokeBattle_Move
             return true
         end
 
-        # Diamond Field
-        if target.pbOwnSide.effectActive?(:DiamondField) && !(user && user.hasActiveAbility?(:INFILTRATOR))
+        # Sanctuary
+        if target.pbOwnSide.effectActive?(:Sanctuary) && !(user && user.hasActiveAbility?(:INFILTRATOR))
             unless checkingForAI
-                battle.pbDisplay(_INTL("The sheen around {1} prevented the hit from being critical!", target.pbTeam(true)))
+                battle.pbDisplay(_INTL("The sanctuary around {1} prevented the hit from being critical!", target.pbTeam(true)))
             end
             return true
         end

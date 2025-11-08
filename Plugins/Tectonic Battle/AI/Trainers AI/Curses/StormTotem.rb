@@ -1,7 +1,7 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_STORM_TOTEM,
     proc { |curse_policy, battle, curses_array|
         battle.amuletActivates(
-            _INTL("TODO"),
+            _INTL("A Dance of Dualities and Potent Pluralities, A Futile Flailing in the Truth of Totality."),
             _INTL("Turbulent Sky is continually active on the opposing side."),
         )
         curses_array.push(curse_policy)

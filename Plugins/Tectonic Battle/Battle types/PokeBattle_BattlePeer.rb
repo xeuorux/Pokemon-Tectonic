@@ -28,7 +28,7 @@ class PokeBattle_RealBattlePeer
     end
   
     def pbBoxName(box)
-      return (box<0) ? "" : $PokemonStorage[box].name
+      return (box<0) ? "" : $PokemonStorage[box].getName(box)
     end
   
     def pbOnEnteringBattle(_battle,pkmn,wild=false)

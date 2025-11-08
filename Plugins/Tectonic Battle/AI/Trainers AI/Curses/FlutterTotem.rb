@@ -1,7 +1,7 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_FLUTTER_TOTEM,
     proc { |curse_policy, battle, curses_array|
         battle.amuletActivates(
-            _INTL("TODO"),
+            _INTL("By Skittering Stitch and Scattered Suture, Succumb to Ceaseless Sustenance."),
             _INTL("Cruel Cocoon is continually active on the opposing side."),
         )
         curses_array.push(curse_policy)

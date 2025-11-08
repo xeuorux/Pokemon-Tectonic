@@ -996,6 +996,20 @@ Pocket = 13
 Price = 4000
 Description = Consumed to heal for one third of max HP when the Pokémon uses a pulse move. This can overheal.
 #-------------------------------
+[WHITENINGPASTE]
+Name = Whitening Paste
+NamePlural = Whitening Pastes
+Pocket = 13
+Price = 4000
+Description = Blinds all foes when the Pokémon uses a biting move the first time each battle.
+#-------------------------------
+[FLASHBULB]
+Name = Flash Bulb
+NamePlural = Flash Bulbs
+Pocket = 13
+Price = 4000
+Description = Blinds all foes when the Pokémon uses a light move the first time each battle.
+#-------------------------------
 [UTILITYUMBRELLA]
 Name = Utility Umbrella
 NamePlural = Utility Umbrellas
@@ -1048,7 +1062,7 @@ NamePlural = Covert Cloaks
 Pocket = 12
 Price = 3000
 Flags = Clothing
-Description = A held item. The holder is protected from the random added effects and takes 10% less move damage.
+Description = A held item. Moves used against the holder deal 10% less move damage and can't trigger random added effects.
 #-------------------------------
 [COURAGEBADGE]
 Name = Courage Badge

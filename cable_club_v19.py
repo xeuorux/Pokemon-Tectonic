@@ -466,15 +466,18 @@ def make_party_validator(pbs_dir):
                             errors.append("invalid ppup")
                     for _ in range(record.int()):
                         move = record.str()
-                        if move:
-                            if can_use_sketch and move not in move_syms:
-                                logging.debug(
-                                    "invalid first move id (Sketched): %s", move
-                                )
-                                errors.append("invalid first move (Sketched)")
-                            elif move not in species_.moves and not can_use_sketch:
-                                logging.debug("invalid first move id: %s", move)
-                                errors.append("invalid first move")
+                        # Skip checking initial moves, since as long as the current moveset is legal
+                        # we don't care that much if it's hacked in. However, we still need to
+                        # read in the moves (above line) to keep things in sync
+                        # if move:
+                        #     if can_use_sketch and move not in move_syms:
+                        #         logging.debug(
+                        #             "invalid first move id (Sketched): %s", move
+                        #         )
+                        #         errors.append("invalid first move (Sketched)")
+                        #     elif move not in species_.moves and not can_use_sketch:
+                        #         logging.debug("invalid first move id: %s", move)
+                        #         errors.append("invalid first move")
                     gender = record.int()
                     if gender not in species_.genders:
                         logging.debug("invalid gender: %d", gender)

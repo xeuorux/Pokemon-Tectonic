@@ -80,3 +80,7 @@ def pbChangeOnlineLoseText
     end
   end
 end
+
+def stringIsUnsafe(str)
+    return CableClub::UNSAFE_CHARACTERS.any? { |char| str.include?(char) }
+end

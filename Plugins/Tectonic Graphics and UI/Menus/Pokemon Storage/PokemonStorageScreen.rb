@@ -312,10 +312,12 @@ class PokemonStorageScreen
         box = @storage.boxes[boxNumber]
         if box.isLocked?
             box.unlock
-            pbDisplay(_INTL("Box {1} is no longer locked to sorting.", boxNumber + 1))
+            @scene.pbHardRefresh
+            pbDisplay(_INTL("{1} is no longer locked to sorting.", box.getName(boxNumber)))
         else
             box.lock
-            pbDisplay(_INTL("Box {1} is now locked to sorting.", boxNumber + 1))
+            @scene.pbHardRefresh
+            pbDisplay(_INTL("{1} is now locked to sorting.", box.getName(boxNumber)))
         end
     end
 
@@ -603,6 +605,7 @@ class PokemonStorageScreen
         sortCommand = -1
         sortAllCommand = -1
         visitEstateCommand = -1
+        swapBoxCommand = -1
         cancelCommand = -1
         command = 0
 
@@ -621,6 +624,7 @@ class PokemonStorageScreen
                 commands[sortAllCommand = commands.length]      = _INTL("Sort All")
                 commands[lockCommand = commands.length]         =
                     @storage.boxes[@storage.currentBox].isLocked? ? _INTL("Sort Unlock") : _INTL("Sort Lock")
+                commands[swapBoxCommand = commands.length]      = _INTL("Swap Box")
                 if defined?(PokEstate) && !getGlobalSwitch(ESTATE_DISABLED_SWITCH)
                     commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate")
                 end
@@ -690,6 +694,28 @@ class PokemonStorageScreen
                 unless pbSortBox(sortMethod, @storage.currentBox)
 					@scene.pbDisplay(_INTL("Each Pokémon is already in the right place!"))
 				end
+            elsif command == swapBoxCommand && swapBoxCommand > -1
+                if @heldpkmn
+                    @scene.pbDisplay(_INTL("Can't swap boxes while you have a Pokémon in your hand!"))
+                    next
+                end
+                destbox = @scene.pbChooseBox(_INTL("Swap with which Box?"))
+                next unless destbox > -1
+                if destbox == @storage.currentBox
+                    @scene.pbDisplay(_INTL("That's the current box!"))
+                else
+                    boxA = @storage.boxes[@storage.currentBox]
+                    boxB = @storage.boxes[destbox]
+                    nameA = boxA.getName(@storage.currentBox)
+                    nameB = boxB.getName(destbox)
+                    @storage.boxes[destbox] = boxA
+                    @storage.boxes[@storage.currentBox] = boxB
+    
+                    @storage.currentBox = destbox
+                    pbPlayDecisionSE
+                    @scene.pbHardRefresh
+                    @scene.pbDisplay(_INTL("{1} has swapped position with {2}!",nameA,nameB))
+                end
             elsif command == sortAllCommand && sortAllCommand > -1
                 if @heldpkmn
                     @scene.pbDisplay(_INTL("Can't sort while you have a Pokémon in your hand!"))

@@ -862,4 +862,14 @@ class PokeBattle_Battler
         }
         @battle.pbDisplay(_INTL("{1}'s positive stat changes were eliminated!", pbThis)) if showMessage && anyReset
     end
+
+    def invertStatSteps(showMessage = false)
+        anyReset = false
+        GameData::Stat.each_battle { |s|
+            next unless @steps[s.id] != 0
+            @steps[s.id] *= -1
+            anyReset = true
+        }
+        @battle.pbDisplay(_INTL("{1}'s stats were reversed!", pbThis)) if showMessage && anyReset
+    end
 end

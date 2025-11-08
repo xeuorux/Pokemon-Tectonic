@@ -144,7 +144,7 @@ Description = The target is hit with rhythmically launched punches that have a 3
 Name = Double-Edge
 Type = NORMAL
 Category = Physical
-Power = 120
+Power = 130
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
@@ -471,17 +471,6 @@ Target = AllNearFoes
 FunctionCode = LowerTargetDef2
 Flags = CanProtect,CanMagicCoat
 Description = The user leers at nearby foes with sharp eyes. Their Defense stat is lowered by two steps.
-#-------------------------------
-[LUCKYCHANT]
-Name = Lucky Chant
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 25
-Target = UserSide
-FunctionCode = StartPreventCriticalHitsAgainstUserSide10
-Flags = CanSnatch,Sound
-Description = The user chants an incantation, preventing the foe from landing critical hits for 10 turns.
 #-------------------------------
 [MEFIRST]
 Name = Me First
@@ -1054,7 +1043,7 @@ Accuracy = 0
 TotalPP = 10
 Target = NearOther
 FunctionCode = TransformUserIntoTarget
-Flags = Uninvocable
+Flags = Uninvocable,ForceSignature
 Description = The user transforms into a copy of the target right down to having the same move set.
 #-------------------------------
 [TRIATTACK]
@@ -1509,7 +1498,7 @@ Type = FIGHTING
 Category = Physical
 Power = 120
 Accuracy = 100
-TotalPP = 15
+TotalPP = 12
 Target = NearOther
 FunctionCode = RecoilThirdOfDamageDealt
 Flags = CanProtect
@@ -1930,7 +1919,7 @@ TotalPP = 10
 Target = NearFoe
 FunctionCode = Poison
 Flags = CanProtect,CanMagicCoat,Wind
-Description = A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.
+Description = A cloud of poison gas is sprayed in the face of the foe, poisoning it.
 #-------------------------------
 [POISONJAB]
 Name = Poison Jab
@@ -2430,7 +2419,7 @@ TotalPP = 15
 Target = FoeSide
 FunctionCode = StealthRock
 Flags = CanMagicCoat
-Description = The user lays a hazard of levitating stones around the foe. The hazard hurts foes that switch into battle.
+Description = The user lays a levitating hazard around the foe. It deals Rock-typed 1/10th HP damage.
 #-------------------------------
 [STONEAXE]
 Name = Stone Axe
@@ -2711,7 +2700,7 @@ TotalPP = 30
 Target = AllNearFoes
 FunctionCode = LowerTargetSpd4
 Flags = CanProtect,CanMagicCoat
-Description = The foe is bound with silk blown from the user's mouth. This silk reduces the target's Speed by four steps.
+Description = All nearby foes are bound with silk blown from the user's mouth. This silk lowers the targets' Speed by four steps.
 #-------------------------------
 [STRUGGLEBUG]
 Name = Struggle Bug
@@ -2724,7 +2713,7 @@ Target = AllNearFoes
 FunctionCode = LowerTargetSpAtk2
 Flags = CanProtect
 EffectChance = 100
-Description = While resisting, the user attacks the opposing Pokémon. The targets' Sp. Atk is lowered by two steps.
+Description = While resisting, the user attacks all nearby foes. The targets' Sp. Atk is lowered by two steps.
 #-------------------------------
 [TAILGLOW]
 Name = Tail Glow
@@ -3481,7 +3470,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FirePledge
 Flags = CanProtect
-Description = A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire.
+Description = A column of fire hits the target. When used with its Grass equivalent, it creates a Sea of Fire.
 #-------------------------------
 [FIREPUNCH]
 Name = Fire Punch
@@ -3606,7 +3595,7 @@ TotalPP = 12
 Target = AllNearFoes
 FunctionCode = DestroysBerriesGems
 Flags = CanProtect
-Description = The user attacks the foe with fire. The target's held Berry or Gem becomes burnt up and unusable.
+Description = The user attacks all foes nearby with fire. The targets' held Berry or Gem becomes burnt up and unusable.
 #-------------------------------
 [INFERNO]
 Name = Inferno
@@ -4042,7 +4031,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = WaterPledge
 Flags = CanProtect
-Description = A column of water strikes the target. When combined with its fire equivalent, it makes a rainbow.
+Description = A column of water hits the target. When used with its Fire equivalent, it creates a Rainbow.
 #-------------------------------
 [WATERPULSE]
 Name = Water Pulse
@@ -4153,7 +4142,7 @@ TotalPP = 30
 Target = AllNearFoes
 FunctionCode = LowerTargetSpd4
 Flags = CanProtect,CanMagicCoat
-Description = The user releases cotton-like spores that cling to the foe, reducing their Speed by four steps.
+Description = The user releases cotton-like spores that cling to all foes nearby, reducing their Speed by four steps.
 #-------------------------------
 [ENERGYBALL]
 Name = Energy Ball
@@ -4215,7 +4204,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = GrassPledge
 Flags = CanProtect
-Description = A column of grass hits the foes. When used with its water equivalent, it creates a vast swamp.
+Description = A column of grass hits the target. When used with its Water equivalent, it creates a vast Swamp.
 #-------------------------------
 [GROWTH]
 Name = Growth
@@ -4742,7 +4731,7 @@ Type = ELECTRIC
 Category = Physical
 Power = 80
 Accuracy = 100
-TotalPP = 12
+TotalPP = 15
 Target = NearOther
 FunctionCode = RecoilQuarterOfDamageDealt
 Flags = CanProtect
@@ -5170,7 +5159,7 @@ TotalPP = 15
 Target = UserSide
 FunctionCode = StartWeakenDamageAgainstUserSideIfInHail5
 Flags = CanSnatch,Light
-Description = This move reduces damage from attacks for five turns. This can be used only in hail.
+Description = The user puts up a rainbow-colored veil to reduce move damage for five turns. This can only be used in hail.
 #-------------------------------
 [BLIZZARD]
 Name = Blizzard
@@ -6239,7 +6228,7 @@ Name = Nature's Madness
 Type = FAIRY
 Category = Special
 Power = 1
-Accuracy = 90
+Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHP

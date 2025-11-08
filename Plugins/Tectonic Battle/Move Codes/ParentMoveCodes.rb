@@ -829,11 +829,11 @@ class PokeBattle_WeatherMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        @battle.pbStartWeather(user, @weatherType, applyEffectDurationModifiers(@durationSet, user), false) unless @battle.primevalWeatherPresent?
+        @battle.pbStartWeather(user, @weatherType, @durationSet) unless @battle.primevalWeatherPresent?
     end
 
     def getEffectScore(user, _target)
-        return getWeatherSettingEffectScore(@weatherType, user, @battle, applyEffectDurationModifiers(@durationSet, user))
+        return getWeatherSettingEffectScore(@weatherType, user, @battle, @durationSet)
     end
 end
 
@@ -1031,7 +1031,7 @@ class PokeBattle_RoomMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        @battle.pbStartRoom(@roomEffect, user, duration: applyEffectDurationModifiers(@duration, user))
+        @battle.pbStartRoom(@roomEffect, user)
     end
 
     def getEffectScore(user, _target)
@@ -1085,11 +1085,11 @@ class PokeBattle_InviteMove < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         target.pbInflictStatus(@statusToApply, 0, nil, user) if target.pbCanInflictStatus?(@statusToApply, user, true, self)
-        @battle.pbStartWeather(user, @weatherType, applyEffectDurationModifiers(@durationSet, user), false) unless @battle.primevalWeatherPresent?
+        @battle.pbStartWeather(user, @weatherType, @durationSet, false) unless @battle.primevalWeatherPresent?
     end
 
     def getEffectScore(user, target)
-        weatherScore = getWeatherSettingEffectScore(@weatherType, user, @battle, applyEffectDurationModifiers(@durationSet, user))
+        weatherScore = getWeatherSettingEffectScore(@weatherType, user, @battle, @durationSet)
         statusScore = getStatusSettingEffectScore(@statusToApply, user, target)
         return weatherScore + statusScore
     end

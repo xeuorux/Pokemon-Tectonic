@@ -257,6 +257,10 @@ Name = Caffeine Rush
 Description = During hail, the Pokémon's Speed is boosted by 50% and twice as likely to crit.
 Flags = HailSynergy
 #-------------------------------
+[CALMINGSCUTECHARM]
+Name = Calming Scute Charm
+Description = After the Pokémon is hit thrice, a Sanctuary is set on its side for 5 turns. The attacker becomes drowsy.
+#-------------------------------
 [CANDYVEIL]
 Name = Candy Veil
 Description = Prevents itself and allies from being poisoned, leeched, or waterlogged.
@@ -419,13 +423,13 @@ Flags = MoonglowSynergy
 Name = Deep Sting
 Description = Boosts Attack by 50%, but physical moves deal 25% damage back as recoil.
 #-------------------------------
-[DEEPTEETH]
-Name = Deep Teeth
-Description = Foes aren't released from its trapping moves even when the Pokémon leaves the field.
-#-------------------------------
 [DELAYEDREACTION]
 Name = Delayed Reaction
 Description = 33% of all move damage taken by the Pokémon is instead taken at the end of the next turn.
+#-------------------------------
+[DENTICLEDEBRIS]
+Name = Denticle Debris
+Description = When this Pokémon traps and binds a target, one hazard layer of Spikes is placed around the target.
 #-------------------------------
 [DESERTARMOR]
 Name = Desert Armor
@@ -875,6 +879,10 @@ Description = Heals 1/16th HP every turn. Protected from being poisoned.
 Name = Gyre Spinner
 Description = Upon entry, traps each opponent in a whirlpool for two turns.
 #-------------------------------
+[HANDOFF]
+Name = Hand Off
+Description = Trapping effects against an enemy are passed over to a Pokémon that swaps in for this.
+#-------------------------------
 [HARBINGER]
 Name = Harbinger
 Description = Summons eclipse for four turns upon entry.
@@ -1260,6 +1268,10 @@ Description = Repeats another Pokémon's punch and kick moves immediately at 50%
 Name = Mass Attack
 Description = All Pokémon's damage is decreased proportional to their health remaining.
 #-------------------------------
+[MENDINGFEATHERCHARM]
+Name = Mending Feather Charm
+Description = When the Pokémon is hit thrice, all party members heal for 1/8th HP. The attacker is forced to switch out.
+#-------------------------------
 [MENTALBLOCK]
 Name = Mental Block
 Description = The Pokémon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
@@ -1318,11 +1330,6 @@ Flags = MoonglowSynergy
 [MOONGAZE]
 Name = Moon Gaze
 Description = Summons moonglow for four turns upon entry.
-Flags = MoonglowSynergy
-#-------------------------------
-[MOONLIGHTER]
-Name = Moonlighter
-Description = When hit in moonglow, steals the attacker's item, or knocks it away.
 Flags = MoonglowSynergy
 #-------------------------------
 [MOONPRISMPOWER]
@@ -1607,6 +1614,10 @@ Description = Releases a hazard layer of Spikes when hit by an attack.
 Name = Radiate
 Description = Boosts power of light-based moves by 50%.
 #-------------------------------
+[RAGINGSCALECHARM]
+Name = Raging Scale Charm
+Description = When the Pokémon is hit thrice, a Live Wire is set on the foe's side. The attacker hits itself in a rage.
+#-------------------------------
 [RAINPRISM]
 Name = Rain Prism
 Description = Powers up Fairy-type moves by 50% in rainstorm.
@@ -1674,6 +1685,10 @@ Description = The Pokémon can use Electric-type moves when recharging from an e
 [RENDINGCLAWS]
 Name = Rending Claws
 Description = Critical hits lower all of the victim's stats.
+#-------------------------------
+[RENDINGFANGCHARM]
+Name = Rending Fang Charm
+Description = When the Pokémon is hit thrice, two layers of Spikes are set on the foe's side. The attacker will flinch next turn.
 #-------------------------------
 [REPETITION]
 Name = Repetition
@@ -2248,9 +2263,9 @@ Name = Unidentified
 Description = The Pokémon is Mutant-type.
 Flags = Immutable
 #-------------------------------
-[UPSIDEDOWN]
-Name = Upside Down
-Description = Uses Topsy Turvy on itself at the end of every turn.
+[OSCILLATION]
+Name = Oscillation
+Description = The Pokémon's stat steps are inverted at the end of every turn.
 #-------------------------------
 [VANDAL]
 Name = Vandal

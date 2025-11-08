@@ -20,6 +20,7 @@ class PokemonBoxSprite < SpriteWrapper
             @pokemonsprites[i].faded = true if pokemon && @fadeProc && !@fadeProc.call(pokemon)
         end
         @contents = BitmapWrapper.new(324, 296)
+        @lockbitmap = AnimatedBitmap.new("Graphics/Pictures/battle/icon_trapped")
         self.bitmap = @contents
         self.x = 184
         self.y = 18
@@ -34,6 +35,7 @@ class PokemonBoxSprite < SpriteWrapper
             end
             @boxbitmap.dispose
             @contents.dispose
+            @lockbitmap.dispose
             super
         end
     end
@@ -116,7 +118,7 @@ class PokemonBoxSprite < SpriteWrapper
 
     def refresh
         if @refreshBox
-            boxname = @storage[@boxnumber].name
+            boxname = @storage[@boxnumber].getName(@boxnumber)
             getBoxBitmap
             @contents.blt(0, 0, @boxbitmap.bitmap, Rect.new(0, 0, 324, 296))
             pbSetSystemFont(@contents)
@@ -124,6 +126,9 @@ class PokemonBoxSprite < SpriteWrapper
             xval = 162 - (widthval / 2)
             pbDrawShadowText(@contents, xval, 8, widthval, 32,
                boxname, Color.new(248, 248, 248), Color.new(40, 48, 48))
+            if @storage[@boxnumber].isLocked?
+                @contents.blt(242, 14, @lockbitmap.bitmap, Rect.new(0, 0, @lockbitmap.width, @lockbitmap.height))
+            end
             @refreshBox = false
         end
         yval = self.y + 30

@@ -179,18 +179,6 @@ MultipleForms.register(:RAYQUAZA,{
   }
 })
 
-MultipleForms.register(:BURMY,{
-  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0 if pkmn.fainted? || endBattle
-  }
-})
-
-MultipleForms.register(:WORMADAM,{
-  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0 if pkmn.fainted? || endBattle
-  }
-})
-
 MultipleForms.register(:CHERRIM,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
     next 0

@@ -514,3 +514,26 @@ class PokeBattle_Move_TwoTurnMoveHealTargetHalfOfTotalHP < PokeBattle_Move_TwoTu
         return score
     end
 end
+
+
+class PokeBattle_Move_TwoTurnMoveHyperScalesWithLostHP < PokeBattle_TwoTurnMove
+    def pbBaseDamage(_baseDmg, user, _target)
+        ratio = user.hp.to_f / user.totalhp.to_f
+        return flailBasePowerFormula(ratio) * 4
+    end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Does more damage the lower the user's HP is. Range 100-800")
+        detailsList << _INTL("<u>100% HP:</u> 100 BP")
+        detailsList << _INTL("<u>50% HP:</u> 200 BP")
+        detailsList << _INTL("<u>30% HP:</u> 280 BP")
+        detailsList << _INTL("<u>20% HP:</u> 400 BP")
+        detailsList << _INTL("<u>15% HP:</u> 480 BP")
+        detailsList << _INTL("<u>10% HP:</u> 660 BP")
+        detailsList << _INTL("<u>7.5% HP:</u> 800 BP")
+    end
+
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} gathered energy!", user.pbThis))
+    end
+end

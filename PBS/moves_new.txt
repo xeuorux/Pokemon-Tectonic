@@ -528,13 +528,25 @@ EffectChance = 20
 Description = The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.
 Animation = JUDGMENT
 #-------------------------------
+[SANCTUARY]
+Name = Sanctuary
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = UserSide
+FunctionCode = StartPreventCriticalHitsAndReduceDamageAgainstUserSide5
+Flags = CanSnatch,Light
+Description = A blessed wall of light protects the user's side from critical hits for five turns, and slightly reduces move damage taken.
+Animation = LUCKYCHANT
+#-------------------------------
 [SEASONSEND]
 Name = Season's End
 Type = NORMAL
 Category = Physical
-Power = 95
+Power = 105
 Accuracy = 100
-TotalPP = 20
+TotalPP = 15
 Target = NearOther
 FunctionCode = ChangeUserDeerlingSawsbuckForm
 Flags = CanProtect
@@ -708,6 +720,19 @@ FunctionCode = AlwaysHits
 Flags = Pulse
 Description = Aura deep within the user's body is spurred to pulse outward. Can't miss and skips protections.
 #-------------------------------
+[AURASTORM]
+Name = Aura Storm
+Type = FIGHTING
+Category = Special
+Power = 1
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = TwoTurnMoveHyperScalesWithLostHP
+Flags = CanProtect
+Description = This Pokémon charges up for a turn, then releases a powerful beam of aura. This does more damage the less HP the user has.
+Animation = SOLARBEAM
+#-------------------------------
 [BAR]
 Name = Bar
 Type = FIGHTING
@@ -853,7 +878,7 @@ Type = FIGHTING
 Category = Physical
 Power = 80
 Accuracy = 100
-TotalPP = 20
+TotalPP = 15
 Target = NearFoe
 FunctionCode = RecoilQuarterOfDamageDealt
 Flags = CanProtect,Kick
@@ -1152,7 +1177,7 @@ TotalPP = 12
 Target = AllNearFoes
 FunctionCode = CantMissLowerTargetDefSpDefEvasion3
 Flags = CanMagicCoat,Sound
-Description = A high pitched screech lowers the target's Defense, Sp. Def, and Evasion by three steps. Can't miss and skips protections.
+Description = A high pitched screech lowers all nearby foes' Defense, Sp. Def, and Evasion by three steps. Can't miss and skips protections.
 Animation = SUPERSONIC
 #-------------------------------
 [FURYPECKS]
@@ -1314,7 +1339,7 @@ Type = FLYING
 Category = Physical
 Power = 55
 Accuracy = 100
-TotalPP = 30
+TotalPP = 25
 Target = NearOther
 FunctionCode = RecoilFifthOfDamageDealt
 Flags = CanProtect
@@ -1621,6 +1646,19 @@ Animation = POISONFANG
 #-------------------------------
 #		GROUND MOVES
 #-------------------------------
+[CRUSHINGCHASM]
+Name = Crushing Chasm
+Type = GROUND
+Category = Physical
+Power = 75
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = BindTarget3
+Flags = CanProtect
+Description = The user opens a rift beneath the target, trapping and damaging it for three turns.
+Animation = SANDTOMB
+#-------------------------------
 [DEVOURINGDUST]
 Name = Devouring Dust
 Type = GROUND
@@ -1764,6 +1802,19 @@ Flags = CanProtect,CanMagicCoat
 Description = The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user is exhausted on the next turn.
 Animation = HEALPULSE
 #-------------------------------
+[PITFALL]
+Name = Pitfall
+Type = GROUND
+Category = Physical
+Power = 45
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = BindTarget3
+Flags = CanProtect
+Description = The user opens a pit beneath the target, trapping and damaging it for three turns.
+Animation = SANDTOMB
+#-------------------------------
 [PULVERIZERCHORD]
 Name = Pulverizer Chord
 Type = GROUND
@@ -1829,6 +1880,19 @@ Flags = CanProtect
 EffectChance = 10
 Description = The user tosses hot desert sand on the target. It has a 10% chance to burn.
 Animation = SCORCHINGSANDS
+#-------------------------------
+[SEISMICWAVE]
+Name = Seismic Wave
+Type = GROUND
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = RemoveScreens
+Flags = CanProtect,Sound
+Description = The user attacks with a tectonic vibration. It also breaks any screens protecting the target's side.
+Animation = EARTHPOWER
 #-------------------------------
 [SIROCCO]
 Name = Sirocco
@@ -1941,7 +2005,7 @@ Type = ROCK
 Category = Physical
 Power = 120
 Accuracy = 100
-TotalPP = 10
+TotalPP = 12
 Target = NearOther
 FunctionCode = RecoilThirdOfDamageDealt
 Flags = CanProtect
@@ -1998,18 +2062,6 @@ Flags = CanProtect,CanRandomCrit
 Description = The user shoots a spike of diamond to strike the target. Can random critical hit.
 Animation = DIAMONDFORCE
 #-------------------------------
-[DIAMONDFIELD]
-Name = Diamond Field
-Type = ROCK
-Category = Status
-Accuracy = 0
-TotalPP = 20
-Target = UserSide
-FunctionCode = StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10
-Flags = CanSnatch,Light
-Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
-Animation = LIGHTSCREEN
-#-------------------------------
 [DIAMONDFORCE]
 Name = Diamond Force
 Type = ROCK
@@ -2053,7 +2105,7 @@ Type = ROCK
 Category = Physical
 Power = 80
 Accuracy = 100
-TotalPP = 12
+TotalPP = 15
 Target = NearOther
 FunctionCode = RecoilQuarterOfDamageDealt
 Flags = CanProtect
@@ -2284,6 +2336,20 @@ EffectChance = 50
 Description = The user grinds stone into shrapnel and sprays it at the target. This has a 50% chance to fracture it.
 Animation = SANDATTACK
 #-------------------------------
+[SHIELDINGBASH]
+Name = Shielding Bash
+Type = ROCK
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = StartPreventCriticalHitsAndReduceDamageAgainstUserSide5
+Flags = CanProtect
+EffectChance = 100
+Description = The user headbutts the target while maintaining a defensive aura. Sets Sanctuary for 5 turns.
+Animation = HEADBUTT
+#-------------------------------
 [SIEGEBREAKER]
 Name = Siege Breaker
 Type = ROCK
@@ -2445,6 +2511,19 @@ FunctionCode = MakeTargetWeakerToBug
 Flags = CanProtect
 EffectChance = 100
 Description = The user preys on the target's fear of insects, giving it a weakness to the Bug type.
+#-------------------------------
+[DECOMPOSE]
+Name = Decompose
+Type = BUG
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = RemoveScreens
+Flags = CanProtect
+Description = A swarm of insects is sent to gnaw at the target. It also breaks any screens protecting the target's side.
+Animation = INFESTATION
 #-------------------------------
 [DRONING]
 Name = Droning
@@ -3292,7 +3371,7 @@ TotalPP = 15
 Target = FoeSide
 FunctionCode = FeatherWard
 Flags = CanMagicCoat
-Description = The user lays a hazard of sharp feathers around the foe. It hurts foes that switch into battle.
+Description = The user lays a levitating hazard of sharp feathers around the foe. It deals Steel-typed 1/8th HP damage.
 #-------------------------------
 [FLECHETTES]
 Name = Flechettes
@@ -3629,17 +3708,6 @@ FunctionCode = SuperEffectiveAgainstDragon
 Flags = CanProtect,Blade
 Description = The user slashes at the target with a steel blade. Super effective versus Dragon-types.
 Animation = SACREDSWORD
-#-------------------------------
-[SMARTHORN]
-Name = Smart Horn
-Type = STEEL
-Category = Physical
-Power = 70
-Accuracy = 0
-TotalPP = 10
-Target = NearOther
-FunctionCode = AlwaysHits
-Description = The user stabs the target with a sharp horn. Can't miss and skips protections.
 #-------------------------------
 [TAKESHELTER]
 Name = Take Shelter
@@ -4515,6 +4583,17 @@ FunctionCode = HealUserHalfOfTotalHPStartHealUserEachTurn
 Flags = CanSnatch
 Description = The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around themselves, healing 10% HP per turn.
 Animation = REST
+#-------------------------------
+[SEABORNESACRAMENT]
+Name = Seaborne Sacrament
+Type = WATER
+Category = Status
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = WaterlogTargetStartHealUserEachTurn
+Flags = CanProtect,CanMagicCoat
+Description = The user communes with water from all around the world, surrounding itself with an Aqua Ring and waterlogging the target.
 #-------------------------------
 [SILTSURGE]
 Name = Silt Surge
@@ -5394,7 +5473,7 @@ TotalPP = 15
 Target = FoeSide
 FunctionCode = LiveWire
 Flags = CanMagicCoat
-Description = The user lays an electrical hazard which hurts foes that switch into battle. It deals double damage in rainstorm.
+Description = The user lays a hazard around the foe. It deals Electric-typed 1/12th HP damage, or double that in rainstorm.
 #-------------------------------
 [LUCKYCHEER]
 Name = Lucky Cheer
@@ -5557,7 +5636,7 @@ Target = NearOther
 FunctionCode = TwoTurnAttackOneTurnInRainstorm
 Flags = CanProtect
 Description = The user charges, then attacks on the second turn. Charges instantly in rainstorm.
-Animation = WILDCHARGE
+Animation = BOLTSTRIKE
 #-------------------------------
 [STUNNINGDISPLAY]
 Name = Stunning Display
@@ -5854,7 +5933,6 @@ Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
 Description = The user conjures a giant fist to crush the target, trapping and damaging it for three turns.
-Animation = CRUSHGRIP
 #-------------------------------
 [MAGEHAND]
 Name = Mage Hand
@@ -5867,7 +5945,7 @@ Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
 Description = The user grabs the target with a conjured hand, trapping and damaging it for three turns.
-Animation = CRUSHGRIP
+Animation = KINETICGRIP
 #-------------------------------
 [MEMORYREMOVAL]
 Name = Memory Removal
@@ -6260,7 +6338,7 @@ Target = AllNearFoes
 FunctionCode = Frostbite
 Flags = CanProtect,Wind
 EffectChance = 30
-Description = The user summons a wind that drains vitality from all nearby. This has a 30% chance to frostbite them.
+Description = The user summons a wind that drains vitality from all nearby foes. This has a 30% chance to frostbite them.
 Animation = ICYWIND
 #-------------------------------
 [FRIGIDJEALOUSY]
@@ -7420,7 +7498,7 @@ Target = AllNearFoes
 FunctionCode = LowerTargetAtk1
 Flags = CanProtect
 EffectChance = 100
-Description = The user slashes all around them, creating deep scars. This lowers each target's Attack.
+Description = The user slashes all around them, creating deep scars on all nearby foes. This lowers each target's Attack.
 #-------------------------------
 [SCHEME]
 Name = Scheme
@@ -7457,7 +7535,7 @@ TotalPP = 5
 Target = AllNearOthers
 FunctionCode = UserFaintsExplosiveScalesWithEnemySideSpikes
 Flags = CanProtect
-Description = Explodes, dealing an extra 30 base power to all foes for each Spikes hazard layer underneath them. The user faints.
+Description = Explodes, dealing an extra 30 base power to all nearby for each Spikes hazard layer underneath them. The user faints.
 Animation = EXPLOSION
 #-------------------------------
 [SPOTTING]

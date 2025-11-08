@@ -885,9 +885,12 @@ class PokeBattle_Battler
         #Tangling Vines proc message
         targets.each do |t|
             if t.pointsAt?(:TanglingVines, user)
-                user.battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
+                @battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
                 break #Only trigger once, even if multiple targets are affected
             end
+        end
+        if user.effectActive?(:Blindness) && move.damagingMove?
+            @battle.pbDisplay(_INTL("{1} is blinded, and partially misses!", user.pbThis))
         end
         # Messages about missed target(s) (relevant for multi-target moves only)
         unless move.pbRepeatHit?

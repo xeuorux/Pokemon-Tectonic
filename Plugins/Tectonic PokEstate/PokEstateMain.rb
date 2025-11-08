@@ -703,7 +703,7 @@ Events.onMapSceneChange += proc { |_sender, e|
 	next if !scene || !scene.spriteset
 	next unless $PokEstate.isInEstate?
 	$PokEstate.load_estate_box
-	boxName = $PokemonStorage[$PokEstate.estate_box].name
+	boxName = $PokemonStorage[$PokEstate.estate_box].getName($PokEstate.estate_box)
 	label = _INTL("PokÉstate {1}", $PokEstate.estate_box +  1)
 	label += " - #{boxName}" if !boxName.eql?("Box #{$PokEstate.estate_box +  1}")
 	scene.spriteset.addUserSprite(LocationWindow.new(label))

@@ -797,12 +797,10 @@ class PokemonPokedex_Scene
                         anyNon4s = true
                     end
 
-                    if learnLevel != 0
-                        if allMoves.include?(moveSym)
-                            anyDuplicates = true
-                        else
-                            allMoves.push(moveSym)
-                        end
+                    if allMoves.include?(moveSym)
+                        anyDuplicates = true
+                    else
+                        allMoves.push(moveSym)
                     end
 
                     moveData = GameData::Move.get(moveSym)

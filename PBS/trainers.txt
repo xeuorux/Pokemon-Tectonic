@@ -243,7 +243,7 @@ Pokemon = SURSKIT,16
     AbilityIndex = 1 # Intimidate
 Pokemon = SANDILE,16
     Moves = SCHEME,MUDSLING,BRUTALSWING,RUMBLE
-    AbilityIndex = 0 # Tough
+    AbilityIndex = 1 # Regenerator
     Item = SITRUSBERRY
 #-------------------------------
 [PSYCHIC_M,Uriel]
@@ -985,7 +985,7 @@ Pokemon = DARTRIX,25
 Policies = YEZERA,METAGAMES_STAT_ITEMS
 Flags = NoPerfect
 Pokemon = ILLUMISE,35
-    Moves = WISH,ILLWISHES,REFLECT,ENCORE
+    Moves = WISH,SUPERSTITION,REFLECT,ENCORE
     AbilityIndex = 0 # Prankster
     Item = MENTALHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -998,7 +998,7 @@ Pokemon = BARBARACLE,35
     EV = 10,20,10,0,20,10
 Pokemon = MALAMAR,35
     Moves = PSYCHICFANGS,INCISION,BARETEETH,EERIEIMPULSE
-    AbilityIndex = 0 # Contrary
+    AbilityIndex = 0 # Oscillation
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = GOURGEIST,35
@@ -1295,7 +1295,7 @@ Pokemon = ELDEGOSS,35
     Moves = POISONIVY,SYNTHESIS,SAPPINGJEALOUSY,WEATHERBURST
     AbilityIndex = 1 # On the Wind
 Pokemon = DRIFBLIM,35
-    Moves = HEATWAVE,HEX,ACROBATICS,BODYSLAM
+    Moves = FLAMETHROWER,HEX,ACROBATICS,BODYSLAM
     AbilityIndex = 1 # Drifting Mist
 Pokemon = WEEZING,35
     Moves = EXPLOSION,MIASMA,HEATWAVE,WINDTUNNEL
@@ -1409,7 +1409,7 @@ Pokemon = INDEEDEE,28
 [POKEMONRANGER_M2,Connor]
 Flags = NoPerfect
 Pokemon = DRIFBLIM,30
-    Moves = HEATWAVE,HEX,SHIVER,BOREALWIND
+    Moves = FLAMETHROWER,HEX,SHIVER,BOREALWIND
     AbilityIndex = 1 # Drifting Mist
 Pokemon = LOMBRE,30
     Moves = BUBBLEBEAM,MEGADRAIN,FAKEOUT,GROWL
@@ -2416,7 +2416,7 @@ Pokemon = ORBEETLE,70
 Pokemon = HATTERENE,70
     AbilityIndex = 0 # Killjoy
 Pokemon = MALAMAR,70
-    AbilityIndex = 0 # Contrary
+    AbilityIndex = 0 # Oscillation
 #-------------------------------
 [COOLTRAINER_M3,Dada]
 TrainerTypeLabel = DEVELOPER
@@ -2914,7 +2914,7 @@ Pokemon = MTANGROWTH,40
 Pokemon = MANTINE,40
     Name = 1 Second
     Gender = male
-    Moves = WARDPRESS,COLDFRONT,SCALD,ICYWIND
+    Moves = WARDPRESS,COLDFRONT,SCALD,ENERGYBALL
     AbilityIndex = 1 # Free Ride
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,0,0,10,20
@@ -2937,7 +2937,7 @@ Pokemon = SUDOWOODO,40
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,10,0,10,10
 Pokemon = BASTIODON,40
-    Moves = DIAMONDFIELD,BODYPRESS,STOMPINGTANTRUM,WIDEGUARD
+    Moves = SHIELDINGBASH,BODYPRESS,STOMPINGTANTRUM,WIDEGUARD
     AbilityIndex = 1 # Battle-Hardened
     Item = AIRBALLOON
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3490,7 +3490,7 @@ Pokemon = AZUMARILL,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = GALLADE,70
-    Moves = PSYCHOCUT,CLOSECOMBAT,XSCISSOR,INFINITEFORCE
+    Moves = PSYCHOSCISSION,SACREDSWORD,XSCISSOR,INFINITEFORCE
     AbilityIndex = 1 # Swordplay
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3853,8 +3853,8 @@ Pokemon = PELIPPER,30
     AbilityIndex = 0 # Cheek Pouch
     Item = CADOBERRY
 Pokemon = KROKOROK,30
-    Moves = FINALIZE,MUDSHOT,RISINGPOWER,BRUTALSWING
-    AbilityIndex = 0 # Tough
+    Moves = FIRESPIN,PITFALL,CLAMP,BRUTALSWING
+    AbilityIndex = 0 # Hand Off
 Pokemon = LOPUNNY,30
     Moves = HAREHEROICS,ICEPUNCH,DROPKICK,NIGHTSLASH
     AbilityIndex = 0 # Action Star
@@ -4362,8 +4362,8 @@ Pokemon = WIGGLYTUFF,50
 Pokemon = KROOKODILE,50
     Name = Stork Saw
     Gender = male
-    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
-    AbilityIndex = 0 # Tough
+    Moves = CRUSHINGCHASM,CRUNCH,STAREDOWN,CRIMSONSTORM
+    AbilityIndex = 0 # Hand Off
     Item = WILDCARD
 Pokemon = CHATOT,50
     Name = Dove Abyss
@@ -4911,8 +4911,8 @@ Pokemon = WIGGLYTUFF,60
 Pokemon = KROOKODILE,60
     Name = Stork Saw
     Gender = male
-    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
-    AbilityIndex = 0 # Tough
+    Moves = CRUSHINGCHASM,CRUNCH,STAREDOWN,CRIMSONSTORM
+    AbilityIndex = 0 # Hand Off
     Item = WILDCARD
 #-------------------------------
 [TRAINER_Sang,Sang,3]
@@ -5341,7 +5341,7 @@ Pokemon = ARCANINE,55
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,55
-    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,SUNDERFATE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN,Crimson,11]
@@ -5570,7 +5570,7 @@ Pokemon = ARCANINE,65
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,65
-    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,SUNDERFATE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN2,Teal,11]
@@ -5952,7 +5952,7 @@ Pokemon = MIMIKYU,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,10,20,0
 Pokemon = GARDEVOIR,70
-    Moves = PSYCHIC,SHADOWBALL,MYSTICALFIRE,MOONBLAST
+    Moves = PIERCINGDOUBT,SHADOWBALL,ICEBEAM,MOONBLAST
     AbilityIndex = 0 # Arcane Finale
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -6325,8 +6325,8 @@ Pokemon = WIGGLYTUFF,70
 Pokemon = KROOKODILE,70
     Name = Stork Saw
     Gender = male
-    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
-    AbilityIndex = 0 # Tough
+    Moves = CRUSHINGCHASM,CRUNCH,STAREDOWN,CRIMSONSTORM
+    AbilityIndex = 0 # Hand Off
     Item = WILDCARD
 Pokemon = CHATOT,70
     Name = Dove Abyss
@@ -6651,7 +6651,7 @@ Pokemon = KINGAMBIT,70
     AbilityIndex = 1 # Sturdy
 Pokemon = GALLADE,70
     Gender = female
-    Moves = PSYCHOSCISSION,DRAINPUNCH,HUMBLE,ICEPUNCH
+    Moves = PSYCHOSCISSION,DRAINPUNCH,HUMBLE,ICECALIBUR
     AbilityIndex = 1 # Swordplay
     Item = ASSAULTVEST
 Pokemon = GRAPIDASH,70
@@ -6664,7 +6664,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,70
-    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,SUNDERFATE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN,Crimson,23]
@@ -6878,7 +6878,7 @@ Pokemon = KINGAMBIT,70
     AbilityIndex = 1 # Sturdy
 Pokemon = GALLADE,70
     Gender = female
-    Moves = PSYCHOSCISSION,DRAINPUNCH,HUMBLE,ICEPUNCH
+    Moves = PSYCHOSCISSION,DRAINPUNCH,HUMBLE,ICECALIBUR
     AbilityIndex = 1 # Swordplay
     Item = ASSAULTVEST
 Pokemon = GRAPIDASH,70
@@ -6891,7 +6891,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,70
-    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,SUNDERFATE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN2,Teal,23]
@@ -7044,7 +7044,7 @@ Flags = NoPerfect
 Pokemon = GALLADE,70
     Name = Jeanne
     Gender = female
-    Moves = PSYCHOSCISSION,CLOSECOMBAT,HUMBLE,ICEPUNCH
+    Moves = PSYCHOSCISSION,CLOSECOMBAT,HUMBLE,ICECALIBUR
     AbilityIndex = 1 # Swordplay
     Item = STRIKEVEST
 Pokemon = STARAPTOR,70
@@ -7070,7 +7070,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
 Pokemon = GOLURK,70
     Name = Prometheus
-    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,SUNDERFATE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [TRAINER_Imogene_A,Imogene,1]
@@ -7113,7 +7113,7 @@ Pokemon = GIGANTEON,70
     Moves = DOUBLEEDGE,HEALBELL,YAWN,SHADOWBALL
     AbilityIndex = 0 # Ultra Adapted
 Pokemon = OCTILLERY,70
-    Moves = TARVOLLEY,BUBBLEBLASTER,ENERGYBALL,CHARGEBEAM
+    Moves = TARVOLLEY,BUBBLEBLASTER,ENERGYBALL,ICEBEAM
     AbilityIndex = 0 # Juggernaut
 Pokemon = SCEPTILE,70
     Moves = DRAINPUNCH,EARTHQUAKE,CALAMITOUSSLASH,LEAFBLADE
@@ -7400,7 +7400,7 @@ Pokemon = LEAFEON,58
     AbilityIndex = 1 # Reluctant Warrior
 Pokemon = GSTUNFISK,58
     Moves = FARADAYCAGE,SHOREUP,YAWN,TRAMPLE
-    AbilityIndex = 0 # Deep Teeth
+    AbilityIndex = 0 # Denticle Debris
     Item = GRIPCLAW
 Pokemon = MAROWAK,59
     Moves = SUBMISSION,BONEMERANG,DOUBLEEDGE,DISTURB
@@ -7878,7 +7878,7 @@ Pokemon = WEAVILE,70
     Moves = SEVER,WINTEROPS,SWORDSDANCE,ICESHARD
     AbilityIndex = 0 # Inner Focus
 Pokemon = GOLURK,70
-    Moves = SIXFEETUNDER,DYNAMICPUNCH,ZAPCANNON,VENOMORTAR
+    Moves = SIXFEETUNDER,DYNAMICPUNCH,ZAPCANNON,PULVERIZERCHORD
     AbilityIndex = 1 # No Guard
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
@@ -8758,7 +8758,7 @@ Pokemon = POLIWRATH,70
     Moves = CROSSCHOP,LIQUIDATION,NERVEBLOCK,ENCORE
     AbilityIndex = 0 # Counter Flow
 Pokemon = DRIFBLIM,70
-    Moves = HEATWAVE,COLDFRONT,SUFFOCATE,SMOLDERRAVE
+    Moves = FLAMETHROWER,COLDFRONT,SUFFOCATE,SMOLDERRAVE
     AbilityIndex = 0 # Unburden
     Item = SITRUSBERRY
 #-------------------------------
@@ -9314,7 +9314,7 @@ Pokemon = LEAVANNY,70
     Moves = INFERNOIMPACT,KNOCKOFF,LEAFBLADE,SKEWER
     AbilityIndex = 0 # Cold Reception
 Pokemon = DRIFBLIM,70
-    Moves = TAILWIND,HEATWAVE,HEX,SUBSTITUTE
+    Moves = TAILWIND,FLAMETHROWER,HEX,SUBSTITUTE
     AbilityIndex = 1 # Drifting Mist
 #-------------------------------
 [BURGLAR,Devin]

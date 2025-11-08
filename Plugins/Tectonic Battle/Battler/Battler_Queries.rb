@@ -43,12 +43,8 @@ class PokeBattle_Battler
         ret.delete(:ICE) if effectActive?(:Sublimate)
         # Dry Heat erases the Water-type.
         ret.delete(:WATER) if effectActive?(:DryHeat)
-        # Roost erases the Flying-type. If there are no types left, adds the Normal-
-        # type.
-        if effectActive?(:Roost)
-            ret.delete(:FLYING)
-            ret.push(:NORMAL) if ret.length.zero?
-        end
+        # Roost erases the Flying-type.
+        ret.delete(:FLYING) if effectActive?(:Roost)
         # Add the third type specially.
         ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
         ret.uniq!
@@ -702,7 +698,7 @@ class PokeBattle_Battler
     def getRoomDuration(baseDuration = 8, aiCheck: false)
         ret = baseDuration
         ret *= 2 if shouldItemApply?(:REINFORCINGROD,aiCheck)
-        ret = (ret.to_f * 1.5).floor if hasTribeBonus?(:SERENE)
+        ret = applyEffectDurationModifiers(ret, self)
         return ret
     end
 
@@ -711,7 +707,7 @@ class PokeBattle_Battler
         ret += 3 if shouldItemApply?(:LIGHTCLAY,aiCheck)
         ret += 6 if shouldItemApply?(:BRIGHTCLAY,aiCheck)
         ret += 2 if shouldAbilityApply?(:PLANARVEIL,aiCheck)
-        ret = (ret.to_f * 1.5).floor if hasTribeBonus?(:SERENE)
+        ret = applyEffectDurationModifiers(ret, self)
         return ret
     end
 
@@ -912,6 +908,7 @@ class PokeBattle_Battler
             eachActiveItem(true) do |item|
                 duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
             end
+            duration = applyEffectDurationModifiers(duration, self)
         end
         return duration
     end

@@ -452,7 +452,8 @@ class PokeBattle_Battle
         unless battler.immuneToHazards?(aiCheck)
             # Stealth Rock
             if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage?(false,aiCheck)
-                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, battler)
+                stealthRocksRation = 1.0 / 10.0
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, battler, ratio: stealthRocksRation)
                 if getTypedHazardHPRatio > 0
                     # Rock Climber
                     if battler.shouldAbilityApply?(:ROCKCLIMBER,aiCheck)

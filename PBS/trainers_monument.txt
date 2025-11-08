@@ -466,7 +466,7 @@ Pokemon = ARIADOS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
 Pokemon = CLAWITZER,70
-    Moves = AURASPHERE,FLASHCANNON,BUBBLEBLASTER,GLIMMERPULSE
+    Moves = AURASPHERE,ENERGYBALL,BUBBLEBLASTER,GLIMMERPULSE
     AbilityIndex = 0 # Mega Launcher
     Item = ROCKGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -669,7 +669,7 @@ Pokemon = ARCLAMOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
 Pokemon = ABSOLUS,70
-    Moves = FLEURCANNON,KNOCKOFF,CLOSECOMBAT,ADAMANTINEPRESS
+    Moves = FLEURCANNON,KNOCKOFF,ZENHEADBUTT,GLACIALRAM
     AbilityIndex = 1 # Vengeance
     Item = FAIRYGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -784,7 +784,7 @@ Pokemon = DUSKNOIR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
 Pokemon = ABSOLUS,70
-    Moves = LOOMINGWINTER,FUTURESIGHT,SEVER,PLAYROUGH
+    Moves = LOOMINGWINTER,FUTURESIGHT,PLANAHEAD,PLAYROUGH
     AbilityIndex = 0 # Bad Omen
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1116,7 +1116,7 @@ Pokemon = DITTO,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,6,6,6,6,12
 Pokemon = ALAKAZAM,70
-    Moves = PSYCHIC,FLASHCANNON,MOONBLAST,GLIMMERPULSE
+    Moves = PSYCHIC,FLASHCANNON,MOONBLAST,ENERGYBALL
     AbilityIndex = 1 # Steelworker
     Item = PSYCHICGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1293,7 +1293,7 @@ Pokemon = BARRASKEWDA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = GARDEVOIR,70
-    Moves = PSYCHIC,DRAININGKISS,CALMMIND,COLDFRONT
+    Moves = PSYCHIC,DRAININGKISS,CALMMIND,THUNDERBOLT
     AbilityIndex = 0 # Arcane Finale
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1545,7 +1545,7 @@ Pokemon = NOIVERN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = ALAKAZAM,70
-    Moves = MOONBLAST,PSYCHIC,TERRAFORM,ECLIPSE
+    Moves = MOONBLAST,PSYCHIC,FOULPLAY,ECLIPSE
     AbilityIndex = 0 # Warping Effect
     Item = FAIRYGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1704,7 +1704,7 @@ Pokemon = TOXAPEX,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,5,0,20,5
 Pokemon = KROOKODILE,70
-    Moves = STAREDOWN,EARTHQUAKE,KNOCKOFF,SLUDGEWAVE
+    Moves = STAREDOWN,EARTHQUAKE,KNOCKOFF,JAVELIN
     AbilityIndex = 1 # Regenerator
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1979,7 +1979,7 @@ Pokemon = SWAMPERT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 12,20,0,18,20,0
 Pokemon = CLAWITZER,70
-    Moves = SLUDGEWAVE,ICEBEAM,BUBBLEBLASTER,HOLDFIRE
+    Moves = AIRSLASH,DETACHMENT,BUBBLEBLASTER,HOLDFIRE
     AbilityIndex = 1 # Cloudburst
     Item = WATERGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2579,7 +2579,7 @@ Pokemon = RELICANTH,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 13,20,0,17,20,0
 Pokemon = MFURRET,70
-    Moves = STOMPINGTANTRUM,PSYCHOSCISSION,COIL,RIPTIDE
+    Moves = STOMPINGTANTRUM,PSYCHOSCISSION,COIL,MORNINGSTAR
     AbilityIndex = 0 # Filter
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

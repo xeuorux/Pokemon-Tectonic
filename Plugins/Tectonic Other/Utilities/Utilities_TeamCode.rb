@@ -235,7 +235,7 @@ def decode_chunk(buffer, offset, party)
   # Set moves
   move_indices = [move1_index, move2_index, move3_index, move4_index]
   moves = species.learnable_moves.values_at(*move_indices)
-  moves.each_with_index { |move, i| mon.moves[i] = GameData::Move.get(move) if move }
+  moves.each { |move| mon.learn_move(move) if move }
 
   # Set items
   mon.items[0] = item1_index >= 0 ? GameData::Item.get(get_held_item_from_index(item1_index)) : nil
@@ -312,7 +312,7 @@ def read_team_code()
 
   # Add new pokemon to party
   pokemon.each do |mon|
-    $Trainer.party.push(mon)
+    pbAddToPartySilent(mon)
   end
   pbMessage(_INTL("Team code loaded into party."))
 end

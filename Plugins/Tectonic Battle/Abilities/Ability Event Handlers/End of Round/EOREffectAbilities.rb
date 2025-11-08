@@ -108,19 +108,21 @@ BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
 BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEVOLTAGE,:LIVEFAST,:BURDENED)
 
 BattleHandlers::EOREffectAbility.add(:TENDERIZE,
-  proc { |ability, battler, _battle|
+  proc { |ability, battler, battle|
       battler.eachOther do |b|
           next unless b.numbed?
           b.pbLowerMultipleStatSteps(DEFENDING_STATS_2, battler, ability: ability)
+          battle.pbHideAbilitySplash(battler)
       end
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:SINKINGFEELING,
-  proc { |ability, battler, _battle|
+  proc { |ability, battler, battle|
       battler.eachOther do |b|
           next unless b.waterlogged?
           b.pbLowerMultipleStatSteps(ATTACKING_STATS_2, battler, ability: ability)
+          battle.pbHideAbilitySplash(battler)
       end
   }
 )
@@ -211,5 +213,15 @@ BattleHandlers::EOREffectAbility.add(:DISTORTEDGRAVITY,
       end
     end
     battler.hideMyAbilitySplash
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:OSCILLATION,
+  proc { |ability, battler, battle|
+  next unless battler.hasAlteredStatSteps?
+  battler.showMyAbilitySplash(ability)
+    battler.invertStatSteps(false)
+    battle.pbDisplay(_INTL("{1} turns upside down! Its stat steps are inverted!", battler.pbThis))
+  battler.hideMyAbilitySplash
   }
 )

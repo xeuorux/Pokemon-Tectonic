@@ -83,6 +83,17 @@ class PokeBattle_Move_RaiseUserAtkDefAcc2 < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Coil
+class PokeBattle_Move_EmpoweredCoil < PokeBattle_Move_RaiseUserAtkDefAcc2
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        summonAvatar(user, :EKANS, _INTL("{1} joins with an ally!", user.pbThis))
+        super
+        transformType(user, :POISON)
+    end
+end
+
 #===============================================================================
 # Increases the user's Attack and Sp. Def by 2 step each. (Flow State)
 #===============================================================================

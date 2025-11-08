@@ -191,6 +191,16 @@ user.pbThis(true)))
 
             trySwitchOutUser(user, targets, numHits, switchedBattlers) if fogSending
         end
+        #Blindness
+        if user.effectActive?(:Blindness) && move.damagingMove?
+            user.disableEffect(:Blindness)
+        end
+        # Mending Feathers
+        unless switchedBattlers.include?(user.index)
+            if user.effectActive?(:FeatherForceSwitch)
+                trySwitchOutUser(user, targets, numHits, switchedBattlers)
+            end
+        end
         @battle.eachBattler { |b| b.pbItemEndOfMoveCheck } if numHits > 0
     end
 

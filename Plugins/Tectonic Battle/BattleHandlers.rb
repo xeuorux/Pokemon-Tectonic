@@ -108,7 +108,8 @@ module BattleHandlers
     TargetAbilityKnockedBelowHalf       = AbilityHandlerHash.new
     EndOfMoveItem                       = ItemHandlerHash.new   # Leppa Berry
     EndOfMoveStatRestoreItem            = ItemHandlerHash.new   # White Herb
-    UserAbilityEndOfExhaustingMove      = AbilityHandlerHash.new #Remanent Voltage
+    UserAbilityEndOfExhaustingMove      = AbilityHandlerHash.new # Remanent Voltage
+    UserAbilityEndOfTrappingMove        = AbilityHandlerHash.new # Denticle Debris
     # Experience and EV gain
     ExpGainModifierItem                 = ItemHandlerHash.new # Lucky Egg
     EVGainModifierItem                  = ItemHandlerHash.new
@@ -553,6 +554,10 @@ module BattleHandlers
 
     def self.triggerUserAbilityEndOfExhaustingMove(ability, user, targets, move, battle)
         UserAbilityEndOfExhaustingMove.trigger(ability, user, targets, move, battle)
+    end
+
+    def self.triggerUserAbilityEndOfTrappingMove(ability, user, targets, move, battle)
+        UserAbilityEndOfTrappingMove.trigger(ability, user, targets, move, battle)
     end
 
     #=============================================================================

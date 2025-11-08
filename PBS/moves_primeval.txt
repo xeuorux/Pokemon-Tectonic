@@ -235,6 +235,17 @@ EffectChance = 100
 Description = It swamps the area around the user with a giant sludge wave, poisoning everyone struck.
 Animation = SLUDGEWAVE
 #-------------------------------
+[PRIMEVALCOIL]
+Name = Primeval Coil
+Type = POISON
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredCoil
+Flags = Empowered
+Description = The user raises its Attack, Defense, and Accuracy by two steps. Additionally, the user summons an ally Ekans. User becomes Poison-type.
+#-------------------------------
 [PRIMEVALGREYMIST]
 Name = Primeval Grey Mist
 Type = POISON

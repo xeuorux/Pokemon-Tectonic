@@ -223,6 +223,10 @@ Description = On the first turn, its attacks burn the target.
 Name = Dazzling
 Description = Makes foes unable to use priority attacks.
 #-------------------------------
+[DEEPTEETH]
+Name = Deep Teeth
+Description = Foes aren't released from its trapping moves even when the Pokémon leaves the field.
+#-------------------------------
 [DIGGINGFIST]
 Name = Excavator
 Description = Dig and Undermine deal 50% more damage.
@@ -626,6 +630,11 @@ Description = Raises one attacking or defending stat by three steps and lowers a
 [MOONBUBBLE]
 Name = Moon Bubble
 Description = Doubles Defense in moonglow.
+#-------------------------------
+[MOONLIGHTER]
+Name = Moonlighter
+Description = When hit in moonglow, steals the attacker's item, or knocks it away.
+Flags = MoonglowSynergy
 #-------------------------------
 [MORPHINGGUARD]
 Name = Morphing Guard

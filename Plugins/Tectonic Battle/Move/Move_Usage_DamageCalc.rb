@@ -272,6 +272,10 @@ class PokeBattle_Move
         if user.effectActive?(:Fracture)
             multipliers[:final_damage_multiplier] *= 0.66
         end
+        #Blindness
+        if user.effectActive?(:Blindness)
+            multipliers[:final_damage_multiplier] *= 0.5
+        end
     end
 
     def pbCalcProtectionsDamageMultipliers(user,target,multipliers,checkingForAI=false)
@@ -295,11 +299,11 @@ class PokeBattle_Move
                 else
                     multipliers[:final_damage_multiplier] *= 0.5
                 end
-            elsif target.pbOwnSide.effectActive?(:DiamondField)
+            elsif target.pbOwnSide.effectActive?(:Sanctuary)
                 if @battle.pbSideBattlerCount(target) > 1
-                    multipliers[:final_damage_multiplier] *= 3 / 4.0
+                    multipliers[:final_damage_multiplier] *= 4 / 5.0
                 else
-                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                    multipliers[:final_damage_multiplier] *= 3 / 4.0
                 end
             end
         else
@@ -307,7 +311,7 @@ class PokeBattle_Move
                 (target.pbOwnSide.effectActive?(:Reflect) ||
                 target.pbOwnSide.effectActive?(:LightScreen) ||
                 target.pbOwnSide.effectActive?(:AuroraVeil) ||
-                target.pbOwnSide.effectActive?(:DiamondField))
+                target.pbOwnSide.effectActive?(:Sanctuary))
                 GameData::Ability.each do |ability_data|
                 next unless ability_data.flags&.include?("IgnoreScreens")
                 if user.hasAbility?(ability_data.id)

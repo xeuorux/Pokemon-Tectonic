@@ -518,6 +518,17 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = With a scary face, the user tries to force a kiss on the target. If it suceeds, the target falls asleep.
 #-------------------------------
+[LUCKYCHANT]
+Name = Lucky Chant
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 25
+Target = UserSide
+FunctionCode = Invalid
+Flags = CanSnatch,Sound
+Description = The user chants an incantation, preventing the foe from landing critical hits for 10 turns.
+#-------------------------------
 [MEGAKICK]
 Name = Mega Kick
 Type = NORMAL
@@ -1579,6 +1590,18 @@ Description = The user spins a sandstorm around the target, trapping and damagin
 #-------------------------------
 #		ROCK MOVES
 #-------------------------------
+[DIAMONDFIELD]
+Name = Diamond Field
+Type = ROCK
+Category = Status
+Accuracy = 0
+TotalPP = 20
+Target = UserSide
+FunctionCode = Invalid
+Flags = CanSnatch,Light
+Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
+Animation = LIGHTSCREEN
+#-------------------------------
 [HEADSMASH]
 Name = Head Smash
 Type = ROCK
@@ -2062,6 +2085,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 EffectChance = 30
 Description = The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
+#-------------------------------
+[SMARTHORN]
+Name = Smart Horn
+Type = STEEL
+Category = Physical
+Power = 70
+Accuracy = 0
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Description = The user stabs the target with a sharp horn. Can't miss and skips protections.
 #-------------------------------
 [SMARTSTRIKE]
 Name = Smart Strike

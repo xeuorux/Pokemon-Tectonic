@@ -4776,3 +4776,12 @@ Price = 0
 FieldUse = Direct
 Flags = KeyItem
 Description = A radiant wing. It radiates misery, but you feel peaceful holding it. Returning home, returning home...
+#-------------------------------
+[TMAURASPHERE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = AURASPHERE

@@ -115,6 +115,7 @@ BattleHandlers::EORWeatherAbility.add(:ACIDRAIN,
         battler.eachOther do |b|
             next unless b.debuffedByRain?
             b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+            battle.pbHideAbilitySplash(battler)
         end
   }
 )
@@ -125,6 +126,7 @@ BattleHandlers::EORWeatherAbility.add(:SUNBURNING,
         battler.eachOther do |b|
             next unless b.debuffedBySun?
             b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+            battle.pbHideAbilitySplash(battler)
         end
   }
 )

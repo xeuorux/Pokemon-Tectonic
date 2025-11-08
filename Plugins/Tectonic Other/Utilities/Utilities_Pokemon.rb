@@ -61,8 +61,8 @@ end
 def pbStorePokemonInPC(pkmn)
   oldcurbox = $PokemonStorage.currentBox
   storedbox = $PokemonStorage.pbStoreCaught(pkmn)
-  curboxname = $PokemonStorage[oldcurbox].name
-  boxname = $PokemonStorage[storedbox].name
+  curboxname = $PokemonStorage[oldcurbox].getName(oldcurbox)
+  boxname = $PokemonStorage[storedbox].getName(storedbox)
   if storedbox != oldcurbox
       if $PokemonStorage[oldcurbox].isDonationBox?
         pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC is a donation box.\1", curboxname))

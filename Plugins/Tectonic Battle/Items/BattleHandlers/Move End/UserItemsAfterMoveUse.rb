@@ -82,3 +82,25 @@ BattleHandlers::UserItemAfterMoveUse.add(:INSOLES,
         user.pbHeldItemTriggered(item) if user.tryRaiseStat(:SPEED, user, item: item, increment: 2)
     }
 )
+
+BattleHandlers::UserItemAfterMoveUse.add(:WHITENINGPASTE,
+    proc { |item, user, _targets, move, numHits, battle|
+        next unless move.bitingMove?
+        next if numHits == 0
+        user.pbHeldItemTriggered(item)
+        user.eachOpposing do |b|
+            b.applyEffect(:Blindness)
+        end
+    }
+)
+
+BattleHandlers::UserItemAfterMoveUse.add(:FLASHBULB,
+    proc { |item, user, _targets, move, numHits, battle|
+        next unless move.lightMove?
+        next if numHits == 0
+        user.pbHeldItemTriggered(item)
+        user.eachOpposing do |b|
+            b.applyEffect(:Blindness)
+        end
+    }
+)

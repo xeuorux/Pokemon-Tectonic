@@ -1,7 +1,7 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_WILD_TOTEM,
     proc { |curse_policy, battle, curses_array|
         battle.amuletActivates(
-            _INTL("TODO"),
+            _INTL("A Bestial Bellow Echoes Evermore, a Comprehensive Command: Bow!"),
             _INTL("Primal Forest is continually active on the opposing side."),
         )
         curses_array.push(curse_policy)

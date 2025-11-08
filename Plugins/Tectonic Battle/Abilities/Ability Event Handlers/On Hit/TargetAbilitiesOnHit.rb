@@ -772,6 +772,125 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
 )
 
 #########################################
+# Force of Nature Therian abilities
+#########################################
+MENDING_FEATHER_CHARM_HEALING_FRACTION = 1.0 / 8.0
+BattleHandlers::TargetAbilityOnHit.add(:MENDINGFEATHERCHARM,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        if aiCheck
+            next -30 * aiNumHits
+        end
+        target.showMyAbilitySplash(ability)
+        target.pbOwnSide.incrementEffect(:FeathersDropped)
+        if target.pbOwnSide.effectAtMax?(:FeathersDropped)
+            battle.pbAnimation(:REFRESH, target, nil)
+            target.pbOwnSide.disableEffect(:FeathersDropped)
+
+            # Main effect
+            battle.pbAnimation(:AROMATHERAPY, target, nil)
+            battle.pbDisplay(_INTL("{1} heals its party members!", target.pbThis))
+            party = battle.pbParty(target.index)
+            previousHealthValues = []
+		    previousStatusIndices = []
+            party.each_with_index do |partyMember, i|
+                previousHealthValues.push(partyMember.hp)
+			    previousStatusIndices.push(partyMember.getStatusImageIndex)
+                next unless partyMember.able?
+                battler = battle.pbFindBattler(i, target)
+                if battler
+                    battler.applyFractionalHealing(MENDING_FEATHER_CHARM_HEALING_FRACTION, anim: false, anyAnim: false, showMessage: false)
+                else
+                    partyMember.healByFraction(MENDING_FEATHER_CHARM_HEALING_FRACTION)
+                end
+            end
+            showPartyHealing(party,previousHealthValues,previousStatusIndices)
+
+            # Attacker effect
+            battle.pbAnimation(:FEATHERDANCE, target, [user])
+            user.applyEffect(:FeatherForceSwitch)
+        end
+        target.hideMyAbilitySplash
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:RAGINGSCALECHARM,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        if aiCheck
+            next -30 * aiNumHits
+        end
+        target.showMyAbilitySplash(ability)
+        target.pbOwnSide.incrementEffect(:ScalesDropped)
+        if target.pbOwnSide.effectAtMax?(:ScalesDropped)
+            battle.pbAnimation(:REFRESH, target, nil)
+            target.pbOwnSide.disableEffect(:ScalesDropped)
+
+            # Main effect
+            unless user.pbOwnSide.effectActive?(:LiveWire)
+                battle.pbAnimation(:LIVEWIRE, target, nil)
+                user.pbOwnSide.applyEffect(:LiveWire)
+            end
+
+            # Attacker effect
+            battle.pbAnimation(:SWAGGER, target, [user])
+            user.pbConfusionDamage(_INTL("{1} hurt itself in an extreme rage!",user.pbThis), false, selfHitBasePower(user.level)*2)
+        end
+        target.hideMyAbilitySplash
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:RENDINGFANGCHARM,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        if aiCheck
+            next -30 * aiNumHits
+        end
+        target.showMyAbilitySplash(ability)
+        target.pbOwnSide.incrementEffect(:FangsDropped)
+        if target.pbOwnSide.effectAtMax?(:FangsDropped)
+            battle.pbAnimation(:REFRESH, target, nil)
+            target.pbOwnSide.disableEffect(:FangsDropped)
+
+            # Main effect
+            unless user.pbOwnSide.effectAtMax?(:Spikes)
+                battle.pbAnimation(:SPIKES, target, nil)
+                user.pbOwnSide.incrementEffect(:Spikes,2)
+            end
+
+            # Attacker effect
+            battle.pbAnimation(:ASTONISH, target, [user])
+            user.applyEffect(:FlinchNextTurn)
+        end
+        target.hideMyAbilitySplash
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CALMINGSCUTECHARM,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        if aiCheck
+            next -30 * aiNumHits
+        end
+        target.showMyAbilitySplash(ability)
+        target.pbOwnSide.incrementEffect(:ScutesDropped)
+        if target.pbOwnSide.effectAtMax?(:ScutesDropped)
+            battle.pbAnimation(:REFRESH, target, nil)
+            target.pbOwnSide.disableEffect(:ScutesDropped)
+
+            # Main effect
+            unless target.pbOwnSide.effectActive?(:Sanctuary)
+                battle.pbAnimation(:SANCTUARY, target, nil)
+                target.pbOwnSide.applyEffect(:Sanctuary, target.getScreenDuration)
+            end
+
+            # Attacker effect
+            if user.canSleep?(target, true)
+                battle.pbAnimation(:YAWN, target, [user])
+                user.applyEffect(:Yawn, 2)
+            end
+        end
+        target.hideMyAbilitySplash
+    }
+)
+
+#########################################
 # Other abilities
 #########################################
 
@@ -901,7 +1020,9 @@ BattleHandlers::TargetAbilityOnHit.add(:COREPROVENANCE,
         if aiCheck
             next (target.aboveHalfHealth? ? -10 : 0) * aiNumHits
         end
+        target.showMyAbilitySplash(ability)
         target.pbOwnSide.incrementEffect(:ErodedRock)
+        target.hideMyAbilitySplash
     }
 )
 

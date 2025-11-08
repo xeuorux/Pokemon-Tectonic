@@ -9,6 +9,8 @@ module CableClub
   # Change if testing locally or connecting to 3rd party server
   HOST = PUBLIC_HOST
   PORT = Settings::DEV_VERSION ? DEV_PORT : LIVE_PORT
+
+  UNSAFE_CHARACTERS = ["\\", ","]
   
   FOLDER_FOR_BATTLE_PRESETS = "LocalPresets"
   
