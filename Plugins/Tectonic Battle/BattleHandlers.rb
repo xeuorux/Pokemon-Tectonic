@@ -130,6 +130,7 @@ module BattleHandlers
     TrappingTargetItem                  = ItemHandlerHash.new   # None!
     AbilityOnSwitchIn                   = AbilityHandlerHash.new
     AbilityOnEnemySwitchIn              = AbilityHandlerHash.new
+    AbilityOnAllySwitchIn               = AbilityHandlerHash.new
     ItemOnSwitchIn                      = ItemHandlerHash.new # Air Balloon
     ItemOnIntimidated                   = ItemHandlerHash.new # Adrenaline Orb
     AbilityOnSwitchOut                  = AbilityHandlerHash.new
@@ -639,6 +640,11 @@ module BattleHandlers
 
     def self.triggerAbilityOnEnemySwitchIn(ability, switcher, bearer, battle)
         AbilityOnEnemySwitchIn.trigger(ability, switcher, bearer, battle)
+    end
+
+    def self.triggerAbilityOnAllySwitchIn(ability, switcher, bearer, battle, aiCheck = false)
+        ret = AbilityOnAllySwitchIn.trigger(ability, switcher, bearer, battle, aiCheck)
+        return ret || 0
     end
 
     def self.triggerItemOnSwitchIn(item, battler, battle)

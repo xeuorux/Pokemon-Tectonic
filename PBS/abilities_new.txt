@@ -1432,6 +1432,10 @@ Name = Optimized Alloy
 Description = Prevents stat steps from being lowered (except when self-inflicted). The Pokémon's weight is doubled.
 Flags = OtherStatDropImmunity
 #-------------------------------
+[OSCILLATION]
+Name = Oscillation
+Description = The Pokémon's stat steps are inverted at the end of every turn.
+#-------------------------------
 [OTHERWORLDLY]
 Name = Otherworldly
 Description = The Pokémon is also Fairy-type.
@@ -2114,6 +2118,10 @@ Name = Survivalist
 Description = It avoids hazards and can't be knocked out with one hit.
 Flags = HazardImmunity
 #-------------------------------
+[SWARMINSTINCT]
+Name = Swarm Instinct
+Description = When an ally switches in, the Pokémon's Speed is increased.
+#-------------------------------
 [SWIFTSTOMPS]
 Name = Swift Stomps
 Description = The Pokémon's Speed is doubled while using kicking moves.
@@ -2262,10 +2270,6 @@ Description = Takes 20% less damage from neutrally effective attacks.
 Name = Unidentified
 Description = The Pokémon is Mutant-type.
 Flags = Immutable
-#-------------------------------
-[OSCILLATION]
-Name = Oscillation
-Description = The Pokémon's stat steps are inverted at the end of every turn.
 #-------------------------------
 [VANDAL]
 Name = Vandal

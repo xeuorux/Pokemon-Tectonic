@@ -432,6 +432,13 @@ class PokeBattle_Battle
             end
         end
 
+        eachSameSideBattler(battler.index) do |ally|
+            next if ally.index == battler.index
+            ally.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnAllySwitchIn(ability, battler, ally, self, false) unless @preBattle #Don't count send-outs from battle start as switches
+            end
+        end
+
         # Battler faints if it is knocked out because of an entry hazard above
         if battler.fainted?
             battler.pbFaint
