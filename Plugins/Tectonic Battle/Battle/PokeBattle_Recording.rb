@@ -20,6 +20,7 @@ module PokeBattle_BattleRecorder
 	attr_accessor :held_items
 
 	attr_accessor :save_battle
+	attr_accessor :battle_rules
 
 	def initialize(scene, playerParty, foeParty, playerTrainers, foeTrainers, type)
 		super(scene, playerParty, foeParty, playerTrainers, foeTrainers)
@@ -90,8 +91,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def registerRules
-		@rules = $PokemonTemp.battleRules
-		echoln($PokemonTemp.battleRules)
+		@battle_rules = $PokemonTemp.battleRules.clone
 	end
 
 	def getBattleData
@@ -109,7 +109,7 @@ module PokeBattle_BattleRecorder
 			:starting_weather => @starting_weather,
 			:starting_weather_duration => @starting_weather_duration,
 			:held_items => @held_items,
-			:rules => Marshal.dump(@rules),
+			:rules => Marshal.dump(@battle_rules),
 			:endSpeeches => (@endSpeeches) ? @endSpeeches.clone : "",
 			:endSpeechesWin => (@endSpeechesWin) ? @endSpeechesWin.clone : "",
 			:canRun => @canRun,
@@ -145,7 +145,10 @@ module PokeBattle_BattleReplayer
 		@player_party              = Marshal.load(battle[:player_party])
 		@opponent_party            = Marshal.load(battle[:opponent_party])
 
-		Marshal.load(battle[:rules]).each_pair { |rule, val| setBattleRule(rule, val)}
+		Marshal.load(battle[:rules]).each_pair { |rule, val| 
+			setBattleRule(rule, val) if rule != "size"
+			setBattleRule(val) if rule == "size"
+		}
 
 		super(scene, @player_party, @opponent_party, @player_info, @opponent_info, battle[:type])
 
@@ -186,8 +189,11 @@ module PokeBattle_BattleReplayer
 	end
 
 	def pbCommandPhase
+		echoln("===TURN " + turnCount.to_s + " COMMAND===")
+		record = []
 		@choices = []
 		@recorded_choices[turnCount].each do |c|
+			record.push(c[0])
 			@choices.push(c[0])
 			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
@@ -200,9 +206,12 @@ module PokeBattle_BattleReplayer
 				pbRun(currentBattlerIndex)
 			end
 		end
+		echoln(record.to_s)
+		echoln(@choices.to_s)
   end
 
 	def pbExtraCommandPhase
+		echoln("===TURN " + turnCount.to_s + " EXTRA COMMAND===")
 		@choices = []
 		@recorded_choices[turnCount].each do |c|
 			@choices.push(c[@commandPhasesThisRound-1])
@@ -214,6 +223,8 @@ module PokeBattle_BattleReplayer
 				end
 			end
 		end
+		echoln(@recorded_choices[turnCount])
+		echoln(@choices.to_s)
 	end
 
 	def registerNextChoice(index)
@@ -253,9 +264,11 @@ def playRecordedBattle(record_name)
 	original_level_cap = getLevelCap()
 	scene = pbNewBattleScene
 	battle = PokeBattle_TectonicReplayedBattle.new(scene, record_name)
+
+	battle.bossBattle = true if battle.type == 2
 	pbPrepareBattle(battle)
-	
 	setLevelCap(battle.level_cap, false)
+
 	decision = 0	
 	case battle.type
 	when 0 #Wild battle
