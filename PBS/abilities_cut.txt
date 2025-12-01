@@ -806,6 +806,10 @@ Description = Summons a sandstorm for 4 turns when hit by an attack.
 Name = Earthshaker
 Description = In sandstorm, Attack is boosted by 30%.
 #-------------------------------
+[SANDVEIL]
+Name = Sand Veil
+Description = Takes 25% less damage in a sandstorm.
+#-------------------------------
 [SCRAPPY]
 Name = Scrappy
 Description = Enables moves to hit Ghost-type Pokémon.
@@ -883,6 +887,10 @@ Description = Grassy Terrain harms opponents rather than healing them.
 [SNORING]
 Name = Snoring
 Description = When hit while asleep, hits back instantly with Snore.
+#-------------------------------
+[SNOWCLOAK]
+Name = Snow Cloak
+Description = Takes 25% less damage in a sandstorm.
 #-------------------------------
 [SNOWVEIL]
 Name = Snow Veil

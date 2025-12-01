@@ -604,15 +604,15 @@ module GameData
         end
 
         def isLegendary?
-            return @flags.include?("Legendary")
+            return @flags&.include?("Legendary")
         end
 
         def isTest?
-            return @flags.include?("Test")
+            return @flags&.include?("Test")
         end
 
         def canTutorAny?
-            return @flags.include?("TutorAny")
+            return @flags&.include?("TutorAny")
         end
     end
 end
