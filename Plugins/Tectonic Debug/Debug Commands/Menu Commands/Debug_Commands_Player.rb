@@ -217,7 +217,7 @@ DebugMenuCommands.register("setbadges", {
     "effect"      => proc {
       oldHue = $Trainer.overlay_hue
       params = ChooseNumberParams.new
-      params.setRange(0, 255)
+      params.setRange(0, 360)
       params.setDefaultValue(oldHue)
       $Trainer.overlay_hue = pbMessageChooseNumber(_INTL("Set the player's overlay hue."), params)
       pbMessage(_INTL("Player's overlay hue was changed.")) if $Trainer.overlay_hue != oldHue
