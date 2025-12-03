@@ -32,9 +32,9 @@ class Sprite_Character_Player < Sprite_Character
             disposeOverlays
             overlayPath = "_overlay"
             if pbResolveBitmap(characterBitmapPath + overlayPath)
-                newBitmap = AnimatedBitmap.new(characterBitmapPath + overlayPath, PLAYER_OVERLAYS_HUE)
+                newBitmap = AnimatedBitmap.new(characterBitmapPath + overlayPath, $Trainer.overlay_hue)
                 @playerOverlayBitmaps.push(newBitmap)
-                RPG::Cache.retain("Graphics/Characters/", @character_name + overlayPath, PLAYER_OVERLAYS_HUE)
+                RPG::Cache.retain("Graphics/Characters/", @character_name + overlayPath, $Trainer.overlay_hue)
 
                 newSprite = SpriteWrapper.new(@viewport)
                 newSprite.bitmap = newBitmap.bitmap

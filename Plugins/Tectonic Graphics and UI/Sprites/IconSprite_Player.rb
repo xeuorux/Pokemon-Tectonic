@@ -25,7 +25,7 @@ class PlayerTrainerIconSprite < IconSprite
         if pbResolveBitmap(getFilename + overlayPath)
             # Load sprite
             newSprite = IconSprite.new(self.viewport)
-            newSprite.setBitmap(getFilename + overlayPath, PLAYER_OVERLAYS_HUE)
+            newSprite.setBitmap(getFilename + overlayPath, @trainer.overlay_hue)
             newSprite.src_rect = @sprite.src_rect
             @playerOverlaySprites.push(newSprite)
         end

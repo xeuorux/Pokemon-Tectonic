@@ -98,7 +98,14 @@ class Player < Trainer
       @seen_storage_creator  = false
       @mystery_gift_unlocked = false
       @mystery_gifts         = []
+
+      @overlay_hue = 0
     end
-  end
-  
-  PLAYER_OVERLAYS_HUE = 0
+
+    attr_writer :overlay_hue
+
+    def overlay_hue
+      @overlay_hue = 0 if @overlay_hue.nil?
+      return @overlay_hue
+    end
+end
