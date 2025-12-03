@@ -101,3 +101,4 @@ class Player < Trainer
     end
   end
   
+  PLAYER_OVERLAYS_HUE = 0
