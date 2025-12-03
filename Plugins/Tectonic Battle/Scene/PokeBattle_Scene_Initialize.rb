@@ -67,12 +67,12 @@ class PokeBattle_Scene
 
       # Player's and partner trainer's back sprite
       @battle.player.each_with_index do |p,i|
-        pbCreateTrainerBackSprite(i,p.trainer_type,@battle.player.length)
+        pbCreateTrainerBackSprite(i,p,@battle.player.length)
       end
       # Opposing trainer(s) sprites
       if @battle.trainerBattle?
         @battle.opponent.each_with_index do |p,i|
-          pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
+          pbCreateTrainerFrontSprite(i,p,@battle.opponent.length)
         end
       end
       createDataBoxes()
@@ -233,43 +233,49 @@ class PokeBattle_Scene
       cmdBarBG.z = 180
     end
   
-    def pbCreateTrainerBackSprite(idxTrainer,trainerType,numTrainers=1)
-      if idxTrainer==0   # Player's sprite
-        trainerFile = GameData::TrainerType.player_back_sprite_filename(trainerType)
-      else   # Partner trainer's sprite
-        trainerFile = GameData::TrainerType.back_sprite_filename(trainerType)
-      end
+    def pbCreateTrainerBackSprite(idxTrainer,trainer,numTrainers=1)
       spriteX, spriteY = PokeBattle_SceneConstants.pbTrainerPosition(0,idxTrainer,numTrainers)
-      trainer = pbAddSprite("player_#{idxTrainer+1}",spriteX,spriteY,trainerFile,@viewport)
-      return if !trainer.bitmap
-      # Alter position of sprite
-      trainer.z  = 30+idxTrainer
-      if trainer.bitmap.width>trainer.bitmap.height*2
-        trainer.src_rect.x     = 0
-        trainer.src_rect.width = trainer.bitmap.width/5
+
+      if idxTrainer == 0   # Player's sprite
+        trainerBackSprite = PlayerTrainerIconSprite.new(@viewport,false)
+        trainerBackSprite.setTrainer(trainer)
+      else   # Partner trainer's sprite
+        trainerBackSprite = IconSprite.new(@viewport)
+        trainerBackSprite.setBitmap(GameData::TrainerType.back_sprite_filename(trainer.trainer_type))
       end
-      trainer.ox = trainer.src_rect.width/2
-      trainer.oy = trainer.bitmap.height
+
+      @sprites["player_#{idxTrainer+1}"] = trainerBackSprite
+      trainerBackSprite.x = spriteX
+      trainerBackSprite.y = spriteY
+
+      # Alter position of sprite
+      trainerBackSprite.z  = 30 + idxTrainer
+      if trainerBackSprite.bitmap.width > trainerBackSprite.bitmap.height * 2
+        trainerBackSprite.src_rect.x     = 0
+        trainerBackSprite.src_rect.width = trainerBackSprite.bitmap.width/5
+      end
+      trainerBackSprite.ox = trainerBackSprite.src_rect.width/2
+      trainerBackSprite.oy = trainerBackSprite.bitmap.height
     end
   
-    def pbCreateTrainerFrontSprite(idxTrainer,trainerType,numTrainers=1)
-      
+    def pbCreateTrainerFrontSprite(idxTrainer,trainer,numTrainers=1)
       monumTrainers = GameData::Trainer.getMonumentTrainers
       tNames = monumTrainers.map { |t| t.name}
       tClasses = monumTrainers.map { |t| t.trainer_type }
             
       if tNames.find_index(@battle.opponent[0].name) == tClasses.find_index(@battle.opponent[0].trainer_type) && !tNames.find_index(@battle.opponent[0].name).nil?
-        trainerFile = GameData::TrainerType.front_sprite_filename_hologram(trainerType)
+        trainerFile = GameData::TrainerType.front_sprite_filename_hologram(trainerType.trainer_type)
       else
-        trainerFile = GameData::TrainerType.front_sprite_filename(trainerType)
+        trainerFile = GameData::TrainerType.front_sprite_filename(trainer.trainer_type)
       end
       spriteX, spriteY = PokeBattle_SceneConstants.pbTrainerPosition(1,idxTrainer,numTrainers)
-      trainer = pbAddSprite("trainer_#{idxTrainer+1}",spriteX,spriteY,trainerFile,@viewport)
-      return if !trainer.bitmap
+      
+      trainerFrontSprite = pbAddSprite("trainer_#{idxTrainer+1}",spriteX,spriteY,trainerFile,@viewport)
+
       # Alter position of sprite
-      trainer.z  = 7+idxTrainer
-      trainer.ox = trainer.src_rect.width/2
-      trainer.oy = trainer.bitmap.height
+      trainerFrontSprite.z  = 7 + idxTrainer
+      trainerFrontSprite.ox = trainerFrontSprite.src_rect.width / 2
+      trainerFrontSprite.oy = trainerFrontSprite.bitmap.height
     end
   
     def pbCreatePokemonSprite(idxBattler)
