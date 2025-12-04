@@ -215,12 +215,29 @@ DebugMenuCommands.register("setbadges", {
     "name"        => _INTL("Set Player Overlay Hue"),
     "description" => _INTL("Edit the hue of sprites that overlay on the player."),
     "effect"      => proc {
-      oldHue = $Trainer.overlay_hue
-      params = ChooseNumberParams.new
-      params.setRange(0, 360)
-      params.setDefaultValue(oldHue)
-      $Trainer.overlay_hue = pbMessageChooseNumber(_INTL("Set the player's overlay hue."), params)
-      pbMessage(_INTL("Player's overlay hue was changed.")) if $Trainer.overlay_hue != oldHue
+      commands = []
+      overlays = []
+      Player::PLAYER_APPEARANCE_CUSTOMIZATION_OVERLAYS.each_pair do |overlayID, overlayData|
+        name = overlayID.to_s.downcase
+        currentHue = $Trainer.getOverlayHue(overlayID)
+        commands.push(_INTL("{1} (Currently {2})", name, currentHue))
+        overlays.push(overlayID)
+      end
+      overlayIndexChosen = pbShowCommands(nil, commands, -1)
+
+      if overlayIndexChosen >= 0
+        overlayChosenID = overlays[overlayIndexChosen]
+        name = overlayChosenID.to_s.downcase
+        oldHue = $Trainer.getOverlayHue(overlayChosenID)
+        params = ChooseNumberParams.new
+        params.setRange(0, 360)
+        params.setDefaultValue(oldHue)
+        newHue = pbMessageChooseNumber(_INTL("Set the hue for the {1} overlay.", name), params)
+        if newHue != oldHue
+          pbMessage(_INTL("Player's {1} overlay hue was changed.",name))
+          $Trainer.setOverlayHue(overlayChosenID,newHue)
+        end
+      end
     }
   })
   

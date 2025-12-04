@@ -21,13 +21,16 @@ class PlayerTrainerIconSprite < IconSprite
     end
 
     def loadOverlays
-        overlayPath = "_overlay"
-        if pbResolveBitmap(getFilename + overlayPath)
-            # Load sprite
-            newSprite = IconSprite.new(self.viewport)
-            newSprite.setBitmap(getFilename + overlayPath, @trainer.overlay_hue)
-            newSprite.src_rect = @sprite.src_rect
-            @playerOverlaySprites.push(newSprite)
+        @trainer.eachPlayerAppearanceCustomizationOverlay do |overlayPath, hue|
+            if pbResolveBitmap(getFilename + overlayPath)
+                # Load sprite
+                newSprite = IconSprite.new(self.viewport)
+                newSprite.setBitmap(getFilename + overlayPath, hue)
+                newSprite.src_rect = @sprite.src_rect
+                @playerOverlaySprites.push(newSprite)
+            else
+                echoln("WARNING: There is no file for the player customization overlay #{overlayPath} for this player appearance.")
+            end
         end
     end
 

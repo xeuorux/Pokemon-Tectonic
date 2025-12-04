@@ -30,15 +30,18 @@ class Sprite_Character_Player < Sprite_Character
 
             # Overlays
             disposeOverlays
-            overlayPath = "_overlay"
-            if pbResolveBitmap(characterBitmapPath + overlayPath)
-                newBitmap = AnimatedBitmap.new(characterBitmapPath + overlayPath, $Trainer.overlay_hue)
-                @playerOverlayBitmaps.push(newBitmap)
-                RPG::Cache.retain("Graphics/Characters/", @character_name + overlayPath, $Trainer.overlay_hue)
+            $Trainer.eachPlayerAppearanceCustomizationOverlay do |overlayPath, hue|
+                if pbResolveBitmap(characterBitmapPath + overlayPath)
+                    newBitmap = AnimatedBitmap.new(characterBitmapPath + overlayPath, hue)
+                    @playerOverlayBitmaps.push(newBitmap)
+                    RPG::Cache.retain("Graphics/Characters/", @character_name + overlayPath, hue)
 
-                newSprite = SpriteWrapper.new(@viewport)
-                newSprite.bitmap = newBitmap.bitmap
-                @playerOverlaySprites.push(newSprite)
+                    newSprite = SpriteWrapper.new(@viewport)
+                    newSprite.bitmap = newBitmap.bitmap
+                    @playerOverlaySprites.push(newSprite)
+                else
+                    echoln("WARNING: There is no file for the player customization overlay #{overlayPath} for this player appearance.")
+                end
             end
         end
     end

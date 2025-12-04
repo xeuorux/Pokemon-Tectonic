@@ -3,7 +3,7 @@
 #===============================================================================
 class Player < Trainer
     # @return [Integer] the character ID of the player
-    attr_accessor :character_ID
+    attr_reader :character_ID
     # @return [Integer] the player's outfit
     attr_accessor :outfit
     # @return [Array<Boolean>] the player's Gym Badges (true if owned)
@@ -99,13 +99,6 @@ class Player < Trainer
       @mystery_gift_unlocked = false
       @mystery_gifts         = []
 
-      @overlay_hue = 0
-    end
-
-    attr_writer :overlay_hue
-
-    def overlay_hue
-      @overlay_hue = 0 if @overlay_hue.nil?
-      return @overlay_hue
+      resetPlayerOverlayHuesToDefaults
     end
 end
