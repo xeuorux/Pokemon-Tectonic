@@ -9598,8 +9598,8 @@ Tribes = MYSTIC
 StepsToHatch = 5355
 Height = 0.6
 Weight = 2.4
-Kind = Fish
-Pokedex = It is the shabbiest Pokémon of all. It forms in schools and lives at the bottom of rivers.
+Kind = Mourning
+Pokedex = Swimming through the air in places of unmourned tragedy, Feebas are often found due to the sobbing noises they emit when alone.
 Generation = 3
 Evolutions = MMILOTIC,Item,DAWNSTONE
 #-------------------------------
@@ -9620,8 +9620,8 @@ Tribes = MYSTIC,CHARMER,HARMONIC
 StepsToHatch = 5355
 Height = 6.2
 Weight = 54.0
-Kind = Tender
-Pokedex = It is the world's most beautiful Pokémon. There are many works of art featuring Milotic.
+Kind = Sentiment
+Pokedex = Milotic are unburdened by sadness. They are said to help restless souls pass into the afterlife.
 Generation = 3
 #-------------------------------
 [CASTFORM]
