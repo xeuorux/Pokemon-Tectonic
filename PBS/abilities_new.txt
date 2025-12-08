@@ -549,7 +549,7 @@ Description = Upon entry, creates an Emotion Room for four turns, which swaps ea
 #-------------------------------
 [EMPATHFINDER]
 Name = Empathfinder
-Description = When a foe switches to replace a fainted Pokémon, gives information about the switch and let's you switch beforehand.
+Description = When a foe switches to replace a fainted Pokémon, gives information about the switch and lets you switch beforehand.
 #-------------------------------
 [ENERGETIC]
 Name = Energetic
