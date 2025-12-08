@@ -170,9 +170,9 @@ class PokeBattle_Move
             target.eachAbilityShouldApply(aiCheck) do |ability|
                 BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
             end
-            target.eachAlly do |b|
-                b.eachAbilityShouldApply(aiCheck) do |ability|
-                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
+            target.eachAlly do |owner|
+                owner.eachAbilityShouldApply(aiCheck) do |ability|
+                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,owner,self,multipliers,baseDmg,type,aiCheck)
                 end
             end
         end
