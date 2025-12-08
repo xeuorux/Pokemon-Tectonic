@@ -2902,6 +2902,19 @@ Flags = CanProtect,CanMagicCoat
 Description = Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.
 Animation = DISABLE
 #-------------------------------
+[CLEANSINGWAVE]
+Name = Cleansing Wave
+Type = GHOST
+Category = Special
+Power = 60
+Accuracy = 100
+TotalPP = 20
+Target = AllNearFoes
+FunctionCode = ResetTargetStatSteps
+Flags = CanProtect
+Description = The user washes its opponents with a wave of rainbow tears. Targets' stat step changes are returned to normal.
+Animation = ECHOEDVOICE
+#-------------------------------
 [COLDSHOULDER]
 Name = Cold Shoulder
 Type = GHOST
