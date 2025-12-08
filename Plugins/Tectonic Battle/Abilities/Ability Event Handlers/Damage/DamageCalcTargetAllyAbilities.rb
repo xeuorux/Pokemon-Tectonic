@@ -22,3 +22,12 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:PROTECTIVEINSTINCT,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAllyAbility.add(:RAINBOWGUARDIAN,
+  proc { |ability, user, target, owner, _move, mults, _baseDmg, _type, aiCheck|
+    if owner.effectActive?(:ChoseStatus)
+      mults[:final_damage_multiplier] *= 0.66
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
