@@ -9599,7 +9599,7 @@ StepsToHatch = 5355
 Height = 0.6
 Weight = 2.4
 Kind = Mourning
-Pokedex = Swimming through the air in places of unmourned tragedy, Feebas are often found due to the sobbing noises they emit when alone.
+Pokedex = Swimming through the air in places of unmourned tragedy, Feebas are easily located due to the sobbing noises they emit when alone.
 Generation = 3
 Evolutions = MMILOTIC,Item,DAWNSTONE
 #-------------------------------
