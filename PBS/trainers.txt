@@ -2055,7 +2055,7 @@ Pokemon = CLOYSTER,38
     Item = LOADEDDICE
 Pokemon = ZEBSTRIKA,39
     Moves = INERTIASHOCK,DROPKICK,FLAMECHARGE,NUMB
-    AbilityIndex = 0 # Galloping Storm
+    AbilityIndex = 1 # Reckless
     Item = DAMPROCK
 #-------------------------------
 [CLERK_M2,Marton]
@@ -8996,7 +8996,7 @@ Pokemon = VESPIQUEN,70
     Moves = DEFENDORDER,HEALORDER,TERRORSWARM,ENVENOM
     AbilityIndex = 1 # Stressful
 Pokemon = WYRDEER,70
-    Moves = CENSOR,HIGHJUMPKICK,LONGSHOT,SUPERCOOL
+    Moves = PSYSHIELDBASH,BODYSLAM,WHIRLWINDKICK,GLACIALCRUNCH
     AbilityIndex = 1 # Fascinate
 Pokemon = HLILLIGANT,70
     Moves = STOMPINGTANTRUM,BLAZEKICK,LEAFBLADE,CLOSECOMBAT
