@@ -6,7 +6,7 @@ Description = Suppresses the effects of weather.
 #-------------------------------
 [ANALYTIC]
 Name = Analytic
-Description = Boosts move power when the Pokémon moves last by 30%.
+Description = Boosts move power when this Pokémon moves last by 30%.
 #-------------------------------
 [ASONEGHOST]
 Name = As One
@@ -32,7 +32,7 @@ Description = Raises Attack and Sp. Atk by two steps when its HP is lowered belo
 #-------------------------------
 [CHEEKPOUCH]
 Name = Cheek Pouch
-Description = When the Pokémon eats a Berry, it restores 33% of its max health.
+Description = When this Pokémon eats a Berry, it restores 33% of its max health.
 #-------------------------------
 [CHILLINGNEIGH]
 Name = Chilling Neigh
@@ -40,7 +40,7 @@ Description = Boosts Attack after knocking out any Pokémon.
 #-------------------------------
 [CHLOROPHYLL]
 Name = Chlorophyll
-Description = Doubles the Pokémon's Speed in sunshine.
+Description = Doubles this Pokémon's Speed in sunshine.
 Flags = SunshineSynergy
 #-------------------------------
 [CLEARBODY]
@@ -67,7 +67,7 @@ Description = Lowers everyone else's Speed by two steps when hit by an attack.
 #-------------------------------
 [CUDCHEW]
 Name = Cud Chew
-Description = When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
+Description = When this Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 #-------------------------------
 [CURIOUSMEDICINE]
 Name = Curious Medicine
@@ -145,7 +145,7 @@ Description = Reduces damage from super-effective attacks by 25%.
 #-------------------------------
 [FLAMEBODY]
 Name = Flame Body
-Description = Boosts Defense by 20%. When the Pokémon takes its second physical hit from a foe, they become burned.
+Description = Boosts Defense by 20%. When this Pokémon takes its second physical hit from a foe, they become burned.
 #-------------------------------
 [FLOWERGIFT]
 Name = Flower Gift
@@ -158,7 +158,7 @@ Description = Protects Grass-type allies from non-volatile status conditions or 
 #-------------------------------
 [FLUFFY]
 Name = Fluffy
-Description = Doubles Defense. The Pokémon takes double damage from Fire-type moves.
+Description = Doubles Defense. This Pokémon takes double damage from Fire-type moves.
 #-------------------------------
 [FORECAST]
 Name = Forecast
@@ -176,7 +176,7 @@ Flags = OtherStatDropImmunity
 #-------------------------------
 [FURCOAT]
 Name = Fur Coat
-Description = Doubles the Pokémon's Defense.
+Description = Doubles this Pokémon's Defense.
 #-------------------------------
 [GALEWINGS]
 Name = Gale Wings
@@ -210,7 +210,7 @@ Flags = Immutable
 #-------------------------------
 [HEAVYMETAL]
 Name = Heavy Metal
-Description = Doubles the Pokémon's weight.
+Description = Doubles this Pokémon's weight.
 #-------------------------------
 [HUNGERSWITCH]
 Name = Hunger Switch
@@ -233,16 +233,16 @@ Flags = HailSynergy
 #-------------------------------
 [ICESCALES]
 Name = Ice Scales
-Description = Doubles the Pokémon's Sp. Def.
+Description = Doubles this Pokémon's Sp. Def.
 #-------------------------------
 [ILLUSION]
 Name = Illusion
-Description = Comes out disguised as the Pokémon in back.
+Description = Comes out disguised as this Pokémon in back.
 Flags = Immutable
 #-------------------------------
 [IMPOSTER]
 Name = Imposter
-Description = It transforms itself into the Pokémon it is facing.
+Description = It transforms itself into this Pokémon it is facing.
 Flags = Immutable
 #-------------------------------
 [INNARDSOUT]
@@ -251,7 +251,7 @@ Description = Damages an attacker that lands the finishing hit.
 #-------------------------------
 [INNERFOCUS]
 Name = Inner Focus
-Description = The Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate.
+Description = This Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate.
 Flags = FlinchImmunity
 #-------------------------------
 [INTIMIDATE]
@@ -277,11 +277,11 @@ Flags = Levitation
 #-------------------------------
 [MAGICBOUNCE]
 Name = Magic Bounce
-Description = Reflects enemy status moves that target the Pokémon or create hazards around it.
+Description = Reflects enemy status moves that target this Pokémon or create hazards around it.
 #-------------------------------
 [MAGICGUARD]
 Name = Magic Guard
-Description = The Pokémon only takes damage from attacks.
+Description = This Pokémon only takes damage from attacks.
 #-------------------------------
 [MAGICIAN]
 Name = Magician
@@ -318,7 +318,7 @@ Flags = Immutable
 #-------------------------------
 [MUMMY]
 Name = Mummy
-Description = When the Pokémon is hit by an attack, the attacker's ability becomes Mummy.
+Description = When this Pokémon is hit by an attack, the attacker's ability becomes Mummy.
 #-------------------------------
 [NATURALCURE]
 Name = Natural Cure
@@ -335,7 +335,7 @@ Flags = Immutable
 #-------------------------------
 [NOGUARD]
 Name = No Guard
-Description = Attacks by or against the Pokémon can't miss and hit hidden Pokémon.
+Description = Attacks by or against this Pokémon can't miss and hit hidden Pokémon.
 #-------------------------------
 [NORMALIZE]
 Name = Normalize
@@ -347,12 +347,12 @@ Description = Child attacks after the parent, for 25% of the previous damage.
 #-------------------------------
 [PERISHBODY]
 Name = Perish Body
-Description = When it takes a hit, the Pokémon and the attacker both faint after three turns.
+Description = When it takes a hit, this Pokémon and the attacker both faint after three turns.
 Flags = SetupCounterAI
 #-------------------------------
 [POISONPOINT]
 Name = Poison Point
-Description = Boosts Defense by 20%. When the Pokémon takes its second physical hit from a foe, they become poisoned.
+Description = Boosts Defense by 20%. When this Pokémon takes its second physical hit from a foe, they become poisoned.
 #-------------------------------
 [POISONTOUCH]
 Name = Poison Touch
@@ -365,7 +365,7 @@ Flags = Immutable
 #-------------------------------
 [POWEROFALCHEMY]
 Name = Power of Alchemy
-Description = When an ally faints, the Pokémon also gains their ability or abilities.
+Description = When an ally faints, this Pokémon also gains their ability or abilities.
 Flags = Uncopyable
 #-------------------------------
 [POWERSPOT]
@@ -378,7 +378,7 @@ Description = Gives priority to status moves, but makes Dark-types immune to the
 #-------------------------------
 [PRESSURE]
 Name = Pressure
-Description = The Pokémon raises the foe's PP usage.
+Description = This Pokémon raises the foe's PP usage.
 #-------------------------------
 [PRIMORDIALSEA]
 Name = Primordial Sea
@@ -387,7 +387,7 @@ Flags = RainstormSynergy
 #-------------------------------
 [PRISMARMOR]
 Name = Prism Armor
-Description = The Pokémon receives 25% less move damage from super-effective attacks.
+Description = This Pokémon receives 25% less move damage from super-effective attacks.
 #-------------------------------
 [PROTEAN]
 Name = Protean
@@ -417,7 +417,7 @@ Flags = Immutable
 #-------------------------------
 [ROCKHEAD]
 Name = Rock Head
-Description = Protects the Pokémon from recoil damage.
+Description = Protects this Pokémon from recoil damage.
 #-------------------------------
 [ROUGHSKIN]
 Name = Rough Skin
@@ -425,7 +425,7 @@ Description = Physical moves against it inflict 1/8th max HP damage to the foe.
 #-------------------------------
 [SANDRUSH]
 Name = Sand Rush
-Description = Doubles the Pokémon's Speed in a sandstorm.
+Description = Doubles this Pokémon's Speed in a sandstorm.
 Flags = SandstormSynergy
 #-------------------------------
 [SANDSTREAM]
@@ -469,7 +469,7 @@ Flags = Immutable
 #-------------------------------
 [SIMPLE]
 Name = Simple
-Description = Stat changes in the Pokémon are doubled.
+Description = Stat changes in this Pokémon are doubled.
 #-------------------------------
 [SKILLLINK]
 Name = Skill Link
@@ -481,7 +481,7 @@ Description = Halves Attack and Speed for three turns.
 #-------------------------------
 [SLUSHRUSH]
 Name = Slush Rush
-Description = Doubles the Pokémon's Speed stat in a hail.
+Description = Doubles this Pokémon's Speed stat in a hail.
 Flags = HailSynergy
 #-------------------------------
 [SNIPER]
@@ -495,7 +495,7 @@ Flags = HailSynergy
 #-------------------------------
 [SOLARPOWER]
 Name = Solar Power
-Description = In sunshine, Sp. Atk is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn.
+Description = In sunshine, Sp. Atk is boosted by 50%, but this Pokémon is hurt for 1/10th HP each turn.
 Flags = SunshineSynergy
 #-------------------------------
 [SOULHEART]
@@ -517,7 +517,7 @@ Flags = Immutable
 #-------------------------------
 [STATIC]
 Name = Static
-Description = Boosts Defense by 20%. When the Pokémon takes its second physical hit from a foe, they become numbed.
+Description = Boosts Defense by 20%. When this Pokémon takes its second physical hit from a foe, they become numbed.
 #-------------------------------
 [STEELWORKER]
 Name = Steelworker
@@ -541,12 +541,12 @@ Description = Quadruples the critical hit chance of random crit moves.
 #-------------------------------
 [SWIFTSWIM]
 Name = Swift Swim
-Description = Doubles the Pokémon's Speed in rainstorm.
+Description = Doubles this Pokémon's Speed in rainstorm.
 Flags = RainstormSynergy
 #-------------------------------
 [SYNCHRONIZE]
 Name = Synchronize
-Description = When the Pokémon is given a non-volatile status condition by another Pokémon, that Pokémon also gets that condition.
+Description = When this Pokémon is given a non-volatile status condition by another Pokémon, that Pokémon also gets that condition.
 #-------------------------------
 [TECHNICIAN]
 Name = Technician
@@ -578,7 +578,7 @@ Description = Gives +3 priority to healing and draining moves.
 #-------------------------------
 [TRUANT]
 Name = Truant
-Description = Every other turn, the Pokémon can't use any move but Slack Off.
+Description = Every other turn, this Pokémon can't use any move but Slack Off.
 #-------------------------------
 [UNAWARE]
 Name = Unaware
@@ -586,7 +586,7 @@ Description = Ignores modified Defense and Sp. Def while attacking, and ignores 
 #-------------------------------
 [UNBURDEN]
 Name = Unburden
-Description = Doubles the Pokémon's Speed if its held item is consumed or lost.
+Description = Doubles this Pokémon's Speed if its held item is consumed or lost.
 #-------------------------------
 [UNNERVE]
 Name = Unnerve
@@ -602,7 +602,7 @@ Description = Doubles the Accuracy, critical hit rate, and chance to activate ra
 #-------------------------------
 [VITALSPIRIT]
 Name = Vital Spirit
-Description = Prevents the Pokémon from falling asleep.
+Description = Prevents this Pokémon from falling asleep.
 #-------------------------------
 [VOLTABSORB]
 Name = Volt Absorb
@@ -610,7 +610,7 @@ Description = Immune to Electric-type moves and restores 25% of max HP when hit 
 #-------------------------------
 [WANDERINGSPIRIT]
 Name = Wandering Spirit
-Description = When the Pokémon is hit by an attack, the Pokémon and the attacker switch abilities.
+Description = When this Pokémon is hit by an attack, this Pokémon and the attacker switch abilities.
 #-------------------------------
 [WATERABSORB]
 Name = Water Absorb
@@ -622,7 +622,7 @@ Description = Weakens incoming Fire-type moves, and doubles Water-type damage.
 #-------------------------------
 [WEAKARMOR]
 Name = Weak Armor
-Description = Physical attacks against the Pokémon raise its Speed by two steps but lower its Defense.
+Description = Physical attacks against this Pokémon raise its Speed by two steps but lower its Defense.
 #-------------------------------
 [WIMPOUT]
 Name = Wimp Out
