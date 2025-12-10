@@ -275,7 +275,7 @@ module GameData
             return metrics_data.shows_shadow?
         end
 
-        def get_evolutions(exclude_invalid = false)
+        def get_evolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next if evo[3] # Is the prevolution
@@ -555,7 +555,7 @@ module GameData
             return level >= earliest_available
         end
 
-        def get_prevolutions(exclude_invalid = false)
+        def get_prevolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next unless evo[3] # Is an evolution

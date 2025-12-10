@@ -607,6 +607,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:OFFENSIVE,
 BattleHandlers::UserAbilityEndOfMove.add(:BLINDING,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next unless move.lightMove?
+      next if battle.pbAllFainted?(user.idxOpposingSide)
       battle.pbShowAbilitySplash(user, ability)
       user.eachOpposing do |b|
         b.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 1, showFailMsg: true)

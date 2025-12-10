@@ -947,7 +947,7 @@ class PokeBattle_Battler
 
     def notFullyEvolved?
         return false unless @pokemon
-        return !@pokemon.species_data.get_evolutions(true).empty?
+        return !@pokemon.species_data.get_evolutions.empty?
     end
 
     def hasAnyNotFullyEvolvedAllies?

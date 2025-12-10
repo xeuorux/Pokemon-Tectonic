@@ -725,7 +725,7 @@ end
   
       GameData::Species.each do |species|
           next if species.form != 0
-          next if species.get_evolutions().length > 0
+          next if species.get_evolutions.length > 0
           species.tribes.each do |tribe|
               tribeCount[tribe] += 1
           end
