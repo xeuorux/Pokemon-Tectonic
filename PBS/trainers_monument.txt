@@ -702,7 +702,7 @@ Pokemon = MAMOSWINE,70
     EV = 20,20,5,0,20,5
 Pokemon = FROSLASS,70
     Moves = BLIZZARD,THUNDERBOLT,SUFFOCATE,HAIL
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 1 # Dead of Winter
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0

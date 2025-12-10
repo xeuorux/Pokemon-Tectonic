@@ -2055,7 +2055,8 @@ Pokemon = CLOYSTER,38
     Item = LOADEDDICE
 Pokemon = ZEBSTRIKA,39
     Moves = INERTIASHOCK,DROPKICK,FLAMECHARGE,NUMB
-    AbilityIndex = 0 # Sap Sipper
+    AbilityIndex = 0 # Galloping Storm
+    Item = DAMPROCK
 #-------------------------------
 [CLERK_M2,Marton]
 Pokemon = KLEFKI,38
@@ -2438,7 +2439,7 @@ Pokemon = ANINETALES,70
 Pokemon = MISMAGIUS,70
     AbilityIndex = 0 # Snow Warning
 Pokemon = FROSLASS,70
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 1 # Dead of Winter
 Pokemon = SAURENAID,70
     AbilityIndex = 0 # Arctic Ariette
 Pokemon = ASANDSLASH,70
@@ -3685,7 +3686,7 @@ Pokemon = COTTONEE,19
     Item = KEEBERRY
 Pokemon = DWEBBLE,19
     Moves = CURLUP,BUGBITE,STAMPDOWN,ROCKTOMB
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 0 # Stratagem
     Item = SHELLBELL
 Pokemon = WOOPER,20
     Moves = WAVEBREAK,TREMOR,FROLIC,WATERLOG
@@ -5587,7 +5588,7 @@ Policies = HAIL_TEAM
 Flags = NoPerfect
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,FRIGIDJEALOUSY
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 1 # Dead of Winter
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
@@ -8438,7 +8439,7 @@ Pokemon = EXEGGUTOR,70
     Item = SITRUSBERRY
 Pokemon = BELLOSSOM,70
     Moves = MOONBLAST,SOLARBEAM,HEATWAVE,POLLENPUFF
-    AbilityIndex = 0 # Solar Power
+    AbilityIndex = 0 # Summer's Zenith
     Item = SHELLBELL
 #-------------------------------
 [WILDPACK,Lunar]
@@ -8996,7 +8997,7 @@ Pokemon = VESPIQUEN,70
     AbilityIndex = 1 # Stressful
 Pokemon = WYRDEER,70
     Moves = CENSOR,HIGHJUMPKICK,LONGSHOT,SUPERCOOL
-    AbilityIndex = 0 # No Guard
+    AbilityIndex = 1 # Fascinate
 Pokemon = HLILLIGANT,70
     Moves = STOMPINGTANTRUM,BLAZEKICK,LEAFBLADE,CLOSECOMBAT
     AbilityIndex = 0 # Fascinate
