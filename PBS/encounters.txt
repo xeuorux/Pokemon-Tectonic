@@ -982,10 +982,11 @@ Special,20
 #-------------------------------
 [326] # Carnation Graves
 DarkCave,20,20
-    40,CUBONE,20,22
-    20,DUSKULL,20,22
-    20,MAWILE,20,22
-    20,SABLEYE,20,22
+    33,CUBONE,20,22
+    17,DUSKULL,20,22
+    17,MAWILE,20,22
+    17,SABLEYE,20,22
+    16,MFEEBAS,20,22
 #-------------------------------
 [331] # Frostflow Farms Center
 Special,40

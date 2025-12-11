@@ -2890,6 +2890,18 @@ Animation = CALMMIND
 #-------------------------------
 #		GHOST MOVES
 #-------------------------------
+[ARCOFHOPE]
+Name = Arc of Hope
+Type = GHOST
+Category = Status
+Accuracy = 100
+TotalPP = 8
+Target = User
+FunctionCode = HealUserPositionInTwoTurns
+Flags = CanSnatch
+Description = Two turns after this move is used, the target's HP is restored by three quarters the user's max HP.
+Animation = WISH
+#-------------------------------
 [BINDFATE]
 Name = Bind Fate
 Type = GHOST

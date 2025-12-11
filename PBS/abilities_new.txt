@@ -1651,6 +1651,10 @@ Description = When this Pokémon is rampaging, it can choose the rampage moves i
 Name = Raging Scale Charm
 Description = When this Pokémon is hit thrice, a Live Wire is set on the foe's side. The attacker hits itself in a rage.
 #-------------------------------
+[RAINBOWGUARDIAN]
+Name = Rainbow Guardian
+Description = Reduces move damage taken by allies by 33% while this Pokemon is using a status move.
+#-------------------------------
 [RAINBOWTRAIL]
 Name = Rainbow Trail
 Description = Loses its Fire type. Whenever it uses a move, it gains that move's type.
