@@ -405,6 +405,10 @@ Description = On the first turn, its attacks burn the target.
 Name = Deadbeat
 Description = Has a 30% chance to leech targets when using physical moves.
 #-------------------------------
+[DEADOFWINTER]
+Name = Dead of Winter
+Description = After knocking out any Pokémon, summons hail for four turns.
+#-------------------------------
 [DEBRISFIELD]
 Name = Debris Field
 Description = Immune to non-volatile status conditions due to its hard shell. Boosts Sp. Atk and Speed by 30% in sandstorm.
@@ -806,6 +810,10 @@ Description = Random added effects of wind-based moves are +50% more likely to o
 [GALEFORCE]
 Name = Gale Force
 Description = Boosts the power of wind-based moves by 50%.
+#-------------------------------
+[GALLOPINGSTORM]
+Name = Galloping Storm
+Description = After knocking out any Pokémon, summons rainstorm for four turns.
 #-------------------------------
 [GALVANICWINGS]
 Name = Galvanic Wings
@@ -1788,6 +1796,10 @@ Name = Safe Passage
 Description = Doubles Defense in rainstorm.
 Flags = RainstormSynergy
 #-------------------------------
+[SALTATIONSURGE]
+Name = Saltation Surge
+Description = After knocking out any Pokémon, summons sandstorm for four turns.
+#-------------------------------
 [SANDBURST]
 Name = Sand Burst
 Description = Summons a sandstorm for four turns when hit by an attack.
@@ -2122,6 +2134,10 @@ Description = Boosts Sp. Def by 20%. When this Pokémon takes its second special
 Name = Sudden Turn
 Description = Uses Rapid Spin if an attack lowers its HP below half.
 #-------------------------------
+[SUMMERSZENITH]
+Name = Summer's Zenith
+Description = After knocking out any Pokémon, summons sunshine for four turns.
+#-------------------------------
 [SUMMITSPIRIT]
 Name = Summit Spirit
 Description = Boosts Sp. Atk by 30% in hail.
@@ -2187,6 +2203,10 @@ Description = Every three turns it gets to move twice.
 [TENDERIZE]
 Name = Tenderize
 Description = At the end of each round, lowers other numbed Pokémon's Defense and Sp. Def by two steps.
+#-------------------------------
+[TENEBROUSCANTER]
+Name = Tenebrous Canter
+Description = After knocking out any Pokémon, summons eclipse for four turns.
 #-------------------------------
 [TERRITORIAL]
 Name = Territorial
@@ -2273,6 +2293,10 @@ Description = Powers up moves of the same type by 50%.
 [UMBRALTENACITY]
 Name = Umbral Tenacity
 Description = During moonglow, take 35% less damage from attacks that aren't Steel-type.
+#-------------------------------
+[UMBRALWAKE]
+Name = Umbral Wake
+Description = After knocking out any Pokémon, summons moonglow for four turns.
 #-------------------------------
 [UNAFRAID]
 Name = Unafraid
