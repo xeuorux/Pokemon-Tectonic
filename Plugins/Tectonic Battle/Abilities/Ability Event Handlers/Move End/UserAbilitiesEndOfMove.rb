@@ -687,6 +687,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FRIGHTENINGFANGS,
       next unless move.bitingMove?
       targets.each do |b|
           next if b.fainted?
+          next if b.damageState.missed || b.damageState.unaffected
           battle.pbShowAbilitySplash(user, ability)
           if b.pbAttack > b.pbSpAtk
           b.pbLowerMultipleStatSteps([:ATTACK,2], user, move: self)
