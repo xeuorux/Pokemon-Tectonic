@@ -6954,7 +6954,7 @@ TotalPP = 15
 Target = AllNearFoes
 FunctionCode = DamageBoostEclipse50Percent
 Flags = CanProtect
-Description = Attacks all foes with hidden draconic energy. Power increases by 50% in eclipse.
+Description = Attacks all foes with dormant draconic energy. Power increases by 50% in eclipse.
 Animation = DRAGONPULSE
 #-------------------------------
 [REDUCINGSYRUP]
