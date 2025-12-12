@@ -331,7 +331,7 @@ class PokeBattle_Battler
                     next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle, false)
                     @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
                     @battle.pbShowAbilitySplash(b, ability)
-                    @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
+                    @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, move.name))
                     @battle.pbHideAbilitySplash(b)
                     user.onMoveFailed(move)
                     pbCancelMoves
