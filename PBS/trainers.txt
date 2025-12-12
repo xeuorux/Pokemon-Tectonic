@@ -4980,7 +4980,7 @@ Pokemon = PYROAR,63
 Pokemon = ABSOL,20
     Gender = female
     Moves = FROLIC,PLANTDOUBT,LIFEDEW,TAUNT
-    AbilityIndex = 1 # Infamous
+    AbilityIndex = 0 # Bad Omen
     Item = SITRUSBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
