@@ -1014,6 +1014,11 @@ Name = Ice Block
 Description = It can avoid being knocked out by using its face. The face then melts.
 Flags = Immutable
 #-------------------------------
+[ICEBUNKER]
+Name = Ice Bunker
+Description = During hail, this Pokémon takes 50% less move damage, but its Speed is halved.
+Flags = HailSynergy
+#-------------------------------
 [ICEMIRROR]
 Name = Ice Mirror
 Description = Doubles Sp. Def in hail.
@@ -1653,7 +1658,7 @@ Description = When this Pokémon is hit thrice, a Live Wire is set on the foe's 
 #-------------------------------
 [RAINBOWGUARDIAN]
 Name = Rainbow Guardian
-Description = Reduces move damage taken by allies by 33% while this Pokemon is using a status move.
+Description = Reduces move damage taken by allies by 33% while this Pokémon is using a status move.
 #-------------------------------
 [RAINBOWTRAIL]
 Name = Rainbow Trail
