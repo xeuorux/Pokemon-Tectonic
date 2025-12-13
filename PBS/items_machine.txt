@@ -1074,7 +1074,7 @@ Move = SHORTCIRCUIT
 [TMRETREAT]
 Name = Unnamed
 NamePlural = Unnamed
-Pocket = 4
+Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
@@ -1110,7 +1110,7 @@ Move = FLIPTURN
 [TMPSYCHESWITCH]
 Name = Unnamed
 NamePlural = Unnamed
-Pocket = 4
+Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
