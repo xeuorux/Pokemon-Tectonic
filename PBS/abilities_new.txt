@@ -1653,7 +1653,7 @@ Description = When this Pokémon is hit thrice, a Live Wire is set on the foe's 
 #-------------------------------
 [RAINBOWGUARDIAN]
 Name = Rainbow Guardian
-Description = Reduces move damage taken by allies by 33% while this Pokemon is using a status move.
+Description = Reduces move damage taken by allies by 33% while this Pokémon is using a status move.
 #-------------------------------
 [RAINBOWTRAIL]
 Name = Rainbow Trail

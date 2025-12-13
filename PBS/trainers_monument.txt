@@ -58,7 +58,7 @@ Pokemon = SWAMPERT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,0,20,20
 Pokemon = LUXRAY,70
-    Moves = PHOTONEDGE,SUCKERPUNCH,SEVER,ICEFANG
+    Moves = PHOTONEDGE,SUCKERPUNCH,SEVER,GLACIALCRUNCH
     AbilityIndex = 1 # Intimidate
     Item = LUCKHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -585,7 +585,7 @@ Pokemon = DELIBIRD,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = MILLIBLAZE,70
-    Moves = XSCISSOR,FLAREBLITZ,KNOCKOFF,THUNDERFANG
+    Moves = XSCISSOR,FLAREBLITZ,KNOCKOFF,VOLTCRUNCH
     AbilityIndex = 1 # Exotherm Engine
     Item = CHOICEBAND
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1900,7 +1900,7 @@ Pokemon = KLAWSAR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MORPEKO,70
-    Moves = GUTCHECK,RAPIDSPIN,ELECTROSLASH,ICEFANG
+    Moves = GUTCHECK,RAPIDSPIN,ELECTROSLASH,GLACIALCRUNCH
     AbilityIndex = 0 # Hunger Switch
     Item = PRISMATICPLATE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2463,7 +2463,7 @@ Pokemon = HAEROBIC,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MCARNIVINE,70
-    Moves = PURSUIT,STRAFE,ICEFANG,KNOCKOFF
+    Moves = PURSUIT,STRAFE,GLACIALCRUNCH,KNOCKOFF
     AbilityIndex = 1 # Pestilent
     Item = LUMBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

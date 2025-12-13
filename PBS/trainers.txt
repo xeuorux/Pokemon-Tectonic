@@ -2063,7 +2063,7 @@ Pokemon = KLEFKI,38
     AbilityIndex = 0 # Prankster
     Item = CADOBERRY
 Pokemon = CENTISKORCH,39
-    Moves = AGONIZE,COIL,BURNINGJEALOUSY,THUNDERFANG
+    Moves = AGONIZE,COIL,BURNINGJEALOUSY,VOLTCRUNCH
     AbilityIndex = 0 # Firefighter
 #-------------------------------
 [CLERK_M2,Zoltan]
@@ -3000,7 +3000,7 @@ Pokemon = SPINDA,41
     AbilityIndex = 0 # Wibble Wobble
     Item = LEFTOVERS
 Pokemon = ANNIHILAPE,42
-    Moves = CROSSCHOP,WAILINGBLOW,FIREFANG,BULKUP
+    Moves = CROSSCHOP,WAILINGBLOW,SEARINGCRUNCH,BULKUP
     AbilityIndex = 0 # Defiant
 #-------------------------------
 [BATTLEGIRL2,Yumei]
@@ -3185,7 +3185,7 @@ Pokemon = DRAPION,55
 #-------------------------------
 [SWIMMER_F5,Shreya]
 Pokemon = FERALIGATR,56
-    Moves = RIPTURN,CRUNCH,AQUAJET,ICEFANG
+    Moves = RIPTURN,CRUNCH,AQUAJET,GLACIALCRUNCH
     AbilityIndex = 0 # Ferocious
     Item = SITRUSBERRY
 Pokemon = ARMALDO,56
@@ -6463,7 +6463,7 @@ Pokemon = GLISCOR,70
     AbilityIndex = 0 # Grotesque Vitals
     Item = LEFTOVERS
 Pokemon = MSEVIPER,70
-    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,ICEFANG
+    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,GLACIALCRUNCH
     AbilityIndex = 1 # Envy
 Pokemon = GOTHITELLE,70
     Moves = CORECOLLAPSE,PLANTDOUBT,FUTURESIGHT,BLACKOUT
@@ -6690,7 +6690,7 @@ Pokemon = GLISCOR,70
     AbilityIndex = 0 # Grotesque Vitals
     Item = LEFTOVERS
 Pokemon = MSEVIPER,70
-    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,ICEFANG
+    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,GLACIALCRUNCH
     AbilityIndex = 1 # Envy
 Pokemon = GOTHITELLE,70
     Moves = CORECOLLAPSE,PLANTDOUBT,FUTURESIGHT,BLACKOUT
@@ -7081,7 +7081,7 @@ Pokemon = GLISCOR,70
     Moves = EARTHQUAKE,ACROBATICS,BLIGHT,KNOCKOFF
     AbilityIndex = 0 # Grotesque Vitals
 Pokemon = MSEVIPER,70
-    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,ICEFANG
+    Moves = FARADAYCAGE,VOLTTACKLE,SWORDSDANCE,GLACIALCRUNCH
     AbilityIndex = 1 # Envy
     Item = AIRBALLOON
 Pokemon = GOTHITELLE,70
@@ -7102,7 +7102,7 @@ Pokemon = HOUNDOMINUS,70
     Moves = FLAMETHROWER,MASSDESTRUCTION,SLUDGEWAVE,DREAMDANCE
     AbilityIndex = 1 # Berserk
 Pokemon = MANERGETIC,70
-    Moves = ICEFANG,THUNDERBOLT,OVERHEAT,SHOUT
+    Moves = GLACIALCRUNCH,THUNDERBOLT,OVERHEAT,SHOUT
     AbilityIndex = 1 # Fascinate
     Item = ICEGEM
 Pokemon = GIGANTEON,70
@@ -7112,7 +7112,7 @@ Pokemon = OCTILLERY,70
     Moves = TARVOLLEY,BUBBLEBLASTER,ENERGYBALL,ICEBEAM
     AbilityIndex = 0 # Juggernaut
 Pokemon = SCEPTILE,70
-    Moves = DRAINPUNCH,EARTHQUAKE,CALAMITOUSSLASH,LEAFBLADE
+    Moves = DRAINPUNCH,EARTHQUAKE,REND,LEAFBLADE
     AbilityIndex = 0 # Regenerator
 #-------------------------------
 [TRAINER_Alessa,Alessa,5]
@@ -7197,7 +7197,7 @@ Pokemon = FURFROU,70
     Moves = FOULPLAY,SHORTCIRCUIT,LOUNGE,WATERLOG
     AbilityIndex = 0 # Stylish
 Pokemon = GRANBULL,70
-    Moves = PLAYBITE,DRAINPUNCH,CRUNCH,THUNDERFANG
+    Moves = PLAYBITE,DRAINPUNCH,CRUNCH,VOLTCRUNCH
     AbilityIndex = 1 # Strong Jaw
     Item = EXPERTBELT
 Pokemon = TOXAPEX,70
@@ -9023,7 +9023,7 @@ Pokemon = FROSLASS,70
     Moves = PIERCINGDOUBT,SUFFOCATE,THUNDERBOLT,ICEBEAM
     AbilityIndex = 0 # Sealing Body
 Pokemon = CARNIVINE,70
-    Moves = TRAPJAW,CRUNCH,FIREFANG,STRAFE
+    Moves = TRAPJAW,CRUNCH,SEARINGCRUNCH,STRAFE
     AbilityIndex = 0 # Strong Jaw
     Item = STRIKEVEST
 Pokemon = BASTIODON,70
@@ -9093,7 +9093,7 @@ Pokemon = MEOWSTIC,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,0,20,0,0,20
 Pokemon = LUXRAY,70
-    Moves = PHOTONEDGE,REST,FIREFANG,HOWL
+    Moves = PHOTONEDGE,REST,SEARINGCRUNCH,HOWL
     AbilityIndex = 1 # Intimidate
     Item = LUMBERAXE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
