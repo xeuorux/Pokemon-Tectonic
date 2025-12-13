@@ -2056,7 +2056,6 @@ Pokemon = CLOYSTER,38
 Pokemon = ZEBSTRIKA,39
     Moves = INERTIASHOCK,DROPKICK,FLAMECHARGE,NUMB
     AbilityIndex = 1 # Reckless
-    Item = DAMPROCK
 #-------------------------------
 [CLERK_M2,Marton]
 Pokemon = KLEFKI,38
