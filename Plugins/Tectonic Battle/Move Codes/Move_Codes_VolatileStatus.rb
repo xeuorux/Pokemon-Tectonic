@@ -564,11 +564,14 @@ class PokeBattle_Move_NumbTargetOrCurseIfNumb < PokeBattle_Move
         return target.numbed?
     end
 
-    def getScore(user, target)
+    def getEffectScore(user, target)
+        if target.numbed? && target.effectActive?(:Curse)
+            return 0
+        end
         if target.numbed?
-            return getNumbEffectScore(user, target)
-        else
             return getCurseEffectScore(user, target)
+        else
+            return getNumbEffectScore(user, target)
         end
     end
 end
