@@ -92,6 +92,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:THICKFAT,:THERMOSTASIS)
+
 BattleHandlers::DamageCalcTargetAbility.add(:UNAFRAID,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if %i[BUG DARK].include?(type)

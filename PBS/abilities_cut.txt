@@ -734,6 +734,11 @@ Description = Gives priority to status moves in moonglow.
 Name = Negative Outlook
 Description = Raises Electric-type allies' Sp. Def by 50%.
 #-------------------------------
+[NESTING]
+Name = Nesting
+Description = Heals 1/12th HP per turn if there's a weather. Immune to weather downsides.
+Flags = AllWeatherSynergy
+#-------------------------------
 [NIGHTLIGHT]
 Name = Night Light
 Description = Boosts Sp. Atk by 30% in moonglow.

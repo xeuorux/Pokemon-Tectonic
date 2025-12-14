@@ -1384,11 +1384,6 @@ Description = Attackers lose 1/10th of their HP. If this Pokémon is below half 
 Name = Nerve Number
 Description = Special moves have a 30% chance to numb targets.
 #-------------------------------
-[NESTING]
-Name = Nesting
-Description = Heals 1/12th HP per turn if there's a weather. Immune to weather downsides.
-Flags = AllWeatherSynergy
-#-------------------------------
 [NEUROTOXIN]
 Name = Neurotoxin
 Description = While this Pokémon is unfainted (in battle or switched out), poisoned foes cannot use the same move twice in a row.
@@ -2229,6 +2224,10 @@ Description = Flinching moves always activate their random effects. However, thi
 [TESLACOILS]
 Name = Tesla Coils
 Description = Becomes energized upon entry, doubling the power of its next Electric-type attack.
+#-------------------------------
+[THERMOSTASIS]
+Name = Thermostasis
+Description = Heals 1/16th HP every turn. Takes half damage from Fire- and Ice-type moves.
 #-------------------------------
 [THIEFSDIVERSION]
 Name = Thief's Diversion
