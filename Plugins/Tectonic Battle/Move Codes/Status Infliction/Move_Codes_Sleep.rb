@@ -266,7 +266,7 @@ class PokeBattle_Move_SacrificeAllySleepTargetNextTurn < PokeBattle_Move
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target is statused. (Hypnotize)
+# Puts the target to sleep. Fails unless the target is statused. (Hypnotherapy)
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfStatused < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -280,5 +280,16 @@ class PokeBattle_Move_SleepTargetIfStatused < PokeBattle_SleepMove
     def pbEffectAgainstTarget(_user, target)
         target.pbCureStatus
         target.applySleep
+    end
+end
+
+# Empowered Pacify
+class PokeBattle_Move_EmpoweredPacify < PokeBattle_Move_SleepTargetIfStatused
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        transformType(user, :PSYCHIC)
     end
 end

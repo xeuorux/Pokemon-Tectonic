@@ -667,7 +667,7 @@ end
 class PokeBattle_AI_RUBARIOR < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:CURSE, {
+        @warnedIFFMove.add(:CURSEDOATH, {
             :condition => proc { |_move, user, target, _battle|
                 next target.hasRaisedStatSteps?
             },
@@ -797,7 +797,7 @@ class PokeBattle_AI_KLANG < PokeBattle_AI_Boss
             end
         })
 
-        @wholeRound.push(:DISCHARGE)
+        @wholeRound.push(:ARCLAMP)
         @wholeRound.push(:VOLTTACKLE)
     end
 end
@@ -817,13 +817,6 @@ class PokeBattle_AI_ELDEGOSS < PokeBattle_AI_Boss
             next true if target.pbSpAtk(true) > target.pbSpDef(true)
             next false
         })
-    end
-end
-
-class PokeBattle_AI_DUBWOOL < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        @firstTurnOnly.push(:SKULLBASH)
     end
 end
 
@@ -935,7 +928,7 @@ end
 class PokeBattle_AI_SUDOWOODO < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:BUGBITE, {
+        @warnedIFFMove.add(:ENCORE, {
             :condition => proc { |_move, _user, target, _battle|
                 next target.lastRoundMoveCategory == 2
             },
@@ -960,7 +953,7 @@ end
 class PokeBattle_AI_SLOWKING < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        secondMoveEveryTurn(:COSMICPOWER)
+        secondMoveEveryTurn(:CALMMIND)
         secondMoveEveryTurn(:WORKUP)
     end
 end
@@ -1095,5 +1088,13 @@ class PokeBattle_AI_SIGILYPH < PokeBattle_AI_Boss
                 _INTL("{1} yearns for a high-quality room!",user.pbThis)
             },
         })
+    end
+end
+
+class PokeBattle_AI_GENGAR < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        firstMoveEveryOtherTurn(:SPITEFULCHANT)
+        secondMoveEveryTurn(:SPECTRALTONGUE)
     end
 end
