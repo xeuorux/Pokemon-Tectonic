@@ -875,6 +875,11 @@ Description = Heals 1/16th HP every turn. Protected from being poisoned.
 Name = Hadean Rage
 Description = When suffering from recoil, this Pokémon cannot go below 1 HP.
 #-------------------------------
+[HAILSTONEHELM]
+Name = Hailstone Helm
+Description = During hail, this Pokémon takes 50% less move damage, but its Speed is halved.
+Flags = HailSynergy
+#-------------------------------
 [HANDOFF]
 Name = Hand Off
 Description = Trapping and binding effects against an enemy are passed over to an ally that swaps in for this Pokémon.
@@ -1013,11 +1018,6 @@ Flags = HazardImmunity
 Name = Ice Block
 Description = It can avoid being knocked out by using its face. The face then melts.
 Flags = Immutable
-#-------------------------------
-[ICEBUNKER]
-Name = Ice Bunker
-Description = During hail, this Pokémon takes 50% less move damage, but its Speed is halved.
-Flags = HailSynergy
 #-------------------------------
 [ICEMIRROR]
 Name = Ice Mirror

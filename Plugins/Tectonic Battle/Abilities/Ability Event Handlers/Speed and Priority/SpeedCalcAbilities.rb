@@ -198,7 +198,7 @@ BattleHandlers::SpeedCalcAbility.add(:CAFFEINERUSH,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:ICEBUNKER,
+BattleHandlers::SpeedCalcAbility.add(:HAILSTONEHELM,
   proc { |ability, battler, mult|
       next mult / 2.0 if battler.battle.icy?
   }
