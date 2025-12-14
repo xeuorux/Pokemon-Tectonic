@@ -420,3 +420,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:UMBRALTENACITY,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:HAILSTONEHELM,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.icy?
+      mults[:final_damage_multiplier] *= 0.5
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
