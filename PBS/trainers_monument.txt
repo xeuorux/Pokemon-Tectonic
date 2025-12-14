@@ -2113,7 +2113,7 @@ Pokemon = URSALUNA,70
 #-------------------------------
 [POKEFAN_F3,Dalia]
 Pokemon = FROSMOTH,70
-    Moves = COLDFRONT,FROSTSPIKES,CHILL,RECOVER
+    Moves = COLDFRONT,FROSTSPIKES,CHILL,ROOST
     AbilityIndex = 0 # Ice Scales
     Item = CRYSTALVEIL
     ItemType = FLYING

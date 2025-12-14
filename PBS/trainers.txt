@@ -2957,7 +2957,7 @@ Pokemon = HARIYAMA,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = FROSMOTH,45
-    Moves = THERMALDRAIN,FRIGIDJEALOUSY,BUGBUZZ,DAZZLINGGLEAM
+    Moves = ROOST,FRIGIDJEALOUSY,BUGBUZZ,DAZZLINGGLEAM
     AbilityIndex = 0 # Ice Scales
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4733,7 +4733,7 @@ Pokemon = SCEPTILE,60
     Moves = LEAFBLADE,SEVER,REND,SWORDSDANCE
     AbilityIndex = 0 # Regenerator
 Pokemon = FROSMOTH,60
-    Moves = THERMALDRAIN,QUIVERDANCE,BUGBUZZ,RECOVER
+    Moves = THERMALDRAIN,QUIVERDANCE,BUGBUZZ,ROOST
     AbilityIndex = 0 # Ice Scales
     Item = WEAKNESSPOLICY
 Pokemon = DURANT,60
@@ -4856,7 +4856,7 @@ Pokemon = DRUDDIGON,57
     Moves = DRACOMETEOR,CROSSCHOP,DREAD,DRAGONTAIL
     AbilityIndex = 1 # Well Suited
 Pokemon = FROSMOTH,57
-    Moves = THERMALDRAIN,RECOVER,GREYMIST,TERRORSWARM
+    Moves = THERMALDRAIN,ROOST,GREYMIST,TERRORSWARM
     AbilityIndex = 0 # Ice Scales
     Item = HIVISJACKET
 #-------------------------------
