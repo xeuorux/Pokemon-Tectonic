@@ -218,6 +218,7 @@ class PokemonTrade_Scene
     receivingPokemon.setItems(heldItem)
     pbStartTradeGraphics(myPokemon,receivingPokemon,trainerName)
     $Trainer.party[pokemonIndex] = receivingPokemon
+    pbNickname(receivingPokemon) if $Options.nicknaming_prompt == 0
     refreshFollow(false)
   end
 
@@ -231,6 +232,7 @@ class PokemonTrade_Scene
     if storageBox == -1
       $Trainer.party[boxIndex] = receivingPokemon
       discoverPokemon(receivingPokemon)
+      pbNickname(receivingPokemon) if $Options.nicknaming_prompt == 0
       refreshFollow(false) if storageBox == -1
     else
       $PokemonStorage.pbDelete(storageBox, boxIndex)
