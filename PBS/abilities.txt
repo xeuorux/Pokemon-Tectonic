@@ -203,11 +203,6 @@ Flags = ChoiceLocking
 Name = Grim Neigh
 Description = Boosts Sp. Atk after knocking out any Pokémon.
 #-------------------------------
-[GULPMISSILE]
-Name = Gulp Missile
-Description = Attacks with prey caught when using Immerse, Whelm, Surf, or Dive.
-Flags = Immutable
-#-------------------------------
 [HEAVYMETAL]
 Name = Heavy Metal
 Description = Doubles this Pokémon's weight.

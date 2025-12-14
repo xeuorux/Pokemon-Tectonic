@@ -1642,7 +1642,7 @@ Pokemon = VICTREEBEL,35
     Item = FLYINGGEM
 Pokemon = CRAMORANT,35
     Moves = SURF,DRILLPECK,ICYWIND,DEFOG
-    AbilityIndex = 0 # Gulp Missile
+    AbilityIndex = 1 # Unaware
 #-------------------------------
 [LEADER_Rafael,Rafael]
 Policies = RAFAEL
@@ -7299,8 +7299,8 @@ Pokemon = AVALUGG,56
     AbilityIndex = 1 # Bitter Cold
     Item = LIGHTCLAY
 Pokemon = CRAMORANT,57
-    Moves = SURF,SKYFALL,WEATHERBURST,THROATCHOP
-    AbilityIndex = 0 # Gulp Missile
+    Moves = DIVE,SKYFALL,WEATHERBURST,THROATCHOP
+    AbilityIndex = 0 # Leap from Below
 Pokemon = MMANTINE,58
     Moves = WEATHERBURST,TOXICTASTE,IRONHEAD,AGONIZE
     AbilityIndex = 0 # Slush Rush
@@ -9281,8 +9281,8 @@ Pokemon = INDEEDEE,70
 #-------------------------------
 [SAILOR,Dom]
 Pokemon = CRAMORANT,70
-    Moves = SURF,FLIPTURN,BRAVEBIRD,ROOST
-    AbilityIndex = 0 # Gulp Missile
+    Moves = DIVE,FLIPTURN,BRAVEBIRD,ROOST
+    AbilityIndex = 0 # Leap from Below
 Pokemon = DUDUDUNSPARCE,70
     Moves = FLEURCANNON,HEAVENSEYES,SANDBLASTING,ROOST
     AbilityIndex = 1 # Adapted

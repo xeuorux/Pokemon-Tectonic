@@ -446,6 +446,11 @@ Description = Grows at the end of each turn, slowing down but improving other st
 Name = Shellcracker
 Description = Its physical attacks reduce the target's Defense.
 #-------------------------------
+[GULPMISSILE]
+Name = Gulp Missile
+Description = Attacks with prey caught when using Immerse, Whelm, Surf, or Dive.
+Flags = Immutable
+#-------------------------------
 [GUTS]
 Name = Guts
 Description = Boosts Attack by 33% if has a status condition. Ignores burn physical damage reduction.

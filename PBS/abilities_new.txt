@@ -1176,6 +1176,10 @@ Flags = Immutable
 Name = Lauoho Lasso
 Description = On the first turn, its special attacks trap the target and damage it for three turns.
 #-------------------------------
+[LEAPFROMBELOW]
+Name = Leap from Below
+Description = This Pokémon's Speed is doubled while using charging moves.
+#-------------------------------
 [LEVIATHAN]
 Name = Leviathan
 Description = Protected from critical hits. Can't be burned or frostbitten.
@@ -2186,7 +2190,7 @@ Description = When an ally switches in, this Pokémon's Speed is increased.
 #-------------------------------
 [SWIFTSTOMPS]
 Name = Swift Stomps
-Description = The Pokémon's Speed is doubled while using kicking moves.
+Description = This Pokémon's Speed is doubled while using kicking moves.
 #-------------------------------
 [SWORDPLAY]
 Name = Swordplay
