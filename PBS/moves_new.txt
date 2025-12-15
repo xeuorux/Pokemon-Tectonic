@@ -6930,7 +6930,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableScalesFaster
 Flags = CanProtect
-Description = The user flies high up into the air at supersonic speeds, charging and becoming hidden. It greatly increases in power the faster the user is.
+Description = The user flies high up into the air at supersonic speed, charging and becoming hidden. It greatly increases in power the faster the user is.
 Animation = FLY
 #-------------------------------
 [LOOMOVER]
