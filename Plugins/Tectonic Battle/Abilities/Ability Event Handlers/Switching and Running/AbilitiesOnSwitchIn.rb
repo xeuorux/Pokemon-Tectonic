@@ -1380,10 +1380,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:INKSPRAY,
     battle.pbShowAbilitySplash(battler, ability) unless aiCheck
     score = 0
     battler.eachOpposing do |b|
+      next if b.effectActive?(:Blindness)
       if aiCheck
         score += getBlindnessEffectScore(battler,b)
       else
-        next if b.effectActive?(:Blindness)
         b.applyEffect(:Blindness)
       end
     end
