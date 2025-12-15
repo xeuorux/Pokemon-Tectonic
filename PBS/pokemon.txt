@@ -11999,6 +11999,7 @@ Formalizer = 0,1,2,3,4,5
 [UXIE]
 Name = Uxie
 Type1 = PSYCHIC
+Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,75,130,95,75,130
 # Total = 600
@@ -12021,6 +12022,7 @@ Flags = Legendary
 [MESPRIT]
 Name = Mesprit
 Type1 = PSYCHIC
+Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,105,105,80,105,105
 # Total = 600
@@ -12043,6 +12045,7 @@ Flags = Legendary
 [AZELF]
 Name = Azelf
 Type1 = PSYCHIC
+Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,135,70,115,135,70
 # Total = 600
