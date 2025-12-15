@@ -930,6 +930,10 @@ Description = In sandstorm, Attack is boosted by 30%.
 Name = Sand Veil
 Description = Takes 25% less damage in a sandstorm.
 #-------------------------------
+[SAPPER]
+Name = Sapper
+Description = Upon entry, traps each opponent in a sand tomb for two turns.
+#-------------------------------
 [SCRAPPY]
 Name = Scrappy
 Description = Enables moves to hit Ghost-type Pokémon.
