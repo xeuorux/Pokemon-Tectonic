@@ -1088,6 +1088,10 @@ Description = On the first turn, its attacks jinx the target.
 Name = Infected
 Description = The Pokémon is also Grass-type. When hit by an attack, the attacker's ability becomes Infected.
 #-------------------------------
+[INKSPRAY]
+Name = Ink Spray
+Description = Upon entry, blinds all foes.
+#-------------------------------
 [INNERHEAT]
 Name = Inner Heat
 Description = Summons sunshine for four turns when hit by an attack.

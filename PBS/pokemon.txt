@@ -6675,8 +6675,8 @@ Generation = 8
 Name = Remoraid
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 35,40,35,65,80,35
-# Total = 290
+BaseStats = 55,40,50,25,85,55
+# Total = 310
 BaseEXP = 60
 Rareness = 145
 Happiness = 50
@@ -6697,12 +6697,12 @@ Name = Octillery
 Type1 = WATER
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,80,75,45,130,75
-# Total = 500
+BaseStats = 95,70,85,45,145,90
+# Total = 530
 BaseEXP = 168
 Rareness = 60
 Happiness = 50
-Abilities = JUGGERNAUT,REPETITION
+Abilities = INKSPRAY,REPETITION
 Moves = 0,TARVOLLEY
 StepsToHatch = 5355
 Height = 0.9
