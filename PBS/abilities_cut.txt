@@ -115,6 +115,10 @@ Flags = FlinchImmunity
 Name = Big Pecks
 Description = Protects from Def-lowering or Sp. Def-lowering.
 #-------------------------------
+[BITTER]
+Name = Bitter
+Description = Its attacks are critical against frostbitten targets.
+#-------------------------------
 [BIZARRE]
 Name = Bizarre
 Description = Its special attacks reduce the target's Sp. Def.
@@ -258,6 +262,10 @@ Description = When it attacks from underground in sandstorm, it'll transform int
 [EARLYBIRD]
 Name = Early Bird
 Description = The Pokémon awakens quickly from sleep.
+#-------------------------------
+[ECCENTRIC]
+Name = Eccentric
+Description = If the Pokémon's stats would be changed, they're instead changed half as much in the opposite direction.
 #-------------------------------
 [ECTOPARTICLES]
 Name = Ecto-Particles
@@ -676,6 +684,10 @@ Flags = MoonglowSynergy
 [MORPHINGGUARD]
 Name = Morphing Guard
 Description = After being attacked, gains immunity to that move's type but loses other morphed immunities.
+#-------------------------------
+[MOTHBURGLAR]
+Name = Moth Burglar
+Description = Hits opponent with Thief when switched out.
 #-------------------------------
 [MYSTICTAP]
 Name = Mystic Tap
