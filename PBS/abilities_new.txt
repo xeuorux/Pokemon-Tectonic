@@ -459,6 +459,10 @@ Description = Enemies which swap in take damage equal to 1/8th their HP.
 Name = Direct Current
 Description = At the end of each turn, its Sp. Atk is lowered. Then, you choose to raise its Speed or heal it for 1/5th HP.
 #-------------------------------
+[DISASTERRESPONSE]
+Name = Disaster Response
+Description = This Pokemon gains an extra turn whenever it gains a non-volatile status condition or becomes trapped.
+#-------------------------------
 [DISCOMBOBULATOR]
 Name = Discombobulator
 Description = When this Pokémon flinches a target that has already moved, it will flinch next turn.

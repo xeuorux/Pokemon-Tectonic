@@ -623,19 +623,12 @@ FormName = Active Mode
 FormName = 10%
 BaseStats = 65,105,85,135,75,85
 # Total = 550
+Abilities = DISASTERRESPONSE
 Height = 1.2
 Weight = 33.5
 Pokedex = This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
 #-------------------------------
 [ZYGARDE,2]
-FormName = Complete
-BaseStats = 225,90,120,85,90,95
-# Total = 705
-Height = 4.5
-Weight = 610.0
-Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
-#-------------------------------
-[ZYGARDE,3]
 FormName = Complete
 BaseStats = 225,90,120,85,90,95
 # Total = 705
