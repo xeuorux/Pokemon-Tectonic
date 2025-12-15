@@ -842,7 +842,7 @@ class PokeBattle_Battler
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power and made it {3}!", 
                 getItemName(user.effects[:EmpoweringHerbConsumed]), 
-                move.name, move.physicalMove? ? "special" : "physical" # swapped because the calculatedCategory isn't set yet 
+                move.name, move.physicalMove? ? "physical" : "special" # swapped because the calculatedCategory isn't set yet 
             ))
             aiLearnsItem(user.effects[:EmpoweringHerbConsumed])
         end
