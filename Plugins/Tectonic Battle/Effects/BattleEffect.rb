@@ -217,7 +217,8 @@ module GameData
             @resets_on_move_start	= hash[:resets_on_move_start] || false
             @resets_on_move_start_no_special = hash[:resets_on_move_start_no_special] || false
 
-            @ticks_down             = hash[:ticks_down] || false
+            @ticks_down_eor         = hash[:ticks_down_eor] || false
+            @ticks_down_sor         = hash[:ticks_down_sor] || false
             @tick_amount            = hash[:tick_amount] || 1
             @ticks_down_proc        = hash[:ticks_down_proc]
 
@@ -297,7 +298,7 @@ module GameData
             if @type != :Integer
                 raise _INTL("Battle effect #{@id} defines increment proc when its not an integer.") if @increment_proc
                 raise _INTL("Battle effect #{@id} defines expire proc when its not an integer.") if @expire_proc
-                raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down || @ticks_down_proc
+                raise _INTL("Battle effect #{@id} is set to tick down, but its not an integer.") if @ticks_down_eor || @ticks_down_sor || @ticks_down_proc
                 raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") unless @maximum.nil?
             end
             if @entry_proc && @location != :Position && @location != :Side
@@ -394,9 +395,19 @@ module GameData
             return ""
         end
 
+        def ticks_down_eor?(battle, value)
+            return false unless @ticks_down_eor
+            return ticks_down?(battle, value)
+        end
+
+        def ticks_down_sor?(battle, value)
+            return false unless @ticks_down_sor
+            return ticks_down?(battle, value)
+        end
+
         def ticks_down?(battle, value)
             return @ticks_down_proc.call(battle, value) if @ticks_down_proc
-            return @ticks_down
+            return true
         end
 
         ### Methods dealing with the effect when a battler is initialized

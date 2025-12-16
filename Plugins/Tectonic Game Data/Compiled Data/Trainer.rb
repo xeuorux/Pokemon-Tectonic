@@ -141,11 +141,11 @@ module GameData
             partyEntry[:moves]&.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 unless moveData.learnable?
-                  raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
+                  Compiler.logLegalityError _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
                 end
 
                 unless speciesData.learnable_moves.include?(moveID)
-                  raise _INTL("Trainer #{trainerName}'s #{speciesData.species} can't learn the move #{moveID} assigned to it!")
+                  Compiler.logLegalityError _INTL("Trainer #{trainerName}'s #{speciesData.species} can't learn the move #{moveID} assigned to it!")
                 end
 
                 hasStatusMove = true if moveData.status?
@@ -156,7 +156,7 @@ module GameData
                 itemData = GameData::Item.get(itemID)
                 next if itemData.legal?(true)
                 statusBlockItem = true if itemData.is_no_status_use?
-                raise _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
+                Compiler.logLegalityError _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
             end
 
             if hasStatusMove && statusBlockItem
@@ -490,10 +490,10 @@ module Compiler
               ev_total += (property_value[s.pbs_order] || property_value[0])
             end
             if ev_total > Pokemon::EV_LIMIT
-              raise _INTL("Total EVs are greater than allowed ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
+              Compiler.logLegalityError _INTL("Total EVs are greater than allowed ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
             end
             if ev_total < Pokemon::EV_LIMIT
-              raise _INTL("Total EVs are less than required ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
+              Compiler.logLegalityError _INTL("Total EVs are less than required ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
             end
           when "Happiness"
             if property_value > 255

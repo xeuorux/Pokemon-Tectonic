@@ -28,7 +28,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Reflect,
     :real_name => "Reflect",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for {2} more turns!", teamName, value - 1))
@@ -45,7 +45,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :LightScreen,
     :real_name => "Light Screen",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for {2} more turns!", teamName, value - 1))
@@ -62,7 +62,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :AuroraVeil,
     :real_name => "Aurora Veil",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised! This will last for {2} more turns!",
@@ -80,7 +80,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :RepulsionField,
     :real_name => "Repulsion Field",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} takes less damage from moves with 100+ base power! This will last for {2} more turns!",
@@ -101,7 +101,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :LuckyChant,
     :real_name => "Lucky Chant",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is now blessed!", teamName))
         battle.pbDisplay(_INTL("They'll be protected from critical hits for {1} more turns!", teamName, value - 1))
@@ -118,7 +118,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Mist,
     :real_name => "Mist",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is shrouded in mist!", teamName))
         battle.pbDisplay(_INTL("Their stats can't be lowered for {1} more turns!", value - 1))
@@ -135,7 +135,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Safeguard,
     :real_name => "Safeguard",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!", teamName))
         battle.pbDisplay(_INTL("They'll be protected from status ailments for {1} more turns!", value - 1))
@@ -152,7 +152,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Sanctuary,
     :real_name => "Sanctuary",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is protected by a blessed wall of light!", teamName))
@@ -171,7 +171,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :NaturalProtection,
     :real_name => "Natural Protection",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became determined to survive!", teamName))
         battle.pbDisplay(_INTL("They'll take half damage from sources that aren't attacks for {1} more turns!", value - 1))
@@ -238,20 +238,6 @@ GameData::BattleEffect.register_effect(:Side, {
     },
 })
 
-GameData::BattleEffect.register_effect(:Side, {
-    :id => :Quarantine,
-    :real_name => "Quarantine",
-    :resets_eor => true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, battle|
-            user.applyEffect(:Disable,applyEffectDurationModifiers(3, user)) if user.canBeDisabled?(true,move)
-        end,
-        :does_negate_proc => proc do |_user, _target, move, _battle|
-            move.statusMove?
-        end,
-    },
-})
-
 ##########################################
 # Pledge combo effects
 ##########################################
@@ -259,7 +245,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Rainbow,
     :real_name => "Rainbow Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A rainbow appeared in the sky above {1}!", teamName))
@@ -278,7 +264,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :SeaOfFire,
     :real_name => "Sea of Fire Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :remain_proc => proc do |battle, side, _teamName|
         battle.pbCommonAnimation("SeaOfFire") if side.index == 0
         battle.pbCommonAnimation("SeaOfFireOpp") if side.index == 1
@@ -307,7 +293,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Swamp,
     :real_name => "Swamp Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A swamp enveloped {1}!", teamName))
@@ -500,7 +486,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :MisdirectingFog,
     :real_name => "Misdirecting Fog",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName = teamName.downcase
         battle.pbDisplay(_INTL("A fog covered {1}!", teamName))
@@ -519,7 +505,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :PrimalForest,
     :real_name => "Primal Forest",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName = teamName.downcase
         battle.pbDisplay(_INTL("A primal forest surrounded {1}!", teamName))
@@ -538,7 +524,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :CruelCocoon,
     :real_name => "Cruel Cocoon",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         battle.pbDisplay(_INTL("{1} was enclosed in a cocoon of scales!", teamName))
     end,
@@ -566,7 +552,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :TurbulentSky,
     :real_name => "Turbulent Sky",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName = teamName.downcase
         battle.pbDisplay(_INTL("A turbulent sky appeared above {1}!", teamName))
@@ -588,7 +574,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :SpringPlantings,
     :real_name => "Spring Plantings",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} began the spring plantings!", teamName))
         battle.pbDisplay(_INTL("Their Sp. Def will be raised by 50 percent for {1} more turns!", value - 1))
@@ -620,7 +606,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :SummerFestivals,
     :real_name => "Summer Festivals",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} began the summer festivals!", teamName))
         battle.pbDisplay(_INTL("Their Speed will be raised by 50 percent for {1} more turns!", value - 1))
@@ -650,7 +636,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :AutumnHarvests,
     :real_name => "Autumn Harvests",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} began the autumn harvests!", teamName))
         battle.pbDisplay(_INTL("Their Defense will be raised by 50 percent for {1} more turns!", value - 1))
@@ -677,7 +663,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :WinterHunts,
     :real_name => "Winter Hunts",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} began the winter hunts!", teamName))
         battle.pbDisplay(_INTL("Their Accuracy will be raised by 50 percent for {1} more turns!", value - 1))
@@ -731,7 +717,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Tailwind,
     :real_name => "Tailwind Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         teamName = teamName.downcase
         battle.pbDisplay(_INTL("A Tailwind blew from behind {1}!", teamName))
@@ -753,7 +739,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :EmpoweredTailwind,
     :real_name => "Primeval Tailwind",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         teamName = teamName.downcase
         battle.pbDisplay(_INTL("A Primeval Tailwind blew from behind {1}!", teamName))
@@ -966,7 +952,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :WishingWell,
     :real_name => "Wishing Well",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         battle.pbDisplay(_INTL("{1} is blessed by the Wishing Well!", teamName))
         battle.pbDisplay(_INTL("It'll block random added effects for {1} turns !", _value - 1))
@@ -986,5 +972,5 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :IceSculptureTurns,
     :real_name => "Turns Until Freeze",
     :type => :Integer,
-    :ticks_down => true
+    :ticks_down_eor => true
 })

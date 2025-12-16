@@ -176,13 +176,14 @@ class PokeBattle_Battle
 
             # Toxin Tax
             if damageDealt > 0
-                priority.each do |b|
-                    next unless b.hasActiveAbility?(:TOXINTAX)
-                    next unless b.canHeal?
-                    pbShowAbilitySplash(b, :TOXINTAX)
-                    healingMessage = _INTL("{1} absorbs the damage from the poison.", b.pbThis)
-                    b.pbRecoverHP(damageDealt, true, true, true, healingMessage)
-                    pbHideAbilitySplash(b)
+                priority.each do |tax_user|
+                    next unless tax_user.hasActiveAbility?(:TOXINTAX)
+                    next unless tax_user.canHeal?
+                    next if tax_user == b
+                    pbShowAbilitySplash(tax_user, :TOXINTAX)
+                    healingMessage = _INTL("{1} absorbs the damage from the poison.", tax_user.pbThis)
+                    tax_user.pbRecoverHP(damageDealt, true, true, true, healingMessage)
+                    pbHideAbilitySplash(tax_user)
                 end
             end
         end

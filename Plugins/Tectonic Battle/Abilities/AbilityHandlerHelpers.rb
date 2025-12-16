@@ -63,7 +63,7 @@ def randomStatusProcUserAbility(ability, status, chance, user, target, move, bat
         return ret
     else
         return if battle.pbRandom(100) >= chance
-        return unless move.canApplyRandomAddedEffects?(user, target, true)
+        return unless move.canApplyRandomAddedEffects?(user, target, chance, true)
         battle.pbShowAbilitySplash(user, ability)
         target.pbInflictStatus(status, 0, nil, user) if target.pbCanInflictStatus?(status, user, true, move)
         battle.pbHideAbilitySplash(user)

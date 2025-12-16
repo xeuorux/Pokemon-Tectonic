@@ -9,7 +9,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
+BattleHandlers::TargetAbilityOnHit.add(:INNERHEAT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         score = pbBattleWeatherAbility(ability, :Sunshine, target, battle, false, true, aiCheck)
         next score * -1 if aiCheck
@@ -290,6 +290,54 @@ BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
 )
 
 #########################################
+# Binding abilities
+#########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
+  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        next unless move.physicalMove?
+        next if target.fainted?
+        next if user.effectActive?(:Trapping)
+        next if user.effectActive?(:Binding)
+        next if target.effectActive?(:SwitchedIn)
+        trappingDuration = 3
+        trappingDuration *= 2 if user.hasActiveItem?(:GRIPCLAW)
+        score = 30
+        score *= 2 if user.hasActiveItemAI?(:BINDINGBAND)
+        score *= 2 if user.hasActiveItemAI?(:GRIPCLAW)
+        next score if aiCheck
+        battle.pbShowAbilitySplash(target, ability)
+        battle.pbDisplay(_INTL("{1} is being constricted!", user.pbThis))
+        user.applyEffect(:Binding, applyEffectDurationModifiers(trappingDuration, target))
+        user.applyEffect(:TrappingAbility, :CONSTRICTOR)
+        user.pointAt(:TrappingUser, target)
+        battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:MAGNETTRAP,
+  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        next unless move.specialMove?
+        next if target.fainted?
+        next if user.effectActive?(:Trapping)
+        next if user.effectActive?(:Binding)
+        next if target.effectActive?(:SwitchedIn)
+        trappingDuration = 3
+        trappingDuration *= 2 if user.hasActiveItem?(:GRIPCLAW)
+        score = 30
+        score *= 2 if user.hasActiveItemAI?(:BINDINGBAND)
+        score *= 2 if user.hasActiveItemAI?(:GRIPCLAW)
+        next score if aiCheck
+        battle.pbShowAbilitySplash(target, ability)
+        battle.pbDisplay(_INTL("{1} is being magnetized!", user.pbThis))
+        user.applyEffect(:Binding, applyEffectDurationModifiers(trappingDuration, target))
+        user.applyEffect(:TrappingAbility, :MAGNETTRAP)
+        user.pointAt(:TrappingUser, target)
+        battle.pbHideAbilitySplash(target)
+  }
+)
+
+#########################################
 # Move usage abilities
 #########################################
 
@@ -330,36 +378,6 @@ BattleHandlers::TargetAbilityOnHit.add(:BOUNCEBACK,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
-  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
-        next if target.fainted?
-        next -30 if aiCheck
-        next if user.effectActive?(:Trapping)
-        next if user.effectActive?(:Constricted)
-        next if target.effectActive?(:SwitchedIn)
-        battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Constricted, applyEffectDurationModifiers(3, target))
-        user.pointAt(:TrappingUser, target)
-        battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:MAGNETTRAP,
-  proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.specialMove?
-        next if target.fainted?
-        next -30 if aiCheck
-        next if user.effectActive?(:Trapping)
-        next if user.effectActive?(:Magnetized)
-        next if target.effectActive?(:SwitchedIn)
-        battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Magnetized, applyEffectDurationModifiers(3, target))
-        user.pointAt(:TrappingUser, target)
-        battle.pbHideAbilitySplash(target)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:FRIGIDREFLECTION,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
@@ -391,6 +409,15 @@ BattleHandlers::TargetAbilityOnHit.add(:LOUDSLEEPER,
     }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SNORER,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+          next if target.fainted?
+          next unless target.asleep?
+          next -15 * aiNumHits if aiCheck
+          battle.forceUseMove(target, :SNORE, user.index, ability: ability, moveUsageEffect: :Snorer)
+    }
+)
+
 #########################################
 # Numb inducing abilities
 #########################################
@@ -400,7 +427,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
         next if user.numbed?
         if aiCheck
             if user.effectActive?(:PhysNumbWarned) || aiNumHits > 1
-                next -getNumbEffectScore(target, user)
+                next -(getNumbEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -422,7 +449,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
         next if user.numbed?
         if aiCheck
             if user.effectActive?(:SpecNumbWarned) || aiNumHits > 1
-                next -getNumbEffectScore(target, user)
+                next -(getNumbEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -447,7 +474,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
         next if user.poisoned?
         if aiCheck
             if user.effectActive?(:PhysPoisonWarned) || aiNumHits > 1
-                next -getPoisonEffectScore(target, user)
+                next -(getPoisonEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -469,7 +496,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
         next if user.poisoned?
         if aiCheck
             if user.effectActive?(:SpecPoisonWarned) || aiNumHits > 1
-                next -getPoisonEffectScore(target, user)
+                next -(getPoisonEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -494,7 +521,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
         next if user.burned?
         if aiCheck
             if user.effectActive?(:PhysBurnWarned) || aiNumHits > 1
-                next -getBurnEffectScore(target, user)
+                next -(getBurnEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -516,7 +543,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
         next if user.burned?
         if aiCheck
             if user.effectActive?(:SpecBurnWarned) || aiNumHits > 1
-                next -getBurnEffectScore(target, user)
+                next -(getBurnEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -541,7 +568,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
         next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:PhysFrostWarned) || aiNumHits > 1
-                next -getFrostbiteEffectScore(target, user)
+                next -(getFrostbiteEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -563,7 +590,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
         next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:SpecFrostWarned) || aiNumHits > 1
-                next -getFrostbiteEffectScore(target, user)
+                next -(getFrostbiteEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -580,53 +607,6 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 )
 
 #########################################
-# Dizzy inducing abilities
-#########################################
-BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
-    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
-        next if user.dizzy?
-        if aiCheck
-            if user.effectActive?(:PhysDizzyWarned) || aiNumHits > 1
-                next -getDizzyEffectScore(target, user)
-            else
-                next -10
-            end
-        end
-        if user.effectActive?(:PhysDizzyWarned)
-            randomStatusProcTargetAbility(ability, :DIZZY, 100, user, target, move, battle, aiCheck, aiNumHits)
-            user.disableEffect(:PhysDizzyWarned)
-        else
-            battle.pbShowAbilitySplash(target, ability)
-            user.applyEffect(:PhysDizzyWarned)
-            battle.pbHideAbilitySplash(target)
-        end
-    }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
-    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.specialMove?
-        next if user.dizzy?
-        if aiCheck
-            if user.effectActive?(:SpecDizzyWarned) || aiNumHits > 1
-                next -getDizzyEffectScore(target, user)
-            else
-                next -10
-            end
-        end
-        if user.effectActive?(:SpecDizzyWarned)
-            randomStatusProcTargetAbility(ability, :DIZZY, 100, user, target, move, battle, aiCheck, aiNumHits)
-            user.disableEffect(:SpecDizzyWarned)
-        else
-            battle.pbShowAbilitySplash(target, ability)
-            user.applyEffect(:SpecDizzyWarned)
-            battle.pbHideAbilitySplash(target)
-        end
-    }
-)
-
-#########################################
 # Leech inducing abilities
 #########################################
 BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
@@ -635,7 +615,7 @@ BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
         next if user.leeched?
         if aiCheck
             if user.effectActive?(:PhysLeechWarned) || aiNumHits > 1
-                next -getLeechEffectScore(target, user)
+                next -(getLeechEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -657,7 +637,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
         next if user.leeched?
         if aiCheck
             if user.effectActive?(:SpecLeechWarned) || aiNumHits > 1
-                next -getLeechEffectScore(target, user)
+                next -(getLeechEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -682,7 +662,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SOPPING,
         next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:PhysWaterlogWarned) || aiNumHits > 1
-                next -getWaterlogEffectScore(target, user)
+                next -(getWaterlogEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -704,7 +684,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BACKWASH,
         next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:SpecWaterlogWarned) || aiNumHits > 1
-                next -getWaterlogEffectScore(target, user)
+                next -(getWaterlogEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -726,21 +706,20 @@ BattleHandlers::TargetAbilityOnHit.add(:BACKWASH,
 
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
         next if user.effectActive?(:Curse)
         if aiCheck
-            if user.effectActive?(:PhysCurseWarned) || aiNumHits > 1
+            if user.effectActive?(:CurseWarned) || aiNumHits > 1
                 next -30
             else
                 next -10
             end
         end
         battle.pbShowAbilitySplash(target, ability)
-        if user.effectActive?(:PhysCurseWarned)
+        if user.effectActive?(:CurseWarned)
             user.applyEffect(:Curse)
-            user.disableEffect(:PhysCurseWarned)
+            user.disableEffect(:CurseWarned)
         else
-            user.applyEffect(:PhysCurseWarned)
+            user.applyEffect(:CurseWarned)
         end
         battle.pbHideAbilitySplash(target)
     }
@@ -1036,6 +1015,7 @@ BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
         end
         battle.pbShowAbilitySplash(target, ability)
         target.pbOpposingSide.incrementEffect(:Spikes)
+        battle.pbAnimation(:SPIKES, target, nil)
         battle.pbHideAbilitySplash(target)
     }
 )

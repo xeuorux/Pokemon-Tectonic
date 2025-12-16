@@ -29,6 +29,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BOULDERNEST,
           battle.pbDisplay(_INTL("But there were already pointed stones floating around {1}!",
                 battler.pbOpposingTeam(true)))
       else
+          battle.pbAnimation(:STEALTHROCK, battler, nil)
           battler.pbOpposingSide.applyEffect(:StealthRock)
       end
       battle.pbHideAbilitySplash(battler)

@@ -4,6 +4,8 @@ BattleHandlers::PriorityBracketChangeAbility.add(:STALL,
   }
 )
 
+BattleHandlers::PriorityBracketChangeAbility.copy(:STALL,:APATHETIC)
+
 BattleHandlers::PriorityBracketChangeAbility.add(:QUICKDRAW,
     proc { |ability, _battler, subPri, battle|
         next 1 if subPri < 1 && battle.pbRandom(10) < 3

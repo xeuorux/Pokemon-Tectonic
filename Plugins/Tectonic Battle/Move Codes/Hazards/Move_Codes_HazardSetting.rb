@@ -57,6 +57,39 @@ class PokeBattle_Move_SpikesFirstLayerOnly < PokeBattle_Move_Spikes
 end
 
 #===============================================================================
+# Sets two layers of spikes, at the cost of a third of max HP. (Shed Spines)
+#===============================================================================
+class PokeBattle_Move_TwoSpikesLoseThirdOfTotalHP < PokeBattle_Move_Spikes
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.hp <= (user.totalhp / 3)
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
+            return true
+        end
+        super
+    end
+
+    def pbEffectGeneral(user)
+        return if damagingMove?
+        user.pbOpposingSide.incrementEffect(:Spikes,2)
+        user.applyFractionalDamage(1.0 / 3.0)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return unless damagingMove?
+        return if target.pbOwnSide.effectAtMax?(:Spikes)
+        target.pbOwnSide.incrementEffect(:Spikes,2)
+        user.applyFractionalDamage(1.0 / 3.0)
+    end
+
+    def getEffectScore(user, target)
+        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(:Spikes)
+        score = getHazardSettingEffectScore(user, target) * 2
+        score += getHPLossEffectScore(user, 1.0 / 3.0)
+        return score
+    end
+end
+
+#===============================================================================
 # If it faints the target, you set Spikes on the their side of the field. (Impaling Spike)
 #===============================================================================
 class PokeBattle_Move_SpikesIfTargetFaints < PokeBattle_Move
@@ -152,6 +185,7 @@ class PokeBattle_Move_EmpoweredFlameSpikes < PokeBattle_Move_Spikes
         transformType(user, :FIRE)
     end
 end
+
 #===============================================================================
 # Entry hazard. Lays poison spikes on the opposing side (max. 2 layers).
 # (Poison Spikes)

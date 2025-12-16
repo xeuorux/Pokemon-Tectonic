@@ -271,6 +271,7 @@ rescue StandardError
 end
 
 def pbGetMapNameFromId(id)
+    return pbGetMessage(MessageTypes::MapNames, id)
     map = pbGetBasicMapNameFromId(id)
     map.gsub!(/\\PN/, $Trainer.name) if $Trainer
     return map
@@ -845,10 +846,15 @@ def globalMessageReplacements(message)
     message.gsub!("–", "-")
     message.gsub!("—", "-")
     message.gsub!("Pokemon", "Pokémon")
+    message.gsub!("PokeCenter", "PokéCenter")
+    message.gsub!("Pokécenter", "PokéCenter")
     message.gsub!("Pokedex", "Pokédex")
+    message.gsub!("PokeDex", "Pokédex")
+    message.gsub!("Masterdex", "MasterDex")
     message.gsub!("Poke ball", "Poké Ball")
     message.gsub!("Poke Ball", "Poké Ball")
     message.gsub!("Pokeball", "Poké Ball")
+    message.gsub!("PokeBall", "Poké Ball")
     message.gsub!("PokEstate", "PokÉstate")
     return message
 end

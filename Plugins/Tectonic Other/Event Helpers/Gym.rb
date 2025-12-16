@@ -1,13 +1,14 @@
-BADGE_NAMES = [
-		"Loyalty",
-		"Perseverance",
-		"Patience",
-		"Reverence",
-		"Solidarity",
-		"Clarity",
-		"Generosity",
-		"Mercy"
-	]
+def badgeName
+  [ _INTL("Loyalty"),
+		_INTL("Perseverance"),
+		_INTL("Patience"),
+		_INTL("Reverence"),
+		_INTL("Solidarity"),
+		_INTL("Clarity"),
+		_INTL("Generosity"),
+		_INTL("Mercy") ]
+end
+
 TOTAL_BADGES = 8
 BADGE_COUNT_VARIABLE = 27
 
@@ -28,7 +29,7 @@ def earnBadge(badgeNum)
 		raise _INTL("Badge Number #{badgeNum} is above the total number of badges.")
 	end
 
-	name = BADGE_NAMES[badgeNum-1]
+	name = badgeName[badgeNum-1]
 	pbMessage(_INTL("\\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\\me[Badge get]You've earned the {2} Badge!\\wtnp[120]",badgeNum,name))
 	$Trainer.badges[badgeNum-1] = true
 	$game_switches[3+badgeNum] = true # "Defeated Gym X" switch

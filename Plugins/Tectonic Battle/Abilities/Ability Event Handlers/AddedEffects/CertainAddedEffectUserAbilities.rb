@@ -9,3 +9,9 @@ BattleHandlers::CertainAddedEffectUserAbility.add(:TERRORIZE,
         next move.flinchingMove?
     }
 )
+
+BattleHandlers::CertainAddedEffectUserAbility.add(:CATASTROPHIC,
+    proc { |ability, battle, user, target, move|
+        next true
+    }
+)

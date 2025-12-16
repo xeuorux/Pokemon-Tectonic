@@ -209,7 +209,7 @@ BattleHandlers::DamageCalcUserItem.add(:DEATHORB,
 
 BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
   proc { |item,user,targets,move,numHits,battle|
-    next if !user.canHeal?
+    next unless user.canHeal?
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage<=0
@@ -223,7 +223,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
 # Lunch Box
 BattleHandlers::EORHealingItem.add(:LUNCHBOX,
   proc { |item,battler,battle|
-      next if !battler.canLeftovers?
+      next unless battler.canLeftovers?
       healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,getItemName(item))
       battler.applyFractionalHealing(1.0/8.0, customMessage: healMessage, item: item)
   }

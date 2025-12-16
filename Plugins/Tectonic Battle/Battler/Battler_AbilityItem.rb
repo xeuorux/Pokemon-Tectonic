@@ -70,6 +70,9 @@ class PokeBattle_Battler
             end
         end
 
+        # Apply effect to notify if switching in for a K.O. ally. Currently only used by Keldeo's Hero's Journey.
+        position.applyEffect(:PassingKO, @pokemonIndex)
+
         # Scoure tribal bonus
         opposingIndex = (@index + 1) % 2
         opposingSide = @battle.sides[opposingIndex]

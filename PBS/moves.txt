@@ -422,8 +422,8 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = Flinch
 Flags = CanProtect,Biting
-EffectChance = 40
-Description = The user bites hard on the target with its sharp front fangs. It has a 40% to make the target flinch.
+EffectChance = 50
+Description = The user bites hard on the target with its sharp front fangs. It has a 50% to make the target flinch.
 #-------------------------------
 [HYPERVOICE]
 Name = Hyper Voice
@@ -908,7 +908,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHP
-Flags = CanProtect
+Flags = CanProtect,Biting
 Description = The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 #-------------------------------
 [SUPERSONIC]
@@ -997,7 +997,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = TypeDependsOnUserSpecialItem
+FunctionCode = TechnoBlast
 Flags = CanProtect,Light
 Description = The user fires a beam of light at its target. The type changes depending on the Drive the user holds.
 #-------------------------------
@@ -1082,18 +1082,6 @@ FunctionCode = RampagePreventSleeping
 Flags = CanProtect,Sound
 Description = The user attacks in an uproar, going on a rampage for two turns. Over that time, no one can fall asleep.
 #-------------------------------
-[WAKEUPSLAP]
-Name = Wake-Up Slap
-Type = NORMAL
-Category = Physical
-Power = 80
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = WakeUpSlap
-Flags = CanProtect
-Description = This attack inflicts double damage on a sleeping target. It also wakes the target up, however.
-#-------------------------------
 [WISH]
 Name = Wish
 Type = NORMAL
@@ -1145,9 +1133,9 @@ Description = The user looses a flurry of open-palmed arm thrusts that multi-hit
 Name = Aura Sphere
 Type = FIGHTING
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 0
-TotalPP = 15
+TotalPP = 12
 Target = NearOther
 FunctionCode = AlwaysHits
 Flags = Pulse
@@ -1345,6 +1333,7 @@ Target = NearOther
 FunctionCode = CrashDamageIfFailsUnusableInGravity
 Flags = CanProtect,Kick
 Description = The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead.
+Animation = JUMPKICK
 #-------------------------------
 [KARATECHOP]
 Name = Karate Chop
@@ -1568,18 +1557,6 @@ FunctionCode = AlwaysHits
 Flags = Blade
 Description = The user confounds the foe with speed, then slashes. Can't miss and skips protections.
 #-------------------------------
-[AEROBLAST]
-Name = Aeroblast
-Type = FLYING
-Category = Special
-Power = 95
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = Basic
-Flags = CanProtect,CanRandomCrit,Wind
-Description = A vortex of air is shot at the target to inflict damage. Can random critical hit.
-#-------------------------------
 [AIRSLASH]
 Name = Air Slash
 Type = FLYING
@@ -1619,19 +1596,6 @@ Flags = CanProtect,Wind
 EffectChance = 30
 Description = The user attacks foes with savagely cold winds. It has a 30% chance to frostbite.
 Animation = HURRICANE
-#-------------------------------
-[BOUNCE]
-Name = Bounce
-Type = FLYING
-Category = Physical
-Power = 85
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = TwoTurnAttackInvulnerableInSkyNumbTarget
-Flags = CanProtect,Kick
-EffectChance = 30
-Description = The user bounces up high, charging and becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
 #-------------------------------
 [BRAVEBIRD]
 Name = Brave Bird
@@ -1720,13 +1684,13 @@ Description = The user covers the target's body with a mass of down that lowers 
 Name = Fly
 Type = FLYING
 Category = Physical
-Power = 90
+Power = 135
 Accuracy = 100
-TotalPP = 12
+TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableInSky
 Flags = CanProtect
-Description = The user soars, charging and becoming invulnerable, then strikes on the second turn.
+Description = The user soars, charging and becoming hidden, then strikes on the second turn.
 #-------------------------------
 [GUST]
 Name = Gust
@@ -1930,7 +1894,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = Poison
-Flags = CanProtect
+Flags = CanProtect,Punch
 EffectChance = 10
 Description = The target is stabbed with a tentacle or arm seeped with poison. It has a 10% chance to poison.
 #-------------------------------
@@ -2086,13 +2050,13 @@ Description = The user strikes everything around it by stomping on the ground. I
 Name = Dig
 Type = GROUND
 Category = Physical
-Power = 90
+Power = 135
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderground
 Flags = CanProtect
-Description = The user burrows, charging and becoming invulnerable, then attacks on the second turn.
+Description = The user burrows, charging and becoming hidden, then attacks on the second turn.
 #-------------------------------
 [DRILLRUN]
 Name = Drill Run
@@ -2567,7 +2531,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
-Description = The user summons bugs to swarm the target, trapping and damaging it for three turns.
+Description = The user summons bugs to swarm the target, trapping and binding it for three turns.
 #-------------------------------
 [LEECHLIFE]
 Name = Leech Life
@@ -2951,7 +2915,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
-Description = The user disappears, charging and becoming invulnerable, then strikes on the second turn. It hits even if the foe protects itself.
+Description = The user disappears, charging and becoming hidden, then strikes on the second turn. It hits even if the foe protects itself.
 #-------------------------------
 [SHADOWPUNCH]
 Name = Shadow Punch
@@ -2988,7 +2952,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = StealPositiveStatSteps
 Flags = CanProtect
-Description = The user hides in the target's shadow, steals the target's stat boosts, and then attacks.
+Description = The user moves into the target's shadow, steals the target's stat boosts, and then attacks.
 #-------------------------------
 [SPIRITSHACKLE]
 Name = Spirit Shackle
@@ -3495,7 +3459,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect,Wind
-Description = The user engulfs the target in fierce flames, trapping and damaging it for three turns.
+Description = The user engulfs the target in fierce flames, trapping and binding it for three turns.
 #-------------------------------
 [FLAMECHARGE]
 Name = Flame Charge
@@ -3620,7 +3584,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
-Description = The user spews magma around the target, trapping and damaging it for three turns.
+Description = The user spews magma around the target, trapping and binding it for three turns.
 #-------------------------------
 [MINDBLOWN]
 Name = Mind Blown
@@ -3683,19 +3647,6 @@ FunctionCode = Rampage
 Flags = CanProtect
 Description = The user rampages and attacks while spewing flames for two turns.
 Animation = FLAREBLITZ
-#-------------------------------
-[SACREDFIRE]
-Name = Sacred Fire
-Type = FIRE
-Category = Physical
-Power = 70
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = Burn
-Flags = CanProtect
-EffectChance = 100
-Description = The target is razed with a mystical fire of great intensity. Burns the target.
 #-------------------------------
 [SEARINGSHOT]
 Name = Searing Shot
@@ -3798,19 +3749,19 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
-Description = The user clamps onto the target, trapping and damaging it for three turns.
+Description = The user clamps onto the target, trapping and binding it for three turns.
 #-------------------------------
 [DIVE]
 Name = Dive
 Type = WATER
 Category = Physical
-Power = 90
+Power = 135
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = CanProtect
-Description = Diving on the first turn, charging and becoming invulnerable, the user hits from below water on the second turn.
+Description = Diving on the first turn, charging and becoming hidden, the user hits from below water on the second turn.
 #-------------------------------
 [FISHIOUSREND]
 Name = Fishious Rend
@@ -4646,7 +4597,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = BindTarget3
 Flags = CanProtect
-Description = The user throws a cage of electricity around the target, trapping and damaging it for three turns.
+Description = The user throws a cage of electricity around the target, trapping and binding it for three turns.
 #-------------------------------
 [THUNDERFANG]
 Name = Thunder Fang
@@ -5383,9 +5334,10 @@ Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = NegateTargetAbilityIfTargetActed
+FunctionCode = Dizzy
 Flags = CanProtect
-Description = If the target has already moved this turn, the effect of its Ability is negated.
+EffectChance = 100
+Description = The user sends out a telluric shockwave, damaging and dizzying all foes.
 #-------------------------------
 [DRACOMETEOR]
 Name = Draco Meteor
@@ -5617,7 +5569,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitOncePerUserTeamMemberPhysical
 Flags = CanProtect
-Description = Hits once for each party Pokemon. Deals more damage based on their Attack.
+Description = Hits once for each party Pokémon. Deals more damage based on their Attack.
 #-------------------------------
 [BITE]
 Name = Bite
@@ -6130,16 +6082,6 @@ Flags = CanProtect,Light
 EffectChance = 40
 Description = The user emits a powerful damaging flash. It has a 40% chance to lower Sp. Atk.
 #-------------------------------
-[DECORATE]
-Name = Decorate
-Type = FAIRY
-Category = Status
-Accuracy = 0
-TotalPP = 12
-Target = NearAlly
-FunctionCode = RaiseTargetAtkSpAtk5
-Description = The user decorates the target, raising their Attack and Sp. Atk by five steps.
-#-------------------------------
 [DISARMINGVOICE]
 Name = Disarming Voice
 Type = FAIRY
@@ -6195,8 +6137,8 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = TwoTurnAttackRaiseUserAllStats3
-Description = The user charges with energy and raises all of its stats by three steps on the next turn.
+FunctionCode = TwoTurnAttackRaiseUserAllStats2
+Description = The user charges with energy and raises all of its stats by two steps on the next turn.
 #-------------------------------
 [LIGHTOFRUIN]
 Name = Light of Ruin

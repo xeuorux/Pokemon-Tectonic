@@ -22,6 +22,10 @@ ItemHandlers::UseInField.add(:CELLBOOSTER,proc { |item|
 	next useCellBooster
 })
 
+def cellBoosterActive?
+    return $PokemonBag && pbHasItem?(:CELLBOOSTER) && !cellBoosterInactive?
+end
+
 def cellBoosterInactive?
 	return $PokemonGlobal.cell_booster_inactive || false
 end

@@ -414,6 +414,9 @@ Height = 3.3
 #-------------------------------
 [KELDEO,1]
 FormName = Resolute
+BaseStats = 90,70,120,120,160,120
+# Total = 680
+Abilities = HEARTOFJUSTICE
 Pokedex = The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
 #-------------------------------
 [MELOETTA,1]
@@ -628,14 +631,17 @@ Pokedex = This is Zygarde when about 10% of its pieces have been assembled. It l
 FormName = Complete
 BaseStats = 225,90,120,85,90,95
 # Total = 705
-Abilities = POWERCONSTRUCT
 Height = 4.5
 Weight = 610.0
 Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
 #-------------------------------
 [ZYGARDE,3]
-FormName = 50%
-Abilities = POWERCONSTRUCT
+FormName = Complete
+BaseStats = 225,90,120,85,90,95
+# Total = 705
+Height = 4.5
+Weight = 610.0
+Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
 #-------------------------------
 [HOOPA,1]
 FormName = Unbound
@@ -665,21 +671,6 @@ FormName = Sensu Style
 Type1 = GHOST
 Type2 = FLYING
 Pokedex = It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
-#-------------------------------
-[LYCANROC,1]
-FormName = Midnight
-Type1 = ROCK
-Type2 = DARK
-BaseStats = 75,125,105,135,65,95
-# Total = 600
-Abilities = NOGUARD
-Height = 1.1
-Pokedex = It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
-#-------------------------------
-[LYCANROC,2]
-FormName = Dusk
-Abilities = TOUGHCLAWS
-Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]
 FormName = School
@@ -978,8 +969,8 @@ Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames 
 #-------------------------------
 [AMPHAROS,1]
 FormName = Ascended
-BaseStats = 110,100,165,80,190,165
-# Total = 810
+BaseStats = 110,100,145,80,150,145
+# Total = 730
 Pokedex = This form has gotten enough energy to go further beyond a normal Ampharos' power. It has been calculated that each orb has over 9000 volts of energy each in it.
 #-------------------------------
 [GARCHOMP,1]
@@ -1047,3 +1038,14 @@ FormName = White-Striped
 Kind = Mellow
 Pokedex = It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 Evolutions = BASCULEGION,Level,42
+#-------------------------------
+[URSALUNA,1]
+FormName = Bloodmoon
+Type1 = DARK
+Type2 = GROUND
+BaseStats = 130,45,105,65,140,60
+# Total = 545
+Abilities = BREAKTHROUGH,NOGUARD
+Height = 2.7
+Weight = 330.0
+Pokedex = This special Ursaluna can see in the dark with its left eye and protects itself with mud that is as hard as iron.

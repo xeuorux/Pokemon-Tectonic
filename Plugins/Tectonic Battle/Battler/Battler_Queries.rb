@@ -45,6 +45,8 @@ class PokeBattle_Battler
         ret.delete(:WATER) if effectActive?(:DryHeat)
         # Roost erases the Flying-type.
         ret.delete(:FLYING) if effectActive?(:Roost)
+        # Rainbow Trails erases the Fire-type.
+        ret.delete(:FIRE) if effectActive?(:RainbowTrailEntry)
         # Add the third type specially.
         ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
         ret.uniq!
@@ -492,7 +494,7 @@ class PokeBattle_Battler
     def usingMultiTurnAttack?
         @effects.each do |effect, value|
             effectData = GameData::BattleEffect.get(effect)
-            next unless effectData.multi_turn_tracker?
+            next unless effectData.multi_turn_tracker? && !effectActive?(:RampageLocked)
             return true if effectData.active_value?(value)
         end
         return false
@@ -533,11 +535,12 @@ class PokeBattle_Battler
         return inTwoTurnAttack?("TwoTurnAttackInvulnerableInSky",
         "TwoTurnAttackInvulnerableUnderground",
         "TwoTurnAttackInvulnerableUnderwater",
-        "TwoTurnAttackInvulnerableInSkyNumbTarget",
+        "TwoTurnAttackInvulnerableHiding",
+        "TwoTurnAttackInvulnerableInFoliage",
         "TwoTurnAttackInvulnerableRemoveProtections",
         "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt",
         "TwoTurnAttackInvulnerableScalesFaster",
-        "TwoTurnAttackInvulnerableJinxFrostbite")
+        "TwoTurnAttackInvulnerableJinxFrostbite",)
     end
 
     def pbEncoredMoveIndex
@@ -940,6 +943,19 @@ class PokeBattle_Battler
             return true
         end
         return shouldAbilityApply?(GameData::Ability.getByFlag("HazardImmunity"), aiCheck)
+    end
+
+    def notFullyEvolved?
+        return false unless @pokemon
+        return !@pokemon.species_data.get_evolutions.empty?
+    end
+
+    def hasAnyNotFullyEvolvedAllies?
+        eachAlly do |b|
+            next unless b.notFullyEvolved?
+            return true
+        end
+        return false
     end
 
     def hasGem?

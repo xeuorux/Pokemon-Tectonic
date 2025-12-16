@@ -58,7 +58,7 @@ Pokemon = SWAMPERT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,0,20,20
 Pokemon = LUXRAY,70
-    Moves = PHOTONEDGE,SUCKERPUNCH,SEVER,ICEFANG
+    Moves = PHOTONEDGE,SUCKERPUNCH,SEVER,GLACIALCRUNCH
     AbilityIndex = 1 # Intimidate
     Item = LUCKHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -96,7 +96,7 @@ Pokemon = HOUNDOMINUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = PORYGONZ,70
-    Moves = HEX,ZAPCANNON,ICEBEAM,DETACHMENT
+    Moves = HEX,PROFANE,ICEBEAM,DETACHMENT
     AbilityIndex = 0 # Realist
     Item = SKILLHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -146,8 +146,8 @@ Pokemon = SALAZZLE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = SANDSLASH,70
-    Moves = ADAMANTINEPRESS,RAPIDSPIN,EARTHQUAKE,STEALTHROCK
-    AbilityIndex = 1 # Tough Claws
+    Moves = ADAMANTINEPRESS,RAPIDSPIN,SHEDSPINES,STEALTHROCK
+    AbilityIndex = 1 # Spiny Ruse
     Item = ROCKGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -172,7 +172,7 @@ Pokemon = MISMAGIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = LILLIGANT,70
-    Moves = PETALTEMPEST,MISTBURST,HYPERBEAM,ENCHANTINGSONG
+    Moves = FRENZYPLANT,MISTBURST,PIERCINGDOUBT,ENCHANTINGSONG
     AbilityIndex = 1 # Herbalist
     Item = ENERGYHERB,INTELLECTHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -356,7 +356,7 @@ Pokemon = TROPIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,10,0,0,20
 Pokemon = PORYGONZ,70
-    Moves = CRITICALERROR,ICEBEAM,THUNDERBOLT,TRIATTACK
+    Moves = CRITICALERROR,ICEBEAM,PSYCHIC,TRIATTACK
     AbilityIndex = 0 # Realist
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -432,10 +432,9 @@ Pokemon = ASANDSLASH,70
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,5,0,20,5
-Pokemon = LYCANROC,70
-    Form = 2 # Dusk Form
-    Moves = ADAMANTINEPRESS,CLOSECOMBAT,KNOCKOFF,POWDERBOMB
-    AbilityIndex = 0 # Tough Claws
+Pokemon = WOLFEROC,70
+    Moves = ADAMANTINEPRESS,POWDERBOMB,STRAFE,FLAMETHROWER
+    AbilityIndex = 1 # Canid Crusher
     Item = CHOICESCARF
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,14,16,20,0
@@ -523,7 +522,7 @@ Pokemon = ESPEON,70
     EV = 10,20,0,20,20,0
 Pokemon = CROBAT,70
     Moves = EXSANGUINATE,STRAFE,HUNDREDHANDCLAP,UTURN
-    AbilityIndex = 1 # Infiltrator
+    AbilityIndex = 1 # Rapid Onset
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,20,10,10,0
@@ -586,7 +585,7 @@ Pokemon = DELIBIRD,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = MILLIBLAZE,70
-    Moves = XSCISSOR,FLAREBLITZ,KNOCKOFF,THUNDERFANG
+    Moves = XSCISSOR,FLAREBLITZ,KNOCKOFF,VOLTCRUNCH
     AbilityIndex = 1 # Exotherm Engine
     Item = CHOICEBAND
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -669,8 +668,8 @@ Pokemon = ARCLAMOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
 Pokemon = ABSOLUS,70
-    Moves = FLEURCANNON,KNOCKOFF,ZENHEADBUTT,GLACIALRAM
-    AbilityIndex = 1 # Vengeance
+    Moves = FLEURCANNON,KNOCKOFF,TOTALCONTROL,ICEBEAM
+    AbilityIndex = 1 # Infamous
     Item = FAIRYGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
@@ -703,7 +702,7 @@ Pokemon = MAMOSWINE,70
     EV = 20,20,5,0,20,5
 Pokemon = FROSLASS,70
     Moves = BLIZZARD,THUNDERBOLT,SUFFOCATE,HAIL
-    AbilityIndex = 1 # Summit Spirit
+    AbilityIndex = 1 # Dead of Winter
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -746,14 +745,14 @@ Pokemon = BLASTOISE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = SALAMENCE,70
-    Moves = DIVEBOMB,REND,EARTHQUAKE,ACROBATICS
+    Moves = FLY,REND,EARTHQUAKE,ACROBATICS
     AbilityIndex = 0 # Intimidate
     Item = POWERHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = ABSOLUS,70
     Moves = INFINITEFORCE,THUNDERBOLT,ICEBEAM,DARKALLURE
-    AbilityIndex = 1 # Vengeance
+    AbilityIndex = 1 # Infamous
     Item = EXPERTBELT
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
@@ -784,7 +783,7 @@ Pokemon = DUSKNOIR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
 Pokemon = ABSOLUS,70
-    Moves = LOOMINGWINTER,FUTURESIGHT,PLANAHEAD,PLAYROUGH
+    Moves = LOOMINGWINTER,FUTURESIGHT,STROKEOFMIDNIGHT,DOOMDESIRE
     AbilityIndex = 0 # Bad Omen
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -796,7 +795,7 @@ Pokemon = GRENINJA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = DRAGALGE,70
-    Moves = POISONSPIKES,DRACOMETEOR,SCALD,SLUDGEWAVE
+    Moves = POISONSPIKES,DRACOMETEOR,THUNDERBOLT,SLUDGEWAVE
     AbilityIndex = 0 # Deterrent
     Item = ENERGYLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -872,8 +871,8 @@ Pokemon = MDUSTOX,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = SANDSLASH,70
-    Moves = ADAMANTINEPRESS,RAPIDSPIN,EARTHQUAKE,FLAMESPIKES
-    AbilityIndex = 1 # Tough Claws
+    Moves = ADAMANTINEPRESS,RAPIDSPIN,DIG,FLAMESPIKES
+    AbilityIndex = 1 # Spiny Ruse
     Item = ROCKGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -1302,7 +1301,7 @@ Pokemon = GARDEVOIR,70
 [BEAUTY,Riko]
 Pokemon = WIGGLYTUFF,70
     Moves = STEALTHROCK,KNOCKOFF,PLAYROUGH,SELFDESTRUCT
-    AbilityIndex = 0 # Staggering Slaps
+    AbilityIndex = 0 # Slumber Force
     Item = SITRUSBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,10,20,0,10,20
@@ -1363,8 +1362,8 @@ Pokemon = RHYPERIOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,0,20,20
 Pokemon = DRAGAPULT,70
-    Moves = DRAGONDARTS,UTURN,STEELWING,SIXFEETUNDER
-    AbilityIndex = 1 # Infiltrator
+    Moves = HIDDENSTRIKE,UTURN,DIVE,SIXFEETUNDER
+    AbilityIndex = 1 # Phantasmal
     Item = GHOSTGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -1395,14 +1394,14 @@ Pokemon = KECLEON,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = BASCULEGION,70
-    Moves = SHADOWSNEAK,FLIPTURN,UNDYINGRUSH,HARBORBREAKER
-    AbilityIndex = 0 # Juggernaut
+    Moves = SHADOWSNEAK,FLIPTURN,FROMBEYOND,HARBORBREAKER
+    AbilityIndex = 0 # Hadean Rage
     Item = PRISMATICPLATE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = DRAGAPULT,70
     Moves = DRAGONDARTS,UTURN,DRAGONDANCE,SIXFEETUNDER
-    AbilityIndex = 1 # Infiltrator
+    AbilityIndex = 0 # Fascinate
     Item = GHOSTGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -1563,9 +1562,9 @@ Pokemon = PYROAR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = PROBOPASS,70
-    Moves = STEELBEAM,EARTHPOWER,MISTBURST,PETRIFY
+    Moves = STEELBEAM,PSYCHIC,MISTBURST,PETRIFY
     AbilityIndex = 0 # Magnet Trap
-    Item = ENERGYLOCK
+    Item = GRIPCLAW
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 #-------------------------------
@@ -1583,7 +1582,7 @@ Pokemon = CHARIZARD,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = FURRET,70
-    Moves = UNDERMINE,UTURN,POWERHAMMER,GLACIALRAM
+    Moves = DIG,UTURN,POWERHAMMER,GLACIALRAM
     AbilityIndex = 1 # Slinky
     Item = CRYSTALVEIL
     ItemType = GROUND
@@ -1770,7 +1769,7 @@ Pokemon = ALOMOMOLA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,0,20,0,0,20
 Pokemon = URSALUNA,70
-    Moves = EARTHQUAKE,PLAYROUGH,ICEPUNCH,CRUNCH
+    Moves = EARTHQUAKE,PLAYROUGH,GLACIALRAM,CRUNCH
     AbilityIndex = 0 # Moon Basking
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1804,7 +1803,7 @@ Pokemon = NOCTOWL,70
 Policies = SUN_TEAM
 Pokemon = TORKOAL,70
     Moves = STEALTHROCK,RAPIDSPIN,GREYMIST,FLAMETHROWER
-    AbilityIndex = 1 # Drought
+    AbilityIndex = 1 # Inner Heat
     Item = HEATROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,10,0,0,20
@@ -1901,7 +1900,7 @@ Pokemon = KLAWSAR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MORPEKO,70
-    Moves = GUTCHECK,RAPIDSPIN,ELECTROSLASH,ICEFANG
+    Moves = GUTCHECK,RAPIDSPIN,ELECTROSLASH,GLACIALCRUNCH
     AbilityIndex = 0 # Hunger Switch
     Item = PRISMATICPLATE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1946,7 +1945,7 @@ Pokemon = ZEBSTRIKA,70
     EV = 10,20,0,20,20,0
 Pokemon = VIKAVOLT,70
     Moves = ENERGYBALL,BUGBUZZ,VOLTSWITCH,FLASHCANNON
-    AbilityIndex = 1 # Levitate
+    AbilityIndex = 0 # Emergency Power
     Item = LUMBERAXE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
@@ -2106,7 +2105,7 @@ Pokemon = TROPIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = URSALUNA,70
-    Moves = EARTHQUAKE,GIGAIMPACT,CRUNCH,ADAMANTINEPRESS
+    Moves = EARTHQUAKE,GIGAIMPACT,CRUNCH,GLACIALRAM
     AbilityIndex = 1 # Tough
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2114,7 +2113,7 @@ Pokemon = URSALUNA,70
 #-------------------------------
 [POKEFAN_F3,Dalia]
 Pokemon = FROSMOTH,70
-    Moves = COLDFRONT,FROSTSPIKES,CHILL,RECOVER
+    Moves = COLDFRONT,FROSTSPIKES,CHILL,ROOST
     AbilityIndex = 0 # Ice Scales
     Item = CRYSTALVEIL
     ItemType = FLYING
@@ -2127,9 +2126,9 @@ Pokemon = MMUSHARNA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
 Pokemon = PROBOPASS,70
-    Moves = FLASHCANNON,TOPSYTURVY,DIAMONDFORCE,EARTHPOWER
+    Moves = FLASHCANNON,TOPSYTURVY,DIAMONDFORCE,PSYCHIC
     AbilityIndex = 0 # Magnet Trap
-    Item = ENERGYLOCK
+    Item = GRIPCLAW
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = MBEAUTIFLY,70
@@ -2349,8 +2348,8 @@ Pokemon = BRELOOM,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = FURRET,70
-    Moves = COIL,QUICKATTACK,MEGAPUNCH,KNOCKOFF
-    AbilityIndex = 0 # Hustle
+    Moves = CAMOUFLAGE,QUICKATTACK,DIVE,KNOCKOFF
+    AbilityIndex = 1 # Slinky
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,20,0,10,0
@@ -2361,7 +2360,7 @@ Pokemon = AMUK,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
 Pokemon = VENOMOTH,70
-    Moves = TERRORSWARM,ENVENOM,DEFOG,SYNTHESIS
+    Moves = TERRORSWARM,ENVENOM,DEFOG,ROOST
     AbilityIndex = 0 # Fell Omen
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2394,7 +2393,7 @@ Pokemon = TEAMUJIN,70
     EV = 10,20,0,0,20,20
 Pokemon = BLASFEMMIE,70
     Moves = SWEETKISS,GLAMOURFLASH,MOONBLAST,RAPIDSPIN
-    AbilityIndex = 1 # Hubris
+    AbilityIndex = 1 # Sticky Situation
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
@@ -2464,7 +2463,7 @@ Pokemon = HAEROBIC,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MCARNIVINE,70
-    Moves = PURSUIT,STRAFE,ICEFANG,KNOCKOFF
+    Moves = PURSUIT,STRAFE,GLACIALCRUNCH,KNOCKOFF
     AbilityIndex = 1 # Pestilent
     Item = LUMBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2526,7 +2525,7 @@ Pokemon = DURANT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = BASCULEGION,70
-    Moves = SUPERPOWER,FLAREBLITZ,UNDYINGRUSH,HARBORBREAKER
+    Moves = BEDROCKBREAKER,FLAREBLITZ,FROMBEYOND,HARBORBREAKER
     AbilityIndex = 1 # Expertise
     Item = EXPERTBELT
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2552,14 +2551,14 @@ Pokemon = MLILLIGANT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,18,10,12,18,0
 Pokemon = SCARAPACE,70
-    Moves = SWORDSDANCE,XSCISSOR,KNOCKOFF,CLOSECOMBAT
+    Moves = SWORDSDANCE,XSCISSOR,ICEBERGBASH,CLOSECOMBAT
     AbilityIndex = 0 # Victory Molt
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
 Pokemon = BARBARACLE,70
     Moves = ARMTHRUST,ACCELEROCK,ROCKBLAST,SWORDSDANCE
-    AbilityIndex = 1 # Steel Absorb
+    AbilityIndex = 1 # Hull Hunger
     Item = LOADEDDICE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,5,0,20,5

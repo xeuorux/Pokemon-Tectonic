@@ -46,7 +46,7 @@ class PokeBattle_Move_TypeDependsOnWeather < PokeBattle_Move
 end
 
 #===============================================================================
-# Type depends on the user's held item. (Judgment, Multi-Attack, Techno Blast)
+# Type depends on the user's held item or form. (Judgment, Multi-Attack, Techno Blast)
 #===============================================================================
 class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
     def initialize(battle, move)
@@ -65,10 +65,10 @@ class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
         ret = :NORMAL
         if user.itemActive?
             if @id == :TECHNOBLAST
-                @itemTypes.each do |item, itemType|
-                    next unless user.hasItem?(item)
-                    ret = itemType if GameData::Type.exists?(itemType)
-                    break
+                if user.form == 0
+                    return :NORMAL
+                else
+                    return @itemTypes.values[user.form-1]
                 end
             elsif @id == :MULTIATTACK && user.hasItem?(:MEMORYSET)
                 return user.itemTypeChosen
@@ -98,6 +98,38 @@ class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
             end
         end
     end
+end
+
+#===============================================================================
+# Type depends on the user's form, and can be chosen if the Pokémon has the Modus Switch ability. (Techno Blast)
+#===============================================================================
+class PokeBattle_Move_TechnoBlast < PokeBattle_Move_TypeDependsOnUserSpecialItem
+    def initialize(battle, move)
+        super
+        @chosenDrive = nil
+    end
+
+    def resolutionChoice(user)
+        return unless user.hasActiveAbility?(:MODUSSWITCH)
+        return unless user.countsAs?(:GENESECT)
+        drivesToChooseFrom = @itemTypes.keys
+        if @battle.autoTesting
+            @chosenDrive = drivesToChooseFrom.sample
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenDrive = drivesToChooseFrom[0]
+        else
+            driveNames = drivesToChooseFrom.map { |drive| GameData::Item.get(drive).name }
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which drive should {1} use?", user.pbThis(true)), driveNames, 0)
+            @chosenDrive = drivesToChooseFrom[chosenIndex]
+        end
+        newForm = @itemTypes.keys.index(@chosenDrive) + 1
+        user.pbChangeForm(newForm, _INTL("{1} loaded a {2}!", user.pbThis, GameData::Item.get(@chosenDrive).name)) unless user.form == newForm
+    end
+
+    def resetMoveUsageState
+        @chosenDrive = nil
+    end
+
 end
 
 #===============================================================================

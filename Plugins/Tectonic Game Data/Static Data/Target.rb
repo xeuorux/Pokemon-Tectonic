@@ -103,7 +103,7 @@ GameData::Target.register({
   :id               => :None,
   :id_number        => 1,
   :name             => _INTL("None"),
-  :targeting_label  => "None",
+  :targeting_label  => _INTL("None"),
 })
 
 GameData::Target.register({
@@ -141,7 +141,7 @@ GameData::Target.register({
   :long_range       => true,
   :targets_user     => true,
   :targets_ally     => true,
-  :targeting_label  => "Us",
+  :targeting_label  => _INTL("Us"),
 })
 
 # Me First
@@ -160,7 +160,7 @@ GameData::Target.register({
   :name             => _INTL("Random Near Foe"),
   :num_targets      => 1,
   :targets_foe      => true,
-  :targeting_label  => "Random",
+  :targeting_label  => _INTL("Random"),
 })
 
 GameData::Target.register({
@@ -169,7 +169,7 @@ GameData::Target.register({
   :name             => _INTL("Closest Near Foe"),
   :num_targets      => 1,
   :targets_foe      => true,
-  :targeting_label  => "Closer",
+  :targeting_label  => _INTL("Closer"),
 })
 
 GameData::Target.register({
@@ -244,7 +244,7 @@ GameData::Target.register({
   :id_number        => 40,
   :name             => _INTL("User Side"),
   :affects_user_side => true,
-  :targeting_label  => "Side",
+  :targeting_label  => _INTL("Side"),
 })
 
 # Entry hazards
@@ -253,7 +253,7 @@ GameData::Target.register({
   :id_number        => 80,
   :name             => _INTL("Foe Side"),
   :affects_foe_side => true,
-  :targeting_label  => "Side",
+  :targeting_label  => _INTL("Side"),
 })
 
 GameData::Target.register({
@@ -262,7 +262,7 @@ GameData::Target.register({
   :name             => _INTL("Both Sides"),
   :affects_foe_side => true,
   :affects_user_side => true,
-  :targeting_label  => "Field",
+  :targeting_label  => _INTL("Field"),
 })
 
 GameData::Target.register({

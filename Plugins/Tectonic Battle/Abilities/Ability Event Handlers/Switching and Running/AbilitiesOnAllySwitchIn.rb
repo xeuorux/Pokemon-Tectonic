@@ -6,3 +6,13 @@ BattleHandlers::AbilityOnAllySwitchIn.add(:SWARMINSTINCT,
         battle.pbHideAbilitySplash(bearer)
     }
 )
+
+BattleHandlers::AbilityOnAllySwitchIn.add(:PROTECTIVEINSTINCT,
+  proc { |ability, switcher, bearer, battle, aiCheck|
+      next 0 if aiCheck
+      next unless switcher.notFullyEvolved?
+      battle.pbShowAbilitySplash(bearer, ability)
+      battle.pbDisplay(_INTL("{1} bonds with its younger allies!", bearer.pbThis))
+      battle.pbHideAbilitySplash(bearer)
+  }
+) 

@@ -54,6 +54,10 @@ class PokeBattle_Battle
             partyScene.pbDisplay(_INTL("Avatars can't be switched out!")) if partyScene
             return false
         end
+        if @battlers[idxBattler].effectActive?(:RampageLocked)
+            partyScene.pbDisplay(_INTL("Rampaging Pokémon can't be switched out!")) if partyScene
+            return false
+        end
         # Check whether party Pokémon can switch in
         return false unless pbCanSwitchLax?(idxBattler, idxParty, partyScene)
         # Make sure another battler isn't already choosing to switch to the party
@@ -209,7 +213,40 @@ class PokeBattle_Battle
                 next unless pbCanChooseNonActive?(idxBattler)
                 if !pbOwnedByPlayer?(idxBattler) || @controlPlayer # Opponent/ally is switching in
                     next if wildBattle? && opposes?(idxBattler) # Wild Pokémon can't switch
+
+                    # Foe chooses their switch
                     idxPartyNew = pbSwitchInBetween(idxBattler, safeSwitch: true)
+
+                    # Empathfinder / Switch Mode check
+                    if @internalBattle && trainerBattle? && opposes?(idxBattler)
+                        opponent = pbGetOwnerFromBattlerIndex(idxBattler)
+                        eachSameSideBattler do |playerBattler|
+                            next unless playerBattler.hasActiveAbility?(:EMPATHFINDER) || @switchStyle
+                            next if playerBattler.fainted?
+                            next if switched.include?(playerBattler.index)
+                            next unless pbCanChooseNonActive?(playerBattler.index)
+                            next if playerBattler.effectActive?(:Outrage)
+
+                            idxPartyForName = idxPartyNew
+                            enemyParty = pbParty(idxBattler)
+                            if enemyParty[idxPartyNew].hasAbility?(:ILLUSION)
+                                new_index = pbLastInTeam(idxBattler)
+                                idxPartyForName = new_index if new_index >= 0 && new_index != idxPartyNew
+                            end
+                            empathFinder = playerBattler.hasActiveAbility?(:EMPATHFINDER)
+                            playerBattler.showMyAbilitySplash(:EMPATHFINDER) if empathFinder
+                            if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch out {3}?", opponent.full_name, enemyParty[idxPartyForName].name, playerBattler.name))
+                                idxPlayerPartyNew = pbSwitchInBetween(playerBattler.index, canCancel: true)
+                                if idxPlayerPartyNew >= 0
+                                    pbMessageOnRecall(playerBattler)
+                                    pbRecallAndReplace(playerBattler.index,idxPlayerPartyNew)
+                                    switched.push(playerBattler.index)
+                                end
+                            end
+                            playerBattler.hideMyAbilitySplash if empathFinder
+                        end
+                    end
+
                     pbRecallAndReplace(idxBattler, idxPartyNew)
                     switched.push(idxBattler)
                 elsif trainerBattle? || bossBattle? # Player switches in in a trainer battle or boss battle
@@ -475,7 +512,7 @@ class PokeBattle_Battle
                         end
                     # Rugged
                     elsif battler.shouldAbilityApply?(:RUGGED,aiCheck)
-                            pbDisplay(_INTL("{1} resists the pointed stones!", battler.pbThis))  
+                            pbDisplay(_INTL("{1} resists the pointed stones!", battler.pbThis)) unless aiCheck
                     else # Takes damage
                         if aiCheck
                             stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)

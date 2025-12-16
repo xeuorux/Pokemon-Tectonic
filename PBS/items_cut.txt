@@ -1,5 +1,13 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[BINDINGBAND]
+Name = Binding Band
+NamePlural = Binding Bands
+Pocket = 12
+Price = 4000
+Flags = Clothing
+Description = A band that doubles the damage dealt each turn by binding moves and abilities when held.
+#-------------------------------
 [CASSBERRY]
 Name = Cass Berry
 NamePlural = Cass Berries
@@ -2001,15 +2009,6 @@ BattleUse = OnFoe
 Flags = PokeBall,SnagBall
 Description = A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.
 #-------------------------------
-[FASTBALL]
-Name = Fast Ball
-NamePlural = Fast Balls
-Pocket = 14
-Price = 300
-BattleUse = OnFoe
-Flags = PokeBall,SnagBall
-Description = A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.
-#-------------------------------
 [LEVELBALL]
 Name = Level Ball
 NamePlural = Level Balls
@@ -2027,15 +2026,6 @@ Price = 300
 BattleUse = OnFoe
 Flags = PokeBall,SnagBall
 Description = A Poké Ball with 5x strength against Pokémon encountered through fishing.
-#-------------------------------
-[HEAVYBALL]
-Name = Heavy Ball
-NamePlural = Heavy Balls
-Pocket = 14
-Price = 300
-BattleUse = OnFoe
-Flags = PokeBall,SnagBall
-Description = A Poké Ball whose strength varies with the Pokémon's weight.
 #-------------------------------
 [LOVEBALL]
 Name = Love Ball
@@ -4785,3 +4775,39 @@ Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
 Move = AURASPHERE
+#-------------------------------
+[TMCLOUDBREAK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = CLOUDBREAK
+#-------------------------------
+[TMDISSIPATION]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = DISSIPATION
+#-------------------------------
+[TMSCREECH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = SCREECH
+#-------------------------------
+[TMCOSMICPOWER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = COSMICPOWER

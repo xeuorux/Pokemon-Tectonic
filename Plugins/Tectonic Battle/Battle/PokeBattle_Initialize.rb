@@ -45,7 +45,7 @@ class PokeBattle_Battle
     attr_accessor :allMovesUsedSide0     # The list of all moves used by side 0, in order
     attr_accessor :allMovesUsedSide1     # The list of all moves used by side 1, in order
     attr_reader   :switching        # True if during the switching phase of the round
-    attr_accessor :futureSight      # True if Future Sight is hitting
+    attr_accessor :foretoldMove      # True if a foretold move (e.g. Future Sight) is hitting
     attr_accessor :specialUsage     # True if a special usage is happening
     attr_reader   :endOfRound       # True during the end of round
     attr_accessor :moldBreaker      # True if Mold Breaker applies
@@ -145,7 +145,7 @@ class PokeBattle_Battle
         @allMovesUsedSide0 = []
         @allMovesUsedSide1 = []
         @switching         = false
-        @futureSight       = false
+        @foretoldMove       = false
         @specialUsage      = false
         @endOfRound        = false
         @moldBreaker       = false

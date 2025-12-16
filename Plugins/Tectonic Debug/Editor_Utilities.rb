@@ -409,7 +409,7 @@ def pbGetLegalMoves(species)
   end
   
   def searchListWindow(cmdwin)
-    text = pbEnterText("Enter selection.",0,30).downcase
+    text = pbEnterText(_INTL("Enter selection."),0,30).downcase
     return if text.blank?
     newIndex = -1
     cmdwin.commands.each_with_index { |command, i|

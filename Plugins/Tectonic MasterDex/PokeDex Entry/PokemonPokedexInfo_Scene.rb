@@ -673,7 +673,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         move_data = GameData::Move.get(move)
         moveName = move_data.name
 
-        isSTAB = move_data.category != 2 && [fSpecies.type1, fSpecies.type2].include?(move_data.type)
+        if move_data.type == :FLEX
+            isSTAB = true
+        else
+            isSTAB = move_data.category != 2 && [fSpecies.type1, fSpecies.type2].include?(move_data.type)
+        end
 
         # Chop letters off of excessively long names to make them fit into the maximum width
         overlay = @sprites["overlay"].bitmap

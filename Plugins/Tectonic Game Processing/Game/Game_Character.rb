@@ -111,14 +111,14 @@ class Game_Character
         @move_speed = val
         # @move_speed_real is the number of quarter-pixels to move each frame. There
         # are 128 quarter-pixels per tile.
-        realMoveSpeed = get_speed_from_speed_index(val)
-        realMoveSpeed *= 1.5 if cellBoosterActive? && @dependent_event
-        self.move_speed_real = realMoveSpeed
+        self.move_speed_real = get_speed_from_speed_index(val)
     end
 
     def move_speed_real
         self.move_speed = @move_speed unless @move_speed_real
-        return @move_speed_real
+        ret = @move_speed_real
+        ret *= 1.5 if cellBoosterActive? && @dependent_event
+        return ret
     end
 
     def move_speed_real=(val)

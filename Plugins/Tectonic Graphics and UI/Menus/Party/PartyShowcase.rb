@@ -4,9 +4,6 @@ class PokemonPartyShowcase_Scene
     shadow = Color.new(160, 160, 168)
 
     def initialize(trainer,snapshot: false,snapShotName: nil,fastSnapshot: false, npcTrainer: false, illusionsFool: true, flags: [], startWithIndex: 0)
-        base = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
-
         @trainer = trainer
 
         @sprites = {}
@@ -33,6 +30,11 @@ class PokemonPartyShowcase_Scene
         @overlay2 = @sprites["overlay2"].bitmap
         pbSetSmallFont(@overlay2)
 
+        @cursorBitmap = AnimatedBitmap.new(addLanguageSuffix("Graphics/Pictures/Party/cursor_pokemon_showcase"))
+        @sprites["pokemonsel"] = SpriteWrapper.new(@viewport)
+        @sprites["pokemonsel"].bitmap = @cursorBitmap.bitmap
+        @sprites["pokemonsel"].visible = false unless @npcTrainer
+
         # Fake lead
         if startWithIndex != 0
             storage = @party[0]
@@ -47,6 +49,115 @@ class PokemonPartyShowcase_Scene
             @party[@party.length - 1] = storage
         end
 
+        drawPartyShowcase
+
+        pbFadeInAndShow(@sprites) { pbUpdate }
+
+        pbScreenCapture(snapShotName, !fastSnapshot) if snapshot
+
+        @selectedIndex = 0
+
+        loop do
+            Graphics.update
+            Input.update
+            pbUpdate
+
+            if Input.trigger?(Input::BACK) || fastSnapshot
+                pbEndScene
+                pbPlayCloseMenuSE
+                return
+            end
+
+            if @npcTrainer
+                if Input.trigger?(Input::USE)
+                    selectedPokemon = @party[@selectedIndex]
+
+                    showMasterDexCommand = -1
+                    showMovesCommand = -1
+                    showItemCommand = -1
+                    commands = []
+                    commands[showMasterDexCommand = commands.length] = _INTL("View MasterDex")
+                    commands[showMovesCommand = commands.length] = _INTL("View Moves")
+                    if selectedPokemon.hasItem?
+                        if selectedPokemon.itemCount > 1
+                            commands[showItemCommand = commands.length] = _INTL("View Items")
+                        else
+                            commands[showItemCommand = commands.length] = _INTL("View Item")
+                        end
+                    end
+                    commands[commands.length] = _INTL("Cancel")
+
+                    commandChoice = pbMessage(_INTL("View which information?"),commands,commands.length)
+                
+                    if showMasterDexCommand > -1 && commandChoice == showMasterDexCommand
+                        $Trainer.pokedex.set_last_form_seen(selectedPokemon.species, 0, selectedPokemon.form)
+						openSingleDexScreen(selectedPokemon.species)
+                    elsif showMovesCommand > -1 && commandChoice == showMovesCommand
+                        showExternalSummary(selectedPokemon)
+                    elsif showItemCommand > -1 && commandChoice == showItemCommand
+                        if selectedPokemon.itemCount > 1
+                            itemNames = []
+                            selectedPokemon.items.each do |itemID|
+                                itemNames.push(getItemName(itemID))
+                            end
+                            itemNames[itemNames.length] = _INTL("Cancel")
+                            chosenItemIndex = pbMessage(_INTL("View which item?"),itemNames,itemNames.length)
+                            if chosenItemIndex < itemNames.length - 1
+                                item = selectedPokemon.items[chosenItemIndex]
+                                showItemDescriptionMessage(item)
+                            end
+                        else
+                            item = selectedPokemon.items[0]
+                            showItemDescriptionMessage(item)
+                        end
+                    end
+                elsif Input.trigger?(Input::DOWN)
+                    @selectedIndex += 2
+                    if @selectedIndex >= @party.length
+                        if @selectedIndex % 2 == 1 && @party.length > 1
+                            @selectedIndex = 1
+                        else
+                            @selectedIndex = 0
+                        end
+                    end
+                    pbPlayCursorSE
+                elsif Input.trigger?(Input::UP)
+                    @selectedIndex -= 2
+                    if @selectedIndex < 0
+                        if @party.length % 2 == 0
+                            if @selectedIndex % 2 == 0
+                                @selectedIndex = @party.length - 2
+                            else
+                                @selectedIndex = @party.length - 1
+                            end
+                        else
+                            if @selectedIndex % 2 == 0
+                                @selectedIndex = @party.length - 1
+                            else
+                                @selectedIndex = @party.length - 2
+                            end
+                        end
+                    end
+                    pbPlayCursorSE
+                elsif Input.trigger?(Input::LEFT) || Input.trigger?(Input::RIGHT)
+                    newIndex = @selectedIndex + (@selectedIndex % 2 == 0 ? 1 : -1)
+                    if newIndex < @party.length
+                        @selectedIndex = newIndex
+                        pbPlayCursorSE
+                    else
+                        pbPlayBuzzerSE
+                    end
+                end
+                @sprites["pokemonsel"].x = 256 * (@selectedIndex % 2)
+                @sprites["pokemonsel"].y = 122 * (@selectedIndex / 2)
+            end
+        end
+    end
+    
+    def drawPartyShowcase
+        base = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+
         # Add party Pokémon sprites
         for i in 0...Settings::MAX_PARTY_SIZE
             next unless @party[i]
@@ -58,8 +169,8 @@ class PokemonPartyShowcase_Scene
         # Draw tribal bonus info at the bottom
         pbDrawImagePositions(@overlay,[["Graphics/Pictures/icon_tribal_bonus",4,bottomBarY-4]])
 
-        trainer.tribalBonus.updateTribeCount
-        bonusesList = trainer.tribalBonus.getActiveBonusesList(false)
+        @trainer.tribalBonus.updateTribeCount
+        bonusesList = @trainer.tribalBonus.getActiveBonusesList(false)
         tribesTotal = GameData::Tribe::DATA.keys.count
         fullDescription = ""
         if bonusesList.empty?
@@ -80,7 +191,7 @@ class PokemonPartyShowcase_Scene
         # Show trainer name
         if @npcTrainer
             playtesterSubmitted = nil
-            trainer.flags.each do |flag|
+            @trainer.flags.each do |flag|
                 match = flag.match(/PlayerTeam\:(.+)/)
                 next unless match
                 playtesterSubmitted = match[1]
@@ -89,15 +200,15 @@ class PokemonPartyShowcase_Scene
             if playtesterSubmitted
                 playerName = _INTL("Team Submitted by {1}", playtesterSubmitted)
             else
-                playerName = "<ar>#{trainer.full_name}</ar>"  
+                playerName = "<ar>#{@trainer.full_name}</ar>"  
             end
             drawFormattedTextEx(@overlay, Graphics.width - 304, bottomBarY, 300, playerName, base, shadow)
         elsif $Options.name_on_showcases != 1
-            playerName = "<ar>#{trainer.name}</ar>"
+            playerName = "<ar>#{@trainer.name}</ar>"
             drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
         end
 
-        unless npcTrainer
+        unless @npcTrainer
             # Show game version
             settingsLabel = "v#{Settings::GAME_VERSION}"
             settingsLabel += "-dev" if Settings::DEV_VERSION
@@ -105,8 +216,8 @@ class PokemonPartyShowcase_Scene
 
             numIcons = 0
             numIcons += 1 if Randomizer.on?
-            numIcons += 1 if flags.include?("cursed")
-            numIcons += 1 if flags.include?("perfect")
+            numIcons += 1 if @flags.include?("cursed")
+            numIcons += 1 if @flags.include?("perfect")
 
             # Show randomizer icon
             distanceBetweenIcons = 28
@@ -117,32 +228,25 @@ class PokemonPartyShowcase_Scene
             end
 
             # Show cursed icon
-            if flags.include?("cursed")
+            if @flags.include?("cursed")
                 pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_cursed",bottomIconX+2,bottomBarY-4]])
                 bottomIconX += distanceBetweenIcons
             end
 
             # Show perfect icon
-            if flags.include?("perfect")
+            if @flags.include?("perfect")
                 pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_perfect",bottomIconX,bottomBarY-4]])
                 bottomIconX += distanceBetweenIcons
             end
         end
+    end
 
-        pbFadeInAndShow(@sprites) { pbUpdate }
-
-        pbScreenCapture(snapShotName, !fastSnapshot) if snapshot
-
-        loop do
-            Graphics.update
-            Input.update
-            pbUpdate
-            if Input.trigger?(Input::BACK) || fastSnapshot
-                pbEndScene
-                pbPlayCloseMenuSE
-                return
-            end
-        end
+    def showExternalSummary(pokemon)
+        oldsprites = pbFadeOutAndHide(@sprites)
+        scene = PokemonSummary_Scene.new
+        screen = PokemonSummaryScreen.new(scene)
+        screen.pbStartSingleExternalScene(pokemon)
+        pbFadeInAndShow(@sprites,oldsprites)
     end
 
     MAX_MOVE_NAME_WIDTH = 140
@@ -277,6 +381,7 @@ class PokemonPartyShowcase_Scene
         pbFadeOutAndHide(@sprites) { pbUpdate }
         pbDisposeSpriteHash(@sprites)
         # DISPOSE OF BITMAPS HERE #
+        @cursorBitmap.dispose
     end
 
     def pbUpdate

@@ -51,7 +51,7 @@ def pbListScreen(title,lister,listWidth = Graphics.width / 2)
     elsif Input.trigger?(Input::USE)
       break
     elsif Input.trigger?(Input::SPECIAL)
-      inputText = pbEnterText("Enter selection.",0,20).downcase
+      inputText = pbEnterText(_INTL("Enter selection."),0,20).downcase
       if inputText.blank?
         next
       end

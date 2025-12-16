@@ -36,7 +36,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MONKEYMISCHIEF,
       next if switched.include?(user.index)
       next unless move.damagingMove?
       next unless user.activatesTargetAbilities?
-      next if battle.futureSight
+      next if battle.foretoldMove
       move.knockOffItems(target, user, ability: ability, firstItemOnly: true)
   }
 )
@@ -46,7 +46,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
       next if switched.include?(user.index)
       next unless move.damagingMove?
       next unless user.activatesTargetAbilities?
-      next if battle.futureSight
+      next if battle.foretoldMove
       next unless battle.moonGlowing?
       item = user.firstItem
       if move.canStealItem?(user,target, item)

@@ -262,7 +262,7 @@ end
 
 def getSelfKOMoveScore(user, _target)
     reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
-    return -200 if reserves == 0 # don't want to lose or draw
+    return -500 if reserves == 0 # don't want to lose or draw
     return ((-user.hp / user.totalhp.to_f) * 100).round
 end
 
@@ -527,13 +527,23 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     enemiesCanSteal = false
     target.eachOpposing do |opp|
-        next unless opp.hasStatBoostStealingMove?
+        next unless opp.hasStatBoostStealingMove?(target)
         enemiesCanSteal = true
         echoln("\t\t[EFFECT SCORING] A foe of the target can steal the boost! Inverting the score.")
         break
     end
 
     score *= -1 if enemiesCanSteal
+
+    enemiesCanClearStats = false
+    target.eachOpposing do |opp|
+        next unless opp.hasStatBoostClearingMove?(target)
+        enemiesCanClearStats = true
+        echoln("\t\t[EFFECT SCORING] A foe of the target can clear the boost! Scoring 0.")
+        break
+    end
+
+    score = 0 if enemiesCanClearStats
     
     score *= user.levelNerf(false,false,0.6) if user.level <= 30 && !user.pbOwnedByPlayer?
     
@@ -728,6 +738,18 @@ end
 def getFractureEffectScore(user, target)
     return 0 unless target.hasDamagingAttack?
     score = 100
+    if user.battle.pbCanSwitch?(target.index)
+	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score = score * 0.70
+    else
+        score += statStepsValueScore(target)
+	end
+    return score
+end
+
+def getBlindnessEffectScore(user, target)
+    return 0 unless target.hasDamagingAttack?
+    score = 30
     if user.battle.pbCanSwitch?(target.index)
 	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
         score = score * 0.70

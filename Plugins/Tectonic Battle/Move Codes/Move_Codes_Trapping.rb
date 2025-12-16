@@ -6,6 +6,8 @@ class PokeBattle_Move_BindTarget3 < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         return if target.fainted? || target.damageState.substitute
         return if target.effectActive?(:Trapping)
+        return if target.effectActive?(:Binding)
+        return if user.fainted?
         # Set trapping effect duration and info
         trappingDuration = 3
         trappingDuration *= 2 if user.hasActiveItem?(:GRIPCLAW)
@@ -32,7 +34,10 @@ class PokeBattle_Move_BindTarget3 < PokeBattle_Move
             msg = _INTL("{1} became ensnared by electricity!", target.pbThis)
         end
         @battle.pbDisplay(msg)
-        BattleHandlers.triggerUserAbilityEndOfTrappingMove(user.pokemon.ability_id, user, [target], self, @battle)
+
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerUserAbilityEndOfTrappingMove(ability, user, target, self, @battle)
+        end
     end
 
     def getEffectScore(user, target)

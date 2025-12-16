@@ -1,7 +1,8 @@
 
 class PokeBattle_Battle
-    def pbStartRoom(roomEffect, user, ability = nil, aiCheck = false, duration: nil)
-        duration = duration || (ability ? 4 : 8)
+    # short: shortened duration due to ability set or trick room exception
+    def pbStartRoom(roomEffect, user, short = nil, aiCheck = false, duration: nil)
+        duration = duration || (short ? 4 : 8)
         duration = user.getRoomDuration(duration, aiCheck: aiCheck)
         effectName = GameData::BattleEffect.get(roomEffect).name
         

@@ -62,3 +62,12 @@ BattleHandlers::TypeCalcAbility.add(:COLORCOLLECTOR,
         next types
     }
 )
+
+BattleHandlers::TypeCalcAbility.add(:RAINBOWTRAIL,
+    proc { |ability, battler, types|
+        if battler.effectActive?(:RainbowTrail)
+            types.concat(battler.effects[:RainbowTrail])
+        end
+        next types
+    }
+)

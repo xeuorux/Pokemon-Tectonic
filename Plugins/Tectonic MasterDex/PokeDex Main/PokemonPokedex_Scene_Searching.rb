@@ -274,9 +274,9 @@ class PokemonPokedex_Scene
     end
 
     def searchByEvolutionMethod
-        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"), _INTL("Split Evo"), _INTL("Cancel")]
+        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"),  _INTL("Has Prevo and Evo"), _INTL("Split Evo"), _INTL("Cancel")]
         relationSelection = pbMessage(_INTL("Which search?"), selections, selections.length)
-        return if relationSelection == 5
+        return if relationSelection == 6
 
         if [0,1].include?(relationSelection)
             evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
@@ -312,6 +312,8 @@ class PokemonPokedex_Scene
                 when 3
                     next dex_item[:data].get_prevolutions.empty?
                 when 4
+                    next !dex_item[:data].get_evolutions.empty? && !dex_item[:data].get_prevolutions.empty?
+                when 5
                     next dex_item[:data].get_evolutions.length > 1
                 end
 

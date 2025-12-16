@@ -147,6 +147,14 @@ class PokeBattle_Move
 
     def selectPartyMemberForEffect(idxBattler, selectableProc = nil)
         if @battle.pbOwnedByPlayer?(idxBattler)
+            return playerChoosesPartyMemberForEffect(idxBattler, selectableProc)[0]
+        else
+            return trainerChoosesPartyMemberForEffect(idxBattler, selectableProc)[0]
+        end
+    end
+
+    def selectPartyMemberForSwitchEffect(idxBattler, selectableProc = nil)
+        if @battle.pbOwnedByPlayer?(idxBattler)
             return playerChoosesPartyMemberForEffect(idxBattler, selectableProc)
         else
             return trainerChoosesPartyMemberForEffect(idxBattler, selectableProc)
@@ -188,7 +196,7 @@ class PokeBattle_Move
             next if !pkmn || pkmn.egg?
 
             pkmnScene.pbEndScene
-            return pkmn
+            return pkmn, partyIndex
         end
         pkmnScene.pbEndScene
         return nil
@@ -204,7 +212,7 @@ class PokeBattle_Move
             # Make sure the selected pokemon isn't an active battler
             next if @battle.pbFindBattler(partyIndex, idxBattler)
 
-            return pokemon if selectableProc.call(pokemon)
+            return pokemon, partyIndex if selectableProc.call(pokemon)
         end
         return nil
     end
@@ -266,6 +274,17 @@ class PokeBattle_Move
         return if newPkmn < 0
         @battle.pbRecallAndReplace(user.index, newPkmn, randomReplacement, batonPass)
         @battle.pbClearChoice(user.index) # Replacement Pokémon does nothing this round
+        @battle.moldBreaker = false if disableMoldBreaker
+        switchedBattlers.push(user.index)
+        user.pbEffectsOnSwitchIn(true)
+    end
+
+    def switchOutUserForSelectedPokemon(user,selectedPokemonIndex,switchedBattlers=[],disableMoldBreaker=true)
+        return unless @battle.pbCanSwitch?(user.index)
+        @battle.pbPursuit(user.index)
+        return if user.fainted?
+        @battle.pbRecallAndReplace(user.index,selectedPokemonIndex)
+        @battle.pbClearChoice(user.index)
         @battle.moldBreaker = false if disableMoldBreaker
         switchedBattlers.push(user.index)
         user.pbEffectsOnSwitchIn(true)

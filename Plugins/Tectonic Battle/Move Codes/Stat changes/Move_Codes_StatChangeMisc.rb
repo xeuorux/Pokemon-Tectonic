@@ -2,6 +2,8 @@
 # Resets all target's stat steps to 0. (Clear Smog)
 #===============================================================================
 class PokeBattle_Move_ResetTargetStatSteps < PokeBattle_Move
+    def statStepClearingMove?; return true; end
+
     def pbEffectAgainstTarget(_user, target)
         if target.damageState.calcDamage > 0 && !target.damageState.substitute && target.hasRaisedStatSteps?
             target.pbResetRaisedStatSteps
@@ -300,7 +302,7 @@ class PokeBattle_Move_AverageUserTargetDefenses < PokeBattle_Move
 end
 
 #===============================================================================
-# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Exsanguinate)
+# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step.
 #===============================================================================
 class PokeBattle_Move_StealAtk1 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)

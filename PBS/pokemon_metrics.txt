@@ -3552,12 +3552,6 @@ FrontSprite = 0,22
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
-[LYCANROC,1]
-BackSprite = 0,13
-FrontSprite = -9,15
-ShadowX = 0
-ShadowSize = 3
-#-------------------------------
 [MACHAMP]
 BackSprite = 0,10
 FrontSprite = -10,5
@@ -5268,6 +5262,12 @@ FrontSprite = 0,15
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
+[ROUGAROC]
+BackSprite = 0,13
+FrontSprite = -9,15
+ShadowX = 0
+ShadowSize = 3
+#-------------------------------
 [ROWLET]
 BackSprite = 0,31
 FrontSprite = 0,33
@@ -6624,6 +6624,12 @@ FrontSprite = -1,21
 ShadowX = 0
 ShadowSize = 3
 #-------------------------------
+[URSALUNA,1]
+BackSprite = 0,8
+FrontSprite = -6,14
+ShadowX = 2
+ShadowSize = 3
+#-------------------------------
 [URSARING]
 BackSprite = 0,13
 FrontSprite = 0,10
@@ -6900,6 +6906,12 @@ FrontSprite = 0,18
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
+[WOLFEROC]
+BackSprite = 0,16
+FrontSprite = -8,23
+ShadowX = 0
+ShadowSize = 3
+#-------------------------------
 [WOOBAT]
 BackSprite = 0,30
 FrontSprite = 0,23
@@ -7117,6 +7129,12 @@ ShadowX = 0
 ShadowSize = 3
 #-------------------------------
 [ZYGARDE,2]
+BackSprite = 0,1
+FrontSprite = 6,7
+ShadowX = 0
+ShadowSize = 3
+#-------------------------------
+[ZYGARDE,3]
 BackSprite = 0,1
 FrontSprite = 6,7
 ShadowX = 0

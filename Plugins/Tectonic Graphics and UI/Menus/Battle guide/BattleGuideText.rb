@@ -16,6 +16,7 @@ def battleGuideMainDirectory
         _INTL("MasterDex")         => [_INTL("What does the MasterDex do and how should I use it?"),:battleGuideMasterdexHash],
         _INTL("Weathers")          => [_INTL("What are weathers, and what does each do?"),:battleGuideWeathersHash],
         _INTL("Tribes")            => [_INTL("What are Tribes and what do they do?"),:battleGuideTribesHash],
+        _INTL("Legendary Abilities") => [_INTL("What do these legendary abilities do?"),:battleGuideLegendaryAbilitiesHash],
 }
 end
 
@@ -76,7 +77,7 @@ def battleGuideTypeChartHash
         _INTL("Bug vs Fairy") => _INTL("Bug is now Super-Effective vs Fairy. Think of insects scaring children."),
         _INTL("Grass resistances") => _INTL("Grass now resists Fairy and Ghost. Think of incense warding off magic."),
         _INTL("Ice resistances") => _INTL("Ice now resists Flying and Ground. Ice is Super-Effective against those types, so it's only natural!"),
-        _INTL("Other changes") => _INTL("Rock resists Ice. Fairy resists Dragon. Fairy is neutral against Fire. Bug resists Psychic."),
+        _INTL("Other changes") => _INTL("Rock resists Ice. Fairy resists Dragon. Fairy is neutral against Fire. Bug resists Psychic. Psychic resists Steel."),
     }
 end
 
@@ -154,6 +155,7 @@ def battleGuideVolatileStatusesHash
         _INTL("Jinx") => _INTL("When jinxed, a Pokémon cannot Protect itself, and all attacks against it are guaranteed critical hits. Jinx wears off after 3 turns. Fairy-types do the most jinxing."),
         _INTL("Fractured") => _INTL("When fractured, a Pokémon deals 33% less damage with its moves. Fracture wears off after 3 turns. Rock-types do the most fracturing."),
         _INTL("Curse") => _INTL("When cursed, a Pokémon loses 25% of its HP every turn. Ghost-types do the most cursing."),
+        _INTL("Blindness") => _INTL("When blinded, a Pokemon deals 50% damage with its next attacking move. Blindness persists until a damaging move is used by the blinded Pokemon."),
         _INTL("Torment") => _INTL("When tormented, a Pokémon cannot use the same move twice in a row. If something prevents it from moving for a turn, it can choose the same move the following turn."),
         _INTL("Taunt") => _INTL("When taunted, a Pokémon is prevented from using status moves."),
         _INTL("Disable") => _INTL("When disabled, a Pokémon cannot use the move it last selected."),
@@ -163,6 +165,7 @@ def battleGuideVolatileStatusesHash
         _INTL("Transformed") => _INTL("A transformed Pokémon becomes a copy of another. It gains their ability, moves, stats (except HP), and step boosts."),
         _INTL("Perish Song") => _INTL("A Pokémon affected by Perish Song will faint when the timer ends. Avatars will be damaged for half of an HP bar."),
         _INTL("Grounded") => _INTL("A grounded Pokémon loses their immunity to ground moves (from being Flying-type or having a Levitate ability)."),
+        _INTL("Sticky") => _INTL("The affected Pokémon's highest stat becomes reduced by 2 steps for each turn of the effect."),
     }
 end
 
@@ -243,5 +246,26 @@ def battleGuideWeathersHash
         _INTL("Weather Downsides") => _INTL("Each weather has both an upside and a downside. There are items and abilities that make your Pokémon immune to these downsides regardless of type."),
         _INTL("Weather Areas") => _INTL("Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this."),
         _INTL("Weather Synergies") => _INTL("Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!"),
+    }
+end
+
+def battleGuideLegendaryAbilitiesHash
+    return {
+        _INTL("Tapu Koko: Storm Totem") => _INTL("Pokémon on this side get a 30% move damage boost, but they are prevented from using moves that are the same type as the move they most recently used."),
+        _INTL("Tapu Fini: Fog Totem") => _INTL("Whenever a foe finishes attacking a Pokemon on this side, the attacker is forced to switch out of battle. They are able to choose the replacement."),
+        _INTL("Tapu Bulu: Wild Totem") => _INTL("Whenever a Pokemon on this side is hit, its defending stats are both lowered by 1 step and its attacking stats are both raised by 1 step."),
+        _INTL("Tapu Lele: Flutter Totem") => _INTL("At the end of each turn, the Pokemon on this side are all healed by 1/8th of their max HP, but each one of their moves has their PP reduced by 1."),
+        _INTL("Zeraora: Hybrid Fighter") => _INTL("You gain effects for using moves in an order.\nKick -> Bite: Healed by 25%.\nPunch -> Kick: You switch out.\nBite -> Punch: The target's Attack and Sp. Atk lowers by 2 steps."),
+        _INTL("Hybrid Fighter Part 2") => _INTL("Bite -> Kick: Your speed raises by 2 steps.\nKick -> Punch: Opponent is Numbed.\nPunch -> Bite: You gain Energy Charged."),
+        _INTL("Articuno: Glacial Wings") => _INTL("Severe Frostbite: The same as Frostbite, but its end-of-turn chip deals double damage if the afflicted Pokémon is below half health."),
+        _INTL("Moltres: Searing Wings") => _INTL("Severe Burn: The same as Burn, but the afflicted Pokémon also takes 33% recoil from their attacks."),
+        _INTL("Zapdos: Galvanic Wings") => _INTL("Severe Numb: The same as Numb, but the afflicted Pokémon's highest stat is reduced at the end of each turn."),
+        _INTL("Kyogre: Primordial Sea") => _INTL("Boosts the damage of Water- and Electric-type attacks by 50%. Prevents Pokémon not immune to Rain from activating moves' random added effects."),
+        _INTL("Groudon: Desolate Land") => _INTL("Boosts the damage of Fire- and Grass-type attacks by 50%. Prevents Pokémon not immune to Sun from activating critical hits."),
+        _INTL("Necrozma: Event Horizon") => _INTL("Rock- and Ground-types gain a 50% boost to Special Defense. Pokémon not immune to Sandstorm take increasing damage from end of round, doubling every two rounds."),
+        _INTL("Kyurem: Heat Death") => _INTL("Ice- and Ghost-types gain a 50% boost to Defense. Healing is prevented from Pokémon not immune to Hail while active."),
+        _INTL("Cresselia: Saturnal Sky") => _INTL("Boosts the damage of Psychic- and Dragon-type attacks by 50%. When the debuff applies from the Ring Eclipse effect, it lowers stats by 3 steps instead of 2."),
+        _INTL("Darkrai: Stygian Night") => _INTL("Boosts the damage of Fairy- and Dark-type attacks by 50%. When the flinch happens from Blood Moon, it also damages targets by 25% of their Max HP."),
+        _INTL("Giratina: Distorted Gravity") => _INTL("All foes take 1/16th damage at the end of the round. While the user is on the field, gravity does not decay."),
     }
 end

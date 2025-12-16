@@ -178,13 +178,22 @@ class PokeBattle_Battler
         # Turbulent Sky
         if pbOwnSide.effectActive?(:TurbulentSky) && !effectActive?(:Instructed) &&
                 @lastMoveUsedType && move.pbCalcType(self) == @lastMoveUsedType && move.id != @battle.struggle.id
-             msg = _INTL("{1} can't use the same type twice in a row due to the turbulent sky!", pbThis)
-             if showMessages
-                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
-             end
-             echoln(msg)
-             return false
-         end
+            msg = _INTL("{1} can't use the same type twice in a row due to the turbulent sky!", pbThis)
+            if showMessages
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            echoln(msg)
+            return false
+        end
+        # Rampage Locked
+        if effectActive?(:RampageLocked) && !move.rampagingMove?
+            msg = _INTL("{1} can't use this attack while rampaging!", pbThis)
+            if showMessages
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            echoln(msg)
+            return false
+        end
         return true
     end
 
@@ -360,6 +369,9 @@ class PokeBattle_Battler
                 @battle.pbDisplay(_INTL("{1} was ignored, and failed to protect {2}!", effectDisplayName,
 target.pbThis(true)))
             end
+            if protectionIgnoredByAbility && user.hasActiveAbility?(:PHANTASMAL)
+                target.damageState.partiallyProtected = true
+            end
             return false
         end
     end
@@ -384,6 +396,8 @@ target.pbThis(true)))
         # Ability effects that ignore protection
         protectionIgnoredByAbility = false
         protectionIgnoredByAbility = true if user.shouldAbilityApply?(:UNSEENFIST, aiCheck) && move.physicalMove?
+        protectionIgnoredByAbility = true if user.shouldAbilityApply?(:PHANTASMAL, aiCheck) && move.is_a?(PokeBattle_Move_TwoTurnAttackInvulnerable)
+
 
         # Only check the target's side if the target is not the self
         holdersToCheck = [target]

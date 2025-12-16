@@ -172,3 +172,63 @@ class PokeBattle_Move_Icebreaker < PokeBattle_RecoilMove
         return score
     end
 end
+
+#===============================================================================
+# Removes entry hazards on user's side and places them on the opponent's, then forces the targets to switch.
+# (Silver Gale)
+#===============================================================================
+
+class PokeBattle_Move_MovesHazardsToOpponentAndForcesSwitch < PokeBattle_Move
+    def forceSwitchMove?; return true; end
+    def hazardRemovalMove?; return true; end
+    def aiAutoKnows?(pokemon); return false; end
+
+    def eachHazard(side, isOurSide)
+        side.eachEffect(true) do |effect, _value, data|
+            next unless data.is_hazard?
+            yield effect, data
+        end
+    end
+
+    def removeEffect(user, side, effect, data)
+        side.disableEffect(effect)
+    end
+
+    def pbEffectGeneral(user)
+        targetSide = user.pbOpposingSide
+        ourSide = user.pbOwnSide
+        eachHazard(targetSide, false) do |effect, data|
+            removeEffect(user, targetSide, effect, data)
+            if data.is_hazard?
+                @battle.pbDisplay(_INTL("{1} blew away the {2} on the other side of the field!", user.pbThis, data.name)) unless data.has_expire_proc?
+            end
+        end
+        eachHazard(ourSide, true) do |effect, data|
+            if data.is_hazard?
+                @battle.pbDisplay(_INTL("The {1} was blown to the other side of the field!", data.name)) unless data.has_expire_proc?
+            end
+            if data.type == (:Integer)
+                increment = user.pbOwnSide.countEffect(effect)
+                user.pbOpposingSide.applyEffect(effect, increment)
+            else
+                user.pbOpposingSide.applyEffect(effect)
+            end
+            removeEffect(user, ourSide, effect, data)
+        end
+    end
+
+    def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
+        return if numHits == 0
+        forceOutTargets(user, targets, switchedBattlers, substituteBlocks: true)
+    end
+
+    def getEffectScore(user, target)
+        score = 0
+        # Dislike removing hazards that affect the enemy
+        score -= 0.4 * hazardWeightOnSide(target.pbOwnSide) if target.alliesInReserve?
+        # Like removing hazards that affect us
+        score += 2.0 * hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
+        score += getForceOutEffectScore(user, target)
+        return score
+    end
+end

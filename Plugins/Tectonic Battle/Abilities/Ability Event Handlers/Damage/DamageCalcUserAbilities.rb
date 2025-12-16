@@ -284,6 +284,15 @@ BattleHandlers::DamageCalcUserAbility.add(:BADOMEN,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:SEER,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.foretoldMove?
+      mults[:base_damage_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:CREEPINGHORROR,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.foretoldMove?
@@ -344,6 +353,15 @@ BattleHandlers::DamageCalcUserAbility.add(:LIMINAL,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if target.effectActive?(:SwitchedIn)
       mults[:attack_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:BIRDOFPREY,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if target.effectActive?(:SwitchedIn) || target.belowHalfHealth?
+      mults[:attack_multiplier] *= 1.3
       user.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -812,6 +830,15 @@ BattleHandlers::DamageCalcUserAbility.add(:BALLLIGHTNING,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:PREEMINENCE,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+      if user.pbSpeed > target.pbSpeed
+        mults[:base_damage_multiplier] *= 1.3
+        user.aiLearnsAbility(ability) unless aiCheck
+      end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:LATEBLOOMER,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.pbSpeed < target.pbSpeed
@@ -873,6 +900,15 @@ BattleHandlers::DamageCalcUserAbility.add(:SLINKY,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:PHANTASMAL,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.is_a?(PokeBattle_Move_TwoTurnAttackInvulnerable)
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:TERRORIZE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     mults[:base_damage_multiplier] *= 0.9
@@ -923,5 +959,14 @@ BattleHandlers::DamageCalcUserAbility.add(:ACTIONSTAR,
     next unless type == :NORMAL
     mults[:base_damage_multiplier] *= 1.3
     user.aiLearnsAbility(ability) unless aiCheck
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SLUMBERFORCE,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if target.asleep?
+      mults[:base_damage_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
   }
 )

@@ -59,18 +59,22 @@ def purchaseStarters(type,price=0)
 	end
 	pbMessage(_INTL("Which {1}-type starter Pokemon would you like to look at?",typeName))
 	
-	starterArray = []
+	starterArray = [_INTL("None")]
 	case type
 	when :GRASS
-		starterArray = ["None","Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+		starterName = ["Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
 	when :FIRE
-		starterArray = ["None","Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
+		starterName = ["Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
 	when :WATER
-		starterArray = ["None","Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
+		starterName = ["Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
 	else
 		return
 	end
-	
+
+  starterName.each do |id|
+    starterArray << GameData::Species.get(id.upcase).name
+  end
+
 	while true
 		result = pbShowCommands(nil,starterArray,0)
 
@@ -582,7 +586,6 @@ def hackedTMShop
 		TMRAILCANNON
 		TMEXPLOSION
 		TMMEMENTO
-		TMRAPIDSPIN
 		TMFINALGAMBIT
 		TMAIMTRUE
 		TMSTEALTHROCK
@@ -684,7 +687,7 @@ def heldItemShop
 		POWERLOCK ENERGYLOCK
 		UTILITYUMBRELLA 
 		BLACKSLUDGE
-		GRIPCLAW BINDINGBAND
+		GRIPCLAW
 		REDCARD EJECTBUTTON EJECTPACK
 		AIRBALLOON EXPERTBELT
 		EVIOLITE
@@ -758,39 +761,38 @@ def gemVendor
 	)
 end
 
+EARLY_BALL_STOCK = %i[
+	SLICEBALL
+	LEECHBALL
+	DISABLEBALL
+	POTIONBALL
+	HEALBALL
+]
 def earlyBallVendor
-	basicBallStock = %i[
-		SLICEBALL
-		LEECHBALL
-		DISABLEBALL
-		POTIONBALL
-		HEALBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		EARLY_BALL_STOCK,
 		_INTL("Poké Balls of all sorts stocked here. Take a look!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
+BASIC_BALL_STOCK = %i[
+	GREATBALL
+	REPEATBALL
+	NESTBALL
+	TIMERBALL
+	QUICKBALL
+	FRIENDBALL
+]
 def basicBallVendor
-	basicBallStock = %i[
-		GREATBALL
-		REPEATBALL
-		NESTBALL
-		TIMERBALL
-		QUICKBALL
-		FRIENDBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		BASIC_BALL_STOCK,
 		_INTL("Welcome to the Poké Ball Depot! How may I serve you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
-def weirdBallsVendor
-	weirdBallStock = %i[
+WEIRD_BALL_STOCK = %i[
 		ULTRABALL
 		DREAMBALL
 		FASTBALL
@@ -799,9 +801,23 @@ def weirdBallsVendor
 		ROYALBALL
 		BEASTBALL
 	]
+
+def weirdBallsVendor
 	pbPokemonMart(
-		weirdBallStock,
+		WEIRD_BALL_STOCK,
 		_INTL("Custom Pokéballs, made to order! You won't find these in a mart!"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def allBallsVendor
+	allBallStock = []
+	allBallStock.concat(EARLY_BALL_STOCK)
+	allBallStock.concat(BASIC_BALL_STOCK)
+	allBallStock.concat(WEIRD_BALL_STOCK)
+	pbPokemonMart(
+		allBallStock,
+		_INTL("All the Pokéballs you could ever need."),
 		!CAN_SELL_IN_VENDORS
 	)
 end

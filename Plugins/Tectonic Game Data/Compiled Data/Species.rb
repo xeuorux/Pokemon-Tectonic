@@ -202,37 +202,37 @@ module GameData
                 moveID = entry[1]
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             @line_moves.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             @tutor_moves.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             [@wild_item_common, @wild_item_uncommon, @wild_item_rare].each do |itemID|
                 next unless itemID
                 next if GameData::Item.get(itemID).legal?
-                raise _INTL("Illegal item #{itemID} is a wild item of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal item #{itemID} is a wild item of species #{@id}!")
             end
 
             @abilities.each do |abilityID|
                 next unless abilityID
                 next if GameData::Ability.get(abilityID).legal?
-                raise _INTL("Illegal ability #{abilityID} is a defined ability of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal ability #{abilityID} is a defined ability of species #{@id}!")
             end
 
             @hidden_abilities.each do |abilityID|
                 next unless abilityID
                 next if GameData::Ability.get(abilityID).legal?
-                raise _INTL("Illegal ability #{abilityID} is a defined hidden ability of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal ability #{abilityID} is a defined hidden ability of species #{@id}!")
             end
         end
 
@@ -275,7 +275,7 @@ module GameData
             return metrics_data.shows_shadow?
         end
 
-        def get_evolutions(exclude_invalid = false)
+        def get_evolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next if evo[3] # Is the prevolution
@@ -401,7 +401,16 @@ module GameData
         end
 
         def inherited_level_moves
-            return get_previous_species_data.level_moves if has_previous_species?
+            if has_previous_species?
+                inherited = []
+                get_previous_species_data.level_moves.each do |inheritableLearnsetEntry|
+                    level = inheritableLearnsetEntry[0]
+                    moveID = inheritableLearnsetEntry[1]
+                    level = 1 if level == 0
+                    inherited.push([level,moveID])
+                end
+                return inherited
+            end
             return []
         end
 
@@ -546,7 +555,7 @@ module GameData
             return level >= earliest_available
         end
 
-        def get_prevolutions(exclude_invalid = false)
+        def get_prevolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next unless evo[3] # Is an evolution
@@ -608,15 +617,15 @@ module GameData
         end
 
         def isLegendary?
-            return @flags.include?("Legendary")
+            return @flags&.include?("Legendary")
         end
 
         def isTest?
-            return @flags.include?("Test")
+            return @flags&.include?("Test")
         end
 
         def canTutorAny?
-            return @flags.include?("TutorAny")
+            return @flags&.include?("TutorAny")
         end
 
         def isUltraBeast?

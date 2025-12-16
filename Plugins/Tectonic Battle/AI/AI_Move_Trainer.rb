@@ -294,7 +294,7 @@ class PokeBattle_AI
         if move.randomEffect?
             type = pbRoughType(move, user)
             realProcChance = move.pbAdditionalEffectChance(user, target, type, 0, true)
-            realProcChance = 0 unless move.canApplyRandomAddedEffects?(user,target,false,true)
+            realProcChance = 0 unless move.canApplyRandomAddedEffects?(user,target,realProcChance,false,true)
             factor = (realProcChance / 100.0)
             echoln("\t[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by #{factor} based on effect chance")
             effectScore *= factor

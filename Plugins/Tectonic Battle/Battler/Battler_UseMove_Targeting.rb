@@ -93,17 +93,21 @@ move, false, true)
 
     def moveFailsSemiInvulnerability?(move, user, target, aiCheck = false)
         return false if user.shouldAbilityApply?(:NOGUARD, aiCheck) || target.shouldAbilityApply?(:NOGUARD, aiCheck)
-        return false if @battle.futureSight
+        return false if @battle.foretoldMove
         return false if move.hitsInvulnerable?
 
         return false if aiCheck && !user.boss? && !@battle.battleAI.userMovesFirst?(move, user, target)
 
         if target.inTwoTurnSkyAttack?
             return true unless move.hitsFlyingTargets?
-        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderground")            # Dig
+        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderground") # Dig
             return true unless move.hitsDiggingTargets?
-        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderwater")            # Dive
+        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderwater") # Dive
             return true unless move.hitsDivingTargets?
+        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableHiding") # Lurk and Hidden Strike
+            return true unless move.hitsHidingTargets?
+        elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableInFoliage") # Camouflage
+            return true unless move.hitsCamouflagedTargets?
         elsif target.inTwoTurnAttack?("TwoTurnAttackInvulnerableRemoveProtections")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
             return true
         end

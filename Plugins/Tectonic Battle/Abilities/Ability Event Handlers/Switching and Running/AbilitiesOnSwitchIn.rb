@@ -356,6 +356,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:BREAKTHROUGH,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DYNAMICENTRANCE,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is quick onto the scene!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:PACIFIST,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
@@ -419,6 +428,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:FIELDOFLIFE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:PROTECTIVEINSTINCT,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      next unless battler.hasAnyNotFullyEvolvedAllies?
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} bonds with its younger allies!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 ##########################################
 # Screen setting abilities
 ##########################################
@@ -450,6 +469,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:LUCKYCHARM,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          next getSanctuaryEffectScore(battler, 4)
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          duration = battler.getScreenDuration(4)
+          battle.pbAnimation(:SANCTUARY, battler, nil, 0)
+          battler.pbOwnSide.applyEffect(:Sanctuary, duration)
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
 ##########################################
 # Room setting abilities
 ##########################################
@@ -457,7 +490,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:MAGICROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:PuzzleRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -467,7 +500,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLING,
 BattleHandlers::AbilityOnSwitchIn.add(:ODDITY,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:MAGICROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:OddRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -487,7 +520,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SUBSPACESCHISM,
 BattleHandlers::AbilityOnSwitchIn.add(:POLARIZING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:WONDERROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:PolarizedRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -1325,5 +1358,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:DISTORTEDGRAVITY,
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} twists the dimensions!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWTRAIL,
+  proc { |ability, battler, battle, aiCheck| 
+      next unless battler.canChangeType?
+      next unless battler.hasType?(:FIRE)
+      next 0 if aiCheck
+      battler.applyEffect(:RainbowTrail, [:FLYING])
+      battler.applyEffect(:RainbowTrailEntry)
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is trailing rainbows behind it!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+      battle.scene.pbRefresh
   }
 )

@@ -58,17 +58,6 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user squeezes the target, trapping and damaging it for three turns.
 #-------------------------------
-[CAMOUFLAGE]
-Name = Camouflage
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 15
-Target = User
-FunctionCode = Invalid
-Flags = CanSnatch
-Description = The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave.
-#-------------------------------
 [CELEBRATE]
 Name = Celebrate
 Type = NORMAL
@@ -808,6 +797,18 @@ FunctionCode = Invalid
 Flags = CanProtect,Pulse
 Description = Uses the power of the terrain to attack. Type and power changes depending on the terrain.
 #-------------------------------
+[VICEGRIP]
+Name = Vice Grip
+Type = NORMAL
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Huge, impressive pincers grip and squeeze the foe.
+#-------------------------------
 [VISEGRIP]
 Name = Vise Grip
 Type = NORMAL
@@ -819,6 +820,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The target is gripped and squeezed from both sides to inflict damage.
+#-------------------------------
+[WAKEUPSLAP]
+Name = Wake-Up Slap
+Type = NORMAL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = This attack inflicts double damage on a sleeping target. It also wakes the target up, however.
 #-------------------------------
 [WEATHERBALL]
 Name = Weather Ball
@@ -1084,6 +1097,18 @@ Description = The user attacks last. In return, it's guaranteed not to miss and 
 #-------------------------------
 #		FLYING MOVES
 #-------------------------------
+[AEROBLAST]
+Name = Aeroblast
+Type = FLYING
+Category = Special
+Power = 95
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanRandomCrit,Wind
+Description = A vortex of air is shot at the target to inflict damage. Can random critical hit.
+#-------------------------------
 [AIRCUTTER]
 Name = Air Cutter
 Type = FLYING
@@ -1095,6 +1120,31 @@ Target = AllNearFoes
 FunctionCode = Invalid
 Flags = CanProtect,CanRandomCrit,Blade,Wind
 Description = The user launches razor-like wind to slash the opposing team. Can random critical hit.
+#-------------------------------
+[BOUNCE]
+Name = Bounce
+Type = FLYING
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Kick
+EffectChance = 30
+Description = The user bounces up high, charging and becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
+#-------------------------------
+[DIVEBOMB]
+Name = Dive Bomb
+Type = FLYING
+Category = Physical
+Power = 125
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user soars up high, charging and becoming invulnerable, then dive bombs the target on the second turn.
 #-------------------------------
 [HURRICANE]
 Name = Hurricane
@@ -1555,6 +1605,19 @@ Target = BothSides
 FunctionCode = Invalid
 Description = The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.
 #-------------------------------
+[ONAROLL]
+Name = On A Roll
+Type = GROUND
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.
+Animation = ROCKROLL
+#-------------------------------
 [ROTOTILLER]
 Name = Rototiller
 Type = GROUND
@@ -1587,6 +1650,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The user spins a sandstorm around the target, trapping and damaging it for three turns.
+#-------------------------------
+[UNDERMINE]
+Name = Undermine
+Type = GROUND
+Category = Physical
+Power = 125
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user burrows deep, charging and becoming invulnerable, then attacks with devastating power on the second turn.
 #-------------------------------
 #		ROCK MOVES
 #-------------------------------
@@ -1971,6 +2046,19 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.
 #-------------------------------
+[UNDYINGRUSH]
+Name = Undying Rush
+Type = GHOST
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.
+Animation = PHANTOMFORCE
+#-------------------------------
 #		STEEL MOVES
 #-------------------------------
 [ANCHORSHOT]
@@ -2010,6 +2098,19 @@ Target = UserAndAllies
 FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user engages its gears to raise the Attack and Sp. Atk of allies with the Plus or Minus Ability.
+#-------------------------------
+[HAIRCURL]
+Name = Hair Curl
+Type = STEEL
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user curls its metal hair around the target, trapping and damaging it for three turns.
+Animation = BIND
 #-------------------------------
 [IRONTAIL]
 Name = Iron Tail
@@ -2220,6 +2321,19 @@ Target = BothSides
 FunctionCode = Invalid
 Description = Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.
 #-------------------------------
+[SACREDFIRE]
+Name = Sacred Fire
+Type = FIRE
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = The target is razed with a mystical fire of great intensity. Burns the target.
+#-------------------------------
 [STOREFUEL]
 Name = Store Fuel
 Type = FIRE
@@ -2290,6 +2404,19 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect,CanRandomCrit
 Description = The target is hammered with a large pincer. Can random critical hit.
+#-------------------------------
+[DEPTHCHARGE]
+Name = Depth Charge
+Type = WATER
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user dives deep on the first turn, charging and becoming invulnerable, then rises and strikes with explosive strength on the second.
+Animation = DIVE
 #-------------------------------
 [HYPERJET]
 Name = Hyper Jet
@@ -3053,6 +3180,18 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
 #-------------------------------
+[DREAMFEAST]
+Name = Dream Feast
+Type = PSYCHIC
+Category = Adaptive
+Power = 75
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Doubles in power if the foe is asleep. The user's HP is restored by 50% the damage dealt. This can overheal.
+#-------------------------------
 [ENERGYTRICK]
 Name = Energy Trick
 Type = PSYCHIC
@@ -3757,6 +3896,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = This attack's power increases by 10 for every one of the target's positive stat steps.
 #-------------------------------
+[SPOTTING]
+Name = Spotting
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = NearAlly
+Priority = 5
+FunctionCode = Invalid
+Description = The user assists an ally by boosting the power and Accuracy of its next attack by 50%.
+#-------------------------------
 [ULTRAVIOLETPULSE]
 Name = Ultraviolet Pulse
 Type = DARK
@@ -3795,6 +3945,16 @@ Target = AllNearFoes
 FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The target is charmed into harshly lowering its Sp. Atk stat.
+#-------------------------------
+[DECORATE]
+Name = Decorate
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 12
+Target = NearAlly
+FunctionCode = Invalid
+Description = The user decorates the target, raising their Attack and Sp. Atk by five steps.
 #-------------------------------
 [FAIRPLAY]
 Name = Fair Play

@@ -56,7 +56,7 @@ class PokeBattle_Move
         # Inured
         ret /= 2 if target&.effectActive?(:Inured) && Effectiveness.super_effective_type?(moveType, defType)
         # Break Through
-        if user&.hasActiveAbility?(:BREAKTHROUGH) && Effectiveness.ineffective_type?(moveType, defType)
+        if user&.hasActiveAbility?([:BREAKTHROUGH, :UNBOUND]) && Effectiveness.ineffective_type?(moveType, defType)
             ret = Effectiveness::NORMAL_EFFECTIVE
         end
         return ret
@@ -363,7 +363,8 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def canApplyRandomAddedEffects?(user, target, showMessages = false, aiCheck = false)
+    def canApplyRandomAddedEffects?(user, target, chance, showMessages = false, aiCheck = false)
+        return true if chance >= 100 # not actually random
         unless @battle.moldBreaker
             target.eachAbilityShouldApply(aiCheck) do |ability|
                 next unless BattleHandlers.triggerPreventAddedEffectTargetAbility(ability, @battle, user, target, self,

@@ -165,6 +165,12 @@ module EffectHolder
         return GameData::Move.get(@effects[effect])
     end
 
+    def getAbilityData(effect)
+        validateCorrectLocation(effect)
+        validateAbility(effect)
+        return GameData::Ability.get(@effects[effect])
+    end
+
     def getName(effect)
         validateCorrectLocation(effect)
         return getData(effect).name
@@ -196,6 +202,8 @@ module EffectHolder
         eachEffect(true) do |effect, value, data|
             # Active end of round effects
             @sor_proc.call(data)
+            # Tick down active effects that tick down
+            tickDownAndProc(effect) if data.ticks_down_sor?(@battle, value)
         end
     end
 
@@ -204,7 +212,7 @@ module EffectHolder
             # Active end of round effects
             @eor_proc.call(data)
             # Tick down active effects that tick down
-            tickDownAndProc(effect) if data.ticks_down?(@battle, value)
+            tickDownAndProc(effect) if data.ticks_down_eor?(@battle, value)
             # Disable effects that reset end of round
             disableEffect(effect) if data.resets_eor
         end
@@ -234,5 +242,9 @@ module EffectHolder
 
     def validateMove(effect)
         raise _INTL("Invalid operation for non-move effect #{effect}") if getData(effect).type != :Move
+    end
+
+    def validateAbility(effect)
+        raise _INTL("Invalid operation for non-ability effect #{effect}") if getData(effect).type != :Ability
     end
 end

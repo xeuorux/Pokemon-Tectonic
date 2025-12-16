@@ -124,7 +124,9 @@ def tournamentBattle()
 end
 
 def nextOpponentName()
-    return $PokemonGlobal.tournament.nextMatch()[1]
+    trainer = $PokemonGlobal.tournament.nextMatch
+    trainer_data = GameData::Trainer.get(trainer[0], trainer[1], trainer[2])
+    return trainer_data.name
 end
 
 def winTournamentMatch()
@@ -205,7 +207,7 @@ def displayRoundOdds(round)
         pbMessage(_INTL("Only 20 percent of respondents expect you to win against your brother."))
     else
         index = round-1
-        ordinal = ["second", "third", "fourth", "fifth"][index]
+        ordinal = [_INTL("second"), _INTL("third"), _INTL("fourth"), _INTL("fifth")][index]
         percent = [60,55,45,35][index]
         pbMessage(_INTL("Odds are displayed for the {1} round matches, gathered from a spectator poll.", ordinal))
         pbMessage(_INTL("{1} percent of respondents expect you to win against {2}.", percent, nextOpponentName()))

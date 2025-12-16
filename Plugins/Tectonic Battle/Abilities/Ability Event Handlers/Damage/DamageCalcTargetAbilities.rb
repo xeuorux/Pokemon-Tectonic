@@ -92,6 +92,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:THICKFAT,:THERMOSTASIS)
+
 BattleHandlers::DamageCalcTargetAbility.add(:UNAFRAID,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if %i[BUG DARK].include?(type)
@@ -276,7 +278,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:APPREHENSIVE,
 
 BattleHandlers::DamageCalcTargetAbility.add(:BULLY,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
-    if target.pbHeight < user.pbHeight
+    # Important reminder: User is the one using the move, target is the one being hit
+    # This means for an ability that affects being hit, *target* is the Pokemon with the ability
+    if user.pbHeight < target.pbHeight
       mults[:base_damage_multiplier] *= 0.7
       target.aiLearnsAbility(ability) unless aiCheck
     end
@@ -396,6 +400,33 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTIHEADED,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if target.belowHalfHealth?
       mults[:final_damage_multiplier] *= 0.66
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:PROTECTIVEINSTINCT,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if target.hasAnyNotFullyEvolvedAllies?
+      mults[:final_damage_multiplier] *= 0.66
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:UMBRALTENACITY,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.moonGlowing? && type != :STEEL
+      mults[:final_damage_multiplier] *= 0.65
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HAILSTONEHELM,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.icy?
+      mults[:final_damage_multiplier] *= 0.5
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }

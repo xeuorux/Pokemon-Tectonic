@@ -81,8 +81,7 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
     thismove = thispkmn.moves[idxMove]
     return false if !thismove
     return false if thismove.pp<=0
-    if thispkmn.effectActive?(:ChoiceBand) && thismove.id != thispkmn.getMove(:ChoieBand).id
-       thispkmn.hasActiveItem?(:CHOICEBAND)
+    if thispkmn.effectActive?(:ChoiceBand) && thismove.id != thispkmn.getMove(:ChoiceBand).id
       return false
     end
     # though incorrect, just for convenience (actually checks Torment later)

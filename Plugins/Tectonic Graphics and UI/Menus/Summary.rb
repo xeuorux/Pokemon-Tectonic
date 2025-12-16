@@ -131,16 +131,8 @@ class PokemonSummary_Scene
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
-        @sprites["pokemon"] = PokemonSprite.new(@viewport)
-        @sprites["pokemon"].setOffset(PictureOrigin::Center)
-        @sprites["pokemon"].x = 104
-        @sprites["pokemon"].y = 206
-        @sprites["pokemon"].setPokemonBitmap(@pokemon)
-        @sprites["pokeicon"] = PokemonIconSprite.new(@pokemon, @viewport)
-        @sprites["pokeicon"].setOffset(PictureOrigin::Center)
-        @sprites["pokeicon"].x       = 46
-        @sprites["pokeicon"].y       = 92
-        @sprites["pokeicon"].visible = false
+        createPokemonSprite
+        createPokeIcon
         createItemIcons
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -183,6 +175,22 @@ class PokemonSummary_Scene
         
         drawPage(@page)
         pbFadeInAndShow(@sprites) { pbUpdate }
+    end
+
+    def createPokemonSprite
+        @sprites["pokemon"] = PokemonSprite.new(@viewport)
+        @sprites["pokemon"].setOffset(PictureOrigin::Center)
+        @sprites["pokemon"].x = 104
+        @sprites["pokemon"].y = 206
+        @sprites["pokemon"].setPokemonBitmap(@pokemon)
+    end
+
+    def createPokeIcon
+        @sprites["pokeicon"] = PokemonIconSprite.new(@pokemon, @viewport)
+        @sprites["pokeicon"].setOffset(PictureOrigin::Center)
+        @sprites["pokeicon"].x       = Graphics.width - 32
+        @sprites["pokeicon"].y       = 32
+        @sprites["pokeicon"].visible = true
     end
 
     def createMoveInfoDisplay
@@ -216,16 +224,8 @@ class PokemonSummary_Scene
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
-        @sprites["pokemon"] = PokemonSprite.new(@viewport)
-        @sprites["pokemon"].setOffset(PictureOrigin::Center)
-        @sprites["pokemon"].x = 104
-        @sprites["pokemon"].y = 206
-        @sprites["pokemon"].setPokemonBitmap(@pokemon)
-        @sprites["pokeicon"] = PokemonIconSprite.new(@pokemon, @viewport)
-        @sprites["pokeicon"].setOffset(PictureOrigin::Center)
-        @sprites["pokeicon"].x       = 46
-        @sprites["pokeicon"].y       = 92
-        @sprites["pokeicon"].visible = false
+        createPokemonSprite
+        createPokeIcon
         createItemIcons
         @sprites["movesel"] = MoveSelectionSprite.new(@viewport, !move_to_learn.nil?)
         @sprites["movesel"].visible = false
@@ -259,19 +259,9 @@ class PokemonSummary_Scene
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
-        @sprites["pokemon"] = PokemonSprite.new(@viewport)
-        @sprites["pokemon"].setOffset(PictureOrigin::Center)
-        @sprites["pokemon"].x = 104
-        @sprites["pokemon"].y = 206
-        @sprites["pokemon"].setPokemonBitmap(@pokemon)
-
+        createPokemonSprite
         @sprites["pokemon"].visible = false
-        
-        @sprites["pokeicon"] = PokemonIconSprite.new(@pokemon, @viewport)
-        @sprites["pokeicon"].setOffset(PictureOrigin::Center)
-        @sprites["pokeicon"].x       = 46
-        @sprites["pokeicon"].y       = 92
-        @sprites["pokeicon"].visible = false
+        createPokeIcon
         createItemIcons
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -315,6 +305,37 @@ class PokemonSummary_Scene
 
         drawPage(@page)
         pbFadeInAndShow(@sprites) { pbUpdate }
+    end
+
+    def pbStartSingleExternalScene(pokemon)
+        @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+        @viewport.z = 99_999
+        @party      = nil
+        @partyindex = -1
+        @pokemon    = pokemon
+        @battle     = nil
+        @page = 4
+        @forget = true
+        @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
+        @sprites = {}
+        @sprites["background"] = IconSprite.new(0, 0, @viewport)
+        @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
+        pbSetSystemFont(@sprites["overlay"].bitmap)
+        createPokemonSprite
+        createPokeIcon
+        createItemIcons
+        @sprites["movesel"] = MoveSelectionSprite.new(@viewport, false)
+        @sprites["movesel"].visible = false
+        @sprites["movesel"].visible = true
+
+        @sprites["movesel"].index = 0
+        new_move = nil
+        move_selected = @pokemon.moves[0]
+
+        createMoveInfoDisplay
+
+        drawSelectedMove(new_move, move_selected)
+        pbFadeInAndShow(@sprites)
     end
 
     def createItemIcons
@@ -832,10 +853,30 @@ class PokemonSummary_Scene
                           ev_color_shadow,])
         end
 
+        # Draw species
+        tribes = @pokemon.tribes
+        tribesX = 56
+        tribesY = 136
+        tribesWidth = 450
+        tribe_base   = MessageConfig.pbDefaultTextMainColor
+        tribe_shadow = MessageConfig.pbDefaultTextShadowColor
+        if tribes.length == 0
+            drawFormattedTextEx(overlay, tribesX, tribesY+32, tribesWidth, _INTL("None"), tribe_base, tribe_shadow)
+        elsif tribes.length == GameData::Tribe::DATA.keys.count / 2
+            drawFormattedTextEx(overlay, tribesX, tribesY+32, tribesWidth, _INTL("All"), tribe_base, tribe_shadow)
+        else
+            tribes.each_with_index do |tribe, index|
+                tribeName = getTribeName(tribe)
+                tribeY = tribesY + 32 * index
+                drawFormattedTextEx(overlay, tribesX, tribeY, tribesWidth, tribeName, tribe_base, tribe_shadow)
+            end
+        end
+        
+
         # Draw ability name and description
         ability = @pokemon.ability 
         @sprites["pokemon"].visible = false if @sprites["pokemon"]
-        @sprites["pokeicon"].visible = false
+        @sprites["pokeicon"].visible = true
         ability_base   = MessageConfig.pbDefaultTextMainColor
         ability_shadow = MessageConfig.pbDefaultTextShadowColor
         if ability
@@ -872,7 +913,7 @@ class PokemonSummary_Scene
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
         @sprites["pokemon"].visible = false
-        @sprites["pokeicon"].visible = false
+        @sprites["pokeicon"].visible = true
         textpos  = [[_INTL("MOVES"), 26, 10, 0, base, shadow]]
         imagepos = []
         drawMoveNames(textpos)
@@ -923,6 +964,9 @@ class PokemonSummary_Scene
         overlay.clear
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
+
+        @sprites["pokeicon"].visible = move_to_learn.nil?
+
         # Set background image
         if move_to_learn
             path = "Graphics/Pictures/Summary/bg_learnmove"
@@ -950,7 +994,7 @@ class PokemonSummary_Scene
 
         hideItems
         @sprites["pokemon"].visible = false if @sprites["pokemon"]
-        @sprites["pokeicon"].visible = false
+        @sprites["pokeicon"].visible = move_to_learn.nil? if @sprites["pokeicon"]
 
         writeMoveInfoToInfoOverlay3x3(@extraInfoOverlay.bitmap,selected_move)
 
@@ -984,6 +1028,7 @@ class PokemonSummary_Scene
     def pbChangePokemon
         @pokemon = @party[@partyindex]
         @sprites["pokemon"].setPokemonBitmap(@pokemon)
+        @sprites["pokeicon"].pokemon = @pokemon
         refreshItemIcons(false)
         pbSEStop
         @pokemon.play_cry
@@ -1307,6 +1352,51 @@ class PokemonSummary_Scene
         return (selmove == Pokemon::MAX_MOVES) ? -1 : selmove
     end
 
+    def pbBrowseMoves
+        selmove = 0
+        hideItems
+        loop do
+            Graphics.update
+            Input.update
+            pbUpdate
+            selmove_prev = selmove
+            if Input.trigger?(Input::BACK)
+                selmove = Pokemon::MAX_MOVES
+                pbPlayCloseMenuSE
+                break
+            elsif Input.trigger?(Input::USE)
+                pbPlayDecisionSE
+                break
+            elsif Input.trigger?(Input::UP)
+                if selmove >= 2 && selmove < Pokemon::MAX_MOVES
+                    selmove -= 2
+                end
+            elsif Input.trigger?(Input::DOWN)
+                if selmove < 2
+                    selmove += 2
+                elsif selmove == Pokemon::MAX_MOVES
+                    selmove = 1
+                end
+            elsif Input.trigger?(Input::LEFT)
+                selmove -= 1 if selmove % 2 == 1 && selmove != Pokemon::MAX_MOVES
+            elsif Input.trigger?(Input::RIGHT)
+                selmove += 1 if selmove % 2 == 0 && selmove != Pokemon::MAX_MOVES
+            end
+
+            if selmove != selmove_prev
+                selected_move = @pokemon.moves[selmove]
+                if selected_move
+                    @sprites["movesel"].index = selmove
+                    pbPlayCursorSE
+                    drawSelectedMove(nil, selected_move)
+                else
+                    selmove = selmove_prev
+                    pbPlayBuzzerSE
+                end
+            end
+        end
+    end
+
     def pbScene
         @pokemon.play_cry
         loop do
@@ -1451,6 +1541,12 @@ class PokemonSummaryScreen
         ret = @scene.pbScene
         @scene.pbEndScene
         return ret
+    end
+
+    def pbStartSingleExternalScene(pokemon)
+        @scene.pbStartSingleExternalScene(pokemon)
+        @scene.pbBrowseMoves
+        @scene.pbEndScene
     end
 end
 

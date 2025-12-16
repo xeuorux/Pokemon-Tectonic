@@ -94,5 +94,6 @@ class PokeBattle_Move_StartSwapSpeedOrder4 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :TrickRoom
+        @short = true
     end
 end

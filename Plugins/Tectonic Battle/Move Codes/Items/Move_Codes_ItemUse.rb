@@ -214,7 +214,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
-        return unless canApplyRandomAddedEffects?(user, target, true)
+        
         case @chosenItem
         when :POISONORB
             target.applyPoison(user) if target.canPoison?(user, false, self)

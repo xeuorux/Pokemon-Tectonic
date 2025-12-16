@@ -245,6 +245,7 @@ def decode_chunk(buffer, offset, party)
   mon.ev[:HP] = style_hp
   mon.ev[:ATTACK] = style_atk
   mon.ev[:DEFENSE] = style_def
+  mon.ev[:SPECIAL_ATTACK] = style_atk
   mon.ev[:SPECIAL_DEFENSE] = style_sdef
   mon.ev[:SPEED] = style_speed
 

@@ -342,7 +342,7 @@ immuneTypeRealName))
 
         # Show animation
         if newStatus == :POISON && newStatusCount.positive?
-            @battle.pbCommonAnimation("Toxic", self)
+            @battle.pbCommonAnimation("Poison", self)
         else
             anim_name = GameData::Status.get(newStatus).animation
             @battle.pbCommonAnimation(anim_name, self) if anim_name
@@ -445,6 +445,13 @@ immuneTypeRealName))
             if neuroToxinSource
                 @battle.pbDisplay(_INTL("A neurotoxin emitter is in the opposing party!"))
                 @battle.pbDisplay(_INTL("Due to {1}, {2} will be unable to use the same move twice in a row.", neuroToxinSource.name, pbThis(true)))
+            end
+
+            piercingPoisoner = @battle.pbCheckOpposingAbility(:PIERCINGPOISON, @index)
+            if piercingPoisoner
+                piercingPoisoner.showMyAbilitySplash(:PIERCINGPOISON)
+                @battle.pbDisplay(_INTL("The poison starts already doubled!"))
+                piercingPoisoner.hideMyAbilitySplash
             end
         end
         # Form change check
@@ -665,7 +672,7 @@ immuneTypeRealName))
         getStatuses.each do |oneStatus|
             next if !statusToContinue.nil? && oneStatus != statusToContinue
             if oneStatus == :POISON && @statusCount.positive?
-                @battle.pbCommonAnimation("Toxic", self)
+                @battle.pbCommonAnimation("Poison", self)
             else
                 anim_name = GameData::Status.get(oneStatus).animation
                 @battle.pbCommonAnimation(anim_name, self) if anim_name

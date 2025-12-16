@@ -174,8 +174,8 @@ class PokeBattle_Battler
         else
             choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
             choice[2].pp = -1
-            if @battle.futureSight && target >= 0 && @battle.positions[target].effectActive?(:FutureSightType)
-                choice[2].type = @battle.positions[target].effects[:FutureSightType]
+            if @battle.foretoldMove && target >= 0 && @battle.positions[target].effectActive?(:ForetoldMoveType)
+                choice[2].type = @battle.positions[target].effects[:ForetoldMoveType]
             end
         end
         choice[3] = target     # Target (-1 means no target yet)
@@ -196,7 +196,7 @@ class PokeBattle_Battler
         pbBeginTurn(choice)
 
         # Force the use of certain moves if they're already being used
-        unless specialUsage || @battle.futureSight || (choice[2]&.empoweredMove? && boss?)
+        unless specialUsage || @battle.foretoldMove || (choice[2]&.empoweredMove? && boss?)
             if usingMultiTurnAttack? && !@currentMove.nil?
                 choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
                 specialUsage = true
@@ -331,7 +331,7 @@ class PokeBattle_Battler
                     next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle, false)
                     @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
                     @battle.pbShowAbilitySplash(b, ability)
-                    @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
+                    @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, move.name))
                     @battle.pbHideAbilitySplash(b)
                     user.onMoveFailed(move)
                     pbCancelMoves
@@ -435,14 +435,6 @@ class PokeBattle_Battler
                     end
                 end
             end
-            # Quarantine (for moves which target the whole side)
-            quarantined = false
-            if targets.empty? && user.pbOpposingSide.effectActive?(:Quarantine)
-                @battle.pbDisplay(_INTL("{1} was blocked by the quarantine!", move.name))
-                user.onMoveFailed(move)
-                user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
-                quarantined = true
-            end
             # The target's abilities that trigger on the start of the move
             targets.each do |target|
                 next if target.damageState.unaffected
@@ -462,7 +454,7 @@ class PokeBattle_Battler
             # Process each hit in turn
             # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
             realNumHits = 0
-            moveIsBlocked = magicCoater >= 0 || magicBouncer >= 0 || warder >= 0 || quarantined
+            moveIsBlocked = magicCoater >= 0 || magicBouncer >= 0 || warder >= 0
             unless moveIsBlocked
                 for i in 0...numHits
                     success = pbProcessMoveHit(move, user, targets, i, skipAccuracyCheck, multiHitAesthetics)
@@ -882,11 +874,13 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1} lands a flashy hit!", user.pbThis))
             user.disableEffect(:ActionStar)
         end
-        #Tangling Vines proc message
-        targets.each do |t|
-            if t.pointsAt?(:TanglingVines, user)
-                @battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
-                break #Only trigger once, even if multiple targets are affected
+        # Tangling Vines proc message
+        if move.damagingMove?
+            targets.each do |t|
+                if t.pointsAt?(:TanglingVines, user)
+                    @battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
+                    break #Only trigger once, even if multiple targets are affected
+                end
             end
         end
         if user.effectActive?(:Blindness) && move.damagingMove?
@@ -1021,7 +1015,7 @@ class PokeBattle_Battler
                 next if b.damageState.calcDamage == 0
                 chance = move.pbAdditionalEffectChance(user, b, move.calcType)
                 next if chance <= 0
-                if @battle.pbRandom(100) < chance && move.canApplyRandomAddedEffects?(user,b,true)
+                if @battle.pbRandom(100) < chance && move.canApplyRandomAddedEffects?(user,b,chance,true)
                     if b.hasActiveAbility?(:UNCANNYLUCK)
                         b.showMyAbilitySplash(:UNCANNYLUCK)
                         @battle.pbDisplay(_INTL("{1}'s additional effect was bounced back!", move.name))
@@ -1049,7 +1043,7 @@ class PokeBattle_Battler
             next if chance <= 0
             next unless @battle.pbRandom(100) < chance
             PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
-            next unless move.canApplyRandomAddedEffects?(user, b, true)
+            next unless move.canApplyRandomAddedEffects?(user, b, chance, true)
             b.pbFlinch
         end
         # Message for and consuming of type-weakening berries

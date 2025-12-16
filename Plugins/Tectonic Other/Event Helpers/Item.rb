@@ -118,10 +118,17 @@ def showItemDescription(item)
     unless $PokemonGlobal.hadItemYet[item]
         $PokemonGlobal.hadItemYet[item] = true
         if $Options.show_item_descriptions == 0
-            itemDesc = GameData::Item.get(item).description
-            pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]", item, itemDesc))
+            showItemDescriptionMessage(item)
         end
     end
+end
+
+def showItemDescriptionMessage(item)
+    itemData = GameData::Item.get(item)
+    itemName = itemData.name
+    itemDesc = itemData.description
+    messageText = "<b>#{itemName}</b>\r\n#{itemDesc}"
+    pbMessage(_INTL("\\cl\\l[5]\\op\\wu\\i[{1}]\\or{2}\\wt[30]", item, messageText))
 end
 
 def pbPickBerry(berry, qty = 1)

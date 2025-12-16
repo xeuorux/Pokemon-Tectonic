@@ -190,7 +190,7 @@ module QuestModule
     :Stage2 => _INTL("Return to her."),
     :Location1 => _INTL("Makya"),
     :Location2 => _INTL("Novo Town"),
-    :QuestDescription => _INTL("A flower keeper at the south entrance of Novo Town says she'll give you a reward to celebrate completing your 4th gym. You won't forget her, right?\n\n\n\nFlower"),
+    :QuestDescription => _INTL("A flower keeper at the south entrance of Novo Town says she'll give you a reward to celebrate completing your 4th gym. You won't forget her, right?"),
   }
 
   QUEST_BATTLE_LAB = {

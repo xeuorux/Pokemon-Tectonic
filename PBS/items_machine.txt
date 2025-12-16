@@ -126,14 +126,14 @@ FieldUse = TM
 Flags = SkipPocketMessage
 Move = SCARYFACE
 #-------------------------------
-[TMSCREECH]
+[TMBARETEETH]
 Name = Unnamed
 NamePlural = Unnamed
 Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
-Move = SCREECH
+Move = BARETEETH
 #-------------------------------
 [TMFAKETEARS]
 Name = Unnamed
@@ -198,15 +198,6 @@ FieldUse = TM
 Flags = SkipPocketMessage
 Move = AMNESIA
 #-------------------------------
-[TMCOSMICPOWER]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 5
-Price = 4000
-FieldUse = TM
-Flags = SkipPocketMessage
-Move = COSMICPOWER
-#-------------------------------
 [TMWORKUP]
 Name = Unnamed
 NamePlural = Unnamed
@@ -251,6 +242,24 @@ Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
 Move = VANGUARD
+#-------------------------------
+[TMSHIVERDANCE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = SHIVERDANCE
+#-------------------------------
+[TMQUIVERDANCE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = QUIVERDANCE
 #-------------------------------
 [TMAIMTRUE]
 Name = Unnamed
@@ -1065,7 +1074,7 @@ Move = SHORTCIRCUIT
 [TMRETREAT]
 Name = Unnamed
 NamePlural = Unnamed
-Pocket = 4
+Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
@@ -1101,7 +1110,7 @@ Move = FLIPTURN
 [TMPSYCHESWITCH]
 Name = Unnamed
 NamePlural = Unnamed
-Pocket = 4
+Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
@@ -1169,24 +1178,6 @@ Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
 Move = METEORASSAULT
-#-------------------------------
-[TMCLOUDBREAK]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 5
-Price = 4000
-FieldUse = TM
-Flags = SkipPocketMessage
-Move = CLOUDBREAK
-#-------------------------------
-[TMDISSIPATION]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 5
-Price = 4000
-FieldUse = TM
-Flags = SkipPocketMessage
-Move = DISSIPATION
 #-------------------------------
 [TMNATURALPROTECTION]
 Name = Unnamed

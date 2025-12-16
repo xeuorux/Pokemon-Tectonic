@@ -33,7 +33,7 @@ class Pokemon
     # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
     attr_accessor :first_moves
     # @return [Array<Pokemon::Item>] the items held by this Pokémon
-    attr_accessor :items
+    attr_writer :items
     # @return [Array<Symbol>] an array of ribbons owned by this Pokémon
     attr_accessor :ribbons
     # @return [Integer] contest stats
@@ -389,7 +389,7 @@ class Pokemon
     end
 
     def waterlogged?
-        return @status == :WAtERLOG
+        return @status == :WATERLOG
     end
 
     def leeched?
@@ -840,7 +840,7 @@ class Pokemon
 
         # Item sets cannot contain duplicates
         if itemSet.length != itemSet.uniq.length
-            pbMessage(_INTL("{1} can't hold two of the same item!", getItemName(:CRYSTALVEIL))) if showMessages
+            pbMessage(_INTL("{1} can't hold two of the same item!", name)) if showMessages
             return false
         end
 
@@ -1137,7 +1137,7 @@ class Pokemon
 
     # avoid problematic characters for online communication
     def safe_name
-      if !stringIsUnsafe(@name)
+      if !stringIsUnsafe(name)
         return name
       end
       return speciesName
@@ -1300,13 +1300,13 @@ class Pokemon
         ordinal = ""
         if prevHappiness < PERSONALITY_THRESHOLD_ONE && @happiness >= PERSONALITY_THRESHOLD_ONE
             traitUnlocked = trait1
-            ordinal = "first"
+            ordinal = _INTL("first")
         elsif prevHappiness < PERSONALITY_THRESHOLD_TWO && @happiness >= PERSONALITY_THRESHOLD_TWO
             traitUnlocked = trait2
-            ordinal = "second"
+            ordinal = _INTL("second")
         elsif prevHappiness < PERSONALITY_THRESHOLD_THREE && @happiness >= PERSONALITY_THRESHOLD_THREE
             traitUnlocked = trait3
-            ordinal = "final"
+            ordinal = _INTL("final")
         elsif prevHappiness < PERSONALITY_THRESHOLD_FOUR && @happiness >= PERSONALITY_THRESHOLD_FOUR
             likeUnlocked = like
             dislikeUnlocked = dislike
@@ -1366,7 +1366,7 @@ class Pokemon
     # required it to have a held item) or duplicate this Pokémon (Shedinja only).
     # @param new_species [Pokemon] the species that this Pokémon evolved into
     def action_after_evolution(new_species)
-        species_data.get_evolutions(true).each do |evo| # [new_species, method, parameter]
+        species_data.get_evolutions.each do |evo| # [new_species, method, parameter]
             break if GameData::Evolution.get(evo[1]).call_after_evolution(self, evo[0], evo[2], new_species)
         end
     end
@@ -1379,7 +1379,7 @@ class Pokemon
         return nil if egg?
         return nil if hasItem?(:EVERSTONE)
         return nil if hasItem?(:EVIOLITE)
-        species_data.get_evolutions(true).each do |evo| # [new_species, method, parameter, boolean]
+        species_data.get_evolutions.each do |evo| # [new_species, method, parameter, boolean]
             next if evo[3] # Prevolution
             ret = yield self, evo[0], evo[1], evo[2] # pkmn, new_species, method, parameter
             return ret if ret

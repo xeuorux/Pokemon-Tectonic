@@ -430,8 +430,8 @@ class PokeBattle_Battler
             @battle.pbHideAbilitySplash(user) if showMessages
         end
 
-        # do not trigger item effects if dropping multiple stats - the multiple stat function will do that afterwards
-        triggersOnStatLoss(stat, increment, user: user, triggerItems: !multiple)
+        # do not trigger effects if dropping multiple stats - the multiple stat function will do that afterwards
+        triggersOnStatLoss(user: user) unless multiple
 
         return increment
     end
@@ -493,7 +493,7 @@ class PokeBattle_Battler
         end
         @battle.pbDisplay(lowerMessage)
 
-        triggersOnStatLoss(stat, increment, user: user)
+        triggersOnStatLoss(user: user)
 
         return true
     end
@@ -553,24 +553,21 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
             @battle.pbHideAbilitySplash(user) if ability
 
-            triggersOnStatLoss(stat, increment, user: user, move: move)
+            triggersOnStatLoss(user: user, move: move)
         end
     end
 
-    def triggersOnStatLoss(stat, increment, user: nil, move: nil, triggerItems: true)
+    def triggersOnStatLoss(user: nil, move: nil)
         playStatStepsTutorial unless $PokemonGlobal.statStepsTutorialized
 
         applyEffect(:StatsDropped)
 
         # Trigger abilities upon stat loss
         eachActiveAbility do |ability|
-            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
+            BattleHandlers.triggerAbilityOnStatLoss(ability, self, user)
         end
 
-        triggersItemsOnStatLoss(user, move) if triggerItems
-    end
-
-    def triggersItemsOnStatLoss(user, move)
+        # Trigger items upon stat loss
         eachActiveItem do |item|
             BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
         end
@@ -749,7 +746,7 @@ class PokeBattle_Battler
             showStatChangeMessage(statIDList, increment, lowering: true)
         end
 
-        triggersItemsOnStatLoss(user, move)
+        triggersOnStatLoss(user: user, move: move)
 
         @battle.pbHideAbilitySplash(user) if ability
         return loweredAnySteps
@@ -761,16 +758,16 @@ class PokeBattle_Battler
     def showStatChangeMessage(stat, increment, lowering: false)
         stat = stat[0] if stat.is_a?(Array) && stat.length == 1
         if stat.is_a?(Array)
-            messageFormat = "{1}'s "
+            messageFormat = "{1}" << _INTL("'s ")
             statNameArgs = []
             stat.each_with_index do |individualStatID, index|
                 messageFormatNumber = index + 2
                 messageFormatNumber += 1 if increment > 1
                 if index == stat.length - 1
                     if stat.length > 2
-                        messageFormat += ", and {#{messageFormatNumber}}"
+                        messageFormat += _INTL(", and ") << "{#{messageFormatNumber}}"
                     else
-                        messageFormat += " and {#{messageFormatNumber}}"
+                        messageFormat += _INTL(" and ") << "{#{messageFormatNumber}}"
                     end
                 elsif index == 0
                     messageFormat += "{#{messageFormatNumber}}"
@@ -781,18 +778,18 @@ class PokeBattle_Battler
             end
             if lowering
                 if increment == 1
-                    messageFormat += " fell!"
+                    messageFormat += _INTL(" fell!")
                     lowerMessage = _INTL(messageFormat, pbThis, *statNameArgs)
                 else
-                    messageFormat += " fell by {2} steps!"
+                    messageFormat += (_INTL(" fell by ") << "{2}") << _INTL(" steps!")
                     lowerMessage = _INTL(messageFormat, pbThis, increment, *statNameArgs)
                 end
             else
                 if increment == 1
-                    messageFormat += " rose!"
+                    messageFormat += _INTL(" rose!")
                     lowerMessage = _INTL(messageFormat, pbThis, *statNameArgs)
                 else
-                    messageFormat += " rose by {2} steps!"
+                    messageFormat += (_INTL(" rose by ") << "{2}") << _INTL(" steps!")
                     lowerMessage = _INTL(messageFormat, pbThis, increment, *statNameArgs)
                 end
             end

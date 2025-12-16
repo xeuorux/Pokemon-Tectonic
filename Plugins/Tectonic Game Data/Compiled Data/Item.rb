@@ -304,9 +304,9 @@ module GameData
         return sticky_items.include?(@id)
       end
 
-      def legal?(isTrainer = false)
+      def legal?(isNPC = false)
         return false if @cut
-        return false if @super && !isTrainer
+        return false if @super && !isNPC
         return true
       end
 

@@ -39,7 +39,7 @@ class PokeBattle_Move_EffectDependsOnEnvironment < PokeBattle_Move
         return if target.damageState.unaffected || target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType)
         return if @battle.pbRandom(100) >= chance
-        return unless canApplyRandomAddedEffects?(user,target,true)
+        return unless canApplyRandomAddedEffects?(user,target,chance,true)
         case @secretPower
         when 2
             target.applySleep if target.canSleep?(user, false, self)

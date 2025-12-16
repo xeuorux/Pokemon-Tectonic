@@ -1,5 +1,5 @@
 #===============================================================================
-# Switches out. (Teleport)
+# Switches out. (Retreat)
 #===============================================================================
 class PokeBattle_Move_SwitchOutUserStatusMove < PokeBattle_Move
     def switchOutMove?; return true; end

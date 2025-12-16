@@ -45,14 +45,14 @@ class PokeBattle_Move_AttackOneTurnLaterChooseIceFireElectricType < PokeBattle_F
 
     def pbEffectAgainstTarget(user, target)
         super
-        unless @battle.futureSight
-            target.position.applyEffect(:FutureSightType, @chosenType)
+        unless @battle.foretoldMove
+            target.position.applyEffect(:ForetoldMoveType, @chosenType)
         end
     end
 
     def pbDisplayUseMessage(user, targets)
         super
-        if @battle.futureSight
+        if @battle.foretoldMove
             @battle.pbDisplay(_INTL("It's an explosion of pure {1}!", GameData::Type.get(@calcType).name))
         end
     end

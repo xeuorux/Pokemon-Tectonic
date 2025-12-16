@@ -83,6 +83,9 @@ class PokeBattle_Move
           return allNearFoesData if @calcType == :DRAGON && user.hasActiveAbility?(:VICIOUSCYCLE)
           return allNearFoesData if @calcType == :NORMAL && user.hasActiveAbility?(:HORDETACTICS)
         end
+        if damagingMove? && user.hasActiveAbility?(:CATASTROPHIC)
+          return GameData::Target.get(:AllNearOthers)
+        end
         return targetData
     end
   
@@ -127,6 +130,8 @@ class PokeBattle_Move
     def hitsFlyingTargets?;      return false; end
     def hitsDiggingTargets?;     return false; end
     def hitsDivingTargets?;      return false; end
+    def hitsHidingTargets?;      return false; end
+    def hitsCamouflagedTargets?; return false; end
     def ignoresReflect?;         return false; end   # For Brick Break
     def cannotRedirect?;         return false; end   # For Future Sight/Doom Desire
     def worksWithNoTargets?;     return false; end   # For Explosion
@@ -182,6 +187,7 @@ class PokeBattle_Move
     def forceSwitchMove?; return false; end
     def hazardMove?; return false; end
     def statStepStealingMove?; return false; end
+    def statStepClearingMove?; return false; end
     def redirectionMove?; return false; end
     def hazardRemovalMove?; return false; end
     def screenRemovalMove?; return false; end

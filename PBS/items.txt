@@ -673,15 +673,7 @@ Name = Grip Claw
 NamePlural = Grip Claws
 Pocket = 13
 Price = 4000
-Description = A Pokémon held item that doubles the duration of multiturn trapping attacks.
-#-------------------------------
-[BINDINGBAND]
-Name = Binding Band
-NamePlural = Binding Bands
-Pocket = 12
-Price = 4000
-Flags = Clothing
-Description = A band that doubles the damage dealt each turn by binding moves when held.
+Description = A Pokémon held item that doubles the duration of binding moves and abilities.
 #-------------------------------
 [LOADEDDICE]
 Name = Loaded Dice
@@ -952,7 +944,7 @@ NamePlural = Heavy-Duty Boots
 Pocket = 12
 Price = 4000
 Flags = Clothing
-Description = These boots prevent the effects of traps set on the battlefield.
+Description = These boots prevent the effects of hazards set on the battlefield.
 #-------------------------------
 [THROATSPRAY]
 Name = Throat Spray
@@ -1747,6 +1739,24 @@ BattleUse = OnFoe
 Flags = PokeBall,SnagBall,SkipPocketMessage
 Description = A Poké Ball that makes caught Pokémon more friendly.
 #-------------------------------
+[HEAVYBALL]
+Name = Heavy Ball
+NamePlural = Heavy Balls
+Pocket = 14
+Price = 300
+BattleUse = OnFoe
+Flags = PokeBall,SnagBall
+Description = A Poké Ball whose strength varies with the Pokémon's weight.
+#-------------------------------
+[FASTBALL]
+Name = Fast Ball
+NamePlural = Fast Balls
+Pocket = 14
+Price = 300
+BattleUse = OnFoe
+Flags = PokeBall,SnagBall
+Description = A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.
+#-------------------------------
 [DREAMBALL]
 Name = Dream Ball
 NamePlural = Dream Balls
@@ -2453,14 +2463,14 @@ Name = Grass Token
 NamePlural = Grass Tokens
 Pocket = 16
 Price = 10000
-Description = A token which can be exchanged for a Grass-type at the Starter Store.
+Description = A token which can be exchanged for a Grass-type at the Starter Store in Novo Town.
 #-------------------------------
 [WATERTOKEN]
 Name = Water Token
 NamePlural = Water Tokens
 Pocket = 16
 Price = 10000
-Description = A token which can be exchanged for a Water-type at the Starter Store.
+Description = A token which can be exchanged for a Water-type at the Starter Store in Novo Town.
 #-------------------------------
 [ORIGINORE]
 Name = Origin Ore
@@ -2476,7 +2486,7 @@ Name = Fire Token
 NamePlural = Fire Tokens
 Pocket = 16
 Price = 10000
-Description = A token which can be exchanged for a Fire-type at the Starter Store.
+Description = A token which can be exchanged for a Fire-type at the Starter Store in Novo Town.
 #-------------------------------
 [DRATINIEGG]
 Name = Dratini Egg

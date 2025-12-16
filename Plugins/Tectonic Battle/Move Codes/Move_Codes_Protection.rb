@@ -359,30 +359,6 @@ class PokeBattle_Move_ProtectUserFrostbitePhysAttacker < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# User's side is protected against status moves this round. Disables the last used move
-# of the opposing user for 3 turns. (Quarantine)
-#===============================================================================
-class PokeBattle_Move_ProtectUserFromStatusMovesDisableBlockedMoves3 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :Quarantine
-        @sidedEffect = true
-    end
-
-    def pbProtectMessage(user)
-        @battle.pbDisplay(_INTL("{1} put up a quarantine!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        user.eachPredictedTargeter(2) do |b|
-            score += getDisableEffectScore(target, applyEffectDurationModifiers(3, user))
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # User is protected against damaging moves this round. Counterattacks (Cranial Guard)
 # with Granite Head.
 #===============================================================================

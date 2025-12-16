@@ -1089,10 +1089,9 @@ class PokemonPokedex_Scene
                         speciesEdited += 1
                     end
                 end
-                pbMessage(_INTL("{1} species tutorable movesets edited!", speciesEdited))
-
                 GameData::Species.save
                 Compiler.write_pokemon
+                pbMessage(_INTL("{1} species tutorable movesets edited!", speciesEdited))
             end
             break
         end
