@@ -300,7 +300,7 @@ def createChangeLog(generationNumber = nil,fileName = "Changelogs/changelog.txt"
 			changeLog.push("")
 
 			# Check for tribe changes
-			oldTribes = species_data.tribes
+			oldTribes = species_data.tribes(oldSpeciesData: true)
 			newTribes = newSpeciesData.tribes
 
 			echoln("#{species_data.species}: #{oldTribes.length}, #{newTribes.length}")
