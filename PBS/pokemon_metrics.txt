@@ -7133,3 +7133,9 @@ BackSprite = 0,1
 FrontSprite = 6,7
 ShadowX = 0
 ShadowSize = 3
+#-------------------------------
+[ZYGARDE,3]
+BackSprite = 0,1
+FrontSprite = 6,7
+ShadowX = 0
+ShadowSize = 3

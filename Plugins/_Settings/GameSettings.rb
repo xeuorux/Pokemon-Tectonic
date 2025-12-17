@@ -10,7 +10,7 @@ module Settings
     # Modify if you're not Pokemon Tectonic!!
     # Host your own version file in the same format as the below file
     # And set this setting to the URL to that file
-    VERSION_SERVER_FILE_URL = "https://storage.googleapis.com/chasm_bucket/version_order.txt"
+    VERSION_SERVER_FILE_URL = "https://tectonicstorage.blob.core.windows.net/tectonicstorage/version_order.txt"
   
     #=============================================================================
   

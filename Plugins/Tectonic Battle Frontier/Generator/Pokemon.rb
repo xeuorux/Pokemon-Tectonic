@@ -29,7 +29,7 @@ def minimumLevel(species)
 end
 
 def evolutions(species)
-  $evolutions[species] = GameData::Species.get(species).get_evolutions(true) if !$evolutions[species]
+  $evolutions[species] = GameData::Species.get(species).get_evolutions if !$evolutions[species]
   return $evolutions[species]
 end
 

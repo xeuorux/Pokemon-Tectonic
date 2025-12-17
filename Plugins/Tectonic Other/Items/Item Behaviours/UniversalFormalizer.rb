@@ -41,7 +41,7 @@ end
 
 ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE,proc { |item,pkmn,scene|
 	if pkmn.species == :ZYGARDE
-		pkmn.form = pkmn.form == 0 ? 3 : 0
+		pkmn.form = pkmn.form == 0 ? 1 : 0
 		scene&.pbRefresh
 		pbSceneDefaultDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,GameData::Ability.get(pkmn.ability).name),scene)
 		next true

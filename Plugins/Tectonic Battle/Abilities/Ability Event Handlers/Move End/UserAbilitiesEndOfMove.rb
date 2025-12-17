@@ -176,6 +176,58 @@ BattleHandlers::UserAbilityEndOfMove.add(:RECLAMATION,
 )
 
 ########################################################################
+# Weather setting abilities
+########################################################################
+
+BattleHandlers::UserAbilityEndOfMove.add(:GALLOPINGSTORM,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Rainstorm, user, battle, false, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SUMMERSZENITH,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Sunshine, user, battle, false, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:DEADOFWINTER,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Hail, user, battle, false, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SALTATIONSURGE,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Sandstorm, user, battle, false, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:UMBRALWAKE,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Moonglow, user, battle, false, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:TENEBROUSCANTER,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless targets.any? { |b| b.damageState.fainted }
+      pbBattleWeatherAbility(ability, :Eclipse, user, battle, false, true)
+  }
+)
+
+########################################################################
 # Other abilities
 ########################################################################
 
@@ -607,6 +659,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:OFFENSIVE,
 BattleHandlers::UserAbilityEndOfMove.add(:BLINDING,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next unless move.lightMove?
+      next if battle.pbAllFainted?(user.idxOwnSide) || battle.pbAllFainted?(user.idxOpposingSide)
       battle.pbShowAbilitySplash(user, ability)
       user.eachOpposing do |b|
         b.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 1, showFailMsg: true)
@@ -634,6 +687,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FRIGHTENINGFANGS,
       next unless move.bitingMove?
       targets.each do |b|
           next if b.fainted?
+          next if b.damageState.missed || b.damageState.unaffected
           battle.pbShowAbilitySplash(user, ability)
           if b.pbAttack > b.pbSpAtk
           b.pbLowerMultipleStatSteps([:ATTACK,2], user, move: self)

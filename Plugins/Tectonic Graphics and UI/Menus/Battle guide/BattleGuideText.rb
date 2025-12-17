@@ -77,7 +77,7 @@ def battleGuideTypeChartHash
         _INTL("Bug vs Fairy") => _INTL("Bug is now Super-Effective vs Fairy. Think of insects scaring children."),
         _INTL("Grass resistances") => _INTL("Grass now resists Fairy and Ghost. Think of incense warding off magic."),
         _INTL("Ice resistances") => _INTL("Ice now resists Flying and Ground. Ice is Super-Effective against those types, so it's only natural!"),
-        _INTL("Other changes") => _INTL("Rock resists Ice. Fairy resists Dragon. Fairy is neutral against Fire. Bug resists Psychic."),
+        _INTL("Other changes") => _INTL("Rock resists Ice. Fairy resists Dragon. Fairy is neutral against Fire. Bug resists Psychic. Psychic resists Steel."),
     }
 end
 
@@ -267,5 +267,9 @@ def battleGuideLegendaryAbilitiesHash
         _INTL("Cresselia: Saturnal Sky") => _INTL("Boosts the damage of Psychic- and Dragon-type attacks by 50%. When the debuff applies from the Ring Eclipse effect, it lowers stats by 3 steps instead of 2."),
         _INTL("Darkrai: Stygian Night") => _INTL("Boosts the damage of Fairy- and Dark-type attacks by 50%. When the flinch happens from Blood Moon, it also damages targets by 25% of their Max HP."),
         _INTL("Giratina: Distorted Gravity") => _INTL("All foes take 1/16th damage at the end of the round. While the user is on the field, gravity does not decay."),
+        _INTL("Tornadus: Wish of Winter") => _INTL("Raises the side's Accuracy by 50%. On the final turn, that side has +1 priority."),
+        _INTL("Thundurus: Wish of Summer") => _INTL("Raises the side's Speed by 50%. On the final turn, that side deals 50% more move damage, but takes 25% recoil.."),
+        _INTL("Landorus: Wish of Autumn") => _INTL("Raises the side's Defense by 50%. On the final turn, that side is healed for 33% max HP. This can overheal."),
+        _INTL("Enamorus: Wish of Spring") => _INTL("Raises the side's Sp. Def by 50%. On the final turn, that side is cured of non-volatile status conditions and mental conditions."),
     }
 end

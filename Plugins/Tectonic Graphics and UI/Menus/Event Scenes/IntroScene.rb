@@ -68,8 +68,11 @@ class IntroEventScene < EventScene
       if mostRecentVersion.nil?
         activeVersionLabel = _INTL("Version Server Error")
       else
-        if PluginManager.compare_versions(mostRecentVersion,Settings::GAME_VERSION) > 0
+        versionComparison = PluginManager.compare_versions(mostRecentVersion,Settings::GAME_VERSION)
+        if versionComparison > 0
           activeVersionLabel = _INTL("OUT OF DATE")
+        elsif versionComparison < 0
+          activeVersionLabel = _INTL("AHEAD OF LIVE")
         end
       end
       addLabel(0,260,Graphics.width,"<c3=FF2211FF,DDEEEEFF><ac><outln2>#{activeVersionLabel}</outln2></ac></c3>")

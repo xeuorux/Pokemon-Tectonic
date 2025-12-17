@@ -356,6 +356,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:BREAKTHROUGH,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DYNAMICENTRANCE,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is quick onto the scene!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:PACIFIST,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
@@ -1363,5 +1372,22 @@ BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWTRAIL,
       battle.pbDisplay(_INTL("{1} is trailing rainbows behind it!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
       battle.scene.pbRefresh
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:INKSPRAY,
+  proc { |ability, battler, battle, aiCheck|
+    battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+    score = 0
+    battler.eachOpposing do |b|
+      next if b.effectActive?(:Blindness)
+      if aiCheck
+        score += getBlindnessEffectScore(battler,b)
+      else
+        b.applyEffect(:Blindness)
+      end
+    end
+    next score if aiCheck
+    battle.pbHideAbilitySplash(battler)
   }
 )

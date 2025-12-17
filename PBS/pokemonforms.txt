@@ -414,6 +414,9 @@ Height = 3.3
 #-------------------------------
 [KELDEO,1]
 FormName = Resolute
+BaseStats = 90,70,120,120,160,120
+# Total = 680
+Abilities = HEARTOFJUSTICE
 Pokedex = The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
 #-------------------------------
 [MELOETTA,1]
@@ -620,6 +623,7 @@ FormName = Active Mode
 FormName = 10%
 BaseStats = 65,105,85,135,75,85
 # Total = 550
+Abilities = DISASTERRESPONSE
 Height = 1.2
 Weight = 33.5
 Pokedex = This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
@@ -631,9 +635,6 @@ BaseStats = 225,90,120,85,90,95
 Height = 4.5
 Weight = 610.0
 Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
-#-------------------------------
-[ZYGARDE,3]
-FormName = 50%
 #-------------------------------
 [HOOPA,1]
 FormName = Unbound

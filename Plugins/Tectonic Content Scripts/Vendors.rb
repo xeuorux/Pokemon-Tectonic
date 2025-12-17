@@ -586,7 +586,6 @@ def hackedTMShop
 		TMRAILCANNON
 		TMEXPLOSION
 		TMMEMENTO
-		TMRAPIDSPIN
 		TMFINALGAMBIT
 		TMAIMTRUE
 		TMSTEALTHROCK
@@ -762,39 +761,38 @@ def gemVendor
 	)
 end
 
+EARLY_BALL_STOCK = %i[
+	SLICEBALL
+	LEECHBALL
+	DISABLEBALL
+	POTIONBALL
+	HEALBALL
+]
 def earlyBallVendor
-	basicBallStock = %i[
-		SLICEBALL
-		LEECHBALL
-		DISABLEBALL
-		POTIONBALL
-		HEALBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		EARLY_BALL_STOCK,
 		_INTL("Poké Balls of all sorts stocked here. Take a look!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
+BASIC_BALL_STOCK = %i[
+	GREATBALL
+	REPEATBALL
+	NESTBALL
+	TIMERBALL
+	QUICKBALL
+	FRIENDBALL
+]
 def basicBallVendor
-	basicBallStock = %i[
-		GREATBALL
-		REPEATBALL
-		NESTBALL
-		TIMERBALL
-		QUICKBALL
-		FRIENDBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		BASIC_BALL_STOCK,
 		_INTL("Welcome to the Poké Ball Depot! How may I serve you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
-def weirdBallsVendor
-	weirdBallStock = %i[
+WEIRD_BALL_STOCK = %i[
 		ULTRABALL
 		DREAMBALL
 		FASTBALL
@@ -803,9 +801,23 @@ def weirdBallsVendor
 		ROYALBALL
 		BEASTBALL
 	]
+
+def weirdBallsVendor
 	pbPokemonMart(
-		weirdBallStock,
+		WEIRD_BALL_STOCK,
 		_INTL("Custom Pokéballs, made to order! You won't find these in a mart!"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def allBallsVendor
+	allBallStock = []
+	allBallStock.concat(EARLY_BALL_STOCK)
+	allBallStock.concat(BASIC_BALL_STOCK)
+	allBallStock.concat(WEIRD_BALL_STOCK)
+	pbPokemonMart(
+		allBallStock,
+		_INTL("All the Pokéballs you could ever need."),
 		!CAN_SELL_IN_VENDORS
 	)
 end

@@ -50,6 +50,39 @@ class PokeBattle_Move_HealUserPositionNextTurn < PokeBattle_Move
 end
 
 #===============================================================================
+# Battler in user's position is healed by 3/4 of its max HP, in two rounds. (Arc of Hope)
+#===============================================================================
+class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move
+    def healingMove?; return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.position.effectActive?(:Wish)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since a Wish is already about to come true for {1}!", user.pbThis(true)))
+            end
+            return true
+        end
+        return false
+    end
+
+    def wishAmount(user)
+        return (user.totalhp / 1.33).round
+    end
+
+    def pbEffectGeneral(user)
+        user.position.applyEffect(:Wish, 3)
+        user.position.applyEffect(:WishAmount, wishAmount(user))
+        user.position.applyEffect(:WishMaker, user.pokemonIndex)
+    end
+
+    def getEffectScore(user, _target)
+        score = (user.totalhp / user.level) * 30
+        score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
+        return score
+    end
+end
+
+#===============================================================================
 # Heals user by 1/2 of its max HP, or 2/3 of its max HP in sunshine. (Synthesis)
 #===============================================================================
 class PokeBattle_Move_HealUserDependingOnSunshine < PokeBattle_HealingMove
@@ -650,6 +683,14 @@ end
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
 class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.boss?
+            @battle.pbDisplay(_INTL("{1} is too powerful to be compelled to rest!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
     def pbEffectAgainstTarget(user, target)
         @battle.forceUseMove(user, :REST)
         @battle.forceUseMove(target, :REST)

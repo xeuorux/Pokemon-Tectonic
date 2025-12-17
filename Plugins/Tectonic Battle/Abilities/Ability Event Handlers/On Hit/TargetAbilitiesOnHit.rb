@@ -427,7 +427,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
         next if user.numbed?
         if aiCheck
             if user.effectActive?(:PhysNumbWarned) || aiNumHits > 1
-                next -getNumbEffectScore(target, user)
+                next -(getNumbEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -449,7 +449,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
         next if user.numbed?
         if aiCheck
             if user.effectActive?(:SpecNumbWarned) || aiNumHits > 1
-                next -getNumbEffectScore(target, user)
+                next -(getNumbEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -474,7 +474,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
         next if user.poisoned?
         if aiCheck
             if user.effectActive?(:PhysPoisonWarned) || aiNumHits > 1
-                next -getPoisonEffectScore(target, user)
+                next -(getPoisonEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -496,7 +496,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
         next if user.poisoned?
         if aiCheck
             if user.effectActive?(:SpecPoisonWarned) || aiNumHits > 1
-                next -getPoisonEffectScore(target, user)
+                next -(getPoisonEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -521,7 +521,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
         next if user.burned?
         if aiCheck
             if user.effectActive?(:PhysBurnWarned) || aiNumHits > 1
-                next -getBurnEffectScore(target, user)
+                next -(getBurnEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -543,7 +543,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
         next if user.burned?
         if aiCheck
             if user.effectActive?(:SpecBurnWarned) || aiNumHits > 1
-                next -getBurnEffectScore(target, user)
+                next -(getBurnEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -568,7 +568,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
         next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:PhysFrostWarned) || aiNumHits > 1
-                next -getFrostbiteEffectScore(target, user)
+                next -(getFrostbiteEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -590,7 +590,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
         next if user.frostbitten?
         if aiCheck
             if user.effectActive?(:SpecFrostWarned) || aiNumHits > 1
-                next -getFrostbiteEffectScore(target, user)
+                next -(getFrostbiteEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -607,53 +607,6 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 )
 
 #########################################
-# Dizzy inducing abilities
-#########################################
-BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
-    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
-        next if user.dizzy?
-        if aiCheck
-            if user.effectActive?(:PhysDizzyWarned) || aiNumHits > 1
-                next -getDizzyEffectScore(target, user)
-            else
-                next -10
-            end
-        end
-        if user.effectActive?(:PhysDizzyWarned)
-            randomStatusProcTargetAbility(ability, :DIZZY, 100, user, target, move, battle, aiCheck, aiNumHits)
-            user.disableEffect(:PhysDizzyWarned)
-        else
-            battle.pbShowAbilitySplash(target, ability)
-            user.applyEffect(:PhysDizzyWarned)
-            battle.pbHideAbilitySplash(target)
-        end
-    }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
-    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.specialMove?
-        next if user.dizzy?
-        if aiCheck
-            if user.effectActive?(:SpecDizzyWarned) || aiNumHits > 1
-                next -getDizzyEffectScore(target, user)
-            else
-                next -10
-            end
-        end
-        if user.effectActive?(:SpecDizzyWarned)
-            randomStatusProcTargetAbility(ability, :DIZZY, 100, user, target, move, battle, aiCheck, aiNumHits)
-            user.disableEffect(:SpecDizzyWarned)
-        else
-            battle.pbShowAbilitySplash(target, ability)
-            user.applyEffect(:SpecDizzyWarned)
-            battle.pbHideAbilitySplash(target)
-        end
-    }
-)
-
-#########################################
 # Leech inducing abilities
 #########################################
 BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
@@ -662,7 +615,7 @@ BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
         next if user.leeched?
         if aiCheck
             if user.effectActive?(:PhysLeechWarned) || aiNumHits > 1
-                next -getLeechEffectScore(target, user)
+                next -(getLeechEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -684,7 +637,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
         next if user.leeched?
         if aiCheck
             if user.effectActive?(:SpecLeechWarned) || aiNumHits > 1
-                next -getLeechEffectScore(target, user)
+                next -(getLeechEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -709,7 +662,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SOPPING,
         next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:PhysWaterlogWarned) || aiNumHits > 1
-                next -getWaterlogEffectScore(target, user)
+                next -(getWaterlogEffectScore(target, user) * 0.25)
             else
                 next -10
             end
@@ -731,7 +684,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BACKWASH,
         next if user.waterlogged?
         if aiCheck
             if user.effectActive?(:SpecWaterlogWarned) || aiNumHits > 1
-                next -getWaterlogEffectScore(target, user)
+                next -(getWaterlogEffectScore(target, user) * 0.25)
             else
                 next -10
             end

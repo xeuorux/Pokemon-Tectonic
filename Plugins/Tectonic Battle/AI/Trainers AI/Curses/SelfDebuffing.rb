@@ -15,7 +15,7 @@ PokeBattle_Battle::MoveUsedCurseEffect.add(:CURSE_SELF_DEBUFFING,
         next unless move.damagingMove?
 
         relevant_stat = move.specialMove? ? :SPECIAL_ATTACK : :ATTACK
-        user.pbItemStatRestoreCheck if user.pbLowerStatStep(relevant_stat, 4, nil, true, true)
+        user.pbItemStatRestoreCheck if user.pbLowerStatStep(relevant_stat, 4, nil, true, true, true)
         next true
     }
 )

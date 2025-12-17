@@ -1366,7 +1366,7 @@ class Pokemon
     # required it to have a held item) or duplicate this Pokémon (Shedinja only).
     # @param new_species [Pokemon] the species that this Pokémon evolved into
     def action_after_evolution(new_species)
-        species_data.get_evolutions(true).each do |evo| # [new_species, method, parameter]
+        species_data.get_evolutions.each do |evo| # [new_species, method, parameter]
             break if GameData::Evolution.get(evo[1]).call_after_evolution(self, evo[0], evo[2], new_species)
         end
     end
@@ -1379,7 +1379,7 @@ class Pokemon
         return nil if egg?
         return nil if hasItem?(:EVERSTONE)
         return nil if hasItem?(:EVIOLITE)
-        species_data.get_evolutions(true).each do |evo| # [new_species, method, parameter, boolean]
+        species_data.get_evolutions.each do |evo| # [new_species, method, parameter, boolean]
             next if evo[3] # Prevolution
             ret = yield self, evo[0], evo[1], evo[2] # pkmn, new_species, method, parameter
             return ret if ret

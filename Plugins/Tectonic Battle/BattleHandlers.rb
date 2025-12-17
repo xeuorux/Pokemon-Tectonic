@@ -275,8 +275,8 @@ module BattleHandlers
         AbilityOnEnemyStatGain.trigger(ability, battler, stat, increment, user, battle, benefactor)
     end
 
-    def self.triggerAbilityOnStatLoss(ability, battler, stat, user)
-        AbilityOnStatLoss.trigger(ability, battler, stat, user)
+    def self.triggerAbilityOnStatLoss(ability, battler, user)
+        AbilityOnStatLoss.trigger(ability, battler, user)
     end
 
     #=============================================================================
@@ -374,8 +374,8 @@ module BattleHandlers
         DamageCalcTargetAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
-    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, move, mults, baseDmg, type, aiCheck = false)
-        DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
+    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, owner, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcTargetAllyAbility.trigger(ability, user, target, owner, move, mults, baseDmg, type, aiCheck)
     end
 
     def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type, aiCheck)

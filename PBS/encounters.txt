@@ -258,10 +258,11 @@ LandTall,20,20
     25,PSYDUCK,19,21
     25,YANMA,19,21
 Puddle,20,20
-    40,POLIWAG,19,21
-    20,BARBOACH,19,21
-    20,SURSKIT,19,21
-    20,TYMPOLE,19,21
+    33,POLIWAG,19,21
+    17,BARBOACH,19,21
+    17,SURSKIT,19,21
+    17,TYMPOLE,19,21
+    16,CLAUNCHER,19,21
 #-------------------------------
 [056] # Novo Town
 FloweryGrass,20,20
@@ -429,17 +430,11 @@ Special,20
 #-------------------------------
 [135] # Nebula Ruins
 Cloud,20,25
+    20,BLIPBUG,22,24
     20,CLEFFA,22,24
-    15,BLIPBUG,22,24
-    15,STONJOURNER,22,24
-    15,WOOBAT,22,24
-    5,MINIOR_10,22,24
-    5,MINIOR_11,22,24
-    5,MINIOR_12,22,24
-    5,MINIOR_13,22,24
-    5,MINIOR_7,22,24
-    5,MINIOR_8,22,24
-    5,MINIOR_9,22,24
+    20,MINIOR,22,24
+    20,STONJOURNER,22,24
+    20,WOOBAT,22,24
 #-------------------------------
 [136] # Casaba Villa
 Land,20,10
@@ -537,7 +532,7 @@ FloweryGrass2,20,60
     25,ROSERADE,56,58
 #-------------------------------
 [183] # Circuit Cave
-DarkCave,20,60
+DarkCave,20,40
     25,ELEKID,44,46
     25,MINUN,44,46
     25,MORPEKO,44,46
@@ -584,8 +579,6 @@ FloweryGrass2,20,40
     20,MINCCINO,39,41
     20,SMEARGLE,39,41
     20,SNUBBULL,31,33
-Special,40
-    1,SEVIPER,40
 #-------------------------------
 [192] # Field of Spires
 Land,20,60
@@ -627,12 +620,12 @@ Special,40
     1,EEVEE,20
 #-------------------------------
 [211] # Split Peaks
-Land,20,60
+Land,20,40
     25,ABSOL,49,51
     25,KOMALA,49,51
     25,PINSIR,49,51
     25,SPINDA,49,51
-LandSparse,20,60
+LandSparse,20,40
     25,DELIBIRD,49,51
     25,DRILBUR,49,51
     25,HAWLUCHA,49,51
@@ -727,16 +720,10 @@ DarkCave,20,20
 [215] # Tempest Realm
 Cloud,20,60
     20,CASTFORM,64,66
-    15,CRYOGONAL,64,66
-    15,DRIFLOON,64,66
-    15,WAILMER,64,66
-    5,MINIOR_10,64,66
-    5,MINIOR_11,64,66
-    5,MINIOR_12,64,66
-    5,MINIOR_13,64,66
-    5,MINIOR_7,64,66
-    5,MINIOR_8,64,66
-    5,MINIOR_9,64,66
+    20,CRYOGONAL,64,66
+    20,DRIFLOON,64,66
+    20,MINIOR,64,66
+    20,WAILMER,64,66
 #-------------------------------
 [216] # Highland Lake
 Land,20,40
@@ -779,7 +766,7 @@ DarkCave,20,20
     20,YAMASK,25,27
 #-------------------------------
 [220] # Ancient Sewers
-LandSparse,20,20
+LandSparse,20,40
     25,DRUDDIGON,41,43
     25,MIMIKYU,41,43
     25,SPIRITOMB,41,43
@@ -983,10 +970,11 @@ Special,20
 #-------------------------------
 [326] # Carnation Graves
 DarkCave,20,20
-    40,CUBONE,20,22
-    20,DUSKULL,20,22
-    20,MAWILE,20,22
-    20,SABLEYE,20,22
+    33,CUBONE,20,22
+    17,DUSKULL,20,22
+    17,MAWILE,20,22
+    17,SABLEYE,20,22
+    16,MFEEBAS,20,22
 #-------------------------------
 [331] # Frostflow Farms Center
 Special,40
@@ -1085,10 +1073,10 @@ Land,20,60
     20,GUMSHOOS,60,62
     20,RIBOMBEE,60,62
     20,TRUMBEAK,60,62
-    6,ORICORIO,60,62
-    6,ORICORIO_1,60,62
-    6,ORICORIO_2,60,62
-    6,ORICORIO_3,60,62
+    5,ORICORIO,60,62
+    5,ORICORIO_1,60,62
+    5,ORICORIO_2,60,62
+    5,ORICORIO_3,60,62
 #-------------------------------
 [383] # Mirror Tundra
 LandTall,20,60
@@ -1109,6 +1097,11 @@ Special,20
 [396] # Crater-Shelf Gatehouse
 Special,20
     1,MINCCINO,15
+#-------------------------------
+[400] # Plaza-East Gatehouse
+Special,40
+    1,SEVIPER,40
+    1,ZANGOOSE,40
 #-------------------------------
 [403] # Frozen Lake
 LandTall,20,60

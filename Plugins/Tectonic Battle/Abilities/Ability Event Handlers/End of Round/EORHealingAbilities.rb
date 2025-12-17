@@ -81,6 +81,12 @@ BattleHandlers::EORHealingAbility.add(:GROTESQUEVITALS,
   }
 )
 
+BattleHandlers::EORHealingAbility.add(:THERMOSTASIS,
+  proc { |ability, battler, _battle|
+      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
+  }
+)
+
 BattleHandlers::EORHealingAbility.add(:LIVINGARMOR,
   proc { |ability, battler, battle|
       battler.applyFractionalHealing(1.0 / 12.0, ability: ability) unless battler.lastAttacker.empty?

@@ -384,7 +384,7 @@ module PokemonDebugMenuCommands
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       move = pbChooseMoveList
       if move
-        pbLearnMove(pkmn, move)
+        pbLearnMove(pkmn, move, false, false, true)
         screen.pbRefreshSingle(pkmnid)
       end
       next false
@@ -398,7 +398,7 @@ module PokemonDebugMenuCommands
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       move = pbChooseMoveListForSpecies(pkmn.species, nil, true)
       if move
-        pbLearnMove(pkmn, move)
+        pbLearnMove(pkmn, move, false, false, true)
         screen.pbRefreshSingle(pkmnid)
       end
       next false

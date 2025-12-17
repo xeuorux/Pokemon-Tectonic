@@ -167,19 +167,22 @@ class PokeBattle_Battler
         amt *= 1.2 if @battle.pbCheckGlobalAbility(:FIELDOFLIFE)
         amt = amt.round
 
-        # Cap the healing
-        healthCap = @totalhp
-        healthCap *= 2 if canOverheal
-        maxHeal = healthCap - @hp
-        amt = maxHeal if amt > maxHeal
-        amt = 1 if amt < 1 && @hp < @totalhp
+        # Nerve Break, Bad Influence invert healing
+        amt *= -1 if healingReversed?(showMessage && !aiCheck)
 
-        # Nerve Break, Bad Influence
-        if healingReversed?(showMessage && !aiCheck)
-            amt *= -1
-        elsif boss?
-            if @hp <= avatarPhaseLowerHealthBound && @hp + amt > avatarPhaseLowerHealthBound # Cap boss healing at the next health boundary
-                amt = avatarPhaseLowerHealthBound - @hp
+        if amt.positive?
+            # Cap the healing
+            healthCap = @totalhp
+            healthCap *= 2 if canOverheal
+            maxHeal = healthCap - @hp
+            amt = maxHeal if amt > maxHeal
+            amt = 1 if amt < 1 && @hp < @totalhp
+
+            # Cap boss healing at the next health boundary
+            if boss?
+                if @hp <= avatarPhaseLowerHealthBound && @hp + amt > avatarPhaseLowerHealthBound
+                    amt = avatarPhaseLowerHealthBound - @hp
+                end
             end
         end
 
@@ -581,11 +584,12 @@ class PokeBattle_Battler
             end
         end
         # Zygarde - Power Construct
-        if isSpecies?(:ZYGARDE) && hasAbility?(:POWERCONSTRUCT) && endOfRound && (@hp <= @totalhp / 2 && @form == 3) # Turn into Complete Forme
+        if isSpecies?(:ZYGARDE) && hasAbility?(:POWERCONSTRUCT) && endOfRound && (@hp <= @totalhp / 2 && @form <= 1) # Turn into Complete Forme
             @battle.pbDisplay(_INTL("You sense the presence of many!"))
             showMyAbilitySplash(:POWERCONSTRUCT, true)
             hideMyAbilitySplash
-            pbChangeForm(2, _INTL("{1} transformed into its Complete Forme!", pbThis))
+            @battle.pbCommonAnimation("ZygardeForms", self)
+            pbChangeForm(@form + 2, _INTL("{1} transformed into its Complete Forme!", pbThis))
         end
     end
 

@@ -274,7 +274,11 @@ class PokemonBag_Scene
               end
               pbRefresh
             else
-              pbPlayBuzzerSE
+              if openPocketImmediately
+                openPocketImmediately = false
+              else
+                pbPlayBuzzerSE
+              end
             end
           end
 

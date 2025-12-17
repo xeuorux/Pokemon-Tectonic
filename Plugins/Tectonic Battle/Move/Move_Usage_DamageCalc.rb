@@ -100,7 +100,7 @@ class PokeBattle_Move
     def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
         pseudoLevel = 15.0 + (attacker_level.to_f / 2.0)
         levelMultiplier = 2.0 + (0.4 * pseudoLevel)
-        damage  = 2.0 + ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
+        damage  = ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
         return damage
     end
 
@@ -170,9 +170,9 @@ class PokeBattle_Move
             target.eachAbilityShouldApply(aiCheck) do |ability|
                 BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
             end
-            target.eachAlly do |b|
-                b.eachAbilityShouldApply(aiCheck) do |ability|
-                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
+            target.eachAlly do |owner|
+                owner.eachAbilityShouldApply(aiCheck) do |ability|
+                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,owner,self,multipliers,baseDmg,type,aiCheck)
                 end
             end
         end
@@ -406,8 +406,8 @@ class PokeBattle_Move
     end
 
     def pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
-        # Bushwacker tribe
-        if user.hasTribeBonus?(:BUSHWACKER)
+        # Bushwhacker tribe
+        if user.hasTribeBonus?(:BUSHWHACKER)
             if checkingForAI
                 expectedTypeMod = @battle.battleAI.pbCalcTypeModAI(type, user, target, self)
                 multipliers[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(expectedTypeMod)

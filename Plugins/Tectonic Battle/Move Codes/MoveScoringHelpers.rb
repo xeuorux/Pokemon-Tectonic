@@ -262,7 +262,7 @@ end
 
 def getSelfKOMoveScore(user, _target)
     reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
-    return -200 if reserves == 0 # don't want to lose or draw
+    return -500 if reserves == 0 # don't want to lose or draw
     return ((-user.hp / user.totalhp.to_f) * 100).round
 end
 

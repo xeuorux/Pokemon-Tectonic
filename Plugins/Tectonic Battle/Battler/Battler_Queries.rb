@@ -911,7 +911,6 @@ class PokeBattle_Battler
             eachActiveItem(true) do |item|
                 duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
             end
-            duration = applyEffectDurationModifiers(duration, self)
         end
         return duration
     end
@@ -947,7 +946,7 @@ class PokeBattle_Battler
 
     def notFullyEvolved?
         return false unless @pokemon
-        return !@pokemon.species_data.get_evolutions(true).empty?
+        return !@pokemon.species_data.get_evolutions.empty?
     end
 
     def hasAnyNotFullyEvolvedAllies?

@@ -92,6 +92,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:THICKFAT,:THERMOSTASIS)
+
 BattleHandlers::DamageCalcTargetAbility.add(:UNAFRAID,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if %i[BUG DARK].include?(type)
@@ -416,6 +418,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:UMBRALTENACITY,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.moonGlowing? && type != :STEEL
       mults[:final_damage_multiplier] *= 0.65
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HAILSTONEHELM,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.icy?
+      mults[:final_damage_multiplier] *= 0.5
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }

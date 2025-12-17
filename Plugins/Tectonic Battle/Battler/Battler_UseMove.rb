@@ -331,7 +331,7 @@ class PokeBattle_Battler
                     next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle, false)
                     @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
                     @battle.pbShowAbilitySplash(b, ability)
-                    @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
+                    @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, move.name))
                     @battle.pbHideAbilitySplash(b)
                     user.onMoveFailed(move)
                     pbCancelMoves
@@ -842,7 +842,7 @@ class PokeBattle_Battler
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power and made it {3}!", 
                 getItemName(user.effects[:EmpoweringHerbConsumed]), 
-                move.name, move.physicalMove? ? "special" : "physical" # swapped because the calculatedCategory isn't set yet 
+                move.name, move.physicalMove? ? "physical" : "special" # swapped because the calculatedCategory isn't set yet 
             ))
             aiLearnsItem(user.effects[:EmpoweringHerbConsumed])
         end
@@ -874,11 +874,13 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1} lands a flashy hit!", user.pbThis))
             user.disableEffect(:ActionStar)
         end
-        #Tangling Vines proc message
-        targets.each do |t|
-            if t.pointsAt?(:TanglingVines, user)
-                @battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
-                break #Only trigger once, even if multiple targets are affected
+        # Tangling Vines proc message
+        if move.damagingMove?
+            targets.each do |t|
+                if t.pointsAt?(:TanglingVines, user)
+                    @battle.pbDisplay(_INTL("The tangling vines strengthened the hit!"))
+                    break #Only trigger once, even if multiple targets are affected
+                end
             end
         end
         if user.effectActive?(:Blindness) && move.damagingMove?

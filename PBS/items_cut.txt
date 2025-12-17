@@ -4793,3 +4793,21 @@ Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
 Move = DISSIPATION
+#-------------------------------
+[TMSCREECH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = SCREECH
+#-------------------------------
+[TMCOSMICPOWER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = COSMICPOWER

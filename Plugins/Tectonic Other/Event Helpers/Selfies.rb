@@ -6,10 +6,10 @@ def takeSelfie
       # move follower mon
       $PokemonTemp.dependentEvents.refresh_sprite(true)
       followerEvent = pbGetFollowerDependentEvent
-      followerEvent.moveto($game_player.x - 1,$game_player.y)
+      followerEvent.moveto($game_player.x - 1,$game_player.y) if followerEvent
 
       pbMapInterpreter.get_player.turn_down
-      followerEvent.turn_down
+      followerEvent.turn_down if followerEvent
 
       # Set the text
       caption = pbEnterText(_INTL("Enter caption."),0,50,"",0,nil,true)

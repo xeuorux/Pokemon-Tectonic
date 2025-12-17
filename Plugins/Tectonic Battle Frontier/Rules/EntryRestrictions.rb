@@ -116,7 +116,7 @@ end
       end
       return false if pkmn.species != $babySpeciesData[pkmn.species]
       if $canEvolve[pkmn.species].nil?
-        $canEvolve[pkmn.species] = (pkmn.species_data.get_evolutions(true).length > 0)
+        $canEvolve[pkmn.species] = (pkmn.species_data.get_evolutions.length > 0)
       end
       return $canEvolve[pkmn.species]
     end

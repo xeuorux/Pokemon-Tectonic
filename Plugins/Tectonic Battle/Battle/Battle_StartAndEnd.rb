@@ -607,6 +607,7 @@ class PokeBattle_Battle
                 end
             end
 
+            switched = []
             eachSameSideBattler(sideIndex) do |activeBattler|
                 break if autoPilots.length == 0
                 autoPilotPartyIndex = autoPilots.pop
@@ -614,6 +615,12 @@ class PokeBattle_Battle
                 pbDisplayPaused(_INTL("{1} pilots into battle!",pbThisEx(sideIndex,autoPilotPartyIndex)))
                 pbRecallAndReplace(activeBattler.index, autoPilotPartyIndex)
                 activeBattler.applyEffect(:AutoPilot)
+
+                switched.push(activeBattler.index)
+            end
+
+            pbPriority(true).each do |b|
+                b.pbEffectsOnSwitchIn(true) if switched.include?(b.index)
             end
         end
     end

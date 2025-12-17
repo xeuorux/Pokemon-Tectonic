@@ -925,6 +925,18 @@ Flags = Empowered
 Description = The user creates an Odd Room for eight turns. This raises its Speed. User becomes Psychic-type.
 Animation = MAGICROOM
 #-------------------------------
+[PRIMEVALPACIFY]
+Name = Primeval Pacify
+Type = PSYCHIC
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredPacify
+Flags = Empowered
+Description = The user employs hypnotic suggestion to make a statused target fall into a deep sleep. User becomes Psychic-type.
+Animation = HYPNOSIS
+#-------------------------------
 #		ICE MOVES
 #-------------------------------
 [EMPOWEREDICEBEAM]

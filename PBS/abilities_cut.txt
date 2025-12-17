@@ -64,6 +64,10 @@ Description = Prevents the foe from fleeing unless it is airborne.
 Name = Aroma Veil
 Description = Protects against attacks that limit move choices.
 #-------------------------------
+[ASSISTANT]
+Name = Assistant
+Description = Uses Assist upon entry, using a random move known by a party member.
+#-------------------------------
 [ASTRALBODY]
 Name = Astral Body
 Description = Heals by 1/8th of its max HP each turn if in moonglow.
@@ -143,6 +147,10 @@ Description = Has a 30% chance to dizzy targets when using special moves.
 Name = Brooding
 Description = Deals 5% more damage and takes 5% less damage for each other Dragon on team.
 #-------------------------------
+[BRUTEFORCE]
+Name = Brute Force
+Description = Its attacks are always physical attacks.
+#-------------------------------
 [BULLETPROOF]
 Name = Bulletproof
 Description = Protects the Pokémon from some ball and bomb moves.
@@ -219,6 +227,10 @@ Description = Moves used on the Pokémon are disabled for 3 turns.
 Name = Cute Charm
 Description = Physical moves against the Pokémon have a 30% chance to cause infatuation.
 #-------------------------------
+[CYNIC]
+Name = Cynic
+Description = Immune to Dragon-type, Fairy-type and Ghost-type attacks.
+#-------------------------------
 [DAMP]
 Name = Damp
 Description = Prevents the use of self-destructing moves.
@@ -242,6 +254,10 @@ Description = Foes aren't released from its trapping moves even when the Pokémo
 [DIGGINGFIST]
 Name = Excavator
 Description = Dig and Undermine deal 50% more damage.
+#-------------------------------
+[DIREDIVERSION]
+Name = Dire Diversion
+Description = It can avoid being knocked out by sacrificing its held item.
 #-------------------------------
 [DISORIENTING]
 Name = Disorienting
@@ -357,6 +373,10 @@ Description = Immunity to Fire-type moves and powers up Fire-type attacks if hit
 Name = Flourish Pelt
 Description = Doubles Defense in sunshine.
 #-------------------------------
+[FORCEREVERSAL]
+Name = Force Reversal
+Description = Raises Attack and Sp. Atk by two steps when hit by a not-very-effective move.
+#-------------------------------
 [FOREWARN]
 Name = Forewarn
 Description = Determines what moves a foe has.
@@ -434,6 +454,11 @@ Description = Grows at the end of each turn, slowing down but improving other st
 Name = Shellcracker
 Description = Its physical attacks reduce the target's Defense.
 #-------------------------------
+[GULPMISSILE]
+Name = Gulp Missile
+Description = Attacks with prey caught when using Immerse, Whelm, Surf, or Dive.
+Flags = Immutable
+#-------------------------------
 [GUTS]
 Name = Guts
 Description = Boosts Attack by 33% if has a status condition. Ignores burn physical damage reduction.
@@ -496,6 +521,10 @@ Description = Raises the Pokémon's Attack stat.
 Name = Hyper Cutter
 Description = Prevents other Pokémon from lowering its Attack or Sp. Atk stat.
 #-------------------------------
+[IAIJUTSU]
+Name = Iaijutsu
+Description = Doubles the power of blade moves on the first turn.
+#-------------------------------
 [ICEFACE]
 Name = Ice Face
 Description = Prevents a physical attack. Restored if its hailing when it enters, or when hail begins.
@@ -508,6 +537,11 @@ Description = Prevents other Pokémon from lowering accuracy.
 [IMMUNITY]
 Name = Immunity
 Description = Prevents the Pokémon from getting poisoned.
+#-------------------------------
+[INFILTRATOR]
+Name = Infiltrator
+Description = Ignores screens and other barriers, Substitute, and boosted Defense and Sp. Def.
+Flags = IgnoreScreens,IgnoreSubstitute
 #-------------------------------
 [INFINITESOURCE]
 Name = Infinite Source
@@ -545,6 +579,11 @@ Description = The Pokémon can't use any held items.
 [LATEBLOOMER]
 Name = Late Bloomer
 Description = Deals 30% more damage when it's slower than the target.
+#-------------------------------
+[LEAFGUARD]
+Name = Leaf Guard
+Description = Immune to non-volatile status conditions while in sunshine.
+Flags = SunshineSynergy
 #-------------------------------
 [LEGSTRENGTH]
 Name = Leg Strength
@@ -609,6 +648,11 @@ Description = Summons moonglow for four turns when hit by an attack.
 [LURING]
 Name = Luring
 Description = Its attacks are critical against dizzy targets.
+#-------------------------------
+[LYCANTHROPE]
+Name = Lycanthrope
+Description = Transforms into Midnight Form at the Full Moon. Ability becomes No Guard.
+Flags = MoonglowSynergy
 #-------------------------------
 [MAGICSHIELD]
 Name = Magic Shield
@@ -701,6 +745,11 @@ Description = Gives priority to status moves in moonglow.
 [NEGATIVEOUTLOOK]
 Name = Negative Outlook
 Description = Raises Electric-type allies' Sp. Def by 50%.
+#-------------------------------
+[NESTING]
+Name = Nesting
+Description = Heals 1/12th HP per turn if there's a weather. Immune to weather downsides.
+Flags = AllWeatherSynergy
 #-------------------------------
 [NIGHTLIGHT]
 Name = Night Light
@@ -873,6 +922,10 @@ Name = Receiver
 Description = Copies the Ability of a defeated ally.
 Flags = Uncopyable
 #-------------------------------
+[RECON]
+Name = Recon
+Description = Before using a status move against a single foe, lowers their Sp. Def by two steps.
+#-------------------------------
 [REFRIGERATE]
 Name = Refrigerate
 Description = Normal-type moves become Ice-type and power up by 30%.
@@ -896,6 +949,10 @@ Description = Double the Pokémon's weight, and boost its Attack by 20%.
 [ROLLIN]
 Name = Roll In
 Description = Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage.
+#-------------------------------
+[ROLLINGBLOWS]
+Name = Rolling Blows
+Description = Takes 50% less damage while performing a move which charges up or exhausts the user.
 #-------------------------------
 [ROYALVOICE]
 Name = Royal Voice
@@ -973,6 +1030,10 @@ Description = After fainting from exploding, revives after three turns.
 [SELFSUFFICIENT]
 Name = Self-Sufficient
 Description = Heals 1/16th HP every turn. Protected from being burned or frostbitten.
+#-------------------------------
+[SHADOWTAG]
+Name = Shadow Tag
+Description = Traps the foe.
 #-------------------------------
 [SHAKYCODE]
 Name = Shaky Code
@@ -1160,6 +1221,14 @@ Description = Raises evasion if the Pokémon is confused.
 Name = Tangling Hair
 Description = Physical moves against it lower the attacker's Speed by three steps.
 #-------------------------------
+[TANTALIZING]
+Name = Tantalizing
+Description = Draws in attacks from enemies with below half health.
+#-------------------------------
+[TEAMPLAYER]
+Name = Team Player
+Description = Deals 25% more move damage for each ally in battle.
+#-------------------------------
 [TENDRILTRAP]
 Name = Tendril Trap
 Description = Prevents foes whose Attack is less than its from fleeing.
@@ -1226,6 +1295,10 @@ Description = Upon entry, creates a Trick Room for five turns, inverting the eff
 [TURBOBLAZE]
 Name = Turboblaze
 Description = Moves can be used regardless of Abilities.
+#-------------------------------
+[UNCANNYCOLD]
+Name = Uncanny Cold
+Description = Powers up Ice-type moves by 50%.
 #-------------------------------
 [UNCONCERNED]
 Name = Unconcerned

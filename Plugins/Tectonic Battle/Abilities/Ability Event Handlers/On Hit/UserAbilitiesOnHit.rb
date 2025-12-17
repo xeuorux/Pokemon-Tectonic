@@ -210,6 +210,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
 BattleHandlers::UserAbilityOnHit.add(:CANIDCRUSHER,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless user.firstTurn?
+    next getFractureEffectScore(user, target) if aiCheck
     battle.pbShowAbilitySplash(user, ability)
     target.applyEffect(:Fracture, applyEffectDurationModifiers(DEFAULT_FRACTURE_DURATION, user))
     battle.pbHideAbilitySplash(user)

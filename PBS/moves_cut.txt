@@ -1605,6 +1605,19 @@ Target = BothSides
 FunctionCode = Invalid
 Description = The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.
 #-------------------------------
+[ONAROLL]
+Name = On A Roll
+Type = GROUND
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.
+Animation = ROCKROLL
+#-------------------------------
 [ROTOTILLER]
 Name = Rototiller
 Type = GROUND

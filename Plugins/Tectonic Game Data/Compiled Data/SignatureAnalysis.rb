@@ -16,7 +16,7 @@ def getAbilityCounts()
 		# Don't check the species if its an alt form that isn't a regional form
 		next if species_data.form != 0
 		# ... or if its not fully evolved
-		next if species_data.get_evolutions().length > 0
+		next if species_data.get_evolutions.length > 0
 		arrayID = species_data.isLegendary? ? 1 : 0
 		species_data.abilities.each do |ability_id|
 			ability_counts[ability_id][arrayID].push(species_data.id)
@@ -51,7 +51,7 @@ def getMoveLearnableGroups()
 		# Don't check the species if its an alt form
 		next if species_data.form != 0
 		# ... or if its not fully evolved
-		next if species_data.get_evolutions().length > 0
+		next if species_data.get_evolutions.length > 0
 		groupIndex = species_data.isLegendary? ? 1 : 0
 		species_data.learnable_moves.each do |move|
 			move_counts[move][groupIndex].push(species_data.id)

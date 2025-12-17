@@ -1804,19 +1804,6 @@ EffectChance = 20
 Description = The user attacks by hurling a blob of mud. It has a 20% chance to reduce the target's Speed.
 Animation = MUDSLAP
 #-------------------------------
-[ONAROLL]
-Name = On A Roll
-Type = GROUND
-Category = Physical
-Power = 90
-Accuracy = 100
-TotalPP = 15
-Target = NearOther
-FunctionCode = OnARoll
-Flags = CanProtect
-Description = The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.
-Animation = ROCKROLL
-#-------------------------------
 [PARADISIACA]
 Name = Paradisiaca
 Type = GROUND
@@ -1920,6 +1907,18 @@ FunctionCode = RemoveScreens
 Flags = CanProtect,Sound
 Description = The user attacks with a tectonic vibration. It also breaks any screens protecting the target's side.
 Animation = EARTHPOWER
+#-------------------------------
+[SHEDSPINES]
+Name = Shed Spines
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+Priority = 4
+FunctionCode = TwoSpikesLoseThirdOfTotalHP
+Description = By sacrificing 33% of its max HP, the user lays two hazard layers of Spikes at the foe's feet.
+Animation = SPIKES
 #-------------------------------
 [SIROCCO]
 Name = Sirocco
@@ -2890,6 +2889,18 @@ Description = The user amps itself up for performance, raising its Sp. Atk and S
 Animation = CALMMIND
 #-------------------------------
 #		GHOST MOVES
+#-------------------------------
+[ARCOFHOPE]
+Name = Arc of Hope
+Type = GHOST
+Category = Status
+Accuracy = 100
+TotalPP = 8
+Target = User
+FunctionCode = HealUserPositionInTwoTurns
+Flags = CanSnatch
+Description = Two turns after this move is used, the target's HP is restored by three quarters the user's max HP.
+Animation = WISH
 #-------------------------------
 [BINDFATE]
 Name = Bind Fate
@@ -5837,7 +5848,7 @@ TotalPP = 3
 Target = NearOther
 FunctionCode = SleepTargetUserLosesHalfMaxHP
 Flags = CanProtect,CanMagicCoat
-Description = By sacrificing half its total HP, the user makes the target fall asleep.
+Description = By sacrificing half its max HP, the user makes the target fall asleep.
 Animation = LOVELYKISS
 #-------------------------------
 [DREAMABSORB]
@@ -6919,7 +6930,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableScalesFaster
 Flags = CanProtect
-Description = The user flies high up into the air at supersonic speeds, charging and becoming hidden. It greatly increases in power the faster the user is.
+Description = The user flies high up into the air at supersonic speed, charging and becoming hidden. It greatly increases in power the faster the user is.
 Animation = FLY
 #-------------------------------
 [LOOMOVER]
@@ -6943,7 +6954,7 @@ TotalPP = 15
 Target = AllNearFoes
 FunctionCode = DamageBoostEclipse50Percent
 Flags = CanProtect
-Description = Attacks all foes with hidden draconic energy. Power increases by 50% in eclipse.
+Description = Attacks all foes with dormant draconic energy. Power increases by 50% in eclipse.
 Animation = DRAGONPULSE
 #-------------------------------
 [REDUCINGSYRUP]

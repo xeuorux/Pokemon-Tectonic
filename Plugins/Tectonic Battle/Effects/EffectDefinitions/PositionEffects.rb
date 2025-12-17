@@ -141,6 +141,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :info_displayed => false,
     :type => :PartyPosition,
     :swaps_with_battlers => true,
+    :resets_eor => true,
     :entry_proc => proc do |battle, _index, position, battler|
         if battler.hasActiveAbility?(:LONGRECEIVER)
             abilityPasser = battler.ownerParty[position.effects[:PassingAbility]]

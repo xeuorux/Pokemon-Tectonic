@@ -1542,6 +1542,8 @@ class PokeBattle_TypeSuperMove < PokeBattle_Move
 end
 
 module EmpoweredMove
+    def worksWithNoTargets?; return true; end
+
     def pbMoveFailed?(_user, _targets, _show_message); return false; end
     def pbFailsAgainstTarget?(_user, _target, _show_message); return false; end
 
