@@ -911,7 +911,6 @@ class PokeBattle_Battler
             eachActiveItem(true) do |item|
                 duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
             end
-            duration = applyEffectDurationModifiers(duration, self)
         end
         return duration
     end
