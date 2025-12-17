@@ -125,7 +125,7 @@ module PokeBattle_BattleRecorder
 			:backdropBase => @backdropBase,
 			:time => @time,
 			:environment => @environment,
-			:level_cap => getLevelCap()
+			:level_cap => getLevelCap
 		})
 	end
 
@@ -154,14 +154,14 @@ module PokeBattle_BattleReplayer
 		@opponent_info             = Marshal.load(battle[:opponent_info])
 		@player_party              = Marshal.load(battle[:player_party])
 		@opponent_party            = Marshal.load(battle[:opponent_party])
-
+		
 		Marshal.load(battle[:rules]).each_pair { |rule, val| 
 			setBattleRule(rule, val) if rule != "size"
 			setBattleRule(val) if rule == "size"
 		}
-
+		
 		super(scene, @player_party, @opponent_party, @player_info, @opponent_info, battle[:type])
-
+		
 		@player_party_starts       = Marshal.load(battle[:player_party_starts])
 		@opponent_party_starts     = Marshal.load(battle[:opponent_party_starts])
 		@held_items                = Marshal.load(battle[:held_items])
@@ -183,12 +183,14 @@ module PokeBattle_BattleReplayer
 		@backdropBase              = battle[:backdropBase]
 		@time                      = battle[:time]
 		@environment               = battle[:environment]
-
+		
 		@party1starts              = @player_party_starts
 		@party2starts              = @opponent_party_starts
 		@field.weather             = @starting_weather
 		@field.weatherDuration     = @starting_weather_duration
 		@items                     = @held_items
+		
+		@bossBattle = true if battle[:type] == 2
 
 	end
 
@@ -266,14 +268,14 @@ class PokeBattle_TectonicReplayedBattle < PokeBattle_Battle
 end
 
 def playRecordedBattle(record_name)
-	original_level_cap = getLevelCap()
+	original_level_cap = getLevelCap
 	scene = pbNewBattleScene
 	battle = PokeBattle_TectonicReplayedBattle.new(scene, record_name)
 
-	battle.bossBattle = true if battle.type == 2
 	pbPrepareBattle(battle)
 	battle.registerRules
   $PokemonTemp.clearBattleRules
+
 	setLevelCap(battle.level_cap, false)
 
 	decision = 0	
@@ -305,5 +307,6 @@ def playRecordedBattle(record_name)
 	else
 		raise _INTL("Recorded battle has an invalid battle type. ({1})", battle.type)
 	end
+
 	setLevelCap(original_level_cap, false)
 end
