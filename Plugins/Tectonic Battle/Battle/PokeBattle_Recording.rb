@@ -5,6 +5,7 @@ module PokeBattle_BattleRecorder
 	attr_accessor :recorded_choices #Array of the move choices made
 	attr_accessor :recorded_switches #Array of switches made
 	attr_accessor :random #Array of the random numbers used in the battle
+	attr_accessor :random_log
 
 	attr_accessor :player_info
 	attr_accessor :player_party
@@ -27,6 +28,7 @@ module PokeBattle_BattleRecorder
 		@recorded_choices = []
 		@recorded_switches = []
 		@random = []
+		@random_log = []
 		@is_recorded = true
 		@save_battle = true
 		@type = type
@@ -35,27 +37,30 @@ module PokeBattle_BattleRecorder
 	def pbRandom(x)
 		ret = rand(x)
 		@random.push(ret)
+		@random_log.push("#{ret.to_s}\n#{caller.to_s}\n")
 		return ret
 	end
 
-	def pbCommandPhase
-		@recorded_choices.push([]) #Add turn array
-    (maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
-		super
+	def recordChoices
 		@choices.each_with_index do |c, i|
 			c_clone = c.clone
 			c_clone[2] = nil #Remove move object (not parsable)
 			@recorded_choices[@turnCount][i].push(c_clone)
 		end
+	end
+
+	def pbCommandPhase
+		echoln("===TURN " + @turnCount.to_s + " COMMAND===")
+		@recorded_choices.push([]) #Add turn array
+    (maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
+		super
+		recordChoices
+		echoln(@choices.to_s)
   end
 
 	def pbExtraCommandPhase
 		super
-		@choices.each_with_index do |c, i|
-			c_clone = c.clone
-			c_clone[2] = nil #Remove move object (not parsable)
-			@recorded_choices[@turnCount][i].push(c_clone)
-		end
+		recordChoices
 	end
 
 	def pbStartBattle
@@ -73,6 +78,7 @@ module PokeBattle_BattleRecorder
 
 	def pbEndOfBattle
 		saveBattle("LastBattle") if @save_battle
+		saveRandomLog(@save_battle ? "random_record.txt" : "random_replay.txt")
 		super
 	end
 
@@ -126,6 +132,10 @@ module PokeBattle_BattleRecorder
 	def saveBattle(name)
 		Dir.mkdir("./VSRecorder") unless Dir.exists?("./VSRecorder")
 		File.open("./VSRecorder/" + name + ".dat", "wb") { |f| f.write(getBattleData) }
+	end
+
+	def saveRandomLog(path)
+		File.open("./Analysis/" + path, "wb") { |f| f.write(@random_log.to_s) }
 	end
 end
 
@@ -185,15 +195,14 @@ module PokeBattle_BattleReplayer
 	def pbRandom(x)
 		ret = @random[@randomindex]
 		@randomindex += 1
+		@random_log.push("#{ret.to_s}\n#{caller.to_s}\n")
 		return ret
 	end
 
 	def pbCommandPhase
-		echoln("===TURN " + turnCount.to_s + " COMMAND===")
-		record = []
+		pbCommandPhaseLoop(false)
 		@choices = []
-		@recorded_choices[turnCount].each do |c|
-			record.push(c[0])
+		@recorded_choices[@turnCount].each do |c|
 			@choices.push(c[0])
 			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
@@ -206,14 +215,12 @@ module PokeBattle_BattleReplayer
 				pbRun(currentBattlerIndex)
 			end
 		end
-		echoln(record.to_s)
-		echoln(@choices.to_s)
   end
 
 	def pbExtraCommandPhase
-		echoln("===TURN " + turnCount.to_s + " EXTRA COMMAND===")
+		pbCommandPhaseLoop(false)
 		@choices = []
-		@recorded_choices[turnCount].each do |c|
+		@recorded_choices[@turnCount].each do |c|
 			@choices.push(c[@commandPhasesThisRound-1])
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
@@ -223,8 +230,6 @@ module PokeBattle_BattleReplayer
 				end
 			end
 		end
-		echoln(@recorded_choices[turnCount])
-		echoln(@choices.to_s)
 	end
 
 	def registerNextChoice(index)
@@ -267,6 +272,8 @@ def playRecordedBattle(record_name)
 
 	battle.bossBattle = true if battle.type == 2
 	pbPrepareBattle(battle)
+	battle.registerRules
+  $PokemonTemp.clearBattleRules
 	setLevelCap(battle.level_cap, false)
 
 	decision = 0	
