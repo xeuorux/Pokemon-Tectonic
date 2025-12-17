@@ -15,7 +15,7 @@ ItemHandlers::UseFromBag.add(:SMARTPHONE, proc { |item|
 	when 1 # Save last battle
 		battle_rename = pbEnterText(_INTL("Enter battle name..."), 0, 20)
 		next 0 if battle_rename == ""
-		File.rename("./VSRecorder/LastBattle.dat", "./VSRecorder/" + battle_rename + ".dat")
+		File.rename("./VSRecorder/Last Battle.dat", "./VSRecorder/" + battle_rename + ".dat")
 		next 0
 	when 2 # Rename battle
 		battle_rename_choice = pbMessage(_INTL("Which battle ?"), getRecordedBattleNames, -1)
