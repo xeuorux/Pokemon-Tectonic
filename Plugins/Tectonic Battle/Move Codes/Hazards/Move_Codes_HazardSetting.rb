@@ -70,14 +70,22 @@ class PokeBattle_Move_TwoSpikesLoseThirdOfTotalHP < PokeBattle_Move_Spikes
 
     def pbEffectGeneral(user)
         return if damagingMove?
-        user.pbOpposingSide.incrementEffect(:Spikes,2)
+        if user.pbOpposingSide.countEffect(:Spikes) > 1
+            user.pbOpposingSide.incrementEffect(:Spikes)
+        else 
+            user.pbOpposingSide.incrementEffect(:Spikes,2)
+        end
         user.applyFractionalDamage(1.0 / 3.0)
     end
 
     def pbEffectAgainstTarget(_user, target)
         return unless damagingMove?
         return if target.pbOwnSide.effectAtMax?(:Spikes)
-        target.pbOwnSide.incrementEffect(:Spikes,2)
+        if target.pbOwnSide.countEffect(:Spikes) > 1
+            target.pbOwnSide.incrementEffect(:Spikes)
+        else 
+            target.pbOwnSide.incrementEffect(:Spikes,2)
+        end
         user.applyFractionalDamage(1.0 / 3.0)
     end
 
