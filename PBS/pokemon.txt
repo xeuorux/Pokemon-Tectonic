@@ -6027,7 +6027,7 @@ Generation = 2
 Name = Wynaut
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,25,50,25,25,50
+BaseStats = 115,25,40,25,25,40
 # Total = 270
 BaseEXP = 52
 Rareness = 95
