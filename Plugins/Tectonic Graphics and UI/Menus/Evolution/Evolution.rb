@@ -262,7 +262,7 @@ class PokemonEvolutionScene
         # Check for consumed item and check if Pokémon should be duplicated
         pbEvolutionMethodAfterEvolution
 
-        showPokemonChanges(@pokemon) do
+        showPokemonChangesWindow(@pokemon) do
             @pokemon.species = @newspecies
             @pokemon.form    = 0 if @pokemon.isSpecies?(:MOTHIM)
             @pokemon.calc_stats

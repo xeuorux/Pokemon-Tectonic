@@ -361,7 +361,11 @@ class SpriteMetafile
     window.dispose
 end
 
-def showPokemonChanges(pokemon, &block)
+def showPokemonChangesWindow(pokemon, &block)
+  if $Options.show_stat_changes == 1 # Skipping stat changes
+    block.call # Still modify the pokemon
+    return # but don't show any UI
+  end
   # Mark down pre-change stats
   oldTotalHP = pokemon.totalhp
   oldAttack = pokemon.attack
