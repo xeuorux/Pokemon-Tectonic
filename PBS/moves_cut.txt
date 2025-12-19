@@ -1701,6 +1701,19 @@ Flags = CanProtect,CanMagicCoat
 Description = The user numbs the target, then summons sandstorm for eight turns.
 Animation = SANDSTORM
 #-------------------------------
+[ROCKROLL]
+Name = Rock Roll
+Type = ROCK
+Category = Physical
+Power = 30
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user rolls into the target. Its power doubles if it hits in succession.
+Animation = ROLLOUT
+#-------------------------------
 [ROCKSLIDE]
 Name = Rock Slide
 Type = ROCK
@@ -1764,6 +1777,18 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The target is covered in a powder that explodes if it uses a Fire-type move. It always goes first.
 Animation = POWDER
+#-------------------------------
+[FURYCUTTER]
+Name = Fury Cutter
+Type = BUG
+Category = Physical
+Power = 30
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Blade
+Description = The target is slashed with scythes or claws. Its power doubles if it hits in succession.
 #-------------------------------
 [HIVEMIND]
 Name = Hive Mind

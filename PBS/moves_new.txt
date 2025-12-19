@@ -2310,19 +2310,6 @@ EffectChance = 100
 Description = The user dances wildly while churning rocks towards the target. This raises the user's Attack by two steps.
 Animation = ROCKSLIDE
 #-------------------------------
-[ROCKROLL]
-Name = Rock Roll
-Type = ROCK
-Category = Physical
-Power = 30
-Accuracy = 100
-TotalPP = 30
-Target = NearOther
-FunctionCode = RockRoll
-Flags = CanProtect
-Description = The user rolls into the target. Its power doubles if it hits in succession.
-Animation = ROLLOUT
-#-------------------------------
 [ROLLINGBOULDER]
 Name = Rolling Boulder
 Type = ROCK
@@ -2760,6 +2747,19 @@ FunctionCode = CantMissLowerUserSpeedSpDef1
 Flags = CanProtect,Wind
 Description = The user sheds a huge volley of scales at the target. Lands without fail. This lowers the user's Sp. Def and Speed.
 Animation = SILVERWIND
+#-------------------------------
+[SCRITCHYSCRITCH]
+Name = Scritchy-Scritch
+Type = BUG
+Category = Physical
+Power = 45
+Accuracy = 100
+TotalPP = 25
+Target = NearOther
+FunctionCode = Basic
+Flags = CanProtect,Blade
+Description = The user scratches the target with a flurry of claws, talons, etc.
+Animation = FURYCUTTER
 #-------------------------------
 [SEDATINGDUST]
 Name = Sedating Dust
@@ -6678,13 +6678,13 @@ Description = The user flips, flaps, fumbles, then flounders. It becomes more po
 Name = Snowball
 Type = ICE
 Category = Physical
-Power = 30
+Power = 45
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = IceBall
+FunctionCode = Basic
 Flags = CanProtect
-Description = The user rolls into the target. Its power doubles if it hits in succession.
+Description = The user rolls into the target while covered in snow.
 Animation = ICEBALL
 #-------------------------------
 [SNOWSPILL]

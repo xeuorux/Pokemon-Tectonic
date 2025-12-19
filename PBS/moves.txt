@@ -2498,18 +2498,6 @@ FunctionCode = FailsIfNotUserFirstTurn
 Flags = CanProtect
 Description = Only works on the first turn the user is in battle. This move always goes first.
 #-------------------------------
-[FURYCUTTER]
-Name = Fury Cutter
-Type = BUG
-Category = Physical
-Power = 30
-Accuracy = 100
-TotalPP = 30
-Target = NearOther
-FunctionCode = FuryCutter
-Flags = CanProtect,Blade
-Description = The target is slashed with scythes or claws. Its power doubles if it hits in succession.
-#-------------------------------
 [HEALORDER]
 Name = Heal Order
 Type = BUG
