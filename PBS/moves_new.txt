@@ -2500,6 +2500,7 @@ FunctionCode = LowerTargetDef1
 Flags = CanProtect
 EffectChance = 30
 Description = The user crushes the target with a hardened carapace. It has a 30% chance to lower the target's Defense stat.
+Animation = SMUSH
 #-------------------------------
 [CLACKACLACK]
 Name = Clackaclack
