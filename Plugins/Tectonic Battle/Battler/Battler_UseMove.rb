@@ -1004,7 +1004,7 @@ class PokeBattle_Battler
         end
         targets.each { |b| b.pbFaint if b && b.fainted? }
         user.pbFaint if user.fainted?
-        # Guarenteed added effects
+        # Guaranteed added effects
         if move.guaranteedEffect?
             targets.each do |b|
                 next if b.damageState.calcDamage == 0
