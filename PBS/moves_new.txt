@@ -6531,14 +6531,14 @@ Animation = AVALANCHE
 Name = Icecalibur
 Type = ICE
 Category = Physical
-Power = 80
+Power = 90
 Accuracy = 100
-TotalPP = 20
+TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetDef1
 Flags = CanProtect,Blade
-EffectChance = 30
-Description = The user slashes the target with ice like a sword. It has a 30% chance to lower Defense.
+EffectChance = 20
+Description = The user slashes the target with ice like a sword. It has a 20% chance to lower Defense.
 Animation = SUBZEROSLAMMER
 #-------------------------------
 [ICENINEWALL]
