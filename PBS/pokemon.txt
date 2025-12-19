@@ -12650,7 +12650,7 @@ StepsToHatch = 5355
 Height = 1.1
 Weight = 30.5
 Kind = Thorn Monkey
-Pokedex = Ill tempered, it fights by swinging its barbed tail around wildly. The leaf growing on its head is very COLDBLOODED.
+Pokedex = Ill tempered, it fights by swinging its barbed tail around wildly. The leaf growing on its head is very bitter.
 Generation = 5
 #-------------------------------
 [PANSEAR]
