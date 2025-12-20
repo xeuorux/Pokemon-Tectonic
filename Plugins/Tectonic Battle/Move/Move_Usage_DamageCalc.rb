@@ -426,8 +426,8 @@ class PokeBattle_Move
             multipliers[:final_damage_multiplier] *= 1.2
         end
 
-        # Mystic tribe
-        if user.hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
+        # Esoteric tribe
+        if user.hasTribeBonus?(:ESOTERIC) && user.lastRoundMoveCategory == 2 # Status
             multipliers[:final_damage_multiplier] *= 1.25
         end
 
