@@ -36,7 +36,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:WELLSUITED,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:UNFAZED,
+BattleHandlers::DamageCalcTargetAbility.add(:SIMPLETON,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.tagged?
       mults[:final_damage_multiplier] *= 0.7
