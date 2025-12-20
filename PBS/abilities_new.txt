@@ -1937,6 +1937,10 @@ Flags = RainstormSynergy
 Name = Silver Sense
 Description = Doubles critical hit chance. Restores HP for half the damage it does with critical hits.
 #-------------------------------
+[SIMPLETON]
+Name = Simpleton
+Description = Takes 30% less damage from all tagged moves.
+#-------------------------------
 [SINKINGFEELING]
 Name = Sinking Feeling
 Description = At the end of each round, lowers other waterlogged Pokémon's Attack and Sp. Atk by two steps.
