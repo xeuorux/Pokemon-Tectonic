@@ -1176,6 +1176,11 @@ Description = Upon entry, creates a Trick Room for four turns, inverting the eff
 Name = Suction Cups
 Description = Can't be forced to switch out. Boosts accuracy when hit.
 #-------------------------------
+[SUMMITSPIRIT]
+Name = Summit Spirit
+Description = Boosts Sp. Atk by 30% in hail.
+Flags = HailSynergy
+#-------------------------------
 [SUPERFIST]
 Name = Super Fist
 Description = Boosts the power of punching moves by 50%.

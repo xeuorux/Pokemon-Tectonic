@@ -2154,11 +2154,6 @@ Description = Uses Rapid Spin if an attack lowers its HP below half.
 Name = Summer's Zenith
 Description = After knocking out any Pokémon, summons sunshine for four turns.
 #-------------------------------
-[SUMMITSPIRIT]
-Name = Summit Spirit
-Description = Boosts Sp. Atk by 30% in hail.
-Flags = HailSynergy
-#-------------------------------
 [SUNBURNING]
 Name = Sun Burning
 Description = At the end of each turn in sunshine, each Pokémon not immune to sunshine has their Defense and Sp. Def lowered.
