@@ -399,8 +399,6 @@ module GameData
                     end
                     inheritedTribes = prevoData.tribes(oldSpeciesData: oldSpeciesData)
 
-                    echoln("#{oldSpeciesData}: #{inheritedTribes.to_s}")
-
                     allTribes.concat(inheritedTribes)
                 end
                 allTribes.uniq!
