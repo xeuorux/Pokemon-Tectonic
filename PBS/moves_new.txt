@@ -8033,7 +8033,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = UserLosesHalfOfCurrentHP
 Flags = CanProtect
-Description = Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.
+Description = Attacks nearby foes with a misty explosion. The user loses half its current HP.
 Animation = MISTYEXPLOSION
 #-------------------------------
 [MISTYMIRAGE]
