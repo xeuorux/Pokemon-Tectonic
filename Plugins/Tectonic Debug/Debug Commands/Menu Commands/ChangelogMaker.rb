@@ -303,8 +303,6 @@ def createChangeLog(generationNumber = nil,fileName = "Changelogs/changelog.txt"
 			oldTribes = species_data.tribes(oldSpeciesData: true)
 			newTribes = newSpeciesData.tribes
 
-			echoln("#{species_data.species}: #{oldTribes.length}, #{newTribes.length}")
-
 			unless oldTribes.empty?
 				removedTribes = []
 
