@@ -143,6 +143,10 @@ def battleKeywordsImportant
         "binds",
         "bind",
         "hidden",
+        "foretelling",
+        "foretells",
+        "foretell",
+        "foretold",
     ]
 end
 

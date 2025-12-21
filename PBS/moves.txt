@@ -3037,7 +3037,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold,Light
-Description = Two turns after this move is used, the user blasts the target with a concentrated bundle of light.
+Description = The user foretells doom. Two turns later, the targeted spot is hit with a concentrated beam of light.
 #-------------------------------
 [DOUBLEIRONBASH]
 Name = Double Iron Bash
@@ -4771,7 +4771,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, a hunk of psychic energy attacks the target.
+Description = The user foretells an attack. Two turns later, a hunk of psychic energy hits the targeted spot.
 #-------------------------------
 [GUARDSPLIT]
 Name = Guard Split

@@ -231,7 +231,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackOneTurnLaterChooseIceFireElectricType
 Flags = Foretold
-Description = The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.
+Description = The user foretells your choice of Fire, Electric, or Ice-type. One turn later, the targeted spot explodes with energy of that type.
 Animation = DOOMDESIRE
 #-------------------------------
 [FRANTICFANG]
@@ -3088,7 +3088,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, the user scares the target with a terrifying tale.
+Description = The user foretells a terrifying danger. Two turns later, the targeted spot is mortally frightened.
 #-------------------------------
 [MACHINATE]
 Name = Machinate
@@ -6625,7 +6625,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, extreme winter cold attacks the target.
+Description = The user foretells imminent winter. Two turns later, extreme cold attacks the targeted spot.
 Animation = ICEBURN
 #-------------------------------
 [PACKAGE]
@@ -8119,7 +8119,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, a terrible fate befalls the target.
+Description = The user foretells a terrible fate. Two turns later, the targeted spot is damaged by fated disaster.
 Animation = DOOMDESIRE
 #-------------------------------
 [SUGARBALL]
@@ -8288,7 +8288,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, the target is struck by a well-planned attack.
+Description = The user foretells an attack. Two turns later, the targeted spot is struck by a well-planned attack.
 Animation = FUTURESIGHT
 #-------------------------------
 [RUNAMUCK]

@@ -138,7 +138,7 @@ Description = When free from non-volatile status conditions, non-damaging moves 
 #-------------------------------
 [BADOMEN]
 Name = Bad Omen
-Description = Foretold moves hit two turns quicker and deal 30% more damage.
+Description = Foretelling moves hit two turns quicker and deal 30% more damage.
 #-------------------------------
 [BALLLIGHTNING]
 Name = Ball Lightning
@@ -370,7 +370,7 @@ Description = When hit with a special move, hits back instantly with Breach.
 #-------------------------------
 [CREEPINGHORROR]
 Name = Creeping Horror
-Description = Foretold moves take one turn longer to attack but deal 50% more damage.
+Description = Foretelling moves take one turn longer to attack but deal 50% more damage.
 #-------------------------------
 [CURSEDTAIL]
 Name = Cursed Tail
@@ -757,7 +757,7 @@ Description = Doubles this Pokémon's Speed in Rooms.
 #-------------------------------
 [FOREWARNING]
 Name = Forewarning
-Description = Foretold moves also hit for half power on the turn they are used.
+Description = Foretelling moves also hit for half power on the turn they are used.
 #-------------------------------
 [FREERIDE]
 Name = Free Ride
@@ -1882,7 +1882,7 @@ Description = Special moves have a 30% chance to leech targets.
 #-------------------------------
 [SEER]
 Name = Seer
-Description = Foretold moves deal 50% more damage.
+Description = Foretelling moves deal 50% more damage.
 #-------------------------------
 [SELECTIVESCUTES]
 Name = Selective Scutes
