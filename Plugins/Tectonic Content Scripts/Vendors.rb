@@ -72,7 +72,7 @@ def purchaseStarters(type,price=0)
 	end
 
   starterIDs.each do |id|
-    starterNames << GameData::Species.get(id.upcase).name
+    starterNames << GameData::Species.get(id.upcase.to_sym).name
   end
 
 	while true
@@ -82,7 +82,7 @@ def purchaseStarters(type,price=0)
 			pbMessage(_INTL("Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!",typeName))
 			break
 		else
-			starterChosenName = starterIDs[result]
+			starterChosenName = starterIDs[result - 1]
 			starterSpecies = starterChosenName.upcase.to_sym
 
 			choicesArray = [_INTL("View MasterDex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
