@@ -8,35 +8,6 @@ class Particle_Engine
         @effect    = []
         @disposed  = false
         @firsttime = true
-        @effects   = {
-           # PinkMan's Effects
-           "fire"         => Particle_Engine::Fire,
-           "smoke"        => Particle_Engine::Smoke,
-           "teleport"     => Particle_Engine::Teleport,
-           "spirit"       => Particle_Engine::Spirit,
-           "explosion"    => Particle_Engine::Explosion,
-           "aura"         => Particle_Engine::Aura,
-           # BlueScope's Effects
-           "soot"         => Particle_Engine::Soot,
-           "sootsmoke"    => Particle_Engine::SootSmoke,
-           "rocket"       => Particle_Engine::Rocket,
-           "fixteleport"  => Particle_Engine::FixedTeleport,
-           "smokescreen"  => Particle_Engine::Smokescreen,
-           "flare"        => Particle_Engine::Flare,
-           "splash"       => Particle_Engine::Splash,
-           # By Peter O.
-           "starteleport" => Particle_Engine::StarTeleport,
-
-           # By Zinnia
-           "starfield"      => Particle_Engine::CircleStarField,
-           "wormhole"       => Particle_Engine::Wormhole,
-           "steamy"         => Particle_Engine::Steamy,
-           "steamy2"        => Particle_Engine::Steamy2,
-           "timeteleporter" => Particle_Engine::TimeTeleporter,
-           "latentsoil"     => Particle_Engine::LatentSoil,
-           "stinkbomb"      => Particle_Engine::StinkBomb,
-           "shinyobject"    => Particle_Engine::ShinyObject,
-        }
     end
 
     def dispose
@@ -56,7 +27,7 @@ class Particle_Engine
 
     def add_effect(event, type = nil)
         if type
-            cls = @effects[type]
+            cls = getEffectList[type]
             return if cls.nil?
             @effect[event.id] = cls.new(event, @viewport)
         else
@@ -77,7 +48,7 @@ class Particle_Engine
             return nil
         end
         type = type[0].downcase
-        cls = @effects[type]
+        cls = getEffectList[type]
         if cls.nil?
             particle.dispose if particle
             return nil
@@ -121,3 +92,16 @@ Events.onSpritesetCreate += proc { |_sender, e|
     map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
     spriteset.addParticleEngine(Particle_Engine.new(viewport, map)) if $Options.particle_effects == 0
 }
+
+def getEffectList
+    return {
+        "starfield"      => Particle_Engine::CircleStarField,
+        "wormhole"       => Particle_Engine::Wormhole,
+        "steamy"         => Particle_Engine::Steamy,
+        "steamy2"        => Particle_Engine::Steamy2,
+        "timeteleporter" => Particle_Engine::TimeTeleporter,
+        "latentsoil"     => Particle_Engine::LatentSoil,
+        "stinkbomb"      => Particle_Engine::StinkBomb,
+        "shinyobject"    => Particle_Engine::ShinyObject,
+    }
+end
