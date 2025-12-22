@@ -99,7 +99,7 @@ class PokeBattle_Battler
     end
 
     def pbEndTurn(_choice)
-        @lastRoundMoved = @battle.turnCount # Done something this round
+        @lastRoundMoved = @battle.turnCount unless @battle.foretoldMove # Done something this round
         # Gorilla Tactics
         if !effectActive?(:GorillaTactics) && hasActiveAbility?(GameData::Ability.getByFlag("ChoiceLocking"))
             if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
