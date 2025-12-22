@@ -161,6 +161,18 @@ Flags = CanProtect,Pulse
 Description = The user shoots a pulse of diffuse energy at the target.
 Animation = SIMPLEBEAM
 #-------------------------------
+[DINNERBELL]
+Name = Dinner Bell
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+FunctionCode = UserLosesQuarterHPPartyMembersHealQuarterHP
+Flags = Sound
+Description = The user calls its team to a farm-fresh meal, sacrificing 25% HP to heal each of its party members by 25% HP.
+Animation = HEALBELL
+#-------------------------------
 [DISCOMBOBULATE]
 Name = Discombobulate
 Type = NORMAL
@@ -487,19 +499,6 @@ FunctionCode = ScalesUsersPositiveStatSteps
 Flags = CanProtect
 Description = The user attacks the target with stored power. Has 10 more base power for each raised stat step.
 Animation = STOREDPOWER
-#-------------------------------
-[ROUGHTUMBLE]
-Name = Rough & Tumble
-Type = NORMAL
-Category = Physical
-Power = 100
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = RoughAndTumble
-Flags = CanProtect
-Description = The user attacks by splaying its body wide. Its power doubles if Curl Up was used previously.
-Animation = BODYSLAM
 #-------------------------------
 [RUIN]
 Name = Ruin

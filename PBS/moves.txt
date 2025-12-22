@@ -506,17 +506,6 @@ FunctionCode = UseRandomNonSignatureMove
 Flags = Uninvocable
 Description = The user waggles a finger and stimulates its brain into randomly using nearly any move.
 #-------------------------------
-[MILKDRINK]
-Name = Milk Drink
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 8
-Target = User
-FunctionCode = HealUserHalfOfTotalHP
-Flags = CanSnatch
-Description = The user heals itself by half of its max HP.
-#-------------------------------
 [MULTIATTACK]
 Name = Multi-Attack
 Type = NORMAL

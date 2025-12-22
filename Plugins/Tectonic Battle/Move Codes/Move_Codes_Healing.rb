@@ -893,3 +893,7 @@ class PokeBattle_Move_EmpoweredHealOrder < PokeBattle_HalfHealingMove
         transformType(user, :BUG)
     end
 end
+
+class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_Move
+    # TO DO
+end
