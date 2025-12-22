@@ -767,10 +767,10 @@ module BattleHandlers
     #=============================================================================
 
     def self.triggerUserAbilityOnMiss(ability, user, targets, move, battle)
-        UserAbilityStartOfMove.trigger(ability, user, targets, move, battle)
+        UserAbilityOnMiss.trigger(ability, user, targets, move, battle)
     end
 
     def self.triggerTargetAbilityOnMiss(ability, user, target, move, battle)
-        TargetAbilityStartOfMove.trigger(ability, user, target, move, battle)
+        TargetAbilityOnMiss.trigger(ability, user, target, move, battle)
     end
 end
