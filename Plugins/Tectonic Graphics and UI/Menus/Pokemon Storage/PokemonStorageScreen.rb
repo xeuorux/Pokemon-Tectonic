@@ -367,7 +367,7 @@ class PokemonStorageScreen
         return false if box.empty?
         nitems = box.nitems - 1
         listOfPokemon = []
-        for i in 0..PokemonBox::BOX_SIZE
+        for i in 0...PokemonBox::BOX_SIZE
             listOfPokemon.push(box[i]) if box[i]
         end
 
@@ -377,7 +377,7 @@ class PokemonStorageScreen
         box.clear
 
 		anyMoved = false
-        for i in 0..PokemonBox::BOX_SIZE
+        for i in 0...PokemonBox::BOX_SIZE
             anyMoved = true if box[i] != listOfPokemon[i]
             box[i] = listOfPokemon[i]
         end

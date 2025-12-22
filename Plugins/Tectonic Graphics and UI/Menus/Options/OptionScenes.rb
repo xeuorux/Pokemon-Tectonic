@@ -159,7 +159,7 @@ class PokemonOption_Scene_Audio < PokemonOption_Scene_Base
 end
 
 #===============================================================================
-# User Interface options scene
+# UI Speed options scene
 #===============================================================================
 class PokemonOption_Scene_Speed < PokemonOption_Scene_Base
     def optionsName
@@ -233,6 +233,15 @@ class PokemonOption_Scene_Speed < PokemonOption_Scene_Base
 				proc { $Options.prompt_level_moves },
 				proc { |value|
 					$Options.prompt_level_moves = value
+				}
+			),
+            EnumOption.new(
+                _INTL("Show Stat Changes"),
+                _INTL("Whether to show how your Pokémon's stats change on level up or evolution."),
+                [_INTL("On"), _INTL("Off")],
+				proc { $Options.show_stat_changes },
+				proc { |value|
+					$Options.show_stat_changes = value
 				}
 			),
             EnumOption.new(

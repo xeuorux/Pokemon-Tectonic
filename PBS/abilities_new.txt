@@ -138,7 +138,7 @@ Description = When free from non-volatile status conditions, non-damaging moves 
 #-------------------------------
 [BADOMEN]
 Name = Bad Omen
-Description = Foretold moves hit two turns quicker and deal 30% more damage.
+Description = Foretelling moves hit two turns quicker and deal 30% more damage.
 #-------------------------------
 [BALLLIGHTNING]
 Name = Ball Lightning
@@ -370,7 +370,7 @@ Description = When hit with a special move, hits back instantly with Breach.
 #-------------------------------
 [CREEPINGHORROR]
 Name = Creeping Horror
-Description = Foretold moves take one turn longer to attack but deal 50% more damage.
+Description = Foretelling moves take one turn longer to attack but deal 50% more damage.
 #-------------------------------
 [CURSEDTAIL]
 Name = Cursed Tail
@@ -408,6 +408,7 @@ Description = Has a 30% chance to leech targets when using physical moves.
 [DEADOFWINTER]
 Name = Dead of Winter
 Description = After knocking out any Pokémon, summons hail for four turns.
+Flags = HailSynergy
 #-------------------------------
 [DEBRISFIELD]
 Name = Debris Field
@@ -570,6 +571,7 @@ Description = The Pokémon's moves have priority against single targets with inc
 [EPHEMERATE]
 Name = Ephemerate
 Description = Eclipse counts down twice as quickly.
+Flags = EclipseSynergy
 #-------------------------------
 [ERUDITE]
 Name = Erudite
@@ -667,7 +669,7 @@ Flags = RainstormSynergy
 #-------------------------------
 [FIELDOFDEATH]
 Name = Field of Death
-Description = While this Pokémon is on the field, all attacks drain 30% of damage dealt.
+Description = While this Pokémon is on the field, all attacks restore their user's HP by 30% of damage dealt.
 #-------------------------------
 [FIELDOFLIFE]
 Name = Field of Life
@@ -757,7 +759,7 @@ Description = Doubles this Pokémon's Speed in Rooms.
 #-------------------------------
 [FOREWARNING]
 Name = Forewarning
-Description = Foretold moves also hit for half power on the turn they are used.
+Description = Foretelling moves also hit for half power on the turn they are used.
 #-------------------------------
 [FREERIDE]
 Name = Free Ride
@@ -818,6 +820,7 @@ Description = Boosts the power of wind-based moves by 50%.
 [GALLOPINGSTORM]
 Name = Galloping Storm
 Description = After knocking out any Pokémon, summons rainstorm for four turns.
+Flags = RainstormSynergy
 #-------------------------------
 [GALVANICWINGS]
 Name = Galvanic Wings
@@ -1123,7 +1126,8 @@ Description = At the beginning of each turn, gives clues about a foe's plan.
 #-------------------------------
 [IONIZEDALLOY]
 Name = Ionized Alloy
-Description = The Pokémon gains the Electric type in a rainstorm.
+Description = The Pokémon gains the Electric-type in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [IRONHEEL]
 Name = Iron Heel
@@ -1571,6 +1575,7 @@ Description = Attacks against this Pokémon deal 50% more damage, but the attack
 [PLOTARMOR]
 Name = Plot Armor
 Description = During eclipse, immune to non-volatile status conditions and stat reductions.
+Flags = EclipseSynergy
 #-------------------------------
 [PLURIPOTENCE]
 Name = Pluripotence
@@ -1766,6 +1771,7 @@ Description = When this Pokémon eats a Berry, it raises its Attack and Sp. Atk 
 [ROCKBODY]
 Name = Rock Body
 Description = Heals 1/8th of its max HP each turn during sandstorm.
+Flags = SandstormSynergy
 #-------------------------------
 [ROCKCLIMBER]
 Name = Rock Climber
@@ -1811,6 +1817,7 @@ Flags = RainstormSynergy
 [SALTATIONSURGE]
 Name = Saltation Surge
 Description = After knocking out any Pokémon, summons sandstorm for four turns.
+Flags = SandstormSynergy
 #-------------------------------
 [SANDBURST]
 Name = Sand Burst
@@ -1882,7 +1889,7 @@ Description = Special moves have a 30% chance to leech targets.
 #-------------------------------
 [SEER]
 Name = Seer
-Description = Foretold moves deal 50% more damage.
+Description = Foretelling moves deal 50% more damage.
 #-------------------------------
 [SELECTIVESCUTES]
 Name = Selective Scutes
@@ -1895,6 +1902,7 @@ Description = Takes 25% less damage while using a status move.
 [SERVEDCOLD]
 Name = Served Cold
 Description = Boosts Attack by 20% in hail, or 40% if also below half health.
+Flags = HailSynergy
 #-------------------------------
 [SEVERE]
 Name = Severe
@@ -1936,6 +1944,10 @@ Flags = RainstormSynergy
 [SILVERSENSE]
 Name = Silver Sense
 Description = Doubles critical hit chance. Restores HP for half the damage it does with critical hits.
+#-------------------------------
+[SIMPLETON]
+Name = Simpleton
+Description = Takes 30% less damage from all tagged moves.
 #-------------------------------
 [SINKINGFEELING]
 Name = Sinking Feeling
@@ -2149,11 +2161,7 @@ Description = Uses Rapid Spin if an attack lowers its HP below half.
 [SUMMERSZENITH]
 Name = Summer's Zenith
 Description = After knocking out any Pokémon, summons sunshine for four turns.
-#-------------------------------
-[SUMMITSPIRIT]
-Name = Summit Spirit
-Description = Boosts Sp. Atk by 30% in hail.
-Flags = HailSynergy
+Flags = SunshineSynergy
 #-------------------------------
 [SUNBURNING]
 Name = Sun Burning
@@ -2219,6 +2227,7 @@ Description = At the end of each round, lowers other numbed Pokémon's Defense a
 [TENEBROUSCANTER]
 Name = Tenebrous Canter
 Description = After knocking out any Pokémon, summons eclipse for four turns.
+Flags = EclipseSynergy
 #-------------------------------
 [TERRITORIAL]
 Name = Territorial
@@ -2309,10 +2318,12 @@ Description = Powers up moves of the same type by 50%.
 [UMBRALTENACITY]
 Name = Umbral Tenacity
 Description = During moonglow, take 35% less damage from attacks that aren't Steel-type.
+Flags = MoonglowSynergy
 #-------------------------------
 [UMBRALWAKE]
 Name = Umbral Wake
 Description = After knocking out any Pokémon, summons moonglow for four turns.
+Flags = MoonglowSynergy
 #-------------------------------
 [UNAFRAID]
 Name = Unafraid
@@ -2392,6 +2403,7 @@ Description = The Pokémon's attacks are always critical if there is an active R
 [WANINGWILLPOWER]
 Name = Waning Willpower
 Description = During the Full Moon, this Pokémon saps the enemy Pokémon of their vitality, leeching them.
+Flags = MoonglowSynergy
 #-------------------------------
 [WARDING]
 Name = Warding

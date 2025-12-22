@@ -683,8 +683,8 @@ class PokemonPokedex_Scene
 		:searchByAbility,
 		:searchByMoveLearned,
 		:searchByEvolutionMethod,
-		:searchByAvailableLevel,
 		:searchByTribe,
+		:searchByAvailableLevel,
 		:searchByTypeMatchup,
 		:searchByStatComparison,
 		:sortByStat,
@@ -718,13 +718,13 @@ class PokemonPokedex_Scene
             [_INTL("Abilities"), xLeft, 164, 0, base, shadow],
             [_INTL("Moves"), xLeft2, 164, 0, base, shadow],
             [_INTL("Evolution"), xLeft, 260, 0, base, shadow],
-            [_INTL("Available"), xLeft2, 260, 0, base, shadow],
+            [_INTL("Tribe"), xLeft2, 260, 0, base, shadow],
         ]
         xLeft += 4
         xLeft2 += 4
         page2textpos = [
             [_INTL("Choose a Search"), Graphics.width / 2, -2, 2, title_base, title_shadow],
-            [_INTL("Tribe"), xLeft, 68, 0, base, shadow],
+            [_INTL("Available"), xLeft, 68, 0, base, shadow],
             [_INTL("Matchups"), xLeft2, 68, 0, base, shadow],
             [_INTL("Stats"), xLeft, 164, 0, base, shadow],
             [_INTL("Stat Sort"), xLeft2, 164, 0, base, shadow],

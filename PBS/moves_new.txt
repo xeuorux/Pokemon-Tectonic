@@ -231,7 +231,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackOneTurnLaterChooseIceFireElectricType
 Flags = Foretold
-Description = The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.
+Description = The user foretells your choice of Fire, Electric, or Ice-type. One turn later, the targeted spot explodes with energy of that type.
 Animation = DOOMDESIRE
 #-------------------------------
 [FRANTICFANG]
@@ -2310,19 +2310,6 @@ EffectChance = 100
 Description = The user dances wildly while churning rocks towards the target. This raises the user's Attack by two steps.
 Animation = ROCKSLIDE
 #-------------------------------
-[ROCKROLL]
-Name = Rock Roll
-Type = ROCK
-Category = Physical
-Power = 30
-Accuracy = 100
-TotalPP = 30
-Target = NearOther
-FunctionCode = RockRoll
-Flags = CanProtect
-Description = The user rolls into the target. Its power doubles if it hits in succession.
-Animation = ROLLOUT
-#-------------------------------
 [ROLLINGBOULDER]
 Name = Rolling Boulder
 Type = ROCK
@@ -2513,6 +2500,7 @@ FunctionCode = LowerTargetDef1
 Flags = CanProtect
 EffectChance = 30
 Description = The user crushes the target with a hardened carapace. It has a 30% chance to lower the target's Defense stat.
+Animation = SMUSH
 #-------------------------------
 [CLACKACLACK]
 Name = Clackaclack
@@ -2760,6 +2748,19 @@ FunctionCode = CantMissLowerUserSpeedSpDef1
 Flags = CanProtect,Wind
 Description = The user sheds a huge volley of scales at the target. Lands without fail. This lowers the user's Sp. Def and Speed.
 Animation = SILVERWIND
+#-------------------------------
+[SCRITCHYSCRITCH]
+Name = Scritchy-Scritch
+Type = BUG
+Category = Physical
+Power = 45
+Accuracy = 100
+TotalPP = 25
+Target = NearOther
+FunctionCode = Basic
+Flags = CanProtect,Blade
+Description = The user scratches the target with a flurry of claws, talons, etc.
+Animation = FURYCUTTER
 #-------------------------------
 [SEDATINGDUST]
 Name = Sedating Dust
@@ -3087,7 +3088,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, the user scares the target with a terrifying tale.
+Description = The user foretells a terrifying danger. Two turns later, the targeted spot is mortally frightened.
 #-------------------------------
 [MACHINATE]
 Name = Machinate
@@ -6530,14 +6531,14 @@ Animation = AVALANCHE
 Name = Icecalibur
 Type = ICE
 Category = Physical
-Power = 80
+Power = 90
 Accuracy = 100
-TotalPP = 20
+TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetDef1
 Flags = CanProtect,Blade
-EffectChance = 30
-Description = The user slashes the target with ice like a sword. It has a 30% chance to lower Defense.
+EffectChance = 20
+Description = The user slashes the target with ice like a sword. It has a 20% chance to lower Defense.
 Animation = SUBZEROSLAMMER
 #-------------------------------
 [ICENINEWALL]
@@ -6624,7 +6625,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, extreme winter cold attacks the target.
+Description = The user foretells imminent winter. Two turns later, extreme cold attacks the targeted spot.
 Animation = ICEBURN
 #-------------------------------
 [PACKAGE]
@@ -6678,13 +6679,13 @@ Description = The user flips, flaps, fumbles, then flounders. It becomes more po
 Name = Snowball
 Type = ICE
 Category = Physical
-Power = 30
+Power = 45
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = IceBall
+FunctionCode = Basic
 Flags = CanProtect
-Description = The user rolls into the target. Its power doubles if it hits in succession.
+Description = The user rolls into the target while covered in snow.
 Animation = ICEBALL
 #-------------------------------
 [SNOWSPILL]
@@ -8032,7 +8033,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = UserLosesHalfOfCurrentHP
 Flags = CanProtect
-Description = Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.
+Description = Attacks nearby foes with a misty explosion. The user loses half its current HP.
 Animation = MISTYEXPLOSION
 #-------------------------------
 [MISTYMIRAGE]
@@ -8118,7 +8119,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, a terrible fate befalls the target.
+Description = The user foretells a terrible fate. Two turns later, the targeted spot is damaged by fated disaster.
 Animation = DOOMDESIRE
 #-------------------------------
 [SUGARBALL]
@@ -8287,7 +8288,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, the target is struck by a well-planned attack.
+Description = The user foretells an attack. Two turns later, the targeted spot is struck by a well-planned attack.
 Animation = FUTURESIGHT
 #-------------------------------
 [RUNAMUCK]

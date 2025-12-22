@@ -331,19 +331,6 @@ class PokeBattle_Scene
     end
   
     #=============================================================================
-    # Shows stats windows upon a Pokémon levelling up
-    #=============================================================================
-    def pbLevelUp(pkmn,_battler,oldTotalHP,oldAttack,oldDefense,oldSpAtk,oldSpDef,oldSpeed)
-      pbTopRightWindow(
-         _INTL("Max. HP<r>+{1}\r\nAttack<r>+{2}\r\nDefense<r>+{3}\r\nSp. Atk<r>+{4}\r\nSp. Def<r>+{5}\r\nSpeed<r>+{6}",
-         pkmn.totalhp-oldTotalHP,pkmn.attack-oldAttack,pkmn.defense-oldDefense,
-         pkmn.spatk-oldSpAtk,pkmn.spdef-oldSpDef,pkmn.speed-oldSpeed))
-      pbTopRightWindow(
-         _INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-         pkmn.totalhp,pkmn.attack,pkmn.defense,pkmn.spatk,pkmn.spdef,pkmn.speed))
-    end
-  
-    #=============================================================================
     # Animates a Pokémon fainting
     #=============================================================================
     def pbFaintBattler(battler)

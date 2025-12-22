@@ -573,7 +573,7 @@ Pokemon = MAWILE,18
     AbilityIndex = 1 # Intimidate
     Item = STEELGEM
 Pokemon = HSNEASEL,19
-    Moves = KARATECHOP,HONECLAWS,FURYCUTTER,CAUSTICPUNCH
+    Moves = KARATECHOP,HONECLAWS,SCRITCHYSCRITCH,CAUSTICPUNCH
     AbilityIndex = 1 # Frustrate
 Pokemon = SHELLOS,19
     Moves = MUDSHOT,SWEETKISS,WATERGUN,HARDEN
@@ -1504,7 +1504,7 @@ Pokemon = SPOINK,28
 #-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
-    Moves = ELECTROBALL,SWIFT,SELFDESTRUCT,ROCKROLL
+    Moves = ELECTROBALL,SWIFT,SELFDESTRUCT,ROCKTHROW
     AbilityIndex = 0 # Bunker Down
 Pokemon = SKORUPI,28
     Moves = FEINTATTACK,POISONFANG,SUCKBLOOD,ENVENOM
@@ -7721,9 +7721,9 @@ Pokemon = DRAPION,60
     Moves = HONORLESSSTING,SEVER,VENOMGUARD,AGONIZE
     AbilityIndex = 0 # Darkened Skies
 Pokemon = SUDOWOODO,60
-    Moves = GLIMMERPULSE,CREEPINGSTRIKE,BODYPRESS,SHOREUP
+    Moves = GLIMMERPULSE,ERODE,BODYPRESS,SHOREUP
     AbilityIndex = 0 # Desiccate
-    Item = GRASSGEM
+    Item = FIGHTINGGEM
 #-------------------------------
 [ANCIENTPRIEST,Radzayac]
 Pokemon = DIGGERSBY,60
