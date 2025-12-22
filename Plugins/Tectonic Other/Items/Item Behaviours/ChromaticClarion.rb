@@ -32,7 +32,11 @@ def useChromaClarion
 
     pbWait(40)
 
-    pbWildBattleCore(*encounters)
+    if $catching_minigame.active?
+        pbCatchingMinigameWildBattleCore(*encounters)
+    else
+        pbWildBattleCore(*encounters)
+    end
 
     #$PokemonGlobal.chroma_clarion_recharge_steps = 30
     #pbMessage(_INTL("The Chroma Clarion goes silent."))
