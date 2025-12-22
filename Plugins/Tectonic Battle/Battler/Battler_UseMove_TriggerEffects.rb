@@ -354,4 +354,16 @@ user.pbThis(true)))
             end
         end
     end
+
+    #=============================================================================
+    # Effects when a move misses against a target.
+    #=============================================================================
+    def pbEffectsOnMiss(user, target, move)
+        user.eachActiveAbility do |abilityID|
+            BattleHandlers::triggerUserAbilityOnMiss(abilityID, user, target, move, @battle)
+        end
+        target.eachActiveAbility do |abilityID|
+            BattleHandlers::triggerTargetAbilityOnMiss(abilityID, user, target, move, @battle)
+        end
+    end
 end
