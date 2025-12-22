@@ -37,7 +37,7 @@ module PokeBattle_BattleRecorder
 	def pbRandom(x)
 		ret = rand(x)
 		@random.push(ret)
-		@random_log.push("#{ret.to_s}\n#{caller.to_s}\n")
+		@random_log.push("#{ret.to_s}#{$/}#{caller.to_s}#{$/}")
 		return ret
 	end
 
@@ -135,7 +135,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def saveRandomLog(path)
-		File.open("./Analysis/" + path, "wb") { |f| f.write(@random_log.to_s) }
+		File.open("./Analysis/" + path, "wb") { |f| f.write(@random_log.join("")) }
 	end
 end
 
@@ -224,11 +224,12 @@ module PokeBattle_BattleReplayer
 		@choices = []
 		@recorded_choices[@turnCount].each do |c|
 			@choices.push(c[@commandPhasesThisRound-1])
+			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
 					@choices[-1][2] = @struggle
 				else
-					@choices[-1][2] = @battlers[@choices.length-1].moves[@choices[-1][1]]
+					@choices[-1][2] = @battlers[currentBattlerIndex].moves[@choices[-1][1]] #Restore move from index
 				end
 			end
 		end

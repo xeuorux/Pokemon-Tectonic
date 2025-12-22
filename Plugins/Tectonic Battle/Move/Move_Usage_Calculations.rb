@@ -150,6 +150,7 @@ class PokeBattle_Move
         evasion = 1 if evasion < 1
         # Calculation
         calc = accuracy.to_f / evasion.to_f
+        return true if 100 <= modifiers[:base_accuracy] * calc # Avoid calling pbRandom if move is guaranteed to hit
         return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
     end
 
@@ -213,7 +214,9 @@ class PokeBattle_Move
             forced = true
         elsif allowedToRandomCrit
             rate = criticalHitRate(user, target)
-            if isRandomCrit?(user, target, rate)
+            random_crit = false
+            random_crit = isRandomCrit?(user, target, rate) unless checkingForAI #Avoids needlessly calling pbRandom on AI checks
+            if random_crit
                 crit = true
             end
         end
