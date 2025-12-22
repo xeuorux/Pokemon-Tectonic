@@ -10,7 +10,7 @@ ItemHandlers::UseFromBag.add(:SMARTPHONE, proc { |item|
 	when 0 # Watch battle
 		battle_replay_choice = pbMessage(_INTL("Which battle ?"), getRecordedBattleNames, -1)
 		next 0 if battle_replay_choice == -1
-		playRecordedBattle(Dir["./VSRecorder/*.dat"][battle_replay_choice])
+		playRecordedBattle(getRecordedBattleNames[battle_replay_choice])
 		next 0
 	when 1 # Save last battle
 		battle_rename = pbEnterText(_INTL("Enter battle name..."), 0, 20)
