@@ -7721,9 +7721,9 @@ Pokemon = DRAPION,60
     Moves = HONORLESSSTING,SEVER,VENOMGUARD,AGONIZE
     AbilityIndex = 0 # Darkened Skies
 Pokemon = SUDOWOODO,60
-    Moves = GLIMMERPULSE,CREEPINGSTRIKE,BODYPRESS,SHOREUP
+    Moves = GLIMMERPULSE,ERODE,BODYPRESS,SHOREUP
     AbilityIndex = 0 # Desiccate
-    Item = GRASSGEM
+    Item = FIGHTINGGEM
 #-------------------------------
 [ANCIENTPRIEST,Radzayac]
 Pokemon = DIGGERSBY,60
