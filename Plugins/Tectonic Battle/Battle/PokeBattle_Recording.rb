@@ -183,6 +183,7 @@ module PokeBattle_BattleReplayer
 		@backdropBase              = battle[:backdropBase]
 		@time                      = battle[:time]
 		@environment               = battle[:environment]
+		@expGain                   = false
 		
 		@party1starts              = @player_party_starts
 		@party2starts              = @opponent_party_starts
@@ -223,7 +224,7 @@ module PokeBattle_BattleReplayer
 		pbCommandPhaseLoop(false)
 		@choices = []
 		@recorded_choices[@turnCount].each do |c|
-			@choices.push(c[@commandPhasesThisRound-1])
+			@choices.push(c[@commandPhasesThisRound]) # Not decremented since commandPhasesThisRound is incremented AFTER the command phase
 			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
