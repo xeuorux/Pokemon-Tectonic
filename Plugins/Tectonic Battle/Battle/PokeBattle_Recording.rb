@@ -34,6 +34,15 @@ module PokeBattle_BattleRecorder
 		@type = type
 	end
 
+	def self.createDir
+		Dir.mkdir("./VSRecorder") unless Dir.exists?("./VSRecorder")
+		if $current_save_file_name.nil?
+			return
+		end
+		save_file_name = $current_save_file_name.split("/")[1].delete_suffix(".rxdata")
+		Dir.mkdir("./VSRecorder/#{save_file_name}") unless Dir.exists?("./VSRecorder/#{save_file_name}")
+	end
+
 	def pbRandom(x)
 		ret = rand(x)
 		@random.push(ret)
@@ -145,13 +154,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def saveBattle(name)
-		Dir.mkdir("./VSRecorder") unless Dir.exists?("./VSRecorder")
-		if $current_save_file_name.nil?
-			echoln("DIDN'T SAVE BATTLE : NO SAVE NAME FOUND")
-			return
-		end
-		save_file_name = $current_save_file_name.split("/")[1].delete_suffix(".rxdata")
-		Dir.mkdir("./VSRecorder/#{save_file_name}") unless Dir.exists?("./VSRecorder/#{save_file_name}")
+		createDir
 		File.open("./VSRecorder/#{save_file_name}/#{name}.dat", "wb") { |f| f.write(getBattleData) }
 	end
 
