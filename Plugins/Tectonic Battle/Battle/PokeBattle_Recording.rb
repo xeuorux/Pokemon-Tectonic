@@ -139,7 +139,8 @@ module PokeBattle_BattleRecorder
 			:backdropBase => @backdropBase,
 			:time => @time,
 			:environment => @environment,
-			:level_cap => getLevelCap
+			:level_cap => getLevelCap,
+			:version => Settings::GAME_VERSION
 		})
 	end
 
@@ -170,6 +171,7 @@ module PokeBattle_BattleReplayer
 		save_file_name = $current_save_file_name.split("/")[1].delete_suffix(".rxdata")
 		raise _INTL("Record {1} does not exist", file_name) unless File.exists?("./VSRecorder/#{save_file_name}/#{file_name}.dat")
 		battle = File.open("./VSRecorder/#{save_file_name}/#{file_name}.dat", "rb") {|f| Marshal.load(f)}
+		raise LoadError _INTL("Record is from a different version ({1}), and cannot be opened.", battle[:version]) if Settings::GAME_VERSION != battle[:version]
 		
 		@randomindex               = 0
 		@player_info               = Marshal.load(battle[:player_info])
@@ -305,7 +307,12 @@ end
 def playRecordedBattle(record_name)
 	original_level_cap = getLevelCap
 	scene = pbNewBattleScene
-	battle = PokeBattle_TectonicReplayedBattle.new(scene, record_name)
+	begin
+		battle = PokeBattle_TectonicReplayedBattle.new(scene, record_name)
+	rescue LoadError => e
+		pbMessage(_INTL("This record cannot be opened ({1}).", e.message))
+		return
+	end
 
 	pbPrepareBattle(battle)
 	battle.registerRules
