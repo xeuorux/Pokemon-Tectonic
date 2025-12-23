@@ -36,14 +36,20 @@ class PokeBattle_Move_HealUserPositionNextTurn < PokeBattle_Move
         return (user.totalhp / 2.0).round
     end
 
+    def wishTurns(user)
+        return 2
+    end
+
     def pbEffectGeneral(user)
-        user.position.applyEffect(:Wish, 2)
+        user.position.applyEffect(:Wish, wishTurns(user))
         user.position.applyEffect(:WishAmount, wishAmount(user))
-        user.position.applyEffect(:WishMaker, user.pokemonIndex)
+        user.position.applyEffect(:WishMakerUserIndex, user.index)
+        user.position.applyEffect(:WishMakerPartyIndex, user.pokemonIndex)
     end
 
     def getEffectScore(user, _target)
-        score = (user.totalhp / user.level) * 30
+        score = (user.totalhp / user.level) * 40
+        score -= wishTurns(user) * 10
         score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
         return score
     end
@@ -52,33 +58,13 @@ end
 #===============================================================================
 # Battler in user's position is healed by 3/4 of its max HP, in two rounds. (Arc of Hope)
 #===============================================================================
-class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.position.effectActive?(:Wish)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since a Wish is already about to come true for {1}!", user.pbThis(true)))
-            end
-            return true
-        end
-        return false
-    end
-
+class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move_HealUserPositionNextTurn
     def wishAmount(user)
-        return (user.totalhp / 1.33).round
+        return (user.totalhp * (3.0 / 4.0)).round
     end
 
-    def pbEffectGeneral(user)
-        user.position.applyEffect(:Wish, 3)
-        user.position.applyEffect(:WishAmount, wishAmount(user))
-        user.position.applyEffect(:WishMaker, user.pokemonIndex)
-    end
-
-    def getEffectScore(user, _target)
-        score = (user.totalhp / user.level) * 30
-        score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
-        return score
+    def wishTurns(user)
+        return 3
     end
 end
 
@@ -328,11 +314,11 @@ class PokeBattle_Move_HealTargetHalfOfTotalHP < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user))
+        target.applyFractionalHealing(healingRatio(user), user: user)
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(healingRatio(user),aiCheck: true)
+        return target.applyFractionalHealing(healingRatio(user), user: user, aiCheck: true)
     end
 end
 
@@ -383,7 +369,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHPCureStatus < PokeBattle_M
         target.pbCureStatus
         if target.hp != target.totalhp && target.canHeal?
             hpGain = (target.totalhp / 4.0).round
-            target.pbRecoverHP(hpGain)
+            target.pbRecoverHP(hpGain, user: user)
         end
         super
     end
@@ -429,7 +415,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healRatio(user))
+        target.applyFractionalHealing(healRatio(user), user: user)
     end
 
     def getEffectScore(_user, target)
@@ -469,11 +455,11 @@ class PokeBattle_Move_HealTargetDependingOnMoonglow < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user,target))
+        target.applyFractionalHealing(healingRatio(user,target), user: user)
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(healingRatio(user,target),aiCheck: true)
+        return target.applyFractionalHealing(healingRatio(user,target), user: user, aiCheck: true)
     end
 
     def shouldHighlight?(_user, _target)
@@ -483,7 +469,7 @@ end
 
 #===============================================================================
 # Damages target if target is a foe, or heals target by 1/2 of its max HP if
-# target is an ally. (Pollen Puff, Package, Water Spiral)
+# target is an ally. (Pollen Puff, Package)
 #===============================================================================
 class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
     def pbTarget(user)
@@ -518,9 +504,9 @@ class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
         end
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         return unless @healing
-        target.applyFractionalHealing(1.0 / 2.0)
+        target.applyFractionalHealing(1.0 / 2.0, user: user)
     end
 
     def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
@@ -529,7 +515,7 @@ class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(1.0 / 2.0, aiCheck: true) unless user.opposes?(target)
+        return target.applyFractionalHealing(1.0 / 2.0, user: user, aiCheck: true) unless user.opposes?(target)
         return 0
     end
 
@@ -700,12 +686,12 @@ class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
         score = 0
 
         unless user.healthCapped?
-            score += user.applyFractionalHealing(1.0, aiCheck: true)
+            score += user.applyFractionalHealing(1.0, user: user, aiCheck: true)
             score -= getSleepEffectScore(nil, user) * 0.45
             score += 45 if user.hasStatusNoSleep?
         end
         unless target.healthCapped?
-            score -= target.applyFractionalHealing(1.0, aiCheck: true)
+            score -= target.applyFractionalHealing(1.0, user: user, aiCheck: true)
             score += getSleepEffectScore(nil, target)
             score -= 45 if target.hasStatusNoSleep?
         end

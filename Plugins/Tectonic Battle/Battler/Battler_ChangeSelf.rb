@@ -150,7 +150,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false, items_to_skip: [], aiCheck: false)
+    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, user: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         if @battle.autoTesting
             anim = false
             anyAnim = false
@@ -161,8 +161,8 @@ class PokeBattle_Battler
         canOverheal = canOverheal || forceOverheal?
 
         # Apply healing modifiers
-        amt *= 1.5 if hasActiveAbility?(:ROOTED)
-        amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.moonGlowing?
+        amt *= 1.5 if shouldAbilityApply?(:ROOTED, aiCheck)
+        amt *= 1.25 if user&.shouldAbilityApply?(:REFRESHING, aiCheck)
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt *= 1.2 if @battle.pbCheckGlobalAbility(:FIELDOFLIFE)
         amt = amt.round
@@ -213,7 +213,7 @@ class PokeBattle_Battler
         return amt
     end
 
-    def pbRecoverHPFromDrain(drainAmount, target, canOverheal: false)
+    def pbRecoverHPFromDrain(drainAmount, target, user: nil, canOverheal: false)
         if target.hasActiveAbility?(:LIQUIDOOZE)
             @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
             oldHP = @hp
@@ -228,7 +228,7 @@ class PokeBattle_Battler
                 drainAmount = (drainAmount * 1.3).floor
                 aiLearnsItem(:BIGROOT)
             end
-            pbRecoverHP(drainAmount, true, true, false, canOverheal: canOverheal || hasActiveAbility?(:GORGING))
+            pbRecoverHP(drainAmount, true, true, false, user: user, canOverheal: canOverheal || hasActiveAbility?(:GORGING))
             if overhealed? && hasActiveAbility?(:GORGING) && !canOverheal
                 showMyAbilitySplash(:GORGING)
                 @battle.pbDisplay(_INTL("{1} is loaded up with fluids!", pbThis))
@@ -237,7 +237,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHPFromMultiDrain(targets, ratio, ability: nil, onlyCriticalDamage: false)
+    def pbRecoverHPFromMultiDrain(targets, ratio, user: nil, ability: nil, onlyCriticalDamage: false)
         totalDamageDealt = 0
         targets.each do |target|
             next if target.damageState.unaffected
@@ -261,11 +261,11 @@ class PokeBattle_Battler
             drainAmount = (drainAmount * 1.3).floor
             aiLearnsItem(:BIGROOT)
         end
-        pbRecoverHP(drainAmount, true, true, false)
+        pbRecoverHP(drainAmount, true, true, false, user: user)
         hideMyAbilitySplash if ability
     end
 
-    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
+    def applyFractionalHealing(fraction, user: nil, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         return 0 unless canHeal?(canOverheal)
         if item && !aiCheck
             @battle.pbCommonAnimation("UseItem", self) unless @battle.autoTesting
@@ -279,7 +279,7 @@ class PokeBattle_Battler
         end
         battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
         healAmount = getFractionalHealingAmount(fraction, canOverheal)
-        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, canOverheal: canOverheal, items_to_skip: items_to_skip, aiCheck: aiCheck)
+        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, user: user, canOverheal: canOverheal, items_to_skip: items_to_skip, aiCheck: aiCheck)
         battle.pbHideAbilitySplash(self) if ability && !aiCheck
         if aiCheck
             return getHealingEffectScore(actuallyHealed)

@@ -1779,6 +1779,10 @@ Description = While this Pokémon is active, Rooms do not decay.
 Name = Rooted
 Description = Gets 50% more healing from all sources.
 #-------------------------------
+[REFRESHING]
+Name = Refreshing
+Description = This Pokémon's moves heal for 25% more.
+#-------------------------------
 [ROYALMAJESTY]
 Name = Royal Majesty
 Description = Makes foes unable to use priority moves.

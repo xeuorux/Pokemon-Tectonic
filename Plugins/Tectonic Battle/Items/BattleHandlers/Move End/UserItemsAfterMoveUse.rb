@@ -23,7 +23,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
         healAmount = (totalDamage / 5.0)
         healAmount = 1 if healAmount < 1
         recoverMessage = _INTL("{1} restored a little HP using its {2}!", user.pbThis, getItemName(item))
-        user.pbRecoverHP(healAmount, true, true, true, recoverMessage)
+        user.pbRecoverHP(healAmount, true, true, true, recoverMessage, user: user)
         user.aiLearnsItem(item)
     }
 )

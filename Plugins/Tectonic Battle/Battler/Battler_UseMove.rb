@@ -993,7 +993,7 @@ class PokeBattle_Battler
             if @battle.pbCheckGlobalAbility(:FIELDOFDEATH)
                 unless b.damageState.hpLost <= 0
                     hpGain = (b.damageState.hpLost * 0.3).round
-                    user.pbRecoverHPFromDrain(hpGain, b)
+                    user.pbRecoverHPFromDrain(hpGain, b, user: user)
                 end
             end
         end

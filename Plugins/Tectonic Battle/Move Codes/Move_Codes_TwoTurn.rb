@@ -516,11 +516,11 @@ class PokeBattle_Move_TwoTurnMoveHealTargetHalfOfTotalHP < PokeBattle_Move_TwoTu
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
+        target.applyFractionalHealing(healingRatio(target), user: user, canOverheal: true)
     end
 
     def getEffectScore(user, target)
-        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
+        score = target.applyFractionalHealing(healingRatio(user), user: user, aiCheck: true, canOverheal: true)
         score += super
         return score
     end
