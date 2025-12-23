@@ -6,7 +6,7 @@ Description = After being attacked, uses Parting Shot to switch out.
 #-------------------------------
 [ACCUMULATION]
 Name = Accumulation
-Description = The Pokémon gains twice as many stats from leveling up.
+Description = This Pokémon gains twice as many stats from leveling up.
 Flags = Immutable
 #-------------------------------
 [ACIDRAIN]
@@ -32,7 +32,7 @@ Description = Grants immunity to Flying-type moves and raises Speed if hit by on
 #-------------------------------
 [AFROTECTION]
 Name = Afrotection
-Description = Protects this Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
+Description = Protects this Pokémon from recoil damage. This Pokémon doesn't trigger items, abilities, or effects of targets it hits.
 #-------------------------------
 [AFTERIMAGE]
 Name = Afterimage
@@ -58,7 +58,7 @@ Flags = EclipseSynergy
 #-------------------------------
 [APATHETIC]
 Name = Apathetic
-Description = The Pokémon moves after all other Pokémon do.
+Description = This Pokémon moves after all other Pokémon do.
 #-------------------------------
 [APPREHENSIVE]
 Name = Apprehensive
@@ -279,7 +279,7 @@ Description = Heals by 1/5th HP whenever any Pokémon uses a dance move. Can ove
 #-------------------------------
 [CELERITAS]
 Name = Celeritas
-Description = The Pokémon's Speed is doubled while using light-based moves.
+Description = This Pokémon's Speed is doubled while using light-based moves.
 #-------------------------------
 [CHALLENGER]
 Name = Challenger
@@ -444,7 +444,7 @@ Flags = SandstormSynergy
 #-------------------------------
 [DESERTSPIRIT]
 Name = Desert Spirit
-Description = The Pokémon is immune to Ground-type moves and takes 20% less damage in sandstorm.
+Description = This Pokémon is immune to Ground-type moves and takes 20% less damage in sandstorm.
 Flags = SandstormSynergy,Levitation
 #-------------------------------
 [DESICCATE]
@@ -542,7 +542,7 @@ Description = Repeats another Pokémon's sound and pulse moves immediately at 50
 #-------------------------------
 [EFFLORESCENT]
 Name = Efflorescent
-Description = The Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate.
+Description = This Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate.
 #-------------------------------
 [EMANATION]
 Name = Emanation
@@ -566,7 +566,7 @@ Description = Can't be numbed, waterlogged, or have its Speed reduced.
 #-------------------------------
 [ENVY]
 Name = Envy
-Description = The Pokémon's moves have priority against single targets with increased stats.
+Description = This Pokémon's moves have priority against single targets with increased stats.
 #-------------------------------
 [EPHEMERATE]
 Name = Ephemerate
@@ -579,7 +579,7 @@ Description = Powers up Psychic-type moves by 50%.
 #-------------------------------
 [EVENHANDED]
 Name = Evenhanded
-Description = The Pokémon's Fighting-type attacks become spread and deal 35% more damage.
+Description = This Pokémon's Fighting-type attacks become spread and deal 35% more damage.
 #-------------------------------
 [EVENTHORIZON]
 Name = Event Horizon
@@ -677,7 +677,7 @@ Description = While this Pokémon is on the field, all healing is boosted by 20%
 #-------------------------------
 [FIERYGLOW]
 Name = Fiery Glow
-Description = The Pokémon is also Fire-type.
+Description = This Pokémon is also Fire-type.
 #-------------------------------
 [FIERYSPIRIT]
 Name = Fiery Spirit
@@ -767,7 +767,7 @@ Description = Raises other allies' Speed by two steps upon entry.
 #-------------------------------
 [FREESTYLE]
 Name = Freestyle
-Description = The Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate.
+Description = This Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate.
 #-------------------------------
 [FRIENDTOALL]
 Name = Friend to All
@@ -824,7 +824,7 @@ Flags = RainstormSynergy
 #-------------------------------
 [GALVANICWINGS]
 Name = Galvanic Wings
-Description = Foes that become numbed are severely so. The Pokémon's Flying-type moves have a 30% chance to severely numb.
+Description = Foes that become numbed are severely so. This Pokémon's Flying-type moves have a 30% chance to severely numb.
 #-------------------------------
 [GARGANTUAN]
 Name = Gargantuan
@@ -836,7 +836,7 @@ Description = Turns the held item of a Pokémon it hits into scattered gold coin
 #-------------------------------
 [GLACIALWINGS]
 Name = Glacial Wings
-Description = Foes that become frostbitten are severely so. The Pokémon's Flying-type moves have a 30% chance to severely frostbite.
+Description = Foes that become frostbitten are severely so. This Pokémon's Flying-type moves have a 30% chance to severely frostbite.
 #-------------------------------
 [GLASSFIRING]
 Name = Glass Firing
@@ -914,7 +914,7 @@ Description = When this Pokémon gains a non-volatile status condition, its Spee
 #-------------------------------
 [HAUNTED]
 Name = Haunted
-Description = The Pokémon is also Ghost-type.
+Description = This Pokémon is also Ghost-type.
 #-------------------------------
 [HEADACHE]
 Name = Headache
@@ -973,7 +973,7 @@ Description = Has Judgment as its 5th move.
 #-------------------------------
 [HIGHRISE]
 Name = High-rise
-Description = The Pokémon and its allies are immune to weather downsides.
+Description = This Pokémon and its allies are immune to weather downsides.
 Flags = AllWeatherSynergy
 #-------------------------------
 [HIVEMIND]
@@ -994,11 +994,11 @@ Description = Powers up recoil and sound moves by 30%.
 #-------------------------------
 [HOPPINGMAD]
 Name = Hopping Mad
-Description = The Pokémon's Speed is doubled while using rampage moves.
+Description = This Pokémon's Speed is doubled while using rampage moves.
 #-------------------------------
 [HORDETACTICS]
 Name = Horde Tactics
-Description = The Pokémon's Normal-type attacks become spread and drain 33% HP.
+Description = This Pokémon's Normal-type attacks become spread and drain 33% HP.
 #-------------------------------
 [HUBRIS]
 Name = Hubris
@@ -1089,7 +1089,7 @@ Description = On the first turn, its attacks jinx the target.
 #-------------------------------
 [INFECTED]
 Name = Infected
-Description = The Pokémon is also Grass-type. When hit by an attack, the attacker's ability becomes Infected.
+Description = This Pokémon is also Grass-type. When hit by an attack, the attacker's ability becomes Infected.
 #-------------------------------
 [INKSPRAY]
 Name = Ink Spray
@@ -1126,7 +1126,7 @@ Description = At the beginning of each turn, gives clues about a foe's plan.
 #-------------------------------
 [IONIZEDALLOY]
 Name = Ionized Alloy
-Description = The Pokémon gains the Electric-type in rainstorm.
+Description = This Pokémon gains the Electric-type in rainstorm.
 Flags = RainstormSynergy
 #-------------------------------
 [IRONHEEL]
@@ -1262,7 +1262,7 @@ Description = At end of turn, heals 1/12th HP if holding a clothing item.
 #-------------------------------
 [MAESTRO]
 Name = Maestro
-Description = The Pokémon's Speed is doubled while using Sound-based moves.
+Description = This Pokémon's Speed is doubled while using Sound-based moves.
 #-------------------------------
 [MAGMATRAIL]
 Name = Magma Trail
@@ -1299,7 +1299,7 @@ Description = When this Pokémon is hit thrice, all party members heal for 1/8th
 #-------------------------------
 [MENTALBLOCK]
 Name = Mental Block
-Description = The Pokémon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
+Description = This Pokémon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
 Flags = FlinchImmunity
 #-------------------------------
 [MENTALDAMAGE]
@@ -1354,7 +1354,7 @@ Flags = MoonglowSynergy
 #-------------------------------
 [MOONBLANKET]
 Name = Moon Blanket
-Description = The Pokémon and its allies take 25% less move damage during moonglow.
+Description = This Pokémon and its allies take 25% less move damage during moonglow.
 Flags = MoonglowSynergy
 #-------------------------------
 [MOONGAZE]
@@ -1373,7 +1373,7 @@ Description = While this Pokémon is below half health, takes 33% less damage fr
 #-------------------------------
 [MULTITASKER]
 Name = Multitasker
-Description = The Pokémon's Psychic-type attacks become spread and deal 35% more damage.
+Description = This Pokémon's Psychic-type attacks become spread and deal 35% more damage.
 #-------------------------------
 [MUPROTOCOL]
 Name = MU Protocol
@@ -1454,16 +1454,16 @@ Description = Sets a Tailwind for four turns upon entry, increasing Speed.
 #-------------------------------
 [OPTIMIZEDALLOY]
 Name = Optimized Alloy
-Description = Prevents stat steps from being lowered (except when self-inflicted). The Pokémon's weight is doubled.
+Description = Prevents stat steps from being lowered (except when self-inflicted). This Pokémon's weight is doubled.
 Flags = OtherStatDropImmunity
 #-------------------------------
 [OSCILLATION]
 Name = Oscillation
-Description = The Pokémon's stat steps are inverted at the end of every turn.
+Description = This Pokémon's stat steps are inverted at the end of every turn.
 #-------------------------------
 [OTHERWORLDLY]
 Name = Otherworldly
-Description = The Pokémon is also Fairy-type.
+Description = This Pokémon is also Fairy-type.
 #-------------------------------
 [OUTRIDER]
 Name = Outrider
@@ -1493,12 +1493,12 @@ Flags = SunshineSynergy
 #-------------------------------
 [PACIFIST]
 Name = Pacifist
-Description = The Pokémon refuses to fight. However, it gathers extra candy when trainers flee.
+Description = This Pokémon refuses to fight. However, it gathers extra candy when trainers flee.
 Flags = Immutable
 #-------------------------------
 [PALACEGUARD]
 Name = Palace Guard
-Description = The Pokémon receives 33% less move damage if there is an active Room.
+Description = This Pokémon receives 33% less move damage if there is an active Room.
 #-------------------------------
 [PALEOLITHIC]
 Name = Paleolithic
@@ -1506,7 +1506,7 @@ Description = Powers up Rock-type moves by 50%.
 #-------------------------------
 [PARANOID]
 Name = Paranoid
-Description = Doubles Sp. Def. The Pokémon takes double damage from Psychic-type moves.
+Description = Doubles Sp. Def. This Pokémon takes double damage from Psychic-type moves.
 #-------------------------------
 [PECKINGORDER]
 Name = Pecking Order
@@ -1518,7 +1518,7 @@ Description = After fainting from exploding, revives after five turns.
 #-------------------------------
 [PERFECTIONIST]
 Name = Perfectionist
-Description = The Pokémon's hits deal half damage unless they are critical.
+Description = This Pokémon's hits deal half damage unless they are critical.
 #-------------------------------
 [PERFECTLUCK]
 Name = Perfect Luck
@@ -1546,7 +1546,7 @@ Description = Moves that make the user become hidden deal 30% more move damage a
 #-------------------------------
 [PHASESHIFT]
 Name = Phase Shift
-Description = The Pokémon's moves deal 50% more damage if they're a different type than last.
+Description = This Pokémon's moves deal 50% more damage if they're a different type than last.
 #-------------------------------
 [PIERCINGPOISON]
 Name = Piercing Poison
@@ -1637,7 +1637,7 @@ Description = Raises this Pokémon's Attack by 50%, including Style Values and o
 #-------------------------------
 [PURERAGE]
 Name = Pure Rage
-Description = The Pokémon's Dragon-type hits deal additional damage equal to half this Pokémon's level.
+Description = This Pokémon's Dragon-type hits deal additional damage equal to half this Pokémon's level.
 #-------------------------------
 [PURESTLIGHT]
 Name = Purest Light
@@ -1738,7 +1738,7 @@ Description = Below half health, it has a doubled crit chance and has +30% attac
 #-------------------------------
 [REMANENTVOLTAGE]
 Name = Remanent Voltage
-Description = The Pokémon can use Electric-type moves when recharging from an exhausting move, but cannot switch out during them.
+Description = This Pokémon can use Electric-type moves when recharging from an exhausting move, but cannot switch out during them.
 #-------------------------------
 [RENDINGCLAWS]
 Name = Rending Claws
@@ -1807,7 +1807,7 @@ Description = Can't be numbed, waterlogged, trapped, or have its Speed lowered.
 #-------------------------------
 [RUSTWRACK]
 Name = Rust & Wrack
-Description = The Pokémon is also Steel-type, but it takes 15% more damage from moves.
+Description = This Pokémon is also Steel-type, but it takes 15% more damage from moves.
 #-------------------------------
 [SAFEPASSAGE]
 Name = Safe Passage
@@ -1877,7 +1877,7 @@ Description = Moves used on this Pokémon are disabled for two turns.
 #-------------------------------
 [SEARINGWINGS]
 Name = Searing Wings
-Description = Foes that become burned are severely so. The Pokémon's Flying-type moves have a 30% chance to severely burn.
+Description = Foes that become burned are severely so. This Pokémon's Flying-type moves have a 30% chance to severely burn.
 #-------------------------------
 [SECRETIONSECRET]
 Name = Secretion Secret
@@ -1910,7 +1910,7 @@ Description = Its attacks are critical against numbed targets.
 #-------------------------------
 [SHARPSHOOTER]
 Name = Sharpshooter
-Description = Doubles the critical hit chance of random crit moves. The Pokémon's Speed is doubled while using them.
+Description = Doubles the critical hit chance of random crit moves. This Pokémon's Speed is doubled while using them.
 #-------------------------------
 [SHELLCRACKER]
 Name = Shellcracker
@@ -1934,7 +1934,7 @@ Description = Special moves against it lower the attacker's Speed and Sp. Atk.
 #-------------------------------
 [SIGNALJAM]
 Name = Signal Jam
-Description = The Pokémon and other battlers don't benefit from same-type attacking bonus.
+Description = This Pokémon and other battlers don't benefit from same-type attacking bonus.
 #-------------------------------
 [SILVERLINING]
 Name = Silver Lining
@@ -1976,7 +1976,7 @@ Description = Can't be leeched, drained, or trapped.
 #-------------------------------
 [SLINKY]
 Name = Slinky
-Description = The Pokémon deals double damage with moves that cause the user to become hidden.
+Description = This Pokémon deals double damage with moves that cause the user to become hidden.
 #-------------------------------
 [SLIPSTREAM]
 Name = Slipstream
@@ -1984,7 +1984,7 @@ Description = Attack is boosted by 50% if a Tailwind is blowing.
 #-------------------------------
 [SLUGGISH]
 Name = Sluggish
-Description = The Pokémon is also Bug-type, but its Speed is halved.
+Description = This Pokémon is also Bug-type, but its Speed is halved.
 #-------------------------------
 [SLUMBERFORCE]
 Name = Slumber Force
@@ -2004,7 +2004,7 @@ Description = When hit while asleep, hits back instantly with Snore at half powe
 #-------------------------------
 [SNOWSHROUD]
 Name = Snow Shroud
-Description = The Pokémon takes 30% less move damage in hail.
+Description = This Pokémon takes 30% less move damage in hail.
 Flags = HailSynergy
 #-------------------------------
 [SOLARCELL]
@@ -2031,11 +2031,11 @@ Description = Your attacks become spread.
 #-------------------------------
 [SPARESCALES]
 Name = Spare Scales
-Description = The Pokémon is healed for 1/5th HP after using a Grass-, Ground-, or Steel-type move. Can overheal.
+Description = This Pokémon is healed for 1/5th HP after using a Grass-, Ground-, or Steel-type move. Can overheal.
 #-------------------------------
 [SPECTRUMVISION]
 Name = Spectrum Vision
-Description = The Pokémon and its allies' moves are twice as likely to be critical.
+Description = This Pokémon and its allies' moves are twice as likely to be critical.
 #-------------------------------
 [SPINESPLODE]
 Name = Spinesplode
@@ -2143,7 +2143,7 @@ Flags = MoonglowSynergy
 #-------------------------------
 [STYLISH]
 Name = Stylish
-Description = The Pokémon benefits twice as much from style points.
+Description = This Pokémon benefits twice as much from style points.
 Flags = Immutable
 #-------------------------------
 [SUBZERO]
@@ -2301,7 +2301,7 @@ Description = Foes whose stats are lowered by this Pokémon keep those lowered s
 #-------------------------------
 [TRENCHCARVER]
 Name = Trench Carver
-Description = The Pokémon's Speed is doubled while using recoil moves.
+Description = This Pokémon's Speed is doubled while using recoil moves.
 #-------------------------------
 [TUNEDOUT]
 Name = Tuned Out
@@ -2356,7 +2356,7 @@ Description = Takes 20% less damage from neutrally effective attacks.
 #-------------------------------
 [UNIDENTIFIED]
 Name = Unidentified
-Description = The Pokémon is Mutant-type.
+Description = This Pokémon is Mutant-type.
 Flags = Immutable
 #-------------------------------
 [VANDAL]
@@ -2381,7 +2381,7 @@ Description = Powers up Grass-type moves of itself and its allies by 50%.
 #-------------------------------
 [VICIOUSCYCLE]
 Name = Vicious Cycle
-Description = The Pokémon's Dragon-type attacks become spread and drain 33% HP.
+Description = This Pokémon's Dragon-type attacks become spread and drain 33% HP.
 #-------------------------------
 [VICTORYMOLT]
 Name = Victory Molt
@@ -2398,7 +2398,7 @@ Flags = Uncopyable
 #-------------------------------
 [WALLNINJA]
 Name = Wall Ninja
-Description = The Pokémon's attacks are always critical if there is an active Room.
+Description = This Pokémon's attacks are always critical if there is an active Room.
 #-------------------------------
 [WANINGWILLPOWER]
 Name = Waning Willpower
