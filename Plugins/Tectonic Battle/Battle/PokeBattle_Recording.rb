@@ -50,12 +50,10 @@ module PokeBattle_BattleRecorder
 	end
 
 	def pbCommandPhase
-		echoln("===TURN " + @turnCount.to_s + " COMMAND===")
 		@recorded_choices.push([]) #Add turn array
     (maxBattlerIndex + 1).times { |i| @recorded_choices[@turnCount].push([])} #Add array for each battler
 		super
 		recordChoices
-		echoln(@choices.to_s)
   end
 
 	def pbExtraCommandPhase
@@ -77,8 +75,9 @@ module PokeBattle_BattleRecorder
 	end
 
 	def pbEndOfBattle
-		saveBattle("Last Battle") if @save_battle
-		saveRandomLog(@save_battle ? "random_record.txt" : "random_replay.txt")
+		saveBattle("Last battle") if @save_battle
+		save_random_log = true
+		saveRandomLog(@save_battle ? "random_record.txt" : "random_replay.txt") if save_random_log
 		super
 	end
 
@@ -98,6 +97,21 @@ module PokeBattle_BattleRecorder
 
 	def registerRules
 		@battle_rules = $PokemonTemp.battleRules.clone
+		@battle_rules["canLose"] = @canLose
+		@battle_rules["canRun"] = @canRun
+		@battle_rules["noexp"] = true if !@expGain
+		@battle_rules["nomoney"] = true if !@moneyGain
+		@battle_rules["turnstosurvive"] = @turnsToSurvive
+		@battle_rules["anims"] = true if @showAnims
+		@battle_rules["noanims"] = true if !@showAnims
+		@battle_rules["weather"] = @defaultWeather
+		@battle_rules["environment"] = @environment
+		@battle_rules["backdrop"] = @backdrop
+		@battle_rules["base"] = @backdropBase
+		@battle_rules["playerambush"] = @playerAmbushing
+		@battle_rules["foeambush"] = @foeAmbushing
+		@battle_rules["lanetargeting"] = @laneTargeting
+		@battle_rules["doubleshift"] = @doubleShift
 	end
 
 	def getBattleData
@@ -131,7 +145,13 @@ module PokeBattle_BattleRecorder
 
 	def saveBattle(name)
 		Dir.mkdir("./VSRecorder") unless Dir.exists?("./VSRecorder")
-		File.open("./VSRecorder/" + name + ".dat", "wb") { |f| f.write(getBattleData) }
+		if $current_save_file_name.nil?
+			echoln("DIDN'T SAVE BATTLE : NO SAVE NAME FOUND")
+			return
+		end
+		save_file_name = $current_save_file_name.split("/")[1].delete_suffix(".rxdata")
+		Dir.mkdir("./VSRecorder/#{save_file_name}") unless Dir.exists?("./VSRecorder/#{save_file_name}")
+		File.open("./VSRecorder/#{save_file_name}/#{name}.dat", "wb") { |f| f.write(getBattleData) }
 	end
 
 	def saveRandomLog(path)
@@ -146,8 +166,10 @@ module PokeBattle_BattleReplayer
 	attr_accessor :level_cap
 
 	def initialize(scene, file_name)
-		raise _INTL("Record {1} does not exist", file_name) unless File.exists?("./VSRecorder/" + file_name + ".dat")
-		battle = File.open("./VSRecorder/" + file_name + ".dat", "rb") {|f| Marshal.load(f)}
+		raise _INTL("Record cannot be opened, as no save has been made.") if $current_save_file_name.nil?
+		save_file_name = $current_save_file_name.split("/")[1].delete_suffix(".rxdata")
+		raise _INTL("Record {1} does not exist", file_name) unless File.exists?("./VSRecorder/#{save_file_name}/#{file_name}.dat")
+		battle = File.open("./VSRecorder/#{save_file_name}/#{file_name}.dat", "rb") {|f| Marshal.load(f)}
 		
 		@randomindex               = 0
 		@player_info               = Marshal.load(battle[:player_info])
@@ -155,10 +177,21 @@ module PokeBattle_BattleReplayer
 		@player_party              = Marshal.load(battle[:player_party])
 		@opponent_party            = Marshal.load(battle[:opponent_party])
 		
+
+		echo_rules_debug = false
+		arg_rules = ["terrain", "weather", "environment", "environ", "backdrop", "battleback", "base", "outcome", "outcomevar", "turnstosurvive"]
+		echoln("=====REPLAY RULES BEGIN=====") if echo_rules_debug
 		Marshal.load(battle[:rules]).each_pair { |rule, val| 
-			setBattleRule(rule, val) if rule != "size"
-			setBattleRule(val) if rule == "size"
+			echoln("RULE : " + rule.to_s + " - " + val.to_s) if echo_rules_debug
+			if arg_rules.include?(rule)
+				setBattleRule(rule, val)
+			elsif rule == "size"
+				setBattleRule(val)
+			else 
+				setBattleRule(rule)
+			end
 		}
+		echoln("=====REPLAY RULES END=====") if echo_rules_debug
 		
 		super(scene, @player_party, @opponent_party, @player_info, @opponent_info, battle[:type])
 		
@@ -287,7 +320,6 @@ def playRecordedBattle(record_name)
 			pbSceneStandby do
 				decision = battle.pbStartBattle
 			end
-			pbAfterBattle(decision,true)
 		end
 		Input.update
 	when 1 #Trainer battle
@@ -295,7 +327,6 @@ def playRecordedBattle(record_name)
 			pbSceneStandby do
 				decision = battle.pbStartBattle
 			end
-			pbAfterBattle(decision, true)
 		end
 		Input.update
 	when 2 #Avatar battle
@@ -303,7 +334,6 @@ def playRecordedBattle(record_name)
 			pbSceneStandby do
 				decision = battle.pbStartBattle
 			end
-			pbAfterBattle(decision, true)
 		end
 		Input.update
 	else
