@@ -100,8 +100,8 @@ module PokeBattle_BattleRecorder
 		end
 	end
 
-	def registerLastChoice(index)
-		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(@last_choice)
+	def registerRecordedChoice(index)
+		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(@recorded_choice)
 	end
 
 	def registerRules
@@ -274,12 +274,12 @@ module PokeBattle_BattleReplayer
 		end
 	end
 
-	def registerNextChoice(index)
+	def registeReplayedChoice(index)
 		choice = @recorded_choices[@turnCount][index]
 		if choice.length < 5
-			@next_choice = @recorded_choices[@turnCount][index][4]
+			@replayed_choice = @recorded_choices[@turnCount][index][4]
 		else
-			@next_choice = nil
+			@replayed_choice = nil
 		end
 	end
 
@@ -294,8 +294,8 @@ module PokeBattle_BattleReplayer
 end
 
 class PokeBattle_Battle
-	def registerLastChoice(index); end
-	def registerNextChoice(index); end
+	def registerRecordedChoice(index); end
+	def registeReplayedChoice(index); end
 	def registerRules; end
 end
 

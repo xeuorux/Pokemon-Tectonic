@@ -110,13 +110,13 @@ end
 # Transforms the user into one of its Mega Forms. (Gene Boost)
 #===============================================================================
 class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         if @battle.autoTesting
             @chosenForm = rand(2) + 1
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenForm = 2 # Always chooses mega mind form
-        elsif !next_choice.nil?
-            @chosenForm = next_choice
+        elsif !replayed_choice.nil?
+            @chosenForm = replayed_choice
         else
             form1Name = GameData::Species.get_species_form(:MEWTWO,1).form_name
             form2Name = GameData::Species.get_species_form(:MEWTWO,2).form_name
@@ -394,13 +394,13 @@ end
 # Transforms the user into one of its forms. (Mutate)
 #===============================================================================
 class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         if @battle.autoTesting
             @chosenForm = rand(3) + 1
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenForm = 2 # Always chooses defense form
-        elsif !next_choice.nil?
-            @chosenForm = next_choice
+        elsif !replayed_choice.nil?
+            @chosenForm = replayed_choice
         else
             form1Name = GameData::Species.get_species_form(:DEOXYS,1).form_name
             form2Name = GameData::Species.get_species_form(:DEOXYS,2).form_name
@@ -818,7 +818,7 @@ class PokeBattle_Move_UseChoiceOfElementalCrunches < PokeBattle_Move
         ]
     end
 
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         validMoveNames = []
         @validMoves.each do |move|
             validMoveNames.push(getMoveName(move))
@@ -828,8 +828,8 @@ class PokeBattle_Move_UseChoiceOfElementalCrunches < PokeBattle_Move
             @chosenMove = @validMoves.sample
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = @validMoves[0]
-        elsif !next_choice.nil?
-            @chosenMove = next_choice
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = @validMoves[chosenIndex]

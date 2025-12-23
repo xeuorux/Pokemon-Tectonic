@@ -135,7 +135,7 @@ end
 # moves used by any foe.
 #===============================================================================
 class PokeBattle_Move_UseChoiceOf3LastUsedMoves < PokeBattle_Move
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         @chosenMoveID = :STRUGGLE
         validMoves = validMoveArray(user)
         moveChoices = []
@@ -157,8 +157,8 @@ class PokeBattle_Move_UseChoiceOf3LastUsedMoves < PokeBattle_Move
                 @chosenMoveID = moveChoices.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenMoveID = moveChoices[0]
-            elsif !next_choice.nil?
-                @chosenMoveID = next_choice
+            elsif !replayed_choice.nil?
+                @chosenMoveID = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),moveNames,0)
                 @chosenMoveID = moveChoices[chosenIndex]

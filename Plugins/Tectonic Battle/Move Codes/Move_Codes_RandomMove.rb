@@ -158,7 +158,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         end
     end
 
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         validMoves = []
         validMoveNames = []
         until validMoves.length == 3
@@ -173,8 +173,8 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
             @chosenMove = validMoves.sample
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
-        elsif !next_choice.nil?
-            @chosenMove = next_choice
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
@@ -285,7 +285,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
         ]
     end
 
-    def resolutionChoice(user, next_choice)
+    def resolutionChoice(user, replayed_choice)
         validMoves = []
         validMoveNames = []
         until validMoves.length == 3
@@ -300,8 +300,8 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
             @chosenMove = validMoves.sample
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
-        elsif !next_choice.nil?
-            @chosenMove = next_choice
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
