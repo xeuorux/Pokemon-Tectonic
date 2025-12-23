@@ -119,6 +119,10 @@ Flags = FlinchImmunity
 Name = Big Pecks
 Description = Protects from Def-lowering or Sp. Def-lowering.
 #-------------------------------
+[BITTER]
+Name = Bitter
+Description = Its attacks are critical against frostbitten targets.
+#-------------------------------
 [BIZARRE]
 Name = Bizarre
 Description = Its special attacks reduce the target's Sp. Def.
@@ -274,6 +278,10 @@ Description = When it attacks from underground in sandstorm, it'll transform int
 [EARLYBIRD]
 Name = Early Bird
 Description = The Pokémon awakens quickly from sleep.
+#-------------------------------
+[ECCENTRIC]
+Name = Eccentric
+Description = If the Pokémon's stats would be changed, they're instead changed half as much in the opposite direction.
 #-------------------------------
 [ECTOPARTICLES]
 Name = Ecto-Particles
@@ -721,6 +729,10 @@ Flags = MoonglowSynergy
 Name = Morphing Guard
 Description = After being attacked, gains immunity to that move's type but loses other morphed immunities.
 #-------------------------------
+[MOTHBURGLAR]
+Name = Moth Burglar
+Description = Hits opponent with Thief when switched out.
+#-------------------------------
 [MYSTICTAP]
 Name = Mystic Tap
 Description = Gets double healing from all sources during moonglow.
@@ -987,6 +999,10 @@ Description = In sandstorm, Attack is boosted by 30%.
 Name = Sand Veil
 Description = Takes 25% less damage in a sandstorm.
 #-------------------------------
+[SAPPER]
+Name = Sapper
+Description = Upon entry, traps each opponent in a sand tomb for two turns.
+#-------------------------------
 [SCRAPPY]
 Name = Scrappy
 Description = Enables moves to hit Ghost-type Pokémon.
@@ -1159,6 +1175,11 @@ Description = Upon entry, creates a Trick Room for four turns, inverting the eff
 [SUCTIONCUPS]
 Name = Suction Cups
 Description = Can't be forced to switch out. Boosts accuracy when hit.
+#-------------------------------
+[SUMMITSPIRIT]
+Name = Summit Spirit
+Description = Boosts Sp. Atk by 30% in hail.
+Flags = HailSynergy
 #-------------------------------
 [SUPERFIST]
 Name = Super Fist

@@ -1374,3 +1374,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWTRAIL,
       battle.scene.pbRefresh
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:INKSPRAY,
+  proc { |ability, battler, battle, aiCheck|
+    battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+    score = 0
+    battler.eachOpposing do |b|
+      next if b.effectActive?(:Blindness)
+      if aiCheck
+        score += getBlindnessEffectScore(battler,b)
+      else
+        b.applyEffect(:Blindness)
+      end
+    end
+    next score if aiCheck
+    battle.pbHideAbilitySplash(battler)
+  }
+)

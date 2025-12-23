@@ -25,3 +25,13 @@ BattleHandlers::AbilityOnStatusInflicted.add(:HASTY,
         battler.tryRaiseStat(:SPEED, battler, increment: 3, ability: ability)
     }
 )
+
+BattleHandlers::AbilityOnStatusInflicted.add(:DISASTERRESPONSE,
+    proc { |ability, battler, user, _status|
+            next if battler.effectActive?(:DisasterResponse)
+            battler.battle.pbShowAbilitySplash(battler, ability)
+            battler.battle.pbDisplay(_INTL("{1} prepares its response!", battler.pbThis))
+            battler.applyEffect(:DisasterResponse)
+            battler.battle.pbHideAbilitySplash(battler)
+    }
+)

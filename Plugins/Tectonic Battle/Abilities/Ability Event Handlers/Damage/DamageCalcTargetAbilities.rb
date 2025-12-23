@@ -36,6 +36,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:WELLSUITED,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:SIMPLETON,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.tagged?
+      mults[:final_damage_multiplier] *= 0.7
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:DRYSKIN,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if type == :FIRE

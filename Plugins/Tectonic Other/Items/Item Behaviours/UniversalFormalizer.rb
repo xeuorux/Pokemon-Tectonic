@@ -14,7 +14,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 		if choice < possibleForms.length
 			pbSceneDefaultDisplay(_INTL("{1} swapped to {2}!", pkmn.name, possibleFormNames[choice]),scene)
 			
-			showPokemonChanges(pkmn) {
+			showPokemonChangesWindow(pkmn) {
 				pkmn.form = possibleForms[choice]
 			}
 		end

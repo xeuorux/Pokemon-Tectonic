@@ -11,7 +11,7 @@ end
 
 #===============================================================================
 # Choose between Ice, Fire, and Electric. This move attacks 1 turn in
-# the future with an attack of that type. (Artillerize)
+# the future with an attack of that type. (Fire for Effect)
 #===============================================================================
 class PokeBattle_Move_AttackOneTurnLaterChooseIceFireElectricType < PokeBattle_ForetoldMove
     def initialize(battle, move)

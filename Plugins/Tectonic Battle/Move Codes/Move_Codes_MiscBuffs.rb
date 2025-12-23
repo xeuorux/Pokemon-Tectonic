@@ -163,7 +163,7 @@ class PokeBattle_Move_WishingWellScalesWithMoney < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        if user.pbOwnSide.effectActive(:WishingWell)
+        if user.pbOwnSide.effectActive?(:WishingWell)
             remainingTurns = user.pbOwnSide.countEffect(:WishingWell)
             if remainingTurns > (applyEffectDurationModifiers([user.pbOwnSide.countEffect(:PayDay),1000].min )/ 100).floor
                 return 0

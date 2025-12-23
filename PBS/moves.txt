@@ -2498,18 +2498,6 @@ FunctionCode = FailsIfNotUserFirstTurn
 Flags = CanProtect
 Description = Only works on the first turn the user is in battle. This move always goes first.
 #-------------------------------
-[FURYCUTTER]
-Name = Fury Cutter
-Type = BUG
-Category = Physical
-Power = 30
-Accuracy = 100
-TotalPP = 30
-Target = NearOther
-FunctionCode = FuryCutter
-Flags = CanProtect,Blade
-Description = The target is slashed with scythes or claws. Its power doubles if it hits in succession.
-#-------------------------------
 [HEALORDER]
 Name = Heal Order
 Type = BUG
@@ -3049,7 +3037,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold,Light
-Description = Two turns after this move is used, the user blasts the target with a concentrated bundle of light.
+Description = The user foretells doom. Two turns later, the targeted spot is hit with a concentrated beam of light.
 #-------------------------------
 [DOUBLEIRONBASH]
 Name = Double Iron Bash
@@ -4783,7 +4771,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
-Description = Two turns after this move is used, a hunk of psychic energy attacks the target.
+Description = The user foretells an attack. Two turns later, a hunk of psychic energy hits the targeted spot.
 #-------------------------------
 [GUARDSPLIT]
 Name = Guard Split

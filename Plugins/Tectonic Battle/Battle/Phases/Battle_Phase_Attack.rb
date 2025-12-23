@@ -85,6 +85,7 @@ class PokeBattle_Battle
     def pbAttackPhaseCloaking
         pbPriority.each do |b|
             next unless @choices[b.index][0] == :UseMove && !b.fainted?
+            next if b.asleep?
             next if b.movedThisRound?
             next unless b.hasActiveAbility?(:CLOAKING)
             move = @choices[b.index][2]

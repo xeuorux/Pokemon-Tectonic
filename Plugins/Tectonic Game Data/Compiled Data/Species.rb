@@ -389,7 +389,7 @@ module GameData
         end
 
         def tribes(ignoreInheritance = false)
-            allTribes = @tribes.clone
+            allTribes = @tribes.clone || []
             unless ignoreInheritance
                 get_prevolutions.each do |prevo_entry|
                     allTribes.concat(GameData::Species.get_species_form(prevo_entry[0], @form).tribes)
@@ -510,7 +510,7 @@ module GameData
         def recalculate_learnable_moves
             @learnableMoves = []
 
-            if !@flags.include?("NoStaples")
+            unless @flags&.include?("NoStaples")
               @learnableMoves.concat(GameData::Move.staple_moves)
             end
             @learnableMoves.concat(inherited_tutor_moves)

@@ -220,8 +220,8 @@ BattleHandlers::EOREffectAbility.add(:OSCILLATION,
   proc { |ability, battler, battle|
   next unless battler.hasAlteredStatSteps?
   battler.showMyAbilitySplash(ability)
-    battler.invertStatSteps(false)
-    battle.pbDisplay(_INTL("{1} turns upside down! Its stat steps are inverted!", battler.pbThis))
+  battler.invertStatSteps(false)
+  battle.pbDisplay(_INTL("{1} turns upside down! Its stat steps are inverted!", battler.pbThis))
   battler.hideMyAbilitySplash
   }
 )

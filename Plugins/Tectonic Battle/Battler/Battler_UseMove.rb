@@ -99,7 +99,7 @@ class PokeBattle_Battler
     end
 
     def pbEndTurn(_choice)
-        @lastRoundMoved = @battle.turnCount # Done something this round
+        @lastRoundMoved = @battle.turnCount unless @battle.foretoldMove # Done something this round
         # Gorilla Tactics
         if !effectActive?(:GorillaTactics) && hasActiveAbility?(GameData::Ability.getByFlag("ChoiceLocking"))
             if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
@@ -772,10 +772,12 @@ class PokeBattle_Battler
             end
             # If failed against all targets
             if targets.length > 0 && numTargets == 0 && !move.worksWithNoTargets?
+                showedMessage = false
                 targets.each do |b|
                     next if !b.damageState.missed || b.damageState.magicCoat
-                    pbMissMessage(move, user, b)
-                    break if move.pbRepeatHit? # Dragon Darts only shows one failure message
+                    pbMissMessage(move, user, b) unless move.pbRepeatHit? && showedMessage # Dragon Darts only shows one failure message
+                    showedMessage = true
+                    pbEffectsOnMiss(user, b, move)
                 end
                 move.pbCrashDamage(user)
                 move.pbAllMissed(user, targets)
@@ -842,7 +844,7 @@ class PokeBattle_Battler
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power and made it {3}!", 
                 getItemName(user.effects[:EmpoweringHerbConsumed]), 
-                move.name, move.physicalMove? ? "special" : "physical" # swapped because the calculatedCategory isn't set yet 
+                move.name, move.physicalMove? ? "physical" : "special" # swapped because the calculatedCategory isn't set yet 
             ))
             aiLearnsItem(user.effects[:EmpoweringHerbConsumed])
         end
@@ -891,6 +893,7 @@ class PokeBattle_Battler
             targets.each do |b|
                 next unless b.damageState.missed
                 pbMissMessage(move, user, b)
+                pbEffectsOnMiss(user, b, move)
             end
         end
         # Deal the damage (to all allies first simultaneously, then all foes
@@ -1004,7 +1007,7 @@ class PokeBattle_Battler
         end
         targets.each { |b| b.pbFaint if b && b.fainted? }
         user.pbFaint if user.fainted?
-        # Guarenteed added effects
+        # Guaranteed added effects
         if move.guaranteedEffect?
             targets.each do |b|
                 next if b.damageState.calcDamage == 0

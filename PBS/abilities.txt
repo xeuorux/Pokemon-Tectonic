@@ -149,7 +149,7 @@ Description = Boosts Defense by 20%. When this Pokémon takes its second physica
 #-------------------------------
 [FLOWERGIFT]
 Name = Flower Gift
-Description = In sunshine boosts its and allies' Attack and Sp. Def by 50%.
+Description = In sunshine, boosts its and allies' Attack and Sp. Def by 50%.
 Flags = SunshineSynergy,Immutable
 #-------------------------------
 [FLOWERVEIL]

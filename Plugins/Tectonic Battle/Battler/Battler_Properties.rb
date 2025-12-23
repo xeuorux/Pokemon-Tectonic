@@ -98,6 +98,7 @@ class PokeBattle_Battler
         val += @effects[:ExtraTurns]
         val += 1 if effectActive?(:GreaterGlories)
         val += 1 if effectActive?(:TemporalDistortion)
+        val += 1 if effectActive?(:DisasterResponse)
         return val
     end
 

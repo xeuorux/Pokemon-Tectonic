@@ -215,20 +215,16 @@ class PokeBattle_Battle
                 @scene.pbRefreshOne(battler.index) if battler
                 break
             end
+
             # Levelled up
             pbCommonAnimation("LevelUp", battler) if battler
-            oldTotalHP = pkmn.totalhp
-            oldAttack  = pkmn.attack
-            oldDefense = pkmn.defense
-            oldSpAtk   = pkmn.spatk
-            oldSpDef   = pkmn.spdef
-            oldSpeed   = pkmn.speed
-            pkmn.calc_stats
-            battler.pbUpdate(false) if battler
-            @scene.pbRefreshOne(battler.index) if battler
-            pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", pkmn.name, curLevel))
-            @scene.pbLevelUp(pkmn, battler, oldTotalHP, oldAttack, oldDefense,
-                                          oldSpAtk, oldSpDef, oldSpeed)
+            showPokemonChangesWindow(pkmn) do
+                pkmn.calc_stats
+                battler.pbUpdate(false) if battler
+                @scene.pbRefreshOne(battler.index) if battler
+                pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", pkmn.name, curLevel))
+            end
+
             # Learn all moves learned at this level
             moveList = pkmn.getMoveList
             unless $Options.prompt_level_moves == 1

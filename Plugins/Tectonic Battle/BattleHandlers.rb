@@ -160,6 +160,9 @@ module BattleHandlers
     TargetAbilityStartOfMove            = AbilityHandlerHash.new
     # Multi-item interactions
     DisallowItemSetAbility              = AbilityHandlerHash.new
+    # Moves missing abilities  
+    UserAbilityOnMiss                 = AbilityHandlerHash.new
+    TargetAbilityOnMiss               = AbilityHandlerHash.new
 
     #=============================================================================
 
@@ -759,5 +762,15 @@ module BattleHandlers
     def self.triggerDisallowItemSetAbility(ability, pokemon, itemSet, showMessages)
         ret = DisallowItemSetAbility.trigger(ability, pokemon, itemSet, showMessages)
         return !ret.nil? ? ret : false
+    end
+
+    #=============================================================================
+
+    def self.triggerUserAbilityOnMiss(ability, user, targets, move, battle)
+        UserAbilityOnMiss.trigger(ability, user, targets, move, battle)
+    end
+
+    def self.triggerTargetAbilityOnMiss(ability, user, target, move, battle)
+        TargetAbilityOnMiss.trigger(ability, user, target, move, battle)
     end
 end

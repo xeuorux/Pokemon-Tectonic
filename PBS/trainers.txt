@@ -573,7 +573,7 @@ Pokemon = MAWILE,18
     AbilityIndex = 1 # Intimidate
     Item = STEELGEM
 Pokemon = HSNEASEL,19
-    Moves = KARATECHOP,HONECLAWS,FURYCUTTER,CAUSTICPUNCH
+    Moves = KARATECHOP,HONECLAWS,SCRITCHYSCRITCH,CAUSTICPUNCH
     AbilityIndex = 1 # Frustrate
 Pokemon = SHELLOS,19
     Moves = MUDSHOT,SWEETKISS,WATERGUN,HARDEN
@@ -1504,7 +1504,7 @@ Pokemon = SPOINK,28
 #-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
-    Moves = ELECTROBALL,SWIFT,SELFDESTRUCT,ROCKROLL
+    Moves = ELECTROBALL,SWIFT,SELFDESTRUCT,ROCKTHROW
     AbilityIndex = 0 # Bunker Down
 Pokemon = SKORUPI,28
     Moves = FEINTATTACK,POISONFANG,SUCKBLOOD,ENVENOM
@@ -2530,7 +2530,7 @@ Pokemon = BEWEAR,70
     Shiny = yes
     AbilityIndex = 0 # Intimidate
 Pokemon = OCTILLERY,70
-    AbilityIndex = 0 # Juggernaut
+    AbilityIndex = 0 # Ink Spray
 Pokemon = MAROWAK,70
     AbilityIndex = 0 # Rock Head
 Pokemon = LILLIGANT,70
@@ -4283,7 +4283,7 @@ Pokemon = HDECIDUEYE,55
 Policies = VICTOIRE
 Flags = NoPerfect
 Pokemon = ADUGTRIO,55
-    Moves = HAIRFLIP,SANDBLASTING,SHADOWBALL,TERRAFORM
+    Moves = HAIRFLIP,SANDBLASTING,NULLPULSE,TERRAFORM
     AbilityIndex = 0 # Lauoho Lasso
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -6100,7 +6100,7 @@ Pokemon = TOXAPEX,70
     EV = 20,0,20,0,0,10
 Pokemon = OCTILLERY,70
     Moves = ENERGYBALL,FLAMETHROWER,SURF,PSYCHIC
-    AbilityIndex = 0 # Juggernaut
+    AbilityIndex = 0 # Ink Spray
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = SLOWBRO,70
@@ -7110,7 +7110,7 @@ Pokemon = GIGANTEON,70
     AbilityIndex = 0 # Ultra Adapted
 Pokemon = OCTILLERY,70
     Moves = TARVOLLEY,BUBBLEBLASTER,ENERGYBALL,ICEBEAM
-    AbilityIndex = 0 # Juggernaut
+    AbilityIndex = 0 # Ink Spray
 Pokemon = SCEPTILE,70
     Moves = DRAINPUNCH,EARTHQUAKE,REND,LEAFBLADE
     AbilityIndex = 0 # Regenerator
@@ -7721,9 +7721,9 @@ Pokemon = DRAPION,60
     Moves = HONORLESSSTING,SEVER,VENOMGUARD,AGONIZE
     AbilityIndex = 0 # Darkened Skies
 Pokemon = SUDOWOODO,60
-    Moves = GLIMMERPULSE,CREEPINGSTRIKE,BODYPRESS,SHOREUP
+    Moves = GLIMMERPULSE,ERODE,BODYPRESS,SHOREUP
     AbilityIndex = 0 # Desiccate
-    Item = GRASSGEM
+    Item = FIGHTINGGEM
 #-------------------------------
 [ANCIENTPRIEST,Radzayac]
 Pokemon = DIGGERSBY,60

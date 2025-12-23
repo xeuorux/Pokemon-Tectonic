@@ -31,11 +31,15 @@ class RandomTournament
     attr_reader :matches
     attr_reader :matchesWon
     attr_reader :attempts
+    attr_reader :cursed_wins
+    attr_reader :perfect_wins
 
     def initialize()
         @matches = []
         @matchesWon = 0
         @attempts = 0
+        @cursed_wins = 0
+        @perfect_wins = 0
 
         prepMatches
 
@@ -45,6 +49,8 @@ class RandomTournament
     def beginAttempt
         @attempts += 1
         @matchesWon = 0
+        @cursed_wins = 0
+        @perfect_wins = 0
         $game_variables[WIN_COUNT_VARIABLE] = 0
         @active = true
     end
@@ -79,6 +85,8 @@ class RandomTournament
 
     def winMatch()
         @matchesWon += 1
+        @cursed_wins += 1 if tarotAmuletActive?
+        @perfect_wins += 1 if battlePerfected?
         $game_variables[WIN_COUNT_VARIABLE] = @matchesWon
         @active = false if tournamentWon?
     end
@@ -116,6 +124,13 @@ class RandomTournament
 
     def tournamentActive?
         return @active
+    end
+
+    def takeTournamentSnapshot()
+        flags = []
+        flags.push("perfect") if @perfect_wins == FINAL_ROUND
+        flags.push("cursed") if @cursed_wins == FINAL_ROUND
+        teamSnapshot("Makyan Champion", flags)
     end
 end
 
@@ -222,4 +237,8 @@ def setCenterToBackupNurse
     $PokemonGlobal.pokecenterX         = event.x
     $PokemonGlobal.pokecenterY         = event.y + 1
     $PokemonGlobal.pokecenterDirection = Up
+end
+
+def takeTournamentSnapshot()
+    return $PokemonGlobal.tournament.takeTournamentSnapshot()
 end
