@@ -880,6 +880,60 @@ class PokeBattle_Move_EmpoweredHealOrder < PokeBattle_HalfHealingMove
     end
 end
 
+#===============================================================================
+# Heals sacrifices 25% of their max HP, and heals every one of its other 
+# party members by 25%. (Dinner Bell)
+#===============================================================================
 class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_Move
-    # TO DO
+    def worksWithNoTargets?; return true; end
+
+    def initialize(battle, move)
+        super
+        @hpFraction = 0.25
+    end
+    
+    def pbMoveFailed?(user, targets, show_message)
+        if user.hp <= (user.totalhp * @hpFraction)
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
+            return true
+        end
+        super
+    end
+
+    def validPokemon(pkmn)
+        return pkmn&.able? && pkmn.hp < pkmn.totalhp
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        super
+        @battle.pbDisplay(_INTL("A bell rings out! Dinner is on!"))
+    end
+
+    def pbEffectGeneral(user)
+        user.applyFractionalDamage(@hpFraction)
+
+        # Heal all Pokémon in the user's and partner trainer's party.
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next unless pkmn
+            battler = @battle.pbFindBattler(i, user)
+            if battler
+                healHPFraction(battler, @hpFraction, user)
+            else
+                healHPFraction(pkmn, @hpFraction, user)
+            end
+        end
+    end
+
+    def getEffectScore(user, _target)
+        score += getHPLossEffectScore(user, @hpFraction * 1.5) # intentionally higher than it looks like it should be
+        healableMembers = 0
+        @battle.pbParty(user.index).each do |pkmn|
+            next unless validPokemon(pkmn)
+            healableMembers += 1 
+        end
+        if statusesInParty > 0
+            score += 30 + statusesInParty * 50
+        end
+        return score
+    end
 end

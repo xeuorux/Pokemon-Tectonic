@@ -150,6 +150,11 @@ class PokeBattle_Battler
         end
     end
 
+    def applyHealingModifiers(amount, user, aiCheck: false)
+        amount *= 1.25 if user.shouldAbilityApply?(:REFRESHING, aiCheck)
+        return amount
+    end
+
     def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, user: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         if @battle.autoTesting
             anim = false
@@ -162,9 +167,11 @@ class PokeBattle_Battler
 
         # Apply healing modifiers
         amt *= 1.5 if shouldAbilityApply?(:ROOTED, aiCheck)
-        amt *= 1.25 if user&.shouldAbilityApply?(:REFRESHING, aiCheck)
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt *= 1.2 if @battle.pbCheckGlobalAbility(:FIELDOFLIFE)
+
+        amt = applyHealingModifiers(amt, user, aiCheck: aiCheck) if user
+
         amt = amt.round
 
         # Nerve Break, Bad Influence invert healing
