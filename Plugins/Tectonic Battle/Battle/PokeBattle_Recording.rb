@@ -274,7 +274,7 @@ module PokeBattle_BattleReplayer
 		end
 	end
 
-	def registeReplayedChoice(index)
+	def registerReplayedChoice(index)
 		choice = @recorded_choices[@turnCount][index]
 		if choice.length < 5
 			@replayed_choice = @recorded_choices[@turnCount][index][4]
@@ -295,7 +295,7 @@ end
 
 class PokeBattle_Battle
 	def registerRecordedChoice(index); end
-	def registeReplayedChoice(index); end
+	def registerReplayedChoice(index); end
 	def registerRules; end
 end
 
