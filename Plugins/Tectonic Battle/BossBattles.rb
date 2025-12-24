@@ -64,11 +64,12 @@ def pbAvatarBattleCore(*args)
     # Create the battle scene (the visual side of it)
     scene = pbNewBattleScene
     # Create the battle class (the mechanics side of it)
-    battle = PokeBattle_Battle.new(scene, playerParty, foeParty, playerTrainers, nil)
+    battle = PokeBattle_TectonicRecordedBattle.new(scene, playerParty, foeParty, playerTrainers, nil, 2)
     battle.party1starts = playerPartyStarts
     battle.bossBattle = true
     # Set various other properties in the battle class
     pbPrepareBattle(battle)
+    battle.registerRules
     $PokemonTemp.clearBattleRules
     # Perform the battle itself
     decision = 0

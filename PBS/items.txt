@@ -3120,6 +3120,15 @@ FieldUse = Direct
 Flags = KeyItem
 Description = A smart phone. Use it to take selfies.
 #-------------------------------
+[VSRECORDER]
+Name = VS Recorder
+NamePlural = VS Recorders
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A hi-tech battle recording device. Use it to manage and replay past battles.
+#-------------------------------
 [PRIMALBEAD]
 Name = Primal Bead
 NamePlural = Primal Bead
