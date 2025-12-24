@@ -897,6 +897,10 @@ class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_M
             @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
             return true
         end
+        if healableMembers(user) == 0
+            @battle.pbDisplay(_INTL("But it failed, since {1} has no team members to heal!", user.pbThis(true))) if show_message
+            return true
+        end
         super
     end
 
@@ -913,26 +917,44 @@ class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_M
         user.applyFractionalDamage(@hpFraction)
 
         # Heal all Pokémon in the user's and partner trainer's party.
-        @battle.pbParty(user.index).each_with_index do |pkmn, i|
-            next unless pkmn
+        # While storing health values for the healing graphic
+        previousHealthValues = []
+        usersParty = @battle.pbParty(user.index)
+        usersParty.each_with_index do |pkmn, i|
+            break if pkmn.nil?
+            if i == user.pokemonIndex
+                previousHealthValues.push(pkmn.hp)
+                next
+            end
             battler = @battle.pbFindBattler(i, user)
             if battler
                 healHPFraction(battler, @hpFraction, user)
+                # Added intentionally after the heal, so the party healing animation doesn't include it
+                previousHealthValues.push(pkmn.hp)
             else
+                previousHealthValues.push(pkmn.hp)
                 healHPFraction(pkmn, @hpFraction, user)
             end
         end
+
+        showPartyHealing(usersParty, previousHealthValues)
+    end
+
+    def healableMembers(user)
+        healableMembers = 0
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next unless validPokemon(pkmn)
+            next if i == user.pokemonIndex
+            healableMembers += 1 
+        end
+        return healableMembers
     end
 
     def getEffectScore(user, _target)
         score += getHPLossEffectScore(user, @hpFraction * 1.5) # intentionally higher than it looks like it should be
-        healableMembers = 0
-        @battle.pbParty(user.index).each do |pkmn|
-            next unless validPokemon(pkmn)
-            healableMembers += 1 
-        end
-        if statusesInParty > 0
-            score += 30 + statusesInParty * 50
+        healableMembers = healableMembers(user)
+        if healableMembers > 0
+            score += 30 + healableMembers * 50
         end
         return score
     end

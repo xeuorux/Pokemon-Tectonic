@@ -1718,6 +1718,10 @@ Description = After knocking out any Pokémon, regenerates its previously-used i
 Name = Refractive
 Description = Light moves change this Pokémon's secondary type and their power is boosted by 30%.
 #-------------------------------
+[REFRESHING]
+Name = Refreshing
+Description = This Pokémon's moves heal for 25% more.
+#-------------------------------
 [REFRESHMENTS]
 Name = Refreshments
 Description = Upon entry during sunshine, heals the lowest HP ally or self by 33%.
@@ -1778,10 +1782,6 @@ Description = While this Pokémon is active, Rooms do not decay.
 [ROOTED]
 Name = Rooted
 Description = Gets 50% more healing from all sources.
-#-------------------------------
-[REFRESHING]
-Name = Refreshing
-Description = This Pokémon's moves heal for 25% more.
 #-------------------------------
 [ROYALMAJESTY]
 Name = Royal Majesty
