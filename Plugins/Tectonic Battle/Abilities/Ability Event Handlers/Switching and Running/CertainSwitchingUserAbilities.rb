@@ -19,3 +19,16 @@ BattleHandlers::CertainSwitchingUserAbility.add(:RUNNINGFREE,
         next true
     }
 )
+
+BattleHandlers::CertainSwitchingUserAbility.add(:DISASTERRESPONSE,
+    proc { |ability, switcher, battle, trappingProc|
+        next if switcher.effectActive?(:DisasterResponse)
+        if trappingProc
+            battle.pbShowAbilitySplash(switcher, ability)
+            battle.pbDisplay(_INTL("{1} prepares its response!", switcher.pbThis))
+            switcher.applyEffect(:DisasterResponse)
+            battle.pbHideAbilitySplash(switcher)
+        end
+        next true
+    }
+)

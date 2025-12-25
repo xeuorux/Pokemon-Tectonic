@@ -70,13 +70,14 @@ def pbTrainerBattleCore(*args)
     # Create the battle scene (the visual side of it)
     scene = pbNewBattleScene
     # Create the battle class (the mechanics side of it)
-    battle = PokeBattle_Battle.new(scene, playerParty, foeParty, playerTrainers, foeTrainers)
+    battle = PokeBattle_TectonicRecordedBattle.new(scene, playerParty, foeParty, playerTrainers, foeTrainers, 1)
     battle.party1starts = playerPartyStarts
     battle.party2starts = foePartyStarts
     battle.items        = foeItems
     battle.endSpeeches  = foeEndSpeeches
     # Set various other properties in the battle class
     pbPrepareBattle(battle)
+    battle.registerRules
     $PokemonTemp.clearBattleRules
     # End the trainer intro music
     Audio.me_stop

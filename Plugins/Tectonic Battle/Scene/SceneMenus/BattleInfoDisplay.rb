@@ -347,7 +347,7 @@ class BattleInfoDisplay < SpriteWrapper
         end
 
         # List status counts
-        battler.getStatuses.each do |status|
+        %i[SLEEP POISON].each do |status|
             statusCount = battler.getStatusCount(status)
             next unless statusCount >= 1
             statusName = GameData::Status.get(status).name

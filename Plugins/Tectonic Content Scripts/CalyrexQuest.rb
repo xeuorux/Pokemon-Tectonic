@@ -51,7 +51,7 @@ def calyrexLegendFight
     pkmn = pbGenerateWildPokemon(:CALYREX, level)
     pkmn.forget_all_moves
     pkmn.learn_move(:FUTURESIGHT)
-    pkmn.learn_move(:SEERSTRIKE)
+    pkmn.learn_move(:BRAINFREEZE)
     pkmn.learn_move(:AROMATHERAPY)
     pkmn.learn_move(:ENERGYBALL)
 

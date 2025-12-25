@@ -81,7 +81,7 @@ BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
             battle.pbHideAbilitySplash(battler)
         end
         if battle.sunny?
-            healingMessage = _INTL("{1} caramlizes slightly in the heat.", battler.pbThis)
+            healingMessage = _INTL("{1} caramelizes slightly in the heat.", battler.pbThis)
             battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, ability: ability, customMessage: healingMessage)
         end
     }
@@ -115,6 +115,7 @@ BattleHandlers::EORWeatherAbility.add(:ACIDRAIN,
         battler.eachOther do |b|
             next unless b.debuffedByRain?
             b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+            battle.pbHideAbilitySplash(battler)
         end
   }
 )
@@ -125,6 +126,7 @@ BattleHandlers::EORWeatherAbility.add(:SUNBURNING,
         battler.eachOther do |b|
             next unless b.debuffedBySun?
             b.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler, ability: ability)
+            battle.pbHideAbilitySplash(battler)
         end
   }
 )

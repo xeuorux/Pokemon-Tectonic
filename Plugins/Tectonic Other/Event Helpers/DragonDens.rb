@@ -47,7 +47,7 @@ end
 
 def dragonDenEnterPrompt()
 	if pbConfirmMessage(_INTL("You notice a small hole in the rock. Dig into it?"))
-		pbMessage(_INTL("You clambor into the den!"))
+		pbMessage(_INTL("You clamber into the den!"))
 		return true
 	end
 	return false

@@ -21,8 +21,8 @@ def checkTarotAmuletCutscene(gymIndex)
     incrementGlobalVar(TAROT_CUTSCENE_PROGRESS_GLOBAL)
 end
 
-def addLightnessOverlay(overFrames = 40)
-    newSprite = DarknessSprite.new(viewport: Spriteset_Map.viewport, color: Color.new(255,255,255,200),numFades: 20, radius: 360, innerRadius: 64, diminishmentMult: 0.85, opacityMult: 0.0)
+def addLightnessOverlay(overFrames = 40, color: Color.new(255,255,255,200))
+    newSprite = DarknessSprite.new(viewport: Spriteset_Map.viewport, color: color,numFades: 20, radius: 360, innerRadius: 64, diminishmentMult: 0.85, opacityMult: 0.0)
     $PokemonTemp.darknessSprite = newSprite
     $scene.spriteset.addUserSprite($PokemonTemp.darknessSprite)
     overFrames.times do |i|

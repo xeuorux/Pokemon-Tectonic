@@ -112,9 +112,9 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
       #       means it also cares about the Pokémon's form. Some forms cannot
       #       evolve even if the species generally can, and such forms are not
       #       affected by Eviolite.
-      unless target.pokemon.species_data.get_evolutions(true).empty?
+      unless target.notFullyEvolved?
         mults[:defense_multiplier] *= 1.5
-        user.aiLearnsItem(item) unless aiCheck
+        target.aiLearnsItem(item) unless aiCheck
       end
   }
 )
@@ -122,6 +122,6 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 BattleHandlers::DamageCalcTargetItem.add(:COVERTCLOAK,
   proc { |item, user, target, _move, mults, _baseDmg, _type, aiCheck|
     mults[:final_damage_multiplier] *= 0.9
-    user.aiLearnsItem(item) unless aiCheck
+    target.aiLearnsItem(item) unless aiCheck
   }
 )

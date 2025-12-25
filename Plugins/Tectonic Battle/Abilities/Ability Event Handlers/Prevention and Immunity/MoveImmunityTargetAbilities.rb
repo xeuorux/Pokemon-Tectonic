@@ -115,7 +115,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:STEELABSORB,
+BattleHandlers::MoveImmunityTargetAbility.add(:HULLHUNGER,
   proc { |ability, user, target, move, type, battle, showMessages, aiCheck|
     next pbBattleMoveImmunityHealAbility(ability, user, target, move, type, :STEEL, battle, showMessages, aiCheck)
   }

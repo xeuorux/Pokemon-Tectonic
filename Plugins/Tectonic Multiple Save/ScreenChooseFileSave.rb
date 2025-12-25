@@ -168,7 +168,7 @@ class ScreenChooseFileSave
                                 @choose = 0
                                 @position = 0
                                 if FileSave.count == 0
-                                    pbMessage(_INTL("You dont have any save file. Restart game now."))
+                                    pbMessage(_INTL("You don't have any save file. Restart game now."))
                                     @staymenu = false
                                     $scene = pbCallTitle if @type == 1
                                     break
@@ -213,7 +213,7 @@ $Trainer.name))
                             if pbConfirmMessageSerious(_INTL("Delete all saved data?"))
                                 pbMessage(_INTL("Once data has been deleted, there is no way to recover it.\1"))
                                 if pbConfirmMessageSerious(_INTL("Delete the saved data anyway?"))
-                                    pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[0]"))
+                                    pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[30]"))
                                     # Delete
                                     deleteFile
                                     @deletefile = true

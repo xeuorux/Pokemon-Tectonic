@@ -76,22 +76,43 @@ def giveCondensedLight
     pbMessage(_INTL("\\wm<i>The mention of a certain someone manifests a ball of light...</i>"))
     pbReceiveItem(:CONDENSEDLIGHT)
     if pbQuantity(:CONDENSEDLIGHT) >= condensedLightCount
+        # Quest finish cutscene
+        startConsendedLightCutscene
         pbMessage(_INTL("\\wm<i>You get the sense that you've collected enough light.</i>"))
         pbMessage(_INTL("\\wm<i>Your friend will be very pleased.</i>"))
-        pbMessage(_INTL("\\wm<i>You should visit her in her very nice house.</i>"))
+        pbMessage(_INTL("\\wm<i>You should visit her very nice house.</i>"))
+        pbMessage(_INTL("\\wm<i>She is waiting for you <imp>near Velenz</imp>...</i>"))
+        endCondensedLightCutscene
         advanceQuestToStage(:QUEST_LEGEND_CONDENSED, 2)
-    elsif pbQuantity(:CONDENSEDLIGHT) >= (condensedLightCount * 0.75).ceil # 75% done or more
-        pbMessage(_INTL("\\wm<i>You're getting close, now.</i>"))
+    elsif pbQuantity(:CONDENSEDLIGHT) >= (condensedLightCount * 0.7).ceil # 75% done or more
+        # Quest clue cutscene
+        startConsendedLightCutscene
         showCondensedLightHint
+        endCondensedLightCutscene
     elsif pbQuantity(:CONDENSEDLIGHT) == (condensedLightCount / 2).ceil # Half done, or slightly more
+        # Quest halfway point cutscene
+        startConsendedLightCutscene
         pbMessage(_INTL("\\wm<i>You get the sense that you've found about half the light you need.</i>"))
         pbMessage(_INTL("\\wm<i>Your friend is waiting with anticipation.</i>"))
         pbMessage(_INTL("\\wm<i>Continue your collection.</i>"))
+        endCondensedLightCutscene
     end
 end
 
+def startConsendedLightCutscene
+    pbBGMFade(1.0)
+    pbWait(40)
+    addLightnessOverlay(30, color: Color.new(255,215,0,150))
+end
+
+def endCondensedLightCutscene
+    removeLightnessOverlay
+    pbWait(40)
+    $game_map.autoplayAsCue
+end
+
 def showCondensedLightHint
-    pbMessage(_INTL("\\wm<i>A vision appears in your mind...</i>"))
+    pbMessage(_INTL("\\wm<i>A <imp>vision of golden light</imp> appears in your mind...</i>"))
     possibleHints = []
     CONDENSED_LIGHT_LOCATIONS.each do |key, value|
         next if pbGetSelfSwitch(key[0],key[1],key[2])

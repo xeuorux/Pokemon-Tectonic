@@ -21,6 +21,9 @@ class PokeBattle_ActiveSide
         @eor_proc = proc do |effectData|
             effectData.eor_side(@battle, self)
         end
+        @sor_proc = proc do |effectData|
+            effectData.sor_side(@battle, self)
+        end
         @remain_proc = proc do |effectData|
             effectData.remain_side(@battle, self)
         end

@@ -125,47 +125,19 @@ def pbChangeLevel(pkmn, newlevel, scene = nil)
   if pkmn.level == newlevel
       pbMessage(_INTL("{1}'s level remained unchanged.", pkmn.name))
   elsif pkmn.level > newlevel
-      attackdiff  = pkmn.attack
-      defensediff = pkmn.defense
-      speeddiff   = pkmn.speed
-      spatkdiff   = pkmn.spatk
-      spdefdiff   = pkmn.spdef
-      totalhpdiff = pkmn.totalhp
+    showPokemonChangesWindow(pkmn) do
       pkmn.level = newlevel
       pkmn.calc_stats
       scene&.pbRefresh
       pbMessage(_INTL("{1} dropped to Lv. {2}!", pkmn.name, pkmn.level))
-      attackdiff  = pkmn.attack - attackdiff
-      defensediff = pkmn.defense - defensediff
-      speeddiff   = pkmn.speed - speeddiff
-      spatkdiff   = pkmn.spatk - spatkdiff
-      spdefdiff   = pkmn.spdef - spdefdiff
-      totalhpdiff = pkmn.totalhp - totalhpdiff
-      pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-         totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff))
-      pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-         pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed))
+    end
   else
-      attackdiff  = pkmn.attack
-      defensediff = pkmn.defense
-      speeddiff   = pkmn.speed
-      spatkdiff   = pkmn.spatk
-      spdefdiff   = pkmn.spdef
-      totalhpdiff = pkmn.totalhp
-      pkmn.level = newlevel
-      pkmn.calc_stats
-      scene&.pbRefresh
-      pbSceneDefaultDisplay(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level),scene)
-      attackdiff  = pkmn.attack - attackdiff
-      defensediff = pkmn.defense - defensediff
-      speeddiff   = pkmn.speed - speeddiff
-      spatkdiff   = pkmn.spatk - spatkdiff
-      spdefdiff   = pkmn.spdef - spdefdiff
-      totalhpdiff = pkmn.totalhp - totalhpdiff
-      pbTopRightWindow(_INTL("Max. HP<r>+{1}\r\nAttack<r>+{2}\r\nDefense<r>+{3}\r\nSp. Atk<r>+{4}\r\nSp. Def<r>+{5}\r\nSpeed<r>+{6}",
-         totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
-      pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-         pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
+      showPokemonChangesWindow(pkmn) do
+        pkmn.level = newlevel
+        pkmn.calc_stats
+        scene&.pbRefresh
+        pbSceneDefaultDisplay(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level),scene)
+      end
 
       (newlevel - oldLevel).times do
           pkmn.changeHappiness("candylevelup")
@@ -665,25 +637,11 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil, oneAtATime = false)
     return true if new_level == current_lvl
 
     # Show messages surrounding leveling up
-    attackdiff = pkmn.attack
-    defensediff = pkmn.defense
-    speeddiff   = pkmn.speed
-    spatkdiff   = pkmn.spatk
-    spdefdiff   = pkmn.spdef
-    totalhpdiff = pkmn.totalhp
-    pkmn.calc_stats
-    scene&.pbRefresh
-    pbMessage(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
-    attackdiff  = pkmn.attack - attackdiff
-    defensediff = pkmn.defense - defensediff
-    speeddiff   = pkmn.speed - speeddiff
-    spatkdiff   = pkmn.spatk - spatkdiff
-    spdefdiff   = pkmn.spdef - spdefdiff
-    totalhpdiff = pkmn.totalhp - totalhpdiff
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-        totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-        pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
+    showPokemonChangesWindow(pkmn) do
+      pkmn.calc_stats
+      scene&.pbRefresh
+      pbMessage(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
+    end
 
     (new_level - current_lvl).times do
         pkmn.changeHappiness("candylevelup")

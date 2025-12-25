@@ -147,3 +147,12 @@ class PokeBattle_Move_EmpoweredGigaDrain < PokeBattle_DrainMove
 
     def drainFactor(_user, _target); return 1.0; end
 end
+
+#===============================================================================
+# User gains half the HP it inflicts as damage and can overheal.
+#===============================================================================
+class PokeBattle_Move_HealUserByHalfOfDamageDoneOverheal < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return 0.5; end
+
+    def canOverheal?(user, _target); return true; end
+end

@@ -19,9 +19,9 @@ class PokeBattle_Battler
     #=============================================================================
     # Calculate stats based on stat steps.
     #=============================================================================
-    STAT_STEP_BOUND = 12
-    STEP_MULTIPLIERS = [2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8].freeze
-    STEP_DIVISORS    = [8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5, 3, 2.5, 2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2].freeze
+    STAT_STEP_BOUND = 8
+    STEP_MULTIPLIERS = [2, 2,   2, 2,   2, 2,   2, 2,   2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6].freeze
+    STEP_DIVISORS    = [6, 5.5, 5, 4.5, 4, 3.5, 3, 2.5, 2, 2,   2, 2,   2, 2,   2, 2,   2].freeze
 
     def statMultiplierAtStep(step)
         if step < -STAT_STEP_BOUND || step > STAT_STEP_BOUND
@@ -71,8 +71,15 @@ class PokeBattle_Battler
     def pbCanRaiseStatStep?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false, ignoreAbilities: false)
         validateStat(stat)
         return false if fainted?
+        killjoy = @battle.pbCheckGlobalAbility(:KILLJOY)
+        if killjoy
+            if showFailMsg
+                @battle.pbDisplay(_INTL("{1}'s {2} prevents {3} from raising its {4}!", killjoy.pbThis, getAbilityName(:KILLJOY), pbThis(true), GameData::Stat.get(stat).name))
+            end
+            return false
+        end
         # Contrary
-        if hasActiveAbility?(%i[CONTRARY ECCENTRIC]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+        if hasActiveAbility?(%i[CONTRARY INVERSION]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
             return pbCanLowerStatStep?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities)
         end
         # Check the stat step
@@ -124,9 +131,9 @@ class PokeBattle_Battler
             aiLearnsAbility(:CONTRARY)
             return pbLowerStatStep(stat, increment, user, showAnim, true)
         end
-        # Eccentric
-        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
-            aiLearnsAbility(:ECCENTRIC)
+        # INVERSION
+        if hasActiveAbility?(:INVERSION) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:INVERSION)
             increment = (increment / 2.0).ceil
             return pbLowerStatStep(stat, increment, user, showAnim, true)
         end
@@ -155,9 +162,9 @@ class PokeBattle_Battler
             aiLearnsAbility(:CONTRARY)
             return pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
-        # Eccentric
-        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
-            aiLearnsAbility(:ECCENTRIC)
+        # INVERSION
+        if hasActiveAbility?(:INVERSION) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:INVERSION)
             increment = (increment / 2.0).ceil
             return pbLowerStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
@@ -199,8 +206,8 @@ class PokeBattle_Battler
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiLearnsAbility(:CONTRARY)
             pbMinimizeStatStep(stat, user, move, true, ability: ability)
-        elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
-            aiLearnsAbility(:ECCENTRIC)
+        elsif hasActiveAbility?(:INVERSION) && !ignoreContrary
+            aiLearnsAbility(:INVERSION)
             increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
             tryLowerStat(stat, user, move: move, increment: increment, ability: ability)
         elsif pbCanRaiseStatStep?(stat, user, move, true, ignoreContrary)
@@ -247,7 +254,7 @@ class PokeBattle_Battler
         validateStat(stat)
         return false if fainted?
         # Contrary
-        if hasActiveAbility?(%i[CONTRARY ECCENTRIC]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+        if hasActiveAbility?(%i[CONTRARY INVERSION]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
             return pbCanRaiseStatStep?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities)
         end
         if !user || user.index != @index # Not self-inflicted
@@ -369,9 +376,9 @@ class PokeBattle_Battler
             aiLearnsAbility(:CONTRARY)
             return pbRaiseStatStep(stat, increment, user, showAnim, true)
         end
-        # Eccentric
-        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
-            aiLearnsAbility(:ECCENTRIC)
+        # INVERSION
+        if hasActiveAbility?(:INVERSION) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:INVERSION)
             increment = (increment / 2.0).ceil
             return pbRaiseStatStep(stat, increment, user, showAnim, true)
         end
@@ -387,7 +394,7 @@ class PokeBattle_Battler
         return lowerStatStepEX(stat, increment, user: user, showAnim: showAnim)
     end
 
-    def lowerStatStepEX(stat, increment, user: nil, showMessages: true, showAnim: true)
+    def lowerStatStepEX(stat, increment, user: nil, showMessages: true, showAnim: true, multiple: false)
         # Perform the stat step change
         increment = pbLowerStatStepBasic(stat, increment)
         return false if increment <= 0
@@ -423,7 +430,8 @@ class PokeBattle_Battler
             @battle.pbHideAbilitySplash(user) if showMessages
         end
 
-        triggersOnStatLoss(stat, increment, user: user)
+        # do not trigger effects if dropping multiple stats - the multiple stat function will do that afterwards
+        triggersOnStatLoss(user: user) unless multiple
 
         return increment
     end
@@ -449,9 +457,9 @@ class PokeBattle_Battler
             aiLearnsAbility(:CONTRARY)
             return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
-        # Eccentric
-        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
-            aiLearnsAbility(:ECCENTRIC)
+        # INVERSION
+        if hasActiveAbility?(:INVERSION) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:INVERSION)
             increment = (increment / 2.0).ceil
             return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim: showAnim, ignoreContrary: true)
         end
@@ -485,7 +493,7 @@ class PokeBattle_Battler
         end
         @battle.pbDisplay(lowerMessage)
 
-        triggersOnStatLoss(stat, increment, user: user)
+        triggersOnStatLoss(user: user)
 
         return true
     end
@@ -502,7 +510,7 @@ class PokeBattle_Battler
 
     def blockAteAbilities(user,ability,showMessages = true)
         return true if fainted?
-        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary or eccentric
+        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary or INVERSION
         if substituted?
             @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis)) if showMessages
             return true
@@ -532,8 +540,8 @@ class PokeBattle_Battler
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiLearnsAbility(:CONTRARY)
             pbMaximizeStatStep(stat, user, move, true, ability: ability)
-        elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
-            aiLearnsAbility(:ECCENTRIC)
+        elsif hasActiveAbility?(:INVERSION) && !ignoreContrary
+            aiLearnsAbility(:INVERSION)
             increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
             tryRaiseStat(stat, user, move: move, increment: increment, ability: ability)
         elsif pbCanLowerStatStep?(stat, user, move, true, ignoreContrary)
@@ -545,18 +553,18 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
             @battle.pbHideAbilitySplash(user) if ability
 
-            triggersOnStatLoss(stat, increment, user: user, move: move)
+            triggersOnStatLoss(user: user, move: move)
         end
     end
 
-    def triggersOnStatLoss(stat, increment, user: nil, move: nil)
+    def triggersOnStatLoss(user: nil, move: nil)
         playStatStepsTutorial unless $PokemonGlobal.statStepsTutorialized
 
         applyEffect(:StatsDropped)
 
         # Trigger abilities upon stat loss
         eachActiveAbility do |ability|
-            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
+            BattleHandlers.triggerAbilityOnStatLoss(ability, self, user)
         end
 
         # Trigger items upon stat loss
@@ -604,9 +612,9 @@ class PokeBattle_Battler
                 aiLearnsAbility(:CONTRARY)
                 return pbLowerMultipleStatSteps(statArray, user, move: move, showFailMsg: showFailMsg, showAnim: showAnim, ability: ability, item: item, ignoreContrary: true)
             end
-            # Eccentric
-            if hasActiveAbility?(:ECCENTRIC)
-                aiLearnsAbility(:ECCENTRIC)
+            # INVERSION
+            if hasActiveAbility?(:INVERSION)
+                aiLearnsAbility(:INVERSION)
                 statArray = statArray.map { |statArrayElement|
                     if statArrayElement.is_a?(Integer)
                         next (statArrayElement / 2.0).ceil
@@ -679,9 +687,9 @@ class PokeBattle_Battler
                     aiLearnsAbility(:CONTRARY)
                     return pbRaiseMultipleStatSteps(statArray, user, move: move, showFailMsg: showFailMsg, showAnim: showAnim, ability: ability, item: item, ignoreContrary: true)
                 end
-                # Eccentric
-                if hasActiveAbility?(:ECCENTRIC)
-                    aiLearnsAbility(:ECCENTRIC)
+                # INVERSION
+                if hasActiveAbility?(:INVERSION)
+                    aiLearnsAbility(:INVERSION)
                     statArray = statArray.map { |statArrayElement|
                         if statArrayElement.is_a?(Integer)
                             next (statArrayElement / 2.0).ceil
@@ -723,7 +731,7 @@ class PokeBattle_Battler
             stat = statArray[i * 2]
             increment = statArray[i * 2 + 1]
             next unless pbCanLowerStatStep?(stat, user, move, false, false)
-            increment = lowerStatStepEX(stat, increment, user: user, showMessages: false, showAnim: false)
+            increment = lowerStatStepEX(stat, increment, user: user, showMessages: false, showAnim: false, multiple: true)
             next if increment <= 0
             if endResult.key?(increment)
                 endResult[increment].push(stat)
@@ -738,6 +746,8 @@ class PokeBattle_Battler
             showStatChangeMessage(statIDList, increment, lowering: true)
         end
 
+        triggersOnStatLoss(user: user, move: move)
+
         @battle.pbHideAbilitySplash(user) if ability
         return loweredAnySteps
     end
@@ -748,16 +758,16 @@ class PokeBattle_Battler
     def showStatChangeMessage(stat, increment, lowering: false)
         stat = stat[0] if stat.is_a?(Array) && stat.length == 1
         if stat.is_a?(Array)
-            messageFormat = "{1}'s "
+            messageFormat = "{1}" << _INTL("'s ")
             statNameArgs = []
             stat.each_with_index do |individualStatID, index|
                 messageFormatNumber = index + 2
                 messageFormatNumber += 1 if increment > 1
                 if index == stat.length - 1
                     if stat.length > 2
-                        messageFormat += ", and {#{messageFormatNumber}}"
+                        messageFormat += _INTL(", and ") << "{#{messageFormatNumber}}"
                     else
-                        messageFormat += " and {#{messageFormatNumber}}"
+                        messageFormat += _INTL(" and ") << "{#{messageFormatNumber}}"
                     end
                 elsif index == 0
                     messageFormat += "{#{messageFormatNumber}}"
@@ -768,18 +778,18 @@ class PokeBattle_Battler
             end
             if lowering
                 if increment == 1
-                    messageFormat += " fell!"
+                    messageFormat += _INTL(" fell!")
                     lowerMessage = _INTL(messageFormat, pbThis, *statNameArgs)
                 else
-                    messageFormat += " fell by {2} steps!"
+                    messageFormat += (_INTL(" fell by ") << "{2}") << _INTL(" steps!")
                     lowerMessage = _INTL(messageFormat, pbThis, increment, *statNameArgs)
                 end
             else
                 if increment == 1
-                    messageFormat += " rose!"
+                    messageFormat += _INTL(" rose!")
                     lowerMessage = _INTL(messageFormat, pbThis, *statNameArgs)
                 else
-                    messageFormat += " rose by {2} steps!"
+                    messageFormat += (_INTL(" rose by ") << "{2}") << _INTL(" steps!")
                     lowerMessage = _INTL(messageFormat, pbThis, increment, *statNameArgs)
                 end
             end
@@ -838,5 +848,25 @@ class PokeBattle_Battler
             anyReset = true
         }
         @battle.pbDisplay(_INTL("{1}'s negative stat changes were eliminated!", pbThis)) if showMessage && anyReset
+    end
+    
+    def pbResetRaisedStatSteps(showMessage = false)
+        anyReset = false
+        GameData::Stat.each_battle { |s|
+            next unless @steps[s.id] > 0
+            @steps[s.id] = 0
+            anyReset = true
+        }
+        @battle.pbDisplay(_INTL("{1}'s positive stat changes were eliminated!", pbThis)) if showMessage && anyReset
+    end
+
+    def invertStatSteps(showMessage = false)
+        anyReset = false
+        GameData::Stat.each_battle { |s|
+            next unless @steps[s.id] != 0
+            @steps[s.id] *= -1
+            anyReset = true
+        }
+        @battle.pbDisplay(_INTL("{1}'s stats were reversed!", pbThis)) if showMessage && anyReset
     end
 end

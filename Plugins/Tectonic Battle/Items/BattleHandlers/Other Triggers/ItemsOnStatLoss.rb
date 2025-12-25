@@ -3,13 +3,16 @@ BattleHandlers::ItemOnStatLoss.add(:EJECTPACK,
       next if battle.pbAllFainted?(battler.idxOpposingSide)
       next unless battle.pbCanChooseNonActive?(battler.index)
       next if move&.switchOutMove?
+      # code adapted from Move_Helpers.rb switchOutUser()
+      next unless battle.pbCanSwitch?(battler.index)
       battle.pbCommonAnimation("UseItem", battler)
       battle.pbDisplay(_INTL("{1} is switched out with the {2}!", battler.pbThis, getItemName(item)))
       battler.consumeItem(item)
       newPkmn = battle.pbGetReplacementPokemonIndex(battler.index) # Owner chooses
       next if newPkmn < 0
       battle.pbRecallAndReplace(battler.index, newPkmn)
-      battle.pbClearChoice(battler.index)   # Replacement Pokémon does nothing this round
+      battle.pbClearChoice(battler.index) # Replacement Pokémon does nothing this round
       switched.push(battler.index)
+      battler.pbEffectsOnSwitchIn(true)
   }
 )

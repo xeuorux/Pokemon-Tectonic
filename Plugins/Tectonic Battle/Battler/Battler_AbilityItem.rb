@@ -70,6 +70,9 @@ class PokeBattle_Battler
             end
         end
 
+        # Apply effect to notify if switching in for a K.O. ally. Currently only used by Keldeo's Hero's Journey.
+        position.applyEffect(:PassingKO, @pokemonIndex)
+
         # Scoure tribal bonus
         opposingIndex = (@index + 1) % 2
         opposingSide = @battle.sides[opposingIndex]
@@ -232,10 +235,14 @@ class PokeBattle_Battler
         refreshDataBox
 
         @addedItems.push(item)
+
+        @battle.updateTribeCounts
     end
     
     def setItems(value)
         @pokemon.setItems(value)
+
+        @battle.updateTribeCounts
     end
 
     def recycleItem(recyclingMsg: nil, ability: nil)
@@ -250,6 +257,8 @@ class PokeBattle_Battler
         @battle.pbDisplay(recyclingMsg)
         hideMyAbilitySplash if ability
         pbHeldItemTriggerCheck
+
+        @battle.updateTribeCounts
     end
 
     #=============================================================================
@@ -285,6 +294,8 @@ class PokeBattle_Battler
         items.delete_at(itemIndex)
         applyEffect(:ItemLost) if items.length == 0
         refreshDataBox
+        
+        @battle.updateTribeCounts
     end
 
     #=========================================

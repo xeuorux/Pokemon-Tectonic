@@ -96,16 +96,14 @@ module PokemonDebugMenuCommands
             screen.pbRefreshSingle(pkmnid)
           else   # Give status problem
             count = 0
-            cancel = false
-            if ids[cmd] == :SLEEP
-              params = ChooseNumberParams.new
-              params.setRange(0, 9)
-              params.setDefaultValue(3)
-              count = pbMessageChooseNumber(
-                 _INTL("Set the Pokémon's sleep count."), params) { screen.pbUpdate }
-              cancel = true if count <= 0
-            end
-            if !cancel
+            # Choose count
+            params = ChooseNumberParams.new
+            max = ids[cmd] == :SLEEP ? 2 : 1
+            params.setRange(0, max)
+            params.setDefaultValue(2) if ids[cmd] == :SLEEP
+            count = pbMessageChooseNumber(
+                _INTL("Set the Pokémon's status count."), params) { screen.pbUpdate }
+            if ids[cmd] != :SLEEP || count > 0
               pkmn.status      = ids[cmd]
               pkmn.statusCount = count
               screen.pbRefreshSingle(pkmnid)
@@ -386,7 +384,7 @@ module PokemonDebugMenuCommands
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       move = pbChooseMoveList
       if move
-        pbLearnMove(pkmn, move)
+        pbLearnMove(pkmn, move, false, false, true)
         screen.pbRefreshSingle(pkmnid)
       end
       next false
@@ -400,7 +398,7 @@ module PokemonDebugMenuCommands
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       move = pbChooseMoveListForSpecies(pkmn.species, nil, true)
       if move
-        pbLearnMove(pkmn, move)
+        pbLearnMove(pkmn, move, false, false, true)
         screen.pbRefreshSingle(pkmnid)
       end
       next false
@@ -947,26 +945,29 @@ module PokemonDebugMenuCommands
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       if screen.pbConfirm(_INTL("Are you sure you want to copy this Pokémon?"))
         clonedpkmn = pkmn.clone
-        if screen.is_a?(PokemonPartyScreen) || screen.is_a?(TilingCardsPokemonMenu_Scene)
+        clonedpkmn.items = pkmn.items.clone
+        if screen.is_a?(TilingCardsPokemonMenu_Scene)
           pbStorePokemon(clonedpkmn)
           screen.pbHardRefresh
           screen.pbDisplay(_INTL("The Pokémon was duplicated."))
-        elsif screen.is_a?(PokemonStorageScreen)
-          if screen.storage.pbMoveCaughtToParty(clonedpkmn)
+        elsif screen.is_a?(TilingCardsStorageInteractionMenu_Scene)
+          if screen.storageScreen.storage.pbMoveCaughtToParty(clonedpkmn)
             if pkmnid[0] != -1
-              screen.pbDisplay(_INTL("The duplicated Pokémon was moved to your party."))
+              screen.storageScene.pbDisplay(_INTL("The duplicated Pokémon was moved to your party."))
             end
           else
-            oldbox = screen.storage.currentBox
-            newbox = screen.storage.pbStoreCaught(clonedpkmn)
+            oldbox = screen.storageScreen.storage.currentBox
+            newbox = screen.storageScreen.storage.pbStoreCaught(clonedpkmn)
             if newbox < 0
-              screen.pbDisplay(_INTL("All boxes are full."))
+              screen.storageScene.pbDisplay(_INTL("All boxes are full."))
             elsif newbox != oldbox
-              screen.pbDisplay(_INTL("The duplicated Pokémon was moved to box \"{1}.\"", screen.storage[newbox].name))
-              screen.storage.currentBox = oldbox
+              screen.storageScene.pbDisplay(_INTL("The duplicated Pokémon was moved to box \"{1}.\"", screen.storageScreen.storage[newbox].name))
+              screen.storageScreen.storage.currentBox = oldbox
             end
           end
-          screen.pbHardRefresh
+          screen.storageScene.pbHardRefresh
+        else
+          echoln("DEBUG DUPLICATE ON UNKNOWN SCREEN: #{screen.class}")
         end
         next true
       end
@@ -979,14 +980,16 @@ module PokemonDebugMenuCommands
     "name"        => _INTL("Delete"),
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       if screen.pbConfirm(_INTL("Are you sure you want to delete this Pokémon?"))
-        if screen.is_a?(PokemonPartyScreen) || screen.is_a?(TilingCardsPokemonMenu_Scene)
+        if screen.is_a?(TilingCardsPokemonMenu_Scene)
           screen.party[pkmnid] = nil
           screen.party.compact!
           screen.pbHardRefresh
-        elsif screen.is_a?(PokemonStorageScreen)
-          screen.scene.pbRelease(pkmnid, heldpoke)
-          (heldpoke) ? screen.heldpkmn = nil : screen.storage.pbDelete(pkmnid[0], pkmnid[1])
-          screen.scene.pbRefresh
+        elsif screen.is_a?(TilingCardsStorageInteractionMenu_Scene)
+          screen.storageScene.pbRelease(pkmnid, heldpoke)
+          (heldpoke) ? screen.storageScreen.heldpkmn = nil : screen.storageScreen.storage.pbDelete(pkmnid[0], pkmnid[1])
+          screen.storageScene.pbRefresh
+        else
+          echoln("DEBUG DELETE ON UNKNOWN SCREEN: #{screen.class}")
         end
         next true
       end

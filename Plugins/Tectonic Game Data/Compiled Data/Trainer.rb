@@ -137,21 +137,30 @@ module GameData
             next if partyEntry[:species] == :SMEARGLE
             trainerName = "#{@trainer_type} #{@real_name}"
             speciesData = GameData::Species.get_species_form(partyEntry[:species],partyEntry[:form] || 0)
+            hasStatusMove = false
             partyEntry[:moves]&.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 unless moveData.learnable?
-                  raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
+                  Compiler.logLegalityError _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
                 end
 
                 unless speciesData.learnable_moves.include?(moveID)
-                  raise _INTL("Trainer #{trainerName}'s #{speciesData.species} can't learn the move #{moveID} assigned to it!")
+                  Compiler.logLegalityError _INTL("Trainer #{trainerName}'s #{speciesData.species} can't learn the move #{moveID} assigned to it!")
                 end
+
+                hasStatusMove = true if moveData.status?
             end
 
+            statusBlockItem = false
             partyEntry[:item]&.each do |itemID|
                 itemData = GameData::Item.get(itemID)
                 next if itemData.legal?(true)
-                raise _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
+                statusBlockItem = true if itemData.is_no_status_use?
+                Compiler.logLegalityError _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
+            end
+
+            if hasStatusMove && statusBlockItem
+              echoln(_INTL("WARNING: Trainer #{trainerName}'s #{speciesData.species} knows a status move despite holding a status move blocking item."))
             end
         end
       end
@@ -481,10 +490,10 @@ module Compiler
               ev_total += (property_value[s.pbs_order] || property_value[0])
             end
             if ev_total > Pokemon::EV_LIMIT
-              raise _INTL("Total EVs are greater than allowed ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
+              Compiler.logLegalityError _INTL("Total EVs are greater than allowed ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
             end
             if ev_total < Pokemon::EV_LIMIT
-              raise _INTL("Total EVs are less than required ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
+              Compiler.logLegalityError _INTL("Total EVs are less than required ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
             end
           when "Happiness"
             if property_value > 255
@@ -577,6 +586,7 @@ module Compiler
     GameData::Trainer.save
     MessageTypes.setMessagesAsHash(MessageTypes::TrainerNames, trainer_names)
     MessageTypes.setMessagesAsHash(MessageTypes::TrainerLoseText, trainer_lose_texts)
+    hologramizeAllBattleSprites(false)
     Graphics.update
   end
 

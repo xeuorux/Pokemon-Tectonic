@@ -8,19 +8,19 @@ def phoneCallSE()
 	Input.update
 end
 
-def phoneCall(caller="Unknown",eventSwitch=nil)
+def phoneCall(caller=_INTL("Unknown"),eventSwitch=nil)
 	phoneCallSE()
 	setMySwitch(eventSwitch,true) if eventSwitch
-	if !pbConfirmMessage(_INTL("...It's {1}. Pick up the phone?", caller))
+	if !pbConfirmMessage(_INTL("\\i[SMARTPHONE]...It's {1}. Pick up the phone?", caller))
 		phoneCallEnd()
 		command_end
 		return
 	end	
 end
 
-def phoneCallConditional(caller="Unknown")
+def phoneCallConditional(caller=_INTL("Unknown"))
 	phoneCallSE()
-	if !pbConfirmMessage(_INTL("...It's {1}. Pick up the phone?", caller))
+	if !pbConfirmMessage(_INTL("\\i[SMARTPHONE]...It's {1}. Pick up the phone?", caller))
 		phoneCallEnd()
 		return false
 	end
@@ -29,6 +29,6 @@ end
 
 def phoneCallEnd()
 	removeSpeaker
-	pbMessage(_INTL("\\se[Voltorb Flip mark]Click."))
+	pbMessage(_INTL("\\i[SMARTPHONE]\\se[Voltorb Flip mark]Click."))
 	pbWait(40)
 end

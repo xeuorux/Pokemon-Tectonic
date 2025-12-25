@@ -50,6 +50,21 @@ module EffectHolder
         end
     end
 
+    def decrementEffect(effect, decrementAmount = 1)
+        validateCorrectLocation(effect)
+        effectData = GameData::BattleEffect.get(effect)
+        validateInteger(effectData)
+        oldValue = @effects[effect]
+        newValue = oldValue - decrementAmount
+        if effectData.default && newValue < effectData.default
+            echoln("[EFFECT] Effect decremented while already at default value: #{effectData.real_name}")
+            return oldValue
+        else
+            @effects[effect] = newValue
+            return newValue
+        end
+    end
+
     # Returns true if the value did not expire, false if it did
     def tickDownAndProc(effect)
         validateCorrectLocation(effect)
@@ -150,6 +165,12 @@ module EffectHolder
         return GameData::Move.get(@effects[effect])
     end
 
+    def getAbilityData(effect)
+        validateCorrectLocation(effect)
+        validateAbility(effect)
+        return GameData::Ability.get(@effects[effect])
+    end
+
     def getName(effect)
         validateCorrectLocation(effect)
         return getData(effect).name
@@ -177,12 +198,21 @@ module EffectHolder
         end
     end
 
+    def processEffectsSOR
+        eachEffect(true) do |effect, value, data|
+            # Active end of round effects
+            @sor_proc.call(data)
+            # Tick down active effects that tick down
+            tickDownAndProc(effect) if data.ticks_down_sor?(@battle, value)
+        end
+    end
+
     def processEffectsEOR
-        eachEffect(true) do |effect, _value, data|
+        eachEffect(true) do |effect, value, data|
             # Active end of round effects
             @eor_proc.call(data)
             # Tick down active effects that tick down
-            tickDownAndProc(effect) if data.ticks_down
+            tickDownAndProc(effect) if data.ticks_down_eor?(@battle, value)
             # Disable effects that reset end of round
             disableEffect(effect) if data.resets_eor
         end
@@ -212,5 +242,9 @@ module EffectHolder
 
     def validateMove(effect)
         raise _INTL("Invalid operation for non-move effect #{effect}") if getData(effect).type != :Move
+    end
+
+    def validateAbility(effect)
+        raise _INTL("Invalid operation for non-ability effect #{effect}") if getData(effect).type != :Ability
     end
 end

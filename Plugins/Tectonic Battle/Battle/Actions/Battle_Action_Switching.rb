@@ -54,6 +54,10 @@ class PokeBattle_Battle
             partyScene.pbDisplay(_INTL("Avatars can't be switched out!")) if partyScene
             return false
         end
+        if @battlers[idxBattler].effectActive?(:RampageLocked)
+            partyScene.pbDisplay(_INTL("Rampaging Pokémon can't be switched out!")) if partyScene
+            return false
+        end
         # Check whether party Pokémon can switch in
         return false unless pbCanSwitchLax?(idxBattler, idxParty, partyScene)
         # Make sure another battler isn't already choosing to switch to the party
@@ -209,7 +213,40 @@ class PokeBattle_Battle
                 next unless pbCanChooseNonActive?(idxBattler)
                 if !pbOwnedByPlayer?(idxBattler) || @controlPlayer # Opponent/ally is switching in
                     next if wildBattle? && opposes?(idxBattler) # Wild Pokémon can't switch
+
+                    # Foe chooses their switch
                     idxPartyNew = pbSwitchInBetween(idxBattler, safeSwitch: true)
+
+                    # Empathfinder / Switch Mode check
+                    if @internalBattle && trainerBattle? && opposes?(idxBattler)
+                        opponent = pbGetOwnerFromBattlerIndex(idxBattler)
+                        eachSameSideBattler do |playerBattler|
+                            next unless playerBattler.hasActiveAbility?(:EMPATHFINDER) || @switchStyle
+                            next if playerBattler.fainted?
+                            next if switched.include?(playerBattler.index)
+                            next unless pbCanChooseNonActive?(playerBattler.index)
+                            next if playerBattler.effectActive?(:Outrage)
+
+                            idxPartyForName = idxPartyNew
+                            enemyParty = pbParty(idxBattler)
+                            if enemyParty[idxPartyNew].hasAbility?(:ILLUSION)
+                                new_index = pbLastInTeam(idxBattler)
+                                idxPartyForName = new_index if new_index >= 0 && new_index != idxPartyNew
+                            end
+                            empathFinder = playerBattler.hasActiveAbility?(:EMPATHFINDER)
+                            playerBattler.showMyAbilitySplash(:EMPATHFINDER) if empathFinder
+                            if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch out {3}?", opponent.full_name, enemyParty[idxPartyForName].name, playerBattler.name))
+                                idxPlayerPartyNew = pbSwitchInBetween(playerBattler.index, canCancel: true)
+                                if idxPlayerPartyNew >= 0
+                                    pbMessageOnRecall(playerBattler)
+                                    pbRecallAndReplace(playerBattler.index,idxPlayerPartyNew)
+                                    switched.push(playerBattler.index)
+                                end
+                            end
+                            playerBattler.hideMyAbilitySplash if empathFinder
+                        end
+                    end
+
                     pbRecallAndReplace(idxBattler, idxPartyNew)
                     switched.push(idxBattler)
                 elsif trainerBattle? || bossBattle? # Player switches in in a trainer battle or boss battle
@@ -377,8 +414,8 @@ class PokeBattle_Battle
         end
     end
 
-    def getTypedHazardHPRatio(hazardType, type1, type2 = nil, type3 = nil, ratio: 0.125)
-        typeMod = Effectiveness.calculate(hazardType, type1, type2, type3)
+    def getTypedHazardHPRatio(hazardType, battler, ratio: 0.125)
+        typeMod = Effectiveness.calculate(hazardType, battler.pbTypes(true))
         effectivenessMult = typeEffectivenessMult(typeMod)
         return effectivenessMult * ratio
     end
@@ -432,6 +469,13 @@ class PokeBattle_Battle
             end
         end
 
+        eachSameSideBattler(battler.index) do |ally|
+            next if ally.index == battler.index
+            ally.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnAllySwitchIn(ability, battler, ally, self, false) unless @preBattle #Don't count send-outs from battle start as switches
+            end
+        end
+
         # Battler faints if it is knocked out because of an entry hazard above
         if battler.fainted?
             battler.pbFaint
@@ -452,8 +496,8 @@ class PokeBattle_Battle
         unless battler.immuneToHazards?(aiCheck)
             # Stealth Rock
             if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage?(false,aiCheck)
-                bTypes = battler.pbTypes(true)
-                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
+                stealthRocksRation = 1.0 / 10.0
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, battler, ratio: stealthRocksRation)
                 if getTypedHazardHPRatio > 0
                     # Rock Climber
                     if battler.shouldAbilityApply?(:ROCKCLIMBER,aiCheck)
@@ -468,7 +512,7 @@ class PokeBattle_Battle
                         end
                     # Rugged
                     elsif battler.shouldAbilityApply?(:RUGGED,aiCheck)
-                            pbDisplay(_INTL("{1} resists the pointed stones!", battler.pbThis))  
+                            pbDisplay(_INTL("{1} resists the pointed stones!", battler.pbThis)) unless aiCheck
                     else # Takes damage
                         if aiCheck
                             stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
@@ -486,8 +530,7 @@ class PokeBattle_Battle
 
             # Feather Ward
             if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage?(false,aiCheck)
-                bTypes = battler.pbTypes(true)
-                getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, battler)
                 if getTypedHazardHPRatio > 0
                     if aiCheck
                         featherWardDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
@@ -540,10 +583,9 @@ class PokeBattle_Battle
 
                 # Live Wire
                 if battler.pbOwnSide.effectActive?(:LiveWire) && battler.takesIndirectDamage?(false,aiCheck)
-                    bTypes = battler.pbTypes(true)
                     liveWireRation = 1.0/12.0
                     liveWireRation *= 2 if rainy?
-                    getTypedHazardHPRatio = getTypedHazardHPRatio(:ELECTRIC, bTypes[0], bTypes[1], bTypes[2], ratio: liveWireRation)
+                    getTypedHazardHPRatio = getTypedHazardHPRatio(:ELECTRIC, battler, ratio: liveWireRation)
                     if getTypedHazardHPRatio > 0
                         if aiCheck
                             liveWireDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
@@ -574,8 +616,8 @@ class PokeBattle_Battle
                         otherHazardScore += 15
                         echoln("\t[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+15)")
                     else
-                        battler.pbOwnSide.disableEffect(effect)
-                        pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
+                        pbDisplay(_INTL("{1} absorbed a layer of the {2}!", battler.pbThis, data.name))
+                        battler.pbOwnSide.decrementEffect(effect)
                     end
                 elsif   battler.pbCanInflictStatus?(status, nil, false) &&
                         !battler.immuneToHazards?(aiCheck) &&

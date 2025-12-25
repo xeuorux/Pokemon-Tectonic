@@ -911,7 +911,7 @@ def moveInfoViewable?(moveID)
     return false if moveData.testMove?
     return true unless moveData.is_signature?
     signatureSpecies = moveData.signature_of
-    return true unless GameData::Species.get(signatureSpecies).isLegendary?
+    return true unless !signatureSpecies.nil? and GameData::Species.get(signatureSpecies).isLegendary?
     return true if $Trainer.seen?(signatureSpecies)
     return false
 end

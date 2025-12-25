@@ -340,12 +340,12 @@ end
 #===============================================================================
 # User is protected against moves with the "CanProtect" flag this round. If a Pokémon
 # attacks with the user with a physical attack while this effect applies, that Pokémon is
-# frostbitten. (Icicle Armor)
+# frostbitten. (Ice-Nine Wall)
 #===============================================================================
 class PokeBattle_Move_ProtectUserFrostbitePhysAttacker < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
-        @effect = :IcicleArmor
+        @effect = :IceNineWall
     end
 
     def getEffectScore(user, target)
@@ -353,30 +353,6 @@ class PokeBattle_Move_ProtectUserFrostbitePhysAttacker < PokeBattle_ProtectMove
         # Check only physical attackers
         user.eachPredictedProtectHitter(0) do |b|
             score += getFrostbiteEffectScore(user, b)
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# User's side is protected against status moves this round. Disables the last used move
-# of the opposing user for 3 turns. (Quarantine)
-#===============================================================================
-class PokeBattle_Move_ProtectUserFromStatusMovesDisableBlockedMoves3 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :Quarantine
-        @sidedEffect = true
-    end
-
-    def pbProtectMessage(user)
-        @battle.pbDisplay(_INTL("{1} put up a quarantine!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        user.eachPredictedTargeter(2) do |b|
-            score += getDisableEffectScore(target, 3)
         end
         return score
     end
@@ -447,6 +423,22 @@ class PokeBattle_Move_UserTakesHalfDamageThisTurnPoisonAttackers < PokeBattle_Ha
 
     def getOnHitEffectScore(user,target)
         return getPoisonEffectScore(user, target)
+    end
+end
+
+#===============================================================================
+# User takes half damage from all damaging moves this turn. If a Pokémon
+# attacks the user while this effect applies, that Pokémon becomes waterlogged.
+# (Floodgate)
+#===============================================================================
+class PokeBattle_Move_UserTakesHalfDamageThisTurnWaterlogAttackers < PokeBattle_HalfProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :Floodgate
+    end
+
+    def getOnHitEffectScore(user,target)
+        return getWaterlogEffectScore(user, target)
     end
 end
 

@@ -246,6 +246,11 @@ class MoveDex_Scene
     def searchByMoveTargeting
         selection = pbMessage(_INTL("Which targeting?"), [_INTL("Single Target"), _INTL("Multi Target"), _INTL("No Target"), _INTL("Cancel")], 4)
         if selection != 3
+            if selection == 1
+                spread_selection = pbMessage(_INTL("Which multi-target?"), [_INTL("Foes Only"), _INTL("Targets Allies"), _INTL("Cancel")], 3)  
+                return if spread_selection == 2
+            end
+
             dexlist = searchStartingList
 
             dexlist = dexlist.find_all do |dex_item|
@@ -254,7 +259,12 @@ class MoveDex_Scene
                 when 0
                     next target_data.single_target?
                 when 1
-                    next target_data.spread?
+                    case spread_selection
+                    when 0
+                        next target_data.spread? && !target_data.targets_ally && !target_data.targets_all
+                    when 1
+                        next target_data.spread? && (target_data.targets_ally || target_data.targets_all)
+                    end
                 when 2
                     next target_data.no_targets?
                 end
@@ -359,7 +369,7 @@ class MoveDex_Scene
         dexlist = generateMoveList
         dexlist = dexlist.find_all do |dex_item|
             next false if autoDisqualifyFromSearch(dex_item[:move])
-            next !@dexlist.any? { |current_item| current_item[:move] == dex_item[:move] }
+            next !@moveList.any? { |current_item| current_item[:move] == dex_item[:move] }
         end
         return dexlist
     end
@@ -377,6 +387,8 @@ class MoveDex_Scene
         cmdEffectChance             = -1
         cmdPriority                 = -1
         cmdPP                       = -1
+        cmdSpeciesLevel             = -1
+        cmdSpeciesAny               = -1
         miscSorts[cmdName = miscSorts.length]                     = _INTL("Name")
         miscSorts[cmdType = miscSorts.length]                     = _INTL("Type")
         miscSorts[cmdCategory = miscSorts.length]                 = _INTL("Category")
@@ -385,6 +397,8 @@ class MoveDex_Scene
         miscSorts[cmdEffectChance = miscSorts.length]             = _INTL("Effect Chance")
         miscSorts[cmdPriority = miscSorts.length]                 = _INTL("Priority")
         miscSorts[cmdPP = miscSorts.length]                       = _INTL("Power Points")
+        miscSorts[cmdSpeciesLevel = miscSorts.length]             = _INTL("Level Up Learners")
+        miscSorts[cmdSpeciesAny = miscSorts.length]               = _INTL("Other Learners")
         miscSorts.push(_INTL("Cancel"))
         searchSelection = pbMessage(_INTL("Which sort"), miscSorts, miscSorts.length)
         return if searchSelection == miscSorts.length - 1
@@ -405,8 +419,12 @@ class MoveDex_Scene
                 next -dex_item[:data].priority
             elsif cmdPP > -1 && searchSelection == cmdPP
                 next -dex_item[:data].total_pp
-            elsif cmdEffectChance > -1 && searchSelection && cmdEffectChance
+            elsif cmdEffectChance > -1 && searchSelection == cmdEffectChance
                 next -dex_item[:data].effect_chance
+            elsif cmdSpeciesLevel > -1 && searchSelection == cmdSpeciesLevel
+                next -dex_item[:data].level_up_learners.length
+            elsif cmdSpeciesAny > -1 && searchSelection == cmdSpeciesAny
+                next -dex_item[:data].other_learners.length
             end
         end
     end

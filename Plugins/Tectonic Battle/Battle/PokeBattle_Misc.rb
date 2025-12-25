@@ -118,9 +118,10 @@ class PokeBattle_Battle
                 b.pbCureStatus
                 b.pbCureStatus # Duplicated intentionally
                 b.pbResetLoweredStatSteps(true)
+                b.disableLoweredBaseStatEffects
                 b.resetAbilities
                 b.eachEffect(true) do |effect, _value, data|
-                    next unless data.avatars_purge
+                    next unless data.avatars_purge || data.is_mental?
                     b.disableEffect(effect)
                 end
             end
@@ -363,12 +364,11 @@ class PokeBattle_Battle
         return true
     end
 
-    def typeEffectivenessMult(typeMod)
-        mult = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
+    def typeEffectivenessMult(mult)
         if @field.effectActive?(:PolarizedRoom)
-            if Effectiveness.super_effective?(typeMod)
+            if Effectiveness.super_effective?(mult)
                 mult *= 1.25
-            elsif Effectiveness.not_very_effective?(typeMod)
+            elsif Effectiveness.not_very_effective?(mult)
                 mult *= 0.75
             end
         end

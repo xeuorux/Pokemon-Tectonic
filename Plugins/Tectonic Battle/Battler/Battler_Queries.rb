@@ -43,12 +43,10 @@ class PokeBattle_Battler
         ret.delete(:ICE) if effectActive?(:Sublimate)
         # Dry Heat erases the Water-type.
         ret.delete(:WATER) if effectActive?(:DryHeat)
-        # Roost erases the Flying-type. If there are no types left, adds the Normal-
-        # type.
-        if effectActive?(:Roost)
-            ret.delete(:FLYING)
-            ret.push(:NORMAL) if ret.length.zero?
-        end
+        # Roost erases the Flying-type.
+        ret.delete(:FLYING) if effectActive?(:Roost)
+        # Rainbow Trails erases the Fire-type.
+        ret.delete(:FIRE) if effectActive?(:RainbowTrailEntry)
         # Add the third type specially.
         ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
         ret.uniq!
@@ -474,6 +472,7 @@ class PokeBattle_Battler
 
     def canHeal?(overheal = false)
         return false if fainted?
+        overheal = overheal || forceOverheal?
         if overheal
             return false if @hp >= @totalhp * 2
         else
@@ -483,6 +482,11 @@ class PokeBattle_Battler
         return true
     end
 
+    def healthCapped?
+        return @hp >= @totalhp * 2 if forceOverheal?
+        return fullHealth?
+    end
+
     def movedThisRound?
         return @lastRoundMoved && @lastRoundMoved == @battle.turnCount
     end
@@ -490,7 +494,7 @@ class PokeBattle_Battler
     def usingMultiTurnAttack?
         @effects.each do |effect, value|
             effectData = GameData::BattleEffect.get(effect)
-            next unless effectData.multi_turn_tracker?
+            next unless effectData.multi_turn_tracker? && !effectActive?(:RampageLocked)
             return true if effectData.active_value?(value)
         end
         return false
@@ -521,7 +525,9 @@ class PokeBattle_Battler
         return inTwoTurnAttack?(
                 "TwoTurnAttackInvulnerableInSky",
                 "TwoTurnAttackInvulnerableInSkyNumbTarget",
-                "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt"
+                "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt",
+                "TwoTurnAttackInvulnerableScalesFaster",
+                "TwoTurnAttackInvulnerableJinxFrostbite"
             )
     end
 
@@ -529,9 +535,12 @@ class PokeBattle_Battler
         return inTwoTurnAttack?("TwoTurnAttackInvulnerableInSky",
         "TwoTurnAttackInvulnerableUnderground",
         "TwoTurnAttackInvulnerableUnderwater",
-        "TwoTurnAttackInvulnerableInSkyNumbTarget",
+        "TwoTurnAttackInvulnerableHiding",
+        "TwoTurnAttackInvulnerableInFoliage",
         "TwoTurnAttackInvulnerableRemoveProtections",
-        "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt")
+        "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt",
+        "TwoTurnAttackInvulnerableScalesFaster",
+        "TwoTurnAttackInvulnerableJinxFrostbite",)
     end
 
     def pbEncoredMoveIndex
@@ -692,6 +701,7 @@ class PokeBattle_Battler
     def getRoomDuration(baseDuration = 8, aiCheck: false)
         ret = baseDuration
         ret *= 2 if shouldItemApply?(:REINFORCINGROD,aiCheck)
+        ret = applyEffectDurationModifiers(ret, self)
         return ret
     end
 
@@ -700,6 +710,7 @@ class PokeBattle_Battler
         ret += 3 if shouldItemApply?(:LIGHTCLAY,aiCheck)
         ret += 6 if shouldItemApply?(:BRIGHTCLAY,aiCheck)
         ret += 2 if shouldAbilityApply?(:PLANARVEIL,aiCheck)
+        ret = applyEffectDurationModifiers(ret, self)
         return ret
     end
 
@@ -722,8 +733,8 @@ class PokeBattle_Battler
 
     def avatarPhaseLowerHealthBound
         raise _INTL("#{@name} isn't an avatar, but something is requesting its Phase Lower Health Bound!") unless boss?
-        hpFraction = 1 - (@avatarPhase / avatarData.num_phases.to_f)
-        return (@totalhp * hpFraction).floor
+        avatarHPFraction = 1 - (@avatarPhase / avatarData.num_phases.to_f)
+        return (@totalhp * avatarHPFraction).floor
     end
 
     def avatarHealthPerPhase
@@ -870,6 +881,10 @@ class PokeBattle_Battler
         end
     end
 
+    def hpFraction
+        return @hp / @totalhp.to_f
+    end
+
     def fullHealth?
         return @hp >= @totalhp
     end
@@ -901,8 +916,7 @@ class PokeBattle_Battler
     end
 
     def ignoreScreens?(checkingForAI)
-        return true if shouldAbilityApply?(:INFILTRATOR,checkingForAI)
-        return true if shouldAbilityApply?(:RAMPROW,checkingForAI)
+        return true if shouldAbilityApply?(GameData::Ability.getByFlag("IgnoreScreens"),checkingForAI)
         return false
     end
 
@@ -928,6 +942,19 @@ class PokeBattle_Battler
             return true
         end
         return shouldAbilityApply?(GameData::Ability.getByFlag("HazardImmunity"), aiCheck)
+    end
+
+    def notFullyEvolved?
+        return false unless @pokemon
+        return !@pokemon.species_data.get_evolutions.empty?
+    end
+
+    def hasAnyNotFullyEvolvedAllies?
+        eachAlly do |b|
+            next unless b.notFullyEvolved?
+            return true
+        end
+        return false
     end
 
     def hasGem?
@@ -981,6 +1008,11 @@ class PokeBattle_Battler
             end
             return true
         end
+        return false
+    end
+
+    def forceOverheal?
+        return true if @battle.pbCheckGlobalAbility(:FIELDOFLIFE)
         return false
     end
 

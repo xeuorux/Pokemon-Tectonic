@@ -2,16 +2,18 @@
 # Resets all target's stat steps to 0. (Clear Smog)
 #===============================================================================
 class PokeBattle_Move_ResetTargetStatSteps < PokeBattle_Move
+    def statStepClearingMove?; return true; end
+
     def pbEffectAgainstTarget(_user, target)
-        if target.damageState.calcDamage > 0 && !target.damageState.substitute && target.hasAlteredStatSteps?
-            target.pbResetStatSteps
+        if target.damageState.calcDamage > 0 && !target.damageState.substitute && target.hasRaisedStatSteps?
+            target.pbResetRaisedStatSteps
             @battle.pbDisplay(_INTL("{1}'s stat changes were removed!", target.pbThis))
         end
     end
 
     def getTargetAffectingEffectScore(_user, target)
         score = 0
-        if !target.substituted? && target.hasAlteredStatSteps?
+        if !target.substituted? && target.hasRaisedStatSteps?
             GameData::Stat.each_battle do |s|
                 score += target.steps[s.id] * 10
             end
@@ -225,6 +227,51 @@ class PokeBattle_Move_AverageUserTargetOffenses < PokeBattle_Move
 end
 
 #===============================================================================
+# Swaps the user's speed and item with the target. (Ion Exchange)
+#===============================================================================
+class PokeBattle_Move_SwitchUserTargetSpeedsItems < PokeBattle_Move_SwapItems
+    def pbMoveFailed?(user, _targets, show_message)
+        if @battle.wildBattle? && user.opposes? && !user.boss
+            @battle.pbDisplay(_INTL("But it failed, since this is a wild battle!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false  
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+
+        newUserSpeed   = target.base_speed
+        newTargetSpeed = user.base_speed
+        user.applyEffect(:BaseSpeed,newUserSpeed)
+        target.applyEffect(:BaseSpeed,newTargetSpeed)
+        @battle.pbDisplay(_INTL("{1} swapped its unmodified speed stats with the target!", user.pbThis))
+    end
+
+    def getEffectScore(user, target)
+        score = super
+
+        userSpeed = target.base_speed
+        targetSpeed = user.base_speed
+        score = 0
+        if userSpeed < targetSpeed / 2
+            score = 90
+        elsif userSpeed < targetSpeed
+            score = 50
+        elsif userSpeed > targetSpeed * 2
+            score = -90
+        elsif userSpeed > targetSpeed
+            score = -50
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Averages the user's and target's base Defense.
 # Averages the user's and target's base Special Defense. (Guard Split)
 #===============================================================================
@@ -255,7 +302,7 @@ class PokeBattle_Move_AverageUserTargetDefenses < PokeBattle_Move
 end
 
 #===============================================================================
-# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Exsanguinate)
+# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step.
 #===============================================================================
 class PokeBattle_Move_StealAtk1 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)

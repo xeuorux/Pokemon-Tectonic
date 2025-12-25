@@ -23,20 +23,15 @@ class PokeBattle_AI
 
     def pbCalcTypeModAI(moveType, user, target, move)
         return Effectiveness::NORMAL_EFFECTIVE unless moveType
-        if moveType == :GROUND && target.pbHasTypeAI?(:FLYING) && target.hasActiveItemAI?(:IRONBALL)
-            return Effectiveness::NORMAL_EFFECTIVE
-        end
         # Determine types
         allowIllusion = !target.aiKnowsIllusion?
         tTypes = target.pbTypes(true, allowIllusion)
         # Get effectivenesses
-        typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3 # 3 types max
-        tTypes.each_with_index do |defType, i|
-            typeMods[i] = move.pbCalcTypeModSingle(moveType, defType, user, target)
-        end
-        # Multiply all effectivenesses together
         ret = 1
-        typeMods.each { |m| ret *= m }
+        tTypes.each do |defType|
+            next if moveType == :GROUND && defType == :FLYING && target.hasActiveItemAI?(:IRONBALL)
+            ret *= move.pbCalcTypeModSingle(moveType, defType, user, target)
+        end
         # Modify effectiveness for bosses
         ret = Effectiveness.modify_boss_effectiveness(ret, user, target)
         return ret
@@ -97,7 +92,7 @@ class PokeBattle_AI
             @battle.eachBattler do |b|
                 next unless b.opposes?(user)
                 next if b.semiInvulnerable?
-                next unless (b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD]) && !@battle.moldBreaker) || b.canChooseMagicCoat?
+                next unless (b.hasActiveAbilityAI?(%i[MAGICBOUNCE WARDING]) && !@battle.moldBreaker) || b.canChooseMagicCoat?
                 echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
                 fails = true
                 break

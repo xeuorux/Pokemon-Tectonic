@@ -28,6 +28,7 @@ class Options
     attr_accessor :color_shifts
     attr_accessor :party_snapshots
     attr_accessor :prompt_level_moves
+    attr_accessor :show_stat_changes
     attr_accessor :bag_sorting
     attr_accessor :battle_transitions
     attr_accessor :tutorial_popups
@@ -95,6 +96,7 @@ class Options
         @nicknaming_prompt              = 0 # (0=true, 1=false)
         @dex_shown_register             = 0 # (0=true, 1=false)
         @prompt_level_moves             = 0 # (0=true, 1=false)
+        @show_stat_changes              = 0 # (0=true, 1=false)
         @show_trait_unlocks             = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @party_snapshots                = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @tutorial_popups                = $DEBUG ? 1 : 0 # (0=true, 1=false)

@@ -1,7 +1,7 @@
 class PokemonBox
     attr_reader   :pokemon
-    attr_accessor :name
     attr_accessor :background
+    attr_writer   :name
   
     BOX_WIDTH  = 6
     BOX_HEIGHT = 5
@@ -21,6 +21,10 @@ class PokemonBox
   
     def length
       return @pokemon.length
+    end
+
+    def getName(index)
+      return @name || _INTL("Box {1}",index + 1)
     end
 
     def maxPokemon
@@ -101,7 +105,7 @@ class PokemonBox
     def initialize(maxBoxes = Settings::NUM_STORAGE_BOXES, maxPokemon = PokemonBox::BOX_SIZE)
       @boxes = []
       for i in 0...maxBoxes
-        @boxes[i] = PokemonBox.new(_INTL("Box {1}",i+1),maxPokemon)
+        @boxes[i] = PokemonBox.new(nil,maxPokemon)
         @boxes[i].background = i % BASICWALLPAPERQTY
       end
       addDonationBoxes()

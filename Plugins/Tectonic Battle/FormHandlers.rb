@@ -179,18 +179,6 @@ MultipleForms.register(:RAYQUAZA,{
   }
 })
 
-MultipleForms.register(:BURMY,{
-  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0 if pkmn.fainted? || endBattle
-  }
-})
-
-MultipleForms.register(:WORMADAM,{
-  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0 if pkmn.fainted? || endBattle
-  }
-})
-
 MultipleForms.register(:CHERRIM,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
     next 0
@@ -238,19 +226,9 @@ MultipleForms.register(:ROTOM,{
   }
 })
 
-MultipleForms.register(:GIRATINA,{
-  "getForm" => proc { |pkmn|
-    maps = [49,50,51,72,73]   # Map IDs for Origin Forme
-    if pkmn.hasItem?(:GRISEOUSORB) || ($game_map && maps.include?($game_map.map_id))
-      next 1
-    end
-    next 0
-  }
-})
-
 MultipleForms.register(:ARCEUS,{
   "getForm" => proc { |pkmn|
-    next nil unless pkmn.hasAbility?(:MULTITYPE)
+    next 0 unless pkmn.hasAbility?(:MULTITYPE)
     next 0 unless pkmn.hasItem?(:PRISMATICPLATE)
     next GameData::Type.get(pkmn.itemTypeChosen).id_number
   }
@@ -296,9 +274,8 @@ MultipleForms.register(:KYUREM,{
 })
 
 MultipleForms.register(:KELDEO,{
-  "getForm" => proc { |pkmn|
-    next 1 if pkmn.hasMove?(:SECRETSWORD) # Resolute Form
-    next 0                                # Ordinary Form
+  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
+    next 0
   }
 })
 
@@ -312,9 +289,9 @@ MultipleForms.register(:GENESECT,{
   }
 })
 
-MultipleForms.register(:GRENINJA,{
+MultipleForms.register(:CRAMORANT,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 1 if pkmn.form == 2 && (pkmn.fainted? || endBattle)
+    next 0
   }
 })
 
@@ -326,16 +303,8 @@ MultipleForms.register(:SCATTERBUG,{
 
 MultipleForms.copy(:SCATTERBUG,:SPEWPA,:VIVILLON)
 
-MultipleForms.register(:FLABEBE,{
-  "getFormOnCreation" => proc { |pkmn|
-    next rand(5)
-  }
-})
-
-MultipleForms.copy(:FLABEBE,:FLOETTE,:FLORGES)
-
 MultipleForms.register(:ESPURR,{
-  "getForm" => proc { |pkmn|
+  "getFormOnCreation" => proc { |pkmn|
     next pkmn.gender
   }
 })
@@ -359,7 +328,7 @@ MultipleForms.register(:XERNEAS,{
 
 MultipleForms.register(:ZYGARDE,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next pkmn.form-2 if pkmn.form>=2 && (pkmn.fainted? || endBattle)
+    next pkmn.form==0 if pkmn.form==2 && endBattle
   }
 })
 
@@ -378,7 +347,7 @@ MultipleForms.register(:WISHIWASHI,{
 
 MultipleForms.register(:SILVALLY,{
   "getForm" => proc { |pkmn|
-    next nil unless pkmn.hasAbility?(:RKSSYSTEM)
+    next 0 unless pkmn.hasAbility?(:RKSSYSTEM)
     next 0 unless pkmn.hasItem?(:MEMORYSET)
     next GameData::Type.get(pkmn.itemTypeChosen).id_number
   }
@@ -387,9 +356,6 @@ MultipleForms.register(:SILVALLY,{
 MultipleForms.register(:MINIOR,{
   "getFormOnCreation" => proc { |pkmn|
     next rand(7)   # Meteor forms are 0-6, Core forms are 7-13
-  },
-  "getFormOnEnteringBattle" => proc { |pkmn,wild|
-    next pkmn.form-7 if pkmn.form>=7
   },
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
     next pkmn.form-7 if pkmn.form>=7 && endBattle
@@ -450,12 +416,6 @@ MultipleForms.register(:GYARADOS, {
   },
 })
 
-MultipleForms.register(:LYCANROC, {
-  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
-      next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
-  },
-})
-
 MultipleForms.register(:MEWTWO, {
   "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
       next 0 if pkmn.fainted? || endBattle
@@ -468,27 +428,19 @@ MultipleForms.register(:ZAMAZENTA,{
     next 0
   },
   "onSetForm" => proc { |pkmn, form, oldForm|
-    form_moves = GameData::Species.get(:ZAMAZENTA).form_specific_moves
-    if form == 0
-      # Turned back into the base form; forget form-specific moves
-      move_index = -1
-      pkmn.moves.each_with_index do |move, i|
-        next if !form_moves.any? { |m| m == move.id }
-        move_index = i
-        break
+    case form
+    when 0   # Normal
+      pkmn.moves.each do |move|
+        if [:BEHEMOTHBASH].include?(move.id)
+          move.id = :IRONHEAD if GameData::Move.exists?(:IRONHEAD)
+        end
       end
-      if move_index >= 0
-        move_name = pkmn.moves[move_index].name
-        pkmn.forget_move_at_index(move_index)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, move_name))
-        pbLearnMove(:IRONHEAD) if pkmn.numMoves == 0
+    when 1   # Crowned
+      pkmn.moves.each do |move|
+        move.id = :BEHEMOTHBASH if move.id == :IRONHEAD && GameData::Move.exists?(:BEHEMOTHBASH)
       end
-    else
-      # Turned into an alternate form; try learning that form's unique move
-      new_move_id = form_moves[form]
-      pbLearnMove(pkmn, new_move_id, true)
     end
-  },
+  }
 })
 
 MultipleForms.register(:ZACIAN,{
@@ -497,27 +449,19 @@ MultipleForms.register(:ZACIAN,{
     next 0
   },
   "onSetForm" => proc { |pkmn, form, oldForm|
-    form_moves = GameData::Species.get(:ZACIAN).form_specific_moves
-    if form == 0
-      # Turned back into the base form; forget form-specific moves
-      move_index = -1
-      pkmn.moves.each_with_index do |move, i|
-        next if !form_moves.any? { |m| m == move.id }
-        move_index = i
-        break
+    case form
+    when 0   # Normal
+      pkmn.moves.each do |move|
+        if [:BEHEMOTHBLADE].include?(move.id)
+          move.id = :IRONHEAD if GameData::Move.exists?(:IRONHEAD)
+        end
       end
-      if move_index >= 0
-        move_name = pkmn.moves[move_index].name
-        pkmn.forget_move_at_index(move_index)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, move_name))
-        pbLearnMove(:IRONHEAD) if pkmn.numMoves == 0
+    when 1   # Crowned
+      pkmn.moves.each do |move|
+        move.id = :BEHEMOTHBLADE if move.id == :IRONHEAD && GameData::Move.exists?(:BEHEMOTHBLADE)
       end
-    else
-      # Turned into an alternate form; try learning that form's unique move
-      new_move_id = form_moves[form]
-      pbLearnMove(pkmn, new_move_id, true)
     end
-  },
+  }
 })
 
 MultipleForms.register(:PUMPKABOO, {
@@ -585,4 +529,20 @@ MultipleForms.register(:MORPEKO, {
   "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
       next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
   },
+})
+
+MultipleForms.register(:INDEEDEE,{
+  "getFormOnCreation" => proc { |pkmn|
+    next pkmn.gender
+  },
+})
+
+MultipleForms.register(:DIANCIE, {
+    "getForm" => proc { |pkmn|
+      next 1 if pkmn.hasItem?(:CRYSTALCALIBURN)
+      next 0
+    },
+    "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+        next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
+    },
 })

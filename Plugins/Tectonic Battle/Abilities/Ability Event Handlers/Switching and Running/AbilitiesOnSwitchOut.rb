@@ -14,6 +14,17 @@ BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchOut.add(:RAPIDREFRESH,
+  proc { |ability, battler, battle, endOfBattle|
+      next if endOfBattle
+      battler.pbRecoverHP(battler.totalhp / 2.0, false, false, false)
+      if battler.pbHasAnyStatus?
+        battler.pbCureStatus(false)
+        battler.aiLearnsAbility(ability)
+      end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchOut.add(:FLYBY,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
@@ -40,17 +51,31 @@ BattleHandlers::AbilityOnSwitchOut.add(:POORCONDUCT,
   }
 )
 
-BattleHandlers::AbilityOnSwitchOut.add(:GAUSSAFTERSHOCK,
+BattleHandlers::AbilityOnSwitchOut.add(:STORMTRAIL,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battler.position.applyEffect(:GaussAftershock, battler.pokemonIndex)
+      battler.position.applyEffect(:StormTrail, battler.pokemonIndex)
   }
 )
 
-BattleHandlers::AbilityOnSwitchOut.add(:MOTHBURGLAR,
+BattleHandlers::AbilityOnSwitchOut.add(:MISTTRAIL,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battle.forceUseMove(battler, :THIEF, ability: ability)
+      battler.position.applyEffect(:MistTrail, battler.pokemonIndex)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:MAGMATRAIL,
+  proc { |ability, battler, battle, endOfBattle|
+      next if endOfBattle
+      battler.position.applyEffect(:MagmaTrail, battler.pokemonIndex)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:INSECTCOLLECTOR,
+  proc { |ability, battler, battle, endOfBattle|
+      next if endOfBattle
+      battle.forceUseMove(battler, :COVET, ability: ability)
   }
 )
 

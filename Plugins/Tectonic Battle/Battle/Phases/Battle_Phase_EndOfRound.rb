@@ -14,10 +14,10 @@ class PokeBattle_Battle
         priority = pbPriority(true)   # in order of fastest -> slowest speeds only
 
         checkBattleStateAchievements(self)
+        
+        pbEORWeather(priority)
 
         pbEORHealing(priority)
-
-        pbEORWeather(priority)
 
         if @field.effectActive?(:EmotionRoom)
             priority.each { |b|
@@ -118,10 +118,13 @@ class PokeBattle_Battle
             end
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
             fraction *= 2 if battler.hasActiveAbility?(:CLEANFREAK)
-            if status == :POISON
+            case status
+            when :POISON
                 battler.getPoisonDoublings.times do
                     fraction *= 2
                 end
+            when :FROSTBITE # Severely frostbite
+                fraction *= 2 if battler.getStatusCount(:FROSTBITE) > 0 && battler.belowHalfHealth?
             end
             damage = 0
             if aiCheck
@@ -173,12 +176,14 @@ class PokeBattle_Battle
 
             # Toxin Tax
             if damageDealt > 0
-                priority.each do |b|
-                    next unless b.hasActiveAbility?(:TOXINTAX)
-                    pbShowAbilitySplash(b, :TOXINTAX)
-                    healingMessage = _INTL("{1} absorbs the damage from the poison.", b.pbThis)
-                    b.pbRecoverHP(damageDealt, true, true, true, healingMessage)
-                    pbHideAbilitySplash(b)
+                priority.each do |tax_user|
+                    next unless tax_user.hasActiveAbility?(:TOXINTAX)
+                    next unless tax_user.canHeal?
+                    next if tax_user == b
+                    pbShowAbilitySplash(tax_user, :TOXINTAX)
+                    healingMessage = _INTL("{1} absorbs the damage from the poison.", tax_user.pbThis)
+                    tax_user.pbRecoverHP(damageDealt, true, true, true, healingMessage)
+                    pbHideAbilitySplash(tax_user)
                 end
             end
         end
@@ -224,6 +229,12 @@ class PokeBattle_Battle
     end
 
     def processTriggersEOR(priority)
+        # Severe numb
+        priority.each do |b|
+            next unless b.numbed? && b.getStatusCount(:NUMB) > 0
+            b.tryLowerStat(b.highestStat, nil, increment: 1)
+        end
+        
         # End of Round Effect Abilities
         priority.each do |b|
             next if b.fainted?

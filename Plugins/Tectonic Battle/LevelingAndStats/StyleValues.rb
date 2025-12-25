@@ -315,7 +315,7 @@ class StyleValueScene
             echoln("This shouldn't be possible.")
         end
 
-        return "Balanced"
+        return _INTL("Balanced")
     end
 end
 
@@ -370,7 +370,7 @@ class StyleValueScreen
             if Input.trigger?(Input::BACK)
                 if @pool > 0
                     pbPlayBuzzerSE
-                    @scene.pbDisplay("There are still Style Points points left to assign!")
+                    @scene.pbDisplay(_INTL("There are still Style Points points left to assign!"))
                 elsif @scene.pbConfirm(_INTL("Finish adjusting Style Points?"))
                     @scene.pbEndScene
                     pbPlayCloseMenuSE
@@ -388,7 +388,7 @@ class StyleValueScreen
                 elsif @index == 7
                     if @pool > 0
                         pbPlayBuzzerSE
-                        @scene.pbDisplay("There are still Style Points points left to assign!")
+                        @scene.pbDisplay(_INTL("There are still Style Points points left to assign!"))
                     elsif @scene.pbConfirm(_INTL("Finish adjusting Style Points?"))
                         @scene.pbEndScene
                         pbPlayCloseMenuSE

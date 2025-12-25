@@ -58,17 +58,6 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user squeezes the target, trapping and damaging it for three turns.
 #-------------------------------
-[CAMOUFLAGE]
-Name = Camouflage
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 15
-Target = User
-FunctionCode = Invalid
-Flags = CanSnatch
-Description = The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave.
-#-------------------------------
 [CELEBRATE]
 Name = Celebrate
 Type = NORMAL
@@ -103,6 +92,19 @@ FunctionCode = Invalid
 Flags = CanProtect,Sound
 Description = The user attacks in an uproar for three turns. Over that time, no one can fall asleep.
 Animation = UPROAR
+#-------------------------------
+[CLOUDBREAK]
+Name = Cloudbreak
+Type = NORMAL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = A tremendous strike that clears any active weather.
+Animation = STRENGTH
 #-------------------------------
 [COMETPUNCH]
 Name = Comet Punch
@@ -210,6 +212,19 @@ Target = User
 FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user curls up to conceal weak spots and raise both of its defensive stats.
+#-------------------------------
+[DISSIPATION]
+Name = Dissipation
+Type = NORMAL
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = An unusual shockwave that breaks down all active Rooms.
+Animation = SUPERSONIC
 #-------------------------------
 [DOUBLEDOWN]
 Name = Double Down
@@ -492,6 +507,17 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = With a scary face, the user tries to force a kiss on the target. If it suceeds, the target falls asleep.
 #-------------------------------
+[LUCKYCHANT]
+Name = Lucky Chant
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 25
+Target = UserSide
+FunctionCode = Invalid
+Flags = CanSnatch,Sound
+Description = The user chants an incantation, preventing the foe from landing critical hits for 10 turns.
+#-------------------------------
 [MEGAKICK]
 Name = Mega Kick
 Type = NORMAL
@@ -620,6 +646,17 @@ FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user creates a protective field that prevents status problems for ten turns.
 #-------------------------------
+[SCREECH]
+Name = Screech
+Type = NORMAL
+Category = Status
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat,Sound
+Description = The user's earsplitting screech reduces the target's Defense stat by four steps.
+#-------------------------------
 [SING]
 Name = Sing
 Type = NORMAL
@@ -630,6 +667,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat,Sound
 Description = A soothing lullaby is sung in a calming voice that puts the target into a deep slumber.
+#-------------------------------
+[SKULLBASH]
+Name = Skull Bash
+Type = NORMAL
+Category = Physical
+Power = 140
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user charges to raise its Defense by four steps in the first turn, then rams the foe on the second.
 #-------------------------------
 [SLAM]
 Name = Slam
@@ -642,6 +691,17 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The target is slammed with a long tail, vines, etc., to inflict damage.
+#-------------------------------
+[SLEEPTALK]
+Name = Sleep Talk
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = Invalid
+Flags = Sound
+Description = While it is asleep, the user randomly uses one of the moves it knows.
 #-------------------------------
 [SMOKESCREEN]
 Name = Smokescreen
@@ -737,6 +797,18 @@ FunctionCode = Invalid
 Flags = CanProtect,Pulse
 Description = Uses the power of the terrain to attack. Type and power changes depending on the terrain.
 #-------------------------------
+[VICEGRIP]
+Name = Vice Grip
+Type = NORMAL
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Huge, impressive pincers grip and squeeze the foe.
+#-------------------------------
 [VISEGRIP]
 Name = Vise Grip
 Type = NORMAL
@@ -748,6 +820,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The target is gripped and squeezed from both sides to inflict damage.
+#-------------------------------
+[WAKEUPSLAP]
+Name = Wake-Up Slap
+Type = NORMAL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = This attack inflicts double damage on a sleeping target. It also wakes the target up, however.
 #-------------------------------
 [WEATHERBALL]
 Name = Weather Ball
@@ -863,6 +947,43 @@ FunctionCode = Invalid
 Flags = CanProtect,Kicking
 Description = The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself.
 #-------------------------------
+[LOWKICK]
+Name = Low Kick
+Type = FIGHTING
+Category = Physical
+Power = 1
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Kicking
+Description = A powerful low kick that makes the foe fall over. It inflicts greater damage on heavier foes.
+#-------------------------------
+[REVENGE]
+Name = Revenge
+Type = FIGHTING
+Category = Physical
+Power = 60
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = -4
+FunctionCode = Invalid
+Flags = CanProtect
+Description = An attack move that inflicts double the damage if the user has been hurt by the foe in the same turn.
+#-------------------------------
+[REVERSAL]
+Name = Reversal
+Type = FIGHTING
+Category = Physical
+Power = 1
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = An all-out attack that becomes more powerful the less HP the user has.
+#-------------------------------
 [ROCKSMASH]
 Name = Rock Smash
 Type = FIGHTING
@@ -888,6 +1009,18 @@ FunctionCode = Invalid
 Flags = CanProtect,Kicking
 EffectChance = 40
 Description = The user lashes out with a quick, spinning kick. It has a 40% chance to make the target flinch.
+#-------------------------------
+[SCYTHEKICK]
+Name = Scythe Kick
+Type = FIGHTING
+Category = Physical
+Power = 95
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Kicking
+Description = The user kicks the target with a powerful, arcing technique.
 #-------------------------------
 [SEISMICTOSS]
 Name = Seismic Toss
@@ -964,6 +1097,18 @@ Description = The user attacks last. In return, it's guaranteed not to miss and 
 #-------------------------------
 #		FLYING MOVES
 #-------------------------------
+[AEROBLAST]
+Name = Aeroblast
+Type = FLYING
+Category = Special
+Power = 95
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanRandomCrit,Wind
+Description = A vortex of air is shot at the target to inflict damage. Can random critical hit.
+#-------------------------------
 [AIRCUTTER]
 Name = Air Cutter
 Type = FLYING
@@ -975,6 +1120,31 @@ Target = AllNearFoes
 FunctionCode = Invalid
 Flags = CanProtect,CanRandomCrit,Blade,Wind
 Description = The user launches razor-like wind to slash the opposing team. Can random critical hit.
+#-------------------------------
+[BOUNCE]
+Name = Bounce
+Type = FLYING
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Kick
+EffectChance = 30
+Description = The user bounces up high, charging and becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
+#-------------------------------
+[DIVEBOMB]
+Name = Dive Bomb
+Type = FLYING
+Category = Physical
+Power = 125
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user soars up high, charging and becoming invulnerable, then dive bombs the target on the second turn.
 #-------------------------------
 [HURRICANE]
 Name = Hurricane
@@ -1134,6 +1304,18 @@ Target = AllNearOthers
 FunctionCode = Invalid
 Description = The user surrounds everything around it with highly acidic gas and melts away items they hold.
 #-------------------------------
+[DEVOURWHOLE]
+Name = Devour Whole
+Type = POISON
+Category = Physical
+Power = 130
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Biting,Uninvocable
+Description = Grips the target with its entire mouth. The user is exhausted on the next turn unless the target faints or switches out.
+#-------------------------------
 [DIRECLAW]
 Name = Dire Claw
 Type = POISON
@@ -1171,6 +1353,19 @@ FunctionCode = Invalid
 Flags = CanProtect,Sound
 EffectChance = 30
 Description = The user creates distorted guitar sounds to attack the target. It has a 30% chance to dizzy.
+#-------------------------------
+[MURKYFOG]
+Name = Murky Fog
+Type = POISON
+Category = Special
+Power = 85
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.
+Animation = SMOKESCREEN
 #-------------------------------
 [POISONPOWDER]
 Name = Poison Powder
@@ -1273,6 +1468,18 @@ Flags = CanProtect
 EffectChance = 50
 Description = The user clubs the target with a bone. It has a 50% chance to make the target flinch.
 #-------------------------------
+[BONERUSH]
+Name = Bone Rush
+Type = GROUND
+Category = Physical
+Power = 25
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user multi-hits two to five times with a hard bone.
+#-------------------------------
 [DUSTFORCE]
 Name = Dust Force
 Type = GROUND
@@ -1285,6 +1492,19 @@ FunctionCode = Invalid
 Flags = CanProtect
 EffectChance = 10
 Description = The user controls turbulent dust and sand to attack all nearby foes.
+Animation = SCORCHINGSANDS
+#-------------------------------
+[DUSTMACHPULSE]
+Name = Dustmach Pulse
+Type = GROUND
+Category = Special
+Power = 120
+Accuracy = 100
+TotalPP = 5
+Target = AllNearOthers
+FunctionCode = Invalid
+Flags = CanProtect,Pulse
+Description = The user whips up dirt at supersonic speeds, damaging everything around it.
 Animation = SCORCHINGSANDS
 #-------------------------------
 [FISSURE]
@@ -1385,6 +1605,19 @@ Target = BothSides
 FunctionCode = Invalid
 Description = The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.
 #-------------------------------
+[ONAROLL]
+Name = On A Roll
+Type = GROUND
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.
+Animation = ROCKROLL
+#-------------------------------
 [ROTOTILLER]
 Name = Rototiller
 Type = GROUND
@@ -1418,7 +1651,31 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user spins a sandstorm around the target, trapping and damaging it for three turns.
 #-------------------------------
+[UNDERMINE]
+Name = Undermine
+Type = GROUND
+Category = Physical
+Power = 125
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user burrows deep, charging and becoming invulnerable, then attacks with devastating power on the second turn.
+#-------------------------------
 #		ROCK MOVES
+#-------------------------------
+[DIAMONDFIELD]
+Name = Diamond Field
+Type = ROCK
+Category = Status
+Accuracy = 0
+TotalPP = 20
+Target = UserSide
+FunctionCode = Invalid
+Flags = CanSnatch,Light
+Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
+Animation = LIGHTSCREEN
 #-------------------------------
 [HEADSMASH]
 Name = Head Smash
@@ -1443,6 +1700,19 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The user numbs the target, then summons sandstorm for eight turns.
 Animation = SANDSTORM
+#-------------------------------
+[ROCKROLL]
+Name = Rock Roll
+Type = ROCK
+Category = Physical
+Power = 30
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user rolls into the target. Its power doubles if it hits in succession.
+Animation = ROLLOUT
 #-------------------------------
 [ROCKSLIDE]
 Name = Rock Slide
@@ -1508,6 +1778,18 @@ Flags = CanProtect,CanMagicCoat
 Description = The target is covered in a powder that explodes if it uses a Fire-type move. It always goes first.
 Animation = POWDER
 #-------------------------------
+[FURYCUTTER]
+Name = Fury Cutter
+Type = BUG
+Category = Physical
+Power = 30
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Blade
+Description = The target is slashed with scythes or claws. Its power doubles if it hits in succession.
+#-------------------------------
 [HIVEMIND]
 Name = Hive Mind
 Type = BUG
@@ -1517,6 +1799,32 @@ TotalPP = 10
 Target = NearAlly
 FunctionCode = Invalid
 Description = The user makes its ally perform the move in the user's first slot.
+#-------------------------------
+[LATCHON]
+Name = Latch On
+Type = BUG
+Category = Status
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat
+Description = Small bugs swarm the target, causing it to become leeched.
+Animation = INFESTATION
+#-------------------------------
+[NOISEORDER]
+Name = Noise Order
+Type = BUG
+Category = Special
+Power = 60
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Sound
+EffectChance = 100
+Description = The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.
+Animation = BUGBUZZ
 #-------------------------------
 [POWDER]
 Name = Powder
@@ -1691,6 +1999,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user makes the foe see a frightening mirage. It inflicts damage matching the user's level.
 #-------------------------------
+[PHANTOMFORCE]
+Name = Phantom Force
+Type = GHOST
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Description = The user vanishes somewhere, charging and becoming invulnerable, then strikes on the second turn. Skips and destroys protections.
+#-------------------------------
 [POLTERGEIST]
 Name = Poltergeist
 Type = GHOST
@@ -1716,6 +2035,20 @@ Flags = CanProtect
 Description = The user claws at the target's soul, dealing damage through their Sp. Def rather than their Defense.
 Animation = SHADOWCLAW
 #-------------------------------
+[SOULEATER]
+Name = Soul Eater
+Type = GHOST
+Category = Special
+Power = 65
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.
+Animation = NIGHTSHADE
+#-------------------------------
 [SPITE]
 Name = Spite
 Type = GHOST
@@ -1738,6 +2071,19 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.
 #-------------------------------
+[UNDYINGRUSH]
+Name = Undying Rush
+Type = GHOST
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.
+Animation = PHANTOMFORCE
+#-------------------------------
 #		STEEL MOVES
 #-------------------------------
 [ANCHORSHOT]
@@ -1753,6 +2099,20 @@ Flags = CanProtect
 EffectChance = 100
 Description = The user entangles the target with its anchor chain. The target becomes unable to flee.
 #-------------------------------
+[BULLETTRAIN]
+Name = Bullet Train
+Type = STEEL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 20
+Description = The user becomes a pain train. It has a 20% chance to raise the user's Speed.
+Animation = HEAVYSLAM
+#-------------------------------
 [GEARUP]
 Name = Gear Up
 Type = STEEL
@@ -1763,6 +2123,31 @@ Target = UserAndAllies
 FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user engages its gears to raise the Attack and Sp. Atk of allies with the Plus or Minus Ability.
+#-------------------------------
+[HAIRCURL]
+Name = Hair Curl
+Type = STEEL
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user curls its metal hair around the target, trapping and damaging it for three turns.
+Animation = BIND
+#-------------------------------
+[IRONTAIL]
+Name = Iron Tail
+Type = STEEL
+Category = Physical
+Power = 115
+Accuracy = 80
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The target is slammed with a steel-hard tail.
 #-------------------------------
 [JOUST]
 Name = Joust
@@ -1801,6 +2186,19 @@ Flags = CanProtect
 Description = The user generates an intense magnetic connection between it and the target, striking it without fail.
 Animation = METALCLAW
 #-------------------------------
+[MAGNETWAVE]
+Name = Magnet Wave
+Type = STEEL
+Category = Special
+Power = 40
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 20
+Description = The target is hit by a wave of magnetic energy. It has a 20% chance to lower their Speed.
+#-------------------------------
 [MIRRORSHOT]
 Name = Mirror Shot
 Type = STEEL
@@ -1813,6 +2211,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 EffectChance = 30
 Description = The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
+#-------------------------------
+[SMARTHORN]
+Name = Smart Horn
+Type = STEEL
+Category = Physical
+Power = 70
+Accuracy = 0
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Description = The user stabs the target with a sharp horn. Can't miss and skips protections.
 #-------------------------------
 [SMARTSTRIKE]
 Name = Smart Strike
@@ -1937,6 +2346,30 @@ Target = BothSides
 FunctionCode = Invalid
 Description = Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.
 #-------------------------------
+[SACREDFIRE]
+Name = Sacred Fire
+Type = FIRE
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = The target is razed with a mystical fire of great intensity. Burns the target.
+#-------------------------------
+[STOREFUEL]
+Name = Store Fuel
+Type = FIRE
+Category = Status
+Accuracy = 0
+TotalPP = 6
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user conserves for future attacks. This raises its Sp. Atk, Sp. Def, and Accuracy by two steps.
+#-------------------------------
 [SUNNYDAY]
 Name = Sunny Day
 Type = FIRE
@@ -1997,6 +2430,33 @@ FunctionCode = Invalid
 Flags = CanProtect,CanRandomCrit
 Description = The target is hammered with a large pincer. Can random critical hit.
 #-------------------------------
+[DEPTHCHARGE]
+Name = Depth Charge
+Type = WATER
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user dives deep on the first turn, charging and becoming invulnerable, then rises and strikes with explosive strength on the second.
+Animation = DIVE
+#-------------------------------
+[HYPERJET]
+Name = Hyper Jet
+Type = WATER
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+Priority = 2
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user swims at the target at blinding speed. This attack always goes before any other move.
+Animation = AQUAJET
+#-------------------------------
 [INVITERAIN]
 Name = Invite Rain
 Type = WATER
@@ -2008,6 +2468,19 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The user waterlogs the target, then welcomes in rainstorm for eight turns.
 Animation = RAINSTORM
+#-------------------------------
+[MAELSTROM]
+Name = Maelstrom
+Type = WATER
+Category = Special
+Power = 75
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The foe is pulled into a huge whirlpool, trapping and damaging it for three turns.
+Animation = WHIRLPOOL
 #-------------------------------
 [MUDDYWATER]
 Name = Muddy Water
@@ -2070,6 +2543,20 @@ Flags = CanSnatch
 Description = The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.
 Animation = WITHDRAW
 #-------------------------------
+[SNAP]
+Name = Snap
+Type = WATER
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Biting
+EffectChance = 40
+Description = The user snaps like a fish at the target. This has a 40% chance to make it flinch.
+Animation = FISHIOUSREND
+#-------------------------------
 [SOAK]
 Name = Soak
 Type = WATER
@@ -2080,6 +2567,16 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The user shoots a torrent of water at the target and changes the target's type to Water.
+#-------------------------------
+[SPLASH]
+Name = Splash
+Type = WATER
+Category = Status
+Accuracy = 0
+TotalPP = 30
+Target = User
+FunctionCode = Invalid
+Description = The user just flops and splashes around to no effect at all...
 #-------------------------------
 [TIDALKINESIS]
 Name = Tidalkinesis
@@ -2116,6 +2613,18 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = Strikes the target with lunar tides, then summons rain for five turns.
 Animation = SURF
+#-------------------------------
+[WHIRLPOOL]
+Name = Whirlpool
+Type = WATER
+Category = Special
+Power = 50
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user swirls the target in a whirlpool, trapping and damaging it for three turns.
 #-------------------------------
 [WITHDRAW]
 Name = Withdraw
@@ -2165,6 +2674,19 @@ Target = User
 FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user spends 25% HP to lay down evil roots. This curses all foes. The user becomes trapped, but heals by 1/8th HP every turn.
+#-------------------------------
+[DRUMBEATING]
+Name = Drum Beating
+Type = GRASS
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = The user controls the drum's roots to attack the target. This also lowers the target's Speed stat by two steps.
 #-------------------------------
 [FORESTSCURSE]
 Name = Forest's Curse
@@ -2247,6 +2769,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The user drains the foe's energy with its horns. The user's HP is restored by half the damage inflicted.
 #-------------------------------
+[INGRAIN]
+Name = Ingrain
+Type = GRASS
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user lays roots that restore 1/8th HP on every turn. Because it is rooted, it is trapped.
+#-------------------------------
 [LEAFTORNADO]
 Name = Leaf Tornado
 Type = GRASS
@@ -2285,6 +2818,31 @@ FunctionCode = Invalid
 Flags = CanProtect,Wind
 Description = The user stirs up a violent petal blizzard and attacks everything around it.
 #-------------------------------
+[ROOTWRACK]
+Name = Rootwrack
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user sends its roots to attack. Deals 50% more damage if the target attacked first.
+Animation = VINEWHIP
+#-------------------------------
+[SEEDBOMB]
+Name = Seed Bomb
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user slams a barrage of hard-shelled seeds down on the target from above.
+#-------------------------------
 [SLEEPPOWDER]
 Name = Sleep Powder
 Type = GRASS
@@ -2295,6 +2853,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The user scatters a big cloud of sleep-inducing dust around the target.
+#-------------------------------
+[SNAPTRAP]
+Name = Snap Trap
+Type = GRASS
+Category = Physical
+Power = 75
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user snares the target, trapping and damaging it for three turns.
 #-------------------------------
 [SOLARBLADE]
 Name = Solar Blade
@@ -2355,6 +2925,19 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc.
 #-------------------------------
+[VINEBIND]
+Name = Vinebind
+Type = GRASS
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Binds the foe with vines, trapping and damaging it for three turns.
+Animation = GRASSKNOT
+#-------------------------------
 [VINEMAZE]
 Name = Vine Maze
 Type = GRASS
@@ -2394,6 +2977,19 @@ FunctionCode = Invalid
 Flags = CanProtect
 EffectChance = 10
 Description = Type changes depending on the user's form. It has a 10% chance to numb.
+#-------------------------------
+[DISCHARGE]
+Name = Discharge
+Type = ELECTRIC
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 12
+Target = AllNearOthers
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 30
+Description = A flare of electricity is loosed to strike the area around the user. It has a 30% chance to numb.
 #-------------------------------
 [ELECTRICTERRAIN]
 Name = Electric Terrain
@@ -2586,6 +3182,17 @@ EffectChance = 100
 Description = The user questions the existence of the target, dealing psychic damage and dizzying them.
 Animation = AMNESIA
 #-------------------------------
+[COSMICPOWER]
+Name = Cosmic Power
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 3
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user absorbs a mystical power from space to raise its Defense and Sp. Def by two steps.
+#-------------------------------
 [DREAMEATER]
 Name = Dream Eater
 Type = PSYCHIC
@@ -2597,6 +3204,29 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
+#-------------------------------
+[DREAMFEAST]
+Name = Dream Feast
+Type = PSYCHIC
+Category = Adaptive
+Power = 75
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = Doubles in power if the foe is asleep. The user's HP is restored by 50% the damage dealt. This can overheal.
+#-------------------------------
+[ENERGYTRICK]
+Name = Energy Trick
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user employs psychic power to switch its unmodified Sp. Atk with its unmodified Sp. Def.
 #-------------------------------
 [EXPANDINGFORCE]
 Name = Expanding Force
@@ -2678,6 +3308,19 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The user distracts the target by bending a spoon. It lowers the target's accuracy.
 #-------------------------------
+[LUSTERPURGE]
+Name = Luster Purge
+Type = PSYCHIC
+Category = Special
+Power = 70
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Light
+EffectChance = 100
+Description = The user lets loose a damaging burst of light. It also lowers the target's Sp. Def by two steps.
+#-------------------------------
 [MAGICPOWDER]
 Name = Magic Powder
 Type = PSYCHIC
@@ -2746,6 +3389,19 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = Enables the user to hit a Dark type with any type of move. It also enables the user to hit an evasive foe.
 #-------------------------------
+[MISTBALL]
+Name = Mist Ball
+Type = PSYCHIC
+Category = Special
+Power = 70
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = A mistlike flurry of down envelops and damages the target. It also lowers the target's Sp. Atk by two steps.
+#-------------------------------
 [POWERSWAP]
 Name = Power Swap
 Type = PSYCHIC
@@ -2756,6 +3412,18 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.
+#-------------------------------
+[POWERTRICK]
+Name = Power Trick
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user employs psychic power to switch its unmodified Attack with its unmodified Defense.
+Animation = CALMMIND
 #-------------------------------
 [PSYCHICTERRAIN]
 Name = Psychic Terrain
@@ -2802,6 +3470,19 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect
 Description = The target is attacked with an odd psychic wave. The attack varies in intensity.
+#-------------------------------
+[SEERSTRIKE]
+Name = Seer Strike
+Type = PSYCHIC
+Category = Physical
+Power = 90
+Accuracy = 0
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user perfectly predicts the target's future location, then strikes. It lands without fail.
+Animation = ZENHEADBUTT
 #-------------------------------
 [SPEEDSWAP]
 Name = Speed Swap
@@ -2860,16 +3541,16 @@ Priority = -6
 FunctionCode = Invalid
 Description = The user switches out to a party Pokémon in waiting. Always goes last.
 #-------------------------------
-[TRICKROOM]
-Name = Trick Room
+[TRICK]
+Name = Trick
 Type = PSYCHIC
 Category = Status
-Accuracy = 0
-TotalPP = 5
-Target = BothSides
-Priority = -7
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
 FunctionCode = Invalid
-Description = The user creates a bizarre area in which slower Pokémon get to move first for five turns.
+Flags = CanProtect
+Description = The user catches the target off guard and swaps its held item with its own.
 #-------------------------------
 [TWINBEAM]
 Name = Twin Beam
@@ -3095,6 +3776,20 @@ Flags = CanProtect
 EffectChance = 20
 Description = The user tackles the foe while exhibiting overwhelming menace. It may also make the target flinch.
 #-------------------------------
+[SCALEGLINT]
+Name = Scale Glint
+Type = DRAGON
+Category = Special
+Power = 40
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Light
+EffectChance = 20
+Description = The shine from scales damages the target. This has a 20% chance to reduce the higher of the target's Attack or Sp. Atk.
+Animation = DAZZLINGGLEAM
+#-------------------------------
 [SCALESHOT]
 Name = Scale Shot
 Type = DRAGON
@@ -3143,6 +3838,18 @@ Priority = -1
 FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.
+#-------------------------------
+[DIVINATION]
+Name = Divination
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user heals itself by half of its max HP and raises their Defense, Sp. Def, and critical hit chance by two steps.
+Animation = COSMICPOWER
 #-------------------------------
 [EMBARGO]
 Name = Embargo
@@ -3214,6 +3921,31 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = This attack's power increases by 10 for every one of the target's positive stat steps.
 #-------------------------------
+[SPOTTING]
+Name = Spotting
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = NearAlly
+Priority = 5
+FunctionCode = Invalid
+Description = The user assists an ally by boosting the power and Accuracy of its next attack by 50%.
+#-------------------------------
+[ULTRAVIOLETPULSE]
+Name = Ultraviolet Pulse
+Type = DARK
+Category = Special
+Power = 105
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Pulse
+EffectChance = 100
+Description = The user pulses powerful darkness to expose the target's motives. This lowers their Sp. Def by two steps.
+Animation = DARKPULSE
+#-------------------------------
 #		FAIRY MOVES
 #-------------------------------
 [ANGELSKISS]
@@ -3239,6 +3971,16 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat
 Description = The target is charmed into harshly lowering its Sp. Atk stat.
 #-------------------------------
+[DECORATE]
+Name = Decorate
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 12
+Target = NearAlly
+FunctionCode = Invalid
+Description = The user decorates the target, raising their Attack and Sp. Atk by five steps.
+#-------------------------------
 [FAIRPLAY]
 Name = Fair Play
 Type = FAIRY
@@ -3251,6 +3993,16 @@ FunctionCode = Invalid
 Flags = CanProtect,Blade
 Description = The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.
 Animation = PLAYROUGH
+#-------------------------------
+[FAIRYLOCK]
+Name = Fairy Lock
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = BothSides
+FunctionCode = Invalid
+Description = By locking down the battlefield, the user traps all Pokémon during the next turn.
 #-------------------------------
 [FAIRYTERRAIN]
 Name = Fairy Terrain
@@ -3402,3 +4154,15 @@ FunctionCode = Invalid
 Flags = CanProtect,Wind
 EffectChance = 30
 Description = The user attacks the target by emitting steam. It has a 30% chance to dizzy.
+#-------------------------------
+[TRANQUILTUNE]
+Name = Tranquil Tune
+Type = FAIRY
+Category = Status
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,Sound
+Description = The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.
+Animation = SING

@@ -116,16 +116,16 @@ module MoveInfoDisplay
       
         # Foes
         foeColor = targetingData.show_foe_targeting? ? targetableColor : untargetableColor
-        targetingGraphicTextPos.push(["Foe",targetingGraphicColumn1X, targetingGraphicRow1Y, 0, foeColor, shadow])
-        targetingGraphicTextPos.push(["Foe",targetingGraphicColumn2X, targetingGraphicRow1Y, 0, foeColor, shadow])
+        targetingGraphicTextPos.push([_INTL("Foe"),targetingGraphicColumn1X, targetingGraphicRow1Y, 0, foeColor, shadow])
+        targetingGraphicTextPos.push([_INTL("Foe"),targetingGraphicColumn2X, targetingGraphicRow1Y, 0, foeColor, shadow])
       
         # User
         userColor = targetingData.show_user_targeting? ? targetableColor : untargetableColor
-        targetingGraphicTextPos.push(["User",targetingGraphicColumn1X, targetingGraphicRow2Y, 0, userColor, shadow])
+        targetingGraphicTextPos.push([_INTL("User"),targetingGraphicColumn1X, targetingGraphicRow2Y, 0, userColor, shadow])
         
         # Ally
         allyColor = targetingData.show_ally_targeting? ? targetableColor : untargetableColor
-        targetingGraphicTextPos.push(["Ally",targetingGraphicColumn2X, targetingGraphicRow2Y, 0, allyColor, shadow])
+        targetingGraphicTextPos.push([_INTL("Ally"),targetingGraphicColumn2X, targetingGraphicRow2Y, 0, allyColor, shadow])
         
         # Draw the targeting graphic text
         pbSetNarrowFont(overlay)

@@ -23,6 +23,7 @@ class PokemonStorageScene
         @viewport.z = 99_999
         @selection = 0
         @quickswap = false
+        @filter = false
         @sprites = {}
         @choseFromParty = false
         @command = command
@@ -649,7 +650,7 @@ class PokemonStorageScene
         commands = []
         for i in 0...@storage.maxBoxes
             box = @storage[i]
-            commands.push(_INTL("{1} ({2}/{3})", box.name, box.nitems, box.length)) if box
+            commands.push(_INTL("{1} ({2}/{3})", box.getName(i), box.nitems, box.length)) if box
         end
         return pbShowCommands(msg, commands, @storage.currentBox)
     end
@@ -737,7 +738,7 @@ class PokemonStorageScene
         possibleboxes = {}
         unless found.empty?
             for i in 0..found.length - 1
-                opt = @storage.boxes[found[i][0]].name
+                opt = @storage.boxes[found[i][0]].getName(i)
                 possibleboxes[opt] = found[i][0]
             end
         end
@@ -1028,7 +1029,7 @@ class PokemonStorageScene
             end
 
             # Show status/fainted/Pokérus infected icon
-            statusImageIndex = pokemon.getStatusImageIndex
+            statusImageIndex = pokemon.getStatusImageIndex(true)
             imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 120, 68, 0, 16 * statusImageIndex, 44, 16]) if statusImageIndex >= 0
             
             pbDrawImagePositions(overlay, imagepos)

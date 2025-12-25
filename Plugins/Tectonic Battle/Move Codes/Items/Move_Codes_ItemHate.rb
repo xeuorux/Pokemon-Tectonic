@@ -17,6 +17,7 @@ class PokeBattle_Move_RemovesTargetItem < PokeBattle_Move
         return 0 unless canKnockOffItems?(user, target, true)
         score = 0
         target.eachItem do |itemID|
+            next if target.unlosableItem?(itemID)
             score += 50
         end
         target.eachAIKnownItem do |itemID|
@@ -280,12 +281,11 @@ end
 
 #===============================================================================
 # Target is forced to hold a Black Sludge, dropping its item if neccessary. (Trash Treasure)
-# Also lower's the target's Sp. Def.
 #===============================================================================
-class PokeBattle_Move_TrashTreasure < PokeBattle_Move
+class PokeBattle_Move_GrantBlackSludgeReplaceItem < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if !target.canAddItem?(:BLACKSLUDGE) && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStep?(:SPECIAL_DEFENSE,user,self)
-            @battle.pbDisplay(_INTL("But it failed, since {1} can't be given a Black Sludge or have its Sp. Def lowered!", target.pbThis)) if show_message
+        if !target.canAddItem?(:BLACKSLUDGE) && !canRemoveItem?(user, target, target.firstItem)
+            @battle.pbDisplay(_INTL("But it failed, since {1} can't be given a Black Sludge!", target.pbThis)) if show_message
             return true
         end
         return false
@@ -313,20 +313,17 @@ class PokeBattle_Move_TrashTreasure < PokeBattle_Move
             @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, getItemName(:BLACKSLUDGE)))
             target.giveItem(:BLACKSLUDGE)
         end
-        
-        target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end
 
     def getTargetAffectingEffectScore(user, target)
         score = 0
         if target.canAddItem?(:BLACKSLUDGE) && canRemoveItem?(user, target, target.firstItem, checkingForAI: true)
             if target.pbHasTypeAI?(:POISON)
-                score -= 50
+                score -= 60
             else
-                score += 50
+                score += target.hasAnyItem? ? 120 : 60
             end
         end
-        score += getMultiStatDownEffectScore([:SPECIAL_DEFENSE,1],user,target)
         return score
     end
 end
@@ -363,5 +360,43 @@ class PokeBattle_Move_EmpoweredEmbargo < PokeBattle_Move
     def pbEffectGeneral(user)
         user.pbOpposingSide.applyEffect(:EmpoweredEmbargo) unless user.pbOpposingSide.effectActive?(:EmpoweredEmbargo)
         transformType(user, :DARK)
+    end
+end
+
+#===============================================================================
+# Target is forced to hold an EXP Candy M, dropping its item if neccessary. (Luna Sucre)
+#===============================================================================
+class PokeBattle_Move_GiveExpCandy < PokeBattle_Move
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        giveCandy = false
+        if target.canAddItem?(:EXPCANDYM)
+            giveCandy = true
+        else
+            removedAny = false
+            target.eachItemWithName do |item, itemName|
+                next if item == :EXPCANDYM
+                next unless canRemoveItem?(user, target, item)
+                target.removeItem(item)
+                @battle.pbDisplay(_INTL("{1} dropped its {2}!", target.pbThis, itemName))
+                removedAny = true
+                break
+            end
+
+            giveCandy = true if removedAny
+        end
+
+        if giveCandy
+            @battle.pbDisplay(_INTL("{1} was gifted an {2}!", target.pbThis, getItemName(:EXPCANDYM)))
+            target.giveItem(:EXPCANDYM)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        if target.canAddItem?(:EXPCANDYM) && canRemoveItem?(user, target, target.firstItem, checkingForAI: true)
+        score += 50
+        end
+        return score
     end
 end

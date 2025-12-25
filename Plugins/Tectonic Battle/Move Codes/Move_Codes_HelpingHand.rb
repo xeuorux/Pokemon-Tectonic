@@ -39,7 +39,7 @@ class PokeBattle_Move_AllyGainsExtraMoveThisTurn < PokeBattle_HelpingMove
             return true
         end
         if target.effectActive?(@helpingEffect)
-            @battle.pbDisplay(_INTL("But it failed, since {1} is already being helped!", arget.pbThis(true))) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already being helped!", target.pbThis(true))) if show_message
             return true
         end
         return false

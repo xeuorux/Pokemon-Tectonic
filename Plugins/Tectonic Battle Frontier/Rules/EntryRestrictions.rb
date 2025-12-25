@@ -19,7 +19,7 @@ class StandardRestriction
       # Is valid
       return true
     end
-  end
+end
 
   #===============================================================================
 #
@@ -116,7 +116,7 @@ end
       end
       return false if pkmn.species != $babySpeciesData[pkmn.species]
       if $canEvolve[pkmn.species].nil?
-        $canEvolve[pkmn.species] = (pkmn.species_data.get_evolutions(true).length > 0)
+        $canEvolve[pkmn.species] = (pkmn.species_data.get_evolutions.length > 0)
       end
       return $canEvolve[pkmn.species]
     end
@@ -239,6 +239,24 @@ end
         count += 1 if pkmn && isSpecies?(pkmn.species, @specieslist)
       end
       return count <= @maxValue
+    end
+  end
+
+  class RestrictedLegendsRestriction
+    def initialize(maxValue)
+      @maxValue = maxValue
+    end
+  
+    def isValid?(team)
+      count = 0
+      team.each do |pkmn|
+        count += 1 if pkmn && pkmn.species_data.isLegendary?
+      end
+      return count <= @maxValue
+    end
+
+    def errorMessage()
+      return _INTL("Sorry, you can only have {1} legendary on your team!",@maxValue)
     end
   end
   

@@ -49,7 +49,7 @@ class PokemonLoadScreen
                 if pbConfirmMessageSerious(_INTL("Delete all saves?"))
                     pbMessage(_INTL("Once data has been deleted, there is no way to recover it.\1"))
                     if pbConfirmMessageSerious(_INTL("Delete the saved data anyway?"))
-                        pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[0]"))
+                        pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[30]"))
                         haserrorwhendelete = false
                         count.times do |i|
                             name = FileSave.name(i + 1, false)
@@ -60,7 +60,7 @@ class PokemonLoadScreen
                             end
                         end
                         if haserrorwhendelete
-                            pbMessage(_INTL("You have at least one file that cant delete and have error"))
+                            pbMessage(_INTL("You have at least one file that can't delete and have error!"))
                         end
                         Graphics.frame_reset
                         pbMessage(_INTL("The save file was deleted."))
@@ -119,6 +119,7 @@ class PokemonLoadScreen
             case command
             when cmd_continue
                 $current_save_file_name = lastModifiedSaveName
+                PokeBattle_BattleRecorder.createDir
                 Game.set_up_system
                 Game.load(SaveData.read_from_file(lastModifiedSaveName, true))
                 @scene.pbEndScene
@@ -129,11 +130,13 @@ class PokemonLoadScreen
                     file.movePanel(1)
                     @scene.pbEndScene unless file.staymenu
                     file.endScene
+                    PokeBattle_BattleRecorder.createDir unless file.staymenu
                     return unless file.staymenu
                 end
             when cmd_new_game
                 @scene.pbEndScene
                 Game.start_new
+                PokeBattle_BattleRecorder.createDir
                 return
             when cmd_options
                 pbFadeOutIn {

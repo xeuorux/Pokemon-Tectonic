@@ -51,7 +51,9 @@ class FightMenuDisplay < BattleMenuBase
             buttonY = self.y + 6 + (((i/2)==0) ? 0 : BUTTON_HEIGHT-4)
             createButton(buttonX,buttonY,i)
           end
+          # Create the extra two buttons for extra moves
           createButton(self.x + 4,self.y - BUTTON_HEIGHT,Pokemon::MAX_MOVES)
+          createButton(self.x + @buttonBitmap.width/2,self.y - BUTTON_HEIGHT,Pokemon::MAX_MOVES+1)
           
           # Create overlay for buttons (shows move names)
           @overlay = BitmapSprite.new(Graphics.width,Graphics.height,viewport)
@@ -339,8 +341,7 @@ class FightMenuDisplay < BattleMenuBase
                 effectivenessCategory = 3
             end
         else
-            ration = effectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
-            case ration
+            case effectiveness
                 when 0                  then effectivenessCategory = 0
                 when 0.00001..0.25      then effectivenessCategory = 1
                 when 0.5 	            then effectivenessCategory = 2

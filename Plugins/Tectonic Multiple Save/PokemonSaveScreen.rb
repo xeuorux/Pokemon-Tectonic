@@ -18,7 +18,7 @@ class PokemonSaveScreen
         return @scene.pbConfirm(text)
     end
 
-    # Returns whether the player decided to quit the game
+    # Returns 1 if the player decides to quit to menu, 2 if they quit to desktop, false otherwise
     def pbSaveScreen(quitting = false, deleting = true)
         unless savingAllowed?
             showSaveBlockMessage
@@ -30,18 +30,30 @@ class PokemonSaveScreen
         count = FileSave.count
         # Start
         saveCommand = -1
+        mainMenuCommand = -1
         deleteCommand = -1
         quitCommand = -1
         cancelCommand = -1
+        returnCommand = -1
         cmds = []
         cmds[saveCommand = cmds.length] = _INTL("Just Save")
-        cmds[quitCommand = cmds.length] = _INTL("Save Quit") if quitting
+        cmds[mainMenuCommand = cmds.length] = _INTL("Save & Quit to Menu") if quitting
+        cmds[quitCommand = cmds.length] = _INTL("Save & Quit to Desktop") if quitting
+        cmds[returnCommand = cmds.length] = _INTL("Quit to Menu") if quitting
         cmds[deleteCommand = cmds.length] = _INTL("Delete") if deleting
         cmds[cancelCommand = cmds.length] = _INTL("Cancel")
         saveChoice = pbCustomMessageForSave(_INTL("What do you want to do?"), cmds, cmds.length)
-        return inGameSaveScreen(count) if quitCommand >= 0 && saveChoice == quitCommand
-        inGameSaveScreen(count) if saveCommand >= 0 && saveChoice == saveCommand
-        inGameDeleteScreen(count) if deleteCommand >= 0 && saveChoice == deleteCommand
+        if mainMenuCommand >= 0 && saveChoice == mainMenuCommand
+          return 1 if inGameSaveScreen(count)
+        elsif quitCommand >= 0 && saveChoice == quitCommand
+          return 2 if inGameSaveScreen(count)
+        elsif returnCommand >= 0 && saveChoice == returnCommand
+          return 3 # Just quit to title screen
+        elsif saveCommand >= 0 && saveChoice == saveCommand
+          inGameSaveScreen(count)
+        elsif deleteCommand >= 0 && saveChoice == deleteCommand
+          inGameDeleteScreen(count)
+        end
         return false
     end
 
@@ -100,6 +112,7 @@ class PokemonSaveScreen
             end
             SaveData.changeFILEPATH(!$current_save_file_name.nil? ? $current_save_file_name : FileSave.name)
         end
+        PokeBattle_BattleRecorder.createDir
         @scene.pbEndScreen
         return ret
     end
@@ -123,7 +136,7 @@ class PokemonSaveScreen
             if pbConfirmMessageSerious(_INTL("Delete all saves?"))
                 pbMessage(_INTL("Once data has been deleted, there is no way to recover it.\1"))
                 if pbConfirmMessageSerious(_INTL("Delete the saved data anyway?"))
-                    pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[0]"))
+                    pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[30]"))
                     haserrorwhendelete = false
                     count.times do |i|
                         name = FileSave.name(i + 1, false)
@@ -133,7 +146,7 @@ class PokemonSaveScreen
                             haserrorwhendelete = true
                         end
                     end
-                    pbMessage(_INTL("You have at least one file that cant delete and have error")) if haserrorwhendelete
+                    pbMessage(_INTL("You have at least one file that can't delete and have error!")) if haserrorwhendelete
                     Graphics.frame_reset
                     pbMessage(_INTL("The save file was deleted."))
                 end

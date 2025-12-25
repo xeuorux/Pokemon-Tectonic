@@ -27,7 +27,7 @@ module Compiler
         levelUpLearnersPerMove = {}
         otherLearnersPerMove = {}
         GameData::Move.each do |moveData|
-            next unless moveData.learnable?
+            #next unless moveData.learnable?
             levelUpLearnersPerMove[moveData.id] = []
             otherLearnersPerMove[moveData.id] = []
         end

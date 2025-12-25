@@ -73,11 +73,20 @@ class PokeBattle_Move
     #=============================================================================
     def pbTarget(user)
         targetData = GameData::Target.get(@target)
-        if damagingMove? && targetData.can_target_one_foe? && user.effectActive?(:FlareWitch)
-          return GameData::Target.get(:AllNearFoes)
-        else
-          return targetData
+        # Effects that make things spread
+        if damagingMove? && targetData.can_target_one_foe?
+          allNearFoesData = GameData::Target.get(:AllNearFoes)
+          return allNearFoesData if user.effectActive?(:FlareWitch)
+          return allNearFoesData if @calcType == :PSYCHIC && user.hasActiveAbility?(:MULTITASKER)
+          return allNearFoesData if @calcType == :FIGHTING && user.hasActiveAbility?(:EVENHANDED)
+          return allNearFoesData if user.hasActiveAbility?(:SPACIALDISTORTION)
+          return allNearFoesData if @calcType == :DRAGON && user.hasActiveAbility?(:VICIOUSCYCLE)
+          return allNearFoesData if @calcType == :NORMAL && user.hasActiveAbility?(:HORDETACTICS)
         end
+        if damagingMove? && user.hasActiveAbility?(:CATASTROPHIC)
+          return GameData::Target.get(:AllNearOthers)
+        end
+        return targetData
     end
   
     def total_pp
@@ -121,6 +130,8 @@ class PokeBattle_Move
     def hitsFlyingTargets?;      return false; end
     def hitsDiggingTargets?;     return false; end
     def hitsDivingTargets?;      return false; end
+    def hitsHidingTargets?;      return false; end
+    def hitsCamouflagedTargets?; return false; end
     def ignoresReflect?;         return false; end   # For Brick Break
     def cannotRedirect?;         return false; end   # For Future Sight/Doom Desire
     def worksWithNoTargets?;     return false; end   # For Explosion
@@ -136,14 +147,33 @@ class PokeBattle_Move
     def canMirrorMove?;         return @flags.include?("CanMirrorMove"); end
     def canRandomCrit?;         return @flags.include?("CanRandomCrit"); end
     def doubleCritChance?;      return @flags.include?("DoubleCritChance"); end
-    def bitingMove?;            return @flags.include?("Biting"); end
+    def halfDamageToAllies?;    return @flags.include?("HalfDamageToAllies"); end
+
     def punchingMove?;          return @flags.include?("Punch"); end
-    def soundMove?;             return @flags.include?("Sound"); end
-    def pulseMove?;             return @flags.include?("Pulse"); end
-    def danceMove?;             return @flags.include?("Dance"); end
+    def kickingMove?;           return @flags.include?("Kick"); end
+    def bitingMove?;            return @flags.include?("Biting"); end
     def bladeMove?;             return @flags.include?("Blade"); end
+    
+    def soundMove?;             return @flags.include?("Sound"); end
     def windMove?;              return @flags.include?("Wind"); end
-    def kickingMove?;           return @flags.include?("Kicking"); end
+    def lightMove?;             return @flags.include?("Light"); end
+    def pulseMove?;             return @flags.include?("Pulse"); end
+    
+    def danceMove?;             return @flags.include?("Dance"); end
+
+    def tagged?
+      return true if punchingMove?
+      return true if kickingMove?
+      return true if bitingMove?
+      return true if bladeMove?
+
+      return true if windMove?
+      return true if windMove?
+      return true if lightMove?
+      return true if pulseMove?
+      return false
+    end
+
     def foretoldMove?;          return @flags.include?("Foretold"); end
     def empoweredMove?;         return @flags.include?("Empowered"); end
 
@@ -157,14 +187,15 @@ class PokeBattle_Move
     def forceSwitchMove?; return false; end
     def hazardMove?; return false; end
     def statStepStealingMove?; return false; end
+    def statStepClearingMove?; return false; end
     def redirectionMove?; return false; end
     def hazardRemovalMove?; return false; end
+    def screenRemovalMove?; return false; end
     def rampagingMove?; return false; end
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
       return true if soundMove?
-      return true if user && user.hasActiveAbility?(:INFILTRATOR)
-      return true if user && user.hasActiveAbility?(:RAMPROW)
+      return true if user && user.hasActiveAbility?(GameData::Ability.getByFlag("IgnoreSubstitute"))
       return false
     end
 

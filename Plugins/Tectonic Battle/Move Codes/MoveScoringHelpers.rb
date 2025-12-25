@@ -262,7 +262,7 @@ end
 
 def getSelfKOMoveScore(user, _target)
     reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
-    return -200 if reserves == 0 # don't want to lose or draw
+    return -500 if reserves == 0 # don't want to lose or draw
     return ((-user.hp / user.totalhp.to_f) * 100).round
 end
 
@@ -292,7 +292,7 @@ def hazardWeightOnSide(side, excludeEffects = []) # does not check for reserves,
 end
 
 def getSwitchOutEffectScore(switcher, scoreStatSteps = true)
-    return 0 if switcher.battle.pbCanChooseNonActive?(switcher.index)
+    return 0 unless switcher.battle.pbCanChooseNonActive?(switcher.index)
     return 0 if switcher.trapped?
     score = 5 + switcher.alliesInReserveCount * 5
     score *= 1.5 if switcher.ownersPolicies.include?(:PRIORITIZEUTURN)
@@ -324,6 +324,15 @@ def statStepsValueScore(battler)
     end
     echoln("\t\t[EFFECT SCORING] Scoring the total value of the stat steps on #{battler.pbThis(true)} as #{score}.")
     return score
+end
+
+def getExchangeItemEffectScore(user, target)
+    if user.hasActiveItemAI?(%i[FLAMEORB FROSTORB POISONORB STICKYBARB IRONBALL])
+        return 150
+    elsif user.hasActiveItemAI?(GameData::Item.getByFlag("ChoiceLocking"))
+        return 120
+    end
+    return 0
 end
 
 def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, evaluateThreat: true)
@@ -391,7 +400,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                 stepTotal += 1
                 stepTotal = 9 if stepTotal > 9
                 statIncreaseAmount -= 1
-                totalIncrease += increase.to_f * [0,1,1,0.9,0.9,0.8,0.8,0.7,0.6,0.5][stepTotal]
+                totalIncrease += increase.to_f * ([0,1,1,0.9,0.9,0.8,0.8,0.7,0.6,0.5][stepTotal] || 0)
             end
         end
         if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol)
@@ -399,7 +408,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                 stepTotal += 1
                 stepTotal = 7 if stepTotal > 7
                 statIncreaseAmount -= 1
-                totalIncrease += increase.to_f * [0,1,1,0.9,0.9,0.6,0.4,0.3][stepTotal]
+                totalIncrease += increase.to_f * ([0,1,1,0.9,0.9,0.6,0.4,0.3][stepTotal] || 0)
             end
         end
         if statSymbol == :SPEED
@@ -410,11 +419,11 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                 stepTotal = 6 if stepTotal > 6
                 statIncreaseAmount -= 1
                 if sTier == 2
-                    totalIncrease += increase.to_f * [0,1.1,0.9,0.5,0.4,0.1,0.1][stepTotal] # FAST, first 2 enable outspeeding all, rest unnneeded
+                    totalIncrease += increase.to_f * ([0,1.1,0.9,0.5,0.4,0.1,0.1][stepTotal] || 0) # FAST, first 2 enable outspeeding all, rest unnneeded
                 elsif sTier == 1
-                    totalIncrease += increase.to_f * [0,1,1.1,1,1,0.5,0.2][stepTotal] # AVERAGE, first 2 are good, next 4 enable outspeeding all
+                    totalIncrease += increase.to_f * ([0,1,1.1,1,1,0.5,0.2][stepTotal] || 0) # AVERAGE, first 2 are good, next 4 enable outspeeding all
                 else
-                    totalIncrease += increase.to_f * [0,0.3,0.3,0.5,0.7,1,0.5][stepTotal] # SLOW, speed low value unless in large quantity
+                    totalIncrease += increase.to_f * ([0,0.3,0.3,0.5,0.7,1,0.5][stepTotal] || 0) # SLOW, speed low value unless in large quantity
                 end
             end
         end
@@ -506,9 +515,9 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
         echoln("\t\t[EFFECT SCORING] The target has Contrary! Inverting the score.")
-    elsif target.hasActiveAbilityAI?(:ECCENTRIC)
+    elsif target.hasActiveAbilityAI?(:INVERSION)
         score *= -0.5
-        echoln("\t\t[EFFECT SCORING] The target has Eccentric! Inverting and halving the score.")
+        echoln("\t\t[EFFECT SCORING] The target has INVERSION! Inverting and halving the score.")
     end
 
     if user.opposes?(target)
@@ -518,13 +527,23 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     enemiesCanSteal = false
     target.eachOpposing do |opp|
-        next unless opp.hasStatBoostStealingMove?
+        next unless opp.hasStatBoostStealingMove?(target)
         enemiesCanSteal = true
         echoln("\t\t[EFFECT SCORING] A foe of the target can steal the boost! Inverting the score.")
         break
     end
 
     score *= -1 if enemiesCanSteal
+
+    enemiesCanClearStats = false
+    target.eachOpposing do |opp|
+        next unless opp.hasStatBoostClearingMove?(target)
+        enemiesCanClearStats = true
+        echoln("\t\t[EFFECT SCORING] A foe of the target can clear the boost! Scoring 0.")
+        break
+    end
+
+    score = 0 if enemiesCanClearStats
     
     score *= user.levelNerf(false,false,0.6) if user.level <= 30 && !user.pbOwnedByPlayer?
     
@@ -595,7 +614,7 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier: 0
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
         echoln("\t\t[EFFECT SCORING] The target has Contrary! Inverting the score.")
-    elsif target.hasActiveAbilityAI?(:ECCENTRIC)
+    elsif target.hasActiveAbilityAI?(:INVERSION)
         score *= -0.5
     end
 
@@ -728,6 +747,18 @@ def getFractureEffectScore(user, target)
     return score
 end
 
+def getBlindnessEffectScore(user, target)
+    return 0 unless target.hasDamagingAttack?
+    score = 30
+    if user.battle.pbCanSwitch?(target.index)
+	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score = score * 0.70
+    else
+        score += statStepsValueScore(target)
+	end
+    return score
+end
+
 def getJinxEffectScore(user, target)
     score = 50
     score += 30 if user.hasDamagingAttack?
@@ -773,10 +804,10 @@ def predictedEOTDamage(battle,battler)
     damage += battle.applyHailDamage(battler, aiCheck: true) if battle.icy?
 
     # Status DOTs
-    damage += battle.damageFromDOTStatus(battler, :POISON, true) if battler.poisoned?
-    damage += battle.damageFromDOTStatus(battler, :LEECHED, true) if battler.leeched?
-    damage += battle.damageFromDOTStatus(battler, :BURN, true) if battler.burned?
-    damage += battle.damageFromDOTStatus(battler, :FROSTBITE, true) if battler.frostbitten?
+    damage += battle.damageFromDOTStatus(battler, :POISON, aiCheck: true) if battler.poisoned?
+    damage += battle.damageFromDOTStatus(battler, :LEECHED, aiCheck: true) if battler.leeched?
+    damage += battle.damageFromDOTStatus(battler, :BURN, aiCheck: true) if battler.burned?
+    damage += battle.damageFromDOTStatus(battler, :FROSTBITE, aiCheck: true) if battler.frostbitten?
 
     # Check for aggravate
     aggravate = battle.pbCheckOpposingAbility(:AGGRAVATE, battler.index)
@@ -933,35 +964,58 @@ def getGreyMistSettingEffectScore(user,duration)
 end
 
 def getReflectEffectScore(user, baseDuration = nil, move = nil)
-    score = 0
-    # Current turn value
-    unless user.pbOwnSide.effectActive?(:Reflect)
-        user.eachOpposing do |b|
-            next unless b.hasPhysicalAttack?
-            score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
-        end
-    end
-    duration = baseDuration ? user.getScreenDuration(baseDuration,aiCheck: true) : user.getScreenDuration(aiCheck: true)
-    duration -= user.pbOwnSide.countEffect(:Reflect) if user.pbOwnSide.effectActive?(:Reflect)
-    score += 10 * duration
-    score = (score * 1.3).ceil if user.fullHealth?
-    return score
+    return getScreenEffectScore(user, :Reflect, baseDuration, move)
 end
 
 def getLightScreenEffectScore(user, baseDuration = nil, move = nil)
+    return getScreenEffectScore(user, :LightScreen, baseDuration, move)
+end
+
+def getSanctuaryEffectScore(user, baseDuration = nil, move = nil)
+    return getScreenEffectScore(user, :Sanctuary, baseDuration, move)
+end
+
+def getScreenEffectScore(user, effect, baseDuration = nil, move = nil)
     score = 0
     # Current turn value
-    unless user.pbOwnSide.effectActive?(:LightScreen)
+    unless user.pbOwnSide.effectActive?(effect)
         user.eachOpposing do |b|
-            next unless b.hasSpecialAttack?
+            next if b.ignoreScreens?(true)
+            next if effect == :Reflect && !b.hasSpecialAttack?
+            next if effect == :LightScreen && !b.hasSpecialAttack?
+            next if effect == :AuroraVeil && !b.hasDamagingAttack?
+            next if effect == :Sanctuary && !b.hasDamagingAttack?
+
             score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
         end
     end
-    duration = baseDuration ? user.getScreenDuration(baseDuration,aiCheck: true) : user.getScreenDuration(aiCheck: true)
-    duration -= user.pbOwnSide.countEffect(:LightScreen) if user.pbOwnSide.effectActive?(:LightScreen)
-    score += 10 * duration
-    score = (score * 1.3).ceil if user.fullHealth?
-    return score
+    foeCanBreak = false
+    user.eachOpposing do |opp|
+        next unless opp.hasScreenRemovalMove?
+        foeCanBreak = true
+        score /= 2
+        break  
+    end
+    foeIgnoresScreens = false
+    user.eachOpposing do |opp|
+        next unless opp.ignoreScreens?(true)
+        foeIgnoresScreens = true
+        break
+    end
+    unless foeCanBreak
+        duration = baseDuration ? user.getScreenDuration(baseDuration,aiCheck: true) : user.getScreenDuration(aiCheck: true)
+        duration -= user.pbOwnSide.countEffect(effect) if user.pbOwnSide.effectActive?(effect)
+        if effect == :AuroraVeil
+            score += 15 * duration
+        else
+            score += 10 * duration  
+        end
+        score = (score * 1.3).ceil if user.fullHealth?
+    end
+    if foeIgnoresScreens
+        score = (score * 0.7).floor
+    end
+    return score  
 end
 
 def getSafeguardEffectScore(user, duration)
@@ -1038,7 +1092,7 @@ def getDisableEffectScore(target, duration)
     return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
     return 0 unless target.canBeDisabled?
     score = 15 * duration
-    score *= 1.5 if target.battle.pbIsTrapped?(target.index)
+    score *= 1.5 if target.trapped?
     return score
 end
 

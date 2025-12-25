@@ -101,7 +101,7 @@ class PokemonPartyHealingDisplayScreen
 
         for i in 0...Settings::MAX_PARTY_SIZE
             if @party[i]
-                @sprites["pokemon#{i}"].currentStatusIndex = getStatusIndexForPokemon(@party[i])
+                @sprites["pokemon#{i}"].currentStatusIndex = @party[i].getStatusImageIndex
                 @sprites["pokemon#{i}"].fainted = false
             end
         end

@@ -20,38 +20,22 @@ class PokeBattle_Move_FrostbiteTargetAlwaysHitsInHail < PokeBattle_FrostbiteMove
 end
 
 #===============================================================================
-# Frostbites the target. May cause the target to flinch. (Ice Fang)
+# May cause the target to be frostbitten or to lower their Defense by two steps. (Ice Fang)
 #===============================================================================
-class PokeBattle_Move_FrostbiteFlinchTarget < PokeBattle_Move
-    def flinchingMove?; return true; end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        chance = pbAdditionalEffectChance(user, target, @calcType, 10)
-        return if chance == 0
-        if @battle.pbRandom(100) < chance && target.canFrostbite?(user, false, self) && canApplyRandomAddedEffects?(user,target,true)
-            target.applyFrostbite(user)
-        end 
-        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
-            target.pbFlinch
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = 0
-        score += 0.1 * getFrostbiteEffectScore(user, target)
-        score += 0.1 * getFlinchingEffectScore(60, user, target, self)
-        return score
+class PokeBattle_Move_FrostbiteTargetLowerTargetDef2 < PokeBattle_Move_StatusTargetLowerTargetDef2
+    def initialize(battle, move)
+        super
+        @statusToApply = :FROSTBITE
     end
 end
 
 #===============================================================================
 # If a Pokémon attacks the user with a special move before it uses this move, the
-# attacker is frostbitten. (Condensate)
+# attacker is frostbitten. (Cold Snap)
 #===============================================================================
 class PokeBattle_Move_FrostbiteAttackerBeforeUserActs < PokeBattle_Move
     def pbDisplayChargeMessage(user)
-        user.applyEffect(:Condensate)
+        user.applyEffect(:ColdSnap)
     end
 
     def getTargetAffectingEffectScore(user, target)

@@ -85,6 +85,7 @@ class PokeBattle_Battle
     def pbAttackPhaseCloaking
         pbPriority.each do |b|
             next unless @choices[b.index][0] == :UseMove && !b.fainted?
+            next if b.asleep?
             next if b.movedThisRound?
             next unless b.hasActiveAbility?(:CLOAKING)
             move = @choices[b.index][2]
@@ -98,6 +99,14 @@ class PokeBattle_Battle
             next unless newForm
             next if b.form == newForm
             pbShowAbilitySplash(b, :CLOAKING)
+            case newForm
+                when 0
+                    @scene.pbCommonAnimation("BurmyPlant", b)
+                when 1
+                    @scene.pbCommonAnimation("BurmySandy", b)
+                when 2
+                    @scene.pbCommonAnimation("BurmyTrash", b)
+            end
             b.pbChangeForm(newForm,_INTL("{1} changes its cloak to fit its next move!",b.pbThis))
             pbHideAbilitySplash(b)
         end
@@ -119,7 +128,9 @@ class PokeBattle_Battle
                 next unless b.effectActive?(:MoveNext) && !b.fainted?
                 next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                 next if b.movedThisRound?
+                registerReplayedChoice(b.index)
                 advance = b.pbProcessTurn(@choices[b.index])
+                registerRecordedChoice(b.index)
                 break if advance
             end
             return if @decision > 0
@@ -129,7 +140,9 @@ class PokeBattle_Battle
                 next if b.effectActive?(:Quash) || b.fainted?
                 next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                 next if b.movedThisRound?
+                registerReplayedChoice(b.index)
                 advance = b.pbProcessTurn(@choices[b.index])
+                registerRecordedChoice(b.index)
                 break if advance
             end
             return if @decision > 0
@@ -144,7 +157,9 @@ class PokeBattle_Battle
                     next unless b.effects[:Quash] == quashLevel && !b.fainted?
                     next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
                     next if b.movedThisRound?
+                    registerReplayedChoice(b.index)
                     advance = b.pbProcessTurn(@choices[b.index])
+                    registerRecordedChoice(b.index)
                     break
                 end
                 break if advance || !moreQuash
@@ -177,6 +192,7 @@ class PokeBattle_Battle
         return if attackPhaseNonMoveActions
         speedAffectingTriggers
         pbAttackPhaseMoves
+        endOfAttackPhase
     end
 
     def speedAffectingTriggers
@@ -197,7 +213,6 @@ class PokeBattle_Battle
             if @choices[i][0] != :UseMove && @choices[i][0] != :Shift && @choices[i][0] != :SwitchOut
                 b.disableEffect(:DestinyBond)
             end
-            b.disableEffect(:Rage) unless pbChoseMoveFunctionCode?(i, "093") # Rage
             b.applyEffect(:ChoseAttack) if b.usingAttackThisTurn?
             b.applyEffect(:ChoseStatus) if b.usingStatusThisTurn?
             b.lastRoundHighestTypeModFromFoe = -1
@@ -231,5 +246,16 @@ class PokeBattle_Battle
             next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
             battler.pbProcessTurn(@choices[battler.index])
         end
+    end
+
+    def endOfAttackPhase
+        # Temporal Distortion
+        eachBattler do |b|
+            next unless b.hasActiveAbility?(:TEMPORALDISTORTION) && (b.turnCount % 3 == 0)
+            pbShowAbilitySplash(b,:TEMPORALDISTORTION)
+            pbDisplay(_INTL("{1} takes control of time itself!", b.pbThis))
+            b.applyEffect(:TemporalDistortion)
+            pbHideAbilitySplash(b)
+        end  
     end
 end

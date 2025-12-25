@@ -52,12 +52,16 @@ class PokeBattle_AI
                 factor = (maxpercent < hppercent) ? 30 : 50
             end
             case thispkmn.status
-            when :SLEEP, :FROZEN
+            when :SLEEP
                 factor += 20
-            when :POISON, :BURN
+            when :POISON
                 factor += 10
+            when :BURN
+                factor += thispkmn.getStatusCount(:BURN) > 0 ? 20 : 10 # Severe status check
+            when :FROSTBITE
+                factor += thispkmn.getStatusCount(:FROSTBITE) > 0 ? 20 : 10 # Severe status check
             when :NUMB
-                factor += 15
+                factor += thispkmn.getStatusCount(:NUMB) > 0 ? 30 : 15 # Severe status check
             end
             if @justswitched[idxBattler]
                 factor -= 60
@@ -331,6 +335,7 @@ class PokeBattle_AI
         # More want to swap if has a entry ability that matters
         # Intentionally checked even if the pokemon will die on entry
         switchScore += getEntryAbilityEvaluationForEnteringBattler(fakeBattler, dieingOnEntry)
+        switchScore += getAlliesAbilityEvaluationForEnteringBattler(fakeBattler, dieingOnEntry)
 
         if safeSwitch
             echoln("[SWITCH SCORING] Evaluating #{fakeBattler.pbThis} as a SAFE switch")
@@ -421,6 +426,18 @@ class PokeBattle_AI
             abilitySwitchModifier = (switchAbilityEffectScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
             totalAbilityScore += abilitySwitchModifier
             echoln("[SWITCH SCORING] #{battler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
+        end
+        return totalAbilityScore
+    end
+
+    def getAlliesAbilityEvaluationForEnteringBattler(battler, _dieingOnEntry)
+        totalAbilityScore = 0
+        battler.eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                switchAbilityEffectScore = BattleHandlers.triggerAbilityOnAllySwitchIn(ability, battler, ally, battler.battle, true)
+                abilitySwitchModifier = (switchAbilityEffectScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
+                totalAbilityScore += abilitySwitchModifier
+            end
         end
         return totalAbilityScore
     end

@@ -22,6 +22,7 @@ module GameData
         attr_reader :catch_rate
         attr_reader :happiness
         attr_reader :moves
+        attr_reader :form_move
         attr_reader :tutor_moves
         attr_reader :egg_moves # To maintain some backwards compatibility
         attr_reader :line_moves
@@ -42,11 +43,16 @@ module GameData
         attr_reader :notes
         attr_accessor :earliest_available
         attr_reader :flags
+        attr_reader :formalizer
+        attr_reader :sticky_items
 
         DATA = {}
         DATA_FILENAME = "species.dat"
 
         BASE_DATA = {} # Data that hasn't been extended
+
+        FORM_SPECIFIC_MOVES = {}
+        FORM_SPECIFIC_MOVES_DATA_FILENAME = "species_form_specific_moves.dat"
 
         extend ClassMethods
         include InstanceMethods
@@ -78,6 +84,7 @@ module GameData
               "Rareness"          => [0, "u"],
               "Happiness"         => [0, "u"],
               "Moves"             => [0, "*ue", nil, :Move],
+              "FormMove"          => [0, "e", :Move],
               "TutorMoves"        => [0, "*e", :Move],
               "EggMoves"          => [0, "*e", :Move],
               "LineMoves"         => [0, "*e", :Move],
@@ -91,6 +98,7 @@ module GameData
               "Weight"            => [0, "f"],
               "Generation"        => [0, "i"],
               "Flags"             => [0, "*s"],
+              "Formalizer"        => [0, "*i"],
               "BattlerPlayerX"    => [0, "i"],
               "BattlerPlayerY"    => [0, "i"],
               "BattlerEnemyX"     => [0, "i"],
@@ -114,6 +122,7 @@ module GameData
                 ret["GrowthRate"]   = [0, "e", :GrowthRate]
                 ret["GenderRate"]   = [0, "e", :GenderRatio]
                 ret["Evolutions"]   = [0, "*ses", nil, :Evolution, nil]
+                ret["StickyItems"]   = [0, "*e", :Item]
             end
             return ret
         end
@@ -131,8 +140,24 @@ module GameData
             @type1                 = hash[:type1]                 || :NORMAL
             @type2                 = hash[:type2]                 || @type1
             @base_stats            = hash[:base_stats]            || {}
+            oldBST = 0
+            newBST = 0
             GameData::Stat.each_main do |s|
                 @base_stats[s.id] = 1 if !@base_stats[s.id] || @base_stats[s.id] <= 0
+                next if @base_stats[s.id] % 5 == 0 || @base_stats[s.id] == 1
+                oldValue = @base_stats[s.id]
+                newValue = (oldValue / 5.0).round(0) * 5
+
+                @base_stats[s.id] = newValue
+
+                oldBST += oldValue
+                newBST += newValue
+            end
+            if newBST > oldBST + 5
+                echoln("[STAT ROUNDING] #{@id} BST increased by #{newBST - oldBST} due to base stats rounding to nearest 5")  
+            end
+            if newBST < oldBST - 5
+                echoln("[STAT ROUNDING] #{@id} BST decreased by #{newBST - oldBST} due to base stats rounding to nearest 5")
             end
             @base_exp              = hash[:base_exp]              || 100
             @growth_rate           = hash[:growth_rate]           || DEFAULT_GROWTH_RATE
@@ -140,6 +165,7 @@ module GameData
             @catch_rate            = hash[:catch_rate]            || 255
             @happiness             = hash[:happiness]             || DEFAULT_BASE_HAPPINESS
             @moves                 = hash[:moves]                 || []
+            @form_move             = hash[:form_move]
             @tutor_moves           = hash[:tutor_moves]           || []
             @tutor_moves.uniq!
             @tutor_moves.sort_by! { |a| a.to_s }
@@ -165,6 +191,8 @@ module GameData
             @tribes                = hash[:tribes]                || []
             @defined_in_extension  = hash[:defined_in_extension]  || false
             @flags                 = hash[:flags]                 || []
+            @formalizer            = hash[:formalizer]            || []
+            @sticky_items          = hash[:sticky_items]          || []
 
             legalityChecks
         end
@@ -174,37 +202,37 @@ module GameData
                 moveID = entry[1]
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             @line_moves.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             @tutor_moves.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
             [@wild_item_common, @wild_item_uncommon, @wild_item_rare].each do |itemID|
                 next unless itemID
                 next if GameData::Item.get(itemID).legal?
-                raise _INTL("Illegal item #{itemID} is a wild item of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal item #{itemID} is a wild item of species #{@id}!")
             end
 
             @abilities.each do |abilityID|
                 next unless abilityID
                 next if GameData::Ability.get(abilityID).legal?
-                raise _INTL("Illegal ability #{abilityID} is a defined ability of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal ability #{abilityID} is a defined ability of species #{@id}!")
             end
 
             @hidden_abilities.each do |abilityID|
                 next unless abilityID
                 next if GameData::Ability.get(abilityID).legal?
-                raise _INTL("Illegal ability #{abilityID} is a defined hidden ability of species #{@id}!")
+                Compiler.logLegalityError _INTL("Illegal ability #{abilityID} is a defined hidden ability of species #{@id}!")
             end
         end
 
@@ -247,7 +275,7 @@ module GameData
             return metrics_data.shows_shadow?
         end
 
-        def get_evolutions(exclude_invalid = false)
+        def get_evolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next if evo[3] # Is the prevolution
@@ -361,7 +389,7 @@ module GameData
         end
 
         def tribes(ignoreInheritance = false)
-            allTribes = @tribes.clone
+            allTribes = @tribes.clone || []
             unless ignoreInheritance
                 get_prevolutions.each do |prevo_entry|
                     allTribes.concat(GameData::Species.get_species_form(prevo_entry[0], @form).tribes)
@@ -373,7 +401,16 @@ module GameData
         end
 
         def inherited_level_moves
-            return get_previous_species_data.level_moves if has_previous_species?
+            if has_previous_species?
+                inherited = []
+                get_previous_species_data.level_moves.each do |inheritableLearnsetEntry|
+                    level = inheritableLearnsetEntry[0]
+                    moveID = inheritableLearnsetEntry[1]
+                    level = 1 if level == 0
+                    inherited.push([level,moveID])
+                end
+                return inherited
+            end
             return []
         end
 
@@ -443,12 +480,18 @@ module GameData
             inherited_moves.each do |moveID|
                 nonInheritedTutorMoves.delete(moveID)
             end
+            GameData::Move.staple_moves do |moveID|
+                nonInheritedTutorMoves.delete(moveID)
+            end
             return nonInheritedTutorMoves
         end
 
         def non_inherited_line_moves
             nonInheritedLineMoves = (@line_moves || @egg_moves).clone
             inherited_moves.each do |moveID|
+                nonInheritedLineMoves.delete(moveID)
+            end
+            GameData::Move.staple_moves.each do |moveID|
                 nonInheritedLineMoves.delete(moveID)
             end
             return nonInheritedLineMoves
@@ -467,6 +510,9 @@ module GameData
         def recalculate_learnable_moves
             @learnableMoves = []
 
+            unless @flags&.include?("NoStaples")
+              @learnableMoves.concat(GameData::Move.staple_moves)
+            end
             @learnableMoves.concat(inherited_tutor_moves)
             @learnableMoves.concat(@tutor_moves)
             @learnableMoves.concat(@line_moves || @egg_moves)
@@ -497,44 +543,11 @@ module GameData
         end
 
         def get_form_specific_move
-            formMoves = form_specific_moves
-            return nil if formMoves.empty?
-            return formMoves[@form] || nil
+            return @form_move
         end
 
         def form_specific_moves
-            if @species == :ROTOM
-                return [
-                    nil,
-                    :OVERHEAT,    # Heat, Microwave
-                    :HYDROPUMP,   # Wash, Washing Machine
-                    :BLIZZARD,    # Frost, Refrigerator
-                    :AIRSLASH,    # Fan
-                    :LEAFSTORM, # Mow, Lawnmower
-                ]
-            elsif @species == :URSHIFU
-                return %i[
-                    WICKEDBLOW
-                    SURGINGSTRIKES
-                ]
-            elsif @species == :NECROZMA
-                return [
-                    nil,
-                    :SUNSTEELSTRIKE, # Dusk Mane (with Solgaleo) (form 1)
-                    :MOONGEISTBEAM, # Dawn Wings (with Lunala) (form 2)
-                ]
-            elsif @species == :ZAMAZENTA
-                return [
-                    nil,
-                    :BEHEMOTHBASH
-                ]
-            elsif @species == :ZACIAN
-                return [
-                    nil,
-                    :BEHEMOTHBLADE
-                ]
-            end
-            return []
+            return FORM_SPECIFIC_MOVES[@species]
         end
 
         def available_by?(level)
@@ -542,7 +555,7 @@ module GameData
             return level >= earliest_available
         end
 
-        def get_prevolutions(exclude_invalid = false)
+        def get_prevolutions(exclude_invalid = true)
             ret = []
             @evolutions.each do |evo|
                 next unless evo[3] # Is an evolution
@@ -604,15 +617,35 @@ module GameData
         end
 
         def isLegendary?
-            return @flags.include?("Legendary")
+            return @flags&.include?("Legendary")
         end
 
         def isTest?
-            return @flags.include?("Test")
+            return @flags&.include?("Test")
         end
 
         def canTutorAny?
-            return @flags.include?("TutorAny")
+            return @flags&.include?("TutorAny")
+        end
+
+        def isUltraBeast?
+            return @flags.include?("UltraBeast")
+        end
+
+        def hasType?(type)
+            return true if @type1 == type
+            return true if @type2 == type
+            return false
+        end
+
+        def self.load
+            super
+            const_set(:FORM_SPECIFIC_MOVES, load_data("Data/#{self::FORM_SPECIFIC_MOVES_DATA_FILENAME}"))
+        end
+    
+        def self.save
+            super
+            save_data(self::FORM_SPECIFIC_MOVES, "Data/#{self::FORM_SPECIFIC_MOVES_DATA_FILENAME}")
         end
     end
 end
@@ -690,6 +723,15 @@ module Compiler
                             move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=> b [0] }
                             move_array.each { |arr| arr.pop }
                             contents[key] = move_array
+
+                            levelUpSet = []
+                            move_array.each do |levelUpEntry|
+                                if levelUpSet.include?(levelUpEntry[1])
+                                    echoln("WARNING: Level up learnset of species #{species_symbol} contains duplicate value #{levelUpEntry[1]}")
+                                else
+                                    levelUpSet.push(levelUpEntry[1])
+                                end
+                            end
                         when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility"
                             contents[key] = [contents[key]] unless contents[key].is_a?(Array)
                             contents[key].compact!
@@ -718,6 +760,7 @@ module Compiler
                       :catch_rate            => contents["Rareness"],
                       :happiness             => contents["Happiness"],
                       :moves                 => contents["Moves"],
+                      :form_move             => contents["FormMove"],
                       :tutor_moves           => contents["TutorMoves"],
                       :line_moves            => contents["LineMoves"],
                       :abilities             => contents["Abilities"],
@@ -731,6 +774,8 @@ module Compiler
                       :weight                => contents["Weight"],
                       :generation            => contents["Generation"],
                       :flags                 => contents["Flags"],
+                      :formalizer            => contents["Formalizer"],
+                      :sticky_items          => contents["StickyItems"],
                       :notes                 => contents["Notes"],
                       :tribes                => contents["Tribes"],
                       :defined_in_extension  => !baseFile,
@@ -925,6 +970,7 @@ module Compiler
                     :catch_rate            => contents["Rareness"] || base_data.catch_rate,
                     :happiness             => contents["Happiness"] || base_data.happiness,
                     :moves                 => moves,
+                    :form_move             => contents["FormMove"], # intentionally does not inherit from base form if absent
                     :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
                     :line_moves            => contents["LineMoves"] || base_data.line_moves.clone,
                     :abilities             => contents["Abilities"] || base_data.abilities.clone,
@@ -970,6 +1016,10 @@ module Compiler
             species.evolutions.each do |evo|
                 all_evos[evo[0]] = [species.species, evo[1], evo[2], true] if !evo[3] && !all_evos[evo[0]]
             end
+            if GameData::Species::FORM_SPECIFIC_MOVES[species.species].nil?
+                GameData::Species::FORM_SPECIFIC_MOVES[species.species] = []
+            end
+            GameData::Species::FORM_SPECIFIC_MOVES[species.species][species.form] = species.form_move
         end
         GameData::Species.each do |species|   # Distribute prevolutions
             next if species.form == 0 # Looking at alternate forms only
@@ -995,15 +1045,12 @@ module Compiler
 
         # Checking every single map in the game for encounters
         GameData::Encounter.each_of_version do |enc_data|
-            earliestLevelForMap = getEarliestLevelForMap(enc_data.map)
-
             # For each slot in that encounters data listing
             enc_data.types.each do |key, slots|
                 next unless slots
-                earliestLevelForSlot = earliestLevelForMap
-                earliestLevelForSlot = [earliestLevelForSlot, SURFING_LEVEL].min if key == :ActiveWater
+                earliestLevelForSlot = enc_data.available_levels[key] || 100
                 slots.each do |slot|
-                    species = slot[1]
+                    species = GameData::Species.get(slot[1]).species # get base form
                     if !earliestWildEncounters.has_key?(species) || earliestWildEncounters[species] > earliestLevelForSlot
                         earliestWildEncounters[species] = earliestLevelForSlot
                     end
@@ -1073,26 +1120,39 @@ module Compiler
         return 100
     end
 
-    def getEarliestLevelForMap(map_id)
-        MAPS_AVAILABLE_BY_CAP.each do |levelCapBracket, mapArray|
-            next unless mapArray.include?(map_id)
-            return levelCapBracket
-        end
-        return 100
-    end
-
     #=============================================================================
     # Save Pokémon data to PBS file
     #=============================================================================
     def write_pokemon
+        form_map = Hash.new # used for pokemon_server generation
         File.open("PBS/pokemon.txt", "wb") do |f|
             add_PBS_header_to_file(f)
             GameData::Species.each_base do |species|
-                next if species.form != 0
                 next if species.defined_in_extension
+                if (!form_map.key?(species.species))
+                    form_map[species.species] = [species]
+                end
+                if species.form != 0
+                    form_map[species.species].push(species) # push whole form data for later use
+                    next   
+                end
                 pbSetWindowText(_INTL("Writing species {1}...", species.id_number))
                 Graphics.update if species.id_number % 50 == 0
                 write_species(f, species)
+            end
+        end
+        # load server banlist
+        banlist = File.readlines("PBS/pokemon_server_banlist.txt", encoding: "bom|utf-8").map(&:chomp)
+        File.open("PBS/pokemon_server.txt", "wb") do |f|
+            GameData::Species.each_base do |species|
+                if (species.species == :REGIGIGAS)
+                end
+                next if banlist.include?(species.species.to_s)
+                next if species.form != 0
+                next if species.defined_in_extension
+                pbSetWindowText(_INTL("Writing species {1} for server...", species.id_number))
+                Graphics.update if species.id_number % 50 == 0
+                write_species_server(f, species, form_map[species.species])
             end
         end
         pbSetWindowText(nil)
@@ -1123,6 +1183,7 @@ module Compiler
         f.write(format("Happiness = %d\r\n", species.happiness)) unless species.happiness == GameData::Species::DEFAULT_BASE_HAPPINESS
         f.write(format("Abilities = %s\r\n", species.abilities.join(","))) if species.abilities.length > 0
         f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(","))) if species.non_inherited_level_moves.length > 0
+        f.write(format("FormMove = %s\r\n", species.form_move)) if species.form_move
         f.write(format("TutorMoves = %s\r\n", species.non_inherited_tutor_moves.join(","))) if species.non_inherited_tutor_moves.length > 0
         f.write(format("LineMoves = %s\r\n", species.non_inherited_line_moves.join(","))) if species.non_inherited_line_moves.length > 0
         f.write(format("Tribes = %s\r\n", species.tribes(true).join(","))) if species.tribes(true).length > 0
@@ -1136,9 +1197,11 @@ module Compiler
         end
         f.write(format("Generation = %d\r\n", species.generation)) if species.generation != 0
         f.write(format("Flags = %s\r\n", species.flags.join(","))) if !species.flags.empty?
+        f.write(format("Formalizer = %s\r\n", species.formalizer.join(","))) if !species.formalizer.empty?
         f.write(format("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
         f.write(format("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
         f.write(format("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
+        f.write(format("StickyItems = %s\r\n", species.sticky_items.join(","))) if species.sticky_items.length > 0
         if species.evolutions.any? { |evo| !evo[3] }
             f.write("Evolutions = ")
             need_comma = false
@@ -1161,6 +1224,24 @@ module Compiler
         end
     end
 
+    def write_species_server(f, species, forms)
+        form_list = [0]
+        all_abilities = species.abilities.clone
+        all_moves = species.learnable_moves.clone
+        forms.each do |form|
+            next if form.form == 0
+            form_list.append(form.form)
+            all_abilities.concat(form.abilities)
+            all_moves.concat(form.learnable_moves)
+        end
+        all_abilities.uniq!
+        all_moves.uniq!
+        f.write(format("[%s]\r\n", species.species))
+        f.write(format("forms = %s\r\n", form_list.join(",")))
+        f.write(format("gender_ratio = %s\r\n", species.gender_ratio))
+        f.write(format("abilities = %s\r\n", all_abilities.join(","))) if all_abilities.length > 0
+        f.write(format("moves = %s\r\n\r\n", all_moves.join(",")))
+    end
     #=============================================================================
     # Save Pokémon forms data to PBS file
     #=============================================================================
@@ -1197,11 +1278,16 @@ module Compiler
             f.write(format("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
         end
         stats_array = []
+        total = 0
+        base_species_total = 0
         GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
             stats_array[s.pbs_order] = species.base_stats[s.id]
+            total += species.base_stats[s.id]
+            base_species_total += base_species.base_stats[s.id]
         end
         f.write(format("BaseStats = %s\r\n", stats_array.join(","))) if species.base_stats != base_species.base_stats
+        f.write(format("# Total = %s\r\n", total)) if species.base_stats != base_species.base_stats
         f.write(format("BaseEXP = %d\r\n", species.base_exp)) if species.base_exp != base_species.base_exp
         f.write(format("Rareness = %d\r\n", species.catch_rate)) if species.catch_rate != base_species.catch_rate
         f.write(format("Happiness = %d\r\n", species.happiness)) if species.happiness != base_species.happiness
@@ -1211,6 +1297,7 @@ module Compiler
         if species.non_inherited_level_moves.length > 0 && species.non_inherited_level_moves != base_species.non_inherited_level_moves
             f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(",")))
         end
+        f.write(format("FormMove = %s\r\n", species.form_move)) if species.form_move
         f.write(format("StepsToHatch = %d\r\n", species.hatch_steps)) if species.hatch_steps != base_species.hatch_steps
         f.write(format("Height = %.1f\r\n", species.height / 10.0)) if species.height != base_species.height
         f.write(format("Weight = %.1f\r\n", species.weight / 10.0)) if species.weight != base_species.weight

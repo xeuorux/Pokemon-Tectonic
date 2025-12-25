@@ -187,3 +187,27 @@ BattleHandlers::AttackCalcUserAbility.add(:FUELHUNGRY,
       next attackMult
   }
 )
+
+BattleHandlers::AttackCalcAllyAbility.add(:CASTELLAN,
+  proc { |ability, _user, battle, spAtkMult|
+      attackMult *= 1.3 if battle.roomActive?
+      next spAtkMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:TOOTHANDCLAW,
+  proc { |ability, user, battle, attackMult|
+    previousMoveID = user.moveUsageHistory[1] || nil
+    currentMoveID = user.moveUsageHistory[0] || nil
+
+    next if currentMoveID.nil?
+    next if previousMoveID.nil?
+      
+    previousMoveData = battle.getBattleMoveInstanceFromID(previousMoveID)
+    currentMoveData = battle.getBattleMoveInstanceFromID(currentMoveID)
+
+    next if currentMoveData.bitingMove?
+    attackMult *= 1.5 if previousMoveData.bitingMove?
+    next attackMult
+  }
+)

@@ -98,7 +98,7 @@ class PokemonMart_Scene
       # canSellProc = Proc.new { |item|
       #   @adapter.canSell?(item)
       # }
-      @subscene.pbStartScene(bag,true,canSellProc,false,6)
+      @subscene.pbStartScene(bag,true,canSellProc,false,15)
       @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
       @viewport.z = 99999
       @sprites = {}

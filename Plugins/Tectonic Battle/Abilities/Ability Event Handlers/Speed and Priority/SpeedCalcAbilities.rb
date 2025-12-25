@@ -191,3 +191,15 @@ BattleHandlers::SpeedCalcAbility.add(:FOREMAN,
       next mult * 2 if battler.battle.roomActive?
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:CAFFEINERUSH,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if battler.battle.icy?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:HAILSTONEHELM,
+  proc { |ability, battler, mult|
+      next mult / 2.0 if battler.battle.icy?
+  }
+)

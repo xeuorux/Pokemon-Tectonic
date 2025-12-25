@@ -683,8 +683,8 @@ class PokemonPokedex_Scene
 		:searchByAbility,
 		:searchByMoveLearned,
 		:searchByEvolutionMethod,
-		:searchByAvailableLevel,
 		:searchByTribe,
+		:searchByAvailableLevel,
 		:searchByTypeMatchup,
 		:searchByStatComparison,
 		:sortByStat,
@@ -718,13 +718,13 @@ class PokemonPokedex_Scene
             [_INTL("Abilities"), xLeft, 164, 0, base, shadow],
             [_INTL("Moves"), xLeft2, 164, 0, base, shadow],
             [_INTL("Evolution"), xLeft, 260, 0, base, shadow],
-            [_INTL("Available"), xLeft2, 260, 0, base, shadow],
+            [_INTL("Tribe"), xLeft2, 260, 0, base, shadow],
         ]
         xLeft += 4
         xLeft2 += 4
         page2textpos = [
             [_INTL("Choose a Search"), Graphics.width / 2, -2, 2, title_base, title_shadow],
-            [_INTL("Tribe"), xLeft, 68, 0, base, shadow],
+            [_INTL("Available"), xLeft, 68, 0, base, shadow],
             [_INTL("Matchups"), xLeft2, 68, 0, base, shadow],
             [_INTL("Stats"), xLeft, 164, 0, base, shadow],
             [_INTL("Stat Sort"), xLeft2, 164, 0, base, shadow],
@@ -1089,10 +1089,9 @@ class PokemonPokedex_Scene
                         speciesEdited += 1
                     end
                 end
-                pbMessage(_INTL("{1} species tutorable movesets edited!", speciesEdited))
-
                 GameData::Species.save
                 Compiler.write_pokemon
+                pbMessage(_INTL("{1} species tutorable movesets edited!", speciesEdited))
             end
             break
         end
@@ -1104,6 +1103,12 @@ class PokemonPokedex_Scene
         GameData::Type.each do |typesData|
             typesCount[typesData.id] = 0
         end
+
+        baseStatTotals = {}
+        GameData::Stat.each_main do |stat|
+            baseStatTotals[stat.id] = 0
+        end
+
         total = 0
         @dexlist.each do |dexEntry|
             speciesData = GameData::Species.get(dexEntry[:species])
@@ -1119,6 +1124,11 @@ class PokemonPokedex_Scene
             next if disqualify
             typesCount[speciesData.type1] += 1
             typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+
+            GameData::Stat.each_main do |s|
+                baseStatTotals[s.id] += speciesData.base_stats[s.id]
+            end
+
             total += 1
         end
 
@@ -1147,6 +1157,13 @@ class PokemonPokedex_Scene
             percentOfThisList = ((count.to_f / total.to_f) * 10_000).floor / 100.0
             percentOfTypeIsInThisMap = ((count.to_f / wholeGameTypesCount[type].to_f) * 10_000).floor / 100.0
             echoln("#{type},#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
+        end
+
+        echoln("----------------------------")
+        echoln("Average base stats:")
+        GameData::Stat.each_main do |s|
+            average = ((baseStatTotals[s.id] / total) * 100).floor / 100
+            echoln("#{s.name}: #{average}")
         end
     end
 end

@@ -6,8 +6,8 @@ module QuestModule
     :Name => _INTL("Impostor/Imperatrice"),
     :Stage1 => _INTL("Find her north of Svait."),
     :Stage2 => _INTL("Find her north of the Eleig."),
-    :Stage3 => _INTL("Find her back south."),
-    :Stage4 => _INTL("Find her near the Lingering Delta."),
+    :Stage3 => _INTL("Find her after your 6th badge."),
+    :Stage4 => _INTL("Find her after the tournament."),
     :Location1 => _INTL("Ice Cave"),
     :Location2 => _INTL("Prizca West"),
     :Location3 => _INTL("Grouz"),
@@ -17,14 +17,16 @@ module QuestModule
   
   QUEST_ALESSA = {
     :Name => _INTL("Kayfabe"),
-    :Stage1 => _INTL("Find her in the sewers."),
-    :Stage2 => _INTL("Find her north of the Eleig."),
-    :Stage3 => _INTL("Find her back south."),
-    :Stage4 => _INTL("Find her near Team Chasm HQ."),
-    :Location1 => _INTL("Luxtech Sewers"),
-    :Location2 => _INTL("Prizca East"),
-    :Location3 => _INTL("Volcanic Shore"),
-    :Location4 => _INTL("Hollowed Layer"),
+    :Stage1 => _INTL("Fight her in Novo Town."),
+    :Stage2 => _INTL("Find her in the sewers."),
+    :Stage3 => _INTL("Find her north of the Eleig."),
+    :Stage4 => _INTL("Find her after your 7th badge."),
+    :Stage5 => _INTL("Find her after the tournament."),
+    :Location1 => _INTL("Novo Town"),
+    :Location2 => _INTL("Luxtech Sewers"),
+    :Location3 => _INTL("Prizca East"),
+    :Location4 => _INTL("Volcanic Shore"),
+    :Location5 => _INTL("Hollowed Layer"),
     :QuestDescription => _INTL("A confident young woman who trains Pokémon for a price. Dueling her could be good practice – but she looks at you with unnerving familiarity. She knows more than she lets on."),
   }
   
@@ -32,8 +34,8 @@ module QuestModule
     :Name => _INTL("Dear Iconoclast"),
     :Stage1 => _INTL("Find him in Velenz."),
     :Stage2 => _INTL("Find him north east."),
-    :Stage3 => _INTL("Find him back south."),
-    :Stage4 => _INTL("Find him on the southern mountain."),
+    :Stage3 => _INTL("Find him after your 7th badge."),
+    :Stage4 => _INTL("Find him after the tournament."),
     :Location1 => _INTL("Velenz"),
     :Location2 => _INTL("Prizca East"),
     :Location3 => _INTL("Team Chasm HQ"),
@@ -43,14 +45,16 @@ module QuestModule
   
   QUEST_KEONI = {
     :Name => _INTL("When in Makya"),
-    :Stage1 => _INTL("Find him north of the Eleig."),
-    :Stage2 => _INTL("Find him in the sewers."),
-    :Stage3 => _INTL("Find him back south."),
-    :Stage4 => _INTL("Find him near Velenz."),
-    :Location1 => _INTL("Eleig Stretch"),
-    :Location2 => _INTL("Sewer Junction"),
-    :Location3 => _INTL("Novo College"),
-    :Location4 => _INTL("Velenz Menagerie"),
+    :Stage1 => _INTL("Fight him in East Tunnel."),
+    :Stage2 => _INTL("Find him north of the Eleig."),
+    :Stage3 => _INTL("Find him in the sewers."),
+    :Stage4 => _INTL("Find him after your 8th badge."),
+    :Stage5 => _INTL("Find him after the tournament."),
+    :Location1 => _INTL("East Tunnel"),
+    :Location2 => _INTL("Eleig Stretch"),
+    :Location3 => _INTL("Sewer Junction"),
+    :Location4 => _INTL("Novo College"),
+    :Location5 => _INTL("Velenz Menagerie"),
     :QuestDescription => _INTL("A studious man, foreign to Makya. He studies regional forms for his research. Something strange is afoot in the region – perhaps you can work together to find out what."),
   }
   
@@ -58,8 +62,8 @@ module QuestModule
     :Name => _INTL("Second Chances"),
     :Stage1 => _INTL("Find him near the river."),
     :Stage2 => _INTL("Find him up river."),
-    :Stage3 => _INTL("Find him in the shack."),
-    :Stage4 => _INTL("Find him near the lake."),
+    :Stage3 => _INTL("Find him after your 8th badge."),
+    :Stage4 => _INTL("Find him after the tournament."),
     :Location1 => _INTL("Eleig River Crossing"),
     :Location2 => _INTL("Highland Lake"),
     :Location3 => _INTL("Tournament Grounds"),
@@ -73,7 +77,7 @@ module QuestModule
     :Stage2 => _INTL("Find her at the college."),
     :Stage3 => _INTL("Find her north of the Eleig."),
     :Stage4 => _INTL("Find her in a cave."),
-    :Stage5 => _INTL("Find her at the river."),
+    :Stage5 => _INTL("Find her after your 8th badge."),
     :Location1 => _INTL("Barren Crater"),
     :Location2 => _INTL("Novo College"),
     :Location3 => _INTL("Prizca West"),
@@ -186,7 +190,23 @@ module QuestModule
     :Stage2 => _INTL("Return to her."),
     :Location1 => _INTL("Makya"),
     :Location2 => _INTL("Novo Town"),
-    :QuestDescription => _INTL("A flower keeper at the south entrance of Novo Town says she'll give you a reward to celebrate completing your 4th gym. You won't forget her, right?\n\n\n\nFlower"),
+    :QuestDescription => _INTL("A flower keeper at the south entrance of Novo Town says she'll give you a reward to celebrate completing your 4th gym. You won't forget her, right?"),
+  }
+
+  QUEST_BATTLE_LAB = {
+    :Name => _INTL("Luxtech Battle Labs"),
+    :QuestGiver => _INTL("Scientist"),
+    :Stage1 => _INTL("Defeat the gauntlet."),
+    :Location1 => _INTL("Luxtech Main"),
+    :QuestDescription => _INTL("You've been offered a gauntlet of scientists to try to get past. How difficult could these eggheads be anyways?"),
+  }
+
+  QUEST_SHOW_LEGEND = {
+    :Name => _INTL("The Bucket List"),
+    :QuestGiver => _INTL("Old Lady"),
+    :Stage1 => _INTL("Show her a legendary."),
+    :Location1 => _INTL("East-Peaks Gatehouse"),
+    :QuestDescription => _INTL("An elderly lady notices your strength and status, and figures you may have a legendary Pokémon. She only wishes to see it and admire it. How about humoring her request? I'm sure there is something powerful in this region that you could find."),
   }
 
   # Gym Leader Avatars
@@ -324,7 +344,9 @@ module QuestModule
     :Location1 => _INTL("Grouz"),
     :Location2 => _INTL("Hollowed Layer"),
     :Location3 => _INTL("Grouz"),
-    :QuestDescription => _INTL("Dr. Hekata gave you a call mysteriously, asking to meet her in her home of Grouz. What could she want of you?"),
+    :QuestDescription1 => _INTL("Dr. Hekata gave you a call mysteriously, asking to meet her in her home of Grouz. What could she want of you?"),
+    :QuestDescription2 => _INTL("Dr. Hekata heard of your dealings in the Chamber of Regigigas, and wants you to return there to find a magical artifact."),
+    :QuestDescription3 => _INTL("You've found the Primal Clay, the artifact that Dr. Hekata was interested in. Return to her house to show it to her."),
   }
 
   QUEST_LEGEND_REGIROCK = {
@@ -524,9 +546,9 @@ module QuestModule
   }
 
   QUEST_LEGEND_DRAGON_ISLE = {
-    :Name => _INTL("Isle of Dragons"),
+    :Name => _INTL("To Train Your Dragons"),
     :QuestGiver => _INTL("Dragon Hatcher"),
-    :Stage1 => _INTL("Bring one of every egg to him."),
+    :Stage1 => _INTL("Fully evolve every Dragon Egg."),
     :Stage2 => _INTL("Explore the isle."),
     :Location1 => _INTL("Samorn's House"),
     :Location2 => _INTL("Isle of Dragons"),
@@ -608,7 +630,7 @@ module QuestModule
     :QuestGiver => _INTL("Scilla"),
     :Stage1 => _INTL("Find and defeat the former champ."),
     :Location1 => _INTL("Sweetrock Harbor"),
-    :QuestDescription => _INTL("It appears Chara is your next target, found in Sweetrock. You're certain this won't be anymore challenging than your previous fight."),
+    :QuestDescription => _INTL("It appears Chara is your next target, found in Sweetrock. You're certain this won't be any more challenging than your previous fight."),
   }
 
   QUEST_FORMER_ELISE = {

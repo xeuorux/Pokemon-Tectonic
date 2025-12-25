@@ -149,18 +149,16 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
             next if move_data.function_code == "Invalid"
             next if move_data.is_signature?
             next unless move_data.learnable?
-
             if battle
-                next unless battle.canInvokeMove?(move)
+                next unless battle.canInvokeMove?(move_id)
             else
                 next if move_data.uninvocable?
             end
-
             @discoverableMoves.push(move_data.id)
         end
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validMoves = []
         validMoveNames = []
         until validMoves.length == 3
@@ -175,9 +173,12 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
             @chosenMove = validMoves.sample
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
+            return @chosenMove
         end
     end
 
@@ -284,7 +285,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
         ]
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validMoves = []
         validMoveNames = []
         until validMoves.length == 3
@@ -299,9 +300,12 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
             @chosenMove = validMoves.sample
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
+            return @chosenMove
         end
     end
 

@@ -44,7 +44,7 @@ class PokeBattle_Move_FlinchTargetLowerTargetSpd1 < PokeBattle_Move
 
         # Flinching aspect
         chance = pbAdditionalEffectChance(user, target, @calcType, 50)
-        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,chance,true)
             target.pbFlinch
         end
     end
@@ -54,7 +54,7 @@ class PokeBattle_Move_FlinchTargetLowerTargetSpd1 < PokeBattle_Move
 
         # Flinching aspect
         chance = pbAdditionalEffectChance(user, target, @calcType, 50)
-        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,chance,true)
             baseScore = baseDamage * 10 / user.level
             score += getFlinchingEffectScore(baseScore, user, target, self)
         end

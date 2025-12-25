@@ -204,15 +204,18 @@ class PokeBattle_Move_RaiseUserSpd4 < PokeBattle_StatUpMove
     end
 end
 
-# Empowered Bullet Train
-
 # Empowered Rock Polish
-class PokeBattle_Move_EmpoweredRockPolish < PokeBattle_Move_RaiseUserSpd4
+class PokeBattle_Move_EmpoweredRockPolish < PokeBattle_StatUpMove
     include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:SPEED, 6]
+    end
 
     def pbEffectGeneral(user)
         super
-        user.applyEffect(:ExtraTurns, 2)
+        craftItem(user,:ROCKGEM)
         transformType(user, :ROCK)
     end
 end
@@ -371,37 +374,43 @@ class PokeBattle_Move_RaiseUserSpDef5 < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Increases the user's critical hit rate. (Starfall)
+# Increases the user's critical hit rate by one increment.
 #===============================================================================
-class PokeBattle_Move_RaiseCriticalHitRate1 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        user.applyEffect(:RaisedCritChance,1)
-    end
-
-    def getEffectScore(user, _target)
-        return getCriticalRateBuffEffectScore(user)
-    end
+class PokeBattle_Move_RaiseCriticalHitRate1 < PokeBattle_Move_RaiseCriticalHitRate
+    def initialize(battle, move)
+        super
+        @critStages = 1
+    end	
 end
 
 #===============================================================================
-# Increases the user's critical hit rate by 2 stages. (Focus Energy)
+# Increases the user's critical hit rate by two increments.
 #===============================================================================
-class PokeBattle_Move_RaiseCriticalHitRate2 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:RaisedCritChance)
-            @battle.pbDisplay(_INTL("But it failed, since it cannot get any more pumped!")) if show_message
-            return true
-        end
-        return false
-    end
+class PokeBattle_Move_RaiseCriticalHitRate2 < PokeBattle_Move_RaiseCriticalHitRate
+    def initialize(battle, move)
+        super
+        @critStages = 2
+    end	
+end
 
-    def pbEffectGeneral(user)
-        user.incrementEffect(:RaisedCritChance, 2)
-    end
+#===============================================================================
+# Increases the user's critical hit rate by three increments.
+#===============================================================================
+class PokeBattle_Move_RaiseCriticalHitRate3 < PokeBattle_Move_RaiseCriticalHitRate
+    def initialize(battle, move)
+        super
+        @critStages = 3
+    end	
+end
 
-    def getEffectScore(user, _target)
-        return getCriticalRateBuffEffectScore(user, 2)
-    end
+#===============================================================================
+# Increases the user's critical hit rate by four increments.
+#===============================================================================
+class PokeBattle_Move_RaiseCriticalHitRate4 < PokeBattle_Move_RaiseCriticalHitRate
+    def initialize(battle, move)
+        super
+        @critStages = 4
+    end	
 end
 
 #===============================================================================

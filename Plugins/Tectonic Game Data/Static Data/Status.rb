@@ -9,7 +9,6 @@
 module GameData
     class Status
       attr_reader :id
-      attr_reader :id_number
       attr_reader :real_name
       attr_reader :animation
   
@@ -24,6 +23,7 @@ module GameData
       def initialize(hash)
         @id        = hash[:id]
         @id_number = hash[:id_number]
+        @id_number_severe = hash[:id_number_severe]
         @real_name = hash[:name] || "Unnamed"
         @animation = hash[:animation]
       end
@@ -31,6 +31,14 @@ module GameData
       # @return [String] the translated name of this status condition
       def name
         return _INTL(@real_name)
+      end
+
+      def id_number(severe = false)
+        if severe
+          return @id_number_severe || @id_number
+        else
+          return @id_number
+        end
       end
     end
   end
@@ -57,9 +65,13 @@ module GameData
     :animation => "Poison"
   })
   
+# Severe BURN, NUMB, and FROSTBITE do not have unique status entries
+# They are tracked via the pokemon's statusCount being greater than 0
+# While having that relevant base status
   GameData::Status.register({
     :id        => :BURN,
     :id_number => 3,
+    :id_number_severe => 10,
     :name      => _INTL("Burn"),
     :animation => "Burn"
   })
@@ -67,6 +79,7 @@ module GameData
   GameData::Status.register({
     :id        => :NUMB,
     :id_number => 4,
+    :id_number_severe => 11,
     :name      => _INTL("Numb"),
     :animation => "Paralysis"
   })
@@ -74,6 +87,7 @@ module GameData
   GameData::Status.register({
     :id        => :FROSTBITE,
     :id_number => 5,
+    :id_number_severe => 12,
     :name      => _INTL("Frostbitten"),
     :animation => "Frozen"
   })

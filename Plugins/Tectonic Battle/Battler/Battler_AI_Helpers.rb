@@ -279,9 +279,19 @@ class PokeBattle_Battler
         return false
     end
 
-    def hasStatBoostStealingMove?
+    def hasStatBoostStealingMove?(target)
         eachAIKnownMove do |m|
             next unless m.statStepStealingMove?
+            next if @battle.battleAI.aiPredictsFailure?(m, self, target)
+            return true
+        end
+        return false
+    end
+
+    def hasStatBoostClearingMove?(target)
+        eachAIKnownMove do |m|
+            next unless m.statStepClearingMove?
+            next if @battle.battleAI.aiPredictsFailure?(m, self, target)
             return true
         end
         return false
@@ -306,6 +316,14 @@ class PokeBattle_Battler
     def hasHazardRemovalMove?
         eachAIKnownMove do |m|
             next unless m.hazardRemovalMove?
+            return true
+        end
+        return false
+    end
+
+    def hasScreenRemovalMove?
+        eachAIKnownMove do |m|
+            next unless m.screenRemovalMove?
             return true
         end
         return false

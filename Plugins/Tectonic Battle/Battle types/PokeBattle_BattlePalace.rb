@@ -81,12 +81,11 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
     thismove = thispkmn.moves[idxMove]
     return false if !thismove
     return false if thismove.pp<=0
-    if thispkmn.effectActive?(:ChoiceBand) && thismove.id != thispkmn.getMove(:ChoieBand).id
-       thispkmn.hasActiveItem?(:CHOICEBAND)
+    if thispkmn.effectActive?(:ChoiceBand) && thismove.id != thispkmn.getMove(:ChoiceBand).id
       return false
     end
     # though incorrect, just for convenience (actually checks Torment later)
-    if thispkmn.effectActive?(:Torment) && thispkmn.lastMoveUsed
+    if thispkmn.tormented? && thispkmn.lastMoveUsed
       return false if thismove.id==thispkmn.lastMoveUsed
     end
     return true
@@ -146,7 +145,7 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
 
   def pbPinchChange(battler)
     return if !battler || battler.fainted?
-    return if battler.effectActive?(:Pinch) || battler.status == :SLEEP
+    return if battler.effectActive?(:Pinch) || battler.asleep?
     return if battler.hp > battler.totalhp / 2
     nature = battler.nature.id
     battler.applyEffect(:Pinch)

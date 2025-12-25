@@ -1,13 +1,13 @@
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :FutureSightCounter,
+    :id => :ForetoldMoveCounter,
     :real_name => "Turns Till Move",
     :type => :Integer,
-    :ticks_down => true,
-    :sub_effects => %i[FutureSightMove FutureSightUserPartyIndex FutureSightUserIndex FutureSightType],
+    :ticks_down_sor => true,
+    :sub_effects => %i[ForetoldMove ForetoldMoveUserPartyIndex ForetoldMoveUserIndex ForetoldMoveType],
     :expire_proc => proc do |battle, index, position, battler|
-        userIndex = position.effects[:FutureSightUserIndex]
-        partyIndex = position.effects[:FutureSightUserPartyIndex]
-        move = position.effects[:FutureSightMove]
+        userIndex = position.effects[:ForetoldMoveUserIndex]
+        partyIndex = position.effects[:ForetoldMoveUserPartyIndex]
+        move = position.effects[:ForetoldMove]
         moveUser = nil
         battle.eachBattler do |b|
             next if b.opposes?(userIndex)
@@ -32,37 +32,37 @@ GameData::BattleEffect.register_effect(:Position, {
         # NOTE: Future Sight failing against the target here doesn't count towards
         #       Stomping Tantrum.
         userLastMoveFailed = moveUser.lastMoveFailed
-        battle.futureSight = true
+        battle.foretoldMove = true
         moveUser.pbUseMoveSimple(move, index)
-        battle.futureSight = false
+        battle.foretoldMove = false
         moveUser.lastMoveFailed = userLastMoveFailed
         battler.pbFaint if battler.fainted?
     end,
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :FutureSightMove,
-    :real_name => "Incoming Move",
+    :id => :ForetoldMove,
+    :real_name => "Incoming",
     :type => :Move,
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :FutureSightUserIndex,
+    :id => :ForetoldMoveUserIndex,
     :real_name => "Foretold Move User Index",
     :type => :Position,
     :info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :FutureSightUserPartyIndex,
+    :id => :ForetoldMoveUserPartyIndex,
     :real_name => "Foretold Move User Party Index",
     :type => :PartyPosition,
     :info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :FutureSightType,
-    :real_name => "Incoming Move Type",
+    :id => :ForetoldMoveType,
+    :real_name => "Incoming Type",
     :type => :Type,
 })
 
@@ -96,7 +96,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :id => :Wish,
     :real_name => "Turns Till Wish",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :swaps_with_battlers => true,
     :expire_proc => proc do |battle, index, position, battler|
         if battler.canHeal?
@@ -141,6 +141,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :info_displayed => false,
     :type => :PartyPosition,
     :swaps_with_battlers => true,
+    :resets_eor => true,
     :entry_proc => proc do |battle, _index, position, battler|
         if battler.hasActiveAbility?(:LONGRECEIVER)
             abilityPasser = battler.ownerParty[position.effects[:PassingAbility]]
@@ -186,6 +187,25 @@ GameData::BattleEffect.register_effect(:Position, {
 })
 
 GameData::BattleEffect.register_effect(:Position, {
+    :id => :PassingKO,
+    :real_name => "PassingKO",
+    :info_displayed => false,
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        if battler.hasActiveAbility?(:HEROSJOURNEY)
+            statPasser = battler.ownerParty[position.effects[:PassingKO]]
+            if statPasser
+                statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
+                battle.pbDisplay(_INTL("{1} comes to avenge {2}!", battler.pbThis, statPasserName))
+                battler.applyEffect(:HerosJourneyRevenge)
+                position.disableEffect(:PassingKO)
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
     :id => :Kickback,
     :real_name => "Kickback",
     :type => :PartyPosition,
@@ -206,22 +226,67 @@ GameData::BattleEffect.register_effect(:Position, {
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :GaussAftershock,
-    :real_name => "Gauss Aftershock",
+    :id => :StormTrail,
+    :real_name => "Storm Trail",
     :type => :PartyPosition,
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
-        sourceMaker = battle.pbThisEx(battler.index, position.effects[:GaussAftershock])
-        battle.pbDisplay(_INTL("{1} was energized by the aftershock!", sourceMaker, battler.pbThis(true)))
+        sourceMaker = battle.pbThisEx(battler.index, position.effects[:StormTrail])
+        battle.pbDisplay(_INTL("{1} was powered up by the trail of stormy energy left by {2}!", battler.pbThis(true), sourceMaker))
         battler.tryRaiseStat(:SPEED, battler, showFailMsg: true)
-        anyPPRestored = false
-        battler.pokemon.moves.each_with_index do |m, i|
-            next if m.total_pp <= 0 || m.pp == m.total_pp
-            m.pp = m.total_pp
-            battler.moves[i].pp = m.total_pp
-            anyPPRestored = true
+        position.disableEffect(:StormTrail)
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :MistTrail,
+    :real_name => "Mist Trail",
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        sourceMaker = battle.pbThisEx(battler.index, position.effects[:MistTrail])
+        battle.pbDisplay(_INTL("{1} was enwrapped by the trail of mist left by {2}!", battler.pbThis(true), sourceMaker))
+        battler.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, battler, showFailMsg: true)
+        position.disableEffect(:MistTrail)
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :MagmaTrail,
+    :real_name => "Magma Trail",
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        sourceMaker = battle.pbThisEx(battler.index, position.effects[:MagmaTrail])
+        battle.pbDisplay(_INTL("{1} was enraged by the trail of magma left by {2}!", battler.pbThis(true), sourceMaker))
+        battler.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, battler, showFailMsg: true)
+        position.disableEffect(:MagmaTrail)
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :Stormshards,
+    :real_name => "Stormshards",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _index, _position, battler|
+        # specifying "the ground below" cuz it's a position eff and not a battler eff
+        battle.pbDisplay(_INTL("The ground below {1} was surrounded by rocky shards!", battler.pbThis(true)))
+        battle.scene.pbRefresh
+    end,
+    :remain_proc => proc do |battle, index, position, battler|
+        if battler.takesIndirectDamage?
+        battler.applyFractionalDamage(1.0 / 8.0)
+        battle.pbDisplay(_INTL("{1} is hurt by the rocky shards!", battler.pbThis))
         end
-        battle.pbDisplay(_INTL("{1}'s PP was restored!", sourceMaker, battler.pbThis(true))) if anyPPRestored
-        position.disableEffect(:GaussAftershock)
+    end,
+    :disable_proc => proc do |battle, index, position, battler|
+        battle.pbDisplay(_INTL("The rocky shards surrounding {1} were sent away.", battler.pbThis(true)))
+    end,
+    :expire_proc => proc do |battle, index, position, battler|
+        if battler.takesIndirectDamage?
+        battler.applyFractionalDamage(1.0 / 8.0)
+        battle.pbDisplay(_INTL("The rocky shards surrounding {1} dissipate.", battler.pbThis(true)))
+        end
     end,
 })

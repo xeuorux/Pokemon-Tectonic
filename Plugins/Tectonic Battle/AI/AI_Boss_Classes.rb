@@ -362,14 +362,13 @@ class PokeBattle_AI_GENESECT < PokeBattle_AI_Boss
                 next unless b
                 type1 = b.type1
                 type2 = b.type2
-                weakToElectric += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ELECTRIC, type1,
-type2))
+                weakToElectric += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ELECTRIC, [type1, type2]))
                 maxValue = weakToElectric if weakToElectric > maxValue
-                weakToFire += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:FIRE, type1, type2))
+                weakToFire += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:FIRE, [type1, type2]))
                 maxValue = weakToFire if weakToFire > maxValue
-                weakToIce += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ICE, type1, type2))
+                weakToIce += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ICE, [type1, type2]))
                 maxValue = weakToIce if weakToIce > maxValue
-                weakToWater += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:WATER, type1, type2))
+                weakToWater += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:WATER, [type1, type2]))
                 maxValue = weakToWater if weakToWater > maxValue
             end
 
@@ -408,14 +407,29 @@ class PokeBattle_AI_DARKRAI < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @warnedIFFMove.add(:CALLOFTHEVOID, {
-            :condition => proc { |_move, user, _target, battle|
-                next battle.turnCount % 3 == 0
+            :condition => proc { |_move, user, _target, _battle|
+                anyAsleep = false
+                user.battle.battlers.each do |b|
+                    next if !b || !user.opposes?(b)
+                    anyAsleep = true if b.asleep? || b.effectActive?(:Yawn)
+                end
+                next !anyAsleep
             },
             :warning => proc { |_move, user, _targets, _battle|
                 _INTL("The air around {1} turns dark and distorted.",user.pbThis(true))
             },
         })
-        @requiredMoves.push(:LULLABY)
+    end
+end
+
+class PokeBattle_AI_DIANCIE < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @beforePhaseChange.push(proc { |user, _battle|
+            if user.avatarPhase == 1
+                battle.forceUseMove(user, :GEMFORGEDOATH, user.index)
+            end
+        })
     end
 end
 
@@ -463,7 +477,7 @@ class PokeBattle_AI_ELECTRODE < PokeBattle_AI_Boss
                 next battle.turnCount >= TURNS_TO_EXPLODE
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("{1} is fully charged. Its about to explode!",user.pbThis)
+                _INTL("{1} is fully charged. It's about to explode!",user.pbThis)
             },
         })
 
@@ -591,11 +605,11 @@ class PokeBattle_AI_SAWSBUCK < PokeBattle_AI_Boss
 end
 
 class PokeBattle_AI_ROTOM < PokeBattle_AI_Boss
-    FORM_1_MOVESET = %i[HEATWAVE DISCHARGE]
-    FORM_2_MOVESET = %i[SURF DISCHARGE]
+    FORM_1_MOVESET = %i[HEATWAVE ARCLAMP]
+    FORM_2_MOVESET = %i[SURF ARCLAMP]
     FORM_3_MOVESET = %i[FROSTBREATH THUNDERBOLT]
     FORM_4_MOVESET = %i[AIRSLASH THUNDERBOLT]
-    FORM_5_MOVESET = %i[PETALTEMPEST DISCHARGE]
+    FORM_5_MOVESET = %i[PETALTEMPEST ARCLAMP]
     MOVESETS = [FORM_1_MOVESET,FORM_2_MOVESET,FORM_3_MOVESET,FORM_4_MOVESET,FORM_5_MOVESET]
 
     def initialize(user, battle)
@@ -653,7 +667,7 @@ end
 class PokeBattle_AI_RUBARIOR < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:CURSE, {
+        @warnedIFFMove.add(:CURSEDOATH, {
             :condition => proc { |_move, user, target, _battle|
                 next target.hasRaisedStatSteps?
             },
@@ -783,7 +797,7 @@ class PokeBattle_AI_KLANG < PokeBattle_AI_Boss
             end
         })
 
-        @wholeRound.push(:DISCHARGE)
+        @wholeRound.push(:ARCLAMP)
         @wholeRound.push(:VOLTTACKLE)
     end
 end
@@ -806,25 +820,18 @@ class PokeBattle_AI_ELDEGOSS < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_DUBWOOL < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        @firstTurnOnly.push(:SKULLBASH)
-    end
-end
-
 class PokeBattle_AI_CLAYDOL < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @warnedIFFMove.add(:REFLECT, {
             :condition => proc { |_move, user, _target, _battle|
-                physicalAttacker = false
-                user.lastFoeAttacker.each do |attacker|
-                    next unless attacker.lastRoundMoveCategory == 0
-                    physicalAttacker = true
+                physicalAttackingFoe = false
+                user.eachOpposing do |foe|
+                    next unless foe.lastRoundMoveCategory == 0
+                    physicalAttackingFoe = true
                     break
                 end
-                next physicalAttacker
+                next physicalAttackingFoe
             },
             :warning => proc { |_move, user, targets, _battle|
                 _INTL("{1} is molding its clay for physical defense!",user.pbThis)
@@ -833,13 +840,13 @@ class PokeBattle_AI_CLAYDOL < PokeBattle_AI_Boss
 
         @warnedIFFMove.add(:LIGHTSCREEN, {
             :condition => proc { |_move, user, _target, _battle|
-                physicalAttacker = false
-                user.lastFoeAttacker.each do |attacker|
-                    next unless attacker.lastRoundMoveCategory == 1
-                    physicalAttacker = true
+                specialAttackingFoe = false
+                user.eachOpposing do |foe|
+                    next unless foe.lastRoundMoveCategory == 1
+                    specialAttackingFoe = true
                     break
                 end
-                next physicalAttacker
+                next specialAttackingFoe
             },
             :warning => proc { |_move, user, targets, _battle|
                 _INTL("{1} is molding its clay for special defense!",user.pbThis)
@@ -921,7 +928,7 @@ end
 class PokeBattle_AI_SUDOWOODO < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:BUGBITE, {
+        @warnedIFFMove.add(:ENCORE, {
             :condition => proc { |_move, _user, target, _battle|
                 next target.lastRoundMoveCategory == 2
             },
@@ -946,7 +953,7 @@ end
 class PokeBattle_AI_SLOWKING < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        secondMoveEveryTurn(:COSMICPOWER)
+        secondMoveEveryTurn(:CALMMIND)
         secondMoveEveryTurn(:WORKUP)
     end
 end
@@ -1064,5 +1071,30 @@ class PokeBattle_AI_TOXTRICITY < PokeBattle_AI_Boss
                 _INTL("{1} is gearing up for a big release!",user.pbThis)
             },
         })
+    end
+end
+
+class PokeBattle_AI_SIGILYPH < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        secondMoveEveryTurn(:DISCOURAGE)
+        everyThreeTurns(:EMPOWEREDFUTURESIGHT)
+
+        @warnedIFFMove.add(:POLARIZEDROOM, {
+            :condition => proc { |_move, _user, _target, battle|
+                next !battle.roomActive?
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("{1} yearns for a high-quality room!",user.pbThis)
+            },
+        })
+    end
+end
+
+class PokeBattle_AI_GENGAR < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        firstMoveEveryOtherTurn(:SPITEFULCHANT)
+        secondMoveEveryTurn(:SPECTRALTONGUE)
     end
 end

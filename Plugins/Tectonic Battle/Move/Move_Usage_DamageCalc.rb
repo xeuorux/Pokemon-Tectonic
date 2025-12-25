@@ -100,7 +100,7 @@ class PokeBattle_Move
     def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
         pseudoLevel = 15.0 + (attacker_level.to_f / 2.0)
         levelMultiplier = 2.0 + (0.4 * pseudoLevel)
-        damage  = 2.0 + ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
+        damage  = ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
         return damage
     end
 
@@ -134,6 +134,7 @@ class PokeBattle_Move
         return true if user.shouldAbilityApply?(:UNAWARE, aiCheck)
         return true if user.shouldAbilityApply?(:BLADEBRAINED, aiCheck) && bladeMove?
         return true if user.shouldAbilityApply?(:TUNEDOUT, aiCheck) && soundMove?
+        return true if empoweredMove?
         return false
     end
 
@@ -169,9 +170,9 @@ class PokeBattle_Move
             target.eachAbilityShouldApply(aiCheck) do |ability|
                 BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
             end
-            target.eachAlly do |b|
-                b.eachAbilityShouldApply(aiCheck) do |ability|
-                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
+            target.eachAlly do |owner|
+                owner.eachAbilityShouldApply(aiCheck) do |ability|
+                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,owner,self,multipliers,baseDmg,type,aiCheck)
                 end
             end
         end
@@ -181,7 +182,7 @@ class PokeBattle_Move
         weather = @battle.pbWeather
         case weather
         when :Sunshine, :HarshSun
-            if type == :FIRE
+            if type == :FIRE || (type == :GRASS && weather == :HarshSun)
                 damageBonus = weather == :HarshSun ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
@@ -192,7 +193,7 @@ class PokeBattle_Move
                 multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
         when :Rainstorm, :HeavyRain
-            if type == :WATER
+            if type == :WATER || (type == :ELECTRIC && weather == :HeavyRain)
                 damageBonus = weather == :HeavyRain ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
@@ -271,6 +272,10 @@ class PokeBattle_Move
         if user.effectActive?(:Fracture)
             multipliers[:final_damage_multiplier] *= 0.66
         end
+        #Blindness
+        if user.effectActive?(:Blindness)
+            multipliers[:final_damage_multiplier] *= 0.5
+        end
     end
 
     def pbCalcProtectionsDamageMultipliers(user,target,multipliers,checkingForAI=false)
@@ -294,11 +299,24 @@ class PokeBattle_Move
                 else
                     multipliers[:final_damage_multiplier] *= 0.5
                 end
-            elsif target.pbOwnSide.effectActive?(:DiamondField)
+            elsif target.pbOwnSide.effectActive?(:Sanctuary)
                 if @battle.pbSideBattlerCount(target) > 1
-                    multipliers[:final_damage_multiplier] *= 3 / 4.0
+                    multipliers[:final_damage_multiplier] *= 4 / 5.0
                 else
-                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                    multipliers[:final_damage_multiplier] *= 3 / 4.0
+                end
+            end
+        else
+            if !checkingForAI &&  
+                (target.pbOwnSide.effectActive?(:Reflect) ||
+                target.pbOwnSide.effectActive?(:LightScreen) ||
+                target.pbOwnSide.effectActive?(:AuroraVeil) ||
+                target.pbOwnSide.effectActive?(:Sanctuary))
+                GameData::Ability.each do |ability_data|
+                next unless ability_data.flags&.include?("IgnoreScreens")
+                if user.hasAbility?(ability_data.id)
+                user.aiLearnsAbility(ability_data.id)
+                end
                 end
             end
 
@@ -312,7 +330,7 @@ class PokeBattle_Move
             end
         end
         # Partial protection moves
-        if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard])
+        if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard,:Floodgate])
             multipliers[:final_damage_multiplier] *= 0.5
         end
         if target.effectActive?(:EmpoweredDetect)
@@ -355,8 +373,10 @@ class PokeBattle_Move
             stab = 1.5
             if user.shouldAbilityApply?(:ADAPTED,checkingForAI)
                 stab *= 4.0/3.0
+                user.aiLearnsAbility(:ADAPTED)
             elsif user.shouldAbilityApply?(:ULTRAADAPTED,checkingForAI)
                 stab *= 3.0/2.0
+                user.aiLearnsAbility(:ULTRAADAPTED)
             end
             multipliers[:final_damage_multiplier] *= stab
         end
@@ -378,11 +398,16 @@ class PokeBattle_Move
         if user.pbOwnSide.effectActive?(:TurbulentSky)
             multipliers[:final_damage_multiplier] *= 1.3
         end
+
+        # Empowered Tailwind
+        if user.pbOwnSide.effectActive?(:EmpoweredTailwind)
+            multipliers[:final_damage_multiplier] *= 1.3
+        end
     end
 
     def pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
-        # Bushwacker tribe
-        if user.hasTribeBonus?(:BUSHWACKER)
+        # Bushwhacker tribe
+        if user.hasTribeBonus?(:BUSHWHACKER)
             if checkingForAI
                 expectedTypeMod = @battle.battleAI.pbCalcTypeModAI(type, user, target, self)
                 multipliers[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(expectedTypeMod)
@@ -404,7 +429,12 @@ class PokeBattle_Move
         # Mystic tribe
         if user.hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
             multipliers[:final_damage_multiplier] *= 1.25
-        end    
+        end
+
+        # Deceiver tribe
+        if user.hasTribeBonus?(:DECEIVER) && user.species_data
+            multipliers[:final_damage_multiplier] *= 1.15 unless user.species_data.hasType?(type)
+        end
 
         # Scavenger tribe
         if user.hasTribeBonus?(:SCAVENGER)
@@ -452,7 +482,6 @@ class PokeBattle_Move
         pbCalcStatusesDamageMultipliers(user,target,multipliers,aiCheck)
         pbCalcProtectionsDamageMultipliers(user,target,multipliers,aiCheck)
         pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,aiCheck)
-        pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,aiCheck)
 
         # Item effects that alter damage
         user.eachItemShouldApply(aiCheck) do |item|
@@ -461,6 +490,8 @@ class PokeBattle_Move
         target.eachItemShouldApply(aiCheck) do |item|
             BattleHandlers.triggerDamageCalcTargetItem(item,user,target,self,multipliers,baseDmg,type,aiCheck)
         end
+
+        pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,aiCheck)
 
         if target.effectActive?(:DeathMark)
             multipliers[:final_damage_multiplier] *= 1.5
@@ -504,6 +535,10 @@ class PokeBattle_Move
             if target.effectActive?(:RefugeDamageReduction)
                 multipliers[:final_damage_multiplier] *= 0.7
             end
+            # Snorer
+            if user.effectActive?(:Snorer)
+                multipliers[:final_damage_multiplier] *= 0.50
+            end
         end
 
         # Mass Attack
@@ -514,12 +549,14 @@ class PokeBattle_Move
 
         # Multi-targeting attacks
         if numTargets > 1
-            if user.shouldAbilityApply?(:RESONANT,aiCheck)
-                multipliers[:final_damage_multiplier] *= 1.25
-            else
-                multipliers[:final_damage_multiplier] *= 0.75
-            end
+            multipliers[:final_damage_multiplier] *= 0.75
+            multipliers[:final_damage_multiplier] *= 1.5 if user.shouldAbilityApply?(:RESONANT,aiCheck)
         end
+
+        multipliers[:final_damage_multiplier] *= 0.5 if !user.opposes?(target) && halfDamageToAllies?
+
+        # Final turn of Summer Festivals
+        multipliers[:final_damage_multiplier] *= 1.5 if user.pbOwnSide.effectActive?(:SummerFestivalsEnd)
 
         # Battler properites
         multipliers[:base_damage_multiplier] *= user.dmgMult

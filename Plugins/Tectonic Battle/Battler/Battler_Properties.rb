@@ -97,7 +97,8 @@ class PokeBattle_Battler
         val = @pokemon.extraMovesPerTurn || 0
         val += @effects[:ExtraTurns]
         val += 1 if effectActive?(:GreaterGlories)
-        val += 1 if hasActiveAbility?(:HEAVENSCROWN) && @battle.totalEclipse?
+        val += 1 if effectActive?(:TemporalDistortion)
+        val += 1 if effectActive?(:DisasterResponse)
         return val
     end
 
@@ -107,25 +108,44 @@ class PokeBattle_Battler
 
     def getMoves
         movesArray = @moves.clone
-        if @battle.field.effectActive?(:InsightRoom)
-            insightMove = getInsightMove
-            movesArray.push(insightMove) if insightMove
+        if hasActiveAbility?(:HIGHJUDGE)
+            hasJudgmentAlready = false
+            movesArray.each do |move|
+                next unless move.id == :JUDGMENT
+                hasJudgmentAlready = true
+                break
+            end
+            unless hasJudgmentAlready
+                judgment = @battle.getBattleMoveInstanceFromID(:JUDGMENT)
+                movesArray.push(judgment)
+            end
+        end
+        if hasActiveAbility?(:PURESTLIGHT)
+            lightthatburnsthesky = @battle.getBattleMoveInstanceFromID(:LIGHTTHATBURNSTHESKY)
+            movesArray.push(lightthatburnsthesky)
+        end
+        if @battle.field.effectActive?(:InsightRoom) && @pokemon
+            speciesLearnSet = @pokemon.getMoveList
+            speciesLearnSet.each do |learnSetEntry|
+                moveLevel = learnSetEntry[0]
+                break if moveLevel > @level
+                next if moveLevel < 45
+                moveAtThisLevel = learnSetEntry[1]
+                
+                hasMoveAlready = false
+                movesArray.each do |existingMove|    
+                    next unless existingMove.id == moveAtThisLevel
+                    hasMoveAlready = true
+                    break
+                end
+                next if hasMoveAlready
+
+                insightMove = @battle.getBattleMoveInstanceFromID(moveAtThisLevel)
+                movesArray.push(insightMove)
+                break
+            end
         end
         return movesArray
-    end
-
-    def getInsightMove
-        return nil if @pokemon.nil?
-        speciesLearnSet = @pokemon.getMoveList.reverse
-        speciesLearnSet.each do |learnSetEntry|
-            moveLevel = learnSetEntry[0]
-            next if moveLevel > @level
-            next if moveLevel > 48
-            move = learnSetEntry[1]
-            next if @pokemon.hasMove?(move)
-            return @battle.getBattleMoveInstanceFromID(move)
-        end
-        return nil
     end
 
     def getHighestLearnsetMoveID
@@ -267,7 +287,7 @@ class PokeBattle_Battler
         @effects[:Refurbished].times do
             ret /= 2.0
         end
-        ret *= 2 if @battle.field.effectActive?(:WarpingCore)
+        ret *= 2 if @battle.gravityIntensified?
         ret = ret.round
         ret = 1 if ret < 1
         unless @battle.moldBreaker

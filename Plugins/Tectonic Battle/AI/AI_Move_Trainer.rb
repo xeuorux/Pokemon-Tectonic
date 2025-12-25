@@ -294,7 +294,7 @@ class PokeBattle_AI
         if move.randomEffect?
             type = pbRoughType(move, user)
             realProcChance = move.pbAdditionalEffectChance(user, target, type, 0, true)
-            realProcChance = 0 unless move.canApplyRandomAddedEffects?(user,target,false,true)
+            realProcChance = 0 unless move.canApplyRandomAddedEffects?(user,target,realProcChance,false,true)
             factor = (realProcChance / 100.0)
             echoln("\t[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by #{factor} based on effect chance")
             effectScore *= factor
@@ -421,11 +421,6 @@ class PokeBattle_AI
     def getDamageAnalysisAI(move, user, target, numTargets = 1)
         # Calculate how much damage the move will do (roughly)
         realDamage,subDestroyed = pbTotalDamageAI(move, user, target, numTargets)
-
-        if playerTribalBonus.hasTribeBonus?(:DECEIVER)
-            realDamage *= 1.5
-            echoln("\t[MOVE SCORING] #{user.pbThis} is overestimating its damage by 50 percent due to the deceiver tribal bonus")
-        end
 
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage * 100.0 / target.totalhp

@@ -401,13 +401,13 @@ class PokemonDataBox < SpriteWrapper
 		statusX -= 8 if @numHPBars > 3
 		firstStatusY = 36 + (@numHPBars - 1) * 2
 		statuses = @battler.getStatuses()
-		statusID = GameData::Status.get(statuses[0]).id_number
+		statusID = GameData::Status.get(statuses[0]).id_number(@battler.statusCount > 0)
 		imagePos.push([addLanguageSuffix("Graphics/Pictures/Battle/icon_statuses"),@spriteBaseX+statusX,firstStatusY,
 			 0,statusID*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 
 		# Draw status icon for bosses
 		if statuses.length > 1
-			statusID2 = GameData::Status.get(statuses[1]).id_number
+			statusID2 = GameData::Status.get(statuses[1]).id_number(@battler.bossStatusCount > 0)
 			x = @spriteBaseX + statusX
 			y = firstStatusY + STATUS_ICON_HEIGHT + 4
 			imagePos.push([addLanguageSuffix("Graphics/Pictures/Battle/icon_statuses"),x,y,

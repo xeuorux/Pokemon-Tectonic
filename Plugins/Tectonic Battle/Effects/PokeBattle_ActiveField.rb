@@ -24,6 +24,9 @@ class PokeBattle_ActiveField
         @eor_proc = proc do |effectData|
             effectData.eor_field(@battle)
         end
+        @sor_proc = proc do |effectData|
+            effectData.sor_field(@battle)
+        end
         @remain_proc = proc do |effectData|
             effectData.remain_field(@battle)
         end

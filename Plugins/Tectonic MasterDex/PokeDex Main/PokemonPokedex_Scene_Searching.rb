@@ -274,9 +274,9 @@ class PokemonPokedex_Scene
     end
 
     def searchByEvolutionMethod
-        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"), _INTL("Split Evo"), _INTL("Cancel")]
+        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"),  _INTL("Has Prevo and Evo"), _INTL("Split Evo"), _INTL("Cancel")]
         relationSelection = pbMessage(_INTL("Which search?"), selections, selections.length)
-        return if relationSelection == 5
+        return if relationSelection == 6
 
         if [0,1].include?(relationSelection)
             evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
@@ -312,6 +312,8 @@ class PokemonPokedex_Scene
                 when 3
                     next dex_item[:data].get_prevolutions.empty?
                 when 4
+                    next !dex_item[:data].get_evolutions.empty? && !dex_item[:data].get_prevolutions.empty?
+                when 5
                     next dex_item[:data].get_evolutions.length > 1
                 end
 
@@ -536,6 +538,7 @@ class PokemonPokedex_Scene
         commands = []
         tribes = []
         GameData::Tribe.each do |tribe|
+            next if tribe.id == :DEBUG_TESTTRIBE && !$DEBUG
             tribes.push(tribe.id)
             commands.push(getTribeName(tribe.id))
         end
@@ -796,12 +799,10 @@ class PokemonPokedex_Scene
                         anyNon4s = true
                     end
 
-                    if learnLevel != 0
-                        if allMoves.include?(moveSym)
-                            anyDuplicates = true
-                        else
-                            allMoves.push(moveSym)
-                        end
+                    if allMoves.include?(moveSym)
+                        anyDuplicates = true
+                    else
+                        allMoves.push(moveSym)
                     end
 
                     moveData = GameData::Move.get(moveSym)
@@ -917,7 +918,7 @@ class PokemonPokedex_Scene
                 GameData::Type.each do |type|
                     next if type.pseudo_type
 
-                    effectiveness = Effectiveness.calculate(type.id, dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1)
+                    effectiveness = Effectiveness.calculate(type.id, [dex_item[:data].type1, dex_item[:data].type2])
 
                     if sectionSelection == 4 && Effectiveness.ineffective?(effectiveness)
                         hasThingOfInterest = true
@@ -972,7 +973,7 @@ class PokemonPokedex_Scene
 
                     survivesSearch = true
                     typesSearchInfo.each do |type, reversed|
-                        effect = Effectiveness.calculate(type, dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1)
+                        effect = Effectiveness.calculate(type, [dex_item[:data].type1, dex_item[:data].type2])
 
                         case effectivenessSelection
                         when 0
@@ -1033,6 +1034,7 @@ class PokemonPokedex_Scene
     end
 
     def sortByOther
+        cmdSortByName = -1
         cmdSortByType = -1
         cmdSortByGenderRate = -1
         cmdSortByHeight = -1
@@ -1044,6 +1046,7 @@ class PokemonPokedex_Scene
         cmdSortByMonumentTrainerCount = -1
         cmdSortByCoverageTypesCount = -1
         selections = []
+        selections[cmdSortByName = selections.length] = _INTL("Name")
         selections[cmdSortByType = selections.length] = _INTL("Type")
         selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
         selections[cmdSortByHeight = selections.length] = _INTL("Height")
@@ -1057,8 +1060,11 @@ class PokemonPokedex_Scene
         selections.push(_INTL("Cancel"))
         selection = pbMessage(_INTL("Sort by what?"), selections, selections.length + 1)
         return if selection >= selections.length - 1
+        # handle name sort separately to handle inbuilt methods for lexicographic sort
+        if cmdSortByName > -1 && selection == cmdSortByName
+            return sortByName
+        end
         dexlist = @dexlist
-
         typesCount = 0
         GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type }
 
@@ -1110,4 +1116,15 @@ class PokemonPokedex_Scene
         end
         return dexlist
     end
+end
+
+def sortByName
+    sortDirection = pbMessage(_INTL("Which direction?"), [_INTL("A-Z"), _INTL("Z-A"), _INTL("Cancel")], 3)
+    return if sortDirection == 2
+    dexlist = @dexlist
+    dexlist.sort_by! { |dex_item| dex_item[:data].name }
+    if sortDirection == 1
+        dexlist.reverse!
+    end
+    return dexlist
 end

@@ -1,6 +1,7 @@
 name: Deploy Cable Club
 
 on:
+<<<<<<< HEAD
   pull_request:
     types: [closed]
     branches:
@@ -33,3 +34,24 @@ jobs:
       shell: pwsh
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+=======
+    pull_request:
+        types: [closed]
+        branches:
+            - development
+
+jobs:
+    deploy:
+        if: github.event.pull_request.merged == true
+        runs-on: windows-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Execute deployment script
+              run: .\deploy_cableclub.ps1
+              shell: pwsh
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+>>>>>>> f1443b9ee6e3a7c2e126f0b8b68ec602406456a6

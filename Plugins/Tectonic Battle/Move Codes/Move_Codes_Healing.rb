@@ -50,6 +50,39 @@ class PokeBattle_Move_HealUserPositionNextTurn < PokeBattle_Move
 end
 
 #===============================================================================
+# Battler in user's position is healed by 3/4 of its max HP, in two rounds. (Arc of Hope)
+#===============================================================================
+class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move
+    def healingMove?; return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.position.effectActive?(:Wish)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since a Wish is already about to come true for {1}!", user.pbThis(true)))
+            end
+            return true
+        end
+        return false
+    end
+
+    def wishAmount(user)
+        return (user.totalhp / 1.33).round
+    end
+
+    def pbEffectGeneral(user)
+        user.position.applyEffect(:Wish, 3)
+        user.position.applyEffect(:WishAmount, wishAmount(user))
+        user.position.applyEffect(:WishMaker, user.pokemonIndex)
+    end
+
+    def getEffectScore(user, _target)
+        score = (user.totalhp / user.level) * 30
+        score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
+        return score
+    end
+end
+
+#===============================================================================
 # Heals user by 1/2 of its max HP, or 2/3 of its max HP in sunshine. (Synthesis)
 #===============================================================================
 class PokeBattle_Move_HealUserDependingOnSunshine < PokeBattle_HealingMove
@@ -237,7 +270,7 @@ class PokeBattle_Move_StartHealUserEachTurnTrapUser < PokeBattle_Move
     def getEffectScore(user, _target)
 		return 0 if user.effects[:PerishSong] > 0
         score = 50
-        score += 30 if @battle.pbIsTrapped?(user.index)
+        score += 30 if user.trapped?
         score += 20 if user.firstTurn?
         score += 20 if user.aboveHalfHealth?
         return score
@@ -277,7 +310,7 @@ class PokeBattle_Move_HealTargetHalfOfTotalHP < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.hp == target.totalhp
+        if target.healthCapped?
             @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
             return true
         elsif !target.canHeal?
@@ -290,7 +323,7 @@ class PokeBattle_Move_HealTargetHalfOfTotalHP < PokeBattle_Move
     def healingRatio(user)
         ratio = 1.0 / 2.0
         ratio *= 1.5 if pulseMove? && user.hasActiveAbility?(:MEGALAUNCHER)
-        ratio *= 1.3 if pulseMove? && user.hasActiveAbility?(:REFRACTIVE)
+        ratio *= 1.3 if pulseMove? && user.hasActiveAbility?(:EMANATION)
         return ratio
     end
 
@@ -373,7 +406,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         failed = true
         @battle.eachSameSideBattler(user) do |b|
-            next if b.hp == b.totalhp
+            next if b.healthCapped?
             failed = false
             break
         end
@@ -385,7 +418,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.hp == target.totalhp
+        if target.healthCapped?
             @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
             return true
         elsif !target.canHeal?
@@ -417,7 +450,7 @@ class PokeBattle_Move_HealTargetDependingOnMoonglow < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.hp == target.totalhp
+        if target.healthCapped?
             @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
             return true
         elsif !target.canHeal?
@@ -650,6 +683,14 @@ end
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
 class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.boss?
+            @battle.pbDisplay(_INTL("{1} is too powerful to be compelled to rest!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
     def pbEffectAgainstTarget(user, target)
         @battle.forceUseMove(user, :REST)
         @battle.forceUseMove(target, :REST)
@@ -658,12 +699,12 @@ class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
     def getEffectScore(user, target)
         score = 0
 
-        unless user.fullHealth?
+        unless user.healthCapped?
             score += user.applyFractionalHealing(1.0, aiCheck: true)
             score -= getSleepEffectScore(nil, user) * 0.45
             score += 45 if user.hasStatusNoSleep?
         end
-        unless target.fullHealth?
+        unless target.healthCapped?
             score -= target.applyFractionalHealing(1.0, aiCheck: true)
             score += getSleepEffectScore(nil, target)
             score -= 45 if target.hasStatusNoSleep?
@@ -722,6 +763,22 @@ class PokeBattle_Move_HealUserBasedOnWeightHalvesWeight < PokeBattle_HealingMove
     def pbEffectGeneral(user)
         super
         user.incrementEffect(:Refurbished)
+    end
+
+    def getDetailsForMoveDex(detailsList = [])
+        values = [1024, 512, 256, 128, 64]
+        unit = "kg"
+        if System.user_language[3..4] == "US" # If the user is in the United States
+            values.map! { |weight| (weight / 0.45359).round }
+            unit = "lbs"
+        end
+        detailsList << _INTL("Heals more the heavier the user is.")
+        detailsList << _INTL("<u>{1} {2} and more:</u> 100%", values[0], unit)
+        detailsList << _INTL("<u>{1} - {2} {3}:</u> 75%", values[1], values[0]-1, unit)
+        detailsList << _INTL("<u>{1} - {2} {3}:</u> 50%", values[2], values[1]-1, unit)
+        detailsList << _INTL("<u>{1} - {2} {3}:</u> 25%", values[3], values[2]-1, unit)
+        detailsList << _INTL("<u>{1} - {2} {3}:</u> 12.5%", values[4], values[3]-1, unit)
+        detailsList << _INTL("<u>{1} {2} and less:</u> 6.25%", values[4]-1, unit)
     end
 end
 

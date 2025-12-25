@@ -13,10 +13,12 @@ class PokeBattle_Battle
     attr_reader   :turnCount
     attr_accessor :decision         # Decision: 0=undecided; 1=win; 2=loss; 3=escaped; 4=caught
     attr_reader   :player           # Player trainer (or array of trainers)
-    attr_accessor   :opponent         # Opponent trainer (or array of trainers)
+    attr_accessor :opponent         # Opponent trainer (or array of trainers)
     attr_accessor :items            # Items held by opponents
     attr_accessor :endSpeeches
     attr_accessor :endSpeechesWin
+    attr_accessor :party1
+    attr_accessor :party2
     attr_accessor :party1starts     # Array of start indexes for each player-side trainer's party
     attr_accessor :party2starts     # Array of start indexes for each opponent-side trainer's party
     attr_accessor :internalBattle   # Internal battle flag
@@ -43,7 +45,7 @@ class PokeBattle_Battle
     attr_accessor :allMovesUsedSide0     # The list of all moves used by side 0, in order
     attr_accessor :allMovesUsedSide1     # The list of all moves used by side 1, in order
     attr_reader   :switching        # True if during the switching phase of the round
-    attr_accessor :futureSight      # True if Future Sight is hitting
+    attr_accessor :foretoldMove      # True if a foretold move (e.g. Future Sight) is hitting
     attr_accessor :specialUsage     # True if a special usage is happening
     attr_reader   :endOfRound       # True during the end of round
     attr_accessor :moldBreaker      # True if Mold Breaker applies
@@ -67,6 +69,10 @@ class PokeBattle_Battle
     attr_accessor :laneTargeting # Whether or not pokemon can only target foes across from them
     attr_accessor :shiftEnabled # Whether a Pokemon can use an action to switch spots with their ally
     attr_accessor :doubleShift # Whether shifting is allowed in double battles
+    attr_accessor :is_recorded
+	attr_accessor :is_replayed
+	attr_accessor :recorded_choice #Only used in recorded battles, logs the last non-move choice made
+	attr_accessor :replayed_choice #Only used in replayed battles, logs the next non-move choice that will be made
 
     #=============================================================================
     # Creating the battle class
@@ -139,7 +145,7 @@ class PokeBattle_Battle
         @allMovesUsedSide0 = []
         @allMovesUsedSide1 = []
         @switching         = false
-        @futureSight       = false
+        @foretoldMove       = false
         @specialUsage      = false
         @endOfRound        = false
         @moldBreaker       = false
@@ -162,6 +168,10 @@ class PokeBattle_Battle
         @laneTargeting = false
         @shiftEnabled = false
         @doubleShift = false
+        @recorded_choice = nil
+        @replayed_choice = nil
+        @is_recorded = false
+	    @is_replayed = false
         if GameData::Move.exists?(:STRUGGLE)
             @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
         else
@@ -172,13 +182,13 @@ class PokeBattle_Battle
         
         # System for learning the player's abilities
         @knownAbilities = {}
+        echoln("===PARTY 1 KNOWN ABILITIES===")
         @party1.each do |pokemon|
-            @knownAbilities[pokemon.personalID] = []
-
-            next unless pokemon.getAbilityList.length == 1
-            abilityToKnow = pokemon.getAbilityList[0][0]
-            @knownAbilities[pokemon.personalID].push(abilityToKnow)
-            echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI, since species only has one legal ability.")
+            initializeKnownAbilities(pokemon)
+        end
+        echoln("===PARTY 2 KNOWN ABILITIES===")
+        @party2.each do |pokemon|
+            initializeKnownAbilities(pokemon)
         end
 
         # System for learning the player's moves
@@ -207,13 +217,25 @@ class PokeBattle_Battle
         setMaxPPs(true)
     end
 
+    def initializeKnownAbilities(pokemon)
+        @knownAbilities[pokemon.personalID] = []
+        return unless pokemon.getAbilityList.length == 1
+        abilityToKnow = pokemon.getAbilityList[0][0]
+        @knownAbilities[pokemon.personalID].push(abilityToKnow)
+        unless is_online? # Prevent debug cheating online
+            echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI, since species only has one legal ability.")
+        end
+    end
+
     def initializeKnownMoves(pokemon)
         knownMovesArray = []
         @knownMoves[pokemon.personalID] = knownMovesArray
         pokemon.moves.each do |move|
             next unless pokemon.boss? || aiAutoKnowsMove?(move,pokemon)
             knownMovesArray.push(move.id)
-            echoln("Pokemon #{pokemon.name}'s move #{move.name} is known by the AI")
+            unless is_online? # Prevent debug cheating online
+                echoln("Pokemon #{pokemon.name}'s move #{move.name} is known by the AI")
+            end
         end
     end
 
@@ -223,12 +245,16 @@ class PokeBattle_Battle
         pokemon.items.each do |item|
             next # TO DO
             knownItemsArray.push(item)
-            echoln("Pokemon #{pokemon.name}'s item #{getItemName(item)} is known by the AI")
+            unless is_online? # Prevent debug cheating online
+                echoln("Pokemon #{pokemon.name}'s item #{getItemName(item)} is known by the AI")
+            end
         end
     end
 
     def aiAutoKnowsMove?(move,pokemon)
         autoKnow = getBattleMoveInstanceFromID(move.id).aiAutoKnows?(pokemon)
+        autoKnowTypes = [:FLEX]
+        return true if autoKnowTypes.include?(move.type)
         return true if !autoKnow.nil? && autoKnow
         return false if !autoKnow.nil? && !autoKnow
         return false unless pokemon.likelyHasSTAB?(move.type) # Don't know off-type moves
@@ -247,13 +273,15 @@ class PokeBattle_Battle
     end
 
     def setMaxPPsForTrainer(trainer,includeMults)
-        pp_mult = 1
-        if includeMults
-            pp_mult *= 2.0 if trainer.tribalBonus.hasTribeBonus?(:TACTICIAN)
-        end
-
         trainer.party.each do |pokemon|
             pokemon.moves.each do |move|
+                pp_mult = 1
+                if includeMults
+                    if trainer.tribalBonus.hasTribeBonus?(:TACTICIAN) && move.priority > 0
+                        pp_mult *= 2.0
+                    end
+                end
+
                 move.pp_mult = pp_mult
                 move.restore_pp
             end

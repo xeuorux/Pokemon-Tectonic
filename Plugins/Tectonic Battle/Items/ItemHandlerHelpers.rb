@@ -7,7 +7,7 @@ def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil, filch
     battler.battle.pbCommonAnimation("Nom", battler) unless forced
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
     if battler.hasTribeBonus?(:SCAVENGER)
-        ratio *= 1.25
+        ratio *= 1.5
         battler.battle.pbShowTribeSplash(battler,:SCAVENGER)
         battler.battle.pbDisplay(_INTL("{1} got a bit extra out of their {2}!", battler.pbThis, getItemName(item)))
         battler.battle.pbHideTribeSplash(battler)

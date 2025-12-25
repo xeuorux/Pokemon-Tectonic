@@ -116,7 +116,7 @@ module GameData
       end
 
       def is_signature?
-        return !@signature_of.nil? || avatarSignature?
+        return !@signature_of.nil? || avatarSignature? || @flags.include?("ForceSignature")
       end
 
       def empoweredMove?
@@ -149,16 +149,22 @@ module GameData
             "Dance"     => _INTL("Dance"),
             "Blade"     => _INTL("Blade"),
             "Wind"      => _INTL("Wind"),
-            "Kicking"   => _INTL("Kick"),
+            "Kick"      => _INTL("Kick"),
+            "Light"     => _INTL("Light"),
         }
       end
 
       def tagLabel
+        label = nil
         @flags.each do |flag|
           next unless GameData::Move.moveTags.key?(flag)
-          return GameData::Move.moveTags[flag]
+          if label
+            label = _INTL("Multi")
+          else
+            label = GameData::Move.moveTags[flag]
+          end
         end
-        return nil
+        return label
       end
 
       def uninvocable?
@@ -186,6 +192,10 @@ module GameData
         return true
       end
 
+      def staple_move?
+        return @flags.include?("Staple")
+      end
+
       # Yields all data in order of their id_number.
       def self.each
         keys = self::DATA.keys.sort { |a, b|
@@ -211,6 +221,10 @@ module GameData
 
       def self.all_non_signature_moves
         return self::ALL_MOVES_LIST
+      end
+
+      def self.staple_moves
+        return self::DATA.values.filter { |move| move.staple_move? }.map { |move| move.id }.uniq
       end
     end
 end

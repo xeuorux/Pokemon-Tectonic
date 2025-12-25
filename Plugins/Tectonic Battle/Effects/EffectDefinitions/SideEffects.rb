@@ -28,7 +28,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Reflect,
     :real_name => "Reflect",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for {2} more turns!", teamName, value - 1))
@@ -45,7 +45,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :LightScreen,
     :real_name => "Light Screen",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for {2} more turns!", teamName, value - 1))
@@ -62,7 +62,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :AuroraVeil,
     :real_name => "Aurora Veil",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised! This will last for {2} more turns!",
@@ -80,7 +80,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :RepulsionField,
     :real_name => "Repulsion Field",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} takes less damage from moves with 100+ base power! This will last for {2} more turns!",
@@ -101,7 +101,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :LuckyChant,
     :real_name => "Lucky Chant",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is now blessed!", teamName))
         battle.pbDisplay(_INTL("They'll be protected from critical hits for {1} more turns!", teamName, value - 1))
@@ -118,7 +118,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Mist,
     :real_name => "Mist",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is shrouded in mist!", teamName))
         battle.pbDisplay(_INTL("Their stats can't be lowered for {1} more turns!", value - 1))
@@ -135,7 +135,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Safeguard,
     :real_name => "Safeguard",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!", teamName))
         battle.pbDisplay(_INTL("They'll be protected from status ailments for {1} more turns!", value - 1))
@@ -149,20 +149,20 @@ GameData::BattleEffect.register_effect(:Side, {
 })
 
 GameData::BattleEffect.register_effect(:Side, {
-    :id => :DiamondField,
-    :real_name => "Diamond Field",
+    :id => :Sanctuary,
+    :real_name => "Sanctuary",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
-        battle.pbDisplay(_INTL("{1} is protected by a diamond sheen!", teamName))
+        battle.pbDisplay(_INTL("{1} is protected by a blessed wall of light!", teamName))
         battle.pbDisplay(_INTL("They can't be crit and take less damage for {1} more turns!", value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Diamond Field was removed!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Sanctuary was removed!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1} is no longer protected by Diamond Field.", teamName))
+        battle.pbDisplay(_INTL("{1} is no longer protected by Sanctuary.", teamName))
     end,
 })
 
@@ -171,7 +171,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :NaturalProtection,
     :real_name => "Natural Protection",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became determined to survive!", teamName))
         battle.pbDisplay(_INTL("They'll take half damage from sources that aren't attacks for {1} more turns!", value - 1))
@@ -238,20 +238,6 @@ GameData::BattleEffect.register_effect(:Side, {
     },
 })
 
-GameData::BattleEffect.register_effect(:Side, {
-    :id => :Quarantine,
-    :real_name => "Quarantine",
-    :resets_eor => true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, battle|
-            user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
-        end,
-        :does_negate_proc => proc do |_user, _target, move, _battle|
-            move.statusMove?
-        end,
-    },
-})
-
 ##########################################
 # Pledge combo effects
 ##########################################
@@ -259,7 +245,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Rainbow,
     :real_name => "Rainbow Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A rainbow appeared in the sky above {1}!", teamName))
@@ -278,7 +264,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :SeaOfFire,
     :real_name => "Sea of Fire Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :remain_proc => proc do |battle, side, _teamName|
         battle.pbCommonAnimation("SeaOfFire") if side.index == 0
         battle.pbCommonAnimation("SeaOfFireOpp") if side.index == 1
@@ -307,7 +293,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Swamp,
     :real_name => "Swamp Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A swamp enveloped {1}!", teamName))
@@ -333,10 +319,11 @@ GameData::BattleEffect.register_effect(:Side, {
     :is_hazard => true,
     :is_spike => true,
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        teamName[0] = teamName[0].downcase
         if increment == 1
             battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!", teamName))
         else
-            battle.pbDisplay(_INTL("{1} layers of spikes were scattered all around {2}'s feet!", increment,
+            battle.pbDisplay(_INTL("{1} layers of Spikes were scattered all around {2}'s feet!", increment,
 teamName))
         end
     end,
@@ -367,6 +354,7 @@ GameData::BattleEffect.register_effect(:Side, {
         end,
     },
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        teamName[0] = teamName[0].downcase
         if increment == 1
             battle.pbDisplay(_INTL("Poison Spikes were scattered all around {1}'s feet!", teamName))
         else
@@ -393,6 +381,7 @@ GameData::BattleEffect.register_effect(:Side, {
         end,
     },
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        teamName[0] = teamName[0].downcase
         if increment == 1
             battle.pbDisplay(_INTL("Flame Spikes were scattered all around {1}'s feet!", teamName))
         else
@@ -420,6 +409,7 @@ GameData::BattleEffect.register_effect(:Side, {
         end,
     },
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        teamName[0] = teamName[0].downcase
         if increment == 1
             battle.pbDisplay(_INTL("Frost Spikes were scattered all around {1}'s feet!", teamName))
         else
@@ -438,6 +428,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Stealth Rock",
     :is_hazard => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
@@ -451,6 +442,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Feather Ward",
     :is_hazard => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("Sharp feathers float in the air around {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
@@ -464,6 +456,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Live Wire",
     :is_hazard => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A live wire was set on the ground around {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
@@ -493,18 +486,18 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :MisdirectingFog,
     :real_name => "Misdirecting Fog",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("A fog covered {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The fog on {1}'s side was dispelled!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Swamp on {1}'s side dissipated.", teamName))
+        teamName = teamName.downcase
+        battle.pbDisplay(_INTL("The fog on {1}'s side dissipated.", teamName))
     end,
 })
 
@@ -512,17 +505,17 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :PrimalForest,
     :real_name => "Primal Forest",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("A primal forest surrounded {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The primal forest on {1}'s side was removed!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The primal forest on {1}'s side shriveled up.", teamName))
     end,
 })
@@ -531,17 +524,16 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :CruelCocoon,
     :real_name => "Cruel Cocoon",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
-        teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("{1} was enclosed in a cocoon of scales!", teamName[0]))
+        battle.pbDisplay(_INTL("{1} was enclosed in a cocoon of scales!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The cocoon enclosing {1}'s side was removed!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The cocoon enclosing {1}'s side dried up.", teamName))
     end,
     :eor_proc => proc do |battle, side, _teamName, value|
@@ -560,18 +552,142 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :TurbulentSky,
     :real_name => "Turbulent Sky",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
-        teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("A turbulent sky appeared above {1}!", teamName[0]))
+        teamName = teamName.downcase
+        battle.pbDisplay(_INTL("A turbulent sky appeared above {1}!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The turbulent sky above {1}'s side was calmed!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        teamName[0] = teamName[0].downcase
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("The turbulent sky above {1}'s side calmed down.", teamName))
+    end,
+})
+
+##########################################
+# Genie Wish effects
+##########################################
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SpringPlantings,
+    :real_name => "Spring Plantings",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the spring plantings!", teamName))
+        battle.pbDisplay(_INTL("Their Sp. Def will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their spring plantings.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their spring plantings!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            battle.pbDisplay(_INTL("{1}'s spring plantings are finishing!", teamName))
+            battle.pbDisplay(_INTL("{1} is refreshed of physical and mental ailments!", teamName))
+            battle.eachSameSideBattler(side.index) do |b|
+                b.pbCureStatus
+
+                # Disable all mental effects
+                b.eachEffect(true) do |effect, _value, data|
+                    next unless data.is_mental?
+                    b.disableEffect(effect)
+                end
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SummerFestivals,
+    :real_name => "Summer Festivals",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the summer festivals!", teamName))
+        battle.pbDisplay(_INTL("Their Speed will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their summer festivals.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their summer festivals!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        side.applyEffect(:SummerFestivalsEnd) if value == 1
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SummerFestivalsEnd,
+    :real_name => "Festivals' End",
+    :resets_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1}'s summer festivals are finishing!", teamName))
+        battle.pbDisplay(_INTL("They'll deal 50 percent more move damage this turn, but take 25 percent recoil!"))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :AutumnHarvests,
+    :real_name => "Autumn Harvests",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the autumn harvests!", teamName))
+        battle.pbDisplay(_INTL("Their Defense will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their autumn harvests.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their autumn harvests!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            battle.pbDisplay(_INTL("{1}'s autumn harvests are finishing!", teamName))
+            battle.pbDisplay(_INTL("They receive a healthy bounty!"))
+
+            battle.eachSameSideBattler(side.index) do |b|
+                b.applyFractionalHealing(1.0 / 3.0, canOverheal: true)
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :WinterHunts,
+    :real_name => "Winter Hunts",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} began the winter hunts!", teamName))
+        battle.pbDisplay(_INTL("Their Accuracy will be raised by 50 percent for {1} more turns!", value - 1))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} cancelled their winter hunts.", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} completed their winter hunts!", teamName))
+    end,
+    :sor_proc => proc do |battle, side, teamName, value|
+        if value == 1
+            side.applyEffect(:WinterHuntsEnd)
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :WinterHuntsEnd,
+    :real_name => "Hunts' End",
+    :resets_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1}'s winter hunts are finishing!", teamName))
+        battle.pbDisplay(_INTL("They'll have +1 priority this turn!"))
     end,
 })
 
@@ -601,8 +717,9 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Tailwind,
     :real_name => "Tailwind Turns",
     :type => :Integer,
-    :ticks_down => true,
+    :ticks_down_eor => true,
     :apply_proc => proc do |battle, _side, teamName, value|
+        teamName = teamName.downcase
         battle.pbDisplay(_INTL("A Tailwind blew from behind {1}!", teamName))
         if value > 99
             battle.pbDisplay(_INTL("It will last forever!"))
@@ -615,6 +732,28 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :expire_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Tailwind petered out.", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :EmpoweredTailwind,
+    :real_name => "Primeval Tailwind",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        teamName = teamName.downcase
+        battle.pbDisplay(_INTL("A Primeval Tailwind blew from behind {1}!", teamName))
+        if value > 99
+            battle.pbDisplay(_INTL("It will last forever!"))
+        else
+            battle.pbDisplay(_INTL("It will last for {1} more turns!", value - 1))
+        end
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Primeval Tailwind was stopped!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Primeval Tailwind petered out.", teamName))
     end,
 })
 
@@ -638,10 +777,116 @@ GameData::BattleEffect.register_effect(:Side, {
     :type => :Integer,
     :maximum => 4,
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("A rock lands on the ground around {1}.", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("Each rock on the ground around {1} was absorbed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :FeathersDropped,
+    :real_name => "Feathers Dropped",
+    :type => :Integer,
+    :maximum => 3,
+    :increment_proc => proc do |battle, _side, teamName, value, increment|
+        teamName[0] = teamName[0].downcase
+        if increment == 1
+            case value
+            when 1
+                battle.pbDisplay(_INTL("A feather fell to the ground around {1}.", teamName))
+            when 2
+                battle.pbDisplay(_INTL("The second feather fell to the ground around {1}.", teamName))
+            when 3
+                battle.pbDisplay(_INTL("The third and final feather fell to the ground around {1}.", teamName))
+            end
+        else
+            battle.pbDisplay(_INTL("{1} feathers fell to the ground around {2}.", increment, teamName))
+        end
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The feathers around {1} were absorbed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :ScalesDropped,
+    :real_name => "Scales Dropped",
+    :type => :Integer,
+    :maximum => 3,
+    :increment_proc => proc do |battle, _side, teamName, value, increment|
+        teamName[0] = teamName[0].downcase
+        if increment == 1
+            case value
+            when 1
+                battle.pbDisplay(_INTL("A scale fell to the ground around {1}.", teamName))
+            when 2
+                battle.pbDisplay(_INTL("The second scale fell to the ground around {1}.", teamName))
+            when 3
+                battle.pbDisplay(_INTL("The third and final scale fell to the ground around {1}.", teamName))
+            end
+        else
+            battle.pbDisplay(_INTL("{1} scales fell to the ground around {2}.", increment, teamName))
+        end
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The scales around {1} were absorbed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :FangsDropped,
+    :real_name => "Fangs Dropped",
+    :type => :Integer,
+    :maximum => 3,
+    :increment_proc => proc do |battle, _side, teamName, value, increment|
+        teamName[0] = teamName[0].downcase
+        if increment == 1
+            case value
+            when 1
+                battle.pbDisplay(_INTL("A fang fell to the ground around {1}.", teamName))
+            when 2
+                battle.pbDisplay(_INTL("The second fang fell to the ground around {1}.", teamName))
+            when 3
+                battle.pbDisplay(_INTL("The third and final fang fell to the ground around {1}.", teamName))
+            end
+        else
+            battle.pbDisplay(_INTL("{1} fang fell to the ground around {2}.", increment, teamName))
+        end
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The fangs around {1} were absorbed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :ScutesDropped,
+    :real_name => "Scutes Dropped",
+    :type => :Integer,
+    :maximum => 3,
+    :increment_proc => proc do |battle, _side, teamName, value, increment|
+        teamName[0] = teamName[0].downcase
+        if increment == 1
+            case value
+            when 1
+                battle.pbDisplay(_INTL("A scute fell to the ground around {1}.", teamName))
+            when 2
+                battle.pbDisplay(_INTL("The second scute fell to the ground around {1}.", teamName))
+            when 3
+                battle.pbDisplay(_INTL("The third and final scute fell to the ground around {1}.", teamName))
+            end
+        else
+            battle.pbDisplay(_INTL("{1} scutes fell to the ground around {2}.", increment, teamName))
+        end
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The scutes around {1} were absorbed!", teamName))
     end,
 })
 
@@ -692,4 +937,40 @@ GameData::BattleEffect.register_effect(:Side, {
             end
         end
     end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :PayDay,
+    :real_name => "Money Dropped",
+    :type => :Integer,
+    :increment_proc => proc do |battle, _side, teamName, _value, increment|
+        battle.pbDisplay(_INTL("{1} coins were scattered to the ground!", increment))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :WishingWell,
+    :real_name => "Wishing Well",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        battle.pbDisplay(_INTL("{1} is blessed by the Wishing Well!", teamName))
+        battle.pbDisplay(_INTL("It'll block random added effects for {1} turns !", _value - 1))
+    end,
+    :eor_proc => proc do |battle, side, _teamName, value|
+        battle.eachSameSideBattler(side.index) do |b|
+            next unless b.canHeal?
+            b.applyFractionalHealing(1.0/16.0, customMessage: _INTL("{1} was healed by the Wishing Well!",b.pbThis))
+        end
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} is no longer blessed by the Wishing Well.", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :IceSculptureTurns,
+    :real_name => "Turns Until Freeze",
+    :type => :Integer,
+    :ticks_down_eor => true
 })

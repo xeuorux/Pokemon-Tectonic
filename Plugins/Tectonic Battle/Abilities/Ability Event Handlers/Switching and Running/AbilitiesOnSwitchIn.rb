@@ -68,6 +68,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:STYGIANNIGHT,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:EVENTHORIZON,
+  proc { |ability, battler, battle, aiCheck|
+      pbBattleWeatherAbility(ability, :StarStorm, battler, battle, true, true, aiCheck, baseDuration: -1)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HEATDEATH,
+  proc { |ability, battler, battle, aiCheck|
+      pbBattleWeatherAbility(ability, :IceAge, battler, battle, true, true, aiCheck, baseDuration: -1)
+  }
+)
+
 #######################################################
 # Entry debuff abilities
 #######################################################
@@ -231,7 +243,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:KILLJOY,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is a killjoy! No one is allowed to dance or make sound!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1} is a killjoy! Stats can't be raised!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -344,11 +356,84 @@ BattleHandlers::AbilityOnSwitchIn.add(:BREAKTHROUGH,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DYNAMICENTRANCE,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is quick onto the scene!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:PACIFIST,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} refuses to fight!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HOPPINGMAD,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is hopping mad!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:CELERITAS,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is shining with light speed!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FEROCIOUS,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is ferocious!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:LIGHTTRICK,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} tricks the eye!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FIELDOFDEATH,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} saturates the field with death!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FIELDOFLIFE,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} saturates the field with life!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PROTECTIVEINSTINCT,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      next unless battler.hasAnyNotFullyEvolvedAllies?
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} bonds with its younger allies!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -384,6 +469,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:LUCKYCHARM,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          next getSanctuaryEffectScore(battler, 4)
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          duration = battler.getScreenDuration(4)
+          battle.pbAnimation(:SANCTUARY, battler, nil, 0)
+          battler.pbOwnSide.applyEffect(:Sanctuary, duration)
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
 ##########################################
 # Room setting abilities
 ##########################################
@@ -391,7 +490,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:MAGICROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:PuzzleRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -401,7 +500,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLING,
 BattleHandlers::AbilityOnSwitchIn.add(:ODDITY,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:MAGICROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:OddRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -421,7 +520,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SUBSPACESCHISM,
 BattleHandlers::AbilityOnSwitchIn.add(:POLARIZING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
+      battle.pbAnimation(:WONDERROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:PolarizedRoom, battler, ability, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -461,17 +560,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:WILLAURA,
 ##########################################
 # Totem abilities
 ##########################################
+TOTEM_EFFECT_DEFAULT_DURATION = 6
+
 BattleHandlers::AbilityOnSwitchIn.add(:STORMTOTEM,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
-          scoringDuration = 6
+          scoringDuration = TOTEM_EFFECT_DEFAULT_DURATION
           if battler.pbOwnSide.effectActive?(:TurbulentSky)
               scoringDuration -= battler.pbOwnSide.countEffect(:TurbulentSky)
           end
           next 20 * scoringDuration
       else
           battle.pbShowAbilitySplash(battler, ability)
-          battler.pbOwnSide.applyEffect(:TurbulentSky, 6)
+          battler.pbOwnSide.applyEffect(:TurbulentSky, applyEffectDurationModifiers(TOTEM_EFFECT_DEFAULT_DURATION, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -480,14 +581,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:STORMTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:FOGTOTEM,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
-          scoringDuration = 6
+          scoringDuration = TOTEM_EFFECT_DEFAULT_DURATION
           if battler.pbOwnSide.effectActive?(:MisdirectingFog)
               scoringDuration -= battler.pbOwnSide.countEffect(:MisdirectingFog)
           end
           next 20 * scoringDuration
       else
           battle.pbShowAbilitySplash(battler, ability)
-          battler.pbOwnSide.applyEffect(:MisdirectingFog, 6)
+          battler.pbOwnSide.applyEffect(:MisdirectingFog, applyEffectDurationModifiers(TOTEM_EFFECT_DEFAULT_DURATION, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -496,14 +597,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:FOGTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:WILDTOTEM,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
-          scoringDuration = 6
+          scoringDuration = TOTEM_EFFECT_DEFAULT_DURATION
           if battler.pbOwnSide.effectActive?(:PrimalForest)
               scoringDuration -= battler.pbOwnSide.countEffect(:PrimalForest)
           end
           next 20 * scoringDuration
       else
           battle.pbShowAbilitySplash(battler, ability)
-          battler.pbOwnSide.applyEffect(:PrimalForest, 6)
+          battler.pbOwnSide.applyEffect(:PrimalForest, applyEffectDurationModifiers(TOTEM_EFFECT_DEFAULT_DURATION, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -512,14 +613,83 @@ BattleHandlers::AbilityOnSwitchIn.add(:WILDTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:FLUTTERTOTEM,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
-          scoringDuration = 6
+          scoringDuration = TOTEM_EFFECT_DEFAULT_DURATION
           if battler.pbOwnSide.effectActive?(:CruelCocoon)
               scoringDuration -= battler.pbOwnSide.countEffect(:CruelCocoon)
           end
           next 20 * scoringDuration
       else
           battle.pbShowAbilitySplash(battler, ability)
-          battler.pbOwnSide.applyEffect(:CruelCocoon, 6)
+          battler.pbOwnSide.applyEffect(:CruelCocoon, applyEffectDurationModifiers(TOTEM_EFFECT_DEFAULT_DURATION, battler))
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
+##########################################
+# Genie Wish abilities
+##########################################
+GENIE_WISH_EFFECT_DEFAULT_DURATION = 4
+
+BattleHandlers::AbilityOnSwitchIn.add(:WISHOFSPRING,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          scoringDuration = GENIE_WISH_EFFECT_DEFAULT_DURATION
+          if battler.pbOwnSide.effectActive?(:SpringPlantings)
+              scoringDuration -= battler.pbOwnSide.countEffect(:SpringPlantings)
+          end
+          next 20 * scoringDuration
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          battler.pbOwnSide.applyEffect(:SpringPlantings, applyEffectDurationModifiers(GENIE_WISH_EFFECT_DEFAULT_DURATION, battler))
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:WISHOFSUMMER,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          scoringDuration = GENIE_WISH_EFFECT_DEFAULT_DURATION
+          if battler.pbOwnSide.effectActive?(:SummerFestivals)
+              scoringDuration -= battler.pbOwnSide.countEffect(:SummerFestivals)
+          end
+          next 20 * scoringDuration
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          battler.pbOwnSide.applyEffect(:SummerFestivals, applyEffectDurationModifiers(GENIE_WISH_EFFECT_DEFAULT_DURATION, battler))
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:WISHOFAUTUMN,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          scoringDuration = GENIE_WISH_EFFECT_DEFAULT_DURATION
+          if battler.pbOwnSide.effectActive?(:AutumnHarvests)
+              scoringDuration -= battler.pbOwnSide.countEffect(:AutumnHarvests)
+          end
+          next 20 * scoringDuration
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          battler.pbOwnSide.applyEffect(:AutumnHarvests, applyEffectDurationModifiers(GENIE_WISH_EFFECT_DEFAULT_DURATION, battler))
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:WISHOFWINTER,
+  proc { |ability, battler, battle, aiCheck|
+      if aiCheck
+          scoringDuration = GENIE_WISH_EFFECT_DEFAULT_DURATION
+          if battler.pbOwnSide.effectActive?(:WinterHunts)
+              scoringDuration -= battler.pbOwnSide.countEffect(:WinterHunts)
+          end
+          next 20 * scoringDuration
+      else
+          battle.pbShowAbilitySplash(battler, ability)
+          battler.pbOwnSide.applyEffect(:WinterHunts, applyEffectDurationModifiers(GENIE_WISH_EFFECT_DEFAULT_DURATION, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -535,7 +705,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:SAFEGUARD, battler, nil, 0)
-          battler.pbOwnSide.applyEffect(:Safeguard, 10)
+          battler.pbOwnSide.applyEffect(:Safeguard, applyEffectDurationModifiers(10, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -548,7 +718,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:LUCKYCHANT, battler, nil, 0)
-          battler.pbOwnSide.applyEffect(:LuckyChant, 10)
+          battler.pbOwnSide.applyEffect(:LuckyChant, applyEffectDurationModifiers(10, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -561,7 +731,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:TAILWIND, battler, nil, 0)
-          battler.pbOwnSide.applyEffect(:Tailwind, 4)
+          battler.pbOwnSide.applyEffect(:Tailwind, applyEffectDurationModifiers(4, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -570,11 +740,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
 BattleHandlers::AbilityOnSwitchIn.add(:GRAVITAS,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
-          next getGravityEffectScore(battler, 5)
+          next getGravityEffectScore(battler, 4)
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:GRAVITY, battler, nil, 0)
-          battle.field.applyEffect(:Gravity, 5)
+          battle.field.applyEffect(:Gravity, applyEffectDurationModifiers(4, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -587,7 +757,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRIFTINGMIST,
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:GREYMIST, battler, nil, 0)
-          battle.field.applyEffect(:GreyMist, 3)
+          battle.field.applyEffect(:GreyMist, applyEffectDurationModifiers(3, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -600,7 +770,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FITTOSURVIVE,
       else
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbAnimation(:NATURALPROTECTION, battler, nil, 0)
-          battler.pbOwnSide.applyEffect(:NaturalProtection, 4)
+          battler.pbOwnSide.applyEffect(:NaturalProtection, applyEffectDurationModifiers(8, battler))
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -626,7 +796,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASSISTANT,
 BattleHandlers::AbilityOnSwitchIn.add(:SUDDENTURN,
   proc { |ability, battler, battle, aiCheck|
     if aiCheck
-      next battle.forceUseMove(battler, :RAPIDSPIN, ability: ability, aiCheck: true)
+      next battle.forceUseMove(battler, :RAPIDSPIN, ability: ability, aiCheck: true) / 2
     else
       next 0
     end
@@ -811,14 +981,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:GYRESPINNER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:SAPPER,
-  proc { |ability, battler, battle, aiCheck|
-      next entryTrappingAbility(ability, battler, battle, :SANDTOMB, aiCheck: aiCheck) { |trappedFoe|
-        _INTL("{1} became trapped in the sand!", trappedFoe.pbThis)
-      }
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:SUSTAINABLE,
   proc { |ability, battler, battle, aiCheck|
       next 0 unless battler.recyclableItem
@@ -906,6 +1068,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:HAUNTED,
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} is haunted!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:IONIZEDALLOY,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      next unless battle.rainy?
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("Ions in the atmosphere react to {1}!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+      battle.scene.pbRefresh
   }
 )
 
@@ -1079,7 +1252,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
   proc { |ability, battler, battle, aiCheck|
       anyHealing = false
       battle.eachSameSideBattler(battler.index) do |b|
-          next 0 if b.fullHealth?
+          next 0 if b.healthCapped?
           anyHealing = true
       end
       next 0 unless anyHealing
@@ -1118,19 +1291,103 @@ BattleHandlers::AbilityOnSwitchIn.add(:UNBOUND,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:ROOMLOCK,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} prevents rooms from decaying!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 CASHOUT_HEALING_DIVISOR = 10
 
 BattleHandlers::AbilityOnSwitchIn.add(:CASHOUT,
   proc { |ability, battler, battle, aiCheck|
-      next unless battler.pbOwnedByPlayer?
-      next unless battle.field.effectActive?(:PayDay)
+      next unless battler.pbOwnSide.effectActive?(:PayDay)
       maxCoinsCanHealFrom = battler.maxOverhealingPossible * CASHOUT_HEALING_DIVISOR
-      coinsToConsume = [battle.field.countEffect(:PayDay),maxCoinsCanHealFrom].min
+      coinsToConsume = [battler.pbOwnSide.countEffect(:PayDay),maxCoinsCanHealFrom].min
       healingAmt = coinsToConsume / CASHOUT_HEALING_DIVISOR
-      battler.showMyAbilitySplash(ability)
+      battler.showMyAbilitySplash(ability) unless aiCheck
       healingMessage = _INTL("{1} gobbles up the scattered coins!",battler.pbThis)
-      battler.pbRecoverHP(healingAmt, true, true, true, healingMessage, canOverheal: true)
-      battle.field.effects[:PayDay] -= coinsToConsume
+      recoveredHP = battler.pbRecoverHP(healingAmt, true, true, true, healingMessage, canOverheal: true, aiCheck: aiCheck)
+      if aiCheck
+        next battler.getHealingEffectScore(recoveredHP)
+      else
+        battler.pbOwnSide.effects[:PayDay] -= coinsToConsume
+        battler.hideMyAbilitySplash
+      end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FALSEFRONT,
+  proc { |ability, battler, battle, aiCheck|
+      next unless battler.canChangeType?
+      next 0 if aiCheck
+      battler.showMyAbilitySplash(ability)
+      validTypes = %i[FIGHTING DARK FAIRY]
+      validTypeNames = []
+      validTypes.each do |typeID|
+          validTypeNames.push(GameData::Type.get(typeID).name)
+      end
+      if validTypes.length == 1
+          chosenType = validTypes[0]
+      elsif validTypes.length > 1
+          if battle.autoTesting
+              chosenType = validTypes.sample
+          elsif !battler.pbOwnedByPlayer? # Trainer AI
+              validTypes.each do |type|
+                next unless battler.pbHasAttackingType?(type)
+                chosenType = type
+              end
+              chosenType = chosenType || validTypes[0]
+          else
+              chosenIndex = battle.scene.pbShowCommands(_INTL("Which type should {1} fake?", battler.pbThis(true)),validTypeNames,0)
+              chosenType = validTypes[chosenIndex]
+          end
+      end
+      battler.applyEffect(:Type3,chosenType)
       battler.hideMyAbilitySplash
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DISTORTEDGRAVITY,
+  proc { |ability, battler, battle, aiCheck|
+      next unless battle.gravityIntensified?
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} twists the dimensions!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWTRAIL,
+  proc { |ability, battler, battle, aiCheck| 
+      next unless battler.canChangeType?
+      next unless battler.hasType?(:FIRE)
+      next 0 if aiCheck
+      battler.applyEffect(:RainbowTrail, [:FLYING])
+      battler.applyEffect(:RainbowTrailEntry)
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is trailing rainbows behind it!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+      battle.scene.pbRefresh
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:INKSPRAY,
+  proc { |ability, battler, battle, aiCheck|
+    battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+    score = 0
+    battler.eachOpposing do |b|
+      next if b.effectActive?(:Blindness)
+      if aiCheck
+        score += getBlindnessEffectScore(battler,b)
+      else
+        b.applyEffect(:Blindness)
+      end
+    end
+    next score if aiCheck
+    battle.pbHideAbilitySplash(battler)
   }
 )

@@ -27,6 +27,9 @@ class PokeBattle_Battler
         @eor_proc = proc do |effectData|
             effectData.eor_battler(@battle, self)
         end
+        @sor_proc = proc do |effectData|
+            effectData.sor_battler(@battle, self)
+        end
         @remain_proc = proc do |effectData|
             effectData.remain_battler(@battle, self)
         end
@@ -143,9 +146,9 @@ class PokeBattle_Battler
     end
 
     def pbInitialize(pkmn, idxParty, batonPass = false)
-        deepTeeth = hasActiveAbility?(:DEEPTEETH,true)
+        handOff = hasActiveAbility?(:HANDOFF,true)
         pbInitPokemon(pkmn, idxParty)
-        pbInitEffects(batonPass, deepTeeth)
+        pbInitEffects(batonPass, handOff)
         @damageState.reset
     end
 
@@ -157,7 +160,7 @@ class PokeBattle_Battler
         @damageState.reset
     end
 
-    def pbInitEffects(batonPass = false, deepTeeth = false)
+    def pbInitEffects(batonPass = false, handOff = false)
         # Dragon ride ends
         if effectActive?(:GivingDragonRideTo)
             getBattlerPointsTo(:GivingDragonRideTo).disableEffect(:OnDragonRide)
@@ -185,7 +188,7 @@ class PokeBattle_Battler
             b.eachEffect(true) do |_effect, value, data|
                 next if data.type != :Position
                 next if value != @index
-                next if data.deep_teeth? && deepTeeth
+                next if data.hand_off? && handOff
                 data.disable_effects_on_other_exit.each do |effectToDisable|
                     echoln("[BATTLER EFFECT] Effect #{effectToDisable} is disabled on #{b.name} due to #{name} (#{@index}) exiting")
                     b.disableEffect(effectToDisable)

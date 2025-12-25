@@ -73,7 +73,7 @@ module GameData
           end
         end
         return "Graphics/Items/000"
-    end
+      end
   
       def self.held_icon_filename(item)
         item_data = self.try_get(item)
@@ -287,7 +287,7 @@ module GameData
         return false
       end
   
-      def can_hold?;           return !is_important? && @pocket == 5; end
+      def can_hold?;           return !is_important? && @pocket >= 9 && @pocket <= 13; end
 
       def consumed_after_use?
         return !is_important? && @consumable
@@ -298,38 +298,15 @@ module GameData
       end
   
       def unlosable?(species, ability)
-        return false if species == :ARCEUS && ability != :MULTITYPE
-        return false if species == :SILVALLY && ability != :RKSSYSTEM
-        combos = {
-           :ARCEUS   => [:FISTPLATE,   :FIGHTINIUMZ,
-                         :SKYPLATE,    :FLYINIUMZ,
-                         :TOXICPLATE,  :POISONIUMZ,
-                         :EARTHPLATE,  :GROUNDIUMZ,
-                         :STONEPLATE,  :ROCKIUMZ,
-                         :INSECTPLATE, :BUGINIUMZ,
-                         :SPOOKYPLATE, :GHOSTIUMZ,
-                         :IRONPLATE,   :STEELIUMZ,
-                         :FLAMEPLATE,  :FIRIUMZ,
-                         :SPLASHPLATE, :WATERIUMZ,
-                         :MEADOWPLATE, :GRASSIUMZ,
-                         :ZAPPLATE,    :ELECTRIUMZ,
-                         :MINDPLATE,   :PSYCHIUMZ,
-                         :ICICLEPLATE, :ICIUMZ,
-                         :DRACOPLATE,  :DRAGONIUMZ,
-                         :DREADPLATE,  :DARKINIUMZ,
-                         :PIXIEPLATE,  :FAIRIUMZ],
-           :SILVALLY => [:MEMORYDISC],
-           :GIRATINA => [:GRISEOUSORB],
-           :GENESECT => [:BURNDRIVE, :CHILLDRIVE, :DOUSEDRIVE, :SHOCKDRIVE],
-           :KYOGRE   => [:BLUEORB],
-           :GROUDON  => [:REDORB]
-        }
-        return combos[species] && combos[species].include?(@id)
+        base_form_data = GameData::Species.get_species_form(species, 0)
+        return false if base_form_data.nil?
+        sticky_items = base_form_data.sticky_items
+        return sticky_items.include?(@id)
       end
 
-      def legal?(isTrainer = false)
+      def legal?(isNPC = false)
         return false if @cut
-        return false if @super && !isTrainer
+        return false if @super && !isNPC
         return true
       end
 
@@ -496,7 +473,40 @@ module Compiler
     f.write(sprintf("[%s]\r\n", item.id))
     f.write(sprintf("Name = %s\r\n", item.real_name))
     f.write(sprintf("NamePlural = %s\r\n", item.real_name_plural))
-    f.write(sprintf("Pocket = %d\r\n", item.pocket))
+    modifiedPocket = item.pocket
+    # case item.pocket
+    # when 1
+    #   if item.is_evolution_item?
+    #     modifiedPocket = 4
+    #   elsif item.name.downcase.include?("fossil") || item.name.downcase.include?("token") || item.name.downcase.include?("ore") || item.name.downcase.include?("egg")
+    #     modifiedPocket = 16
+    #   end
+    # when 2
+    #   if item.name.downcase.include?("candy")
+    #     modifiedPocket = 3
+    #   end
+    # when 3
+    #   modifiedPocket = 14
+    # when 4
+    #   modifiedPocket = 5
+    # when 5
+    #   if item.is_berry?
+    #     modifiedPocket = 9
+    #   elsif item.is_gem?
+    #     modifiedPocket = 10
+    #   elsif item.is_herb?
+    #     modifiedPocket = 11
+    #   elsif item.is_clothing?
+    #     modifiedPocket = 12
+    #   else
+    #     modifiedPocket = 13
+    #   end
+    # when 6
+    #   modifiedPocket = 15
+    # when 7
+    #   modifiedPocket = 6
+    # end
+    f.write(sprintf("Pocket = %d\r\n", modifiedPocket))
     f.write(sprintf("Price = %d\r\n", item.price))
     f.write(sprintf("SellPrice = %d\r\n", item.sell_price)) if item.sell_price != item.price / 2
     field_use = GameData::Item::SCHEMA["FieldUse"][2].key(item.field_use)

@@ -13,6 +13,11 @@ move.name))
     return true
 end
 
+def applyEffectDurationModifiers(value, user)
+    return (value.to_f * 1.5).floor if user.hasTribeBonus?(:SERENE)
+    return value
+end
+
 # For abilities that grant immunity to moves of a particular type, and raises
 # one of the ability's bearer's stats instead.
 def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immuneType, stat, increment, battle, showMessages, aiCheck = false)
@@ -58,7 +63,7 @@ def randomStatusProcUserAbility(ability, status, chance, user, target, move, bat
         return ret
     else
         return if battle.pbRandom(100) >= chance
-        return unless move.canApplyRandomAddedEffects?(user, target, true)
+        return unless move.canApplyRandomAddedEffects?(user, target, chance, true)
         battle.pbShowAbilitySplash(user, ability)
         target.pbInflictStatus(status, 0, nil, user) if target.pbCanInflictStatus?(status, user, true, move)
         battle.pbHideAbilitySplash(user)
@@ -100,6 +105,7 @@ end
 
 def entryTrappingAbility(ability, battler, battle, trappingMove, trappingDuration: 2, aiCheck: false, &block)
     trappingDuration *= 2 if battler.shouldItemApply?(:GRIPCLAW,aiCheck )
+    trappingDuration = (trappingDuration.to_f * 1.5).floor if battler.hasTribeBonus?(:SERENE)
 
     score = 0
     battle.pbShowAbilitySplash(battler, ability) unless aiCheck
@@ -153,6 +159,7 @@ end
 def moveUseTypeChangeAbility(ability, user, move, battle, thirdType = false)
     return false if move.callsAnotherMove?
     return false if move.snatched
+    return false if move.id == :STRUGGLE
     return false if GameData::Type.get(move.calcType).pseudo_type
     return false unless user.pbHasOtherType?(move.calcType)
     battle.pbShowAbilitySplash(user, ability)

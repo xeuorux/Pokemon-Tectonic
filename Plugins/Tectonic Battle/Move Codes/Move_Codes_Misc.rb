@@ -110,17 +110,20 @@ end
 # Transforms the user into one of its Mega Forms. (Gene Boost)
 #===============================================================================
 class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         if @battle.autoTesting
             @chosenForm = rand(2) + 1
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenForm = 2 # Always chooses mega mind form
+        elsif !replayed_choice.nil?
+            @chosenForm = replayed_choice
         else
             form1Name = GameData::Species.get_species_form(:MEWTWO,1).form_name
             form2Name = GameData::Species.get_species_form(:MEWTWO,2).form_name
             formNames = [form1Name,form2Name]
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should {1} take?", user.pbThis(true)),formNames,0)
             @chosenForm = chosenIndex + 1
+            return @chosenForm
         end
     end
 
@@ -301,7 +304,8 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
                           targetMove.function == "UsedAfterUserTakesPhysicalDamage" ||   # Shell Trap
                           targetMove.function == "UsedAfterUserTakesSpecialDamage" ||   # Masquerblade
                           targetMove.function == "BurnAttackerBeforeUserActs" ||     # Beak Blast
-                          targetMove.function == "FrostbiteAttackerBeforeUserActs")   # Condensate
+                          targetMove.function == "FrostbiteAttackerBeforeUserActs" ||    # Cold Snap
+                          targetMove.function == "SetupSpikesBeforeUserActs")   # Shard Surge
             @battle.pbDisplay(_INTL("But it failed, since {1} is focusing!", target.pbThis(true))) if show_message
             return true
         end
@@ -390,11 +394,13 @@ end
 # Transforms the user into one of its forms. (Mutate)
 #===============================================================================
 class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         if @battle.autoTesting
             @chosenForm = rand(3) + 1
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenForm = 2 # Always chooses defense form
+        elsif !replayed_choice.nil?
+            @chosenForm = replayed_choice
         else
             form1Name = GameData::Species.get_species_form(:DEOXYS,1).form_name
             form2Name = GameData::Species.get_species_form(:DEOXYS,2).form_name
@@ -402,6 +408,7 @@ class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
             formNames = [form1Name,form2Name,form3Name]
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should {1} take?", user.pbThis(true)),formNames,0)
             @chosenForm = chosenIndex + 1
+            return @chosenForm
         end
     end
 
@@ -438,6 +445,47 @@ class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 100
+    end
+end
+
+#===============================================================================
+# Ignores all abilities that alter this move's success or damage.
+# Transforms Necrozma into its Ultra form before attacking.
+# (Light That Burns the Sky)
+#===============================================================================
+class PokeBattle_Move_IgnoreTargetAbilityChangeUserNecrozmaForm < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:NECROZMA)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end 
+        return false
+    end 
+
+    def pbChangeUsageCounters(user, specialUsage)
+        super
+        @battle.moldBreaker = true unless specialUsage
+    end
+
+    def pbDisplayUseMessage(user, _targets = [])
+        @battle.pbDisplayBrief(_INTL("{1} used Light That Burns the Sky!", user.pbThis))
+    end
+
+    def pbDisplayChargeMessage(user)
+        if user.form == 1
+            @battle.pbCommonAnimation("UltraBurst", user)
+            user.pbChangeForm(3, _INTL("Bright lights bursts out of {1}!", user.pbThis))
+        elsif user.form == 2
+            @battle.pbCommonAnimation("UltraBurst", user)
+            user.pbChangeForm(4, _INTL("Bright lights bursts out of {1}", user.pbThis))
+        end 
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += 100
+        score += 50 if user.firstTurn?
+        return score
     end
 end
 
@@ -710,17 +758,18 @@ class PokeBattle_Move_CantMissIfInMoonglow < PokeBattle_Move
 end
 
 #===============================================================================
-# The user chooses one of Fire Fang, Ice Fang, and Thunder Fang to use. (Elemental Fang)
+# The user chooses one of Fire Fang, Ice Fang, Hydro Fang, or Thunder Fang to use. (Elemental Fang)
 #===============================================================================
-class PokeBattle_Move_UseChoiceOf3ElementalFangs < PokeBattle_Move
+class PokeBattle_Move_UseChoiceOfElementalFangs < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
         super
         @validMoves = %i[
             FIREFANG
-            THUNDERFANG
             ICEFANG
+            HYDROFANG
+            THUNDERFANG
         ]
     end
 
@@ -737,6 +786,54 @@ class PokeBattle_Move_UseChoiceOf3ElementalFangs < PokeBattle_Move
         else
             chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = @validMoves[chosenIndex]
+        end
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        user.pbUseMoveSimple(@chosenMove, target.index) if @chosenMove
+    end
+
+    def resetMoveUsageState
+        @chosenMove = nil
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        return # No animation
+    end
+end
+
+#===============================================================================
+# The user chooses one of Searing Crunch, Glacial Crunch, Aquatic Crunch, and Volt Crunch to use. (Elemental Crunch)
+#===============================================================================
+class PokeBattle_Move_UseChoiceOfElementalCrunches < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @validMoves = %i[
+            SEARINGCRUNCH
+            GLACIALCRUNCH
+            VOLTCRUNCH
+            AQUATICCRUNCH
+        ]
+    end
+
+    def resolutionChoice(user, replayed_choice)
+        validMoveNames = []
+        @validMoves.each do |move|
+            validMoveNames.push(getMoveName(move))
+        end
+
+        if @battle.autoTesting
+            @chosenMove = @validMoves.sample
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenMove = @validMoves[0]
+        elsif !replayed_choice.nil?
+            @chosenMove = replayed_choice
+        else
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
+            @chosenMove = @validMoves[chosenIndex]
+            return @chosenMove
         end
     end
 
@@ -774,7 +871,7 @@ class PokeBattle_Move_FailsIfUserNotAsleep < PokeBattle_Move
 end
 
 #===============================================================================
-# Uses each other Sound move the Pokemon knows. (Broadcast Blast)
+# Uses each other Sound move the Pokemon knows. (Wall of Sound)
 #===============================================================================
 class PokeBattle_Move_UseAllOtherSoundMoves < PokeBattle_Move
     def callsAnotherMove?; return true; end
@@ -804,5 +901,19 @@ class PokeBattle_Move_UseAllOtherSoundMoves < PokeBattle_Move
         moves.each do |sound_move|
             user.pbUseMoveSimple(sound_move)
         end
+    end
+
+    def getEffectScore(user, _target)
+        return getAllOtherSoundMoves(user).length * 100
+    end
+end
+
+#===============================================================================
+# Applies a damaging effect to the targeted slot (Stormshards)
+#===============================================================================
+class PokeBattle_Move_PositionPassiveDamage < PokeBattle_Move
+    def pbEffectAgainstTarget(_user, target)
+        target.position.applyEffect(:Stormshards, 3)
+        return true
     end
 end

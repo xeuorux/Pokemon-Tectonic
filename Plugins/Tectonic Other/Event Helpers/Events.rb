@@ -201,12 +201,16 @@ def playerFacingWest?
 	return $game_player.direction == Left
 end
 
+def turnEventTowardsEvent(eventToTurnID, eventToTurnTowardsID)
+	pbTurnTowardEvent(pbMapInterpreter.get_event(eventToTurnID),pbMapInterpreter.get_event(eventToTurnTowardsID))
+end
+
 def turnTowardsEvent(eventID)
-	pbTurnTowardEvent(get_self,get_event(eventID))
+	pbTurnTowardEvent(get_self,pbMapInterpreter.get_event(eventID))
 end
 
 def turnEventTowardsThis(eventID)
-	pbTurnTowardEvent(get_event(eventID),get_self)
+	pbTurnTowardEvent(pbMapInterpreter.get_event(eventID),get_self)
 end
 
 def playerTurnsTowards
@@ -214,7 +218,7 @@ def playerTurnsTowards
 end
 
 def turnPlayerTowardsEvent(eventID)
-    pbTurnTowardEvent($game_player,get_event(eventID))
+    pbTurnTowardEvent($game_player,pbMapInterpreter.get_event(eventID))
 end
 
 def playerOnTopOfEvent?(eventID)

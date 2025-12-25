@@ -1,7 +1,16 @@
 module Settings
     # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-    GAME_VERSION = "3.3.0"
-    DEV_VERSION  = false
+    GAME_VERSION = "3.4.0"
+    DEV_VERSION  = true
+
+    # Whether or not to display if the game is up to date with the server version
+    # On the main menu
+    DISPLAY_VERSION_STATUS = true
+
+    # Modify if you're not Pokemon Tectonic!!
+    # Host your own version file in the same format as the below file
+    # And set this setting to the URL to that file
+    VERSION_SERVER_FILE_URL = "https://tectonicstorage.blob.core.windows.net/tectonicstorage/version_order.txt"
   
     #=============================================================================
   
@@ -143,22 +152,24 @@ module Settings
       return ["",
         _INTL("Items"),
         _INTL("Medicine"),
-        _INTL("Poké Balls"),
+        _INTL("Candy"),
+        _INTL("Evolution Items"),
         _INTL("TMs"),
-        _INTL("Held Items"),
-        _INTL("Sell Items"),
         _INTL("Keys"),
-        _INTL("Tools")
+        _INTL("Passive Tools"),
+        _INTL("Active Tools"),
+        _INTL("Held Berries"),
+        _INTL("Held Gems"),
+        _INTL("Held Herbs"),
+        _INTL("Held Clothing"),
+        _INTL("Misc. Held Items"),
+        _INTL("Poké Balls"),
+        _INTL("Sell Items"),
+        _INTL("Trade Items"),
       ]
     end
-    # The maximum number of slots per pocket (-1 means infinite number). Ignore
-    # the first number (0).
-    BAG_MAX_POCKET_SIZE  = [0, -1, -1, -1, -1, -1, -1, -1, -1]
     # The maximum number of items each slot in the Bag can hold.
     BAG_MAX_PER_SLOT     = 999
-    # Whether each pocket in turn auto-sorts itself by item ID number. Ignore the
-    # first entry (the 0).
-    BAG_POCKET_AUTO_SORT = [0, false, false, false, true, true, false, false, false]
   
     #=============================================================================
   

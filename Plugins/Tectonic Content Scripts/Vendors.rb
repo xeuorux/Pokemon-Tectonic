@@ -59,26 +59,30 @@ def purchaseStarters(type,price=0)
 	end
 	pbMessage(_INTL("Which {1}-type starter Pokemon would you like to look at?",typeName))
 	
-	starterArray = []
+	starterNames = [_INTL("None")]
 	case type
 	when :GRASS
-		starterArray = ["None","Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+		starterIDs = ["Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
 	when :FIRE
-		starterArray = ["None","Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
+		starterIDs = ["Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
 	when :WATER
-		starterArray = ["None","Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
+		starterIDs = ["Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
 	else
 		return
 	end
-	
+
+  starterIDs.each do |id|
+    starterNames << GameData::Species.get(id.upcase.to_sym).name
+  end
+
 	while true
-		result = pbShowCommands(nil,starterArray,0)
+		result = pbShowCommands(nil,starterNames,0)
 
 		if result == 0
 			pbMessage(_INTL("Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!",typeName))
 			break
 		else
-			starterChosenName = starterArray[result]
+			starterChosenName = starterIDs[result - 1]
 			starterSpecies = starterChosenName.upcase.to_sym
 
 			choicesArray = [_INTL("View MasterDex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
@@ -103,6 +107,14 @@ def purchaseStarters(type,price=0)
 	end
 end
 
+def isFossil?(item_symbol)
+	%i[HELIXFOSSIL DOMEFOSSIL OLDAMBER ROOTFOSSIL CLAWFOSSIL SKULLFOSSIL ARMORFOSSIL COVERFOSSIL PLUMEFOSSIL JAWFOSSIL SAILFOSSIL].include?(item_symbol)
+end
+
+def isFantasyFossil?(item_symbol)
+	%i[ELDRITCHFOSSIL].include?(item_symbol)
+end
+
 def isMixFossil?(item_symbol)
 	%i[FOSSILIZEDBIRD FOSSILIZEDDRAKE FOSSILIZEDFISH FOSSILIZEDDINO].include?(item_symbol)
 end
@@ -110,6 +122,11 @@ end
 def reviveFossil(fossil)
 	if isMixFossil?(fossil)
 		pbMessage(_INTL("My apologies, I don't know what to do with this type of fossil."))
+		return
+	end
+
+	if isFantasyFossil?(fossil)
+		pbMessage(_INTL("I... don't think I understand this fossil. Maybe try asking my assistant for help."))
 		return
 	end
 
@@ -147,6 +164,49 @@ def reviveFossil(fossil)
 	pbMessage(_INTL("It's done! Here is your newly revived Pokemon!"))
 	
 	pbAddPokemon(species,15)
+end
+
+def reviveFantasyFossil(fossil)
+	if isMixFossil?(fossil)
+		pbMessage(_INTL("What!? You want me to make a combo fossil? Not a chance."))
+		pbMessage(_INTL("Maybe someone else is interested in creative torture, but I sure am not."))
+		return
+	end
+
+	if isFossil?(fossil)
+		pbMessage(_INTL("I uh... can't actually revive this. Haven't completed the relevant coursework yet."))
+		pbMessage(_INTL("Go talk to my supervisor. She can help you."))
+		return
+	end
+
+	fossilsToSpecies = {
+		:ELDRITCHFOSSIL => :MOMANYTE
+	}
+
+	species = fossilsToSpecies[fossil] || nil
+	
+	if species.nil?
+		pbMessage(_INTL("Error! Could not determine how to revive the given fossil."))
+		return
+	end
+	item_data = GameData::Item.get(fossil)
+	
+	pbMessage(_INTL("\\PN hands over the {1} and $3000.",item_data.name))
+	
+	pbMessage(_INTL("Is that...? Very intriguing."))
+	pbMessage(_INTL("Feels... familiar. Something I played long ago..."))
+	pbMessage(_INTL("I'll see what I can do."))
+	
+	blackFadeOutIn(30) {
+		$Trainer.money = $Trainer.money - 3000
+		$PokemonBag.pbDeleteItem(fossil)
+	}
+	
+	pbMessage(_INTL("Yes! It's aliiiiiiive! Muahahahahaha!"))
+
+	pbAddPokemon(species,15)
+
+	pbMessage(_INTL("Okay, now go away. I won't suffer any more EXP waste."))
 end
 
 def reviveMixFossils(fossil1,fossil2)
@@ -449,7 +509,6 @@ def eastEndExclusives
 
 	setPrice(:RUSTEDSWORD,20_000)
 	setPrice(:RUSTEDSHIELD,20_000)
-	setPrice(:REINSOFUNITY,20_000)
 	setPrice(:DYNAMITESTICK,5_000)
 	
 	pbPokemonMart(
@@ -493,7 +552,7 @@ def tmShop
 		TMELECTROSLASH TMTHUNDERBOLT
 		TMGLACIALRAM TMICEBEAM
 
-		TMBRICKBREAK TMAURASPHERE
+		TMCROSSCHOP TMADRENALASH
 		TMPOISONJAB TMMIASMA
 		TMTRAMPLE TMEARTHPOWER
 
@@ -527,7 +586,6 @@ def hackedTMShop
 		TMRAILCANNON
 		TMEXPLOSION
 		TMMEMENTO
-		TMRAPIDSPIN
 		TMFINALGAMBIT
 		TMAIMTRUE
 		TMSTEALTHROCK
@@ -542,7 +600,9 @@ end
 
 def switchOutTMShop
 	tmsStock = %i[
+		TMRETREAT
 		TMVOLTSWITCH
+		TMPSYCHESWITCH
 		TMUTURN
 		TMFLIPTURN
 		TMPARTINGSHOT
@@ -555,6 +615,55 @@ def switchOutTMShop
 	)
 end
 
+def effectHateTMShop
+	tmsStock = %i[
+		TMBRICKBREAK
+		TMSEISMICWAVE
+		TMRAZINGVINES
+		TMSKYFALL
+	]
+
+	pbPokemonMart(
+		tmsStock,
+		_INTL("I've got the tools. Just don't tell anyone."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def statusTMVendor
+	spikeTMStock = %i[
+		TMPOISONGAS
+		TMIGNITE
+		TMCHILL
+		TMNUMB
+		TMWATERLOG
+		TMLEECHSEED
+		TMCONFUSERAY
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Any interest in buying?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def healingTMVendor
+	spikeTMStock = %i[
+		TMRECOVER
+		TMSLACKOFF
+		TMROOST
+		TMTAKESHELTER
+		TMSYNTHESIS
+		TMSHOREUP
+		TMSWEETSELENE
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Trust me, nobody needs these more than you."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 def naturesGallery
 	stock = %i[
 		HEATROCK DAMPROCK SMOOTHROCK ICYROCK MIRROREDROCK PINPOINTROCK
@@ -562,7 +671,6 @@ def naturesGallery
 		FLOATSTONE
 		BIGROOT
 		LUCKYEGG
-		CRYSTALVEIL
 		GALARICAWREATH
 		ALOLANWREATH
 	]
@@ -579,7 +687,7 @@ def heldItemShop
 		POWERLOCK ENERGYLOCK
 		UTILITYUMBRELLA 
 		BLACKSLUDGE
-		GRIPCLAW BINDINGBAND
+		GRIPCLAW
 		REDCARD EJECTBUTTON EJECTPACK
 		AIRBALLOON EXPERTBELT
 		EVIOLITE
@@ -589,6 +697,7 @@ def heldItemShop
 		LAGGINGTAIL SEVENLEAGUEBOOTS
 		HEAVYDUTYBOOTS
 		FOCUSSASH
+		SHEDSHELL
 		STICKYBARB
 		IRONBALL
 		ADRENALINEORB
@@ -614,6 +723,9 @@ def advancedHeldItemsShop
 		ASSAULTVEST STRIKEVEST
 		LIFEORB
 		THROATSPRAY WHETSTONE
+		PROTEINSHAKE STRESSBALL
+		PINWHEEL INSOLES
+		WHITENINGPASTE FLASHBULB
 		ROCKYHELMET HIVISJACKET
 	]
 
@@ -649,39 +761,38 @@ def gemVendor
 	)
 end
 
+EARLY_BALL_STOCK = %i[
+	SLICEBALL
+	LEECHBALL
+	DISABLEBALL
+	POTIONBALL
+	HEALBALL
+]
 def earlyBallVendor
-	basicBallStock = %i[
-		SLICEBALL
-		LEECHBALL
-		DISABLEBALL
-		POTIONBALL
-		HEALBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		EARLY_BALL_STOCK,
 		_INTL("Poké Balls of all sorts stocked here. Take a look!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
+BASIC_BALL_STOCK = %i[
+	GREATBALL
+	REPEATBALL
+	NESTBALL
+	TIMERBALL
+	QUICKBALL
+	FRIENDBALL
+]
 def basicBallVendor
-	basicBallStock = %i[
-		GREATBALL
-		REPEATBALL
-		NESTBALL
-		TIMERBALL
-		QUICKBALL
-		FRIENDBALL
-	]
 	pbPokemonMart(
-		basicBallStock,
+		BASIC_BALL_STOCK,
 		_INTL("Welcome to the Poké Ball Depot! How may I serve you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
 
-def weirdBallsVendor
-	weirdBallStock = %i[
+WEIRD_BALL_STOCK = %i[
 		ULTRABALL
 		DREAMBALL
 		FASTBALL
@@ -690,9 +801,23 @@ def weirdBallsVendor
 		ROYALBALL
 		BEASTBALL
 	]
+
+def weirdBallsVendor
 	pbPokemonMart(
-		weirdBallStock,
+		WEIRD_BALL_STOCK,
 		_INTL("Custom Pokéballs, made to order! You won't find these in a mart!"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def allBallsVendor
+	allBallStock = []
+	allBallStock.concat(EARLY_BALL_STOCK)
+	allBallStock.concat(BASIC_BALL_STOCK)
+	allBallStock.concat(WEIRD_BALL_STOCK)
+	pbPokemonMart(
+		allBallStock,
+		_INTL("All the Pokéballs you could ever need."),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -853,23 +978,6 @@ def typeBoostingVendor
 	)
 end
 
-def statusTMVendor()
-	spikeTMStock = %i[
-		TMPOISONGAS
-		TMIGNITE
-		TMCHILL
-		TMNUMB
-		TMWATERLOG
-		TMLEECHSEED
-		TMCONFUSERAY
-	]
-	pbPokemonMart(
-		spikeTMStock,
-		_INTL("Any interest in buying?"),
-		!CAN_SELL_IN_VENDORS
-	)
-end
-
 ######################################################
 # Minor food vendors
 ######################################################
@@ -894,6 +1002,7 @@ def farmVendor
 	pubStock = %i[
 		SWEETAPPLE
 		TARTAPPLE
+		SYRUPYAPPLE
 		MOOMOOMILK
 	]
 	setPrice(:MOOMOOMILK,800)

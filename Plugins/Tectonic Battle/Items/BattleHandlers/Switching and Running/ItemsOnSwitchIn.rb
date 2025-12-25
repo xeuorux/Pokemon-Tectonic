@@ -59,3 +59,11 @@ BattleHandlers::ItemOnSwitchIn.add(:PRISMATICPLATE,
         battler.aiLearnsItem(item) if battler.isSpecies?(:ARCEUS)
     }
 )
+
+BattleHandlers::ItemOnSwitchIn.add(:CRYSTALVEIL,
+    proc { |item, battler, battle|
+        typeName = GameData::Type.get(battler.itemTypeChosen).name
+        battle.pbDisplay(_INTL("{1} is veiled with crystal! It's a {2}-type!", battler.pbThis, typeName))
+        battler.aiLearnsItem(item)
+    }
+)

@@ -16,14 +16,14 @@ end
 
 def eachPokemonInSave(save_data)
   save_data[:player].party.each do |pokemon|
-    yield pokemon,"your party"
+    yield pokemon, _INTL("your party")
   end 
   storage = save_data[:storage_system]
 
   for i in -1...storage.maxBoxes
     for j in 0...storage.maxPokemon(i)
       pokemon = storage.boxes[i][j]
-      yield pokemon,"storage box #{i}" if pokemon
+      yield pokemon, _INTL("storage box {1}", i) if pokemon
     end
   end
 end

@@ -48,7 +48,7 @@ class PokeBattle_Move_UserIsPoisoned < PokeBattle_Move
         return if target.damageState.unaffected
         return if user.poisoned?
         user.applyPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
-           user.pbThis, getPoisonExplanation), false)
+           user.pbThis, getPoisonExplanation))
     end
 
     def getEffectScore(user, _target)
@@ -88,7 +88,8 @@ end
 # Fractures the user, and always critical hits. (Flechettes)
 #===============================================================================
 class PokeBattle_Move_MoveFracturesSelfCriticalHits < PokeBattle_Move
-    def pbEffectAfterAllHits(user, _target)
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
         user.applyEffect(:Fracture, DEFAULT_FRACTURE_DURATION)
     end
 
@@ -103,7 +104,8 @@ end
 # Jinxes the user, and always critical hits. (Divining Talon)
 #===============================================================================
 class PokeBattle_Move_MoveJinxesSelfCriticalHits < PokeBattle_Move
-    def pbEffectAfterAllHits(user, _target)
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
         user.applyEffect(:Jinxed, DEFAULT_JINX_DURATION)
     end
 

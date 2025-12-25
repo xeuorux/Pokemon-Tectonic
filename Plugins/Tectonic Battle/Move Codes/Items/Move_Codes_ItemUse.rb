@@ -32,7 +32,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -47,9 +47,12 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !replayed_choice.nil?
+                @chosenItem = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} give away?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end
@@ -159,7 +162,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -174,9 +177,12 @@ class PokeBattle_Move_Fling < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !replayed_choice.nil?
+                @chosenItem = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} fling?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end
@@ -208,7 +214,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
-        return unless canApplyRandomAddedEffects?(user, target, true)
+        
         case @chosenItem
         when :POISONORB
             target.applyPoison(user) if target.canPoison?(user, false, self)
@@ -240,11 +246,12 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     end
 
     def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("<u>300 BP</u>: Pearl of Wisdom")
         detailsList << _INTL("<u>150 BP</u>: Iron Ball")
         detailsList << _INTL("<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb")
         detailsList << _INTL("<u>75 BP</u>: Everything else")
         detailsList << _INTL("<u>Poison</u>: Poison Orb")
-        detailsList << _INTL("<u>Burn</u>: Burn Orb")
+        detailsList << _INTL("<u>Burn</u>: Flame Orb")
         detailsList << _INTL("<u>Frostbite</u>: Frost Orb")
         detailsList << _INTL("<u>Leech</u>: Big Root, Binding Band")
         detailsList << _INTL("<u>Waterlog</u>: Water Balloon")
@@ -310,7 +317,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
         return true
     end
 
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validItems = []
         validItemNames = []
         user.items.each do |item|
@@ -325,9 +332,12 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
                 @chosenItem = validItems.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
+            elsif !replayed_choice.nil?
+                @chosenItem = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} use?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
+                return @chosenItem
             end
         end
     end
@@ -395,84 +405,22 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        unless target.hasAnyItem?
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an item!", target.pbThis(true)))
-            end
-            return true
-        end
-        unless user.hasAnyItem?
-            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an item!", user.pbThis(true))) if show_message
-            return true
-        end
-        if target.unlosableItem?(target.firstItem) ||
-           target.unlosableItem?(user.firstItem) ||
-           user.unlosableItem?(user.firstItem) ||
-           user.unlosableItem?(target.firstItem)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        if user.firstItem == :PEARLOFWISDOM
-             @battle.pbDisplay(_INTL("But it failed, since the Pearl of Fate cannot be exchanged!")) if show_message
-            return true
-        end
-        if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
-            if show_message
-                @battle.pbShowAbilitySplash(target, ability)
-                @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
-                @battle.pbHideAbilitySplash(target)
-            end
-            return true
-        end
-        return false
+        return !canExchangeItems?(user, target, show_message)
     end
 
     def pbEffectAgainstTarget(user, target)
-        oldUserItem = user.firstItem
-        oldUserItemName = getItemName(oldUserItem)
-        oldTargetItem = target.firstItem
-        oldTargetItemName = getItemName(target.firstItem)
-        user.removeItem(oldUserItem)
-        target.removeItem(oldTargetItem)
-        if @battle.stolenItemTurnsToDust?
-            @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.", user.pbThis, oldUserItemName)) if oldUserItem
-            @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.", target.pbThis, oldTargetItemName)) if oldTargetItem
-        elsif !user.opposes? && target.shouldStoreStolenItem?(oldTargetItem)
-            @battle.pbDisplay(_INTL("{1} switched items with its opponent!", user.pbThis))
-            target.setInitialItems(nil)
-            pbReceiveItem(oldTargetItem)
-            target.giveItem(oldUserItem)
-            @battle.pbDisplay(_INTL("{1} obtained {2}.", target.pbThis, oldUserItemName)) if oldUserItem
-            target.pbHeldItemTriggerCheck
-        else
-            user.giveItem(oldTargetItem)
-            target.giveItem(oldUserItem)
-            @battle.pbDisplay(_INTL("{1} switched items with its opponent!", user.pbThis))
-            @battle.pbDisplay(_INTL("{1} obtained {2}.", user.pbThis, oldTargetItemName)) if oldTargetItem
-            @battle.pbDisplay(_INTL("{1} obtained {2}.", target.pbThis, oldUserItemName)) if oldUserItem
-            user.pbHeldItemTriggerCheck
-            target.pbHeldItemTriggerCheck
-        end
+        exchangeItems(user, target)
     end
 
     def getEffectScore(user, target)
-        if user.hasActiveItemAI?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
-            return 130
-        elsif user.hasActiveItemAI?(GameData::Item.getByFlag("ChoiceLocking"))
-            return 100
-        elsif !user.firstItem && target.firstItem
-            if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo
-                return 0
-            end
-        end
-        return 0
+        return getExchangeItemEffectScore(user, target)
     end
 end
 
 #===============================================================================
 # Consumes berry and raises the user's Defense and Sp. Def by 3 steps. (Stuff Cheeks)
 #===============================================================================
-class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
+class PokeBattle_Move_EatBerryRaiseDefenses1 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.hasAnyBerry?
             @battle.pbDisplay(_INTL("But it failed, because {1} has no berries!", user.pbThis(true))) if show_message
@@ -486,7 +434,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
+        user.pbRaiseMultipleStatSteps([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
         user.eachActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             user.pbHeldItemTriggerCheck(item, false)
@@ -495,7 +443,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getMultiStatUpEffectScore([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, target)
+        score = getMultiStatUpEffectScore([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, target)
         user.eachAIKnownActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             score += 40
@@ -559,5 +507,38 @@ class PokeBattle_Move_GrantUserPearlOfWisdom < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 150
+    end
+end
+
+#===============================================================================
+# The user equips a Crystal Caliburn and enters Royal Form. (Gemforged Oath)
+#===============================================================================
+class PokeBattle_Move_GrantUserCrystalCaliburnChangeUserDiancieForm < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:DIANCIE)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        elsif user.form != 0
+            @battle.pbDisplay(_INTL("But {1} can't use it the way it is now!", user.pbThis(true))) if show_message
+            return true
+        elsif !user.canAddItem?(:CRYSTALCALIBURN)
+            @battle.pbDisplay(_INTL("But {1} can't hold the {2}!", user.pbThis(true), getItemName(:CRYSTALCALIBURN))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.giveItem(:CRYSTALCALIBURN)
+        user.pbChangeForm(1, _INTL("{1} draws the {2} from the stone!", user.pbThis, getItemName(:CRYSTALCALIBURN)))
+    end
+
+    def getEffectScore(_user, _target)
+        return 150
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        @battle.pbCommonAnimation("MegaEvolution", user)
+        super
     end
 end
