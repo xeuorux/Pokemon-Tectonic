@@ -154,7 +154,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def saveBattle(name)
-		createDir
+		self.createDir
 		File.open("./VSRecorder/#{save_file_name}/#{name}.dat", "wb") { |f| f.write(getBattleData) }
 	end
 
