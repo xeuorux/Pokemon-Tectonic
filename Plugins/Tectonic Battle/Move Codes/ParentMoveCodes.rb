@@ -1413,7 +1413,7 @@ class PokeBattle_ForetoldMove < PokeBattle_Move
         target.position.applyEffect(:ForetoldMoveUserPartyIndex, user.pokemonIndex)
         if @id == :DOOMDESIRE
             @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!", user.pbThis))
-        elsif @id == :ARTILLERIZE
+        elsif @id == :FIREFOREFFECT
             @battle.pbDisplay(_INTL("{1} fires a shell high in the air!", user.pbThis))
         elsif @id == :GHOSTLYTALE
             @battle.pbDisplay(_INTL("{1} weaves a tale of woe and horror!", user.pbThis))
