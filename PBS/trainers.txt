@@ -92,6 +92,7 @@ Pokemon = BUDEW,12
     Moves = LEAFAGE,POISONSTING,ENVENOM,AROMATHERAPY
     AbilityIndex = 1 # Merciless
 Pokemon = FLABEBE,12
+    Moves = WISH,FAIRYWIND,GLAMOURFLASH,PRANK
     AbilityIndex = 1 # Sentry
 Pokemon = PIPLUP,12
     AbilityIndex = 0 # Imperious
