@@ -79,7 +79,7 @@ BattleHandlers::SpeedCalcAbility.add(:PRIMEVALSLOWSTART,
 
 BattleHandlers::SpeedCalcAbility.add(:EXOTHERMENGINE,
   proc { |ability, _battler, mult|
-      next mult * 1.5
+      next mult * 1.4
   }
 )
 

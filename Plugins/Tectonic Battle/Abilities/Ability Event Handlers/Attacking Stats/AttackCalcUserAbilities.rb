@@ -21,7 +21,7 @@ BattleHandlers::AttackCalcUserAbility.add(:PRIMEVALSLOWSTART,
 
 BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
     proc { |ability, _user, _battle, attackMult|
-        attackMult *= 1.5
+        attackMult *= 1.4
         next attackMult
     }
 )

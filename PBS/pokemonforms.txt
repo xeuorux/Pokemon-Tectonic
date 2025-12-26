@@ -948,7 +948,7 @@ Type1 = FIRE
 Type2 = PSYCHIC
 BaseStats = 105,30,105,55,140,105
 # Total = 540
-Abilities = TOUGH
+Abilities = TOUGH,STONESYMBOL
 Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
 #-------------------------------
 [GDARMANITAN,1]

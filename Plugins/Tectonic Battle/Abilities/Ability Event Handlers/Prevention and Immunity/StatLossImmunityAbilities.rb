@@ -37,6 +37,30 @@ BattleHandlers::StatLossImmunitySelfAbility.add(:PLOTARMOR,
   }
 )
 
+BattleHandlers::StatLossImmunityAbility.add(:STONESYMBOL,
+  proc { |ability, battler, _stat, battle, showMessages|
+      next false unless battle.sandy?
+      if showMessages
+          battle.pbShowAbilitySplash(battler, ability)
+          battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!", battler.pbThis))
+          battle.pbHideAbilitySplash(battler)
+      end
+      next true
+  }
+)
+
+BattleHandlers::StatLossImmunitySelfAbility.add(:STONESYMBOL,
+  proc { |ability, battler, _stat, battle, showMessages|
+      next false unless battle.sandy?
+      if showMessages
+          battle.pbShowAbilitySplash(battler, ability)
+          battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!", battler.pbThis))
+          battle.pbHideAbilitySplash(battler)
+      end
+      next true
+  }
+)
+
 BattleHandlers::StatLossImmunityAbility.add(:FLOWERVEIL,
   proc { |ability, battler, _stat, battle, showMessages|
       next false unless battler.pbHasType?(:GRASS)

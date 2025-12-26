@@ -2096,6 +2096,10 @@ Description = If an attack lowers this Pokémon's HP below half, the attacker be
 Name = Stone Mane
 Description = Prevents half the self-damage from recoil. Powers up moves that have recoil damage by 20%.
 #-------------------------------
+[STONESYMBOL]
+Name = Stone Symbol
+Description = During sandstorm, immune to non-volatile status conditions and stat reductions.
+#-------------------------------
 [STORMBRINGER]
 Name = Stormbringer
 Description = Summons rainstorm for four turns when hit by an attack.
