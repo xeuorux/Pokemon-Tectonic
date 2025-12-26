@@ -3631,7 +3631,7 @@ Pokemon = ARATTATA,22
     Moves = TAKEDOWN,QUICKATTACK,PURSUIT,SUPERFANG
     AbilityIndex = 1 # Gourmand
 Pokemon = GDARUMAKA,23
-    Moves = SNOWBALL
+    Moves = FROSTBARB
     AbilityIndex = 0 # Gorilla Tactics
     Item = METRONOME
 #-------------------------------
