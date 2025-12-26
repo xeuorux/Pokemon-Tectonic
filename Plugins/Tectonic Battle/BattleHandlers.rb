@@ -50,6 +50,8 @@ module BattleHandlers
     PriorityBracketChangeItem           = ItemHandlerHash.new
     PriorityBracketUseAbility           = AbilityHandlerHash.new   # None!
     PriorityBracketUseItem              = ItemHandlerHash.new
+    # Targeting style changes
+    MoveMakeHitAllNearFoesAbility    = AbilityHandlerHash.new
     # Move usage failures
     AbilityOnFlinch                     = AbilityHandlerHash.new # Steadfast
     MoveBlockingAbility                 = AbilityHandlerHash.new
@@ -305,6 +307,13 @@ module BattleHandlers
 
     def self.triggerPriorityBracketUseItem(item, battler, battle)
         PriorityBracketUseItem.trigger(item, battler, battle)
+    end
+
+    #=============================================================================
+
+    def self.triggerMoveMakeHitAllNearFoesAbility(ability, user, move, type, battle)
+        ret = MoveMakeHitAllNearFoesAbility.trigger(ability, user, move, type, battle)
+        return ret || false
     end
 
     #=============================================================================
