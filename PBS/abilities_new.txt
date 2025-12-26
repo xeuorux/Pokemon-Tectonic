@@ -218,7 +218,7 @@ Flags = HazardImmunity
 #-------------------------------
 [BREAKTHROUGH]
 Name = Break Through
-Description = Moves ignore immunities due to typing.
+Description = This Pokémon's moves deal 20% more damage and ignore immunities due to typing.
 #-------------------------------
 [BRILLIANTFLURRY]
 Name = Brilliant Flurry
