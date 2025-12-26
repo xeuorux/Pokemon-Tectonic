@@ -1,11 +1,3 @@
-VSRecorderReceived = false
-Events.onMapLoadIn += proc { |_sender, _e|
-  next unless !VSRecorderReceived
-  next unless $PokemonBag.pbHasItem?(:POKEXRAY)
-  $PokemonBag.pbStoreItem(:VSRECORDER, 1)
-  VSRecorderReceived = true
-}
-
 ItemHandlers::UseFromBag.add(:VSRECORDER, proc { |item|
   if $current_save_file_name.nil?
 		pbMessage(_INTL("The VS Recorder buzzes erratically. Save your progress to make it work properly."))
