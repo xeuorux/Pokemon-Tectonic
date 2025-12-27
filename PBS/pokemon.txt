@@ -20437,7 +20437,7 @@ Name = Sizzlipede
 Type1 = FIRE
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,80,45,45,65,65
+BaseStats = 75,80,45,50,60,65
 # Total = 375
 BaseEXP = 61
 Rareness = 145
@@ -20459,7 +20459,7 @@ Name = Centiskorch
 Type1 = FIRE
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,105,50,50,80,80
+BaseStats = 90,105,50,55,75,80
 # Total = 455
 BaseEXP = 184
 Rareness = 60
@@ -20478,7 +20478,7 @@ Name = Milliblaze
 Type1 = FIRE
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 110,130,65,65,95,95
+BaseStats = 110,130,65,75,85,95
 # Total = 560
 BaseEXP = 267
 Rareness = 35
