@@ -171,7 +171,7 @@ class PokemonPartyShowcase_Scene
 
         @trainer.tribalBonus.updateTribeCount
         bonusesList = @trainer.tribalBonus.getActiveBonusesList(false)
-        tribesTotal = GameData::Tribe::DATA.keys.count
+        tribesTotal = GameData::Tribe.legal_tribes_count
         fullDescription = ""
         if bonusesList.empty?
             fullDescription = _INTL("None")

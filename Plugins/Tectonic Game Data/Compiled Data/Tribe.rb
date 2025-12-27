@@ -93,5 +93,13 @@ module GameData
 				yield tribeData
 			end
 		end
+
+		def self.legal_tribes_count
+			count = 0
+			each_legal do |tribeData|
+				count += 1
+			end
+			return count
+		end
 	end
 end
