@@ -2432,7 +2432,7 @@ Pokemon = EXEGGUTOR,70
     EV = 0,20,12,18,20,0
 Pokemon = MDUSTOX,70
     Moves = UTURN,LIFTOFF,SUNSHINE,INFERNOIMPACT
-    AbilityIndex = 1 # Follow Through
+    AbilityIndex = 0 # Harsh
     Item = HEAVYDUTYBOOTS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10

@@ -203,3 +203,9 @@ BattleHandlers::SpeedCalcAbility.add(:HAILSTONEHELM,
       next mult / 2.0 if battler.battle.icy?
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:SUNCHASER,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if battler.battle.sunny?
+  }
+)

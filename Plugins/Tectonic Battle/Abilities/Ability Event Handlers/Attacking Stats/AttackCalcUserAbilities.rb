@@ -84,7 +84,7 @@ BattleHandlers::AttackCalcUserAbility.add(:BIGTHORNS,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:SUNCHASER,
+BattleHandlers::AttackCalcUserAbility.add(:WARMUP,
   proc { |ability, _user, battle, attackMult|
       attackMult *= 1.3 if battle.sunny?
       next attackMult
