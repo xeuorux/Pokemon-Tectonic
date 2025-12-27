@@ -907,13 +907,3 @@ class PokeBattle_Move_UseAllOtherSoundMoves < PokeBattle_Move
         return getAllOtherSoundMoves(user).length * 100
     end
 end
-
-#===============================================================================
-# Applies a damaging effect to the targeted slot (Stormshards)
-#===============================================================================
-class PokeBattle_Move_PositionPassiveDamage < PokeBattle_Move
-    def pbEffectAgainstTarget(_user, target)
-        target.position.applyEffect(:Stormshards, 3)
-        return true
-    end
-end

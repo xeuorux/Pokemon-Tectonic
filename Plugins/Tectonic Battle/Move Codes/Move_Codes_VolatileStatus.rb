@@ -902,4 +902,37 @@ class PokeBattle_Move_ApplyReducingSyrupToTarget < PokeBattle_Move
     end
 end
 
-    
+#===============================================================================
+# Applies a damaging effect to the targeted slot, causing 1/8th HP damage to
+# the Pokemon in that slot for the next 3 turns. (Stormshards)
+#===============================================================================
+class PokeBattle_Move_ApplyPassiveDamageToTargetPosition3 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @shardTurns = 3
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        if target.position.effectActive?(:Stormshards)
+            @battle.pbDisplay(_INTL("But it failed, since there are already rocky shards on the ground beneath {1}!", target.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return if target.position.effectActive?(:Stormshards)
+        target.position.applyEffect(:Stormshards, applyEffectDurationModifiers(@shardTurns, user))
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.position.applyEffect(:Stormshards, applyEffectDurationModifiers(@shardTurns, user))
+    end
+
+    def getEffectScore(user, target)
+        return applyEffectDurationModifiers(@shardTurns, user) * 15
+    end
+end
