@@ -53,7 +53,7 @@ module PokeBattle_BattleRecorder
 	def recordChoices
 		@choices.each_with_index do |c, i|
 			c_clone = c.clone
-			c_clone[2] = nil #Remove move object (not parsable)
+			c_clone[2] = nil unless c_clone.nil? #Remove move object (not parsable)
 			@recorded_choices[@turnCount][i].push(c_clone)
 		end
 	end
@@ -101,7 +101,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def registerRecordedChoice(index)
-		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(@recorded_choice)
+		@recorded_choices[@turnCount][index][@commandPhasesThisRound-1].push(@recorded_choice) unless @recorded_choices[@turnCount][index].length < @commandPhasesThisRound
 	end
 
 	def registerRules
@@ -246,7 +246,12 @@ module PokeBattle_BattleReplayer
 		pbCommandPhaseLoop(false)
 		@choices = []
 		@recorded_choices[@turnCount].each do |c|
+			if c.length == 0 # If choice is empty
+				@choices.push([])
+				next
+			end
 			@choices.push(c[0])
+			next if @choices[-1].nil?
 			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
@@ -264,7 +269,12 @@ module PokeBattle_BattleReplayer
 		pbCommandPhaseLoop(false)
 		@choices = []
 		@recorded_choices[@turnCount].each do |c|
+			if c.length < @commandPhasesThisRound + 1 # If there is no choice for this command phase
+				@choices.push([])
+				next
+			end
 			@choices.push(c[@commandPhasesThisRound]) # Not decremented since commandPhasesThisRound is incremented AFTER the command phase
+			next if @choices[-1].nil?
 			currentBattlerIndex = @choices.length - 1
 			if @choices[-1][0] == :UseMove
 				if @choices[-1][1] == -1
@@ -278,7 +288,9 @@ module PokeBattle_BattleReplayer
 
 	def registerReplayedChoice(index)
 		choice = @recorded_choices[@turnCount][index]
-		if choice.length < 5
+		if choice.nil?
+			@replayed_choice = nil
+		elsif choice.length < 5
 			@replayed_choice = @recorded_choices[@turnCount][index][4]
 		else
 			@replayed_choice = nil
