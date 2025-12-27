@@ -36,7 +36,15 @@ class PokeBattle_Battle
         end
         # Fleeing from trainer battles or boss battles
         if trainerBattle? || bossBattle?
-            if debugControl
+            if @is_replayed
+                pbSEPlay("Battle flee")
+                if @internalBattle
+                    @decision = 2
+                else
+                    @decision = 3
+                end
+                return 1
+            elsif debugControl
                 if pbDisplayConfirm(_INTL("Treat this battle as a win?"))
                     @decision = 1
                     return 1

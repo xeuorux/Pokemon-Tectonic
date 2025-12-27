@@ -19,8 +19,8 @@ class PokeBattle_Move_AttackOneTurnLaterChooseIceFireElectricType < PokeBattle_F
         @turnCount = 2
     end
 
-    def resolutionChoice(user)
-        return if damagingMove?
+    def resolutionChoice(user, replayed_choice)
+        return nil if damagingMove?
         validTypes = %i[FIRE ELECTRIC ICE]
         validTypeNames = []
         validTypes.each do |typeID|
@@ -33,9 +33,12 @@ class PokeBattle_Move_AttackOneTurnLaterChooseIceFireElectricType < PokeBattle_F
                 @chosenType = validTypes.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenType = validTypes[0]
+            elsif !replayed_choice.nil?
+                @chosenType = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should {1} launch?", user.pbThis(true)),validTypeNames,0)
                 @chosenType = validTypes[chosenIndex]
+                return @chosenType
             end
         end
     end

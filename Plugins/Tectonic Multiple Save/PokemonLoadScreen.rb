@@ -119,6 +119,7 @@ class PokemonLoadScreen
             case command
             when cmd_continue
                 $current_save_file_name = lastModifiedSaveName
+                PokeBattle_BattleRecorder.createDir
                 Game.set_up_system
                 Game.load(SaveData.read_from_file(lastModifiedSaveName, true))
                 @scene.pbEndScene
@@ -129,11 +130,13 @@ class PokemonLoadScreen
                     file.movePanel(1)
                     @scene.pbEndScene unless file.staymenu
                     file.endScene
+                    PokeBattle_BattleRecorder.createDir unless file.staymenu
                     return unless file.staymenu
                 end
             when cmd_new_game
                 @scene.pbEndScene
                 Game.start_new
+                PokeBattle_BattleRecorder.createDir
                 return
             when cmd_options
                 pbFadeOutIn {

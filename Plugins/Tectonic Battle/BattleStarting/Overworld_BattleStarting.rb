@@ -44,7 +44,7 @@ end
 def setBattleRule(*args)
   r = nil
   for arg in args
-    if r
+    if !(r.nil?)
       $PokemonTemp.recordBattleRule(r,arg)
       r = nil
     else

@@ -112,6 +112,7 @@ class PokemonSaveScreen
             end
             SaveData.changeFILEPATH(!$current_save_file_name.nil? ? $current_save_file_name : FileSave.name)
         end
+        PokeBattle_BattleRecorder.createDir
         @scene.pbEndScreen
         return ret
     end

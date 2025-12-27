@@ -1,3 +1,5 @@
+AUTO_CLOUDS_DISABLED_GLOBAl = 35
+
 class OverworldWeather
     MAX_PARTICLES = 60 # Show 60 particles at max strength
     MAX_TILES = 60

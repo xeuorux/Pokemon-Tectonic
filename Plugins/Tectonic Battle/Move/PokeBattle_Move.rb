@@ -77,11 +77,13 @@ class PokeBattle_Move
         if damagingMove? && targetData.can_target_one_foe?
           allNearFoesData = GameData::Target.get(:AllNearFoes)
           return allNearFoesData if user.effectActive?(:FlareWitch)
-          return allNearFoesData if @calcType == :PSYCHIC && user.hasActiveAbility?(:MULTITASKER)
-          return allNearFoesData if @calcType == :FIGHTING && user.hasActiveAbility?(:EVENHANDED)
-          return allNearFoesData if user.hasActiveAbility?(:SPACIALDISTORTION)
-          return allNearFoesData if @calcType == :DRAGON && user.hasActiveAbility?(:VICIOUSCYCLE)
-          return allNearFoesData if @calcType == :NORMAL && user.hasActiveAbility?(:HORDETACTICS)
+          moveMadeSpread = false
+          user.eachActiveAbility do |abilityID|
+            next unless BattleHandlers.triggerMoveMakeHitAllNearFoesAbility(abilityID, user, self, @calcType, @battle)
+            moveMadeSpread = true
+            break
+          end
+          return allNearFoesData if moveMadeSpread
         end
         if damagingMove? && user.hasActiveAbility?(:CATASTROPHIC)
           return GameData::Target.get(:AllNearOthers)

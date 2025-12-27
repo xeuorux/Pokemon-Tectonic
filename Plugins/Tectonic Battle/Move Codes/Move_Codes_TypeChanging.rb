@@ -440,7 +440,7 @@ end
 # Target becomes your choice of Dragon, Fairy, or Steel type. (Regalia)
 #===============================================================================
 class PokeBattle_Move_SetTargetTypesToChoiceOfDragonFairySteel < PokeBattle_Move
-    def resolutionChoice(user)
+    def resolutionChoice(user, replayed_choice)
         validTypes = %i[DRAGON FAIRY STEEL]
         validTypeNames = []
         validTypes.each do |typeID|
@@ -453,9 +453,12 @@ class PokeBattle_Move_SetTargetTypesToChoiceOfDragonFairySteel < PokeBattle_Move
                 @chosenType = validTypes.sample
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenType = validTypes[0]
+            elsif !replayed_choice.nil?
+                @chosenType = replayed_choice
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should {1} gift?", user.pbThis(true)),validTypeNames,0)
                 @chosenType = validTypes[chosenIndex]
+                return @chosenType
             end
         end
     end

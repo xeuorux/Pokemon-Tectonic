@@ -213,6 +213,7 @@ move, false, true)
             next if nearOnly && !user.near?(b)
             pbAddTarget(choices, user, b, nearOnly)
         end
+        return pbAddTarget(targets, user, choices[0], nearOnly) if choices.length == 1 # Avoids calling pbRandom if only one target is available
         pbAddTarget(targets, user, choices[@battle.pbRandom(choices.length)], nearOnly) if choices.length > 0
     end
 
@@ -222,6 +223,7 @@ move, false, true)
             next if nearOnly && !user.near?(b)
             pbAddTarget(choices, user, b, nearOnly)
         end
+        return pbAddTarget(targets, user, choices[0], nearOnly) if choices.length == 1 # Avoids calling pbRandom if only one target is available
         pbAddTarget(targets, user, choices[@battle.pbRandom(choices.length)], nearOnly) if choices.length > 0
     end
 
