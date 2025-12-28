@@ -13,7 +13,7 @@ class PokeBattle_Battler
         PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
         raise _INTL("HP less than 0") if @hp.negative?
         raise _INTL("HP greater than total HP") if @hp > @totalhp && oldHP <= @totalhp
-        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@battle.autoTesting
+        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@dummy && !@battle.autoTesting
         @tookDamage = true if amt.positive? && registerDamage
         return amt
     end
@@ -65,6 +65,7 @@ class PokeBattle_Battler
             oldHP = @hp
             pbReduceHP(damageAmount, false)
             if @dummy
+                pbShowFaintingMessage if fainted?
                 return damageAmount
             else
                 if entryCheck
@@ -302,6 +303,20 @@ class PokeBattle_Battler
         return healAmount
     end
 
+    def pbShowFaintingMessage
+        if boss?
+            if isSpecies?(:PHIONE)
+                @battle.pbDisplayBrief(_INTL("{1} was defeated!", pbThis))
+            else
+                @battle.pbDisplayBrief(_INTL("{1} was destroyed!", pbThis))
+            end
+        elsif afraid?
+            @battle.pbDisplayBrief(_INTL("{1} flees in fear!", pbThis))
+        else
+            @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
+        end
+    end
+
     def pbFaint(showMessage = true)
         unless fainted?
             PBDebug.log("!!!***Can't faint with HP greater than 0")
@@ -313,19 +328,7 @@ class PokeBattle_Battler
         # And consumed a gem, etc. in the use of that move
         consumeMoveTriggeredItems(self)
 
-        if showMessage
-            if boss?
-                if isSpecies?(:PHIONE)
-                    @battle.pbDisplayBrief(_INTL("{1} was defeated!", pbThis))
-                else
-                    @battle.pbDisplayBrief(_INTL("{1} was destroyed!", pbThis))
-                end
-            elsif afraid?
-                @battle.pbDisplayBrief(_INTL("{1} flees in fear!", pbThis))
-            else
-                @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
-            end
-        end
+        pbShowFaintingMessage if showMessage
         
         unless @dummy
             PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage

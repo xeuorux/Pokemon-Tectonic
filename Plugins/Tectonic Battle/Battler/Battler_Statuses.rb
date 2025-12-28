@@ -671,12 +671,8 @@ immuneTypeRealName))
     def pbContinueStatus(statusToContinue = nil)
         getStatuses.each do |oneStatus|
             next if !statusToContinue.nil? && oneStatus != statusToContinue
-            if oneStatus == :POISON && @statusCount.positive?
-                @battle.pbCommonAnimation("Poison", self)
-            else
-                anim_name = GameData::Status.get(oneStatus).animation
-                @battle.pbCommonAnimation(anim_name, self) if anim_name
-            end
+            anim_name = GameData::Status.get(oneStatus).animation
+            @battle.pbCommonAnimation(anim_name, self) if anim_name && !@dummy
             poisonCount = getStatusCount(:POISON)
             yield if block_given?
 
