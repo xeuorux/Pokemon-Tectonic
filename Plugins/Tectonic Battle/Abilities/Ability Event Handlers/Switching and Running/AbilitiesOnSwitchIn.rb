@@ -392,6 +392,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:CELERITAS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:SHARPSHOOTER,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is quick on the draw!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:FEROCIOUS,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
