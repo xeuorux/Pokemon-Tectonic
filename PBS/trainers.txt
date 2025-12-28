@@ -1017,12 +1017,12 @@ ExtendsVersion = 4
 Policies = CURSE_DOUBLE_ABILITIES
 Pokemon = ILLUMISE,35
     AbilityIndex = 1 # Fascinate
-Pokemon = MILTANK,35
-    Moves = SLACKOFF,BODYSLAM,DINNERBELL,BULLDOZE
-    AbilityIndex = 0 # Refreshing
-    Item = LEFTOVERS
+Pokemon = RATICATE,35
+    Moves = POISONFANG,HYPERFANG,CRUNCH,SEARINGCRUNCH
+    AbilityIndex = 1 # Gnawing
+    Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,0,20,0,0,10
+    EV = 10,20,0,20,20,0
 Pokemon = MALAMAR,35
     Item = SITRUSBERRY
 Pokemon = RAICHU,35
