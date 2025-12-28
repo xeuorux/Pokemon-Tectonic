@@ -1,5 +1,5 @@
 #===============================================================================
-# Renders item unusable (Knock off, Slime Ball)
+# Renders item unusable (Knock Off, Slime Ball)
 #===============================================================================
 class PokeBattle_Move_RemovesTargetItem < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
@@ -36,7 +36,7 @@ class PokeBattle_Move_RemovesTargetItem < PokeBattle_Move
 end
 
 #===============================================================================
-# Target drops its item. It regains the item at the end of the battle. (Knock Off)
+# Target drops its item. It regains the item at the end of the battle.
 # If target has a losable item, damage is multiplied by 1.5.
 #===============================================================================
 class PokeBattle_Move_RemovesTargetItemDamageBoost50Percent < PokeBattle_Move
@@ -220,7 +220,7 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
 end
 
 #===============================================================================
-# User steals the target's items. (Covet, Ransack, Thief)
+# User steals the target's items. (Covet, Thief)
 #===============================================================================
 class PokeBattle_Move_StealsItem < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
@@ -264,7 +264,7 @@ class PokeBattle_Move_StealsBerryGem < PokeBattle_Move
 end
 
 #===============================================================================
-# Fails if the Target has no Item (Poltergeist)
+# Fails if the Target has no Item.
 #===============================================================================
 class PokeBattle_Move_FailsTargetNoItem < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -330,7 +330,7 @@ end
 
 #===============================================================================
 # The target cannnot use its held item, its held item has no
-# effect, and no items can be used on it. (Embargo)
+# effect, and no items can be used on it. 
 #===============================================================================
 class PokeBattle_Move_Embargo < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)

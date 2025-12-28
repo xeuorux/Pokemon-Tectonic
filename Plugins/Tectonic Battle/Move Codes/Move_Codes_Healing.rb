@@ -200,7 +200,7 @@ class PokeBattle_Move_HealUserFullyAndFallAsleep < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Heals user to 100%. Only usable on first turn. (Fresh Start)
+# Heals user to 100%. Only usable on first turn.
 #===============================================================================
 class PokeBattle_Move_HealUserFullHPFailsIfNotUserFirstTurn < PokeBattle_HealingMove
     def healRatio(_user)
@@ -483,7 +483,7 @@ end
 
 #===============================================================================
 # Damages target if target is a foe, or heals target by 1/2 of its max HP if
-# target is an ally. (Pollen Puff, Package, Water Spiral)
+# target is an ally. (Pollen Puff, Package)
 #===============================================================================
 class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
     def pbTarget(user)
@@ -783,7 +783,7 @@ class PokeBattle_Move_HealUserBasedOnWeightHalvesWeight < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Heals user by 1/2, raises Defense, Sp. Defense, Crit Chance. (Divination)
+# Heals user by 1/2, raises Defense, Sp. Defense, Crit Chance.
 #===============================================================================
 class PokeBattle_Move_HealUserHalfOfTotalHPRaiseDefSpDefCriticalHitRate1 < PokeBattle_HalfHealingMove
     def pbMoveFailed?(user, _targets, show_message)

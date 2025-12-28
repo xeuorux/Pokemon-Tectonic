@@ -26,7 +26,7 @@ end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
-# May paralyze the target. (Volt Tackle)
+# May paralyze the target.
 #===============================================================================
 class PokeBattle_Move_RecoilThirdOfDamageDealtNumbTarget < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
@@ -43,7 +43,7 @@ end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
-# May burn the target. (Flare Blitz)
+# May burn the target.
 #===============================================================================
 class PokeBattle_Move_RecoilThirdOfDamageDealtBurnTarget < PokeBattle_RecoilMove
     def recoilFactor; return (1.0 / 3.0); end
@@ -65,7 +65,7 @@ end
 
 #===============================================================================
 # User takes recoil damage equal to 1/2 of the damage this move dealt.
-# (Head Smash, Light of Ruin)
+# (Light of Ruin)
 #===============================================================================
 class PokeBattle_Move_RecoilHalfOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor;  return 0.5; end
@@ -73,7 +73,6 @@ end
 
 #===============================================================================
 # User takes recoil damage equal to 2/3 of the damage this move dealt.
-# (Head Charge)
 #===============================================================================
 class PokeBattle_Move_RecoilTwoThirdsOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor; return (2.0 / 3.0); end
@@ -88,7 +87,7 @@ end
 
 #===============================================================================
 # If attack misses, user takes crash damage of 1/2 of max HP.
-# (High Jump Kick, Jump Kick)
+# (High Jump Kick)
 #===============================================================================
 class PokeBattle_Move_CrashDamageIfFailsUnusableInGravity < PokeBattle_Move
     def recoilMove?;        return true; end
@@ -159,7 +158,7 @@ class PokeBattle_Move_UserLosesThirdOfCurrentHP < PokeBattle_Move
 end
 
 #===============================================================================
-# User loses one tenth of their total hp in recoil. (Shred Shot, Shards)
+# User loses one tenth of their total hp in recoil. (Shred Shot, Shrapnel, Fragmentation)
 #===============================================================================
 class PokeBattle_Move_UserLosesTenthOfTotalHP < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
@@ -193,7 +192,7 @@ class PokeBattle_Move_UserLosesHalfOfTotalHP < PokeBattle_Move
 end
 
 #===============================================================================
-# User takes recoil damage equal to 1/3 of the damage this move dealt. (Undying Rush)
+# User takes recoil damage equal to 1/3 of the damage this move dealt.
 # But can't faint from that recoil damage.
 #===============================================================================
 class PokeBattle_Move_RecoilThirdOfDamageDealtButCantFaint < PokeBattle_RecoilMove
@@ -214,7 +213,7 @@ class PokeBattle_Move_RecoilThirdOfDamageDealtButCantFaint < PokeBattle_RecoilMo
 end
 
 #===============================================================================
-# User takes 25% recoil damage, and always critical hits. (Talonfall)
+# User takes 25% recoil damage, and always critical hits.
 #===============================================================================
 class PokeBattle_Move_RecoilQuarterOfDamageDealtCriticalHits < PokeBattle_RecoilMove
     def recoilFactor;  return 0.25; end

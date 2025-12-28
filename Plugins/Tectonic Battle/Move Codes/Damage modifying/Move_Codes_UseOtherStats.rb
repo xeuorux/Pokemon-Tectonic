@@ -24,7 +24,7 @@ end
 
 #===============================================================================
 # Target's attacking stats are used instead of user's Attack for this move's calculations.
-# (Foul Play, Tricky Toxins)
+# (Foul Play, Short Circuit)
 #===============================================================================
 class PokeBattle_Move_AttacksWithTargetsStats < PokeBattle_Move
     def aiAutoKnows?(pokemon); return true; end
@@ -57,7 +57,7 @@ end
 
 #===============================================================================
 # Target's Attack is used instead of its Defense for this move's
-# calculations. (Butt Heads)
+# calculations. (Butting Heads)
 #===============================================================================
 class PokeBattle_Move_TargetsAttackDefends < PokeBattle_Move
     def pbDefendingStat(_user, target)
@@ -67,7 +67,7 @@ end
 
 #===============================================================================
 # Target's Sp. Atk is used instead of its Sp. Def for this move's
-# calculations.
+# calculations. (Beam Struggle)
 #===============================================================================
 class PokeBattle_Move_TargetsSpAtkDefends < PokeBattle_Move
     def pbDefendingStat(_user, target)

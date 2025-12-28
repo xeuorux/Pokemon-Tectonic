@@ -47,7 +47,7 @@ class PokeBattle_Move_AllyGainsExtraMoveThisTurn < PokeBattle_HelpingMove
 end
 
 #===============================================================================
-# Powers up the ally's attack this round by boosting its damage and accuracy by 50%. (Spotting)
+# Powers up the ally's attack this round by boosting its damage and accuracy by 50%.
 #===============================================================================
 class PokeBattle_Move_PowerUpAndIncreaseAccOfAllyMove < PokeBattle_HelpingMove
     def initialize(battle, move)

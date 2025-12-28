@@ -112,7 +112,7 @@ class PokeBattle_Move_CureUserPartyStatusStartHealUserEachTurn < PokeBattle_Move
 end
 
 #===============================================================================
-# Damages, while also healing the team of statuses. (Purifying Water)
+# Damages, while also healing the team of statuses. (As Crystal)
 #===============================================================================
 class PokeBattle_Move_CureUserPartyStatusDamagingMove < PokeBattle_Move
     def pbEffectAfterAllHits(user, _target)
@@ -146,7 +146,6 @@ end
 
 #===============================================================================
 # Safeguards the user's side from being inflicted with status problems.
-# (Safeguard)
 #===============================================================================
 class PokeBattle_Move_StartUserSideImmunityToInflictedStatus < PokeBattle_Move
     def initialize(battle, move)
@@ -262,7 +261,7 @@ class PokeBattle_Move_CureTargetBurn < PokeBattle_Move
 end
 
 #===============================================================================
-# Cures the target's frostbite. (Rousing Hula)
+# Cures the target's frostbite. (Hearthfire Hula)
 #===============================================================================
 class PokeBattle_Move_CureTargetFrostbite < PokeBattle_Move
     def pbAdditionalEffect(_user, target)

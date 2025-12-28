@@ -190,7 +190,6 @@ end
 
 #===============================================================================
 # Two turn attack. Ups user's Defense by 4 steps first turn, attacks second turn.
-# (Skull Bash)
 #===============================================================================
 class PokeBattle_Move_TwoTurnAttackChargeRaiseUserDef4 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)
@@ -210,7 +209,6 @@ end
 
 #===============================================================================
 # Two turn attack. Ups user's Special Defense by 4 steps first turn, attacks second turn.
-# (Infinite Wing)
 #===============================================================================
 class PokeBattle_Move_TwoTurnAttackChargeRaiseUserspDef1 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)

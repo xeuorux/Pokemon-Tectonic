@@ -38,7 +38,7 @@ class PokeBattle_Move_EmpoweredTailwind < PokeBattle_Move_StartUserSideDoubleSpe
 end
 
 #===============================================================================
-# For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
+# For 6 rounds, doubles the Speed of all battlers on the user's side. (Jet Stream)
 #===============================================================================
 class PokeBattle_Move_StartUserSideDoubleSpeed6 < PokeBattle_Move_StartUserSideDoubleSpeed4
     def initialize(battle, move)
@@ -164,8 +164,7 @@ end
 
 #===============================================================================
 # Reduces the damage the user's side takes from non-attack sources of damage
-# for 8 turns.
-# (Natural Protection)
+# for 8 turns. (Natural Protection)
 #===============================================================================
 class PokeBattle_Move_StartUserSideLessDamageFromNonAttackDamage < PokeBattle_Move
     def initialize(battle, move)

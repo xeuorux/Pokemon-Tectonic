@@ -1,5 +1,5 @@
 #===============================================================================
-# For 10 rounds, foes' attacks cannot become critical hits. (Lucky Chant)
+# For 10 rounds, foes' attacks cannot become critical hits.
 #===============================================================================
 class PokeBattle_Move_StartPreventCriticalHitsAgainstUserSide10 < PokeBattle_Move
     def initialize(battle, move)

@@ -19,7 +19,7 @@ end
 
 #===============================================================================
 # This move ignores target's Defense, Special Defense and evasion stat changes.
-# (Chip Away, Darkest Lariat, Sacred Sword)
+# (Darkest Lariat, Sacred Sword)
 #===============================================================================
 class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStages < PokeBattle_Move
     def pbCalcAccuracyMultipliers(user, target, multipliers)
@@ -35,7 +35,7 @@ class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStages < PokeBattle_Move
 end
 
 #===============================================================================
-# Ends target's protections immediately. (Feint)
+# Ends target's protections immediately. (Acedian Impact, Swarm Order)
 #===============================================================================
 class PokeBattle_Move_RemoveProtections < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
@@ -86,7 +86,8 @@ class PokeBattle_Move_HyperspaceFury < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# Ends the opposing side's screen effects. (Brick Break, Psychic Fangs)
+# Ends the opposing side's screen effects. 
+# (Brick Break, Psychic Fangs, Decompose, Seismic Wave)
 #===============================================================================
 class PokeBattle_Move_RemoveScreens < PokeBattle_Move
     def ignoresReflect?; return true; end
@@ -260,7 +261,7 @@ class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStagesAndTargetAbility < PokeBa
 end
 
 #===============================================================================
-# Ignores move redirection from abilities and moves. (Snipe Shot)
+# Ignores move redirection from abilities and moves.
 #===============================================================================
 class PokeBattle_Move_CannotBeRedirected < PokeBattle_Move
     def cannotRedirect?; return true; end

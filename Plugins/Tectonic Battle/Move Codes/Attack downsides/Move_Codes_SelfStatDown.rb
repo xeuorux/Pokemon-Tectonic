@@ -275,7 +275,7 @@ end
 
 #===============================================================================
 # Decreases the user's Defense and Special Defense by 2 steps each.
-# (Close Combat, Dragon Ascent)
+# (Close Combat, Dragon Ascent, Acid Bath, Autumn Blast)
 #===============================================================================
 class PokeBattle_Move_LowerUserDefSpDef2 < PokeBattle_StatDownMove
     def initialize(battle, move)

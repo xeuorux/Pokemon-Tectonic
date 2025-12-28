@@ -1,6 +1,6 @@
 #===============================================================================
 # Fails if the target didn't chose a damaging move to use this round, or has
-# already moved. (Sucker Punch)
+# already moved. (Sucker Punch, Sinister Spines)
 #===============================================================================
 class PokeBattle_Move_FailsIfTargetActed < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)

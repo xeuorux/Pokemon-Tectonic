@@ -38,7 +38,7 @@ class PokeBattle_Move_SetTargetAbilityToSimple < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's ability becomes Insomnia. (Worry Seed)
+# Target's ability becomes Insomnia.
 #===============================================================================
 class PokeBattle_Move_SetTargetAbilityToInsomnia < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)
