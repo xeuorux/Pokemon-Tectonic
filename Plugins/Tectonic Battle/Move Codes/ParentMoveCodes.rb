@@ -665,11 +665,11 @@ class PokeBattle_HealingMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.applyFractionalHealing(healRatio(user), canOverheal: canOverheal?(user)) unless user.fainted?
+        user.applyFractionalHealing(healRatio(user), user: user, canOverheal: canOverheal?(user)) unless user.fainted?
     end
 
     def getEffectScore(user, target)
-        return user.applyFractionalHealing(healRatio(user),aiCheck: true)
+        return user.applyFractionalHealing(healRatio(user), user: user, aiCheck: true)
     end
 end
 
@@ -1059,7 +1059,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
         return if target.damageState.hpLost <= 0 || !shouldDrain?(user, target)
         hpGain = (target.damageState.hpLost * drainFactor(user, target)).round
         canOverheal = canOverheal?(user, target)
-        user.pbRecoverHPFromDrain(hpGain, target, canOverheal: canOverheal)
+        user.pbRecoverHPFromDrain(hpGain, target, user: user, canOverheal: canOverheal)
     end
 
     def getDamageBasedEffectScore(user,target,damage)
@@ -1517,12 +1517,12 @@ class PokeBattle_StatDrainHealingMove < PokeBattle_Move
             @battle.pbHideAbilitySplash(target)
             user.pbItemHPHealCheck
         elsif user.canHeal?
-            user.pbRecoverHP(healAmount)
+            user.pbRecoverHP(healAmount, user: user)
         end
     end
 
     def getEffectScore(user, target)
-        return user.pbRecoverHP(healingAmount(user,target), aiCheck: true)
+        return user.pbRecoverHP(healingAmount(user,target), user: user, aiCheck: true)
     end
 
     def getTargetAffectingEffectScore(user, target)

@@ -87,7 +87,7 @@ class PokeBattle_Move_HeartRhythm < PokeBattle_SnowballingMove
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.hpLost <= 0
         hpGain = (target.damageState.hpLost * drainFactor(user, target)).round
-        user.pbRecoverHPFromDrain(hpGain, target)
+        user.pbRecoverHPFromDrain(hpGain, target, user: user)
     end
 end
 

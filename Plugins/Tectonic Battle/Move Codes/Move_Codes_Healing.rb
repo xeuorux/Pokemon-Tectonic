@@ -36,14 +36,20 @@ class PokeBattle_Move_HealUserPositionNextTurn < PokeBattle_Move
         return (user.totalhp / 2.0).round
     end
 
+    def wishTurns(user)
+        return 2
+    end
+
     def pbEffectGeneral(user)
-        user.position.applyEffect(:Wish, 2)
+        user.position.applyEffect(:Wish, wishTurns(user))
         user.position.applyEffect(:WishAmount, wishAmount(user))
-        user.position.applyEffect(:WishMaker, user.pokemonIndex)
+        user.position.applyEffect(:WishMakerUserIndex, user.index)
+        user.position.applyEffect(:WishMakerPartyIndex, user.pokemonIndex)
     end
 
     def getEffectScore(user, _target)
-        score = (user.totalhp / user.level) * 30
+        score = (user.totalhp / user.level) * 40
+        score -= wishTurns(user) * 10
         score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
         return score
     end
@@ -52,33 +58,13 @@ end
 #===============================================================================
 # Battler in user's position is healed by 3/4 of its max HP, in two rounds. (Arc of Hope)
 #===============================================================================
-class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.position.effectActive?(:Wish)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since a Wish is already about to come true for {1}!", user.pbThis(true)))
-            end
-            return true
-        end
-        return false
-    end
-
+class PokeBattle_Move_HealUserPositionInTwoTurns < PokeBattle_Move_HealUserPositionNextTurn
     def wishAmount(user)
-        return (user.totalhp / 1.33).round
+        return (user.totalhp * (3.0 / 4.0)).round
     end
 
-    def pbEffectGeneral(user)
-        user.position.applyEffect(:Wish, 3)
-        user.position.applyEffect(:WishAmount, wishAmount(user))
-        user.position.applyEffect(:WishMaker, user.pokemonIndex)
-    end
-
-    def getEffectScore(user, _target)
-        score = (user.totalhp / user.level) * 30
-        score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
-        return score
+    def wishTurns(user)
+        return 3
     end
 end
 
@@ -328,11 +314,11 @@ class PokeBattle_Move_HealTargetHalfOfTotalHP < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user))
+        target.applyFractionalHealing(healingRatio(user), user: user)
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(healingRatio(user),aiCheck: true)
+        return target.applyFractionalHealing(healingRatio(user), user: user, aiCheck: true)
     end
 end
 
@@ -383,7 +369,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHPCureStatus < PokeBattle_M
         target.pbCureStatus
         if target.hp != target.totalhp && target.canHeal?
             hpGain = (target.totalhp / 4.0).round
-            target.pbRecoverHP(hpGain)
+            target.pbRecoverHP(hpGain, user: user)
         end
         super
     end
@@ -429,7 +415,7 @@ class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healRatio(user))
+        target.applyFractionalHealing(healRatio(user), user: user)
     end
 
     def getEffectScore(_user, target)
@@ -469,11 +455,11 @@ class PokeBattle_Move_HealTargetDependingOnMoonglow < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user,target))
+        target.applyFractionalHealing(healingRatio(user,target), user: user)
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(healingRatio(user,target),aiCheck: true)
+        return target.applyFractionalHealing(healingRatio(user,target), user: user, aiCheck: true)
     end
 
     def shouldHighlight?(_user, _target)
@@ -518,9 +504,9 @@ class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
         end
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         return unless @healing
-        target.applyFractionalHealing(1.0 / 2.0)
+        target.applyFractionalHealing(1.0 / 2.0, user: user)
     end
 
     def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
@@ -529,7 +515,7 @@ class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return target.applyFractionalHealing(1.0 / 2.0, aiCheck: true) unless user.opposes?(target)
+        return target.applyFractionalHealing(1.0 / 2.0, user: user, aiCheck: true) unless user.opposes?(target)
         return 0
     end
 
@@ -700,12 +686,12 @@ class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
         score = 0
 
         unless user.healthCapped?
-            score += user.applyFractionalHealing(1.0, aiCheck: true)
+            score += user.applyFractionalHealing(1.0, user: user, aiCheck: true)
             score -= getSleepEffectScore(nil, user) * 0.45
             score += 45 if user.hasStatusNoSleep?
         end
         unless target.healthCapped?
-            score -= target.applyFractionalHealing(1.0, aiCheck: true)
+            score -= target.applyFractionalHealing(1.0, user: user, aiCheck: true)
             score += getSleepEffectScore(nil, target)
             score -= 45 if target.hasStatusNoSleep?
         end
@@ -891,5 +877,85 @@ class PokeBattle_Move_EmpoweredHealOrder < PokeBattle_HalfHealingMove
         summonAvatar(user, :COMBEE, _INTL("{1} summons a helper!", user.pbThis))
 
         transformType(user, :BUG)
+    end
+end
+
+#===============================================================================
+# Heals sacrifices 25% of their max HP, and heals every one of its other 
+# party members by 25%. (Dinner Bell)
+#===============================================================================
+class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_Move
+    def worksWithNoTargets?; return true; end
+
+    def initialize(battle, move)
+        super
+        @hpFraction = 0.25
+    end
+    
+    def pbMoveFailed?(user, targets, show_message)
+        if user.hp <= (user.totalhp * @hpFraction)
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
+            return true
+        end
+        if healableMembers(user) == 0
+            @battle.pbDisplay(_INTL("But it failed, since {1} has no team members to heal!", user.pbThis(true))) if show_message
+            return true
+        end
+        super
+    end
+
+    def validPokemon(pkmn)
+        return pkmn&.able? && pkmn.hp < pkmn.totalhp
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        super
+        @battle.pbDisplay(_INTL("A bell rings out! Dinner is on!"))
+    end
+
+    def pbEffectGeneral(user)
+        user.applyFractionalDamage(@hpFraction)
+
+        # Heal all Pokémon in the user's and partner trainer's party.
+        # While storing health values for the healing graphic
+        previousHealthValues = []
+        usersParty = @battle.pbParty(user.index)
+        usersParty.each_with_index do |pkmn, i|
+            break if pkmn.nil?
+            if i == user.pokemonIndex
+                previousHealthValues.push(pkmn.hp)
+                next
+            end
+            battler = @battle.pbFindBattler(i, user)
+            if battler
+                healHPFraction(battler, @hpFraction, user)
+                # Added intentionally after the heal, so the party healing animation doesn't include it
+                previousHealthValues.push(pkmn.hp)
+            else
+                previousHealthValues.push(pkmn.hp)
+                healHPFraction(pkmn, @hpFraction, user)
+            end
+        end
+
+        showPartyHealing(usersParty, previousHealthValues)
+    end
+
+    def healableMembers(user)
+        healableMembers = 0
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next unless validPokemon(pkmn)
+            next if i == user.pokemonIndex
+            healableMembers += 1 
+        end
+        return healableMembers
+    end
+
+    def getEffectScore(user, _target)
+        score += getHPLossEffectScore(user, @hpFraction * 1.5) # intentionally higher than it looks like it should be
+        healableMembers = healableMembers(user)
+        if healableMembers > 0
+            score += 30 + healableMembers * 50
+        end
+        return score
     end
 end

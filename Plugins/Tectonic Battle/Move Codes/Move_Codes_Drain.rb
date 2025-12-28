@@ -57,7 +57,7 @@ class PokeBattle_Move_HealUserByTwoThirdsOfDamageDoneIfTargetHurtUserThisTurn < 
         return if target.damageState.hpLost <= 0
         return unless user.lastAttacker.include?(target.index)
         hpGain = (target.damageState.hpLost * 2 / 3).round
-        user.pbRecoverHPFromDrain(hpGain, target)
+        user.pbRecoverHPFromDrain(hpGain, target, user: user)
     end
 
     def getEffectScore(user, target)
@@ -86,12 +86,12 @@ class PokeBattle_Move_UserTargetAverageHP < PokeBattle_Move
         if user.hp > newHP
             user.pbReduceHP(user.hp - newHP, false, false)
         elsif user.hp < newHP
-            user.pbRecoverHP(newHP - user.hp, false, true, false)
+            user.pbRecoverHP(newHP - user.hp, false, true, false, user: user)
         end
         if target.hp > newHP
             target.pbReduceHP(target.hp - newHP, false, false)
         elsif target.hp < newHP
-            target.pbRecoverHP(newHP - target.hp, false, true, false)
+            target.pbRecoverHP(newHP - target.hp, false, true, false, user: user)
         end
         @battle.pbDisplay(_INTL("The battlers shared their pain!"))
         user.pbItemHPHealCheck
