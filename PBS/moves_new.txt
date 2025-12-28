@@ -815,7 +815,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DisableTargetUsingOffTypeMove4
 Flags = CanProtect
-Description = Pins the target with building materials. The target can't use off-type moves for three more turns.
+Description = Pins the target with building materials. The target becomes barred.
 Animation = SMACKDOWN
 #-------------------------------
 [CONCUSS]
@@ -2414,7 +2414,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = PositionPassiveDamage
+FunctionCode = ApplyPassiveDamageToTargetPosition3
 Flags = CanProtect,ForceSignature
 EffectChance = 100
 Description = The user attacks with shards from their rocky mane. For the next 3 turns, the Pokémon in the targeted slot loses 1/8th of their max HP.

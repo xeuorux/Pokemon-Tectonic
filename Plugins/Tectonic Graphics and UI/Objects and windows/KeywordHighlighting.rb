@@ -147,6 +147,8 @@ def battleKeywordsImportant
         "foretells",
         "foretell",
         "foretold",
+        "barred",
+        "bar",
     ]
 end
 
