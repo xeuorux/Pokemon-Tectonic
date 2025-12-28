@@ -457,7 +457,7 @@ class PokeBattle_Battle
     end
 
     # Foretold Moves, Wish, etc.
-    def getUserForDelayedMove(userIndex, partyIndex)
+    def getBattlerFromFieldOrParty(userIndex, partyIndex)
         moveUser = nil
         eachBattler do |b|
             next if b.opposes?(userIndex)

@@ -8,7 +8,7 @@ GameData::BattleEffect.register_effect(:Position, {
         userIndex = position.effects[:ForetoldMoveUserIndex]
         partyIndex = position.effects[:ForetoldMoveUserPartyIndex]
         move = position.effects[:ForetoldMove]
-        moveUser = battle.getUserForDelayedMove(userIndex, partyIndex)
+        moveUser = battle.getBattlerFromFieldOrParty(userIndex, partyIndex)
         next if moveUser.nil?
         next if moveUser.index == battler.index # Target is the user
         moveName = GameData::Move.get(move).name
@@ -86,7 +86,7 @@ GameData::BattleEffect.register_effect(:Position, {
         if battler.canHeal?
             userIndex = position.effects[:WishMakerUserIndex]
             partyIndex = position.effects[:WishMakerPartyIndex]
-            wishMaker = battle.getUserForDelayedMove(userIndex, partyIndex)
+            wishMaker = battle.getBattlerFromFieldOrParty(userIndex, partyIndex)
 
             wishMakerName = battle.pbThisEx(index, position.effects[:WishMakerPartyIndex])
             healingMessage = _INTL("{1}'s wish came true!", wishMakerName)
