@@ -916,8 +916,8 @@ class PokeBattle_Battler
             move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
 
             if pbOwnedByPlayer?
-                unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000
-                unlockAchievement(:DEAL_LARGE_DAMAGE_2) if maxDamageOnTargets >= 10_000
+                unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000 && !(user.battle.is_replayed)
+                unlockAchievement(:DEAL_LARGE_DAMAGE_2) if maxDamageOnTargets >= 10_000 && !(user.battle.is_replayed)
             end
         end
         # Self-Destruct/Explosion's damaging and fainting of user
