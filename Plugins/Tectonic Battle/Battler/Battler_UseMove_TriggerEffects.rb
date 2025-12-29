@@ -116,6 +116,22 @@ user.pbThis(true)))
                     user.applyWaterlog(target)
                 end
             end
+            # Red-Hot Retreat
+            if target.effectActive?(:RedHotRetreat, true) && !user.burned?
+                PBDebug.log("[Lingering effect] #{target.pbThis}'s Red-Hot Retreat")
+                if user.canBurn?(target, false)
+                    @battle.pbDisplay(_INTL("{1} was burned by {2}!", user.pbThis, target.pbThis(true)))
+                    user.applyBurn(target)
+                end
+            end
+            # Ice-Nine Wall
+            if target.effectActive?(:IceNineWall, true) && !user.frostbitten?
+                PBDebug.log("[Lingering effect] #{target.pbThis}'s Ice-Nine Wall")
+                if user.canFrostbite?(target, false)
+                    @battle.pbDisplay(_INTL("{1} was frostbitten by {2}!", user.pbThis, target.pbThis(true)))
+                    user.applyFrostbite(target)
+                end
+            end
             # Bubble Barrier
             if target.effectActive?(:BubbleBarrier, true) && target.damageState.bubbleBarrier > 0
                 recoilMessage = _INTL("The bubble barrier bursts, harming {1}!", user.pbThis(true))

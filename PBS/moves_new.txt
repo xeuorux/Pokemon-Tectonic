@@ -4131,8 +4131,8 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = ProtectUserBurnSpecAttacker
-Description = Protects the user from attacks. Also burns any attacker who specially attacks the user.
+FunctionCode = UserTakesHalfDamageThisTurnBurnAttackers
+Description = Halves attack damage taken this turn. Burns any attackers. Fails if used successively.
 Animation = WITHDRAW
 #-------------------------------
 [SEARINGCRUNCH]
@@ -6548,8 +6548,8 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = ProtectUserFrostbitePhysAttacker
-Description = Protects the user from attacks. Also frostbites any attacker who physically attacks the user.
+FunctionCode = UserTakesHalfDamageThisTurnFrostbiteAttackers
+Description = Halves attack damage taken this turn. Frostbites any attackers. Fails if used successively.
 Animation = DEFENSECURL
 #-------------------------------
 [ICEPICK]
