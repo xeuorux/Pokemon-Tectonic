@@ -3483,7 +3483,7 @@ Pokemon = SNORLAX,65
 [FORMERCHAMP_Scilla,Scilla]
 Flags = NoPerfect
 Pokemon = AZUMARILL,70
-    Moves = AQUAJET,HUMBLE,LIQUIDATION,GIGAIMPACT
+    Moves = AQUAJET,HUMBLE,LIQUIDATION,ICEHAMMER
     AbilityIndex = 1 # Pure Force
     Item = POWERLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3497,9 +3497,9 @@ Pokemon = GALLADE,70
 Pokemon = KOMMOO,70
     Moves = CLANGOROUSSOUL,DRAGONPULSE,FLASHCANNON,DRAINPUNCH
     AbilityIndex = 0 # Well Rounded
-    Item = LEFTOVERS
+    Item = STRESSBALL
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,0,15,0,0,15
+    EV = 20,20,10,0,20,0
 Pokemon = MAROMATISSE,70
     Moves = SWEETKISS,AROMATHERAPY,HEX,FLORALGRAMARYE
     AbilityIndex = 1 # Uncanny Luck
@@ -3507,7 +3507,7 @@ Pokemon = MAROMATISSE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = FLOATZEL,70
-    Moves = GIGAIMPACT,WHIRLWINDKICK,WEASELING,FAKEOUT
+    Moves = GIGAIMPACT,WHIRLWINDKICK,WEASELING,LIQUIDATION
     AbilityIndex = 0 # Moxie
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3517,7 +3517,7 @@ Pokemon = URSHIFU,70
     Form = 1 # Rapid Strike Form
     Moves = SURGINGSTRIKES,CLOSECOMBAT,ICEPUNCH,IRONHEAD
     AbilityIndex = 0 # Unseen Fist
-    Item = CHOICEBAND
+    Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 #-------------------------------
