@@ -306,14 +306,14 @@ FieldUse = TM
 Flags = SkipPocketMessage
 Move = HEARTSWAP
 #-------------------------------
-[TMTRICK]
+[TMSWITCHEROO]
 Name = Unnamed
 NamePlural = Unnamed
 Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
-Move = TRICK
+Move = SWITCHEROO
 #-------------------------------
 [TMREST]
 Name = Unnamed
@@ -819,14 +819,14 @@ FieldUse = TM
 Flags = SkipPocketMessage
 Move = COLDFRONT
 #-------------------------------
-[TMSEERSTRIKE]
+[TMPSYCHOSCISSION]
 Name = Unnamed
 NamePlural = Unnamed
 Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
-Move = SEERSTRIKE
+Move = PSYCHOSCISSION
 #-------------------------------
 [TMPSYCHIC]
 Name = Unnamed
@@ -927,14 +927,14 @@ FieldUse = TM
 Flags = SkipPocketMessage
 Move = DARKALLURE
 #-------------------------------
-[TMBULLETTRAIN]
+[TMMETEORMASH]
 Name = Unnamed
 NamePlural = Unnamed
 Pocket = 5
 Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
-Move = BULLETTRAIN
+Move = METEORMASH
 #-------------------------------
 [TMFLASHCANNON]
 Name = Unnamed
