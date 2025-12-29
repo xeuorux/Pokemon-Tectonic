@@ -84,7 +84,7 @@ class PokeBattle_Move_DisableTargetLastMoveUsed < PokeBattle_Move
 end
 
 #===============================================================================
-# For 4 rounds, disables the last move the target used. (Drown)
+# For 4 rounds, disables the last move the target used. (Bind Fate)
 # Then debuffs a stat based on what was disabled.
 #===============================================================================
 class PokeBattle_Move_DisableTargetLastMoveUsedLowerTargetRelevantStat4 < PokeBattle_Move_DisableTargetLastMoveUsed
@@ -276,7 +276,7 @@ class PokeBattle_Move_DisableTargetStatusMoves4 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 2 rounds, disables the target's non-damaging moves. (Docile Mask)
+# For 2 rounds, disables the target's non-damaging moves. (Innocent Masque)
 #===============================================================================
 class PokeBattle_Move_DisableTargetStatusMoves2 < PokeBattle_Move_DisableTargetStatusMoves4
     def initialize(battle, move)
@@ -454,7 +454,7 @@ class PokeBattle_Move_LowerTargetSpeed6MakeTargetWeakerToFire < PokeBattle_Move
 end
 
 #===============================================================================
-# User curses the target.
+# User curses the target. (Sunder Fate)
 #===============================================================================
 class PokeBattle_Move_CurseTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -577,7 +577,7 @@ class PokeBattle_Move_NumbTargetOrCurseIfNumb < PokeBattle_Move
 end
 
 #===============================================================================
-# User applies a evil version of Ingrain. (Evil Roots)
+# User applies a evil version of Ingrain. (Roots of Evil)
 #===============================================================================
 class PokeBattle_Move_StartsCursedIngrain < PokeBattle_Move_StartHealUserEachTurnTrapUser
     def pbMoveFailed?(user, _targets, show_message)
@@ -661,7 +661,7 @@ end
 
 #===============================================================================
 # Grounds the target while it remains active. Hits some semi-invulnerable
-# targets. (Smack Down, Thousand Arrows, Weigh Anchor)
+# targets. (Thousand Arrows)
 #===============================================================================
 class PokeBattle_Move_HitsTargetInSkyGroundsTarget < PokeBattle_Move
     def hitsFlyingTargets?; return true; end
@@ -873,7 +873,7 @@ class PokeBattle_Move_JinxTarget < PokeBattle_Move
 end
 
 #===============================================================================
-# User applies the Reducing Syrup effect for 3 turns
+# User applies the Sticky effect for 3 turns. (Reducing Syrup)
 #===============================================================================
 class PokeBattle_Move_ApplyReducingSyrupToTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)

@@ -377,7 +377,7 @@ Pokemon = CAMERUPT,20
 #-------------------------------
 [TEENAGERM,Jonas]
 Pokemon = SKIDDO,19
-    Moves = MEGADRAIN,MILKDRINK,HOP,VALORBOLT
+    Moves = MEGADRAIN,SYNTHESIS,HOP,VALORBOLT
     AbilityIndex = 0 # Bully
 Pokemon = ARON,20
     Moves = GRANITEHEAD,METALCLAW,ROAR,HARDEN
@@ -1018,12 +1018,12 @@ ExtendsVersion = 4
 Policies = CURSE_DOUBLE_ABILITIES
 Pokemon = ILLUMISE,35
     AbilityIndex = 1 # Fascinate
-Pokemon = MILTANK,35
-    Moves = HEALBELL,BODYSLAM,MILKDRINK,BULLDOZE
-    AbilityIndex = 0 # Thick Fat
-    Item = LEFTOVERS
+Pokemon = RATICATE,35
+    Moves = POISONFANG,HYPERFANG,CRUNCH,SEARINGCRUNCH
+    AbilityIndex = 1 # Gnawing
+    Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,0,20,0,0,10
+    EV = 10,20,0,20,20,0
 Pokemon = MALAMAR,35
     Item = SITRUSBERRY
 Pokemon = RAICHU,35
@@ -1833,7 +1833,7 @@ Pokemon = MANDIBUZZ,35
 #-------------------------------
 [BATTLEGIRL3,Kryska]
 Pokemon = GOGOAT,35
-    Moves = WHIRLWINDKICK,AERIALACE,ROOTDRIVER,MILKDRINK
+    Moves = WHIRLWINDKICK,AERIALACE,ROOTDRIVER,SYNTHESIS
     AbilityIndex = 0 # Bully
     Item = LEFTOVERS
 Pokemon = MINIOR,35
@@ -9078,8 +9078,8 @@ Pokemon = TOUCANNON,70
     AbilityIndex = 1 # Skill Link
     Item = EXPERTBELT
 Pokemon = MILTANK,70
-    Moves = CURLUP,MILKDRINK,ROUGHTUMBLE,ADAMANTINEPRESS
-    AbilityIndex = 0 # Thick Fat
+    Moves = DINNERBELL,SLACKOFF,BODYSLAM,ADAMANTINEPRESS
+    AbilityIndex = 0 # Refreshing
     Item = LEFTOVERS
 Pokemon = ADUGTRIO,70
     Moves = SHOREUP,SLUDGEWAVE,HAIRFLIP,SANDBLASTING

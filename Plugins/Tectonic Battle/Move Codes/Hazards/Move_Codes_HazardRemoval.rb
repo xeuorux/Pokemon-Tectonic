@@ -106,7 +106,7 @@ class PokeBattle_Move_RapidSpin < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Removes all hazards on both sides. (Terraform)
+# Removes all hazards on both sides. (Terraform, Wildfire Melt)
 #===============================================================================
 class PokeBattle_Move_RemovesHazardsBothSides < PokeBattle_Move
     def hazardRemovalMove?; return true; end

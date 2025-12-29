@@ -218,7 +218,7 @@ Flags = HazardImmunity
 #-------------------------------
 [BREAKTHROUGH]
 Name = Break Through
-Description = Moves ignore immunities due to typing.
+Description = This Pokémon's moves deal 20% more damage and ignore immunities due to typing.
 #-------------------------------
 [BRILLIANTFLURRY]
 Name = Brilliant Flurry
@@ -686,10 +686,6 @@ Description = Boosts Sp. Def by 20%. When this Pokémon takes its second special
 [FIGHTINGVIGOR]
 Name = Fighting Vigor
 Description = Heals 1/16th HP every turn. Protected from being numbed or waterlogged.
-#-------------------------------
-[FILTHY]
-Name = Filthy
-Description = Immune to Poison-type moves, and boosts Defense and Sp. Def when hit by one.
 #-------------------------------
 [FINESUGAR]
 Name = Fine Sugar
@@ -1722,6 +1718,10 @@ Description = After knocking out any Pokémon, regenerates its previously-used i
 [REFRACTIVE]
 Name = Refractive
 Description = Light moves change this Pokémon's secondary type and their power is boosted by 30%.
+#-------------------------------
+[REFRESHING]
+Name = Refreshing
+Description = This Pokémon's moves heal for 25% more.
 #-------------------------------
 [REFRESHMENTS]
 Name = Refreshments

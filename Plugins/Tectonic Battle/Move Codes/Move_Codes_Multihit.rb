@@ -28,7 +28,7 @@ class PokeBattle_Move_HitThreeTimesAlwaysCriticalHit < PokeBattle_Move_AlwaysCri
 end
 
 #===============================================================================
-# Hits three times as Beedrill and five times as Wornet. (Multi-Needle)
+# Hits three times as Beedrill and five times as Wornet. (Manyneedle)
 #===============================================================================
 class PokeBattle_Move_HitsThreeTimesAsBeedrillFiveTimesAsWornet < PokeBattle_Move
     def multiHitMove?; return true; end

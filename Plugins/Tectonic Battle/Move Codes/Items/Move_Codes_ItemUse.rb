@@ -260,7 +260,7 @@ end
 
 #===============================================================================
 # Power and type depend on the user's held berry. Destroys the berry.
-# (Natural Gift, Seed Surprise)
+# (Natural Gift, Evernalize)
 #===============================================================================
 class PokeBattle_Move_NaturalGift < PokeBattle_Move
     def initialize(battle, move)
@@ -393,7 +393,7 @@ end
 
 #===============================================================================
 # User and target swap their first items. They remain swapped after wild battles.
-# (Switcheroo, Trick)
+# (Switcheroo)
 #===============================================================================
 class PokeBattle_Move_SwapItems < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -418,7 +418,7 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
 end
 
 #===============================================================================
-# Consumes berry and raises the user's Defense and Sp. Def by 3 steps. (Stuff Cheeks)
+# Consumes berry and raises the user's Defense and Sp. Def by 1 step. (Stuff Cheeks)
 #===============================================================================
 class PokeBattle_Move_EatBerryRaiseDefenses1 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -493,7 +493,7 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
 end
 
 #===============================================================================
-# The user equips a Pearl of Wisdom. (Ritual Rhythm)
+# The user equips a Pearl of Wisdom. (Rhythmic Ritual)
 #===============================================================================
 class PokeBattle_Move_GrantUserPearlOfWisdom < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)

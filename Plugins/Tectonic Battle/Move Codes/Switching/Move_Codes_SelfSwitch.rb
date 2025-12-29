@@ -28,7 +28,7 @@ end
 
 #===============================================================================
 # User switches out. Various effects affecting the user are passed to the
-# replacement. (Baton Pass)
+# replacement.
 #===============================================================================
 class PokeBattle_Move_SwitchOutUserPassOnEffects < PokeBattle_Move
     def switchOutMove?; return true; end
@@ -61,7 +61,7 @@ end
 
 #===============================================================================
 # After inflicting damage, user switches out.
-# (U-turn, Volt Switch, Flip Turn)
+# (U-turn, Volt Switch, Flip Turn, Psyche Switch, Malefaction)
 #===============================================================================
 class PokeBattle_Move_SwitchOutUserDamagingMove < PokeBattle_Move
     def switchOutMove?; return true; end

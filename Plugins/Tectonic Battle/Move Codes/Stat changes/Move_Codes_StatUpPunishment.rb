@@ -19,7 +19,7 @@ class PokeBattle_Move_BurnTargetIfTargetHasRaisedStats < PokeBattle_JealousyMove
 end
 
 #===============================================================================
-# Frostbites opposing Pokemon that have increased their stats. (Freezing Jealousy)
+# Frostbites opposing Pokemon that have increased their stats. (Frigid Jealousy)
 #===============================================================================
 class PokeBattle_Move_FrostbiteTargetIfTargetHasRaisedStats < PokeBattle_JealousyMove
     def initialize(battle, move)

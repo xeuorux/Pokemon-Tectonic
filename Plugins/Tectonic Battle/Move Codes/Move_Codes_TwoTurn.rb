@@ -190,7 +190,6 @@ end
 
 #===============================================================================
 # Two turn attack. Ups user's Defense by 4 steps first turn, attacks second turn.
-# (Skull Bash)
 #===============================================================================
 class PokeBattle_Move_TwoTurnAttackChargeRaiseUserDef4 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)
@@ -210,7 +209,6 @@ end
 
 #===============================================================================
 # Two turn attack. Ups user's Special Defense by 4 steps first turn, attacks second turn.
-# (Infinite Wing)
 #===============================================================================
 class PokeBattle_Move_TwoTurnAttackChargeRaiseUserspDef1 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)
@@ -516,11 +514,11 @@ class PokeBattle_Move_TwoTurnMoveHealTargetHalfOfTotalHP < PokeBattle_Move_TwoTu
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
+        target.applyFractionalHealing(healingRatio(target), user: user, canOverheal: true)
     end
 
     def getEffectScore(user, target)
-        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
+        score = target.applyFractionalHealing(healingRatio(user), user: user, aiCheck: true, canOverheal: true)
         score += super
         return score
     end

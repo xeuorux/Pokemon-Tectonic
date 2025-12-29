@@ -32,7 +32,7 @@ class PokeBattle_Move_FlinchTargetFailsIfNotUserFirstTurn < PokeBattle_FlinchMov
 end
 
 #===============================================================================
-# Lowers the target's Speed. Flinch chance. (Crackling Cloud)
+# Lowers the target's Speed. Flinch chance. (Split the Sky)
 #===============================================================================
 class PokeBattle_Move_FlinchTargetLowerTargetSpd1 < PokeBattle_Move
     def flinchingMove?; return true; end

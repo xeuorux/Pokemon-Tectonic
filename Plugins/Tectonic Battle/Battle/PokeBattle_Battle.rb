@@ -455,4 +455,25 @@ class PokeBattle_Battle
         return _INTL("The ally {1}", partyMember.name) unless pbOwnedByPlayer?(idxBattler)
         return partyMember.name
     end
+
+    # Foretold Moves, Wish, etc.
+    def getBattlerFromFieldOrParty(userIndex, partyIndex)
+        moveUser = nil
+        eachBattler do |b|
+            next if b.opposes?(userIndex)
+            next if b.pokemonIndex != partyIndex
+            moveUser = b
+            break
+        end
+        # User isn't in battle, get it from the party
+        if moveUser.nil? || moveUser.fainted?
+            party = pbParty(userIndex)
+            pkmn = party[partyIndex]
+            if pkmn
+                moveUser = PokeBattle_Battler.new(self, userIndex)
+                moveUser.pbInitDummyPokemon(pkmn, partyIndex, true)
+            end
+        end
+        return moveUser
+    end
 end

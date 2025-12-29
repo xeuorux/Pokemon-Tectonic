@@ -13,7 +13,7 @@ class PokeBattle_Move_IncreasedPriorityInSunshine < PokeBattle_Move
 end
 
 #===============================================================================
-# Move has increased Priority in sandstorm (Sand Blasting)
+# Move has increased Priority in sandstorm (Erode)
 #===============================================================================
 class PokeBattle_Move_IncreasedPriorityInSandstorm < PokeBattle_Move
     def priorityModification(_user, _targets)

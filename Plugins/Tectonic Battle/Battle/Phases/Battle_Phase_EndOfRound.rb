@@ -141,19 +141,19 @@ class PokeBattle_Battle
     end
 
     def pbEORStatusDamage(priority)
-        if pbCheckGlobalAbility(:INEXORABLE)
+        inexorableSource = pbCheckGlobalAbility(:INEXORABLE)
+        if inexorableSource
+            inexorableSource.showMyAbilitySplash(:INEXORABLE)
             battlersInOrder = []
-            pbParty(0).each do |partyMember, partyIndex|
+            pbParty(0).each_with_index do |partyMember, partyIndex|
                 next unless partyMember
-                dummyBattler = PokeBattle_Battler.new(self, 0)
-                dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
-                battlersInOrder.push(dummyBattler)
+                battlerToStatus = getBattlerFromFieldOrParty(0,partyIndex)
+                battlersInOrder.push(battlerToStatus)
             end
-            pbParty(1).each do |partyMember, partyIndex|
+            pbParty(1).each_with_index do |partyMember, partyIndex|
                 next unless partyMember
-                dummyBattler = PokeBattle_Battler.new(self, 1)
-                dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
-                battlersInOrder.push(dummyBattler)
+                battlerToStatus = getBattlerFromFieldOrParty(1,partyIndex)
+                battlersInOrder.push(battlerToStatus)
             end
         else
             battlersInOrder = priority.clone
@@ -215,6 +215,8 @@ class PokeBattle_Battle
                 opposingBattler.pbRecoverHPFromDrain(healthRestore, b)
             end
         end
+
+        inexorableSource&.hideMyAbilitySplash
     end
 
     def countDownPerishSong(priority)

@@ -357,6 +357,10 @@ Description = Gain priority with Grass-type moves.
 Name = Fiesta
 Description = Heals by 1/8th HP whenever any Pokémon uses a dance or sound move.
 #-------------------------------
+[FILTHY]
+Name = Filthy
+Description = Immune to Poison-type moves, and boosts Defense and Sp. Def when hit by one.
+#-------------------------------
 [FLAMEWINGS]
 Name = Flame Wings
 Description = Flying-type attacks have a 40% chance to burn.

@@ -1,5 +1,5 @@
 #===============================================================================
-# User is protected against moves with the "CanProtect" flag this round. (Detect, Protect)
+# User is protected against moves with the "CanProtect" flag this round. (Protect)
 #===============================================================================
 class PokeBattle_Move_ProtectUser < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -235,7 +235,7 @@ end
 
 #===============================================================================
 # User is protected against damaging moves this round. Decreases the Sp. Atk of
-# the user of a stopped special move by 1 step. (Shield Shell)
+# the user of a stopped special move by 1 step. (Shining Shell)
 #===============================================================================
 class PokeBattle_Move_ProtectUserFromDamagingMovesLowerAttackerSpAtk1 < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -359,8 +359,8 @@ class PokeBattle_Move_ProtectUserFrostbitePhysAttacker < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# User is protected against damaging moves this round. Counterattacks (Cranial Guard)
-# with Granite Head.
+# User is protected against damaging moves this round. Counterattacks
+# with Granite Head. (Cranial Guard)
 #===============================================================================
 class PokeBattle_Move_ProtectUserFromDamagingMovesUseGraniteHeadAgainstAttackers < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -397,7 +397,7 @@ end
 #===============================================================================
 # User takes half damage from all damaging moves this turn. If a Pokémon
 # attacks the user while this effect applies, that Pokémon become leeched.
-# (Root Haven)
+# (Root Shelter)
 #===============================================================================
 class PokeBattle_Move_UserTakesHalfDamageThisTurnLeechAttackers < PokeBattle_HalfProtectMove
     def initialize(battle, move)
@@ -443,8 +443,8 @@ class PokeBattle_Move_UserTakesHalfDamageThisTurnWaterlogAttackers < PokeBattle_
 end
 
 #===============================================================================
-# Creates a bubble to shield the target. The next time they’re attacked, (Bubble Barrier)
-# 50% of the move damage is instead dealt to the attacker
+# Creates a bubble to shield the target. The next time they’re attacked,
+# 50% of the move damage is instead dealt to the attacker. (Bubble Barrier)
 #===============================================================================
 class PokeBattle_Move_TargetTakesHalfDamageNextAttackAttackerTakesRecoil < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end

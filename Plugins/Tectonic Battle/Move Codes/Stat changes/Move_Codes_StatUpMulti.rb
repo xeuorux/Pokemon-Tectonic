@@ -274,7 +274,7 @@ class PokeBattle_Move_RaiseUserAtkSpAtk2AndSpeed2InMoonglow < PokeBattle_MultiSt
 end
 
 #===============================================================================
-# Increases the user's Attack and Sp. Attack by 4 step eachs. (True Senses)
+# Increases the user's Attack and Sp. Attack by 4 step eachs. (Anatman)
 #===============================================================================
 class PokeBattle_Move_RaiseUserAtkSpAtk4 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -297,7 +297,7 @@ end
 
 #===============================================================================
 # Increases the user's Defense and Special Defense by 2 steps each.
-# (Cosmic Power, Defend Order)
+# (Defend Order)
 #===============================================================================
 class PokeBattle_Move_RaiseUserDefSpDef2 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
@@ -427,7 +427,7 @@ class PokeBattle_Move_EmpoweredQuiverDance < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# Increases the user's Sp. Atk and accuracy by 3 steps each.
+# Increases the user's Sp. Atk and accuracy by 3 steps each. (Hone Sight)
 #===============================================================================
 class PokeBattle_Move_RaiseUserSpAtkAcc3 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -485,7 +485,7 @@ class PokeBattle_Move_RaiseUserSpAtkSpDef2CriticalHitRate1 < PokeBattle_MultiSta
 end
 
 #===============================================================================
-# Increases the user's Sp. Atk, Sp. Def and accuracy by 2 steps each. (Store Fuel)
+# Increases the user's Sp. Atk, Sp. Def and accuracy by 2 steps each. (Hold Fire)
 #===============================================================================
 class PokeBattle_Move_RaiseUserSpAtkSpDefAcc2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -505,7 +505,7 @@ class PokeBattle_Move_RaiseUserSpAtkDef2 < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# Increases the user's Sp. Atk, Defense and accuracy by 2 steps each. (Aerial View)
+# Increases the user's Sp. Atk, Defense and accuracy by 2 steps each. (Bird's-Eye View)
 #===============================================================================
 class PokeBattle_Move_RaiseUserSpAtkDefAcc2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -632,7 +632,7 @@ class PokeBattle_Move_RaiseUserWorstStat4SecondWorstStat2 < PokeBattle_Move
 end
 
 #===============================================================================
-# If the move misses, the user gains Accuracy and Speed. (Joust)
+# If the move misses, the user gains Accuracy and Speed.
 #===============================================================================
 class PokeBattle_Move_RaiseUserAccSpd1IfMisses < PokeBattle_Move
     # This method is called if a move fails to hit all of its targets

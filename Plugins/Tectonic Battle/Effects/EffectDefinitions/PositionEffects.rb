@@ -8,25 +8,9 @@ GameData::BattleEffect.register_effect(:Position, {
         userIndex = position.effects[:ForetoldMoveUserIndex]
         partyIndex = position.effects[:ForetoldMoveUserPartyIndex]
         move = position.effects[:ForetoldMove]
-        moveUser = nil
-        battle.eachBattler do |b|
-            next if b.opposes?(userIndex)
-            next if b.pokemonIndex != partyIndex
-            moveUser = b
-            break
-        end
-        # Target is the user
-        next if moveUser && moveUser.index == battler.index
-        # User isn't in battle, get it from the party
-        if moveUser.nil? || moveUser.fainted?
-            party = battle.pbParty(userIndex)
-            pkmn = party[partyIndex]
-            if pkmn
-                moveUser = PokeBattle_Battler.new(battle, userIndex)
-                moveUser.pbInitDummyPokemon(pkmn, partyIndex, true)
-            end
-        end
+        moveUser = battle.getBattlerFromFieldOrParty(userIndex, partyIndex)
         next if moveUser.nil?
+        next if moveUser.index == battler.index # Target is the user
         moveName = GameData::Move.get(move).name
         battle.pbDisplay(_INTL("{1} took the {2} attack!", battler.pbThis, moveName))
         # NOTE: Future Sight failing against the target here doesn't count towards
@@ -100,12 +84,17 @@ GameData::BattleEffect.register_effect(:Position, {
     :swaps_with_battlers => true,
     :expire_proc => proc do |battle, index, position, battler|
         if battler.canHeal?
-            wishMaker = battle.pbThisEx(index, position.effects[:WishMaker])
-            healingMessage = _INTL("{1}'s wish came true!", wishMaker)
-            battler.pbRecoverHP(position.effects[:WishAmount], true, true, true, healingMessage)
+            userIndex = position.effects[:WishMakerUserIndex]
+            partyIndex = position.effects[:WishMakerPartyIndex]
+            wishMaker = battle.getBattlerFromFieldOrParty(userIndex, partyIndex)
+
+            wishMakerName = battle.pbThisEx(index, position.effects[:WishMakerPartyIndex])
+            healingMessage = _INTL("{1}'s wish came true!", wishMakerName)
+
+            battler.pbRecoverHP(position.effects[:WishAmount], true, true, true, healingMessage, user: wishMaker)
         end
     end,
-    :sub_effects => %i[WishAmount WishMaker],
+    :sub_effects => %i[WishAmount WishMakerUserIndex WishMakerPartyIndex],
 })
 
 GameData::BattleEffect.register_effect(:Position, {
@@ -115,8 +104,15 @@ GameData::BattleEffect.register_effect(:Position, {
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :WishMaker,
-    :real_name => "Wish Maker",
+    :id => :WishMakerUserIndex,
+    :real_name => "Wish Maker User Index",
+    :type => :PartyPosition,
+    :info_displayed => false,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :WishMakerPartyIndex,
+    :real_name => "Wish Maker Party Index",
     :type => :PartyPosition,
     :info_displayed => false,
 })

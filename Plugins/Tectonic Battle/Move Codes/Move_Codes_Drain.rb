@@ -13,7 +13,7 @@ class PokeBattle_Move_HealUserByHalfOfDamageDone < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# User gains 3/4 the HP it inflicts as damage. (Draining Kiss, Oblivion Wing)
+# User gains 3/4 the HP it inflicts as damage. (Draining Kiss, Oblivion Wing, Tera Drain)
 #===============================================================================
 class PokeBattle_Move_HealUserByThreeQuartersOfDamageDone < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.75; end
@@ -21,8 +21,7 @@ end
 
 #===============================================================================
 # Deals double damage if the target is asleep.
-# User gains half the HP it inflicts as damage.
-# (Dream Absorb)
+# User gains half the HP it inflicts as damage. (Dream Absorb)
 #===============================================================================
 class PokeBattle_Move_HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
@@ -36,7 +35,6 @@ end
 #===============================================================================
 # Deals double damage if the target is asleep.
 # User gains half the HP it inflicts as damage. This can overheal.
-# (Dream Feast)
 #===============================================================================
 class PokeBattle_Move_HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
@@ -59,7 +57,7 @@ class PokeBattle_Move_HealUserByTwoThirdsOfDamageDoneIfTargetHurtUserThisTurn < 
         return if target.damageState.hpLost <= 0
         return unless user.lastAttacker.include?(target.index)
         hpGain = (target.damageState.hpLost * 2 / 3).round
-        user.pbRecoverHPFromDrain(hpGain, target)
+        user.pbRecoverHPFromDrain(hpGain, target, user: user)
     end
 
     def getEffectScore(user, target)
@@ -88,12 +86,12 @@ class PokeBattle_Move_UserTargetAverageHP < PokeBattle_Move
         if user.hp > newHP
             user.pbReduceHP(user.hp - newHP, false, false)
         elsif user.hp < newHP
-            user.pbRecoverHP(newHP - user.hp, false, true, false)
+            user.pbRecoverHP(newHP - user.hp, false, true, false, user: user)
         end
         if target.hp > newHP
             target.pbReduceHP(target.hp - newHP, false, false)
         elsif target.hp < newHP
-            target.pbRecoverHP(newHP - target.hp, false, true, false)
+            target.pbRecoverHP(newHP - target.hp, false, true, false, user: user)
         end
         @battle.pbDisplay(_INTL("The battlers shared their pain!"))
         user.pbItemHPHealCheck
@@ -126,7 +124,7 @@ class PokeBattle_Move_UserHealsByHalfOfDamageDoneLowerTargetDef1 < PokeBattle_Dr
 end
 
 #===============================================================================
-# User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Eater)
+# User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def.
 #===============================================================================
 class PokeBattle_Move_UserHealsByHalfOfDamageDoneLowerTargetSpDef1 < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
@@ -149,7 +147,7 @@ class PokeBattle_Move_EmpoweredGigaDrain < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# User gains half the HP it inflicts as damage and can overheal.
+# User gains half the HP it inflicts as damage and can overheal. (Soul Drain)
 #===============================================================================
 class PokeBattle_Move_HealUserByHalfOfDamageDoneOverheal < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end

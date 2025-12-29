@@ -92,7 +92,7 @@ class PokeBattle_Move_DoubleDamageAgainstBurned < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is frostbitten. (Ice Impact)
+# Power is doubled if the target is frostbitten. (Ice Pick)
 #===============================================================================
 class PokeBattle_Move_DoubleDamageAgainstFrostbitten < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
@@ -197,7 +197,7 @@ class PokeBattle_Move_WakeUpSlap < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the user is statused. (Facade, Hard Feelings)
+# Power is doubled if the user is statused. (Facade)
 # Burn/Frostbite's reduction of damage is negated.
 #===============================================================================
 class PokeBattle_Move_DoubleDamageUserStatused < PokeBattle_Move
@@ -398,7 +398,7 @@ class PokeBattle_Move_DoubleDamageUserBelowHalf < PokeBattle_Move
 end
 
 #===============================================================================
-# Double damage if a critical hit. (Extinction Axe)
+# Double damage if a critical hit. (Axe to Grind)
 #===============================================================================
 class PokeBattle_Move_DoubleDamageOnCrit < PokeBattle_Move
     def criticalHitMultiplier(user,target); return 3.0; end
@@ -415,7 +415,7 @@ class PokeBattle_Move_DoubleDamageUserStatsLowered < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is boosted in Eclipse. (Shattered Energy)
+# Power is boosted in Eclipse. (Occultation)
 #===============================================================================
 class PokeBattle_Move_DamageBoostEclipse50Percent < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
@@ -503,7 +503,7 @@ class PokeBattle_Move_DoubleDamageLastMoveFailed < PokeBattle_Move
 end
 
 #===============================================================================
-# Does Double Damage under gravity (Falling Apple)
+# Does Double Damage under gravity (Classical Physics)
 #===============================================================================
 class PokeBattle_Move_DoubleDamageGravity < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
