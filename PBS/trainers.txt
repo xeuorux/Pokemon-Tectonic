@@ -3218,7 +3218,7 @@ Pokemon = LUMINEON,57
 #-------------------------------
 [CLERK_M,Scott]
 Pokemon = DRAGAPULT,59
-    Moves = UTURN,SIXFEETUNDER,DRAGONDARTS,DRAGONDANCE
+    Moves = UTURN,SIXFEETUNDER,DREEPYBARRAGE,DRAGONDANCE
     AbilityIndex = 0 # Fascinate
 Pokemon = KLEFKI,59
     Moves = SWEETKISS,SPIKES,GYROBALL,SUGARBALL
@@ -7154,7 +7154,7 @@ Pokemon = NAGANADEL,70
     AbilityIndex = 0 # Inexorable
     Item = LIFEORB
 Pokemon = DRAGAPULT,70
-    Moves = DRAGONDARTS,UTURN,LIGHTNINGSLAM,WAILINGBLOW
+    Moves = DREEPYBARRAGE,UTURN,LIGHTNINGSLAM,WAILINGBLOW
     AbilityIndex = 0 # Fascinate
     Item = CHOICEBAND
 Pokemon = HAXORUS,70

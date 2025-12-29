@@ -6867,6 +6867,19 @@ Flags = CanProtect
 Description = The user inspires a sudden dread in the target, damaging it. This move always goes first.
 Animation = GLARE
 #-------------------------------
+[DREEPYBARRAGE]
+Name = Dreepy Barrage
+Type = DRAGON
+Category = Physical
+Power = 25
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = HitFourTimesTargetThenTargetAlly
+Flags = CanProtect
+Description = The user launches four Dreepies, which spread out equally to hit near foes. But, they avoid targets they can't hit.
+Animation = DRAGONDARTS
+#-------------------------------
 [GALLINGSPIT]
 Name = Galling Spit
 Type = DRAGON

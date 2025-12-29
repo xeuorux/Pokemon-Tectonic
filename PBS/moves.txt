@@ -5364,18 +5364,6 @@ FunctionCode = RaiseUserAtk2Spd1
 Flags = CanSnatch,Dance
 Description = The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by one.
 #-------------------------------
-[DRAGONDARTS]
-Name = Dragon Darts
-Type = DRAGON
-Category = Physical
-Power = 50
-Accuracy = 100
-TotalPP = 10
-Target = AllNearFoes
-FunctionCode = HitTwoTimesTargetThenTargetAlly
-Flags = CanProtect
-Description = The user attacks twice using Dreepy. If there are two targets, this move hits each target once.
-#-------------------------------
 [DRAGONENERGY]
 Name = Dragon Energy
 Type = DRAGON

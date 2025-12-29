@@ -3775,6 +3775,18 @@ FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user restores its own HP. The user then raises its Sp. Atk unless it was fully healed in the process.
 #-------------------------------
+[DRAGONDARTS]
+Name = Dragon Darts
+Type = DRAGON
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks twice using Dreepy. If there are two targets, this move hits each target once.
+#-------------------------------
 [DRAGONRAGE]
 Name = Dragon Rage
 Type = DRAGON

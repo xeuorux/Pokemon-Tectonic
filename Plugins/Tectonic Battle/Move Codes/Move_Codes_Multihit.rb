@@ -230,6 +230,24 @@ class PokeBattle_Move_EmpoweredBulletSeed < PokeBattle_Move_HitTwoTimesTargetThe
     def turnsBetweenUses(); return 3; end
 end
 
+#===============================================================================
+# Works just like HitFourTimesTargetThenTargetAlly, but hits four times.
+#===============================================================================
+class PokeBattle_Move_HitFourTimesTargetThenTargetAlly < PokeBattle_Move_HitTwoTimesTargetThenTargetAlly
+    def pbNumHits(_user, _targets, checkingForAI = false)
+        if checkingForAI
+            return 4
+        else
+            return 1
+        end
+    end
+
+    # Hit again if only at the 0th hit
+    def pbRepeatHit?(hitNum = 0)
+        return hitNum < 3
+    end
+end
+
 class PokeBattle_Move_HitTwoToFiveTimesAlwaysHits < PokeBattle_Move
     include RandomHitable
 
