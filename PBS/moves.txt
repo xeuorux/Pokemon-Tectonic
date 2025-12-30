@@ -280,7 +280,7 @@ Accuracy = 0
 TotalPP = 25
 Target = User
 FunctionCode = RaiseCriticalHitRate2
-Flags = CanSnatch
+Flags = CanSnatch,Staple
 Description = Enables random critical hits for the user, and quadruples its critical hit chance.
 #-------------------------------
 [FOLLOWME]
