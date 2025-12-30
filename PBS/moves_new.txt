@@ -4176,6 +4176,19 @@ EffectChance = 100
 Description = Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.
 Animation = FIERYDANCE
 #-------------------------------
+[SPRAYANDPRAY]
+Name = Spray and Pray
+Type = FIRE
+Category = Special
+Power = 25
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = HitTwoToFiveTimesTwiceThenExhaust
+Flags = CanProtect
+Description = The user sends two barrages of fire, each hitting two to five times. The user is exhausted on the next turn.
+Animation = SMOKESCREEN
+#-------------------------------
 [SUNSHINE]
 Name = Sunshine
 Type = FIRE
@@ -4185,20 +4198,6 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSunshine6
 Description = Summons sunshine for six turns, boosting Fire-type attacks and hindering most others.
-#-------------------------------
-[TARVOLLEY]
-Name = Tar Volley
-Type = FIRE
-Category = Special
-Power = 45
-Accuracy = 100
-TotalPP = 10
-Target = AllNearFoes
-FunctionCode = HitTwoTimesTargetThenTargetAllyLowerTargetSpd1
-Flags = CanProtect
-EffectChance = 100
-Description = The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.
-Animation = SMOKESCREEN
 #-------------------------------
 [TEPHRACANNON]
 Name = Tephra Cannon
