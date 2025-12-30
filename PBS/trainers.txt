@@ -4300,7 +4300,7 @@ Pokemon = MSEAKING,55
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,10,20,0
 Pokemon = DECEAT,55
-    Moves = METEORMASH,HUMBLE,SUCKERPUNCH,SWORDSDANCE
+    Moves = METEORMASH,HUMBLE,CRUNCH,SWORDSDANCE
     AbilityIndex = 0 # Pure Force
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
