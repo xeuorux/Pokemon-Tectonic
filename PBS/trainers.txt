@@ -4283,10 +4283,15 @@ Pokemon = HDECIDUEYE,55
 [LEADER_Victoire,Victoire]
 Policies = VICTOIRE
 Flags = NoPerfect
+Pokemon = SLURPUFF,55
+    Moves = PLAYROUGH,BLAZEKICK,RAPIDSPIN,STICKYWEB
+    AbilityIndex = 1 # Fine Sugar
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,20,10,0,20,0
 Pokemon = ADUGTRIO,55
     Moves = HAIRFLIP,SANDBLASTING,NULLPULSE,TERRAFORM
     AbilityIndex = 0 # Lauoho Lasso
-    Item = FOCUSSASH
+    Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MSEAKING,55
@@ -4307,11 +4312,6 @@ Pokemon = MISMAGIUS,55
     Item = THROATSPRAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 5,20,0,20,20,5
-Pokemon = SLURPUFF,55
-    Moves = PLAYROUGH,BLAZEKICK,BEDROCKBREAKER,DRAINPUNCH
-    AbilityIndex = 1 # Fine Sugar
-    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,20,10,0,20,0
 Pokemon = KINGAMBIT,55
     Moves = SWORDSDANCE,SEVER,SLAY,BULLETPUNCH
     AbilityIndex = 0 # Defiant
@@ -4321,20 +4321,20 @@ Pokemon = KINGAMBIT,55
 [LEADER_Victoire,Victoire,1]
 ExtendsVersion = 0
 Policies = CURSE_EXTRA_ITEMS
+Pokemon = SLURPUFF,55
+    Item = FOCUSSASH
+    ExtraItems = CADOBERRY
 Pokemon = ADUGTRIO,55
-    ExtraItems = WEAKNESSPOLICY
+    ExtraItems = STRIKEVEST
 Pokemon = MSEAKING,55
     Item = LIFEORB
-    ExtraItems = SEVENLEAGUEBOOTS
+    ExtraItems = MUSCLEBAND
 Pokemon = MISMAGIUS,55
     ExtraItems = EXPERTBELT
 Pokemon = DECEAT,55
     ExtraItems = SHELLBELL
-Pokemon = SLURPUFF,55
-    Item = STRIKEVEST
-    ExtraItems = ASSAULTVEST
 Pokemon = KINGAMBIT,55
-    Item = SEVENLEAGUEBOOTS
+    Item = AIRBALLOON
     ExtraItems = OCCABERRY
 #-------------------------------
 [MASKEDVILLAIN_Sang,Silver]
