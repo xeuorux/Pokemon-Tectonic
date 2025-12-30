@@ -143,7 +143,7 @@ end
 class LightEffect_Crystal < LightEffect
   def initialize(event,viewport=nil,map=nil)
     @light = IconSprite.new(0,0,viewport)
-    @light.setBitmap("Graphics/Pictures/Light Effects/basic_light")
+    @light.setBitmap("Graphics/Pictures/Light Effects/base_light")
     @light.z = 1000
     @event = event
     @map = (map) ? map : $game_map
