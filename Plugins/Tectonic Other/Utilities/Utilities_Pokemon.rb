@@ -50,8 +50,10 @@ def promptToTakeItems(pkmn)
           queryMessage = _INTL("{1} is holding multiple items. Take them before transferring?",
               pkmn.name)
       else
-          queryMessage = _INTL("{1} is holding an {2}. Would you like to take it before transferring?",
-              pkmn.name, getItemName(pkmn.firstItem))
+          itemName = getItemName(pkmn.firstItem)
+          article  = itemName.starts_with_vowel? ? "an" : "a"
+          queryMessage = _INTL("{1} is holding {2} {3}. Would you like to take it before transferring?",
+              pkmn.name, article, itemName)
       end
       
       pbTakeItemsFromPokemon(pkmn) if pbConfirmMessageSerious(queryMessage)
@@ -108,7 +110,9 @@ def discoverPokemon(pkmn)
   pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
 
   pkmn.items.each do |item|
-      pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+      itemName = getItemName(item)
+      article  = itemName.starts_with_vowel? ? "an" : "a"
+      pbMessage(_INTL("The {1} is holding {2} {3}!", pkmn.name, article, itemName))
   end
 end
 
