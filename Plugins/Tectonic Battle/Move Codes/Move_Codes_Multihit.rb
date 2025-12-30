@@ -118,8 +118,6 @@ end
 # Hits 2-5 times, then repeats. The user is exhausted afterwards. (Spray and Pray)
 #===============================================================================
 class PokeBattle_Move_HitTwoToFiveTimesTwiceThenExhaust < PokeBattle_Move_HitTwoToFiveTimes
-    
-    
     def pbEffectAfterAllHits(user, target)
         if !@battle.specialUsage
             @battle.pbDisplay(_INTL("{1} sends another volley!", user.pbThis))
