@@ -14,6 +14,7 @@ module GameData
       attr_reader :cable_club
   
       DATA = {}
+      BASE_DATA = {} # Data that hasn't been extended
       DATA_FILENAME = "trainer_types.dat"
 
       SCHEMA = {
@@ -151,11 +152,52 @@ module Compiler
           pbCompilerEachPreppedLine(path) { |line, line_no|
             if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [tr_type_id]
               # Add previous trainer type's data to records
-              GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+              if tr_type_hash
+                # If this is an extension modifying an existing trainer type, modify it in-place
+                if tr_type_hash[:defined_in_extension] && GameData::TrainerType::DATA[tr_type_hash[:id]]
+                  existing_type = GameData::TrainerType::DATA[tr_type_hash[:id]]
+                  existing_type.instance_variable_set(:@real_name, tr_type_hash[:name]) if tr_type_hash[:name]
+                  existing_type.instance_variable_set(:@base_money, tr_type_hash[:base_money]) if tr_type_hash[:base_money]
+                  existing_type.instance_variable_set(:@battle_BGM, tr_type_hash[:battle_BGM]) if tr_type_hash[:battle_BGM]
+                  existing_type.instance_variable_set(:@victory_ME, tr_type_hash[:victory_ME]) if tr_type_hash[:victory_ME]
+                  existing_type.instance_variable_set(:@intro_ME, tr_type_hash[:intro_ME]) if tr_type_hash[:intro_ME]
+                  existing_type.instance_variable_set(:@gender, tr_type_hash[:gender]) if tr_type_hash[:gender]
+                  existing_type.instance_variable_set(:@skill_level, tr_type_hash[:skill_level]) if tr_type_hash[:skill_level]
+                  existing_type.instance_variable_set(:@skill_code, tr_type_hash[:skill_code]) if tr_type_hash[:skill_code]
+                  existing_type.instance_variable_set(:@policies, tr_type_hash[:policies]) if tr_type_hash[:policies]
+                  existing_type.instance_variable_set(:@cable_club, tr_type_hash[:cable_club]) if tr_type_hash.key?(:cable_club)
+                else
+                  GameData::TrainerType.register(tr_type_hash)
+                end
+              end
               # Parse trainer type ID
               tr_type_id = $~[1].to_sym
               if GameData::TrainerType.exists?(tr_type_id)
-                raise _INTL("Trainer Type ID '{1}' is used twice.\r\n{2}", tr_type_id, FileLineData.linereport)
+                if !baseFile
+                  # Back up base entry for writing base PBS later (only if not already backed up)
+                  unless GameData::TrainerType::BASE_DATA[tr_type_id]
+                    old_type = GameData::TrainerType::DATA[tr_type_id]
+                    backup_hash = {
+                      :id          => old_type.id,
+                      :id_number   => old_type.id_number,
+                      :name        => old_type.real_name,
+                      :base_money  => old_type.base_money,
+                      :battle_BGM  => old_type.battle_BGM,
+                      :victory_ME  => old_type.victory_ME,
+                      :intro_ME    => old_type.intro_ME,
+                      :gender      => old_type.gender,
+                      :skill_level => old_type.skill_level,
+                      :skill_code  => old_type.skill_code,
+                      :policies    => old_type.policies.clone,
+                      :cable_club  => old_type.cable_club,
+                      :defined_in_extension => old_type.instance_variable_get(:@defined_in_extension)
+                    }
+                    GameData::TrainerType::BASE_DATA[tr_type_id] = GameData::TrainerType.new(backup_hash)
+                  end
+                  # Extension is modifying an existing trainer type - will merge below
+                else
+                  raise _INTL("Trainer Type ID '{1}' is used twice.\r\n{2}", tr_type_id, FileLineData.linereport)
+                end
               end
               # Construct trainer type hash
               tr_type_hash = {
@@ -177,7 +219,24 @@ module Compiler
             end
           }
           # Add last trainer type's data to records
-          GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+          if tr_type_hash
+            # If this is an extension modifying an existing trainer type, modify it in-place
+            if tr_type_hash[:defined_in_extension] && GameData::TrainerType::DATA[tr_type_hash[:id]]
+              existing_type = GameData::TrainerType::DATA[tr_type_hash[:id]]
+              existing_type.instance_variable_set(:@real_name, tr_type_hash[:name]) if tr_type_hash[:name]
+              existing_type.instance_variable_set(:@base_money, tr_type_hash[:base_money]) if tr_type_hash[:base_money]
+              existing_type.instance_variable_set(:@battle_BGM, tr_type_hash[:battle_BGM]) if tr_type_hash[:battle_BGM]
+              existing_type.instance_variable_set(:@victory_ME, tr_type_hash[:victory_ME]) if tr_type_hash[:victory_ME]
+              existing_type.instance_variable_set(:@intro_ME, tr_type_hash[:intro_ME]) if tr_type_hash[:intro_ME]
+              existing_type.instance_variable_set(:@gender, tr_type_hash[:gender]) if tr_type_hash[:gender]
+              existing_type.instance_variable_set(:@skill_level, tr_type_hash[:skill_level]) if tr_type_hash[:skill_level]
+              existing_type.instance_variable_set(:@skill_code, tr_type_hash[:skill_code]) if tr_type_hash[:skill_code]
+              existing_type.instance_variable_set(:@policies, tr_type_hash[:policies]) if tr_type_hash[:policies]
+              existing_type.instance_variable_set(:@cable_club, tr_type_hash[:cable_club]) if tr_type_hash.key?(:cable_club)
+            else
+              GameData::TrainerType.register(tr_type_hash)
+            end
+          end
         end
         # Save all data
         GameData::TrainerType.save
@@ -192,18 +251,20 @@ module Compiler
         File.open("PBS/trainertypes.txt", "wb") { |f|
           add_PBS_header_to_file(f)
           GameData::TrainerType.each_base do |t|
+            # Use backed-up base data if it exists (i.e., if an extension modified this trainer type)
+            t_to_write = GameData::TrainerType::BASE_DATA[t.id] || t
             f.write("\#-------------------------------\r\n")
-            f.write(sprintf("[%s]\r\n", t.id))
-            f.write(sprintf("Name = %s\r\n", t.real_name))
-            gender = GameData::TrainerType::SCHEMA["Gender"][2].key(t.gender)
+            f.write(sprintf("[%s]\r\n", t_to_write.id))
+            f.write(sprintf("Name = %s\r\n", t_to_write.real_name))
+            gender = GameData::TrainerType::SCHEMA["Gender"][2].key(t_to_write.gender)
             f.write(sprintf("Gender = %s\r\n", gender))
-            f.write(sprintf("BaseMoney = %d\r\n", t.base_money))
-            f.write(sprintf("SkillLevel = %d\r\n", t.skill_level)) if t.skill_level != t.base_money
-            f.write(sprintf("Policies = %s\r\n", t.policies.join(","))) if t.policies.length > 0
-            f.write(sprintf("IntroBGM = %s\r\n", t.intro_ME)) if !nil_or_empty?(t.intro_ME)
-            f.write(sprintf("BattleBGM = %s\r\n", t.battle_BGM)) if !nil_or_empty?(t.battle_BGM)
-            f.write(sprintf("VictoryME = %s\r\n", t.victory_ME)) if !nil_or_empty?(t.victory_ME)
-            f.write(sprintf("CableClub = true\r\n")) if t.cable_club
+            f.write(sprintf("BaseMoney = %d\r\n", t_to_write.base_money))
+            f.write(sprintf("SkillLevel = %d\r\n", t_to_write.skill_level)) if t_to_write.skill_level != t_to_write.base_money
+            f.write(sprintf("Policies = %s\r\n", t_to_write.policies.join(","))) if t_to_write.policies.length > 0
+            f.write(sprintf("IntroBGM = %s\r\n", t_to_write.intro_ME)) if !nil_or_empty?(t_to_write.intro_ME)
+            f.write(sprintf("BattleBGM = %s\r\n", t_to_write.battle_BGM)) if !nil_or_empty?(t_to_write.battle_BGM)
+            f.write(sprintf("VictoryME = %s\r\n", t_to_write.victory_ME)) if !nil_or_empty?(t_to_write.victory_ME)
+            f.write(sprintf("CableClub = true\r\n")) if t_to_write.cable_club
           end
         }
         Graphics.update

@@ -27,6 +27,7 @@ module GameData
       attr_accessor :other_learners
   
       DATA = {}
+      BASE_DATA = {} # Data that hasn't been extended
       DATA_FILENAME = "moves.dat"
       ALL_MOVES_LIST = [] # Filled out later to wait for Species compilation
 
@@ -282,12 +283,61 @@ module Compiler
                           move_hash[:name], FileLineData.linereport)
               move_hash[:category] = 2
             end
-            GameData::Move.register(move_hash)
+            # If this is an extension modifying an existing move, modify it in-place
+            if move_hash[:defined_in_extension] && GameData::Move::DATA[move_hash[:id]]
+              existing_move = GameData::Move::DATA[move_hash[:id]]
+              existing_move.instance_variable_set(:@real_name, move_hash[:name]) if move_hash[:name]
+              existing_move.instance_variable_set(:@function_code, move_hash[:function_code]) if move_hash[:function_code]
+              existing_move.instance_variable_set(:@base_damage, move_hash[:base_damage]) if move_hash[:base_damage]
+              existing_move.instance_variable_set(:@type, move_hash[:type]) if move_hash[:type]
+              existing_move.instance_variable_set(:@category, move_hash[:category]) if move_hash[:category]
+              existing_move.instance_variable_set(:@accuracy, move_hash[:accuracy]) if move_hash[:accuracy]
+              existing_move.instance_variable_set(:@total_pp, move_hash[:total_pp]) if move_hash[:total_pp]
+              existing_move.instance_variable_set(:@effect_chance, move_hash[:effect_chance]) if move_hash[:effect_chance]
+              existing_move.instance_variable_set(:@target, move_hash[:target]) if move_hash[:target]
+              existing_move.instance_variable_set(:@priority, move_hash[:priority]) if move_hash[:priority]
+              existing_move.instance_variable_set(:@flags, move_hash[:flags]) if move_hash[:flags]
+              existing_move.instance_variable_set(:@real_description, move_hash[:description]) if move_hash[:description]
+              existing_move.instance_variable_set(:@animation_move, move_hash[:animation_move]) if move_hash[:animation_move]
+            else
+              GameData::Move.register(move_hash)
+            end
           end
           # Parse move ID
           move_id = $~[1].to_sym
           if GameData::Move.exists?(move_id)
-            raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_id, FileLineData.linereport)
+            if !baseFile
+              # Back up base entry for writing base PBS later (only if not already backed up)
+              unless GameData::Move::BASE_DATA[move_id]
+                old_move = GameData::Move::DATA[move_id]
+                backup_hash = {
+                  :id                 => old_move.id,
+                  :id_number          => old_move.id_number,
+                  :name               => old_move.real_name,
+                  :function_code      => old_move.function_code,
+                  :base_damage        => old_move.base_damage,
+                  :type               => old_move.type,
+                  :category           => old_move.category,
+                  :accuracy           => old_move.accuracy,
+                  :total_pp           => old_move.total_pp,
+                  :effect_chance      => old_move.effect_chance,
+                  :target             => old_move.target,
+                  :priority           => old_move.priority,
+                  :flags              => old_move.flags.clone,
+                  :description        => old_move.real_description,
+                  :animation_move     => old_move.animation_move,
+                  :primeval           => old_move.primeval,
+                  :zmove              => old_move.zmove,
+                  :cut                => old_move.cut,
+                  :tectonic_new       => old_move.tectonic_new,
+                  :defined_in_extension => old_move.instance_variable_get(:@defined_in_extension)
+                }
+                GameData::Move::BASE_DATA[move_id] = GameData::Move.new(backup_hash)
+              end
+              # Extension is modifying an existing move - will merge below
+            else
+              raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_id, FileLineData.linereport)
+            end
           end
           # Construct move hash
           move_hash = {
@@ -337,7 +387,25 @@ module Compiler
         print _INTL("Warning: Move {1} was defined as a Damaging move but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
         move_hash[:category] = 2
       end
-      GameData::Move.register(move_hash)
+      # If this is an extension modifying an existing move, modify it in-place
+      if move_hash[:defined_in_extension] && GameData::Move::DATA[move_hash[:id]]
+        existing_move = GameData::Move::DATA[move_hash[:id]]
+        existing_move.instance_variable_set(:@real_name, move_hash[:name]) if move_hash[:name]
+        existing_move.instance_variable_set(:@function_code, move_hash[:function_code]) if move_hash[:function_code]
+        existing_move.instance_variable_set(:@base_damage, move_hash[:base_damage]) if move_hash[:base_damage]
+        existing_move.instance_variable_set(:@type, move_hash[:type]) if move_hash[:type]
+        existing_move.instance_variable_set(:@category, move_hash[:category]) if move_hash[:category]
+        existing_move.instance_variable_set(:@accuracy, move_hash[:accuracy]) if move_hash[:accuracy]
+        existing_move.instance_variable_set(:@total_pp, move_hash[:total_pp]) if move_hash[:total_pp]
+        existing_move.instance_variable_set(:@effect_chance, move_hash[:effect_chance]) if move_hash[:effect_chance]
+        existing_move.instance_variable_set(:@target, move_hash[:target]) if move_hash[:target]
+        existing_move.instance_variable_set(:@priority, move_hash[:priority]) if move_hash[:priority]
+        existing_move.instance_variable_set(:@flags, move_hash[:flags]) if move_hash[:flags]
+        existing_move.instance_variable_set(:@real_description, move_hash[:description]) if move_hash[:description]
+        existing_move.instance_variable_set(:@animation_move, move_hash[:animation_move]) if move_hash[:animation_move]
+      else
+        GameData::Move.register(move_hash)
+      end
     end
 
     # Save all data
@@ -425,22 +493,24 @@ module Compiler
     Graphics.update
   end
 
-  def write_move(f, move)    
+  def write_move(f, move)
+    # Use backed-up base data if it exists (i.e., if an extension modified this move)
+    move_to_write = GameData::Move::BASE_DATA[move.id] || move
     f.write("\#-------------------------------\r\n")
-    f.write("[#{move.id}]\r\n")
-    f.write("Name = #{move.real_name}\r\n")
-    f.write("Type = #{move.type.to_s}\r\n")
-    category = ["Physical", "Special", "Status", "Adaptive"][move.category]
+    f.write("[#{move_to_write.id}]\r\n")
+    f.write("Name = #{move_to_write.real_name}\r\n")
+    f.write("Type = #{move_to_write.type.to_s}\r\n")
+    category = ["Physical", "Special", "Status", "Adaptive"][move_to_write.category]
     f.write("Category = #{category}\r\n")
-    f.write("Power = #{move.base_damage}\r\n") if move.base_damage > 0
-    f.write("Accuracy = #{move.accuracy}\r\n")
-    f.write("TotalPP = #{move.total_pp}\r\n")
-    f.write("Target = #{move.target}\r\n")
-    f.write("Priority = #{move.priority}\r\n") if move.priority != 0
-    f.write("FunctionCode = #{move.function_code}\r\n")
-    f.write("Flags = #{move.flags.join(',')}\r\n") if move.flags.length > 0
-    f.write("EffectChance = #{move.effect_chance}\r\n") if move.effect_chance > 0
-    f.write("Description = #{move.real_description}\r\n")
-    f.write("Animation = #{move.animation_move.to_s}\r\n") if move.animation_move
+    f.write("Power = #{move_to_write.base_damage}\r\n") if move_to_write.base_damage > 0
+    f.write("Accuracy = #{move_to_write.accuracy}\r\n")
+    f.write("TotalPP = #{move_to_write.total_pp}\r\n")
+    f.write("Target = #{move_to_write.target}\r\n")
+    f.write("Priority = #{move_to_write.priority}\r\n") if move_to_write.priority != 0
+    f.write("FunctionCode = #{move_to_write.function_code}\r\n")
+    f.write("Flags = #{move_to_write.flags.join(',')}\r\n") if move_to_write.flags.length > 0
+    f.write("EffectChance = #{move_to_write.effect_chance}\r\n") if move_to_write.effect_chance > 0
+    f.write("Description = #{move_to_write.real_description}\r\n")
+    f.write("Animation = #{move_to_write.animation_move.to_s}\r\n") if move_to_write.animation_move
   end
 end

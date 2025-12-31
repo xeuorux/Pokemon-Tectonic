@@ -13,6 +13,8 @@ module GameData
       DATA = {}
       DATA_FILENAME = "species_metrics.dat"
       PBS_BASE_FILENAME = "pokemon_metrics"
+
+    BASE_DATA = {} # Data that hasn't been extended
   
       SCHEMA = {
         "SectionName" => [:id,           "eV", :Species],
@@ -137,6 +139,25 @@ module GameData
             end
             # Construct species hash
             form_symbol = (form > 0) ? format("%s_%d", species_symbol.to_s, form).to_sym : species_symbol
+            # Back up base entry for writing base PBS later (only if not already backed up)
+            if GameData::SpeciesMetrics::DATA[form_symbol] && !baseFile
+              unless GameData::SpeciesMetrics::BASE_DATA[form_symbol]
+                old_metrics = GameData::SpeciesMetrics::DATA[form_symbol]
+                backup_hash = {
+                  :id                    => old_metrics.id,
+                  :species               => old_metrics.species,
+                  :form                  => old_metrics.form,
+                  :back_sprite           => old_metrics.back_sprite.clone,
+                  :front_sprite          => old_metrics.front_sprite.clone,
+                  :front_sprite_altitude => old_metrics.front_sprite_altitude,
+                  :shadow_x              => old_metrics.shadow_x,
+                  :shadow_size           => old_metrics.shadow_size,
+                  :pbs_file_suffix       => old_metrics.pbs_file_suffix,
+                  :defined_in_extension  => old_metrics.defined_in_extension
+                }
+                GameData::SpeciesMetrics::BASE_DATA[form_symbol] = GameData::SpeciesMetrics.new(backup_hash)
+              end
+            end
             species_hash = {
               :id           => form_symbol,
               :species      => species_symbol,
@@ -148,7 +169,16 @@ module GameData
               :defined_in_extension  => !baseFile,
             }
             # Add form's data to records
-            GameData::SpeciesMetrics.register(species_hash)
+            # If this is an extension modifying existing metrics, modify it in-place
+            if species_hash[:defined_in_extension] && GameData::SpeciesMetrics::DATA[form_symbol]
+              existing_metrics = GameData::SpeciesMetrics::DATA[form_symbol]
+              existing_metrics.instance_variable_set(:@back_sprite, species_hash[:back_sprite]) if species_hash[:back_sprite]
+              existing_metrics.instance_variable_set(:@front_sprite, species_hash[:front_sprite]) if species_hash[:front_sprite]
+              existing_metrics.instance_variable_set(:@shadow_x, species_hash[:shadow_x]) if species_hash[:shadow_x]
+              existing_metrics.instance_variable_set(:@shadow_size, species_hash[:shadow_size]) if species_hash[:shadow_size]
+            else
+              GameData::SpeciesMetrics.register(species_hash)
+            end
           end
         end
       end
@@ -181,30 +211,33 @@ module GameData
           idx += 1
           Graphics.update if idx % 250 == 0
           species = GameData::SpeciesMetrics.get(val[1])
-          if species.form > 0
+          # Use backed-up base data if it exists (i.e., if an extension modified this metrics)
+          species_to_write = GameData::SpeciesMetrics::BASE_DATA[species.id] || species
+          if species_to_write.form > 0
             base_species = GameData::SpeciesMetrics.get(val[2])
-            next if species.back_sprite == base_species.back_sprite &&
-                species.front_sprite == base_species.front_sprite &&
-                species.front_sprite_altitude == base_species.front_sprite_altitude &&
-                species.shadow_x == base_species.shadow_x &&
-                species.shadow_size == base_species.shadow_size
-          elsif species.back_sprite == [0, 0] && species.front_sprite == [0, 0] &&
-              species.front_sprite_altitude == 0 &&
-              species.shadow_x == 0 && species.shadow_size == 2
+            base_species_to_write = GameData::SpeciesMetrics::BASE_DATA[base_species.id] || base_species
+            next if species_to_write.back_sprite == base_species_to_write.back_sprite &&
+                species_to_write.front_sprite == base_species_to_write.front_sprite &&
+                species_to_write.front_sprite_altitude == base_species_to_write.front_sprite_altitude &&
+                species_to_write.shadow_x == base_species_to_write.shadow_x &&
+                species_to_write.shadow_size == base_species_to_write.shadow_size
+          elsif species_to_write.back_sprite == [0, 0] && species_to_write.front_sprite == [0, 0] &&
+              species_to_write.front_sprite_altitude == 0 &&
+              species_to_write.shadow_x == 0 && species_to_write.shadow_size == 2
             next
           end
-          species.front_sprite_altitude == 0 &&
-            species.shadow_x == 0 && species.shadow_size == 2
+          species_to_write.front_sprite_altitude == 0 &&
+            species_to_write.shadow_x == 0 && species_to_write.shadow_size == 2
           f.write("\#-------------------------------\r\n")
-          if species.form > 0
-            f.write(format("[%s,%d]\r\n", species.species, species.form))
+          if species_to_write.form > 0
+            f.write(format("[%s,%d]\r\n", species_to_write.species, species_to_write.form))
           else
-            f.write(format("[%s]\r\n", species.species))
+            f.write(format("[%s]\r\n", species_to_write.species))
           end
-          f.write(format("BackSprite = %s\r\n", species.back_sprite.join(",")))
-          f.write(format("FrontSprite = %s\r\n", species.front_sprite.join(",")))
-          f.write(format("ShadowX = %d\r\n", species.shadow_x))
-          f.write(format("ShadowSize = %d\r\n", species.shadow_size))
+          f.write(format("BackSprite = %s\r\n", species_to_write.back_sprite.join(",")))
+          f.write(format("FrontSprite = %s\r\n", species_to_write.front_sprite.join(",")))
+          f.write(format("ShadowX = %d\r\n", species_to_write.shadow_x))
+          f.write(format("ShadowSize = %d\r\n", species_to_write.shadow_size))
         end
       end
           pbSetWindowText(nil)

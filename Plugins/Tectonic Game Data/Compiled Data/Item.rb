@@ -20,6 +20,8 @@ module GameData
       DATA = {}
       DATA_FILENAME = "items.dat"
 
+      BASE_DATA = {} # Data that hasn't been extended
+
       FLAG_INDEX = {}
       FLAGS_INDEX_DATA_FILENAME = "items_indexed_by_flag.dat"
       
@@ -365,11 +367,59 @@ module Compiler
         idx += 1
         if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [item_id]
           # Add previous item's data to records
-          GameData::Item.register(item_hash) if item_hash
+          if item_hash
+            # If this is an extension modifying an existing item, modify it in-place
+            if item_hash[:defined_in_extension] && GameData::Item::DATA[item_hash[:id]]
+              existing_item = GameData::Item::DATA[item_hash[:id]]
+              existing_item.instance_variable_set(:@real_name, item_hash[:name]) if item_hash[:name]
+              existing_item.instance_variable_set(:@real_name_plural, item_hash[:name_plural]) if item_hash[:name_plural]
+              existing_item.instance_variable_set(:@pocket, item_hash[:pocket]) if item_hash[:pocket]
+              existing_item.instance_variable_set(:@price, item_hash[:price]) if item_hash[:price]
+              existing_item.instance_variable_set(:@sell_price, item_hash[:sell_price]) if item_hash[:sell_price]
+              existing_item.instance_variable_set(:@real_description, item_hash[:description]) if item_hash[:description]
+              existing_item.instance_variable_set(:@field_use, item_hash[:field_use]) if item_hash[:field_use]
+              existing_item.instance_variable_set(:@battle_use, item_hash[:battle_use]) if item_hash[:battle_use]
+              existing_item.instance_variable_set(:@consumable, item_hash[:consumable]) if item_hash.key?(:consumable)
+              existing_item.instance_variable_set(:@flags, item_hash[:flags]) if item_hash[:flags]
+              existing_item.instance_variable_set(:@type, item_hash[:type]) if item_hash[:type]
+              existing_item.instance_variable_set(:@move, item_hash[:move]) if item_hash[:move]
+            else
+              GameData::Item.register(item_hash)
+            end
+          end
           # Parse item ID
           item_id = $~[1].to_sym
           if GameData::Item.exists?(item_id)
-            raise _INTL("Item ID '{1}' is used twice.\r\n{2}", item_id, FileLineData.linereport)
+            if !baseFile
+              # Back up base entry for writing base PBS later (only if not already backed up)
+              unless GameData::Item::BASE_DATA[item_id]
+                # Create a deep clone of the existing item for backup
+                old_item = GameData::Item::DATA[item_id]
+                backup_hash = {
+                  :id               => old_item.id,
+                  :id_number        => old_item.id_number,
+                  :name             => old_item.real_name,
+                  :name_plural      => old_item.real_name_plural,
+                  :pocket           => old_item.pocket,
+                  :price            => old_item.price,
+                  :sell_price       => old_item.sell_price,
+                  :description      => old_item.real_description,
+                  :field_use        => old_item.field_use,
+                  :battle_use       => old_item.battle_use,
+                  :consumable       => old_item.consumable,
+                  :flags            => old_item.flags.clone,
+                  :type             => old_item.type,
+                  :move             => old_item.move,
+                  :super            => old_item.super,
+                  :cut              => old_item.cut,
+                  :defined_in_extension => old_item.defined_in_extension,
+                }
+                GameData::Item::BASE_DATA[item_id] = GameData::Item.new(backup_hash)
+              end
+              # Extension is modifying an existing item, so we'll merge the data below
+            else
+              raise _INTL("Item ID '{1}' is used twice.\r\n{2}", item_id, FileLineData.linereport)
+            end
           end
           # Construct item hash
           item_hash = {
@@ -403,7 +453,26 @@ module Compiler
       }
     end
     # Add last item's data to records
-    GameData::Item.register(item_hash) if item_hash
+    if item_hash
+      # If this is an extension modifying an existing item, modify it in-place
+      if item_hash[:defined_in_extension] && GameData::Item::DATA[item_hash[:id]]
+        existing_item = GameData::Item::DATA[item_hash[:id]]
+        existing_item.instance_variable_set(:@real_name, item_hash[:name]) if item_hash[:name]
+        existing_item.instance_variable_set(:@real_name_plural, item_hash[:name_plural]) if item_hash[:name_plural]
+        existing_item.instance_variable_set(:@pocket, item_hash[:pocket]) if item_hash[:pocket]
+        existing_item.instance_variable_set(:@price, item_hash[:price]) if item_hash[:price]
+        existing_item.instance_variable_set(:@sell_price, item_hash[:sell_price]) if item_hash[:sell_price]
+        existing_item.instance_variable_set(:@real_description, item_hash[:description]) if item_hash[:description]
+        existing_item.instance_variable_set(:@field_use, item_hash[:field_use]) if item_hash[:field_use]
+        existing_item.instance_variable_set(:@battle_use, item_hash[:battle_use]) if item_hash[:battle_use]
+        existing_item.instance_variable_set(:@consumable, item_hash[:consumable]) if item_hash.key?(:consumable)
+        existing_item.instance_variable_set(:@flags, item_hash[:flags]) if item_hash[:flags]
+        existing_item.instance_variable_set(:@type, item_hash[:type]) if item_hash[:type]
+        existing_item.instance_variable_set(:@move, item_hash[:move]) if item_hash[:move]
+      else
+        GameData::Item.register(item_hash)
+      end
+    end
 
     compile_machine_order
 
@@ -469,20 +538,22 @@ module Compiler
   end
 
   def write_item(f,item)
+    # Use backed-up base data if it exists (i.e., if an extension modified this item)
+    item_to_write = GameData::Item::BASE_DATA[item.id] || item
     f.write("\#-------------------------------\r\n")
-    f.write(sprintf("[%s]\r\n", item.id))
-    f.write(sprintf("Name = %s\r\n", item.real_name))
-    f.write(sprintf("NamePlural = %s\r\n", item.real_name_plural))
-    modifiedPocket = item.pocket
-    # case item.pocket
+    f.write(sprintf("[%s]\r\n", item_to_write.id))
+    f.write(sprintf("Name = %s\r\n", item_to_write.real_name))
+    f.write(sprintf("NamePlural = %s\r\n", item_to_write.real_name_plural))
+    modifiedPocket = item_to_write.pocket
+    # case item_to_write.pocket
     # when 1
-    #   if item.is_evolution_item?
+    #   if item_to_write.is_evolution_item?
     #     modifiedPocket = 4
-    #   elsif item.name.downcase.include?("fossil") || item.name.downcase.include?("token") || item.name.downcase.include?("ore") || item.name.downcase.include?("egg")
+    #   elsif item_to_write.name.downcase.include?("fossil") || item_to_write.name.downcase.include?("token") || item_to_write.name.downcase.include?("ore") || item_to_write.name.downcase.include?("egg")
     #     modifiedPocket = 16
     #   end
     # when 2
-    #   if item.name.downcase.include?("candy")
+    #   if item_to_write.name.downcase.include?("candy")
     #     modifiedPocket = 3
     #   end
     # when 3
@@ -490,13 +561,13 @@ module Compiler
     # when 4
     #   modifiedPocket = 5
     # when 5
-    #   if item.is_berry?
+    #   if item_to_write.is_berry?
     #     modifiedPocket = 9
-    #   elsif item.is_gem?
+    #   elsif item_to_write.is_gem?
     #     modifiedPocket = 10
-    #   elsif item.is_herb?
+    #   elsif item_to_write.is_herb?
     #     modifiedPocket = 11
-    #   elsif item.is_clothing?
+    #   elsif item_to_write.is_clothing?
     #     modifiedPocket = 12
     #   else
     #     modifiedPocket = 13
@@ -507,22 +578,22 @@ module Compiler
     #   modifiedPocket = 6
     # end
     f.write(sprintf("Pocket = %d\r\n", modifiedPocket))
-    f.write(sprintf("Price = %d\r\n", item.price))
-    f.write(sprintf("SellPrice = %d\r\n", item.sell_price)) if item.sell_price != item.price / 2
-    field_use = GameData::Item::SCHEMA["FieldUse"][2].key(item.field_use)
+    f.write(sprintf("Price = %d\r\n", item_to_write.price))
+    f.write(sprintf("SellPrice = %d\r\n", item_to_write.sell_price)) if item_to_write.sell_price != item_to_write.price / 2
+    field_use = GameData::Item::SCHEMA["FieldUse"][2].key(item_to_write.field_use)
     f.write(sprintf("FieldUse = %s\r\n", field_use)) if field_use
-    battle_use = GameData::Item::SCHEMA["BattleUse"][2].key(item.battle_use)
+    battle_use = GameData::Item::SCHEMA["BattleUse"][2].key(item_to_write.battle_use)
     f.write(sprintf("BattleUse = %s\r\n", battle_use)) if battle_use
     # Assume important items aren't consumable
     # and other items are
     # So only note the exceptions
-    if item.is_important?
-      f.write(sprintf("Consumable = true\r\n")) if item.consumable
+    if item_to_write.is_important?
+      f.write(sprintf("Consumable = true\r\n")) if item_to_write.consumable
     else
-      f.write(sprintf("Consumable = false\r\n")) unless item.consumable
+      f.write(sprintf("Consumable = false\r\n")) unless item_to_write.consumable
     end
-    f.write(sprintf("Flags = %s\r\n", item.flags.join(","))) if item.flags.length > 0
-    f.write(sprintf("Move = %s\r\n", item.move)) if item.move
-    f.write(sprintf("Description = %s\r\n", item.real_description)) unless item.real_description.blank?
+    f.write(sprintf("Flags = %s\r\n", item_to_write.flags.join(","))) if item_to_write.flags.length > 0
+    f.write(sprintf("Move = %s\r\n", item_to_write.move)) if item_to_write.move
+    f.write(sprintf("Description = %s\r\n", item_to_write.real_description)) unless item_to_write.real_description.blank?
   end
 end

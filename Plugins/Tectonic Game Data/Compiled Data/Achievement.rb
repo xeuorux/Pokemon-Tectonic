@@ -21,11 +21,42 @@ module Compiler
             pbCompilerEachPreppedLine(path) { |line, line_no|
                 if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [achievement_id]
                     # Add previous achievement's data to records
-                    GameData::Achievement.register(achievement_hash) if achievement_hash
+                    if achievement_hash
+                        # If this is an extension modifying an existing achievement, modify it in-place
+                        if achievement_hash[:defined_in_extension] && GameData::Achievement::DATA[achievement_hash[:id]]
+                            existing_achievement = GameData::Achievement::DATA[achievement_hash[:id]]
+                            existing_achievement.instance_variable_set(:@real_name, achievement_hash[:name]) if achievement_hash[:name]
+                            existing_achievement.instance_variable_set(:@real_description, achievement_hash[:description]) if achievement_hash[:description]
+                            existing_achievement.instance_variable_set(:@page, achievement_hash[:page]) if achievement_hash[:page]
+                            existing_achievement.instance_variable_set(:@hidden, achievement_hash[:hidden]) if achievement_hash.key?(:hidden)
+                            existing_achievement.instance_variable_set(:@disabled_in_randomizer, achievement_hash[:disabled_in_randomizer]) if achievement_hash.key?(:disabled_in_randomizer)
+                        else
+                            GameData::Achievement.register(achievement_hash)
+                        end
+                    end
                     # Parse achievement ID
                     achievement_id = $~[1].to_sym
                     if GameData::Achievement.exists?(achievement_id)
-                        raise _INTL("Achievement ID '{1}' is used twice.\r\n{2}", achievement_id, FileLineData.linereport)
+                        if !baseFile
+                            # Back up base entry for writing base PBS later (only if not already backed up)
+                            unless GameData::Achievement::BASE_DATA[achievement_id]
+                                old_achievement = GameData::Achievement::DATA[achievement_id]
+                                backup_hash = {
+                                    :id                     => old_achievement.id,
+                                    :id_number              => old_achievement.id_number,
+                                    :name                   => old_achievement.real_name,
+                                    :description            => old_achievement.real_description,
+                                    :page                   => old_achievement.page,
+                                    :hidden                 => old_achievement.hidden,
+                                    :disabled_in_randomizer => old_achievement.disabled_in_randomizer,
+                                    :defined_in_extension   => old_achievement.instance_variable_get(:@defined_in_extension)
+                                }
+                                GameData::Achievement::BASE_DATA[achievement_id] = GameData::Achievement.new(backup_hash)
+                            end
+                            # Extension is modifying an existing achievement - will merge below
+                        else
+                            raise _INTL("Achievement ID '{1}' is used twice.\r\n{2}", achievement_id, FileLineData.linereport)
+                        end
                     end
                     # Construct achievement hash
                     achievement_hash = {
@@ -52,7 +83,19 @@ module Compiler
                 end
             }
             # Add last achievement's data to records
-            GameData::Achievement.register(achievement_hash) if achievement_hash
+            if achievement_hash
+                # If this is an extension modifying an existing achievement, modify it in-place
+                if achievement_hash[:defined_in_extension] && GameData::Achievement::DATA[achievement_hash[:id]]
+                    existing_achievement = GameData::Achievement::DATA[achievement_hash[:id]]
+                    existing_achievement.instance_variable_set(:@real_name, achievement_hash[:name]) if achievement_hash[:name]
+                    existing_achievement.instance_variable_set(:@real_description, achievement_hash[:description]) if achievement_hash[:description]
+                    existing_achievement.instance_variable_set(:@page, achievement_hash[:page]) if achievement_hash[:page]
+                    existing_achievement.instance_variable_set(:@hidden, achievement_hash[:hidden]) if achievement_hash.key?(:hidden)
+                    existing_achievement.instance_variable_set(:@disabled_in_randomizer, achievement_hash[:disabled_in_randomizer]) if achievement_hash.key?(:disabled_in_randomizer)
+                else
+                    GameData::Achievement.register(achievement_hash)
+                end
+            end
         end
 
         # Save all data
@@ -76,13 +119,15 @@ module Compiler
     end
 
     def write_achievement(f, achievement)
+        # Use backed-up base data if it exists (i.e., if an extension modified this achievement)
+        achievement_to_write = GameData::Achievement::BASE_DATA[achievement.id] || achievement
         f.write("\#-------------------------------\r\n")
-        f.write("[#{achievement.id}]\r\n")
-        f.write("Name = #{achievement.real_name}\r\n")
-        f.write("Description = #{achievement.real_description}\r\n")
-        f.write("Page = #{achievement.page}\r\n")
-        f.write("Hidden = true\r\n") if achievement.hidden
-        f.write("DisabledInRandomizer = true\r\n") if achievement.disabled_in_randomizer?
+        f.write("[#{achievement_to_write.id}]\r\n")
+        f.write("Name = #{achievement_to_write.real_name}\r\n")
+        f.write("Description = #{achievement_to_write.real_description}\r\n")
+        f.write("Page = #{achievement_to_write.page}\r\n")
+        f.write("Hidden = true\r\n") if achievement_to_write.hidden
+        f.write("DisabledInRandomizer = true\r\n") if achievement_to_write.disabled_in_randomizer?
     end
 end
 
@@ -97,6 +142,7 @@ module GameData
         attr_reader :disabled_in_randomizer
 
         DATA = {}
+        BASE_DATA = {} # Data that hasn't been extended
         DATA_FILENAME = "achievements.dat"
 
         extend ClassMethodsSymbols

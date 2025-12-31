@@ -24,11 +24,40 @@ module Compiler
             pbCompilerEachPreppedLine(path) { |line, line_no|
                 if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [ability_id]
                     # Add previous ability's data to records
-                    GameData::Ability.register(ability_hash) if ability_hash
+                    if ability_hash
+                        # If this is an extension modifying an existing ability, modify it in-place
+                        if ability_hash[:defined_in_extension] && GameData::Ability::DATA[ability_hash[:id]]
+                            existing_ability = GameData::Ability::DATA[ability_hash[:id]]
+                            existing_ability.instance_variable_set(:@real_name, ability_hash[:name]) if ability_hash[:name]
+                            existing_ability.instance_variable_set(:@real_description, ability_hash[:description]) if ability_hash[:description]
+                            existing_ability.instance_variable_set(:@flags, ability_hash[:flags]) if ability_hash[:flags]
+                        else
+                            GameData::Ability.register(ability_hash)
+                        end
+                    end
                     # Parse ability ID
                     ability_id = $~[1].to_sym
                     if GameData::Ability.exists?(ability_id)
-                        raise _INTL("Ability ID '{1}' is used twice.\r\n{2}", ability_id, FileLineData.linereport)
+                        if !baseFile
+                            # Back up base entry for writing base PBS later (only if not already backed up)
+                            unless GameData::Ability::BASE_DATA[ability_id]
+                                old_ability = GameData::Ability::DATA[ability_id]
+                                backup_hash = {
+                                    :id                     => old_ability.id,
+                                    :id_number              => old_ability.id_number,
+                                    :name                   => old_ability.real_name,
+                                    :description            => old_ability.real_description,
+                                    :flags                  => old_ability.flags.clone,
+                                    :cut                    => old_ability.cut,
+                                    :primeval               => old_ability.primeval,
+                                    :tectonic_new           => old_ability.tectonic_new,
+                                    :defined_in_extension   => old_ability.instance_variable_get(:@defined_in_extension)
+                                }
+                                GameData::Ability::BASE_DATA[ability_id] = GameData::Ability.new(backup_hash)
+                            end
+                        else
+                            raise _INTL("Ability ID '{1}' is used twice.\r\n{2}", ability_id, FileLineData.linereport)
+                        end
                     end
                     # Construct ability hash
                     ability_hash = {
@@ -59,7 +88,17 @@ module Compiler
                 end
             }
             # Add last ability's data to records
-            GameData::Ability.register(ability_hash) if ability_hash
+            if ability_hash
+                # If this is an extension modifying an existing ability, modify it in-place
+                if ability_hash[:defined_in_extension] && GameData::Ability::DATA[ability_hash[:id]]
+                    existing_ability = GameData::Ability::DATA[ability_hash[:id]]
+                    existing_ability.instance_variable_set(:@real_name, ability_hash[:name]) if ability_hash[:name]
+                    existing_ability.instance_variable_set(:@real_description, ability_hash[:description]) if ability_hash[:description]
+                    existing_ability.instance_variable_set(:@flags, ability_hash[:flags]) if ability_hash[:flags]
+                else
+                    GameData::Ability.register(ability_hash)
+                end
+            end
         end
 
         # Save all data
@@ -105,11 +144,13 @@ module Compiler
     end
 
     def write_ability(f, ability)
+        # Use backed-up base data if it exists (i.e., if an extension modified this ability)
+        ability_to_write = GameData::Ability::BASE_DATA[ability.id] || ability
         f.write("\#-------------------------------\r\n")
-        f.write("[#{ability.id}]\r\n")
-        f.write("Name = #{ability.real_name}\r\n")
-        f.write("Description = #{ability.real_description}\r\n")
-        f.write(sprintf("Flags = %s\r\n", ability.flags.join(","))) if ability.flags.length > 0
+        f.write("[#{ability_to_write.id}]\r\n")
+        f.write("Name = #{ability_to_write.real_name}\r\n")
+        f.write("Description = #{ability_to_write.real_description}\r\n")
+        f.write(sprintf("Flags = %s\r\n", ability_to_write.flags.join(","))) if ability_to_write.flags.length > 0
     end
 end
 
@@ -123,6 +164,7 @@ module GameData
         attr_reader :flags
 
         DATA = {}
+        BASE_DATA = {} # Data that hasn't been extended
         DATA_FILENAME = "abilities.dat"
 
         FLAG_INDEX = {}

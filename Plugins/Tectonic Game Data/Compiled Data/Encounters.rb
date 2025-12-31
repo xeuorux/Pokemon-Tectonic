@@ -10,6 +10,8 @@ module GameData
   
       DATA = {}
       DATA_FILENAME = "encounters.dat"
+
+    BASE_DATA = {} # Data that hasn't been extended
   
       extend ClassMethodsSymbols
       include InstanceMethods
@@ -155,12 +157,38 @@ module Compiler
                 slots.compact!
                 slots.sort! { |a, b| (a[0] == b[0]) ? a[1].to_s <=> b[1].to_s : b[0] <=> a[0] }
               end
-              GameData::Encounter.register(encounter_hash)
+              # If this is an extension modifying an existing encounter, modify it in-place
+              if encounter_hash[:defined_in_extension] && GameData::Encounter::DATA[encounter_hash[:id]]
+                existing_encounter = GameData::Encounter::DATA[encounter_hash[:id]]
+                existing_encounter.instance_variable_set(:@step_chances, encounter_hash[:step_chances]) if encounter_hash[:step_chances]
+                existing_encounter.instance_variable_set(:@available_levels, encounter_hash[:available_levels]) if encounter_hash[:available_levels]
+                existing_encounter.instance_variable_set(:@types, encounter_hash[:types]) if encounter_hash[:types]
+              else
+                GameData::Encounter.register(encounter_hash)
+              end
             end
             # Raise an error if a map/version combo is used twice
             key = sprintf("%s_%d", map_number, map_version).to_sym
             if GameData::Encounter::DATA[key]
-              raise _INTL("Encounters for map '{1}' are defined twice.\r\n{2}", map_number, FileLineData.linereport)
+              if !baseFile
+                # Back up base entry for writing base PBS later (only if not already backed up)
+                unless GameData::Encounter::BASE_DATA[key]
+                  old_encounter = GameData::Encounter::DATA[key]
+                  backup_hash = {
+                    :id               => old_encounter.id,
+                    :map              => old_encounter.map,
+                    :version          => old_encounter.version,
+                    :step_chances     => old_encounter.step_chances.clone,
+                    :available_levels => old_encounter.available_levels.clone,
+                    :types            => old_encounter.types.deep_clone,
+                    :defined_in_extension => old_encounter.defined_in_extension
+                  }
+                  GameData::Encounter::BASE_DATA[key] = GameData::Encounter.new(backup_hash)
+                end
+                # Extension is modifying an existing encounter, so don't raise error
+              else
+                raise _INTL("Encounters for map '{1}' are defined twice.\r\n{2}", map_number, FileLineData.linereport)
+              end
             end
             step_chances = {}
             available_levels = {}
@@ -199,12 +227,38 @@ module Compiler
                 slots.compact!
                 slots.sort! { |a, b| (a[0] == b[0]) ? a[1].to_s <=> b[1].to_s : b[0] <=> a[0] }
               end
-              GameData::Encounter.register(encounter_hash)
+              # If this is an extension modifying an existing encounter, modify it in-place
+              if encounter_hash[:defined_in_extension] && GameData::Encounter::DATA[encounter_hash[:id]]
+                existing_encounter = GameData::Encounter::DATA[encounter_hash[:id]]
+                existing_encounter.instance_variable_set(:@step_chances, encounter_hash[:step_chances]) if encounter_hash[:step_chances]
+                existing_encounter.instance_variable_set(:@available_levels, encounter_hash[:available_levels]) if encounter_hash[:available_levels]
+                existing_encounter.instance_variable_set(:@types, encounter_hash[:types]) if encounter_hash[:types]
+              else
+                GameData::Encounter.register(encounter_hash)
+              end
             end
             # Raise an error if a map/version combo is used twice
             key = sprintf("%s_0", map_number).to_sym
             if GameData::Encounter::DATA[key]
-              raise _INTL("Encounters for map '{1}' are defined twice.\r\n{2}", map_number, FileLineData.linereport)
+              if !baseFile
+                # Back up base entry for writing base PBS later (only if not already backed up)
+                unless GameData::Encounter::BASE_DATA[key]
+                  old_encounter = GameData::Encounter::DATA[key]
+                  backup_hash = {
+                    :id               => old_encounter.id,
+                    :map              => old_encounter.map,
+                    :version          => old_encounter.version,
+                    :step_chances     => old_encounter.step_chances.clone,
+                    :available_levels => old_encounter.available_levels.clone,
+                    :types            => old_encounter.types.deep_clone,
+                    :defined_in_extension => old_encounter.defined_in_extension
+                  }
+                  GameData::Encounter::BASE_DATA[key] = GameData::Encounter.new(backup_hash)
+                end
+                # Extension is modifying an existing encounter, so don't raise error
+              else
+                raise _INTL("Encounters for map '{1}' are defined twice.\r\n{2}", map_number, FileLineData.linereport)
+              end
             end
             step_chances = {}
             available_levels = {}
@@ -279,7 +333,15 @@ module Compiler
             slots.compact!
             slots.sort! { |a, b| (a[0] == b[0]) ? a[1].to_s <=> b[1].to_s : b[0] <=> a[0] }
           end
-          GameData::Encounter.register(encounter_hash)
+          # If this is an extension modifying an existing encounter, modify it in-place
+          if encounter_hash[:defined_in_extension] && GameData::Encounter::DATA[encounter_hash[:id]]
+            existing_encounter = GameData::Encounter::DATA[encounter_hash[:id]]
+            existing_encounter.instance_variable_set(:@step_chances, encounter_hash[:step_chances]) if encounter_hash[:step_chances]
+            existing_encounter.instance_variable_set(:@available_levels, encounter_hash[:available_levels]) if encounter_hash[:available_levels]
+            existing_encounter.instance_variable_set(:@types, encounter_hash[:types]) if encounter_hash[:types]
+          else
+            GameData::Encounter.register(encounter_hash)
+          end
         end
       end
       # Save all data
@@ -296,24 +358,26 @@ module Compiler
       add_PBS_header_to_file(f)
       GameData::Encounter.each do |encounter_data|
         next if encounter_data.defined_in_extension
+        # Use backed-up base data if it exists (i.e., if an extension modified this encounter)
+        encounter_to_write = GameData::Encounter::BASE_DATA[encounter_data.id] || encounter_data
         f.write("\#-------------------------------\r\n")
-        map_name = (map_infos[encounter_data.map]) ? " # #{map_infos[encounter_data.map].name}" : ""
-        if encounter_data.version > 0
-          f.write(sprintf("[%03d,%d]%s\r\n", encounter_data.map, encounter_data.version, map_name))
+        map_name = (map_infos[encounter_to_write.map]) ? " # #{map_infos[encounter_to_write.map].name}" : ""
+        if encounter_to_write.version > 0
+          f.write(sprintf("[%03d,%d]%s\r\n", encounter_to_write.map, encounter_to_write.version, map_name))
         else
-          f.write(sprintf("[%03d]%s\r\n", encounter_data.map, map_name))
+          f.write(sprintf("[%03d]%s\r\n", encounter_to_write.map, map_name))
         end
-        encounter_data.types.each do |type, slots|
+        encounter_to_write.types.each do |type, slots|
           next if !slots || slots.length == 0
-          if encounter_data.step_chances[type] && encounter_data.step_chances[type] > 0
-            if encounter_data.available_levels[type] && encounter_data.available_levels[type] > 0
-              f.write(sprintf("%s,%d,%d\r\n", type.to_s, encounter_data.step_chances[type], encounter_data.available_levels[type]))
-            else 
-              f.write(sprintf("%s,%d\r\n", type.to_s, encounter_data.step_chances[type]))
+          if encounter_to_write.step_chances[type] && encounter_to_write.step_chances[type] > 0
+            if encounter_to_write.available_levels[type] && encounter_to_write.available_levels[type] > 0
+              f.write(sprintf("%s,%d,%d\r\n", type.to_s, encounter_to_write.step_chances[type], encounter_to_write.available_levels[type]))
+            else
+              f.write(sprintf("%s,%d\r\n", type.to_s, encounter_to_write.step_chances[type]))
             end
           else
-            if encounter_data.available_levels[type] && encounter_data.available_levels[type] > 0
-              f.write(sprintf("%s,%d\r\n", type.to_s, encounter_data.available_levels[type]))
+            if encounter_to_write.available_levels[type] && encounter_to_write.available_levels[type] > 0
+              f.write(sprintf("%s,%d\r\n", type.to_s, encounter_to_write.available_levels[type]))
             else
               f.write(sprintf("%s\r\n", type.to_s))
             end
