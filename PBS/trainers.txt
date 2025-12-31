@@ -793,7 +793,7 @@ Pokemon = MIENSHAO,40
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = ANINETALES,40
-    Moves = LIGHTSCREEN,ICEBEAM,MOONBLAST,HEALBELL
+    Moves = SYLPHSPELL,FROSTBREATH,MOONBLAST,PIERCINGDOUBT
     AbilityIndex = 1 # Blinding
     Item = TANGABERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
