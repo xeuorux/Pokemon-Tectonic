@@ -856,9 +856,9 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("The {1} ensured {2} would hit!", getItemName(:SKILLHERB), move.name))
             aiLearnsItem(:SKILLHERB)
         end
-        # Mystic tribe
-        if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
-            @battle.pbShowTribeSplash(user,:MYSTIC)
+        # Esoteric tribe
+        if hasTribeBonus?(:ESOTERIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
+            @battle.pbShowTribeSplash(user,:ESOTERIC)
             @battle.pbDisplay(_INTL("{1}'s patience pays off!", user.pbThis))
             @battle.pbHideTribeSplash(user)
         end

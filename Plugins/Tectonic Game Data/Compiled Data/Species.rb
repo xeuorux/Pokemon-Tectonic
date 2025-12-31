@@ -388,11 +388,18 @@ module GameData
             return 1
         end
 
-        def tribes(ignoreInheritance = false)
+        def tribes(ignoreInheritance = false, oldSpeciesData: false)
             allTribes = @tribes.clone || []
             unless ignoreInheritance
                 get_prevolutions.each do |prevo_entry|
-                    allTribes.concat(GameData::Species.get_species_form(prevo_entry[0], @form).tribes)
+                    if oldSpeciesData
+                        prevoData = GameData::SpeciesOld.get_species_form(prevo_entry[0], @form)
+                    else
+                        prevoData = GameData::Species.get_species_form(prevo_entry[0], @form)
+                    end
+                    inheritedTribes = prevoData.tribes(oldSpeciesData: oldSpeciesData)
+
+                    allTribes.concat(inheritedTribes)
                 end
                 allTribes.uniq!
                 allTribes.compact!

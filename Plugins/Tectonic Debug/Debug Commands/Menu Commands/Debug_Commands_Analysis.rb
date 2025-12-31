@@ -719,7 +719,7 @@ end
     "description" => _INTL("Count how many pokemon are in each tribe."),
     "effect"      => proc { |sprites, viewport|
       tribeCount = {}
-      GameData::Tribe.each do |tribe|
+      GameData::Tribe.each_legal do |tribe|
           tribeCount[tribe.id] = 0
       end
   
