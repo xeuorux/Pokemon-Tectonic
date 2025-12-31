@@ -403,7 +403,8 @@ module GameData
         def inherited_level_moves
             if has_previous_species?
                 inherited = []
-                get_previous_species_data.level_moves.each do |inheritableLearnsetEntry|
+                prevo_data = get_previous_species_data
+                prevo_data.level_moves.each do |inheritableLearnsetEntry|
                     level = inheritableLearnsetEntry[0]
                     moveID = inheritableLearnsetEntry[1]
                     level = 1 if level == 0
@@ -452,7 +453,6 @@ module GameData
             prevoSpecies = self
             while prevoSpecies.has_previous_species?
                 prevoSpecies = prevoSpecies.get_previous_species_data
-
                 inheritedTutorMoves.concat(prevoSpecies.line_moves || prevoSpecies.egg_moves)
                 if prevoSpecies.canTutorAny?
                     inheritedTutorMoves.concat(GameData::Move.all_non_signature_moves)
@@ -513,7 +513,8 @@ module GameData
             unless @flags&.include?("NoStaples")
               @learnableMoves.concat(GameData::Move.staple_moves)
             end
-            @learnableMoves.concat(inherited_tutor_moves)
+            inherited_tutor = inherited_tutor_moves
+            @learnableMoves.concat(inherited_tutor)
             @learnableMoves.concat(@tutor_moves)
             @learnableMoves.concat(@line_moves || @egg_moves)
             @learnableMoves.concat(form_specific_moves)
@@ -683,8 +684,56 @@ module Compiler
                     species_number += 1
                     FileLineData.setSection(species_symbol, "header", nil) # For error reporting
                     # Raise an error if a species number is used twice
-                    if GameData::Species::DATA[species_symbol]
-                        raise _INTL("Species ID '{1}' is used twice.\r\n{2}", species_symbol, FileLineData.linereport)
+                    if GameData::Species::DATA[species_symbol.to_sym]
+                        if !baseFile
+                            # Back up base entry for writing base PBS later (only if not already backed up)
+                            unless GameData::Species::BASE_DATA[species_symbol.to_sym]
+                                # Create a deep clone of the existing species for backup
+                                old_species = GameData::Species::DATA[species_symbol.to_sym]
+                                backup_hash = {
+                                    :id                    => old_species.id,
+                                    :id_number             => old_species.id_number,
+                                    :species               => old_species.species,
+                                    :form                  => old_species.form,
+                                    :name                  => old_species.real_name,
+                                    :form_name             => old_species.real_form_name,
+                                    :category              => old_species.real_category,
+                                    :pokedex_entry         => old_species.real_pokedex_entry,
+                                    :type1                 => old_species.type1,
+                                    :type2                 => old_species.type2,
+                                    :base_stats            => old_species.base_stats.clone,
+                                    :base_exp              => old_species.base_exp,
+                                    :growth_rate           => old_species.growth_rate,
+                                    :gender_ratio          => old_species.gender_ratio,
+                                    :catch_rate            => old_species.catch_rate,
+                                    :happiness             => old_species.happiness,
+                                    :moves                 => old_species.moves.map { |m| m.clone },
+                                    :form_move             => old_species.form_move,
+                                    :tutor_moves           => old_species.tutor_moves.clone,
+                                    :line_moves            => old_species.line_moves.clone,
+                                    :abilities             => old_species.abilities.clone,
+                                    :hidden_abilities      => old_species.hidden_abilities.clone,
+                                    :wild_item_common      => old_species.wild_item_common,
+                                    :wild_item_uncommon    => old_species.wild_item_uncommon,
+                                    :wild_item_rare        => old_species.wild_item_rare,
+                                    :hatch_steps           => old_species.hatch_steps,
+                                    :evolutions            => old_species.evolutions.map { |e| e.map { |v| v.is_a?(String) ? v.dup : v } },
+                                    :height                => old_species.height,
+                                    :weight                => old_species.weight,
+                                    :generation            => old_species.generation,
+                                    :flags                 => old_species.flags.clone,
+                                    :formalizer            => old_species.formalizer.clone,
+                                    :sticky_items          => old_species.sticky_items.clone,
+                                    :notes                 => old_species.notes,
+                                    :tribes                => old_species.tribes.clone,
+                                    :defined_in_extension  => old_species.defined_in_extension,
+                                }
+                                GameData::Species::BASE_DATA[species_symbol.to_sym] = GameData::Species.new(backup_hash)
+                            end
+                            # Extension is modifying an existing species, so we'll merge the data below
+                        else
+                            raise _INTL("Species ID '{1}' is used twice.\r\n{2}", species_symbol, FileLineData.linereport)
+                        end
                     end
                     # Go through schema hash of compilable data and compile this section
                     for key in schema.keys
@@ -743,43 +792,100 @@ module Compiler
                             contents[key] = evo_array
                         end
                     end
-                    # Construct species hash
-                    species_hash = {
-                      :id                    => species_symbol.to_sym,
-                      :id_number             => species_number,
-                      :name                  => contents["Name"],
-                      :form_name             => contents["FormName"],
-                      :category              => contents["Kind"],
-                      :pokedex_entry         => contents["Pokedex"],
-                      :type1                 => contents["Type1"],
-                      :type2                 => contents["Type2"],
-                      :base_stats            => contents["BaseStats"],
-                      :base_exp              => contents["BaseEXP"],
-                      :growth_rate           => contents["GrowthRate"],
-                      :gender_ratio          => contents["GenderRate"],
-                      :catch_rate            => contents["Rareness"],
-                      :happiness             => contents["Happiness"],
-                      :moves                 => contents["Moves"],
-                      :form_move             => contents["FormMove"],
-                      :tutor_moves           => contents["TutorMoves"],
-                      :line_moves            => contents["LineMoves"],
-                      :abilities             => contents["Abilities"],
-                      :hidden_abilities      => contents["HiddenAbility"],
-                      :wild_item_common      => contents["WildItemCommon"],
-                      :wild_item_uncommon    => contents["WildItemUncommon"],
-                      :wild_item_rare        => contents["WildItemRare"],
-                      :hatch_steps           => contents["StepsToHatch"],
-                      :evolutions            => contents["Evolutions"],
-                      :height                => contents["Height"],
-                      :weight                => contents["Weight"],
-                      :generation            => contents["Generation"],
-                      :flags                 => contents["Flags"],
-                      :formalizer            => contents["Formalizer"],
-                      :sticky_items          => contents["StickyItems"],
-                      :notes                 => contents["Notes"],
-                      :tribes                => contents["Tribes"],
-                      :defined_in_extension  => !baseFile,
-                    }
+                    # Construct species hash or modify existing species
+                    # If this is an extension modifying an existing species, modify it in-place
+                    if !baseFile && GameData::Species::DATA[species_symbol.to_sym]
+                        existing_species = GameData::Species::DATA[species_symbol.to_sym]
+                        # Modify the existing species object in-place instead of replacing it
+                        # This preserves the object reference that other species (like evolutions) may hold
+                        if contents["Type1"]
+                            existing_species.instance_variable_set(:@type1, contents["Type1"])
+                            # If Type2 is not provided but Type1 is changed, update Type2 to match Type1 (for single-typed species)
+                            unless contents["Type2"]
+                                existing_species.instance_variable_set(:@type2, contents["Type1"])
+                            end
+                        end
+                        if contents["Type2"]
+                            existing_species.instance_variable_set(:@type2, contents["Type2"])
+                        end
+                        existing_species.instance_variable_set(:@real_name, contents["Name"]) if contents["Name"]
+                        existing_species.instance_variable_set(:@real_form_name, contents["FormName"]) if contents["FormName"]
+                        existing_species.instance_variable_set(:@real_category, contents["Kind"]) if contents["Kind"]
+                        existing_species.instance_variable_set(:@real_pokedex_entry, contents["Pokedex"]) if contents["Pokedex"]
+                        existing_species.instance_variable_set(:@base_stats, contents["BaseStats"]) if contents["BaseStats"]
+                        existing_species.instance_variable_set(:@base_exp, contents["BaseEXP"]) if contents["BaseEXP"]
+                        existing_species.instance_variable_set(:@growth_rate, contents["GrowthRate"]) if contents["GrowthRate"]
+                        existing_species.instance_variable_set(:@gender_ratio, contents["GenderRate"]) if contents["GenderRate"]
+                        existing_species.instance_variable_set(:@catch_rate, contents["Rareness"]) if contents["Rareness"]
+                        existing_species.instance_variable_set(:@happiness, contents["Happiness"]) if contents["Happiness"]
+                        existing_species.instance_variable_set(:@moves, contents["Moves"]) if contents["Moves"]
+                        existing_species.instance_variable_set(:@form_move, contents["FormMove"]) if contents["FormMove"]
+                        existing_species.instance_variable_set(:@tutor_moves, contents["TutorMoves"]) if contents["TutorMoves"]
+                        existing_species.instance_variable_set(:@line_moves, contents["LineMoves"]) if contents["LineMoves"]
+                        existing_species.instance_variable_set(:@abilities, contents["Abilities"]) if contents["Abilities"]
+                        existing_species.instance_variable_set(:@hidden_abilities, contents["HiddenAbility"]) if contents["HiddenAbility"]
+                        existing_species.instance_variable_set(:@wild_item_common, contents["WildItemCommon"]) unless contents["WildItemCommon"].nil?
+                        existing_species.instance_variable_set(:@wild_item_uncommon, contents["WildItemUncommon"]) unless contents["WildItemUncommon"].nil?
+                        existing_species.instance_variable_set(:@wild_item_rare, contents["WildItemRare"]) unless contents["WildItemRare"].nil?
+                        existing_species.instance_variable_set(:@hatch_steps, contents["StepsToHatch"]) if contents["StepsToHatch"]
+                        existing_species.instance_variable_set(:@evolutions, contents["Evolutions"]) if contents["Evolutions"]
+                        existing_species.instance_variable_set(:@height, contents["Height"]) if contents["Height"]
+                        existing_species.instance_variable_set(:@weight, contents["Weight"]) if contents["Weight"]
+                        existing_species.instance_variable_set(:@generation, contents["Generation"]) if contents["Generation"]
+                        existing_species.instance_variable_set(:@flags, contents["Flags"]) if contents["Flags"]
+                        existing_species.instance_variable_set(:@formalizer, contents["Formalizer"]) if contents["Formalizer"]
+                        existing_species.instance_variable_set(:@sticky_items, contents["StickyItems"]) if contents["StickyItems"]
+                        existing_species.instance_variable_set(:@notes, contents["Notes"]) if contents["Notes"]
+                        existing_species.instance_variable_set(:@tribes, contents["Tribes"]) if contents["Tribes"]
+                        # Clear cached move data since properties may have changed
+                        existing_species.instance_variable_set(:@levelMoves, nil)
+                        existing_species.instance_variable_set(:@learnableMoves, nil)
+                        # Don't call register - we've modified the existing object in-place
+                        # Just continue to next species
+                        species_names.push(existing_species.real_name)
+                        species_form_names.push(existing_species.real_form_name)
+                        species_categories.push(existing_species.real_category)
+                        species_pokedex_entries.push(existing_species.real_pokedex_entry)
+                        next
+                    else
+                        # New species or base file entry
+                        species_hash = {
+                          :id                    => species_symbol.to_sym,
+                          :id_number             => species_number,
+                          :name                  => contents["Name"],
+                          :form_name             => contents["FormName"],
+                          :category              => contents["Kind"],
+                          :pokedex_entry         => contents["Pokedex"],
+                          :type1                 => contents["Type1"],
+                          :type2                 => contents["Type2"],
+                          :base_stats            => contents["BaseStats"],
+                          :base_exp              => contents["BaseEXP"],
+                          :growth_rate           => contents["GrowthRate"],
+                          :gender_ratio          => contents["GenderRate"],
+                          :catch_rate            => contents["Rareness"],
+                          :happiness             => contents["Happiness"],
+                          :moves                 => contents["Moves"],
+                          :form_move             => contents["FormMove"],
+                          :tutor_moves           => contents["TutorMoves"],
+                          :line_moves            => contents["LineMoves"],
+                          :abilities             => contents["Abilities"],
+                          :hidden_abilities      => contents["HiddenAbility"],
+                          :wild_item_common      => contents["WildItemCommon"],
+                          :wild_item_uncommon    => contents["WildItemUncommon"],
+                          :wild_item_rare        => contents["WildItemRare"],
+                          :hatch_steps           => contents["StepsToHatch"],
+                          :evolutions            => contents["Evolutions"],
+                          :height                => contents["Height"],
+                          :weight                => contents["Weight"],
+                          :generation            => contents["Generation"],
+                          :flags                 => contents["Flags"],
+                          :formalizer            => contents["Formalizer"],
+                          :sticky_items          => contents["StickyItems"],
+                          :notes                 => contents["Notes"],
+                          :tribes                => contents["Tribes"],
+                          :defined_in_extension  => !baseFile,
+                        }
+                    end
                     # Add species' data to records
                     GameData::Species.register(species_hash)
                     species_names.push(species_hash[:name])
@@ -876,8 +982,60 @@ module Compiler
                     elsif form == 0
                         raise _INTL("A form cannot be defined with a form number of 0.\r\n{1}", FileLineData.linereport)
                     elsif used_forms[species_symbol] && used_forms[species_symbol].include?(form)
-                        raise _INTL("Form {1} for species ID {2} is defined twice.\r\n{3}", form, species_symbol,
+                        if !baseFile
+                            # Extension is modifying an existing form
+                            form_symbol_check = format("%s_%d", species_symbol.to_s, form).to_sym
+                            # Back up base entry for writing base PBS later (only if not already backed up)
+                            unless GameData::Species::BASE_DATA[form_symbol_check]
+                                # Create a deep clone of the existing form for backup
+                                old_form = GameData::Species::DATA[form_symbol_check]
+                                backup_hash = {
+                                    :id                    => old_form.id,
+                                    :id_number             => old_form.id_number,
+                                    :species               => old_form.species,
+                                    :form                  => old_form.form,
+                                    :name                  => old_form.real_name,
+                                    :form_name             => old_form.real_form_name,
+                                    :category              => old_form.real_category,
+                                    :pokedex_entry         => old_form.real_pokedex_entry,
+                                    :pokedex_form          => old_form.pokedex_form,
+                                    :type1                 => old_form.type1,
+                                    :type2                 => old_form.type2,
+                                    :base_stats            => old_form.base_stats.clone,
+                                    :base_exp              => old_form.base_exp,
+                                    :growth_rate           => old_form.growth_rate,
+                                    :gender_ratio          => old_form.gender_ratio,
+                                    :catch_rate            => old_form.catch_rate,
+                                    :happiness             => old_form.happiness,
+                                    :moves                 => old_form.moves.map { |m| m.clone },
+                                    :form_move             => old_form.form_move,
+                                    :tutor_moves           => old_form.tutor_moves.clone,
+                                    :line_moves            => old_form.line_moves.clone,
+                                    :abilities             => old_form.abilities.clone,
+                                    :hidden_abilities      => old_form.hidden_abilities.clone,
+                                    :wild_item_common      => old_form.wild_item_common,
+                                    :wild_item_uncommon    => old_form.wild_item_uncommon,
+                                    :wild_item_rare        => old_form.wild_item_rare,
+                                    :hatch_steps           => old_form.hatch_steps,
+                                    :evolutions            => old_form.evolutions.map { |e| e.clone },
+                                    :height                => old_form.height,
+                                    :weight                => old_form.weight,
+                                    :generation            => old_form.generation,
+                                    :flags                 => old_form.flags.clone,
+                                    :mega_stone            => old_form.mega_stone,
+                                    :mega_move             => old_form.mega_move,
+                                    :unmega_form           => old_form.unmega_form,
+                                    :mega_message          => old_form.mega_message,
+                                    :notes                 => old_form.notes,
+                                    :tribes                => old_form.tribes.clone,
+                                    :defined_in_extension  => old_form.defined_in_extension,
+                                }
+                                GameData::Species::BASE_DATA[form_symbol_check] = GameData::Species.new(backup_hash)
+                            end
+                        else
+                            raise _INTL("Form {1} for species ID {2} is defined twice.\r\n{3}", form, species_symbol,
             FileLineData.linereport)
+                        end
                     end
                     used_forms[species_symbol] = [] unless used_forms[species_symbol]
                     used_forms[species_symbol].push(form)
@@ -941,57 +1099,115 @@ module Compiler
                     end
                     # Construct species hash
                     form_symbol = format("%s_%d", species_symbol.to_s, form).to_sym
-                    moves = contents["Moves"]
-                    unless moves
-                        moves = []
-                        base_data.moves.each { |m| moves.push(m.clone) }
+
+                    # Check if this is an extension modifying an existing form
+                    if !baseFile && GameData::Species::DATA[form_symbol]
+                        # Extension is modifying an existing form - merge data
+                        existing_form_data = GameData::Species::DATA[form_symbol]
+                        # Deep clone moves and evolutions if not provided
+                        moves = contents["Moves"]
+                        unless moves
+                            moves = existing_form_data.moves.map { |move_entry| move_entry.clone }
+                        end
+                        evolutions = contents["Evolutions"]
+                        unless evolutions
+                            evolutions = existing_form_data.evolutions.map { |evo_entry| evo_entry.clone }
+                        end
+                        species_hash = {
+                        :id                    => form_symbol,
+                        :id_number             => existing_form_data.id_number,
+                        :species               => species_symbol,
+                        :form                  => form,
+                        :name                  => base_data.real_name,
+                        :form_name             => contents["FormName"] || existing_form_data.real_form_name,
+                        :category              => contents["Kind"] || existing_form_data.real_category,
+                        :pokedex_entry         => contents["Pokedex"] || existing_form_data.real_pokedex_entry,
+                        :pokedex_form          => contents["PokedexForm"] || existing_form_data.pokedex_form,
+                        :type1                 => contents["Type1"] || existing_form_data.type1,
+                        :type2                 => contents["Type2"] || existing_form_data.type2,
+                        :base_stats            => contents["BaseStats"] || existing_form_data.base_stats.clone,
+                        :base_exp              => contents["BaseEXP"] || existing_form_data.base_exp,
+                        :growth_rate           => base_data.growth_rate,
+                        :gender_ratio          => base_data.gender_ratio,
+                        :catch_rate            => contents["Rareness"] || existing_form_data.catch_rate,
+                        :happiness             => contents["Happiness"] || existing_form_data.happiness,
+                        :moves                 => moves,
+                        :form_move             => contents["FormMove"].nil? ? existing_form_data.form_move : contents["FormMove"],
+                        :tutor_moves           => contents["TutorMoves"] || existing_form_data.tutor_moves.clone,
+                        :line_moves            => contents["LineMoves"] || existing_form_data.line_moves.clone,
+                        :abilities             => contents["Abilities"] || existing_form_data.abilities.clone,
+                        :hidden_abilities      => contents["HiddenAbility"] || existing_form_data.hidden_abilities.clone,
+                        :wild_item_common      => contents["WildItemCommon"].nil? ? existing_form_data.wild_item_common : contents["WildItemCommon"],
+                        :wild_item_uncommon    => contents["WildItemUncommon"].nil? ? existing_form_data.wild_item_uncommon : contents["WildItemUncommon"],
+                        :wild_item_rare        => contents["WildItemRare"].nil? ? existing_form_data.wild_item_rare : contents["WildItemRare"],
+                        :hatch_steps           => contents["StepsToHatch"] || existing_form_data.hatch_steps,
+                        :evolutions            => evolutions,
+                        :height                => contents["Height"] || existing_form_data.height,
+                        :weight                => contents["Weight"] || existing_form_data.weight,
+                        :generation            => contents["Generation"] || existing_form_data.generation,
+                        :flags                 => contents["Flags"] || existing_form_data.flags.clone,
+                        :mega_stone            => contents["MegaStone"] || existing_form_data.mega_stone,
+                        :mega_move             => contents["MegaMove"] || existing_form_data.mega_move,
+                        :unmega_form           => contents["UnmegaForm"] || existing_form_data.unmega_form,
+                        :mega_message          => contents["MegaMessage"] || existing_form_data.mega_message,
+                        :notes                 => contents["Notes"] || existing_form_data.notes,
+                        :tribes                => contents["Tribes"] || existing_form_data.tribes.clone,
+                        :defined_in_extension  => false # Keep as base form, not extension
+                        }
+                    else
+                        # New form or base file entry
+                        moves = contents["Moves"]
+                        unless moves
+                            moves = []
+                            base_data.moves.each { |m| moves.push(m.clone) }
+                        end
+                        evolutions = contents["Evolutions"]
+                        unless evolutions
+                            evolutions = []
+                            base_data.evolutions.each { |e| evolutions.push(e.clone) }
+                        end
+                        species_hash = {
+                        :id                    => form_symbol,
+                        :id_number             => form_number,
+                        :species               => species_symbol,
+                        :form                  => form,
+                        :name                  => base_data.real_name,
+                        :form_name             => contents["FormName"],
+                        :category              => contents["Kind"] || base_data.real_category,
+                        :pokedex_entry         => contents["Pokedex"] || base_data.real_pokedex_entry,
+                        :pokedex_form          => contents["PokedexForm"],
+                        :type1                 => contents["Type1"] || base_data.type1,
+                        :type2                 => contents["Type2"] || base_data.type2,
+                        :base_stats            => contents["BaseStats"] || base_data.base_stats,
+                        :base_exp              => contents["BaseEXP"] || base_data.base_exp,
+                        :growth_rate           => base_data.growth_rate,
+                        :gender_ratio          => base_data.gender_ratio,
+                        :catch_rate            => contents["Rareness"] || base_data.catch_rate,
+                        :happiness             => contents["Happiness"] || base_data.happiness,
+                        :moves                 => moves,
+                        :form_move             => contents["FormMove"], # intentionally does not inherit from base form if absent
+                        :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
+                        :line_moves            => contents["LineMoves"] || base_data.line_moves.clone,
+                        :abilities             => contents["Abilities"] || base_data.abilities.clone,
+                        :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
+                        :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,
+                        :wild_item_uncommon    => contents["WildItemUncommon"] || base_data.wild_item_uncommon,
+                        :wild_item_rare        => contents["WildItemRare"] || base_data.wild_item_rare,
+                        :hatch_steps           => contents["StepsToHatch"] || base_data.hatch_steps,
+                        :evolutions            => evolutions,
+                        :height                => contents["Height"] || base_data.height,
+                        :weight                => contents["Weight"] || base_data.weight,
+                        :generation            => contents["Generation"] || base_data.generation,
+                        :flags                 => contents["Flags"] || base_data.flags,
+                        :mega_stone            => contents["MegaStone"],
+                        :mega_move             => contents["MegaMove"],
+                        :unmega_form           => contents["UnmegaForm"],
+                        :mega_message          => contents["MegaMessage"],
+                        :notes                 => contents["Notes"],
+                        :tribes                => contents["Tribes"] || base_data.tribes,
+                        :defined_in_extension  => !baseFile
+                        }
                     end
-                    evolutions = contents["Evolutions"]
-                    unless evolutions
-                        evolutions = []
-                        base_data.evolutions.each { |e| evolutions.push(e.clone) }
-                    end
-                    species_hash = {
-                    :id                    => form_symbol,
-                    :id_number             => form_number,
-                    :species               => species_symbol,
-                    :form                  => form,
-                    :name                  => base_data.real_name,
-                    :form_name             => contents["FormName"],
-                    :category              => contents["Kind"] || base_data.real_category,
-                    :pokedex_entry         => contents["Pokedex"] || base_data.real_pokedex_entry,
-                    :pokedex_form          => contents["PokedexForm"],
-                    :type1                 => contents["Type1"] || base_data.type1,
-                    :type2                 => contents["Type2"] || base_data.type2,
-                    :base_stats            => contents["BaseStats"] || base_data.base_stats,
-                    :base_exp              => contents["BaseEXP"] || base_data.base_exp,
-                    :growth_rate           => base_data.growth_rate,
-                    :gender_ratio          => base_data.gender_ratio,
-                    :catch_rate            => contents["Rareness"] || base_data.catch_rate,
-                    :happiness             => contents["Happiness"] || base_data.happiness,
-                    :moves                 => moves,
-                    :form_move             => contents["FormMove"], # intentionally does not inherit from base form if absent
-                    :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
-                    :line_moves            => contents["LineMoves"] || base_data.line_moves.clone,
-                    :abilities             => contents["Abilities"] || base_data.abilities.clone,
-                    :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
-                    :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,
-                    :wild_item_uncommon    => contents["WildItemUncommon"] || base_data.wild_item_uncommon,
-                    :wild_item_rare        => contents["WildItemRare"] || base_data.wild_item_rare,
-                    :hatch_steps           => contents["StepsToHatch"] || base_data.hatch_steps,
-                    :evolutions            => evolutions,
-                    :height                => contents["Height"] || base_data.height,
-                    :weight                => contents["Weight"] || base_data.weight,
-                    :generation            => contents["Generation"] || base_data.generation,
-                    :flags                 => contents["Flags"] || base_data.flags,
-                    :mega_stone            => contents["MegaStone"],
-                    :mega_move             => contents["MegaMove"],
-                    :unmega_form           => contents["UnmegaForm"],
-                    :mega_message          => contents["MegaMessage"],
-                    :notes                 => contents["Notes"],
-                    :tribes                => contents["Tribes"] || base_data.tribes,
-                    :defined_in_extension  => !baseFile
-                    }
                     # If form is single-typed, ensure it remains so if base species is dual-typed
                     species_hash[:type2] = contents["Type1"] if contents["Type1"] && !contents["Type2"]
                     # If form has any wild items, ensure none are inherited from base species
@@ -1026,6 +1242,15 @@ module Compiler
             next if species.evolutions.any? { |evo| evo[3] } # Already has prevo listed
             species.evolutions.push(all_evos[species.species].clone) if all_evos[species.species]
         end
+
+        # Clear cached move data for all species
+        # This is necessary because extensions may have modified base species/forms after evolutions were created
+        # and evolutions cache inherited move data from their pre-evolutions
+        GameData::Species.each do |species|
+            species.instance_variable_set(:@levelMoves, nil)
+            species.instance_variable_set(:@learnableMoves, nil)
+        end
+
         # Save all data
         GameData::Species.save
         MessageTypes.addMessagesAsHash(MessageTypes::Species, species_names)
@@ -1160,52 +1385,54 @@ module Compiler
     end
 
     def write_species(f, species)
+        # Use backed-up base data if it exists (i.e., if an extension modified this species)
+        species_to_write = GameData::Species::BASE_DATA[species.id] || species
         f.write("\#-------------------------------\r\n")
-        f.write(format("[%s]\r\n", species.species))
-        f.write(format("Name = %s\r\n", species.real_name))
-        f.write(format("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
-        f.write(format("Type1 = %s\r\n", species.type1))
-        f.write(format("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
+        f.write(format("[%s]\r\n", species_to_write.species))
+        f.write(format("Name = %s\r\n", species_to_write.real_name))
+        f.write(format("Notes = %s\r\n", species_to_write.notes)) if !species_to_write.notes.nil? && !species_to_write.notes.blank?
+        f.write(format("Type1 = %s\r\n", species_to_write.type1))
+        f.write(format("Type2 = %s\r\n", species_to_write.type2)) if species_to_write.type2 != species_to_write.type1
         stats_array = []
         total = 0
         GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
-            stats_array[s.pbs_order] = species.base_stats[s.id]
-            total += species.base_stats[s.id]
+            stats_array[s.pbs_order] = species_to_write.base_stats[s.id]
+            total += species_to_write.base_stats[s.id]
         end
         f.write(format("# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def\r\n", total))
         f.write(format("BaseStats = %s\r\n", stats_array.join(",")))
         f.write(format("# Total = %s\r\n", total))
-        f.write(format("GenderRate = %s\r\n", species.gender_ratio)) unless species.gender_ratio == GameData::Species::DEFAULT_GENDER_RATIO
-        f.write(format("GrowthRate = %s\r\n", species.growth_rate)) unless species.growth_rate == GameData::Species::DEFAULT_GROWTH_RATE
-        f.write(format("BaseEXP = %d\r\n", species.base_exp))
-        f.write(format("Rareness = %d\r\n", species.catch_rate))
-        f.write(format("Happiness = %d\r\n", species.happiness)) unless species.happiness == GameData::Species::DEFAULT_BASE_HAPPINESS
-        f.write(format("Abilities = %s\r\n", species.abilities.join(","))) if species.abilities.length > 0
-        f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(","))) if species.non_inherited_level_moves.length > 0
-        f.write(format("FormMove = %s\r\n", species.form_move)) if species.form_move
-        f.write(format("TutorMoves = %s\r\n", species.non_inherited_tutor_moves.join(","))) if species.non_inherited_tutor_moves.length > 0
-        f.write(format("LineMoves = %s\r\n", species.non_inherited_line_moves.join(","))) if species.non_inherited_line_moves.length > 0
-        f.write(format("Tribes = %s\r\n", species.tribes(true).join(","))) if species.tribes(true).length > 0
-        f.write(format("StepsToHatch = %d\r\n", species.hatch_steps))
-        f.write(format("Height = %.1f\r\n", species.height / 10.0))
-        f.write(format("Weight = %.1f\r\n", species.weight / 10.0))
-        f.write(format("Kind = %s\r\n", species.real_category))
-        f.write(format("Pokedex = %s\r\n", species.real_pokedex_entry))
-        if species.real_form_name && !species.real_form_name.empty?
-            f.write(format("FormName = %s\r\n",species.real_form_name))
+        f.write(format("GenderRate = %s\r\n", species_to_write.gender_ratio)) unless species_to_write.gender_ratio == GameData::Species::DEFAULT_GENDER_RATIO
+        f.write(format("GrowthRate = %s\r\n", species_to_write.growth_rate)) unless species_to_write.growth_rate == GameData::Species::DEFAULT_GROWTH_RATE
+        f.write(format("BaseEXP = %d\r\n", species_to_write.base_exp))
+        f.write(format("Rareness = %d\r\n", species_to_write.catch_rate))
+        f.write(format("Happiness = %d\r\n", species_to_write.happiness)) unless species_to_write.happiness == GameData::Species::DEFAULT_BASE_HAPPINESS
+        f.write(format("Abilities = %s\r\n", species_to_write.abilities.join(","))) if species_to_write.abilities.length > 0
+        f.write(format("Moves = %s\r\n", species_to_write.non_inherited_level_moves.join(","))) if species_to_write.non_inherited_level_moves.length > 0
+        f.write(format("FormMove = %s\r\n", species_to_write.form_move)) if species_to_write.form_move
+        f.write(format("TutorMoves = %s\r\n", species_to_write.non_inherited_tutor_moves.join(","))) if species_to_write.non_inherited_tutor_moves.length > 0
+        f.write(format("LineMoves = %s\r\n", species_to_write.non_inherited_line_moves.join(","))) if species_to_write.non_inherited_line_moves.length > 0
+        f.write(format("Tribes = %s\r\n", species_to_write.tribes(true).join(","))) if species_to_write.tribes(true).length > 0
+        f.write(format("StepsToHatch = %d\r\n", species_to_write.hatch_steps))
+        f.write(format("Height = %.1f\r\n", species_to_write.height / 10.0))
+        f.write(format("Weight = %.1f\r\n", species_to_write.weight / 10.0))
+        f.write(format("Kind = %s\r\n", species_to_write.real_category))
+        f.write(format("Pokedex = %s\r\n", species_to_write.real_pokedex_entry))
+        if species_to_write.real_form_name && !species_to_write.real_form_name.empty?
+            f.write(format("FormName = %s\r\n",species_to_write.real_form_name))
         end
-        f.write(format("Generation = %d\r\n", species.generation)) if species.generation != 0
-        f.write(format("Flags = %s\r\n", species.flags.join(","))) if !species.flags.empty?
-        f.write(format("Formalizer = %s\r\n", species.formalizer.join(","))) if !species.formalizer.empty?
-        f.write(format("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
-        f.write(format("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
-        f.write(format("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
-        f.write(format("StickyItems = %s\r\n", species.sticky_items.join(","))) if species.sticky_items.length > 0
-        if species.evolutions.any? { |evo| !evo[3] }
+        f.write(format("Generation = %d\r\n", species_to_write.generation)) if species_to_write.generation != 0
+        f.write(format("Flags = %s\r\n", species_to_write.flags.join(","))) if !species_to_write.flags.empty?
+        f.write(format("Formalizer = %s\r\n", species_to_write.formalizer.join(","))) if !species_to_write.formalizer.empty?
+        f.write(format("WildItemCommon = %s\r\n", species_to_write.wild_item_common)) if species_to_write.wild_item_common
+        f.write(format("WildItemUncommon = %s\r\n", species_to_write.wild_item_uncommon)) if species_to_write.wild_item_uncommon
+        f.write(format("WildItemRare = %s\r\n", species_to_write.wild_item_rare)) if species_to_write.wild_item_rare
+        f.write(format("StickyItems = %s\r\n", species_to_write.sticky_items.join(","))) if species_to_write.sticky_items.length > 0
+        if species_to_write.evolutions.any? { |evo| !evo[3] }
             f.write("Evolutions = ")
             need_comma = false
-            species.evolutions.each do |evo|
+            species_to_write.evolutions.each do |evo|
                 next if evo[3] # Skip prevolution entries
                 f.write(",") if need_comma
                 need_comma = true
@@ -1261,64 +1488,66 @@ module Compiler
     end
 
     def write_species_form(f, species)
-        base_species = GameData::Species.get(species.species)
+        # Use backed-up base data if it exists (i.e., if an extension modified this form)
+        species_to_write = GameData::Species::BASE_DATA[species.id] || species
+        base_species = GameData::Species.get(species_to_write.species)
         f.write("\#-------------------------------\r\n")
-        f.write(format("[%s,%d]\r\n", species.species, species.form))
-        if species.real_form_name && !species.real_form_name.empty?
-            f.write(format("FormName = %s\r\n", species.real_form_name))
+        f.write(format("[%s,%d]\r\n", species_to_write.species, species_to_write.form))
+        if species_to_write.real_form_name && !species_to_write.real_form_name.empty?
+            f.write(format("FormName = %s\r\n", species_to_write.real_form_name))
         end
-        f.write(format("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
-        f.write(format("PokedexForm = %d\r\n", species.pokedex_form)) if species.pokedex_form != species.form
-        f.write(format("MegaStone = %s\r\n", species.mega_stone)) if species.mega_stone
-        f.write(format("MegaMove = %s\r\n", species.mega_move)) if species.mega_move
-        f.write(format("UnmegaForm = %d\r\n", species.unmega_form)) if species.unmega_form != 0
-        f.write(format("MegaMessage = %d\r\n", species.mega_message)) if species.mega_message != 0
-        if species.type1 != base_species.type1 || species.type2 != base_species.type2
-            f.write(format("Type1 = %s\r\n", species.type1))
-            f.write(format("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
+        f.write(format("Notes = %s\r\n", species_to_write.notes)) if !species_to_write.notes.nil? && !species_to_write.notes.blank?
+        f.write(format("PokedexForm = %d\r\n", species_to_write.pokedex_form)) if species_to_write.pokedex_form != species_to_write.form
+        f.write(format("MegaStone = %s\r\n", species_to_write.mega_stone)) if species_to_write.mega_stone
+        f.write(format("MegaMove = %s\r\n", species_to_write.mega_move)) if species_to_write.mega_move
+        f.write(format("UnmegaForm = %d\r\n", species_to_write.unmega_form)) if species_to_write.unmega_form != 0
+        f.write(format("MegaMessage = %d\r\n", species_to_write.mega_message)) if species_to_write.mega_message != 0
+        if species_to_write.type1 != base_species.type1 || species_to_write.type2 != base_species.type2
+            f.write(format("Type1 = %s\r\n", species_to_write.type1))
+            f.write(format("Type2 = %s\r\n", species_to_write.type2)) if species_to_write.type2 != species_to_write.type1
         end
         stats_array = []
         total = 0
         base_species_total = 0
         GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
-            stats_array[s.pbs_order] = species.base_stats[s.id]
-            total += species.base_stats[s.id]
+            stats_array[s.pbs_order] = species_to_write.base_stats[s.id]
+            total += species_to_write.base_stats[s.id]
             base_species_total += base_species.base_stats[s.id]
         end
-        f.write(format("BaseStats = %s\r\n", stats_array.join(","))) if species.base_stats != base_species.base_stats
-        f.write(format("# Total = %s\r\n", total)) if species.base_stats != base_species.base_stats
-        f.write(format("BaseEXP = %d\r\n", species.base_exp)) if species.base_exp != base_species.base_exp
-        f.write(format("Rareness = %d\r\n", species.catch_rate)) if species.catch_rate != base_species.catch_rate
-        f.write(format("Happiness = %d\r\n", species.happiness)) if species.happiness != base_species.happiness
-        if species.abilities.length > 0 && species.abilities != base_species.abilities
-            f.write(format("Abilities = %s\r\n", species.abilities.join(",")))
+        f.write(format("BaseStats = %s\r\n", stats_array.join(","))) if species_to_write.base_stats != base_species.base_stats
+        f.write(format("# Total = %s\r\n", total)) if species_to_write.base_stats != base_species.base_stats
+        f.write(format("BaseEXP = %d\r\n", species_to_write.base_exp)) if species_to_write.base_exp != base_species.base_exp
+        f.write(format("Rareness = %d\r\n", species_to_write.catch_rate)) if species_to_write.catch_rate != base_species.catch_rate
+        f.write(format("Happiness = %d\r\n", species_to_write.happiness)) if species_to_write.happiness != base_species.happiness
+        if species_to_write.abilities.length > 0 && species_to_write.abilities != base_species.abilities
+            f.write(format("Abilities = %s\r\n", species_to_write.abilities.join(",")))
         end
-        if species.non_inherited_level_moves.length > 0 && species.non_inherited_level_moves != base_species.non_inherited_level_moves
-            f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(",")))
+        if species_to_write.non_inherited_level_moves.length > 0 && species_to_write.non_inherited_level_moves != base_species.non_inherited_level_moves
+            f.write(format("Moves = %s\r\n", species_to_write.non_inherited_level_moves.join(",")))
         end
-        f.write(format("FormMove = %s\r\n", species.form_move)) if species.form_move
-        f.write(format("StepsToHatch = %d\r\n", species.hatch_steps)) if species.hatch_steps != base_species.hatch_steps
-        f.write(format("Height = %.1f\r\n", species.height / 10.0)) if species.height != base_species.height
-        f.write(format("Weight = %.1f\r\n", species.weight / 10.0)) if species.weight != base_species.weight
-        f.write(format("Kind = %s\r\n", species.real_category)) if species.real_category != base_species.real_category
-        if species.real_pokedex_entry != base_species.real_pokedex_entry
+        f.write(format("FormMove = %s\r\n", species_to_write.form_move)) if species_to_write.form_move
+        f.write(format("StepsToHatch = %d\r\n", species_to_write.hatch_steps)) if species_to_write.hatch_steps != base_species.hatch_steps
+        f.write(format("Height = %.1f\r\n", species_to_write.height / 10.0)) if species_to_write.height != base_species.height
+        f.write(format("Weight = %.1f\r\n", species_to_write.weight / 10.0)) if species_to_write.weight != base_species.weight
+        f.write(format("Kind = %s\r\n", species_to_write.real_category)) if species_to_write.real_category != base_species.real_category
+        if species_to_write.real_pokedex_entry != base_species.real_pokedex_entry
             f.write(format("Pokedex = %s\r\n",
-  species.real_pokedex_entry))
+  species_to_write.real_pokedex_entry))
         end
-        f.write(format("Generation = %d\r\n", species.generation)) if species.generation != base_species.generation
-        f.write(format("Flags = %s\r\n", species.flags.join(","))) if species.flags != base_species.flags
-        if species.wild_item_common != base_species.wild_item_common ||
-           species.wild_item_uncommon != base_species.wild_item_uncommon ||
-           species.wild_item_rare != base_species.wild_item_rare
-            f.write(format("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
-            f.write(format("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
-            f.write(format("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
+        f.write(format("Generation = %d\r\n", species_to_write.generation)) if species_to_write.generation != base_species.generation
+        f.write(format("Flags = %s\r\n", species_to_write.flags.join(","))) if species_to_write.flags != base_species.flags
+        if species_to_write.wild_item_common != base_species.wild_item_common ||
+           species_to_write.wild_item_uncommon != base_species.wild_item_uncommon ||
+           species_to_write.wild_item_rare != base_species.wild_item_rare
+            f.write(format("WildItemCommon = %s\r\n", species_to_write.wild_item_common)) if species_to_write.wild_item_common
+            f.write(format("WildItemUncommon = %s\r\n", species_to_write.wild_item_uncommon)) if species_to_write.wild_item_uncommon
+            f.write(format("WildItemRare = %s\r\n", species_to_write.wild_item_rare)) if species_to_write.wild_item_rare
         end
-        if species.evolutions != base_species.evolutions && species.evolutions.any? { |evo| !evo[3] }
+        if species_to_write.evolutions != base_species.evolutions && species_to_write.evolutions.any? { |evo| !evo[3] }
             f.write("Evolutions = ")
             need_comma = false
-            species.evolutions.each do |evo|
+            species_to_write.evolutions.each do |evo|
                 next if evo[3] # Skip prevolution entries
                 f.write(",") if need_comma
                 need_comma = true
