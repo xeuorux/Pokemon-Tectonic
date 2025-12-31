@@ -15,7 +15,7 @@ def incrementSuccessfulCaptureCount(ball)
     else
         $PokemonGlobal.capture_counts_per_ball[ball] = 1
     end
-    checkForCapturesWithBallsAchievements
+    checkForCapturesWithBallsAchievements unless $battle.is_replayed
 end
 
 def checkForCapturesWithBallsAchievements

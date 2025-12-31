@@ -59,7 +59,7 @@ class PokeBattle_Move
             unless @battle.autoTesting
                 @battle.pbDisplayWithFormatting(_INTL("\\ss{1} used <c2=06644bd2>{2}</c2>!", user.pbThis, @name))
                 if user.pbOwnedByPlayer?
-                    unlockAchievement(:USE_PRIMEVAL_MOVE)
+                    unlockAchievement(:USE_PRIMEVAL_MOVE) && !(user.battle.is_replayed)
                 end
             end
         else

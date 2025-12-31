@@ -3218,7 +3218,7 @@ Pokemon = LUMINEON,57
 #-------------------------------
 [CLERK_M,Scott]
 Pokemon = DRAGAPULT,59
-    Moves = UTURN,SIXFEETUNDER,DRAGONDARTS,DRAGONDANCE
+    Moves = UTURN,SIXFEETUNDER,DREEPYBARRAGE,DRAGONDANCE
     AbilityIndex = 0 # Fascinate
 Pokemon = KLEFKI,59
     Moves = SWEETKISS,SPIKES,GYROBALL,SUGARBALL
@@ -3483,7 +3483,7 @@ Pokemon = SNORLAX,65
 [FORMERCHAMP_Scilla,Scilla]
 Flags = NoPerfect
 Pokemon = AZUMARILL,70
-    Moves = AQUAJET,HUMBLE,LIQUIDATION,GIGAIMPACT
+    Moves = AQUAJET,HUMBLE,LIQUIDATION,ICEHAMMER
     AbilityIndex = 1 # Pure Force
     Item = POWERLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3497,9 +3497,9 @@ Pokemon = GALLADE,70
 Pokemon = KOMMOO,70
     Moves = CLANGOROUSSOUL,DRAGONPULSE,FLASHCANNON,DRAINPUNCH
     AbilityIndex = 0 # Well Rounded
-    Item = LEFTOVERS
+    Item = STRESSBALL
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,0,15,0,0,15
+    EV = 20,20,10,0,20,0
 Pokemon = MAROMATISSE,70
     Moves = SWEETKISS,AROMATHERAPY,HEX,FLORALGRAMARYE
     AbilityIndex = 1 # Uncanny Luck
@@ -3507,7 +3507,7 @@ Pokemon = MAROMATISSE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = FLOATZEL,70
-    Moves = GIGAIMPACT,WHIRLWINDKICK,WEASELING,FAKEOUT
+    Moves = GIGAIMPACT,WHIRLWINDKICK,WEASELING,LIQUIDATION
     AbilityIndex = 0 # Moxie
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3517,7 +3517,7 @@ Pokemon = URSHIFU,70
     Form = 1 # Rapid Strike Form
     Moves = SURGINGSTRIKES,CLOSECOMBAT,ICEPUNCH,IRONHEAD
     AbilityIndex = 0 # Unseen Fist
-    Item = CHOICEBAND
+    Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 #-------------------------------
@@ -4283,10 +4283,15 @@ Pokemon = HDECIDUEYE,55
 [LEADER_Victoire,Victoire]
 Policies = VICTOIRE
 Flags = NoPerfect
+Pokemon = SLURPUFF,55
+    Moves = PLAYROUGH,BLAZEKICK,RAPIDSPIN,STICKYWEB
+    AbilityIndex = 1 # Fine Sugar
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,20,10,0,20,0
 Pokemon = ADUGTRIO,55
     Moves = HAIRFLIP,SANDBLASTING,NULLPULSE,TERRAFORM
     AbilityIndex = 0 # Lauoho Lasso
-    Item = FOCUSSASH
+    Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = MSEAKING,55
@@ -4295,7 +4300,7 @@ Pokemon = MSEAKING,55
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,10,20,0
 Pokemon = DECEAT,55
-    Moves = METEORMASH,HUMBLE,SUCKERPUNCH,SWORDSDANCE
+    Moves = METEORMASH,HUMBLE,CRUNCH,SWORDSDANCE
     AbilityIndex = 0 # Pure Force
     Item = LIFEORB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4307,11 +4312,6 @@ Pokemon = MISMAGIUS,55
     Item = THROATSPRAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 5,20,0,20,20,5
-Pokemon = SLURPUFF,55
-    Moves = PLAYROUGH,BLAZEKICK,BEDROCKBREAKER,DRAINPUNCH
-    AbilityIndex = 1 # Fine Sugar
-    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,20,10,0,20,0
 Pokemon = KINGAMBIT,55
     Moves = SWORDSDANCE,SEVER,SLAY,BULLETPUNCH
     AbilityIndex = 0 # Defiant
@@ -4321,20 +4321,20 @@ Pokemon = KINGAMBIT,55
 [LEADER_Victoire,Victoire,1]
 ExtendsVersion = 0
 Policies = CURSE_EXTRA_ITEMS
+Pokemon = SLURPUFF,55
+    Item = FOCUSSASH
+    ExtraItems = CADOBERRY
 Pokemon = ADUGTRIO,55
-    ExtraItems = WEAKNESSPOLICY
+    ExtraItems = STRIKEVEST
 Pokemon = MSEAKING,55
     Item = LIFEORB
-    ExtraItems = SEVENLEAGUEBOOTS
+    ExtraItems = MUSCLEBAND
 Pokemon = MISMAGIUS,55
     ExtraItems = EXPERTBELT
 Pokemon = DECEAT,55
     ExtraItems = SHELLBELL
-Pokemon = SLURPUFF,55
-    Item = STRIKEVEST
-    ExtraItems = ASSAULTVEST
 Pokemon = KINGAMBIT,55
-    Item = SEVENLEAGUEBOOTS
+    Item = AIRBALLOON
     ExtraItems = OCCABERRY
 #-------------------------------
 [MASKEDVILLAIN_Sang,Silver]
@@ -7154,7 +7154,7 @@ Pokemon = NAGANADEL,70
     AbilityIndex = 0 # Inexorable
     Item = LIFEORB
 Pokemon = DRAGAPULT,70
-    Moves = DRAGONDARTS,UTURN,LIGHTNINGSLAM,WAILINGBLOW
+    Moves = DREEPYBARRAGE,UTURN,LIGHTNINGSLAM,WAILINGBLOW
     AbilityIndex = 0 # Fascinate
     Item = CHOICEBAND
 Pokemon = HAXORUS,70

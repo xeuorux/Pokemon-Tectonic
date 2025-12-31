@@ -389,7 +389,6 @@ class PokeBattle_Battler
     def activatesTargetAbilities?(aiCheck = false)
         return false if shouldItemApply?(:PROXYFIST,aiCheck)
         return false if shouldAbilityApply?(:AFROTECTION, aiCheck)
-        return false if shouldAbilityApply?(:JUGGERNAUT, aiCheck)
         return true
     end
 

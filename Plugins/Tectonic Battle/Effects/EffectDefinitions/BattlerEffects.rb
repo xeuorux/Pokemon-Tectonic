@@ -1966,6 +1966,18 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :RedHotRetreat,
+    :real_name => "Red-Hot Retreat",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :IceNineWall,
+    :real_name => "Ice-Nine Wall",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :ExtraTurns,
     :real_name => "Extra Turns",
     :type => :Integer,
@@ -2233,28 +2245,6 @@ GameData::BattleEffect.register_effect(:Battler, {
     :protection_info => {
         :hit_proc => proc do |user, target, move, _battle|
             user.applyPoison(target) if move.physicalMove? && user.canPoison?(target, false)
-        end,
-    },
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RedHotRetreat,
-    :real_name => "Red-Hot Retreat",
-    :resets_eor	=> true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, _battle|
-            user.applyBurn(target) if move.specialMove? && user.canBurn?(target, false)
-        end,
-    },
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :IceNineWall,
-    :real_name => "Ice-Nine Wall",
-    :resets_eor	=> true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, _battle|
-            user.applyFrostbite(target) if move.physicalMove? && user.canFrostbite?(target, false)
         end,
     },
 })

@@ -1400,7 +1400,7 @@ Pokemon = BASCULEGION,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = DRAGAPULT,70
-    Moves = DRAGONDARTS,UTURN,DRAGONDANCE,SIXFEETUNDER
+    Moves = DREEPYBARRAGE,UTURN,DRAGONDANCE,SIXFEETUNDER
     AbilityIndex = 0 # Fascinate
     Item = GHOSTGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

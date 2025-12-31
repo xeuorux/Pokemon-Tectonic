@@ -1144,7 +1144,7 @@ Description = Uses Wish after knocking out any Pokémon.
 #-------------------------------
 [JUGGERNAUT]
 Name = Juggernaut
-Description = Ignores Abilities that would affect its moves or activate after hitting the target.
+Description = This Pokémon's moves deal 20% more damage and ignore abilities that would affect them.
 Flags = MoldBreaking
 #-------------------------------
 [KARMA]

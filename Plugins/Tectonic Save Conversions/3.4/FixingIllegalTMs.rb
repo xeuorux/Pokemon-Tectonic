@@ -7,5 +7,8 @@ SaveData.register_conversion(:tm_fixing_340) do
     save_data[:bag].pbChangeItem(:TMAURASPHERE,:TMADRENALASH)
     save_data[:bag].pbChangeItem(:TMSCREECH,:TMBARETEETH)
     save_data[:bag].pbChangeItem(:TMCOSMICPOWER,:TMRAPIDSPIN)
+    save_data[:bag].pbChangeItem(:TMTRICK,:TMSWITCHEROO)
+    save_data[:bag].pbChangeItem(:TMBULLETTRAIN,:TMMETEORMASH)
+    save_data[:bag].pbChangeItem(:TMSEERSTRIKE,:TMPSYCHOSCISSION)
   end
 end
