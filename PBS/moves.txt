@@ -1617,10 +1617,10 @@ Type = FLYING
 Category = Status
 Accuracy = 0
 TotalPP = 12
-Target = NearOther
+Target = BothSides
 FunctionCode = Defog
 Flags = CanProtect,CanMagicCoat,Wind
-Description = The user whips up a wind to blow away the target's protective screens. Also removes hazards on both sides.
+Description = The user whips up a wind to blow away protective screens on the opponent's side. Also removes hazards on both sides.
 #-------------------------------
 [DRAGONASCENT]
 Name = Dragon Ascent

@@ -3,6 +3,7 @@
 # And all entry hazard's for the user's side.
 #===============================================================================
 class PokeBattle_Move_Defog < PokeBattle_Move
+    def worksWithNoTargets?; return true; end
     def hazardRemovalMove?; return true; end
     def screenRemovalMove?; return true; end
     def aiAutoKnows?(pokemon); return false; end
@@ -25,14 +26,7 @@ class PokeBattle_Move_Defog < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        targetSide = target.pbOwnSide
-        ourSide = user.pbOwnSide
-        eachDefoggable(targetSide, false) do |_effect, _data|
-            return false
-        end
-        eachDefoggable(ourSide, true) do |_effect, _data|
-            return false
-        end
+        return false
     end
 
     def blowAwayEffect(user, side, effect, data)
@@ -43,8 +37,8 @@ class PokeBattle_Move_Defog < PokeBattle_Move
         end
     end
 
-    def pbEffectAgainstTarget(user, target)
-        targetSide = target.pbOwnSide
+    def pbEffectGeneral(user)
+        targetSide = user.pbOpposingSide
         ourSide = user.pbOwnSide
         eachDefoggable(targetSide, false) do |effect, data|
             blowAwayEffect(user, targetSide, effect, data)
