@@ -44,7 +44,7 @@ module PokeBattle_BattleRecorder
 	end
 
 	def pbRandom(x)
-		if x == 1 && x.is_a(Integer) then
+		if x == 1 && x.is_a?(Integer) then
 			return 0 # Don't add to random stack if the outcome is certain
 		end
 		ret = rand(x)
@@ -239,7 +239,7 @@ module PokeBattle_BattleReplayer
 	end
 
 	def pbRandom(x)
-		if x == 1 && x.is_a(Integer) then
+		if x == 1 && x.is_a?(Integer) then
 			return 0 # Don't take from random stack if the outcome is certain
 		end
 		ret = @random[@randomindex]
