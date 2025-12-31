@@ -23,6 +23,8 @@ module GameData
         DATA = {}
         DATA_FILENAME = "metadata.dat"
 
+        BASE_DATA = {} # Data that hasn't been extended
+
         SCHEMA = {
           "Home"             			=> [1,  "vuuu"],
           "WildBattleBGM"    			=> [2,  "s"],
@@ -184,6 +186,8 @@ module GameData
 
         DATA = {}
         DATA_FILENAME = "map_metadata.dat"
+
+        BASE_DATA = {} # Data that hasn't been extended
 
         SCHEMA = {
           "Outdoor"          => [1,  "b"],
@@ -382,6 +386,34 @@ module Compiler
                         contents[key] = value
                     end
                     if map_id == 0 # Global metadata
+                        # Back up base entry for writing base PBS later (only if not already backed up)
+                        if GameData::Metadata::DATA[map_id] && !baseFile
+                            unless GameData::Metadata::BASE_DATA[map_id]
+                                old_metadata = GameData::Metadata::DATA[map_id]
+                                backup_hash = {
+                                    :id                 => old_metadata.id,
+                                    :home               => old_metadata.home,
+                                    :wild_battle_BGM    => old_metadata.wild_battle_BGM,
+                                    :trainer_battle_BGM => old_metadata.trainer_battle_BGM,
+                                    :avatar_battle_BGM  => old_metadata.avatar_battle_BGM,
+                                    :legendary_avatar_battle_BGM => old_metadata.legendary_avatar_battle_BGM,
+                                    :wild_victory_ME    => old_metadata.wild_victory_ME,
+                                    :trainer_victory_ME => old_metadata.trainer_victory_ME,
+                                    :wild_capture_ME    => old_metadata.wild_capture_ME,
+                                    :surf_BGM           => old_metadata.surf_BGM,
+                                    :bicycle_BGM        => old_metadata.bicycle_BGM,
+                                    :player_A           => old_metadata.player_A,
+                                    :player_B           => old_metadata.player_B,
+                                    :player_C           => old_metadata.player_C,
+                                    :player_D           => old_metadata.player_D,
+                                    :player_E           => old_metadata.player_E,
+                                    :player_F           => old_metadata.player_F,
+                                    :player_G           => old_metadata.player_G,
+                                    :player_H           => old_metadata.player_H
+                                }
+                                GameData::Metadata::BASE_DATA[map_id] = GameData::Metadata.new(backup_hash)
+                            end
+                        end
                         # Construct metadata hash
                         metadata_hash = {
                             :id                 => map_id,
@@ -408,6 +440,43 @@ module Compiler
                         # Add metadata's data to records
                         GameData::Metadata.register(metadata_hash)
                     else # Map metadata
+                        # Back up base entry for writing base PBS later (only if not already backed up)
+                        if GameData::MapMetadata::DATA[map_id] && !baseFile
+                            unless GameData::MapMetadata::BASE_DATA[map_id]
+                                old_map_metadata = GameData::MapMetadata::DATA[map_id]
+                                backup_hash = {
+                                    :id                   => old_map_metadata.id,
+                                    :outdoor_map          => old_map_metadata.outdoor_map,
+                                    :announce_location    => old_map_metadata.announce_location,
+                                    :can_bicycle          => old_map_metadata.can_bicycle,
+                                    :always_bicycle       => old_map_metadata.always_bicycle,
+                                    :teleport_destination => old_map_metadata.teleport_destination,
+                                    :weather              => old_map_metadata.weather,
+                                    :temperature          => old_map_metadata.temperature,
+                                    :humidity             => old_map_metadata.humidity,
+                                    :town_map_position    => old_map_metadata.town_map_position,
+                                    :dive_map_id          => old_map_metadata.dive_map_id,
+                                    :dark_map             => old_map_metadata.dark_map,
+                                    :safari_map           => old_map_metadata.safari_map,
+                                    :snap_edges           => old_map_metadata.snap_edges,
+                                    :random_dungeon       => old_map_metadata.random_dungeon,
+                                    :battle_background    => old_map_metadata.battle_background,
+                                    :wild_battle_BGM      => old_map_metadata.wild_battle_BGM,
+                                    :trainer_battle_BGM   => old_map_metadata.trainer_battle_BGM,
+                                    :wild_victory_ME      => old_map_metadata.wild_victory_ME,
+                                    :trainer_victory_ME   => old_map_metadata.trainer_victory_ME,
+                                    :wild_capture_ME      => old_map_metadata.wild_capture_ME,
+                                    :town_map_size        => old_map_metadata.town_map_size,
+                                    :battle_environment   => old_map_metadata.battle_environment,
+                                    :teleport_blocked     => old_map_metadata.teleport_blocked,
+                                    :saving_blocked       => old_map_metadata.saving_blocked,
+                                    :no_team_editing      => old_map_metadata.no_team_editing,
+                                    :defined_in_extension => old_map_metadata.defined_in_extension,
+                                    :import_name          => old_map_metadata.import_name
+                                }
+                                GameData::MapMetadata::BASE_DATA[map_id] = GameData::MapMetadata.new(backup_hash)
+                            end
+                        end
                         # Construct metadata hash
                         metadata_hash = {
                             :id                   	=> map_id,
@@ -461,10 +530,12 @@ module Compiler
             f.write("\#-------------------------------\r\n")
             f.write("[000]\r\n")
             metadata = GameData::Metadata.get
+            # Use backed-up base data if it exists (i.e., if an extension modified the global metadata)
+            metadata_to_write = GameData::Metadata::BASE_DATA[0] || metadata
             schema = GameData::Metadata::SCHEMA
             keys = schema.keys.sort { |a, b| schema[a][0] <=> schema[b][0] }
             for key in keys
-                record = metadata.property_from_string(key)
+                record = metadata_to_write.property_from_string(key)
                 next if record.nil?
                 f.write(format("%s = ", key))
                 pbWriteCsvRecord(record, f, schema[key])
@@ -475,11 +546,13 @@ module Compiler
             schema = GameData::MapMetadata::SCHEMA
             keys = schema.keys.sort { |a, b| schema[a][0] <=> schema[b][0] }
             GameData::MapMetadata.each_base do |map_data|
+                # Use backed-up base data if it exists (i.e., if an extension modified this map metadata)
+                map_data_to_write = GameData::MapMetadata::BASE_DATA[map_data.id] || map_data
                 f.write("\#-------------------------------\r\n")
-                f.write(format("[%03d]\r\n", map_data.id))
-                f.write(format("# %s\r\n", map_infos[map_data.id].name)) if map_infos && map_infos[map_data.id]
+                f.write(format("[%03d]\r\n", map_data_to_write.id))
+                f.write(format("# %s\r\n", map_infos[map_data_to_write.id].name)) if map_infos && map_infos[map_data_to_write.id]
                 for key in keys
-                    record = map_data.property_from_string(key)
+                    record = map_data_to_write.property_from_string(key)
                     next if record.nil?
                     f.write(format("%s = ", key))
                     pbWriteCsvRecord(record, f, schema[key])

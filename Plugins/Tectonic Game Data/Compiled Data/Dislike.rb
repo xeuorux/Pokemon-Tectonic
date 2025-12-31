@@ -16,7 +16,26 @@ module Compiler
 				line = pbGetCsvRecord(line, line_no, [0, "*ns"])
 				dislike_symbol = line[0].to_sym
 				if GameData::Dislike::DATA[dislike_symbol]
-					raise _INTL("Pokemon dislike ID '{1}' is used twice.\r\n{2}", dislike_symbol, FileLineData.linereport)
+					if !baseFile
+						# Back up base entry for writing base PBS later (only if not already backed up)
+						unless GameData::Dislike::BASE_DATA[dislike_symbol]
+							old_dislike = GameData::Dislike::DATA[dislike_symbol]
+							backup_hash = {
+								:id          => old_dislike.id,
+								:id_number   => old_dislike.id_number,
+								:real_name   => old_dislike.real_name,
+								:defined_in_extension => old_dislike.instance_variable_get(:@defined_in_extension)
+							}
+							GameData::Dislike::BASE_DATA[dislike_symbol] = GameData::Dislike.new(backup_hash)
+						end
+						# Extension is modifying an existing dislike, so we'll modify in-place
+						existing_dislike = GameData::Dislike::DATA[dislike_symbol]
+						existing_dislike.instance_variable_set(:@real_name, line[1])
+						dislikeNames[existing_dislike.id_number] = line[1]
+						next
+					else
+						raise _INTL("Pokemon dislike ID '{1}' is used twice.\r\n{2}", dislike_symbol, FileLineData.linereport)
+					end
 				end
 				dislike_hash = {
 					:id          => dislike_symbol,
@@ -44,6 +63,7 @@ module GameData
 		attr_reader :defined_in_extension
 
 		DATA = {}
+		BASE_DATA = {} # Data that hasn't been extended
 		DATA_FILENAME = "dislikes.dat"
 
 		extend ClassMethods

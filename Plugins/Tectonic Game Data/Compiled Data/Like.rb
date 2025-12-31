@@ -16,7 +16,26 @@ module Compiler
 				line = pbGetCsvRecord(line, line_no, [0, "*ns"])
 				like_symbol = line[0].to_sym
 				if GameData::Like::DATA[like_symbol]
-					raise _INTL("Pokemon like ID '{1}' is used twice.\r\n{2}", like_symbol, FileLineData.linereport)
+					if !baseFile
+						# Back up base entry for writing base PBS later (only if not already backed up)
+						unless GameData::Like::BASE_DATA[like_symbol]
+							old_like = GameData::Like::DATA[like_symbol]
+							backup_hash = {
+								:id          => old_like.id,
+								:id_number   => old_like.id_number,
+								:real_name   => old_like.real_name,
+								:defined_in_extension => old_like.instance_variable_get(:@defined_in_extension)
+							}
+							GameData::Like::BASE_DATA[like_symbol] = GameData::Like.new(backup_hash)
+						end
+						# Extension is modifying an existing like, so we'll modify in-place
+						existing_like = GameData::Like::DATA[like_symbol]
+						existing_like.instance_variable_set(:@real_name, line[1])
+						likeNames[existing_like.id_number] = line[1]
+						next
+					else
+						raise _INTL("Pokemon like ID '{1}' is used twice.\r\n{2}", like_symbol, FileLineData.linereport)
+					end
 				end
 				like_hash = {
 					:id          => like_symbol,
@@ -44,6 +63,7 @@ module GameData
 		attr_reader :defined_in_extension
 
 		DATA = {}
+		BASE_DATA = {} # Data that hasn't been extended
 		DATA_FILENAME = "likes.dat"
 
 		extend ClassMethods

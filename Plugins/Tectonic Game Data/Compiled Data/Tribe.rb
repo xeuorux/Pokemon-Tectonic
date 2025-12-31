@@ -22,7 +22,31 @@ module Compiler
 				tribe_name = line[2]
 				tribe_description = line[3]
 				if GameData::Tribe::DATA[tribe_symbol]
-					raise _INTL("Tribe ID '{1}' is used twice.\r\n{2}", tribe_symbol, FileLineData.linereport)
+					if !baseFile
+						# Back up base entry for writing base PBS later (only if not already backed up)
+						unless GameData::Tribe::BASE_DATA[tribe_symbol]
+							old_tribe = GameData::Tribe::DATA[tribe_symbol]
+							backup_hash = {
+								:id          => old_tribe.id,
+								:id_number   => old_tribe.id_number,
+								:threshold   => old_tribe.threshold,
+								:description => old_tribe.real_description,
+								:name        => old_tribe.real_name,
+								:defined_in_extension => old_tribe.defined_in_extension
+							}
+							GameData::Tribe::BASE_DATA[tribe_symbol] = GameData::Tribe.new(backup_hash)
+						end
+						# Extension is modifying an existing tribe, so we'll modify in-place
+						existing_tribe = GameData::Tribe::DATA[tribe_symbol]
+						existing_tribe.instance_variable_set(:@threshold, tribe_threshold)
+						existing_tribe.instance_variable_set(:@real_name, tribe_name)
+						existing_tribe.instance_variable_set(:@real_description, tribe_description)
+						tribe_names[existing_tribe.id_number] = tribe_name
+						tribe_descriptions[existing_tribe.id_number] = tribe_description
+						next
+					else
+						raise _INTL("Tribe ID '{1}' is used twice.\r\n{2}", tribe_symbol, FileLineData.linereport)
+					end
 				end
 				# Construct tribe hash
 				tribe_hash = {
@@ -60,6 +84,7 @@ module GameData
 		attr_reader :defined_in_extension
 
 		DATA = {}
+		BASE_DATA = {} # Data that hasn't been extended
 		DATA_FILENAME = "tribes.dat"
 
 		extend ClassMethods

@@ -23,6 +23,7 @@ module GameData
 		attr_reader :pit_avatar
 
         DATA = {}
+        BASE_DATA = {} # Data that hasn't been extended
         DATA_FILENAME = "avatars.dat"
 
         SCHEMA = {
@@ -209,7 +210,66 @@ module Compiler
 					if avatar_species == ""
 						raise _INTL("An Avatar entry name can't be blank (PBS/avatars.txt).")
 					elsif !GameData::Avatar::DATA[[avatar_species,avatar_version]].nil?
-						raise _INTL("Avatar name '{1}' and version '{2}' is used twice.\r\n{3}", avatar_species, avatar_version, FileLineData.linereport)
+						if !baseFile
+							# Back up base entry for writing base PBS later (only if not already backed up)
+							unless GameData::Avatar::BASE_DATA[[avatar_species,avatar_version]]
+								old_avatar = GameData::Avatar::DATA[[avatar_species,avatar_version]]
+								backup_hash = {
+									:id						=> old_avatar.id,
+									:id_number				=> old_avatar.id_number,
+									:species				=> old_avatar.species,
+									:version				=> old_avatar.version,
+									:turns					=> old_avatar.num_turns,
+									:form					=> old_avatar.form,
+									:moves1					=> old_avatar.moves1,
+									:moves2					=> old_avatar.moves2,
+									:moves3					=> old_avatar.moves3,
+									:moves4					=> old_avatar.moves4,
+									:moves5					=> old_avatar.moves5,
+									:abilities				=> old_avatar.abilities,
+									:items					=> old_avatar.items,
+									:hp_mult				=> old_avatar.hp_mult,
+									:dmg_mult				=> old_avatar.dmg_mult,
+									:dmg_resist				=> old_avatar.dmg_resist,
+									:health_bars			=> old_avatar.num_health_bars,
+									:aggression				=> old_avatar.aggression,
+									:pit_avatar				=> old_avatar.pit_avatar,
+									:defined_in_extension	=> old_avatar.instance_variable_get(:@defined_in_extension)
+								}
+								GameData::Avatar::BASE_DATA[[avatar_species,avatar_version]] = GameData::Avatar.new(backup_hash)
+							end
+							# Extension is modifying an existing avatar, so we'll modify in-place
+							existing_avatar = GameData::Avatar::DATA[[avatar_species,avatar_version]]
+							# Parse the contents first to get values
+							schema = GameData::Avatar::SCHEMA
+							for key in schema.keys
+								if contents[key].nil? || contents[key] == ""
+									contents[key] = nil
+									next
+								end
+								value = pbGetCsvRecord(contents[key], key, schema[key])
+								value = nil if value.is_a?(Array) && value.length == 0
+								contents[key] = value
+							end
+							# Update the existing avatar
+							existing_avatar.instance_variable_set(:@num_turns, contents["Turns"]) if contents["Turns"]
+							existing_avatar.instance_variable_set(:@form, contents["Form"]) if contents["Form"]
+							existing_avatar.instance_variable_set(:@moves1, contents["Moves1"]) if contents["Moves1"]
+							existing_avatar.instance_variable_set(:@moves2, contents["Moves2"]) if contents["Moves2"]
+							existing_avatar.instance_variable_set(:@moves3, contents["Moves3"]) if contents["Moves3"]
+							existing_avatar.instance_variable_set(:@moves4, contents["Moves4"]) if contents["Moves4"]
+							existing_avatar.instance_variable_set(:@moves5, contents["Moves5"]) if contents["Moves5"]
+							existing_avatar.instance_variable_set(:@abilities, contents["Ability"]) if contents["Ability"]
+							existing_avatar.instance_variable_set(:@items, contents["Item"]) if contents["Item"]
+							existing_avatar.instance_variable_set(:@hp_mult, contents["HPMult"]) if contents["HPMult"]
+							existing_avatar.instance_variable_set(:@dmg_mult, contents["DMGMult"]) if contents["DMGMult"]
+							existing_avatar.instance_variable_set(:@dmg_resist, contents["DMGResist"]) if contents["DMGResist"]
+							existing_avatar.instance_variable_set(:@num_health_bars, contents["HealthBars"]) if contents["HealthBars"]
+							existing_avatar.instance_variable_set(:@aggression, contents["Aggression"]) if contents["Aggression"]
+							next
+						else
+							raise _INTL("Avatar name '{1}' and version '{2}' is used twice.\r\n{3}", avatar_species, avatar_version, FileLineData.linereport)
+						end
 					end
 	
 					speciesData = GameData::Species.get_species_form(avatar_species, contents["Form"].to_i || 0)
@@ -323,39 +383,41 @@ module Compiler
     end
 
 	def write_avatar_to_file(avatar, f)
-		pbSetWindowText(_INTL("Writing avatar {1}...", avatar.id_number))
-		Graphics.update if avatar.id_number % 20 == 0
+		# Use backed-up base data if it exists (i.e., if an extension modified this avatar)
+		avatar_to_write = GameData::Avatar::BASE_DATA[avatar.id] || avatar
+		pbSetWindowText(_INTL("Writing avatar {1}...", avatar_to_write.id_number))
+		Graphics.update if avatar_to_write.id_number % 20 == 0
 		f.write("\#-------------------------------\r\n")
-		if avatar.version > 0
-			f.write(format("[%s,%d]\r\n", avatar.species, avatar.version))
+		if avatar_to_write.version > 0
+			f.write(format("[%s,%d]\r\n", avatar_to_write.species, avatar_to_write.version))
 		else
-			f.write(format("[%s]\r\n", avatar.species))
+			f.write(format("[%s]\r\n", avatar_to_write.species))
 		end
-		f.write(format("Ability = %s\r\n", avatar.abilities.join(","))) unless avatar.abilities.empty?
-		f.write(format("Moves1 = %s\r\n", avatar.moves1.join(",")))
-		if !avatar.moves2.nil? && avatar.num_phases >= 2
-			f.write(format("Moves2 = %s\r\n", avatar.moves2.join(",")))
+		f.write(format("Ability = %s\r\n", avatar_to_write.abilities.join(","))) unless avatar_to_write.abilities.empty?
+		f.write(format("Moves1 = %s\r\n", avatar_to_write.moves1.join(",")))
+		if !avatar_to_write.moves2.nil? && avatar_to_write.num_phases >= 2
+			f.write(format("Moves2 = %s\r\n", avatar_to_write.moves2.join(",")))
 		end
-		if !avatar.moves3.nil? && avatar.num_phases >= 3
-			f.write(format("Moves3 = %s\r\n", avatar.moves3.join(",")))
+		if !avatar_to_write.moves3.nil? && avatar_to_write.num_phases >= 3
+			f.write(format("Moves3 = %s\r\n", avatar_to_write.moves3.join(",")))
 		end
-		if !avatar.moves4.nil? && avatar.num_phases >= 4
-			f.write(format("Moves4 = %s\r\n", avatar.moves4.join(",")))
+		if !avatar_to_write.moves4.nil? && avatar_to_write.num_phases >= 4
+			f.write(format("Moves4 = %s\r\n", avatar_to_write.moves4.join(",")))
 		end
-		if !avatar.moves5.nil? && avatar.num_phases >= 5
-			f.write(format("Moves5 = %s\r\n", avatar.moves5.join(",")))
+		if !avatar_to_write.moves5.nil? && avatar_to_write.num_phases >= 5
+			f.write(format("Moves5 = %s\r\n", avatar_to_write.moves5.join(",")))
 		end
-		f.write(format("Turns = %s\r\n", avatar.num_turns)) if avatar.num_turns != DEFAULT_BOSS_TURNS
-		f.write(format("HPMult = %s\r\n", avatar.hp_mult)) if avatar.hp_mult != DEFAULT_BOSS_HP_MULT
-		if avatar.num_health_bars != avatar.num_phases
-			f.write(format("HealthBars = %s\r\n", avatar.num_health_bars))
+		f.write(format("Turns = %s\r\n", avatar_to_write.num_turns)) if avatar_to_write.num_turns != DEFAULT_BOSS_TURNS
+		f.write(format("HPMult = %s\r\n", avatar_to_write.hp_mult)) if avatar_to_write.hp_mult != DEFAULT_BOSS_HP_MULT
+		if avatar_to_write.num_health_bars != avatar_to_write.num_phases
+			f.write(format("HealthBars = %s\r\n", avatar_to_write.num_health_bars))
 		end
-        f.write(format("Item = %s\r\n", avatar.items.join(","))) unless avatar.items.empty?
-		f.write(format("DMGMult = %s\r\n", avatar.dmg_mult)) if avatar.dmg_mult != DEFAULT_BOSS_DAMAGE_MULT
-		f.write(format("DMGResist = %s\r\n", avatar.dmg_resist)) if avatar.dmg_resist != 0.0
-		f.write(format("Form = %s\r\n", avatar.form)) if avatar.form != 0
-		if avatar.aggression != PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
-			f.write(format("Aggression = %s\r\n", avatar.aggression))
+        f.write(format("Item = %s\r\n", avatar_to_write.items.join(","))) unless avatar_to_write.items.empty?
+		f.write(format("DMGMult = %s\r\n", avatar_to_write.dmg_mult)) if avatar_to_write.dmg_mult != DEFAULT_BOSS_DAMAGE_MULT
+		f.write(format("DMGResist = %s\r\n", avatar_to_write.dmg_resist)) if avatar_to_write.dmg_resist != 0.0
+		f.write(format("Form = %s\r\n", avatar_to_write.form)) if avatar_to_write.form != 0
+		if avatar_to_write.aggression != PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
+			f.write(format("Aggression = %s\r\n", avatar_to_write.aggression))
 		end
 	end
 end

@@ -19,6 +19,7 @@ module GameData
       attr_reader :monumentTrainer
   
       DATA = {}
+      BASE_DATA = {} # Data that hasn't been extended
       DATA_FILENAME = "trainers.dat"
   
       SCHEMA = {
@@ -419,6 +420,35 @@ module Compiler
           end
           trainer_id += 1
           line_data = pbGetCsvRecord($~[1], line_no, [0, "esU", :TrainerType])
+          # Check if this trainer already exists (for extension handling)
+          trainer_key = [line_data[0], line_data[1], line_data[2] || 0]
+          if !baseFile && GameData::Trainer::DATA[trainer_key]
+            # Back up base entry for writing base PBS later (only if not already backed up)
+            unless GameData::Trainer::BASE_DATA[trainer_key]
+              old_trainer = GameData::Trainer::DATA[trainer_key]
+              backup_hash = {
+                :id                     => old_trainer.id,
+                :id_number              => old_trainer.id_number,
+                :trainer_type           => old_trainer.trainer_type,
+                :name                   => old_trainer.real_name,
+                :name_for_hashing       => old_trainer.name_for_hashing,
+                :trainer_type_label     => old_trainer.trainer_type_label,
+                :version                => old_trainer.version,
+                :items                  => old_trainer.items.clone,
+                :lose_text              => old_trainer.real_lose_text,
+                :pokemon                => old_trainer.pokemon.map { |p| p.clone },
+                :removed_pokemon        => old_trainer.removedPokemon.clone,
+                :policies               => old_trainer.policies.clone,
+                :flags                  => old_trainer.flags.clone,
+                :extends_class          => old_trainer.extendsClass,
+                :extends_name           => old_trainer.extendsName,
+                :extends_version        => old_trainer.extendsVersion,
+                :monument_trainer       => old_trainer.monumentTrainer,
+                :defined_in_extension   => old_trainer.instance_variable_get(:@defined_in_extension)
+              }
+              GameData::Trainer::BASE_DATA[trainer_key] = GameData::Trainer.new(backup_hash)
+            end
+          end
           # Construct trainer hash
           trainer_hash = {
             :id_number          => trainer_id,
@@ -613,41 +643,43 @@ module Compiler
   end
 
   def write_trainer_to_file(trainer, f)
-    pbSetWindowText(_INTL("Writing trainer {1}...", trainer.id_number))
-    Graphics.update if trainer.id_number % 50 == 0
+    # Use backed-up base data if it exists (i.e., if an extension modified this trainer)
+    trainer_to_write = GameData::Trainer::BASE_DATA[trainer.id] || trainer
+    pbSetWindowText(_INTL("Writing trainer {1}...", trainer_to_write.id_number))
+    Graphics.update if trainer_to_write.id_number % 50 == 0
     f.write("\#-------------------------------\r\n")
-    if trainer.version > 0
-      f.write(sprintf("[%s,%s,%d]\r\n", trainer.trainer_type, trainer.real_name, trainer.version))
+    if trainer_to_write.version > 0
+      f.write(sprintf("[%s,%s,%d]\r\n", trainer_to_write.trainer_type, trainer_to_write.real_name, trainer_to_write.version))
     else
-      f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
+      f.write(sprintf("[%s,%s]\r\n", trainer_to_write.trainer_type, trainer_to_write.real_name))
     end
-    parentTrainer = trainer.getParentTrainer(true)
-    if trainer.extendsVersion >= 0
-      if !trainer.extendsClass.nil? && !trainer.extendsName.nil?
-        f.write(sprintf("Extends = %s,%s,%s\r\n", trainer.extendsClass.to_s, trainer.extendsName.to_s, trainer.extendsVersion.to_s))
+    parentTrainer = trainer_to_write.getParentTrainer(true)
+    if trainer_to_write.extendsVersion >= 0
+      if !trainer_to_write.extendsClass.nil? && !trainer_to_write.extendsName.nil?
+        f.write(sprintf("Extends = %s,%s,%s\r\n", trainer_to_write.extendsClass.to_s, trainer_to_write.extendsName.to_s, trainer_to_write.extendsVersion.to_s))
       else
-        f.write(sprintf("ExtendsVersion = %s\r\n", trainer.extendsVersion.to_s))
+        f.write(sprintf("ExtendsVersion = %s\r\n", trainer_to_write.extendsVersion.to_s))
       end
     end
-    if !trainer.name_for_hashing.nil?
-      f.write(sprintf("NameForHashing = %s\r\n", trainer.name_for_hashing.to_s))
+    if !trainer_to_write.name_for_hashing.nil?
+      f.write(sprintf("NameForHashing = %s\r\n", trainer_to_write.name_for_hashing.to_s))
     end
-    if !trainer.trainer_type_label.nil?
-        f.write(sprintf("TrainerTypeLabel = %s\r\n", trainer.trainer_type_label.to_s))
+    if !trainer_to_write.trainer_type_label.nil?
+        f.write(sprintf("TrainerTypeLabel = %s\r\n", trainer_to_write.trainer_type_label.to_s))
     end
-    if trainer.policies && trainer.policies.length > 0
-      uniquePolicies = trainer.policies
+    if trainer_to_write.policies && trainer_to_write.policies.length > 0
+      uniquePolicies = trainer_to_write.policies
       uniquePolicies -= parentTrainer.policies if parentTrainer
       f.write(sprintf("Policies = %s\r\n", uniquePolicies.join(",")))
     end
-    if trainer.flags && trainer.flags.length > 0
-      uniqueFlags = trainer.flags
+    if trainer_to_write.flags && trainer_to_write.flags.length > 0
+      uniqueFlags = trainer_to_write.flags
       uniqueFlags -= parentTrainer.flags if parentTrainer
       f.write(sprintf("Flags = %s\r\n", uniqueFlags.join(",")))
     end
-    f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
+    f.write(sprintf("Items = %s\r\n", trainer_to_write.items.join(","))) if trainer_to_write.items.length > 0
 
-    trainer.pokemon.each do |pkmn|
+    trainer_to_write.pokemon.each do |pkmn|
       f.write(sprintf("Pokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
 
       inheritingPkmn = nil
@@ -666,7 +698,7 @@ module Compiler
 
       writePartyMember(f,pkmn,inheritingPkmn)
     end
-    trainer.removedPokemon.each do |pkmn|
+    trainer_to_write.removedPokemon.each do |pkmn|
       f.write(sprintf("RemovePokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
       writePartyMember(f,pkmn)
     end
