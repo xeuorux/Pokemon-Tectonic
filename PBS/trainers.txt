@@ -844,7 +844,7 @@ Pokemon = WEAVILE,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 9,20,0,20,20,1
 Pokemon = EELEKTROSS,45
-    Moves = TOXICTASTE,ELECTROSLASH,NUMB,PROTECT
+    Moves = TOXICTASTE,VOLTCRUNCH,NUMB,PROTECT
     AbilityIndex = 0 # Frightening Fangs
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4656,7 +4656,7 @@ Pokemon = PAWNIARD,9
 [FORMERCHAMP_Chara,Chara]
 Flags = NoPerfect
 Pokemon = KINGAMBIT,70
-    Moves = SLAY,POISONJAB,PSYCHOCUT,SEVER
+    Moves = SLAY,POISONJAB,PSYCHOSCISSION,SEVER
     AbilityIndex = 1 # Sturdy
     Item = WEAKNESSPOLICY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
