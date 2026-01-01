@@ -990,7 +990,7 @@ Description = Powers up recoil and sound moves by 30%.
 #-------------------------------
 [HOPPINGMAD]
 Name = Hopping Mad
-Description = This Pokémon's Speed is doubled while using rampage moves.
+Description = This Pokémon's Speed is doubled while using rampaging moves.
 #-------------------------------
 [HORDETACTICS]
 Name = Horde Tactics
