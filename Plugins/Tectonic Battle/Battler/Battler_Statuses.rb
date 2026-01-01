@@ -467,7 +467,7 @@ immuneTypeRealName))
         pbAbilityStatusCureCheck
 
         # Rampaging moves get cancelled immediately by falling asleep
-        disableEffect(:Outrage) if asleep?
+        disableEffect(:Rampaging) if asleep?
 
         pbOnAbilitiesLost(abilities) if dizzy?
     end

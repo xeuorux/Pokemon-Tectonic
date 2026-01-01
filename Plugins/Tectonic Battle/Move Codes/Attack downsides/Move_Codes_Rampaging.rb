@@ -5,8 +5,8 @@ class PokeBattle_Move_Rampage < PokeBattle_Move
     def rampagingMove?; return true; end
 
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
+        user.applyEffect(:Rampaging, 2) if !target.damageState.unaffected && !user.effectActive?(:Rampaging)
+        user.tickDownAndProc(:Rampaging)
     end
 
     def getEffectScore(_user, _target)
@@ -38,8 +38,8 @@ end
 #===============================================================================
 class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
+        user.applyEffect(:Rampaging, 2) if !target.damageState.unaffected && !user.effectActive?(:Rampaging)
+        user.tickDownAndProc(:Rampaging)
         return unless target.damageState.fainted
         user.tryRaiseStat(:SPEED, user, increment: 1, move: self)
     end

@@ -1018,7 +1018,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Outrage,
+    :id => :Rampaging,
     :real_name => "Rampage Turns",
     :type => :Integer,
     :resets_on_cancel => true,
