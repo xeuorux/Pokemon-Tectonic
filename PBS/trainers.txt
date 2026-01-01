@@ -4284,12 +4284,12 @@ Pokemon = HDECIDUEYE,55
 Policies = VICTOIRE
 Flags = NoPerfect
 Pokemon = SLURPUFF,55
-    Moves = PLAYROUGH,BLAZEKICK,RAPIDSPIN,STICKYWEB
+    Moves = BUCKETDROP,BLAZEKICK,RAPIDSPIN,STICKYWEB
     AbilityIndex = 1 # Fine Sugar
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = ADUGTRIO,55
-    Moves = HAIRFLIP,SANDBLASTING,NULLPULSE,TERRAFORM
+    Moves = HAIRFLIP,SANDBLASTING,NULLPULSE,POWERGEM
     AbilityIndex = 0 # Lauoho Lasso
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4300,20 +4300,20 @@ Pokemon = MSEAKING,55
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,10,20,0
 Pokemon = DECEAT,55
-    Moves = METEORMASH,HUMBLE,CRUNCH,SWORDSDANCE
-    AbilityIndex = 0 # Pure Force
-    Item = LIFEORB
+    Moves = SPIRITBREAK,INNOCENTMASQUE,CRUNCH,SWEETSELENE
+    AbilityIndex = 1 # Intimidate
+    Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 20,20,10,0,20,0
+    EV = 20,20,0,0,20,10
 Pokemon = MISMAGIUS,55
     Name = Cherchez
-    Moves = FROSTBREATH,DEATHKNELL,ENCHANTINGSONG,POWERGEM
+    Moves = FROSTBREATH,DEATHKNELL,ENCHANTINGSONG,NUMB
     AbilityIndex = 1 # Ear-Splitting
     Item = THROATSPRAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 5,20,0,20,20,5
 Pokemon = KINGAMBIT,55
-    Moves = SWORDSDANCE,SEVER,SLAY,BULLETPUNCH
+    Moves = SWORDSDANCE,SEVER,WHIRLWINDKICK,BULLETPUNCH
     AbilityIndex = 0 # Defiant
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -4323,16 +4323,16 @@ ExtendsVersion = 0
 Policies = CURSE_EXTRA_ITEMS
 Pokemon = SLURPUFF,55
     Item = FOCUSSASH
-    ExtraItems = CADOBERRY
+    ExtraItems = LUCKHERB
 Pokemon = ADUGTRIO,55
     ExtraItems = STRIKEVEST
 Pokemon = MSEAKING,55
     Item = LIFEORB
     ExtraItems = MUSCLEBAND
 Pokemon = MISMAGIUS,55
-    ExtraItems = EXPERTBELT
+    ExtraItems = SEVENLEAGUEBOOTS
 Pokemon = DECEAT,55
-    ExtraItems = SHELLBELL
+    ExtraItems = WHITENINGPASTE
 Pokemon = KINGAMBIT,55
     Item = AIRBALLOON
     ExtraItems = OCCABERRY
