@@ -742,18 +742,18 @@ Pokemon = GULPIN,15
     EV = 13,20,17,0,20,0
 #-------------------------------
 [COOLTRAINER_F7,Jade]
-Pokemon = BAYLEEF,25
-    Moves = LIGHTSCREEN,REFLECT,SAPPINGJEALOUSY,SYNTHESIS
-    AbilityIndex = 0 # Fae Veil
-    Item = LIGHTCLAY
-    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-    EV = 12,19,0,0,19,19
 Pokemon = DRIZZILE,25
     Moves = WATERGUN,FLIPTURN,EXPLOIT,PURSUIT
     AbilityIndex = 1 # Incognito
     Item = SCOPELENS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,10,10,0,10
+Pokemon = BAYLEEF,25
+    Moves = LIGHTSCREEN,REFLECT,SAPPINGJEALOUSY,SYNTHESIS
+    AbilityIndex = 0 # Fae Veil
+    Item = LIGHTCLAY
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 12,19,0,0,19,19
 Pokemon = MAWILE,25
     Moves = METALCLAW,MISHAP,INNOCENTMASQUE,FLOWSTATE
     AbilityIndex = 1 # Intimidate
@@ -775,7 +775,7 @@ Pokemon = MMILOTIC,25
 Pokemon = BRAIXEN,25
     Moves = EXPLOIT,SHOCKWAVE,FIREPULSE,WILLOWISP
     AbilityIndex = 1 # Fascinate
-    Item = CHOICEBAND
+    Item = SITRUSBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 #-------------------------------
@@ -7666,30 +7666,42 @@ Pokemon = SAWK,59
     AbilityIndex = 0 # First Strike
 #-------------------------------
 [DITTO_PROTRAINER,Xandevon]
-Pokemon = GOLEM,60
-    Moves = IGNITE,EARTHQUAKE,BEDROCKBREAKER,STEALTHROCK
-    AbilityIndex = 0 # Unbreakable
-    Item = FOCUSSASH
 Pokemon = HZOROARK,60
-    Moves = RUIN,LIGHTSCREEN,REFLECT,RECOVER
+    Moves = MALEFACTION,LIGHTSCREEN,REFLECT,AURASPHERE
     AbilityIndex = 0 # Illusion
     Item = LIGHTCLAY
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,0,0,20,20
 Pokemon = ZOROARK,60
-    Moves = BLACKOUT,PSYCHIC,SNARL,UTURN
+    Moves = BLACKOUT,TOTALCONTROL,FLAMETHROWER,SLUDGEWAVE
     AbilityIndex = 0 # Illusion
-    Item = CHOICESCARF
-Pokemon = CHATOT,60
-    Moves = CHATTER,SHOUT,BUGBUZZ,HYPERVOICE
-    AbilityIndex = 1 # Fascinate
-    Item = THROATSPRAY
+    Item = SEVENLEAGUEBOOTS
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,10,0,20,10
+Pokemon = LINOONE,60
+    Moves = BASHANDBORROW,EXTREMESPEED,LIQUIDATION,BEDROCKBREAKER
+    AbilityIndex = 0 # Thief's Diversion
+    Item = FAIRYGEM
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,20,0,10,20,0
+Pokemon = FLAPPLE,60
+    Moves = UTURN,BRAVEBIRD,LEAFBLADE,KNOCKOFF
+    AbilityIndex = 0 # Hustle
+    Item = WIDELENS
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,0,20,20,0
+Pokemon = DRAGALGE,60
+    Moves = ACIDBREACH,FLOWSTATE,ELECTROSLASH,STRAFE
+    AbilityIndex = 0 # Deterrent
+    Item = LEFTOVERS
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,20,0,20,0
 Pokemon = MELMETAL,60
-    Moves = DOUBLEIRONBASH,NUMB,SUPERPOWER,THUNDERPUNCH
-    AbilityIndex = 0 # Iron Fist
-    Item = PROXYFIST
-Pokemon = GRIMMSNARL,60
-    Moves = SUCKERPUNCH,PLAYROUGH,POWERWHIP,DRAINPUNCH
-    AbilityIndex = 1 # Ruinous
+    Moves = DOUBLEIRONBASH,ICEHAMMER,SUPERPOWER,TRAMPLE
+    AbilityIndex = 1 # Discombobulator
     Item = ASSAULTVEST
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,20,0,0,20,10
 #-------------------------------
 [CAMPER_M,Nick]
 Pokemon = ARATICATE,57
