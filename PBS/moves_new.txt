@@ -3322,6 +3322,19 @@ EffectChance = 40
 Description = The user attacks while wailing. This has a 40% chance to make the target flinch.
 Animation = SHADOWCLAW
 #-------------------------------
+[WRAITHWRATH]
+Name = Wraith Wrath
+Type = GHOST
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = ClosestNearFoe
+FunctionCode = Rampage
+Flags = CanProtect
+Description = The user channels the anger of wronged spirits, going on a rampage for two turns.
+Animation = SHADOWCLAW
+#-------------------------------
 #		STEEL MOVES
 #-------------------------------
 [ALLFORONE]
