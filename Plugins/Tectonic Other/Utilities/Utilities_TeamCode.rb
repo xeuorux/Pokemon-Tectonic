@@ -243,8 +243,8 @@ def decode_chunk(buffer, offset, party)
   moves.each { |move| mon.learn_move(move) if move }
 
   # Set items
-  mon.items[0] = item1_index >= 0 ? GameData::Item.get(get_held_item_from_index(item1_index)) : nil
-  mon.items[1] = item2_index >= 0 ? GameData::Item.get(get_held_item_from_index(item2_index)) : nil
+  mon.items[0] = item1_index >= 0 ? GameData::Item.get(get_held_item_from_index(item1_index)).id : nil
+  mon.items[1] = item2_index >= 0 ? GameData::Item.get(get_held_item_from_index(item2_index)).id : nil
 
   # Set style points
   mon.ev[:HP] = style_hp
