@@ -143,8 +143,9 @@ class PokeBattle_Battler
         confusionMove.pbCalcDamage(self, self)
         confusionMove.pbReduceDamage(self, self)
         oldHP = hp
-        self.hp -= @damageState.hpLost
+        pbReduceHP(@damageState.hpLost, false, false, false)
         confusionMove.pbAnimateHitAndHPLost(self, [self])
+        faintingPrevented?(true) if @hp == 1 && @damageState.hpLost > 0 # Trigger ability splashes
         @battle.pbDisplay(msg) unless msg.nil? # "It hurt itself in its confusion!"
         @battle.pbDisplay("It was super effective!") if superEff
         confusionMove.pbRecordDamageLost(self, self)
@@ -914,6 +915,13 @@ class PokeBattle_Battler
 
             # Animate the hit flashing and HP bar changes
             move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
+
+            targets.each do |b|
+                next if b.damageState.unaffected
+                next unless b.damageState.hpLost > 0
+                next unless b.hp == 1
+                b.faintingPrevented?(true) # Trigger ability splashes
+            end
 
             if pbOwnedByPlayer?
                 unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000 && !(user.battle.is_replayed)

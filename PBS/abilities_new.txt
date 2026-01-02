@@ -2350,6 +2350,10 @@ Description = If an attacker would activate a random added effect on this Pokém
 Name = Unconventional
 Description = Moves that use stats other than the default deal 50% more damage.
 #-------------------------------
+[UNDYINGRAGE]
+Name = Undying Rage
+Description = This Pokémon cannot faint while rampaging, and rampages for an additional turn.
+#-------------------------------
 [UNFAZED]
 Name = Unfazed
 Description = Takes 20% less damage from neutrally effective attacks.

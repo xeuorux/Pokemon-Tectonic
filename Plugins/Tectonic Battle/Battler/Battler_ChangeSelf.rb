@@ -6,8 +6,14 @@ class PokeBattle_Battler
     #=============================================================================
     def pbReduceHP(amt, anim = true, registerDamage = true, anyAnim = true)
         amt = amt.round
+        amt = 1 if amt < 1
         amt = @hp if amt > @hp
-        amt = 1 if amt < 1 && !fainted?
+        if amt == @hp && faintingPrevented?
+            amt -= 1
+            faintingWasPrevented = true
+        else
+            faintingWasPrevented = false
+        end
         oldHP = @hp
         self.hp -= amt
         PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
@@ -15,6 +21,7 @@ class PokeBattle_Battler
         raise _INTL("HP greater than total HP") if @hp > @totalhp && oldHP <= @totalhp
         @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@dummy && !@battle.autoTesting
         @tookDamage = true if amt.positive? && registerDamage
+        faintingPrevented?(true) if faintingWasPrevented && anyAnim # trigger ability splashes
         return amt
     end
 
