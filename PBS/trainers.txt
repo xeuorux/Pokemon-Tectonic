@@ -3002,7 +3002,7 @@ Pokemon = SPINDA,41
     Item = LEFTOVERS
 Pokemon = ANNIHILAPE,42
     Moves = CROSSCHOP,WAILINGBLOW,SEARINGCRUNCH,BULKUP
-    AbilityIndex = 0 # Defiant
+    AbilityIndex = 1 # Dominating
 #-------------------------------
 [BATTLEGIRL2,Yumei]
 Policies = SUN_TEAM
@@ -3929,9 +3929,9 @@ Pokemon = PRIMARINA,47
     Moves = SPARKLINGARIA,ENCHANTINGSONG,HYPERVOICE,SWEETKISS
     AbilityIndex = 0 # Tuned Out
 Pokemon = ANNIHILAPE,48
-    Moves = CROSSCHOP,COLDSHOULDER,BULKUP,BLAZEKICK
-    AbilityIndex = 0 # Defiant
-    Item = LEFTOVERS
+    Moves = CROSSCHOP,COLDSHOULDER,WRAITHWRATH,RAGINGFURY
+    AbilityIndex = 0 # Undying Rage
+    Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [VETERANM,Yoshihiro]
 Pokemon = ARIADOS,48
@@ -7582,7 +7582,7 @@ Pokemon = HDECIDUEYE,59
     AbilityIndex = 0 # Taiga Trekker
 Pokemon = ANNIHILAPE,58
     Moves = COLDSHOULDER,CROSSCHOP,ACROBATICS,BULKUP
-    AbilityIndex = 0 # Defiant
+    AbilityIndex = 1 # Dominating
 #-------------------------------
 [SAGE,Shion]
 Pokemon = MISMAGIUS,58

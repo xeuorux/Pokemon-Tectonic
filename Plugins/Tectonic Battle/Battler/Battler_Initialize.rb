@@ -162,7 +162,7 @@ class PokeBattle_Battler
 
     def pbInitEffects(batonPass = false, handOff = false)
         # Dragon ride ends
-        if effectActive?(:GivingDragonRideTo)
+        if !@effects[:GivingDragonRideTo].nil? && effectActive?(:GivingDragonRideTo)
             getBattlerPointsTo(:GivingDragonRideTo).disableEffect(:OnDragonRide)
         end
         

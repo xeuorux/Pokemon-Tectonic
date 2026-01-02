@@ -425,7 +425,7 @@ target.pbThis(true)))
         if target.damageState.substitute
             target.effects[:Substitute] -= target.damageState.hpLost
         else
-            target.hp -= target.damageState.hpLost
+            target.pbReduceHP(target.damageState.hpLost, false, false, false)
         end
     end
 
