@@ -3929,9 +3929,9 @@ Pokemon = PRIMARINA,47
     Moves = SPARKLINGARIA,ENCHANTINGSONG,HYPERVOICE,SWEETKISS
     AbilityIndex = 0 # Tuned Out
 Pokemon = ANNIHILAPE,48
-    Moves = CROSSCHOP,COLDSHOULDER,BULKUP,BLAZEKICK
-    AbilityIndex = 1 # Dominating
-    Item = LEFTOVERS
+    Moves = CROSSCHOP,COLDSHOULDER,WRAITHWRATH,RAGINGFURY
+    AbilityIndex = 0 # Undying Rage
+    Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [VETERANM,Yoshihiro]
 Pokemon = ARIADOS,48
