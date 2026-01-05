@@ -736,6 +736,10 @@ class PokeBattle_Battler
                         @battle.forceUseMove(nextUser, move.id, preTarget, moveUsageEffect: :MartialDiscipline, ability: :MARTIALDISCIPLINE)
                     end
                 end
+                # Spray and Pray
+                if move.id == :SPRAYANDPRAY
+                    @battle.forceUseMove(user, move.id, choice[3], moveUsageEffect: :SprayAndPray)
+                end
             end
         end
     end

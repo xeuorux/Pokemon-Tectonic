@@ -119,9 +119,8 @@ end
 #===============================================================================
 class PokeBattle_Move_HitTwoToFiveTimesTwiceThenExhaust < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectAfterAllHits(user, target)
-        if !@battle.specialUsage
+        unless user.effectActive?(:SprayAndPray)
             @battle.pbDisplay(_INTL("{1} sends another volley!", user.pbThis))
-            @battle.forceUseMove(user, @id, target.index, true)
         else
             if user.hasActiveItem?(:ENERGYHERB)
                 @battle.pbCommonAnimation("UseItem", user)
