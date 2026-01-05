@@ -360,6 +360,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SprayAndPray,
+    :real_name => "Spray and Pray",
+    :copied_move_marker => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :DefenseCurl,
     :real_name => "Curled Up",
 })
