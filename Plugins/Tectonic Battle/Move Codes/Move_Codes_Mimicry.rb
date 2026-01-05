@@ -141,6 +141,7 @@ class PokeBattle_Move_UseChoiceOf3LastUsedMoves < PokeBattle_Move
         moveChoices = []
         validMoves.reverse.each do |moveID|
             next if moveChoices.include?(moveID)
+            next if moveID == @id
             next unless @battle.canInvokeMove?(moveID)
             moveChoices.push(moveID)
             break if moveChoices.length == 3

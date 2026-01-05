@@ -990,7 +990,7 @@ Description = Powers up recoil and sound moves by 30%.
 #-------------------------------
 [HOPPINGMAD]
 Name = Hopping Mad
-Description = This Pokémon's Speed is doubled while using rampage moves.
+Description = This Pokémon's Speed is doubled while using rampaging moves.
 #-------------------------------
 [HORDETACTICS]
 Name = Horde Tactics
@@ -1144,7 +1144,7 @@ Description = Uses Wish after knocking out any Pokémon.
 #-------------------------------
 [JUGGERNAUT]
 Name = Juggernaut
-Description = Ignores Abilities that would affect its moves or activate after hitting the target.
+Description = This Pokémon's moves deal 20% more damage and ignore abilities that would affect them.
 Flags = MoldBreaking
 #-------------------------------
 [KARMA]
@@ -2349,6 +2349,10 @@ Description = If an attacker would activate a random added effect on this Pokém
 [UNCONVENTIONAL]
 Name = Unconventional
 Description = Moves that use stats other than the default deal 50% more damage.
+#-------------------------------
+[UNDYINGRAGE]
+Name = Undying Rage
+Description = This Pokémon cannot faint while rampaging, and rampages for an additional turn.
 #-------------------------------
 [UNFAZED]
 Name = Unfazed

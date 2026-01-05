@@ -109,8 +109,14 @@ end
 #===============================================================================
 class PokeBattle_Move_Rampage3HitTwoToFiveTimes < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
+        user.applyEffect(:Rampaging, user.getRampageDuration) if !target.damageState.unaffected && !user.effectActive?(:Rampaging)
+        user.tickDownAndProc(:Rampaging)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score -= 20 * user.getRampageDuration(aiCheck: true)
+        return score
     end
 end
 

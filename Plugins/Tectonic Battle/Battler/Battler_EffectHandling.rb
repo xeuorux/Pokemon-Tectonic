@@ -50,7 +50,7 @@ class PokeBattle_Battler
     end
 
     def effectActive?(effect, ignoreFainted = false)
-        return false if fainted? && !ignoreFainted
+        return false if !ignoreFainted && fainted?
         super(effect)
     end
 

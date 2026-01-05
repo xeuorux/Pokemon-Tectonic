@@ -66,14 +66,9 @@ class PokeBattle_Move_TrapTarget < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        return if damagingMove?
-        target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.fainted? || target.damageState.substitute
         return if target.effectActive?(:MeanLook)
-        target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
+        return if target.fainted?
+        target.pointAt(:MeanLook, user)
     end
 
     def getTargetAffectingEffectScore(_user, target)

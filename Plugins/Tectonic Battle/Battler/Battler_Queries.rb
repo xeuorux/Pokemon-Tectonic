@@ -74,9 +74,9 @@ class PokeBattle_Battler
     #       (regardless of whether any Pokémon actualy has either the ability or
     #       the item - the code existing is enough to cause the loop).
     def abilityActive?(ignore_fainted = false, ignore_gas = false)
-        return false if fainted? && !ignore_fainted
+        return false if !ignore_fainted && fainted?
         return false if !ignore_gas && @battle.abilitiesNeutralized?
-        return false if effectActive?(:AbilitySupressed)
+        return false if effectActive?(:AbilitySupressed, ignore_fainted)
         return false if dizzy?
         return true
     end
@@ -389,7 +389,6 @@ class PokeBattle_Battler
     def activatesTargetAbilities?(aiCheck = false)
         return false if shouldItemApply?(:PROXYFIST,aiCheck)
         return false if shouldAbilityApply?(:AFROTECTION, aiCheck)
-        return false if shouldAbilityApply?(:JUGGERNAUT, aiCheck)
         return true
     end
 
@@ -485,6 +484,19 @@ class PokeBattle_Battler
     def healthCapped?
         return @hp >= @totalhp * 2 if forceOverheal?
         return fullHealth?
+    end
+
+    def faintingPrevented?(showMessages = false)
+        if hasActiveAbility?(:UNDYINGRAGE, true, ignoreGas: true) && effectActive?(:Rampaging, true)
+            if showMessages
+                showMyAbilitySplash(:UNDYINGRAGE)
+                @battle.pbDisplay(_INTL("{1} is too angry to faint right now!", pbThis))
+                applyEffect(:WillFaintAfterRampage)
+                hideMyAbilitySplash
+            end
+            return true
+        end
+        return false
     end
 
     def movedThisRound?
@@ -711,6 +723,12 @@ class PokeBattle_Battler
         ret += 6 if shouldItemApply?(:BRIGHTCLAY,aiCheck)
         ret += 2 if shouldAbilityApply?(:PLANARVEIL,aiCheck)
         ret = applyEffectDurationModifiers(ret, self)
+        return ret
+    end
+
+    def getRampageDuration(baseDuration = 2,aiCheck: false)
+        ret = baseDuration
+        ret += 1 if shouldAbilityApply?(:UNDYINGRAGE,aiCheck)
         return ret
     end
 

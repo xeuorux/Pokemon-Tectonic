@@ -44,6 +44,9 @@ module PokeBattle_BattleRecorder
 	end
 
 	def pbRandom(x)
+		if x == 1 && x.is_a?(Integer) then
+			return 0 # Don't add to random stack if the outcome is certain
+		end
 		ret = rand(x)
 		@random.push(ret)
 		@random_log.push("#{ret.to_s}#{$/}#{caller.to_s}#{$/}")
@@ -236,6 +239,9 @@ module PokeBattle_BattleReplayer
 	end
 
 	def pbRandom(x)
+		if x == 1 && x.is_a?(Integer) then
+			return 0 # Don't take from random stack if the outcome is certain
+		end
 		ret = @random[@randomindex]
 		@randomindex += 1
 		@random_log.push("#{ret.to_s}\n#{caller.to_s}\n")

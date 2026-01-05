@@ -143,8 +143,9 @@ class PokeBattle_Battler
         confusionMove.pbCalcDamage(self, self)
         confusionMove.pbReduceDamage(self, self)
         oldHP = hp
-        self.hp -= @damageState.hpLost
+        pbReduceHP(@damageState.hpLost, false, false, false)
         confusionMove.pbAnimateHitAndHPLost(self, [self])
+        faintingPrevented?(true) if @hp == 1 && @damageState.hpLost > 0 # Trigger ability splashes
         @battle.pbDisplay(msg) unless msg.nil? # "It hurt itself in its confusion!"
         @battle.pbDisplay("It was super effective!") if superEff
         confusionMove.pbRecordDamageLost(self, self)
@@ -860,9 +861,9 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("The {1} ensured {2} would hit!", getItemName(:SKILLHERB), move.name))
             aiLearnsItem(:SKILLHERB)
         end
-        # Mystic tribe
-        if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
-            @battle.pbShowTribeSplash(user,:MYSTIC)
+        # Esoteric tribe
+        if hasTribeBonus?(:ESOTERIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
+            @battle.pbShowTribeSplash(user,:ESOTERIC)
             @battle.pbDisplay(_INTL("{1}'s patience pays off!", user.pbThis))
             @battle.pbHideTribeSplash(user)
         end
@@ -918,6 +919,13 @@ class PokeBattle_Battler
 
             # Animate the hit flashing and HP bar changes
             move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
+
+            targets.each do |b|
+                next if b.damageState.unaffected
+                next unless b.damageState.hpLost > 0
+                next unless b.hp == 1
+                b.faintingPrevented?(true) # Trigger ability splashes
+            end
 
             if pbOwnedByPlayer?
                 unlockAchievement(:DEAL_LARGE_DAMAGE_1) if maxDamageOnTargets >= 1000 && !(user.battle.is_replayed)

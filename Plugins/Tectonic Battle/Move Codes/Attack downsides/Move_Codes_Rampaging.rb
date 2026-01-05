@@ -5,12 +5,12 @@ class PokeBattle_Move_Rampage < PokeBattle_Move
     def rampagingMove?; return true; end
 
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
+        user.applyEffect(:Rampaging, user.getRampageDuration) if !target.damageState.unaffected && !user.effectActive?(:Rampaging)
+        user.tickDownAndProc(:Rampaging)
     end
 
-    def getEffectScore(_user, _target)
-        return -20
+    def getEffectScore(user, _target)
+        return -20 * user.getRampageDuration(aiCheck: true)
     end
 end
 
@@ -24,24 +24,22 @@ end
 class PokeBattle_Move_RampagePreventSleeping < PokeBattle_Move
     def pbEffectGeneral(user)
         return if user.effectActive?(:Uproar)
-        user.applyEffect(:Uproar, 2)
+        user.applyEffect(:Uproar, user.getRampageDuration)
         user.currentMove = @id
     end
 
-    def getEffectScore(_user, _target)
-        return -20
+    def getEffectScore(user, _target)
+        return -20 * user.getRampageDuration(aiCheck: true)
     end
 end
 
 #===============================================================================
 # User must use this move for 2 more rounds. Raises Speed if KOs. (Tyrant's Fit)
 #===============================================================================
-class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move
+class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move_Rampage
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
-        return unless target.damageState.fainted
-        user.tryRaiseStat(:SPEED, user, increment: 1, move: self)
+        super
+        user.tryRaiseStat(:SPEED, user, increment: 1, move: self) if target.damageState.fainted
     end
 
     def getFaintEffectScore(user, target)
