@@ -31,6 +31,11 @@ CONDENSED_LIGHT_LOCATIONS = {
         "A musician makes their mark in the Medusa's mandate.",
         "Statues, statues, eerie indeed. But the show must go on.",
     ],
+    # Pilot in the Executive's House (Eleig Stretch)
+    [11, "A", 346]   => [
+        "The rich get richer, the spaceman gets spacier, the party goes on and on.",
+        "The house where money flows like water, and water flows on by.",
+    ],
     # Tourist in the Travel Agency (Prizca West)
     [23, "A", 159]  => [
         "A city of chain links. Why not go somewhere else?",
