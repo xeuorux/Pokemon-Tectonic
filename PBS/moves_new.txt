@@ -6585,7 +6585,7 @@ Accuracy = 0
 TotalPP = 5
 Target = NearOther
 FunctionCode = TrapAndFrostbiteTarget
-Flags = CanMagicCoat
+Flags = CanProtect,CanMagicCoat
 Description = The user pins the target down with icy spikes, applying frostbite and trapping it.
 Animation = ICICLESPEAR
 #-------------------------------
