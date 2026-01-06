@@ -270,8 +270,12 @@ end
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfStatused < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
+        if target.asleep?
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already asleep!", target.pbThis(true))) if show_message
+            return true
+        end
         unless target.pbHasAnyStatus?
-            @battle.pbDisplay(_INTL("But it failed, since {1} isn't statused", target.pbThis(true))) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} isn't statused!", target.pbThis(true))) if show_message
             return true
         end
         return !target.canSleep?(user, show_message, self, true)
