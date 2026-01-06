@@ -147,10 +147,10 @@ class PokeBattle_Move
 
     def healHPFraction(pokemonOrBattler, fraction, user)
         if pokemonOrBattler.is_a?(PokeBattle_Battler)
-            pokemonOrBattler.applyFractionalHealing(@hpFraction, user: user)
+            pokemonOrBattler.applyFractionalHealing(fraction, user: user)
         else
-            @hpFraction = user.applyHealingModifiers(@hpFraction, user) if user
-            pokemonOrBattler.healByFraction(@hpFraction)
+            fraction = user.applyHealingModifiers(fraction, user) if user
+            pokemonOrBattler.healByFraction(fraction)
         end
     end
 

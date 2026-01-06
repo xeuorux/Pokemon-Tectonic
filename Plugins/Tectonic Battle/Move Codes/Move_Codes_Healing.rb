@@ -922,7 +922,7 @@ class PokeBattle_Move_UserLosesQuarterHPPartyMembersHealQuarterHP < PokeBattle_M
         usersParty = @battle.pbParty(user.index)
         usersParty.each_with_index do |pkmn, i|
             break if pkmn.nil?
-            if i == user.pokemonIndex
+            if i == user.pokemonIndex || !validPokemon(pkmn)
                 previousHealthValues.push(pkmn.hp)
                 next
             end
