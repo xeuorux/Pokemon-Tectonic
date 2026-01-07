@@ -982,8 +982,15 @@ class PokeBattle_AI_MAGNEZONE < PokeBattle_AI_Boss
                 _INTL("{1} is wary of the ground!", user.pbThis)
             },
         })
-
-        @requiredMoves.push(:REPULSIONFIELD)
+        @warnedIFFMove.add(:REPULSIONFIELD, {
+            :condition => proc { |_move, user, _targets, battle|
+                side = user.pbOwnSide
+                !side.effects[:RepulsionField] || side.effects[:RepulsionField] <= 1
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("{1} is generating a repulsion field!", user.pbThis)
+            },
+        })
     end
 end
 
