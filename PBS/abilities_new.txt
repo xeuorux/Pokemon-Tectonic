@@ -592,7 +592,7 @@ Description = Takes half damage from Psychic- and Ghost-type attacks.
 #-------------------------------
 [EXOTHERMENGINE]
 Name = Exotherm Engine
-Description = Boosts Speed by 50% but this Pokémon is locked into the first move they use.
+Description = Boosts Speed by 40% but this Pokémon is locked into the first move they use.
 Flags = ChoiceLocking
 #-------------------------------
 [EXPERTISE]
@@ -2174,7 +2174,7 @@ Flags = SunshineSynergy
 #-------------------------------
 [SUNCHASER]
 Name = Sun Chaser
-Description = Boosts this Pokémon's Attack by 50% and reduces recoil taken by 50% in sunshine
+Description = Boosts this Pokémon's Speed by 50% and reduces recoil taken by 50% in sunshine
 Flags = SunshineSynergy
 #-------------------------------
 [SUNEATER]
