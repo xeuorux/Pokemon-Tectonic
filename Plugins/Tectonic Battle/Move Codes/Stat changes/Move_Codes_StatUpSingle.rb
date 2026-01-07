@@ -124,7 +124,7 @@ class PokeBattle_Move_RaiseUserDef3 < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Increases the user's Defense by 4 steps. (Barrier, Iron Defense)
+# Increases the user's Defense by 4 steps. (Iron Defense)
 #===============================================================================
 class PokeBattle_Move_RaiseUserDef4 < PokeBattle_StatUpMove
     def initialize(battle, move)
@@ -364,7 +364,7 @@ class PokeBattle_Move_EmpoweredAmnesia < PokeBattle_Move_RaiseUserSpDef4
 end
 
 #===============================================================================
-# Increases the user's Sp. Def by 5 steps. (Mucus Armor)
+# Increases the user's Sp. Def by 5 steps. (Dissolution)
 #===============================================================================
 class PokeBattle_Move_RaiseUserSpDef5 < PokeBattle_StatUpMove
     def initialize(battle, move)

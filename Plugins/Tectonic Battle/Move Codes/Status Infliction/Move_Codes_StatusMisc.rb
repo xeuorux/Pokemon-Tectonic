@@ -42,7 +42,7 @@ end
 
 #===============================================================================
 # Burns or frostbites the target, whichever hits the target's better base stat.
-# (Crippling Breath)
+# (Diametric Breath)
 #===============================================================================
 class PokeBattle_Move_BurnOrFrostbiteTargetBasedOnHigherStat < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)

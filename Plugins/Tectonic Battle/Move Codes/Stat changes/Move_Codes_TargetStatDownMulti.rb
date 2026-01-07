@@ -112,7 +112,7 @@ class PokeBattle_Move_UserFaintsLowerTargetAtkSpAtk5 < PokeBattle_TargetMultiSta
 end
 
 #===============================================================================
-# Minimizes the target's Speed and Evasiveness. (Freeze Ray)
+# Minimizes the target's Speed and Evasiveness. (Hyperfrost)
 #===============================================================================
 class PokeBattle_Move_MinTargetSpdEvasion < PokeBattle_Move
     def pbAdditionalEffect(user, target)

@@ -280,7 +280,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
 
 BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
   proc { |ability, user, targets, _move, _battle|
-    user.pbRecoverHPFromMultiDrain(targets, 0.25, ability: ability)
+    user.pbRecoverHPFromMultiDrain(targets, 0.25, user:user, ability: ability)
   }
 )
 
@@ -357,7 +357,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
       next if battle.foretoldMove
       next unless move.damagingMove?
       next unless battle.icy?
-      user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability)
+      user.pbRecoverHPFromMultiDrain(targets, 0.50, user:user, ability: ability)
   }
 )
 
@@ -366,7 +366,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASTRALHARVEST,
       next if battle.foretoldMove
       next unless move.damagingMove?
       next unless battle.eclipsed?
-      user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability)
+      user.pbRecoverHPFromMultiDrain(targets, 0.50, user:user, ability: ability)
   }
 )
 
@@ -374,7 +374,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SILVERSENSE,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.foretoldMove
       next unless move.damagingMove?
-      user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability, onlyCriticalDamage: true)
+      user.pbRecoverHPFromMultiDrain(targets, 0.50, user:user, ability: ability, onlyCriticalDamage: true)
   }
 )
 
@@ -388,7 +388,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:TORPORSAP,
         asleepTargets.push(target)
       end
       next if asleepTargets.length == 0
-      user.pbRecoverHPFromMultiDrain(asleepTargets, 0.50, ability: ability)
+      user.pbRecoverHPFromMultiDrain(asleepTargets, 0.50, user:user, ability: ability)
   }
 )
 
@@ -399,7 +399,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICIOUSCYCLE,
       next unless move.calcType == :DRAGON
       # AI learns ability if move spreads or drain happens
       user.aiLearnsAbility(ability) if ( !aiCheck && ( targets.size() > 1 || user.hp != user.totalhp) )
-      user.pbRecoverHPFromMultiDrain(targets, 0.33, ability: ability)
+      user.pbRecoverHPFromMultiDrain(targets, 0.33, user:user, ability: ability)
   }
 )
 
@@ -410,7 +410,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:HORDETACTICS,
       next unless move.calcType == :NORMAL
       # AI learns ability if move spreads or drain happens
       user.aiLearnsAbility(ability) if ( !aiCheck && ( targets.size() > 1 || user.hp != user.totalhp) )
-      user.pbRecoverHPFromMultiDrain(targets, 0.33, ability: ability)
+      user.pbRecoverHPFromMultiDrain(targets, 0.33, user:user, ability: ability)
   }
 )
 
@@ -657,11 +657,13 @@ BattleHandlers::UserAbilityEndOfMove.add(:OFFENSIVE,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:BLINDING,
-  proc { |ability, user, _targets, move, battle, _switchedBattlers|
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
       next unless move.lightMove?
-      next if battle.pbAllFainted?(user.idxOwnSide) || battle.pbAllFainted?(user.idxOpposingSide)
+      targets = []
+      user.eachOpposing { |b| targets << b unless b.fainted? }
+      next if targets.empty?
       battle.pbShowAbilitySplash(user, ability)
-      user.eachOpposing do |b|
+      targets.each do |b|
         b.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 1, showFailMsg: true)
       end
       battle.pbHideAbilitySplash(user)

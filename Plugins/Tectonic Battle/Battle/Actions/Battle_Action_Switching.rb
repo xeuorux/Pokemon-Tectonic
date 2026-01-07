@@ -225,7 +225,7 @@ class PokeBattle_Battle
                             next if playerBattler.fainted?
                             next if switched.include?(playerBattler.index)
                             next unless pbCanChooseNonActive?(playerBattler.index)
-                            next if playerBattler.effectActive?(:Outrage)
+                            next if playerBattler.effectActive?(:Rampaging)
 
                             idxPartyForName = idxPartyNew
                             enemyParty = pbParty(idxBattler)

@@ -1,5 +1,5 @@
 #===============================================================================
-# Resets all target's stat steps to 0. (Clear Smog)
+# Resets all target's stat steps to 0. (Clear Smog, Stamp Down, Null Pulse)
 #===============================================================================
 class PokeBattle_Move_ResetTargetStatSteps < PokeBattle_Move
     def statStepClearingMove?; return true; end
@@ -153,7 +153,7 @@ class PokeBattle_Move_ReverseTargetStatSteps < PokeBattle_Move
 end
 
 #===============================================================================
-# Swaps the user's Attack and Defense stats. (Power Trick)
+# Swaps the user's Attack and Defense stats.
 #===============================================================================
 class PokeBattle_Move_SwapPhysicalStats < PokeBattle_Move
     def pbEffectGeneral(user)
@@ -175,7 +175,7 @@ class PokeBattle_Move_SwapPhysicalStats < PokeBattle_Move
 end
 
 #===============================================================================
-# Swaps the user's Sp Attack and Sp Def stats. (Energy Trick)
+# Swaps the user's Sp Attack and Sp Def stats.
 #===============================================================================
 class PokeBattle_Move_SwapSpecialStats < PokeBattle_Move
     def pbEffectGeneral(user)

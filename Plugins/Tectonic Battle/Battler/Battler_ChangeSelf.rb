@@ -6,15 +6,22 @@ class PokeBattle_Battler
     #=============================================================================
     def pbReduceHP(amt, anim = true, registerDamage = true, anyAnim = true)
         amt = amt.round
+        amt = 1 if amt < 1
         amt = @hp if amt > @hp
-        amt = 1 if amt < 1 && !fainted?
+        if amt == @hp && faintingPrevented?
+            amt -= 1
+            faintingWasPrevented = true
+        else
+            faintingWasPrevented = false
+        end
         oldHP = @hp
         self.hp -= amt
         PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
         raise _INTL("HP less than 0") if @hp.negative?
         raise _INTL("HP greater than total HP") if @hp > @totalhp && oldHP <= @totalhp
-        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@battle.autoTesting
+        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@dummy && !@battle.autoTesting
         @tookDamage = true if amt.positive? && registerDamage
+        faintingPrevented?(true) if faintingWasPrevented && anyAnim # trigger ability splashes
         return amt
     end
 
@@ -65,6 +72,7 @@ class PokeBattle_Battler
             oldHP = @hp
             pbReduceHP(damageAmount, false)
             if @dummy
+                pbShowFaintingMessage if fainted?
                 return damageAmount
             else
                 if entryCheck
@@ -151,7 +159,12 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false, items_to_skip: [], aiCheck: false)
+    def applyHealingModifiers(amount, user, aiCheck: false)
+        amount *= 1.25 if user.shouldAbilityApply?(:REFRESHING, aiCheck)
+        return amount
+    end
+
+    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, user: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         if @battle.autoTesting
             anim = false
             anyAnim = false
@@ -162,10 +175,12 @@ class PokeBattle_Battler
         canOverheal = canOverheal || forceOverheal?
 
         # Apply healing modifiers
-        amt *= 1.5 if hasActiveAbility?(:ROOTED)
-        amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.moonGlowing?
+        amt *= 1.5 if shouldAbilityApply?(:ROOTED, aiCheck)
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt *= 1.2 if @battle.pbCheckGlobalAbility(:FIELDOFLIFE)
+
+        amt = applyHealingModifiers(amt, user, aiCheck: aiCheck) if user
+
         amt = amt.round
 
         # Nerve Break, Bad Influence invert healing
@@ -214,7 +229,7 @@ class PokeBattle_Battler
         return amt
     end
 
-    def pbRecoverHPFromDrain(drainAmount, target, canOverheal: false)
+    def pbRecoverHPFromDrain(drainAmount, target, user: nil, canOverheal: false)
         if target.hasActiveAbility?(:LIQUIDOOZE)
             @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
             oldHP = @hp
@@ -229,7 +244,7 @@ class PokeBattle_Battler
                 drainAmount = (drainAmount * 1.3).floor
                 aiLearnsItem(:BIGROOT)
             end
-            pbRecoverHP(drainAmount, true, true, false, canOverheal: canOverheal || hasActiveAbility?(:GORGING))
+            pbRecoverHP(drainAmount, true, true, false, user: user, canOverheal: canOverheal || hasActiveAbility?(:GORGING))
             if overhealed? && hasActiveAbility?(:GORGING) && !canOverheal
                 showMyAbilitySplash(:GORGING)
                 @battle.pbDisplay(_INTL("{1} is loaded up with fluids!", pbThis))
@@ -238,7 +253,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHPFromMultiDrain(targets, ratio, ability: nil, onlyCriticalDamage: false)
+    def pbRecoverHPFromMultiDrain(targets, ratio, user: nil, ability: nil, onlyCriticalDamage: false)
         totalDamageDealt = 0
         targets.each do |target|
             next if target.damageState.unaffected
@@ -262,11 +277,11 @@ class PokeBattle_Battler
             drainAmount = (drainAmount * 1.3).floor
             aiLearnsItem(:BIGROOT)
         end
-        pbRecoverHP(drainAmount, true, true, false)
+        pbRecoverHP(drainAmount, true, true, false, user: user)
         hideMyAbilitySplash if ability
     end
 
-    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
+    def applyFractionalHealing(fraction, user: nil, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         return 0 unless canHeal?(canOverheal)
         if item && !aiCheck
             @battle.pbCommonAnimation("UseItem", self) unless @battle.autoTesting
@@ -280,7 +295,7 @@ class PokeBattle_Battler
         end
         battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
         healAmount = getFractionalHealingAmount(fraction, canOverheal)
-        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, canOverheal: canOverheal, items_to_skip: items_to_skip, aiCheck: aiCheck)
+        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, user: user, canOverheal: canOverheal, items_to_skip: items_to_skip, aiCheck: aiCheck)
         battle.pbHideAbilitySplash(self) if ability && !aiCheck
         if aiCheck
             return getHealingEffectScore(actuallyHealed)
@@ -296,6 +311,20 @@ class PokeBattle_Battler
         return healAmount
     end
 
+    def pbShowFaintingMessage
+        if boss?
+            if isSpecies?(:PHIONE)
+                @battle.pbDisplayBrief(_INTL("{1} was defeated!", pbThis))
+            else
+                @battle.pbDisplayBrief(_INTL("{1} was destroyed!", pbThis))
+            end
+        elsif afraid?
+            @battle.pbDisplayBrief(_INTL("{1} flees in fear!", pbThis))
+        else
+            @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
+        end
+    end
+
     def pbFaint(showMessage = true)
         unless fainted?
             PBDebug.log("!!!***Can't faint with HP greater than 0")
@@ -307,19 +336,7 @@ class PokeBattle_Battler
         # And consumed a gem, etc. in the use of that move
         consumeMoveTriggeredItems(self)
 
-        if showMessage
-            if boss?
-                if isSpecies?(:PHIONE)
-                    @battle.pbDisplayBrief(_INTL("{1} was defeated!", pbThis))
-                else
-                    @battle.pbDisplayBrief(_INTL("{1} was destroyed!", pbThis))
-                end
-            elsif afraid?
-                @battle.pbDisplayBrief(_INTL("{1} flees in fear!", pbThis))
-            else
-                @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
-            end
-        end
+        pbShowFaintingMessage if showMessage
         
         unless @dummy
             PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage

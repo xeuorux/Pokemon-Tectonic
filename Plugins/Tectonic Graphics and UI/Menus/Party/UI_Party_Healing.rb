@@ -1,7 +1,7 @@
 class PokemonPartyPanel_Healing < PokemonPartyPanel
-    def initialize(pokemon,index,initialHP,initialStatusIndex,viewport=nil)
+    def initialize(pokemon,index,initialHP,initialStatusIndex=nil,viewport=nil)
         @currentHP = initialHP
-        @currentStatusIndex = initialStatusIndex
+        @currentStatusIndex = initialStatusIndex || 0
         @fainted = initialHP == 0
         super(pokemon,index,viewport)
     end
@@ -40,9 +40,12 @@ class PokemonPartyHealingDisplayScreen
     BASE_COLOR   = Color.new(248,248,248)
     SHADOW_COLOR = Color.new(40,40,40)
 
-    def initialize(party,previousHealthValues,previousStatusIndices)
-        @sprites = {}
+    def initialize(party,previousHealthValues,previousStatusIndices=nil)
         @party = party
+        @previousHealthValues = previousHealthValues
+        @previousStatusIndices = previousStatusIndices
+
+        @sprites = {}
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
         
@@ -55,7 +58,8 @@ class PokemonPartyHealingDisplayScreen
         # Add party Pokémon sprites
         for i in 0...Settings::MAX_PARTY_SIZE
             if @party[i]
-                @sprites["pokemon#{i}"] = PokemonPartyPanel_Healing.new(@party[i],i,previousHealthValues[i],previousStatusIndices[i],@viewport)
+                startingStatusIndex = previousStatusIndices ? previousStatusIndices[i] : 0
+                @sprites["pokemon#{i}"] = PokemonPartyPanel_Healing.new(@party[i],i,previousHealthValues[i],startingStatusIndex,@viewport)
             else
                 @sprites["pokemon#{i}"] = PokemonPartyBlankPanel.new(@party[i],i,@viewport)
             end
@@ -75,15 +79,15 @@ class PokemonPartyHealingDisplayScreen
         end
     end
 
-    def playHealingAnimation(previousHealthValues,previousStatusIndices)
+    def playHealingAnimation
         pbWait(4)
 
         pbSEPlay("Anim/PRSFX- Health Up")
 
         for i in 0...Settings::MAX_PARTY_SIZE
             if @party[i]
-                @sprites["pokemon#{i}"].currentHP = previousHealthValues[i]
-                @sprites["pokemon#{i}"].currentStatusIndex = previousStatusIndices[i]
+                @sprites["pokemon#{i}"].currentHP = @previousHealthValues[i]
+                @sprites["pokemon#{i}"].currentStatusIndex = @previousStatusIndices ? @previousStatusIndices[i] : @party[i].getStatusImageIndex
             end
         end
 
@@ -92,8 +96,8 @@ class PokemonPartyHealingDisplayScreen
 
             for i in 0...Settings::MAX_PARTY_SIZE
                 if @party[i]
-                    hpDifference = @sprites["pokemon#{i}"].pokemon.hp - previousHealthValues[i]
-                    currentHPInAnimation = previousHealthValues[i] + hpDifference * (animationFrame/healingAnimationDuration.to_f)
+                    hpDifference = @sprites["pokemon#{i}"].pokemon.hp - @previousHealthValues[i]
+                    currentHPInAnimation = @previousHealthValues[i] + hpDifference * (animationFrame/healingAnimationDuration.to_f)
                     @sprites["pokemon#{i}"].currentHP = currentHPInAnimation
                 end
             end
@@ -129,7 +133,7 @@ class PokemonPartyHealingDisplayScreen
     end
 end
 
-def showPartyHealing(party,previousHealthValues,previousStatusIndices)
+def showPartyHealing(party,previousHealthValues,previousStatusIndices=nil)
     scene = PokemonPartyHealingDisplayScreen.new(party,previousHealthValues,previousStatusIndices)
-    scene.playHealingAnimation(previousHealthValues,previousStatusIndices)
+    scene.playHealingAnimation
 end

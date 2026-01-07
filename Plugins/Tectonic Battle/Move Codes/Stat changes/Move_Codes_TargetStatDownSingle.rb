@@ -325,7 +325,7 @@ class PokeBattle_Move_EmpoweredLoomOver < PokeBattle_Move_LowerTargetHighestStat
 end
 
 #===============================================================================
-# Reduce's the target's highest attacking stat. (Scale Glint)
+# Reduce's the target's highest attacking stat. (Hiss)
 #===============================================================================
 class PokeBattle_Move_LowerTargetHighestStat1 < PokeBattle_Move
     def pbAdditionalEffect(user, target)

@@ -360,6 +360,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SprayAndPray,
+    :real_name => "Spray and Pray",
+    :copied_move_marker => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :DefenseCurl,
     :real_name => "Curled Up",
 })
@@ -1018,7 +1024,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Outrage,
+    :id => :Rampaging,
     :real_name => "Rampage Turns",
     :type => :Integer,
     :resets_on_cancel => true,
@@ -1027,13 +1033,53 @@ GameData::BattleEffect.register_effect(:Battler, {
         battler.currentMove = battler.lastMoveUsed unless battler.effectActive?(:RampageLocked)
     end,
     :expire_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} spun down from its attack.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} spun down from its rampage.", battler.pbThis))
         battler.currentMove = nil
-        echoln("RAMPAGE EXPIRE PROC")
         battler.disableEffect(:RampageLocked) if battler.effectActive?(:RampageLocked)
+        if battler.effectActive?(:WillFaintAfterRampage)
+            battle.pbDisplay(_INTL("Exhaustion finally catches up with {1}!", battler.pbThis(true)))
+            battler.pbReduceHP(battler.hp,false,false)
+            battler.pbFaint if battler.fainted?
+        end
     end,
     :remain_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} continues to rampage!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :WillFaintAfterRampage,
+    :real_name => "Will Faint After Rampage",
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :RampageLocked,
+    :real_name => "Rampage Locked",
+    :info_displayed => false,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Uproar,
+    :real_name => "Uproar Turns",
+    :type => :Integer,
+    :resets_on_cancel => true,
+    :ticks_down_eor => true,
+    :multi_turn_tracker => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} caused an uproar!", battler.pbThis))
+        battle.pbPriority(true).each do |b|
+            next if b.fainted?
+            b.pbCureStatus(true, :SLEEP)
+        end
+    end,
+    :remain_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is making an uproar!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battler.currentMove = nil
+    end,
+    :expire_proc => proc do |battle, battler|
+        battler.currentMove = nil
     end,
 })
 
@@ -1607,31 +1653,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Uproar,
-    :real_name => "Uproar Turns",
-    :type => :Integer,
-    :resets_on_cancel => true,
-    :ticks_down_eor => true,
-    :multi_turn_tracker => true,
-    :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} caused an uproar!", battler.pbThis))
-        battle.pbPriority(true).each do |b|
-            next if b.fainted?
-            b.pbCureStatus(true, :SLEEP)
-        end
-    end,
-    :remain_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} is making an uproar!", battler.pbThis))
-    end,
-    :disable_proc => proc do |battle, battler|
-        battler.currentMove = nil
-    end,
-    :expire_proc => proc do |battle, battler|
-        battler.currentMove = nil
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :WeightChange,
     :real_name => "Weight Changed",
     :type => :Integer,
@@ -1966,6 +1987,18 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :RedHotRetreat,
+    :real_name => "Red-Hot Retreat",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :IceNineWall,
+    :real_name => "Ice-Nine Wall",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :ExtraTurns,
     :real_name => "Extra Turns",
     :type => :Integer,
@@ -2238,28 +2271,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RedHotRetreat,
-    :real_name => "Red-Hot Retreat",
-    :resets_eor	=> true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, _battle|
-            user.applyBurn(target) if move.specialMove? && user.canBurn?(target, false)
-        end,
-    },
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :IceNineWall,
-    :real_name => "Ice-Nine Wall",
-    :resets_eor	=> true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, _battle|
-            user.applyFrostbite(target) if move.physicalMove? && user.canFrostbite?(target, false)
-        end,
-    },
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :SpikyShield,
     :real_name => "Spiky Shield",
     :resets_eor	=> true,
@@ -2338,7 +2349,7 @@ GameData::BattleEffect.register_effect(:Battler, {
             oldHP = battler.hp
             battler.damageState.displayedDamage = damageToApply
             damageToApply = battler.hp if damageToApply > battler.hp
-            battler.hp -= damageToApply
+            battler.pbReduceHP(damageToApply, false, false, false)
             battle.scene.pbHitAndHPLossAnimation([[battler, oldHP, 1]], true)
             battler.cleanupPreMoveDamage(battler, oldHP)
             battle.pbHideAbilitySplash(battler)
@@ -2592,12 +2603,6 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Position,
     :disable_effects_on_other_exit => [:Quarantine],
     :hand_off => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RampageLocked,
-    :real_name => "Rampage Locked",
-    :info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

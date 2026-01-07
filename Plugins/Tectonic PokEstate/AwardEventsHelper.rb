@@ -58,7 +58,7 @@ class Player < Trainer
                 @ownedOfType[typeData.id] = 0
             end
             @ownedOfTribe = {}
-            GameData::Tribe.each do |tribeData|
+            GameData::Tribe.each_legal do |tribeData|
                 @ownedOfTribe[tribeData.id] = 0
             end
             calculateOwnershipCache

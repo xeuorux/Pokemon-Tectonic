@@ -530,6 +530,17 @@ FunctionCode = Invalid
 Flags = CanProtect
 Description = The target is attacked by a kick launched with muscle-packed power.
 #-------------------------------
+[MILKDRINK]
+Name = Milk Drink
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 8
+Target = User
+FunctionCode = Invalid
+Flags = CanSnatch
+Description = The user heals itself by half of its max HP.
+#-------------------------------
 [MIMIC]
 Name = Mimic
 Type = NORMAL
@@ -634,6 +645,19 @@ FunctionCode = Invalid
 Flags = CanProtect
 EffectChance = 20
 Description = The user attacks the target by smashing into it with incredible force. It has a 20% chance to dizzy.
+#-------------------------------
+[ROUGHTUMBLE]
+Name = Rough & Tumble
+Type = NORMAL
+Category = Physical
+Power = 100
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks by splaying its body wide. Its power doubles if Curl Up was used previously.
+Animation = BODYSLAM
 #-------------------------------
 [SAFEGUARD]
 Name = Safeguard
@@ -2380,6 +2404,19 @@ Target = BothSides
 FunctionCode = Invalid
 Description = Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.
 #-------------------------------
+[TARVOLLEY]
+Name = Tar Volley
+Type = FIRE
+Category = Special
+Power = 45
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = Invalid
+Flags = CanProtect
+EffectChance = 100
+Description = The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.
+#-------------------------------
 #		WATER MOVES
 #-------------------------------
 [AQUAINSTINCT]
@@ -3750,6 +3787,18 @@ Target = User
 FunctionCode = Invalid
 Flags = CanSnatch
 Description = The user restores its own HP. The user then raises its Sp. Atk unless it was fully healed in the process.
+#-------------------------------
+[DRAGONDARTS]
+Name = Dragon Darts
+Type = DRAGON
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = Invalid
+Flags = CanProtect
+Description = The user attacks twice using Dreepy. If there are two targets, this move hits each target once.
 #-------------------------------
 [DRAGONRAGE]
 Name = Dragon Rage

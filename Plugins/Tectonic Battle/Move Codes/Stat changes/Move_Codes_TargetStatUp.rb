@@ -78,7 +78,7 @@ end
 
 #===============================================================================
 # Damages target if target is a foe, or buff's the target's Speed
-# by four steps if it's an ally. (Lightning Spear)
+# by four steps if it's an ally.
 #===============================================================================
 class PokeBattle_Move_RaiseAllySpd4OrDamageFoe < PokeBattle_Move
     def pbOnStartUse(user, targets)

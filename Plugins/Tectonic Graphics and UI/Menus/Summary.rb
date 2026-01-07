@@ -862,7 +862,7 @@ class PokemonSummary_Scene
         tribe_shadow = MessageConfig.pbDefaultTextShadowColor
         if tribes.length == 0
             drawFormattedTextEx(overlay, tribesX, tribesY+32, tribesWidth, _INTL("None"), tribe_base, tribe_shadow)
-        elsif tribes.length == GameData::Tribe::DATA.keys.count / 2
+        elsif tribes.length == GameData::Tribe.legal_tribes_count
             drawFormattedTextEx(overlay, tribesX, tribesY+32, tribesWidth, _INTL("All"), tribe_base, tribe_shadow)
         else
             tribes.each_with_index do |tribe, index|

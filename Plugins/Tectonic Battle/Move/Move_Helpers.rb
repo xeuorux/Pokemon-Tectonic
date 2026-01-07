@@ -145,6 +145,15 @@ class PokeBattle_Move
         end
     end
 
+    def healHPFraction(pokemonOrBattler, fraction, user)
+        if pokemonOrBattler.is_a?(PokeBattle_Battler)
+            pokemonOrBattler.applyFractionalHealing(fraction, user: user)
+        else
+            fraction = user.applyHealingModifiers(fraction, user) if user
+            pokemonOrBattler.healByFraction(fraction)
+        end
+    end
+
     def selectPartyMemberForEffect(idxBattler, selectableProc = nil)
         if @battle.pbOwnedByPlayer?(idxBattler)
             return playerChoosesPartyMemberForEffect(idxBattler, selectableProc)[0]

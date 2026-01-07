@@ -13,7 +13,7 @@ def checkWeatherRoomScreenAchievement(battle)
         break
     end
     return unless playerSideScreen
-    unlockAchievement(:BATTLE_ACTIVE_WEATHER_ROOM_SCREEN)
+    unlockAchievement(:BATTLE_ACTIVE_WEATHER_ROOM_SCREEN) unless battle.is_replayed
 end
 
 def checkManyHazardsAchievement(battle)
@@ -23,11 +23,11 @@ def checkManyHazardsAchievement(battle)
         opponentHazardCount += 1
     end
     return unless opponentHazardCount >= 4
-    unlockAchievement(:BATTLE_ACTIVE_MANY_HAZARDS)
+    unlockAchievement(:BATTLE_ACTIVE_MANY_HAZARDS) unless battle.is_replayed
 end
 
 Events.onStartBattle += proc {
-    unlockAchievement(:ACHIEVE_TRIBAL_BONUS) if playerTribalBonus.hasAnyTribalBonus?
+    unlockAchievement(:ACHIEVE_TRIBAL_BONUS) if playerTribalBonus.hasAnyTribalBonus? 
 }
 
 def checkUltimateFlexAchievement

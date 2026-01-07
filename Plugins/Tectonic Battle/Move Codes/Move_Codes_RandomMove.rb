@@ -1,5 +1,5 @@
 #===============================================================================
-# Uses a random move the user knows. Fails if user is not asleep. (Sleep Talk)
+# Uses a random move the user knows. Fails if user is not asleep.
 #===============================================================================
 class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
     def usableWhenAsleep?; return true; end
@@ -202,7 +202,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
 end
 
 #===============================================================================
-# Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
+# Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Archmyth)
 #===============================================================================
 class PokeBattle_Move_UseTwoRandomDragonThemedMoves < PokeBattle_Move
     def callsAnotherMove?; return true; end

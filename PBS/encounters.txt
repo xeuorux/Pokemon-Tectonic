@@ -1024,7 +1024,9 @@ LandSparse,20,25
 #-------------------------------
 [346] # Executive's House
 Special,40
+    1,LUNATONE,40
     1,SHEDINJA,10
+    1,SOLROCK,40
 #-------------------------------
 [349] # UB Portal
 DarkCave,20,60

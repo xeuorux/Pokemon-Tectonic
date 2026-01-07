@@ -1,0 +1,1 @@
+MYSTIC,5,Mystic,"Whenever a member of your team uses a status move, they'll deal 25% more move damage next turn."

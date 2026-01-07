@@ -28,7 +28,7 @@ class PokeBattle_Move_EmpoweredSunshine < PokeBattle_Move_StartSunshine8
 end
 
 #===============================================================================
-# Burns the target and sets Sun
+# Burns the target and sets Sun. (Invite Sunshine)
 #===============================================================================
 class PokeBattle_Move_BurnTargetStartSunshine8 < PokeBattle_InviteMove
     def initialize(battle, move)
@@ -40,7 +40,7 @@ class PokeBattle_Move_BurnTargetStartSunshine8 < PokeBattle_InviteMove
 end
 
 #===============================================================================
-# Starts rainy weather. (Rain)
+# Starts rainy weather. (Rainstorm)
 #===============================================================================
 class PokeBattle_Move_StartRainstorm6 < PokeBattle_WeatherMove
     def initialize(battle, move)
@@ -70,7 +70,7 @@ class PokeBattle_Move_EmpoweredRainstorm < PokeBattle_Move_StartRainstorm8
 end
 
 #===============================================================================
-# Waterlogs the target and sets Rain
+# Waterlogs the target and sets Rain. (Invite Rainstorm)
 #===============================================================================
 class PokeBattle_Move_WaterlogTargetStartRainstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
@@ -111,7 +111,7 @@ class PokeBattle_Move_EmpoweredSandstorm < PokeBattle_Move_StartSandstorm8
 end
 
 #===============================================================================
-# Numbs the target and sets Sandstorm
+# Numbs the target and sets Sandstorm. (Invite Sandstorm)
 #===============================================================================
 class PokeBattle_Move_NumbTargetStartSandstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
@@ -154,7 +154,7 @@ class PokeBattle_Move_EmpoweredHail < PokeBattle_Move_StartHail8
 end
 
 #===============================================================================
-# Frostbites the target and sets Hail
+# Frostbites the target and sets Hail. (Invite Hail)
 #===============================================================================
 class PokeBattle_Move_FrostbiteTargetStartHail8 < PokeBattle_InviteMove
     def initialize(battle, move)
@@ -195,7 +195,7 @@ class PokeBattle_Move_EmpoweredEclipse < PokeBattle_Move_StartEclipse6
 end
 
 #===============================================================================
-# Dizzies the target and sets Eclipse
+# Dizzies the target and sets Eclipse. (Invite Eclipse)
 #===============================================================================
 class PokeBattle_Move_DizzyTargetStartEclipse8 < PokeBattle_InviteMove
     def initialize(battle, move)
@@ -240,7 +240,7 @@ class PokeBattle_Move_EmpoweredMoonglow < PokeBattle_Move_StartMoonglow8
 end
 
 #===============================================================================
-# Leeches the target and sets Moonglow
+# Leeches the target and sets Moonglow. (Invite Moonglow)
 #===============================================================================
 class PokeBattle_Move_LeechTargetStartMoonglow8 < PokeBattle_InviteMove
     def initialize(battle, move)

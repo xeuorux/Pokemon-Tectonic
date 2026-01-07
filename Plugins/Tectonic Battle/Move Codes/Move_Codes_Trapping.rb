@@ -51,7 +51,7 @@ end
 
 #===============================================================================
 # Target can no longer switch out or flee, as long as the user remains active.
-# (Anchor Shot, Block, Mean Look, Spider Web, Spirit Shackle, Thousand Waves)
+# (Block, Mean Look, Spirit Shackle, Thousand Waves)
 #===============================================================================
 class PokeBattle_Move_TrapTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -66,14 +66,9 @@ class PokeBattle_Move_TrapTarget < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        return if damagingMove?
-        target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.fainted? || target.damageState.substitute
         return if target.effectActive?(:MeanLook)
-        target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
+        return if target.fainted?
+        target.pointAt(:MeanLook, user)
     end
 
     def getTargetAffectingEffectScore(_user, target)
@@ -84,7 +79,6 @@ end
 
 #===============================================================================
 # Target becomes trapped. Summons Eclipse for 8 turns.
-# (Captivating Sight)
 #===============================================================================
 class PokeBattle_Move_TrapTargetStartEclipse8 < PokeBattle_Move_TrapTarget
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -138,7 +132,7 @@ target.pbThis(true)))
 end
 
 #===============================================================================
-# Target can't switch out or flee until they take a hit. (Ice Dungeon)
+# Target can't switch out or flee until they take a hit.
 # Their attacking stats are both lowered by 1 step.
 #===============================================================================
 class PokeBattle_Move_TrapTargetUntilHitLowerTargetAtkSpAtk1 < PokeBattle_Move
@@ -216,7 +210,7 @@ class PokeBattle_Move_TrapAndFrostbiteTarget < PokeBattle_Move_TrapTarget
 end
 
 #===============================================================================
-# No Pokémon can switch out or flee until the end of the next round. (Fairy Lock)
+# No Pokémon can switch out or flee until the end of the next round.
 #===============================================================================
 class PokeBattle_Move_TrapAllBattlersForOneTurn < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)

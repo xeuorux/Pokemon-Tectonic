@@ -15,7 +15,7 @@ class PokeBattle_Move_EmpoweredSpore < PokeBattle_Move_Sleep
 end
 
 #===============================================================================
-# Puts the target to sleep, but only if the user is Darkrai. (Dark Void)
+# Puts the target to sleep, but only if the user is Darkrai.
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfUserDarkrai < PokeBattle_SleepMove
     def pbMoveFailed?(user, _targets, show_message)
@@ -57,7 +57,7 @@ class PokeBattle_Move_SleepTargetIfBelowHalfHP < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Puts the target to sleep if they are at or below half health, and raises the user's attack. (Tranquil Tune)
+# Puts the target to sleep if they are at or below half health, and raises the user's attack.
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfBelowHalfHPRaiseUserAtk1 < PokeBattle_Move_SleepTargetIfBelowHalfHP
     def pbEffectAgainstTarget(user, target)
@@ -71,7 +71,7 @@ class PokeBattle_Move_SleepTargetIfBelowHalfHPRaiseUserAtk1 < PokeBattle_Move_Sl
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puff Ball)
+# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puffball)
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfDealtDamageToUserThisTurn < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -270,8 +270,12 @@ end
 #===============================================================================
 class PokeBattle_Move_SleepTargetIfStatused < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
+        if target.asleep?
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already asleep!", target.pbThis(true))) if show_message
+            return true
+        end
         unless target.pbHasAnyStatus?
-            @battle.pbDisplay(_INTL("But it failed, since {1} isn't statused", target.pbThis(true))) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} isn't statused!", target.pbThis(true))) if show_message
             return true
         end
         return !target.canSleep?(user, show_message, self, true)

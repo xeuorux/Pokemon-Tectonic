@@ -52,7 +52,7 @@ end
 
 #===============================================================================
 # Target switches out, to be replaced at random.
-# For damaging moves. (Circle Throw, Dragon Tail)
+# For damaging moves. (Discourage, Dragon Tail)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetDamagingMove < PokeBattle_Move
     def forceSwitchMove?; return true; end
@@ -84,7 +84,7 @@ class PokeBattle_Move_SwitchOutTargetIfMisses < PokeBattle_Move
 end
 
 #===============================================================================
-# Target switches out, to be replaced manually. (Thornrattle)
+# Target switches out, to be replaced manually. (Thorn Rattle)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetDamagingMoveNonRandom < PokeBattle_Move
     def forceSwitchMove?; return true; end

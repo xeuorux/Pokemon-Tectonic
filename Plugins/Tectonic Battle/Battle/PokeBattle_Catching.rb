@@ -40,12 +40,16 @@ class PokeBattle_Battle
                 if GameData::Item.get(item).super
                     itemsToRemove.push(item)
                 else
-                    pbDisplayWithFormatting(_INTL("The {1} is holding an <imp>{2}</imp>!", pkmn.name, getItemName(item)))
+                    itemName = getItemName(item)
+                    article  = itemName.starts_with_vowel? ? "an" : "a"
+                    pbDisplayWithFormatting(_INTL("The {1} is holding {2} <imp>{3}</imp>!", pkmn.name, article, itemName))
                 end
             end
 
             itemsToRemove.each do |itemToRemove|
-                pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(itemToRemove)))
+                itemName = getItemName(itemToRemove)
+                article  = itemName.starts_with_vowel? ? "an" : "a"
+                pbDisplayPaused(_INTL("The {1} is holding {2} {3}!", pkmn.name, article, itemName))
                 pbDisplayPaused(_INTL("But it mysteriously crumbled to ash..."))
                 pkmn.removeItem(itemToRemove)
             end

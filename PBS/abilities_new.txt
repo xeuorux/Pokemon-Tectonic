@@ -218,7 +218,7 @@ Flags = HazardImmunity
 #-------------------------------
 [BREAKTHROUGH]
 Name = Break Through
-Description = Moves ignore immunities due to typing.
+Description = This Pokémon's moves deal 20% more damage and ignore immunities due to typing.
 #-------------------------------
 [BRILLIANTFLURRY]
 Name = Brilliant Flurry
@@ -687,10 +687,6 @@ Description = Boosts Sp. Def by 20%. When this Pokémon takes its second special
 Name = Fighting Vigor
 Description = Heals 1/16th HP every turn. Protected from being numbed or waterlogged.
 #-------------------------------
-[FILTHY]
-Name = Filthy
-Description = Immune to Poison-type moves, and boosts Defense and Sp. Def when hit by one.
-#-------------------------------
 [FINESUGAR]
 Name = Fine Sugar
 Description = Heals 1/8th HP in sunshine, 1/4th when hit by Fire-type moves. Loses 1/8th in rainstorm, Water-type moves do 25% more.
@@ -994,7 +990,7 @@ Description = Powers up recoil and sound moves by 30%.
 #-------------------------------
 [HOPPINGMAD]
 Name = Hopping Mad
-Description = This Pokémon's Speed is doubled while using rampage moves.
+Description = This Pokémon's Speed is doubled while using rampaging moves.
 #-------------------------------
 [HORDETACTICS]
 Name = Horde Tactics
@@ -1148,7 +1144,7 @@ Description = Uses Wish after knocking out any Pokémon.
 #-------------------------------
 [JUGGERNAUT]
 Name = Juggernaut
-Description = Ignores Abilities that would affect its moves or activate after hitting the target.
+Description = This Pokémon's moves deal 20% more damage and ignore abilities that would affect them.
 Flags = MoldBreaking
 #-------------------------------
 [KARMA]
@@ -1722,6 +1718,10 @@ Description = After knocking out any Pokémon, regenerates its previously-used i
 [REFRACTIVE]
 Name = Refractive
 Description = Light moves change this Pokémon's secondary type and their power is boosted by 30%.
+#-------------------------------
+[REFRESHING]
+Name = Refreshing
+Description = This Pokémon's moves heal for 25% more.
 #-------------------------------
 [REFRESHMENTS]
 Name = Refreshments
@@ -2353,6 +2353,10 @@ Description = If an attacker would activate a random added effect on this Pokém
 [UNCONVENTIONAL]
 Name = Unconventional
 Description = Moves that use stats other than the default deal 50% more damage.
+#-------------------------------
+[UNDYINGRAGE]
+Name = Undying Rage
+Description = This Pokémon cannot faint while rampaging, and rampages for an additional turn.
 #-------------------------------
 [UNFAZED]
 Name = Unfazed

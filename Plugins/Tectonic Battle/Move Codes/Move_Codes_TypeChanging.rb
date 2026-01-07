@@ -77,7 +77,7 @@ class PokeBattle_Move_SetUserTypesToResistLastAttack < PokeBattle_Move
 end
 
 #===============================================================================
-# Changes user's type depending on the environment. (Camouflage)
+# Changes user's type depending on the environment.
 #===============================================================================
 class PokeBattle_Move_SetUserTypesBasedOnEnvironment < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -142,7 +142,7 @@ class PokeBattle_Move_SetUserTypesBasedOnEnvironment < PokeBattle_Move
 end
 
 #===============================================================================
-# Target becomes Water type. (Soak)
+# Target becomes Water type.
 #===============================================================================
 class PokeBattle_Move_SetTargetTypesToWater < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -285,7 +285,7 @@ class PokeBattle_Move_AddGhostTypeToTarget < PokeBattle_Move
 end
 
 #===============================================================================
-# Gives target the Grass type. (Forest's Curse)
+# Gives target the Grass type.
 #===============================================================================
 class PokeBattle_Move_AddGrassTypeToTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)

@@ -1,5 +1,5 @@
 #===============================================================================
-# Scatters coins that the player picks up after winning the battle. (Pay Day)
+# Scatters coins that the player picks up after winning the battle. (Pay Day, Cha-ching)
 #===============================================================================
 class PokeBattle_Move_AddMoneyGainedFromBattle < PokeBattle_Move
     def pbEffectGeneral(user)

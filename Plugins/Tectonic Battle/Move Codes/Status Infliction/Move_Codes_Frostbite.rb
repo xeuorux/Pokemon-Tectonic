@@ -20,7 +20,7 @@ class PokeBattle_Move_FrostbiteTargetAlwaysHitsInHail < PokeBattle_FrostbiteMove
 end
 
 #===============================================================================
-# May cause the target to be frostbitten or to lower their Defense by two steps. (Ice Fang)
+# May cause the target to be frostbitten or to lower their Defense by two steps. (Ice Fang, Glacial Crunch)
 #===============================================================================
 class PokeBattle_Move_FrostbiteTargetLowerTargetDef2 < PokeBattle_Move_StatusTargetLowerTargetDef2
     def initialize(battle, move)
@@ -83,7 +83,7 @@ class PokeBattle_Move_HitTwoToFiveTimesFrostbite < PokeBattle_FrostbiteMove
 end
 
 #===============================================================================
-# Frostbite the target and add the Ice-type to it.
+# Frostbite the target and add the Ice-type to it. (Hibernal Flux)
 #===============================================================================
 class PokeBattle_Move_FrostbiteAddIceType < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)

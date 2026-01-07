@@ -37,6 +37,7 @@ ItemHandlers::UseFromBag.add(:VSRECORDER, proc { |item|
 			"#{records_path}/Last battle.dat", 
 			"#{records_path}/#{battle_rename}.dat"
 		)
+		pbMessage("Battle successfully saved.")
 		next 1
 
 	when 2 # Rename battle
@@ -48,6 +49,7 @@ ItemHandlers::UseFromBag.add(:VSRECORDER, proc { |item|
 			getRecordedBattles[battle_rename_choice], 
 			"#{records_path}/#{battle_rename}.dat"
 		)
+		pbMessage("Battle successfully renamed.")
 		next 1
 
 	when 3 # Delete battle
@@ -55,7 +57,8 @@ ItemHandlers::UseFromBag.add(:VSRECORDER, proc { |item|
 		next 0 if battle_delete_choice == -1
 		next 0 unless (pbMessage(_INTL("Are you sure ? This action is permanent."), ["No", "Yes"]) == 1)
 		File.delete(getRecordedBattles[battle_delete_choice])
-    next 1
+    pbMessage("Battle successfully deleted.")
+		next 1
 	
   else
 		next 0

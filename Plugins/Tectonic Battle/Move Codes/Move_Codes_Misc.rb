@@ -14,7 +14,7 @@ class PokeBattle_Move_Invalid < PokeBattle_Move
 end
 
 #===============================================================================
-# Does absolutely nothing. (Splash)
+# Does absolutely nothing.
 #===============================================================================
 class PokeBattle_Move_DoesNothingUnusableInGravity < PokeBattle_Move
     def unusableInGravity?; return true; end
@@ -64,7 +64,7 @@ end
 
 #===============================================================================
 # If target would be KO'd by this attack, it survives with 1HP instead.
-# (False Swipe, Hold Back)
+# (Hold Back)
 #===============================================================================
 class PokeBattle_Move_CannotMakeTargetFaint < PokeBattle_Move
     def nonLethal?(_user, _target); return true; end
@@ -107,7 +107,7 @@ class PokeBattle_Move_PursueSwitchingFoe < PokeBattle_Move
 end
 
 #===============================================================================
-# Transforms the user into one of its Mega Forms. (Gene Boost)
+# Transforms the user into one of its Mega Forms. (Genotheosis)
 #===============================================================================
 class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
     def resolutionChoice(user, replayed_choice)
@@ -237,7 +237,7 @@ class PokeBattle_Move_LowerPPOfTargetLastMoveBy4 < PokeBattle_Move
 end
 
 #===============================================================================
-# Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Optimized Action)
+# Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Metaform)
 #===============================================================================
 class PokeBattle_Move_UseHighestBasePowerMoveFromUserParty < PokeBattle_Move
     def callsAnotherMove?; return true; end
@@ -490,7 +490,7 @@ class PokeBattle_Move_IgnoreTargetAbilityChangeUserNecrozmaForm < PokeBattle_Mov
 end
 
 #===============================================================================
-# User switches places with its ally. (Ally Switch)
+# User switches places with its ally.
 #===============================================================================
 class PokeBattle_Move_UserSwapsPositionsWithAlly < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -544,7 +544,7 @@ class PokeBattle_Move_AlliesAlsoUseSlashAgainstTarget < PokeBattle_Move
 end
 
 #===============================================================================
-# Can't miss if attacking a target that already used an attack this turn. (Power Whip)
+# Can't miss if attacking a target that already used an attack this turn.
 #===============================================================================
 class PokeBattle_Move_CantMissAgainstTargetAlreadyAttacked < PokeBattle_Move
     def pbAccuracyCheck(user, target)
@@ -725,7 +725,7 @@ end
 
 #===============================================================================
 # All Normal-type moves become Electric-type for the rest of the round.
-# (Ion Deluge, Plasma Fists)
+# (Plasma Fists)
 #===============================================================================
 class PokeBattle_Move_NormalMovesBecomeElectric < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -813,8 +813,8 @@ class PokeBattle_Move_UseChoiceOfElementalCrunches < PokeBattle_Move
         @validMoves = %i[
             SEARINGCRUNCH
             GLACIALCRUNCH
-            VOLTCRUNCH
             AQUATICCRUNCH
+            VOLTCRUNCH
         ]
     end
 
@@ -905,15 +905,5 @@ class PokeBattle_Move_UseAllOtherSoundMoves < PokeBattle_Move
 
     def getEffectScore(user, _target)
         return getAllOtherSoundMoves(user).length * 100
-    end
-end
-
-#===============================================================================
-# Applies a damaging effect to the targeted slot (Stormshards)
-#===============================================================================
-class PokeBattle_Move_PositionPassiveDamage < PokeBattle_Move
-    def pbEffectAgainstTarget(_user, target)
-        target.position.applyEffect(:Stormshards, 3)
-        return true
     end
 end

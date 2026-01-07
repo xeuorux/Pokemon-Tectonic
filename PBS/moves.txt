@@ -280,7 +280,7 @@ Accuracy = 0
 TotalPP = 25
 Target = User
 FunctionCode = RaiseCriticalHitRate2
-Flags = CanSnatch
+Flags = CanSnatch,Staple
 Description = Enables random critical hits for the user, and quadruples its critical hit chance.
 #-------------------------------
 [FOLLOWME]
@@ -505,17 +505,6 @@ Target = User
 FunctionCode = UseRandomNonSignatureMove
 Flags = Uninvocable
 Description = The user waggles a finger and stimulates its brain into randomly using nearly any move.
-#-------------------------------
-[MILKDRINK]
-Name = Milk Drink
-Type = NORMAL
-Category = Status
-Accuracy = 0
-TotalPP = 8
-Target = User
-FunctionCode = HealUserHalfOfTotalHP
-Flags = CanSnatch
-Description = The user heals itself by half of its max HP.
 #-------------------------------
 [MULTIATTACK]
 Name = Multi-Attack
@@ -1628,10 +1617,10 @@ Type = FLYING
 Category = Status
 Accuracy = 0
 TotalPP = 12
-Target = NearOther
+Target = BothSides
 FunctionCode = Defog
 Flags = CanProtect,CanMagicCoat,Wind
-Description = The user whips up a wind to blow away the target's protective screens. Also removes hazards on both sides.
+Description = The user whips up a wind to blow away protective screens on the opponent's side. Also removes hazards on both sides.
 #-------------------------------
 [DRAGONASCENT]
 Name = Dragon Ascent
@@ -4113,7 +4102,7 @@ Description = The user slams the target with an enormous tree. The user is exhau
 Name = Giga Drain
 Type = GRASS
 Category = Special
-Power = 75
+Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
@@ -5374,18 +5363,6 @@ Target = User
 FunctionCode = RaiseUserAtk2Spd1
 Flags = CanSnatch,Dance
 Description = The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by one.
-#-------------------------------
-[DRAGONDARTS]
-Name = Dragon Darts
-Type = DRAGON
-Category = Physical
-Power = 50
-Accuracy = 100
-TotalPP = 10
-Target = AllNearFoes
-FunctionCode = HitTwoTimesTargetThenTargetAlly
-Flags = CanProtect
-Description = The user attacks twice using Dreepy. If there are two targets, this move hits each target once.
 #-------------------------------
 [DRAGONENERGY]
 Name = Dragon Energy

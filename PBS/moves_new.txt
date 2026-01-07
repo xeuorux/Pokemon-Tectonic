@@ -161,6 +161,18 @@ Flags = CanProtect,Pulse
 Description = The user shoots a pulse of diffuse energy at the target.
 Animation = SIMPLEBEAM
 #-------------------------------
+[DINNERBELL]
+Name = Dinner Bell
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+FunctionCode = UserLosesQuarterHPPartyMembersHealQuarterHP
+Flags = Sound
+Description = The user calls its team to a farm-fresh meal, sacrificing 25% HP to heal each of its party members by 25% HP.
+Animation = HEALBELL
+#-------------------------------
 [DISCOMBOBULATE]
 Name = Discombobulate
 Type = NORMAL
@@ -488,19 +500,6 @@ Flags = CanProtect
 Description = The user attacks the target with stored power. Has 10 more base power for each raised stat step.
 Animation = STOREDPOWER
 #-------------------------------
-[ROUGHTUMBLE]
-Name = Rough & Tumble
-Type = NORMAL
-Category = Physical
-Power = 100
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = RoughAndTumble
-Flags = CanProtect
-Description = The user attacks by splaying its body wide. Its power doubles if Curl Up was used previously.
-Animation = BODYSLAM
-#-------------------------------
 [RUIN]
 Name = Ruin
 Type = NORMAL
@@ -815,7 +814,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DisableTargetUsingOffTypeMove4
 Flags = CanProtect
-Description = Pins the target with building materials. The target can't use off-type moves for three more turns.
+Description = Pins the target with building materials. The target becomes barred.
 Animation = SMACKDOWN
 #-------------------------------
 [CONCUSS]
@@ -2414,7 +2413,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = PositionPassiveDamage
+FunctionCode = ApplyPassiveDamageToTargetPosition3
 Flags = CanProtect,ForceSignature
 EffectChance = 100
 Description = The user attacks with shards from their rocky mane. For the next 3 turns, the Pokémon in the targeted slot loses 1/8th of their max HP.
@@ -2453,7 +2452,7 @@ Type = BUG
 Category = Physical
 Power = 90
 Accuracy = 100
-TotalPP = 25
+TotalPP = 15
 Target = NearOther
 FunctionCode = Poison
 Flags = CanProtect
@@ -3323,6 +3322,19 @@ EffectChance = 40
 Description = The user attacks while wailing. This has a 40% chance to make the target flinch.
 Animation = SHADOWCLAW
 #-------------------------------
+[WRAITHWRATH]
+Name = Wraith Wrath
+Type = GHOST
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = ClosestNearFoe
+FunctionCode = Rampage
+Flags = CanProtect
+Description = The user channels the anger of wronged spirits, going on a rampage for two turns.
+Animation = SHADOWCLAW
+#-------------------------------
 #		STEEL MOVES
 #-------------------------------
 [ALLFORONE]
@@ -4132,8 +4144,8 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = ProtectUserBurnSpecAttacker
-Description = Protects the user from attacks. Also burns any attacker who specially attacks the user.
+FunctionCode = UserTakesHalfDamageThisTurnBurnAttackers
+Description = Halves attack damage taken this turn. Burns any attackers. Fails if used successively.
 Animation = WITHDRAW
 #-------------------------------
 [SEARINGCRUNCH]
@@ -4177,6 +4189,19 @@ EffectChance = 100
 Description = Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.
 Animation = FIERYDANCE
 #-------------------------------
+[SPRAYANDPRAY]
+Name = Spray and Pray
+Type = FIRE
+Category = Special
+Power = 25
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = HitTwoToFiveTimesTwiceThenExhaust
+Flags = CanProtect
+Description = The user sends two barrages of fire, each hitting two to five times. The user is exhausted on the next turn.
+Animation = SMOKESCREEN
+#-------------------------------
 [SUNSHINE]
 Name = Sunshine
 Type = FIRE
@@ -4186,20 +4211,6 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSunshine6
 Description = Summons sunshine for six turns, boosting Fire-type attacks and hindering most others.
-#-------------------------------
-[TARVOLLEY]
-Name = Tar Volley
-Type = FIRE
-Category = Special
-Power = 45
-Accuracy = 100
-TotalPP = 10
-Target = AllNearFoes
-FunctionCode = HitTwoTimesTargetThenTargetAllyLowerTargetSpd1
-Flags = CanProtect
-EffectChance = 100
-Description = The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.
-Animation = SMOKESCREEN
 #-------------------------------
 [TEPHRACANNON]
 Name = Tephra Cannon
@@ -6549,8 +6560,8 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = ProtectUserFrostbitePhysAttacker
-Description = Protects the user from attacks. Also frostbites any attacker who physically attacks the user.
+FunctionCode = UserTakesHalfDamageThisTurnFrostbiteAttackers
+Description = Halves attack damage taken this turn. Frostbites any attackers. Fails if used successively.
 Animation = DEFENSECURL
 #-------------------------------
 [ICEPICK]
@@ -6574,7 +6585,7 @@ Accuracy = 0
 TotalPP = 5
 Target = NearOther
 FunctionCode = TrapAndFrostbiteTarget
-Flags = CanMagicCoat
+Flags = CanProtect,CanMagicCoat
 Description = The user pins the target down with icy spikes, applying frostbite and trapping it.
 Animation = ICICLESPEAR
 #-------------------------------
@@ -6867,6 +6878,19 @@ FunctionCode = Basic
 Flags = CanProtect
 Description = The user inspires a sudden dread in the target, damaging it. This move always goes first.
 Animation = GLARE
+#-------------------------------
+[DREEPYBARRAGE]
+Name = Dreepy Barrage
+Type = DRAGON
+Category = Physical
+Power = 25
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = HitFourTimesTargetThenTargetAlly
+Flags = CanProtect
+Description = The user launches four Dreepies, which spread out equally to hit near foes. But, they avoid targets they can't hit.
+Animation = DRAGONDARTS
 #-------------------------------
 [GALLINGSPIT]
 Name = Galling Spit

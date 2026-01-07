@@ -100,7 +100,7 @@ class PokeBattle_Move
     def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
         pseudoLevel = 15.0 + (attacker_level.to_f / 2.0)
         levelMultiplier = 2.0 + (0.4 * pseudoLevel)
-        damage  = ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
+        damage  = 2.0 + ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
         return damage
     end
 
@@ -330,7 +330,7 @@ class PokeBattle_Move
             end
         end
         # Partial protection moves
-        if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard,:Floodgate])
+        if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard,:Floodgate,:RedHotRetreat,:IceNineWall])
             multipliers[:final_damage_multiplier] *= 0.5
         end
         if target.effectActive?(:EmpoweredDetect)
@@ -426,8 +426,8 @@ class PokeBattle_Move
             multipliers[:final_damage_multiplier] *= 1.2
         end
 
-        # Mystic tribe
-        if user.hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
+        # Esoteric tribe
+        if user.hasTribeBonus?(:ESOTERIC) && user.lastRoundMoveCategory == 2 # Status
             multipliers[:final_damage_multiplier] *= 1.25
         end
 

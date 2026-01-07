@@ -4811,3 +4811,30 @@ Price = 4000
 FieldUse = TM
 Flags = SkipPocketMessage
 Move = COSMICPOWER
+#-------------------------------
+[TMBULLETTRAIN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = BULLETTRAIN
+#-------------------------------
+[TMSEERSTRIKE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = SEERSTRIKE
+#-------------------------------
+[TMTRICK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 5
+Price = 4000
+FieldUse = TM
+Flags = SkipPocketMessage
+Move = TRICK

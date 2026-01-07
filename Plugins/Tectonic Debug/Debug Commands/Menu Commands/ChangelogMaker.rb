@@ -298,6 +298,46 @@ def createChangeLog(generationNumber = nil,fileName = "Changelogs/changelog.txt"
 			end
 
 			changeLog.push("")
+
+			# Check for tribe changes
+			oldTribes = species_data.tribes(oldSpeciesData: true)
+			newTribes = newSpeciesData.tribes
+
+			unless oldTribes.empty?
+				removedTribes = []
+
+				oldTribes.each do |oldTribe|
+					next if newTribes.include?(oldTribe)
+					removedTribes.push(oldTribe)
+				end
+
+				unless removedTribes.empty?
+					tribeStr = "Removed Tribes: "
+					removedTribes.each_with_index do |tribeID, index|
+						tribeStr += getTribeName(tribeID)
+						tribeStr += ", " unless index == removedTribes.length - 1
+					end
+					changeLog.push(tribeStr)
+				end
+			end
+
+			unless newTribes.empty?
+				addedTribes = []
+
+				newTribes.each do |newTribe|
+					next if oldTribes.include?(newTribe)
+					addedTribes.push(newTribe)
+				end
+
+				unless addedTribes.empty?
+					tribeStr = "Added Tribes: "
+					addedTribes.each_with_index do |tribeID, index|
+						tribeStr += getTribeName(tribeID)
+						tribeStr += ", " unless index == addedTribes.length - 1
+					end
+					changeLog.push(tribeStr)
+				end
+			end
 			
 			# Check for evolution changes
 			species_data.evolutions.each do |evolutionData|

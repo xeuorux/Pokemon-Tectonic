@@ -47,8 +47,13 @@ FLAG_HAS_FORM_MASK = 0b1 << FLAG_HAS_FORM_SHIFT
 MIN_BYTES_PER_POKEMON = 12
 MAX_BYTES_PER_POKEMON = 16
 
+def item_in_held_pocket?(item_symbol)
+  pocket = GameData::Item.get(item_symbol).pocket
+  return pocket >= 9 && pocket <= 13
+end
+
 def get_held_item_index(symbol)
-  symbols = GameData::Item.keys.filter{ |key| !key.is_a?(Numeric) && key.is_a?(Symbol) && GameData::Item.get(key).pocket == 5 }
+  symbols = GameData::Item.keys.filter{ |key| !key.is_a?(Numeric) && key.is_a?(Symbol) && item_in_held_pocket?(key) }
   index = symbols.find_index(symbol)
   if index.nil? 
     return -1 
@@ -57,7 +62,7 @@ def get_held_item_index(symbol)
 end
 
 def get_held_item_from_index(index)
-  symbols = GameData::Item.keys.filter{ |key| !key.is_a?(Numeric) && key.is_a?(Symbol) && GameData::Item.get(key).pocket == 5 }
+  symbols = GameData::Item.keys.filter{ |key| !key.is_a?(Numeric) && key.is_a?(Symbol) && item_in_held_pocket?(key) }
   symbol = symbols[index]
   return symbol
 end
@@ -238,8 +243,8 @@ def decode_chunk(buffer, offset, party)
   moves.each { |move| mon.learn_move(move) if move }
 
   # Set items
-  mon.items[0] = item1_index >= 0 ? GameData::Item.get(get_held_item_from_index(item1_index)) : nil
-  mon.items[1] = item2_index >= 0 ? GameData::Item.get(get_held_item_from_index(item2_index)) : nil
+  mon.items[0] = item1_index >= 0 ? GameData::Item.get(get_held_item_from_index(item1_index)).id : nil
+  mon.items[1] = item2_index >= 0 ? GameData::Item.get(get_held_item_from_index(item2_index)).id : nil
 
   # Set style points
   mon.ev[:HP] = style_hp

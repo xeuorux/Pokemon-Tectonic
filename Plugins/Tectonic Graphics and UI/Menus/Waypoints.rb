@@ -195,8 +195,6 @@ class WaypointsTracker
                             if match
                                 waypointName = match[1]
                                 yield event, map_id, waypointName
-                            else
-                                echoln("No match: #{parameter}")
                             end
                         end
                     end

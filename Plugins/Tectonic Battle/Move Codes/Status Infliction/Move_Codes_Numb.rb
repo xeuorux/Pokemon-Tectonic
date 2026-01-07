@@ -29,7 +29,7 @@ class PokeBattle_Move_NumbTargetAlwaysHitsInRainstormHitsTargetInSky < PokeBattl
 end
 
 #===============================================================================
-# May cause the target to be numbed or to lower their Defense by two steps. (Thunder Fang)
+# May cause the target to be numbed or to lower their Defense by two steps. (Thunder Fang, Volt Crunch)
 #===============================================================================
 class PokeBattle_Move_NumbTargetLowerTargetDef2 < PokeBattle_Move_StatusTargetLowerTargetDef2
     def initialize(battle, move)

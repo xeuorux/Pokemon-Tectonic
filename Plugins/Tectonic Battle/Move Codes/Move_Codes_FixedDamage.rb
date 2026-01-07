@@ -23,7 +23,7 @@ class PokeBattle_Move_FixedDamageHalfTargetHealUserByHalfOfDamageDone < PokeBatt
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.hpLost <= 0 || !shouldDrain?(user, target)
         hpGain = (target.damageState.hpLost * drainFactor(user, target)).round
-        user.pbRecoverHPFromDrain(hpGain, target)
+        user.pbRecoverHPFromDrain(hpGain, target, user: user)
     end
 
     def pbFixedDamage(_user, target)
@@ -35,7 +35,6 @@ class PokeBattle_Move_FixedDamageHalfTargetHealUserByHalfOfDamageDone < PokeBatt
     def getEffectScore(user, target)
         score = 40 * drainFactor(user, target)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
         score *= 1.3 if user.hasActiveItemAI?(:BIGROOT)
         score *= 2 if user.belowHalfHealth?
         score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.healingReversed?
