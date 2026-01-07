@@ -467,7 +467,7 @@ Pokemon = ARIADOS,70
 Pokemon = CLAWITZER,70
     Moves = AURASPHERE,ENERGYBALL,BUBBLEBLASTER,GLIMMERPULSE
     AbilityIndex = 0 # Mega Launcher
-    Item = ROCKGEM
+    Item = WATERGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,10,20,10
 Pokemon = SAURENAID,70
