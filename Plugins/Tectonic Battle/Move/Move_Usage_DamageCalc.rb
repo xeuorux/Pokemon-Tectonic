@@ -276,6 +276,10 @@ class PokeBattle_Move
         if user.effectActive?(:Blindness)
             multipliers[:final_damage_multiplier] *= 0.5
         end
+        # Sugar Rush
+        if target.effectActive?(:SugarRush)
+            multipliers[:final_damage_multiplier] *= 2.0
+        end
     end
 
     def pbCalcProtectionsDamageMultipliers(user,target,multipliers,checkingForAI=false)

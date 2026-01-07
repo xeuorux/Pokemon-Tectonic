@@ -2088,10 +2088,6 @@ Description = Can hold a second item by stealing it.
 Name = Sticky Mold
 Description = If an attack lowers its HP below half, leeches the attacker.
 #-------------------------------
-[STICKYSITUATION]
-Name = Sticky Situation
-Description = If an attack lowers this Pokémon's HP below half, the attacker becomes sticky for three turns.
-#-------------------------------
 [STONEMANE]
 Name = Stone Mane
 Description = Prevents half the self-damage from recoil. Powers up moves that have recoil damage by 20%.
@@ -2157,6 +2153,10 @@ Description = Boosts Sp. Def by 20%. When this Pokémon takes its second special
 [SUDDENTURN]
 Name = Sudden Turn
 Description = Uses Rapid Spin if an attack lowers its HP below half.
+#-------------------------------
+[SUGARCOATED]
+Name = Sugarcoated
+Description = If an attack lowers its HP below half, the attacker enters a sugar rush. Their speed is doubled, but they take double damage from moves.
 #-------------------------------
 [SUMMERSZENITH]
 Name = Summer's Zenith

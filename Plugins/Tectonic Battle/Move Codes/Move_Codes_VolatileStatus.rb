@@ -873,13 +873,13 @@ class PokeBattle_Move_JinxTarget < PokeBattle_Move
 end
 
 #===============================================================================
-# User applies the Sticky effect for 3 turns. (Reducing Syrup)
+# User applies the Shrinking effect for 3 turns. (Reducing Syrup)
 #===============================================================================
-class PokeBattle_Move_ApplyReducingSyrupToTarget < PokeBattle_Move
+class PokeBattle_Move_ApplyShrinkingToTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
-        if target.effectActive?(:Sticky)
-            @battle.pbDisplay(_INTL("But it failed, since {1} is already covered in syrup!", target.pbThis(true))) if show_message
+        if target.effectActive?(:Shrinking)
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already shrinking!", target.pbThis(true))) if show_message
             return true
         end
         return false
@@ -887,17 +887,17 @@ class PokeBattle_Move_ApplyReducingSyrupToTarget < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
-        target.applyEffect(:Sticky, applyEffectDurationModifiers(3, user))
+        target.applyEffect(:Shrinking, applyEffectDurationModifiers(DEFAULT_SHRINKING_DURATION, user))
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        return if target.effectActive?(:Sticky)
-        target.applyEffect(:Sticky, applyEffectDurationModifiers(3, user))
+        return if target.effectActive?(:Shrinking)
+        target.applyEffect(:Shrinking, applyEffectDurationModifiers(DEFAULT_SHRINKING_DURATION, user))
     end
 
     def getEffectScore(user, target)
-        return 0 if target.effectActive?(:Sticky)
+        return 0 if target.effectActive?(:Shrinking)
         return getMultiStatDownEffectScore([target.highestStat, 2], user, target) * 1.45 # 100% on first turn, 30% on second, 15% on third
     end
 end

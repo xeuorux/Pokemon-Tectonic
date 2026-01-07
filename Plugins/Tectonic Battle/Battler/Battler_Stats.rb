@@ -307,6 +307,7 @@ class PokeBattle_Battler
             speedMult *= 2.0 if pbOwnSide.effectActive?(:Tailwind) || pbOwnSide.effectActive?(:EmpoweredTailwind)
             speedMult /= 2.0 if pbOwnSide.effectActive?(:Swamp)
             speedMult *= 2.0 if effectActive?(:OnDragonRide)
+            speedMult *= 2.0 if effectActive?(:SugarRush)
             eachAlly do |ally|
                 speedMult *= 2.0 if ally.hasActiveAbility?(:SUPERCONDUCTOR)
             end

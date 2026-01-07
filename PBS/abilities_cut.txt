@@ -1163,6 +1163,10 @@ Description = Attacks have a 50% chance to cause the target to flinch.
 Name = Sticky Hold
 Description = Protects the Pokémon from item theft.
 #-------------------------------
+[STICKYSITUATION]
+Name = Sticky Situation
+Description = If an attack lowers this Pokémon's HP below half, the attacker becomes sticky for three turns.
+#-------------------------------
 [STORMDRAIN]
 Name = Storm Drain
 Description = Draws in Water-type moves, is immune to them, and boosts Sp. Atk when hit.

@@ -138,7 +138,6 @@ def battleKeywordsImportant
         "energize",
         "substitutes",
         "substitute",
-        "sticky",
         "binding",
         "binds",
         "bind",
@@ -149,6 +148,9 @@ def battleKeywordsImportant
         "foretold",
         "barred",
         "bar",
+        "shrinks",
+        "shrinking",
+        "sugar rush",
     ]
 end
 

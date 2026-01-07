@@ -2465,6 +2465,71 @@ GameData::BattleEffect.register_effect(:Battler, {
     end
 })
 
+DEFAULT_SHRINKING_DURATION = 3
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Shrinking,
+    :real_name => "Shrinking",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :baton_passed => true,
+    :avatars_purge => true,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} is beginning to shrink down!", battler.pbThis))
+        battle.pbDisplay(_INTL("It'll last for {1} more turns!", value-1))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is cured of its shrinking!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer shrinking down!", battler.pbThis(true)))
+    end,
+    :eor_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} got smaller! Its highest stat is going down!", battler.pbThis(true)))
+        battler.pbLowerStatStep(battler.highestStat, 2)
+        battler.pbItemStatRestoreCheck
+    end,
+})
+
+DEFAULT_SUGAR_RUSH_DURATION = 4
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SugarRush,
+    :real_name => "Sugar Rush",
+    :type => :Integer,
+    :ticks_down_eor => true,
+    :baton_passed => true,
+    :avatars_purge => true,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} is experiencing a sugar rush!", battler.pbThis))
+        battle.pbDisplay(_INTL("It'll take double move damage and have doubled speed, for {1} more turns!", value-1))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} was forced out of its sugar rush!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} calmed down from its sugar rush!", battler.pbThis(true)))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Blindness,
+    :real_name => "Blinded",
+    :baton_passed => true,
+    :avatars_purge => true,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} is blinded!", battler.pbThis))
+        battle.pbDisplay(_INTL("It'll deal half as much damage on its next attack!"))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer blinded.", battler.pbThis))
+    end,
+    :stay_in_rating_proc => proc do |battle, battler, value, stay_in_rating|
+        stay_in_rating -= 10 if battler.hasDamagingAttack?
+        next stay_in_rating
+    end
+})
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :RefugeDamageReduction,
     :real_name => "Refuge",
@@ -2522,50 +2587,6 @@ GameData::BattleEffect.register_effect(:Battler, {
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("The spotlight will boost {1}'s next Normal-type attack!", battler.pbThis))
     end,
-})
-
-DEFAULT_STICKY_DURATION = 3
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Sticky,
-    :real_name => "Sticky",
-    :type => :Integer,
-    :ticks_down_eor => true,
-    :baton_passed => true,
-    :avatars_purge => true,
-    :apply_proc => proc do |battle, battler, value|
-        battle.pbDisplay(_INTL("{1} was covered in a sticky goop!", battler.pbThis))
-        battle.pbDisplay(_INTL("It'll last for {1} more turns!", value-1))
-    end,
-    :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} got rid of the sticky goop!", battler.pbThis))
-    end,
-    :expire_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("The sticky goop around {1} disappeared!", battler.pbThis(true)))
-    end,
-    :eor_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("The sticky goop reduced {1}'s highest stat!", battler.pbThis(true)))
-        battler.pbLowerStatStep(battler.highestStat, 2)
-        battler.pbItemStatRestoreCheck
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Blindness,
-    :real_name => "Blinded",
-    :baton_passed => true,
-    :avatars_purge => true,
-    :apply_proc => proc do |battle, battler, value|
-        battle.pbDisplay(_INTL("{1} is blinded!", battler.pbThis))
-        battle.pbDisplay(_INTL("It'll deal half as much damage on its next attack!"))
-    end,
-    :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} is no longer blinded.", battler.pbThis))
-    end,
-    :stay_in_rating_proc => proc do |battle, battler, value, stay_in_rating|
-        stay_in_rating -= 10 if battler.hasDamagingAttack?
-        next stay_in_rating
-    end
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

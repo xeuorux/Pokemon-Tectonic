@@ -6987,11 +6987,11 @@ Name = Reducing Syrup
 Type = DRAGON
 Category = Status
 Accuracy = 0
-TotalPP = 12
+TotalPP = 15
 Target = NearOther
-FunctionCode = ApplyReducingSyrupToTarget
+FunctionCode = ApplyShrinkingToTarget
 Flags = CanMagicCoat
-Description = The user sprays the target with a sticky syrup. For the next three turns, the target's highest stat will be reduced by two steps.
+Description = The user sprays the target with a strange shrinking liquid. For the next three turns, the target's highest stat will be reduced by two steps.
 #-------------------------------
 [REND]
 Name = Rend

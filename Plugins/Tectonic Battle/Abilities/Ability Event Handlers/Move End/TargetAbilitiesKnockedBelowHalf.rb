@@ -93,12 +93,12 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:SUDDENTURN,
     }
 )
 
-BattleHandlers::TargetAbilityKnockedBelowHalf.add(:STICKYSITUATION,
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:SUGARCOATED,
     proc { |ability, target, user, move, _switched, battle|
         next if battle.foretoldMove
-        next if user.effectActive?(:Sticky)
+        next if user.effectActive?(:SugarRush)
         battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Sticky, applyEffectDurationModifiers(DEFAULT_STICKY_DURATION, target))
+        user.applyEffect(:SugarRush, applyEffectDurationModifiers(DEFAULT_SUGAR_RUSH_DURATION, target))
         battle.pbHideAbilitySplash(target)
     }
 )
