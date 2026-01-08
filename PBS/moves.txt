@@ -714,7 +714,7 @@ Accuracy = 100
 TotalPP = 30
 Target = NearOther
 FunctionCode = Basic
-Flags = CanProtect,CanRandomCrit
+Flags = CanProtect,CanRandomCrit,Blade
 Description = Hard, pointed, and sharp claws rake the target to inflict damage. Can random critical hit.
 #-------------------------------
 [SELFDESTRUCT]
