@@ -39,8 +39,12 @@ def pokeCenterHealing(pokeBallsEventID = nil, mode: :NURSE, respawn: false, push
                 PBMoveRoute::StepAnimeOn,
             ])
     end
-    pbMEPlay("Pkmn healing")
-    pbWait(58)
+    if $Options.mevolume > 0
+        pbMEPlay("Pkmn healing")
+        pbWait(58)
+    else
+        pbWait(20)
+    end
     if pokeBallsEvent
         setGlobalVariable(6,0)
         pbMoveRoute(pokeBallsEvent,

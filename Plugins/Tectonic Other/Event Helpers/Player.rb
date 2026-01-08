@@ -84,10 +84,15 @@ end
 
 def healPartyWithDelay(skipAidKit = false)
 	$Trainer.heal_party
-	pbMEPlay('Pkmn healing')
-	pbWait(68)
+	if $Options.mevolume > 0
+		pbMEPlay('Pkmn healing')
+		pbWait(58)
+	else
+		pbMEPlay('Pkmn healing')
+		pbWait(20)
+	end
 	refillAidKit unless skipAidKit
-    refreshFollow(false)
+  refreshFollow(false)
 end
 
 def pumpedUp?
