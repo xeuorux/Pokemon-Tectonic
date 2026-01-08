@@ -42,12 +42,21 @@ class Options
     attr_accessor :bike_bgm
 
     def bgmvolume
+        @bgmvolume = 50 if @bgmvolume.nil?
         return @bgmvolume / VOLUME_FAKERY_MULT
     end
 
     attr_writer :bgmvolume
 
+    def mevolume
+        @mevolume = 50 if @mevolume.nil?
+        return @mevolume / VOLUME_FAKERY_MULT
+    end
+
+    attr_writer :mevolume
+
     def sevolume
+        @sevolume = 50 if @sevolume.nil?
         return @sevolume / VOLUME_FAKERY_MULT
     end
 
@@ -74,7 +83,8 @@ class Options
         @screensize  		            = (Settings::SCREEN_SCALE * 2).floor - 1 # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
         @language    		            = 0 # Language (see also Settings::LANGUAGES in script Options)
         @runstyle    		            = 0 # Default movement speed (0=walk, 1=run)
-        @bgmvolume                      = 50 # Volume of background music and ME
+        @bgmvolume                      = 50 # Volume of background music
+        @mevolume                       = 50# Volume of music effects
         @sevolume    		            = 50 # Volume of sound effects
         @bike_bgm                       = 0 # (0=true, 1=false)
         @textinput   		            = System.platform.downcase[/android/] ? 0 : 1 # Text input mode (0=cursor, 1=keyboard)

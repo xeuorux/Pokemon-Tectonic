@@ -113,7 +113,7 @@ class PokemonOption_Scene_Audio < PokemonOption_Scene_Base
 		options.concat([
 			SliderOption.new(
                 _INTL("Music Volume"),
-                _INTL("The loudness of background music, fanfares, and jingles."),
+                _INTL("The loudness of background music."),
                 0, 100, 5,
 				proc { $Options.bgmvolume * VOLUME_FAKERY_MULT },
 				proc { |value|
@@ -124,6 +124,18 @@ class PokemonOption_Scene_Audio < PokemonOption_Scene_Base
 							$game_system.bgm_pause
 							$game_system.bgm_resume(playingBGM)
 						end
+					end
+				}
+			),
+            SliderOption.new(
+                _INTL("Jingle Volume"),
+                _INTL("The loudness of fanfares, jingles, and other musical effects."),
+                0, 100, 5,
+				proc { $Options.mevolume * VOLUME_FAKERY_MULT },
+				proc { |value|
+					if $Options.mevolume * VOLUME_FAKERY_MULT != value
+						$Options.mevolume = value
+						pbPlayCursorSE
 					end
 				}
 			),

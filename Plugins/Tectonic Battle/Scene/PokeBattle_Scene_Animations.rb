@@ -366,7 +366,7 @@ class PokeBattle_Scene
     def pbThrowSuccess
       return if @battle.opponent
       @briefMessage = false
-      if $Options.bgmvolume > 0
+      if $Options.mevolume > 0
         pbMEPlay(pbGetWildCaptureME)
         i = 0
         loop do
@@ -375,7 +375,7 @@ class PokeBattle_Scene
           i += 1
         end
         pbMEStop
-        end
+      end
       pbWildBattleSuccess if @battle.is_a?(PokeBattle_SafariZone)
     end
   
