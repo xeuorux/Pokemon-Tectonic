@@ -107,3 +107,9 @@ BattleHandlers::StatusImmunityAbility.add(:PLOTARMOR,
       next true if battler.battle.eclipsed?
   }
 )
+
+BattleHandlers::StatusImmunityAbility.add(:STONESYMBOL,
+  proc { |ability, battler, status|
+      next true if battler.battle.sandy?
+  }
+)

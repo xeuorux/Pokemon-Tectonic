@@ -196,7 +196,7 @@ Description = Physical moves against it lower the attacker's Speed and Attack.
 #-------------------------------
 [GORILLATACTICS]
 Name = Gorilla Tactics
-Description = Boosts Attack by 50% but the user is locked into the first move they use.
+Description = Boosts Attack by 40% but the user is locked into the first move they use.
 Flags = ChoiceLocking
 #-------------------------------
 [GRIMNEIGH]

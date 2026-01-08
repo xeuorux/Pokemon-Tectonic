@@ -79,7 +79,7 @@ BattleHandlers::SpeedCalcAbility.add(:PRIMEVALSLOWSTART,
 
 BattleHandlers::SpeedCalcAbility.add(:EXOTHERMENGINE,
   proc { |ability, _battler, mult|
-      next mult * 1.5
+      next mult * 1.4
   }
 )
 
@@ -201,5 +201,11 @@ BattleHandlers::SpeedCalcAbility.add(:CAFFEINERUSH,
 BattleHandlers::SpeedCalcAbility.add(:HAILSTONEHELM,
   proc { |ability, battler, mult|
       next mult / 2.0 if battler.battle.icy?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:SUNCHASER,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if battler.battle.sunny?
   }
 )

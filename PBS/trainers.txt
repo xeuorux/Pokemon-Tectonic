@@ -1209,7 +1209,7 @@ Pokemon = EXCADRILL,65
     Item = LIFEORB
 Pokemon = MDUSTOX,65
     Moves = LIFTOFF,MEGAHORN,ACROBATICS,UTURN
-    AbilityIndex = 1 # Follow Through
+    AbilityIndex = 0 # Harsh
     Item = POWERHERB
 #-------------------------------
 [ELDER,Logun]
@@ -1364,7 +1364,7 @@ Pokemon = METANG,28
 [CYCLIST_M,Mitron]
 Pokemon = MDUSTOX,28
     Moves = FLAMECHARGE,BUGBITE,COLDEMBRACE,UTURN
-    AbilityIndex = 1 # Follow Through
+    AbilityIndex = 0 # Harsh
     Item = SITRUSBERRY
 Pokemon = GARBODOR,28
     Moves = TRASHTREASURE,POISONGAS,STINKCLOUD,SHINESHOT
@@ -3257,7 +3257,7 @@ Pokemon = GOLEM,46
 [BEAUTY,Kryssa]
 Pokemon = GDARMANITAN,45
     Moves = ICEHAMMER,CLOSECOMBAT,MACHPUNCH,FLAREBLITZ
-    AbilityIndex = 0 # Gorilla Tactics
+    AbilityIndex = 1 # Gorilla Tactics
 Pokemon = STARMIE,45
     Moves = SNIPESHOT,EXPLOIT,SHOCKWAVE,RAPIDSPIN
     AbilityIndex = 1 # Spectrum Vision
@@ -3647,7 +3647,7 @@ Pokemon = MZANGOOSE,38
     Item = GHOSTGEM
 Pokemon = GDARMANITAN,39
     Moves = BURNINGJEALOUSY,FRIGIDJEALOUSY,ICEPUNCH
-    AbilityIndex = 1 # Gorilla Tactics
+    AbilityIndex = 0 # Gorilla Tactics
     Item = ICEGEM
 Pokemon = ARATICATE,40
     Moves = CRUNCH,MOUTHFUL,NATURALGIFT,BRAINFREEZE
@@ -7256,7 +7256,7 @@ Pokemon = MIENSHAO,52
     AbilityIndex = 1 # Natural Cure
 Pokemon = MDUSTOX,53
     Moves = LIFTOFF,ACROBATICS,UTURN,LUNGE
-    AbilityIndex = 1 # Follow Through
+    AbilityIndex = 0 # Harsh
 #-------------------------------
 [ARTIST3,Alicynthia]
 Policies = ECLIPSE_TEAM
@@ -9453,7 +9453,7 @@ Pokemon = DRAGAPULT,70
 Pokemon = HATTERENE,70
     AbilityIndex = 0 # Killjoy
 Pokemon = GDARMANITAN,70
-    AbilityIndex = 1 # Gorilla Tactics
+    AbilityIndex = 0 # Gorilla Tactics
 #-------------------------------
 [IDEALTRAINER,of Freedom]
 Pokemon = MNINETALES,70

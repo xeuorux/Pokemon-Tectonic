@@ -592,7 +592,7 @@ Description = Takes half damage from Psychic- and Ghost-type attacks.
 #-------------------------------
 [EXOTHERMENGINE]
 Name = Exotherm Engine
-Description = Boosts Speed by 50% but this Pokémon is locked into the first move they use.
+Description = Boosts Speed by 40% but this Pokémon is locked into the first move they use.
 Flags = ChoiceLocking
 #-------------------------------
 [EXPERTISE]
@@ -2092,6 +2092,10 @@ Description = If an attack lowers its HP below half, leeches the attacker.
 Name = Stone Mane
 Description = Prevents half the self-damage from recoil. Powers up moves that have recoil damage by 20%.
 #-------------------------------
+[STONESYMBOL]
+Name = Stone Symbol
+Description = During sandstorm, immune to non-volatile status conditions and stat reductions.
+#-------------------------------
 [STORMBRINGER]
 Name = Stormbringer
 Description = Summons rainstorm for four turns when hit by an attack.
@@ -2170,7 +2174,7 @@ Flags = SunshineSynergy
 #-------------------------------
 [SUNCHASER]
 Name = Sun Chaser
-Description = Boosts this Pokémon's Attack by 30% in sunshine.
+Description = Boosts this Pokémon's Speed by 50% and reduces recoil taken by 50% in sunshine
 Flags = SunshineSynergy
 #-------------------------------
 [SUNEATER]
@@ -2412,6 +2416,11 @@ Flags = MoonglowSynergy
 [WARDING]
 Name = Warding
 Description = Negates enemy status moves that target this Pokémon or create hazards around it.
+#-------------------------------
+[WARMUP]
+Name = Warm Up
+Description = Boosts this Pokémon's Attack by 30% in sunshine.
+Flags = SunshineSynergy
 #-------------------------------
 [WARPINGEFFECT]
 Name = Warping Effect

@@ -21,7 +21,7 @@ BattleHandlers::AttackCalcUserAbility.add(:PRIMEVALSLOWSTART,
 
 BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
     proc { |ability, _user, _battle, attackMult|
-        attackMult *= 1.5
+        attackMult *= 1.4
         next attackMult
     }
 )
@@ -84,7 +84,7 @@ BattleHandlers::AttackCalcUserAbility.add(:BIGTHORNS,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:SUNCHASER,
+BattleHandlers::AttackCalcUserAbility.add(:WARMUP,
   proc { |ability, _user, battle, attackMult|
       attackMult *= 1.3 if battle.sunny?
       next attackMult

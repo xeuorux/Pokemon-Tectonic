@@ -108,6 +108,7 @@ class PokeBattle_Battler
         multiplier *= 0.66 if hasTribeBonus?(:ANIMATED)
         multiplier *= 0.5 if pbOwnSide.effectActive?(:NaturalProtection)
         multiplier /= 2 if shouldAbilityApply?(:UNBREAKABLE, checkingForAI)
+        multiplier *= 0.5 if shouldAbilityApply?(:SUNCHASER, checkingForAI) && @battle.sunny?
         multiplier /= 2 if shouldAbilityApply?(:STONEMANE, checkingForAI)
         multiplier *= 2 if shouldAbilityApply?(:LINEBACKER, checkingForAI)
         return multiplier
